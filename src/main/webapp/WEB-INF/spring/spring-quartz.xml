@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<!-- 
+		Spring Quartz ? 스프링에서 스케쥴링을 하기위한 2번째 방법
+		
+		1. context:componentscan 추가하기(빈객체 등록)
+		2. pom.xml에 의존성 추가
+		
+		Spring Quartz에서는 작업단위가 크게 3가지 컴포넌트로 나누어져 있다.
+		
+		Job : 실제로 작업을할 작업단위를 정의함
+		
+		Trigger : 내가 정의한 Job을 어떤 방식으로 실행시킨건지 시간을 정의함
+		
+		Scheduler : 내가 만든 트리거들을 등록해서 내가 원하는 시간에 작업들이 이루어지도록 스케쥴링함.
+	 -->
+	 <context:component-scan base-package="com.kh.spring"></context:component-scan>
+	 
+	 <!-- 
+	 	Job 빈객체 생성
+	 	메서드 단위로 실행되는 스케쥴러
+	 	MethodInvokingJobDetailFactroyBean, 여러개의 job설정 가능하며, 매개변수로 데이터를 추가하는것도 가능함.
+	  -->
+	  <bean id="job1" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+	  	
+	  	<property name="targetObject" ref="memberController" />
+	  	
+	  	<property name="targetMethod" value="testQuartz" />
+	  	
+	  	<!-- 작업 동시실행 방지 설정 -->
+	  	<property name="concurrent" value="false" />	  	
+	  </bean>
+	  
+	  <bean id="job2" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	  	
+	  	<property name="jobClass" value="com.kh.spring.member.controller.MemberController"/>
+	  	<property name="jobDataAsMap">
+	  		<map>
+	  			<entry key="memberService" value-ref="memberServiceImpl"/>
+	  		</map>
+	  	</property>	  
+	  </bean>
+	 
+	  <!-- 
+	  		trigger
+	  		내가 job을통해 정의한 동작의 실행방법을 정의해주는 녀석
+	   -->
+	   <bean id = "jobTrigger1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	   	
+	   		<property name="jobDetail" ref="job1"/>
+	   		
+	   		<property name="cronExpression" value="0/1 * * 1/1 * ? *" />
+	   </bean>
+	   
+	   <bean id="jobTrigger2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	   		<property name="jobDetail" ref="job2" />
+	   		
+	   		<property name="cronExpression" value="0 * * 1/1 * ? *" />
+	   </bean>
+	  
+	   <!-- 
+	   		Scheduler
+	   		위에서 정의한 job과 trigger를 관리하고 , 정의해둔 트리거를 실행시키는 녀석	   		
+	    -->
+	    
+	    <bean id="jobScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	    	
+	    	<!-- 스케쥴러로 작동시킬 트리거 목록 추가 -->
+	    	<property name="triggers">
+	    	
+	    		<list>
+					<!-- ref의 bean값은 트리거 빈객체의 id값 -->
+					<!-- <ref bean="jobTrigger1"/> -->	    		
+					<ref bean="jobTrigger2"/>
+	    		</list>
+	    	
+	    	</property>
+	    	
+	    </bean>
+</beans>
