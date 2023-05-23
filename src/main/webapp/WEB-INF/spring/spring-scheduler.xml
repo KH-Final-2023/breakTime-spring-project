@@ -22,20 +22,20 @@
 		5. 스케쥴링을 원하는 메소드에 가서 schedule 어노테이션 추가하기
 		6. 원하는 실행방식을 결정하여 스케쥴링하기(고정방식, crontab방식이 있음)
 	 -->
-	 <context:component-scan base-package="com.kh.spring"></context:component-scan>
+	 <!-- <context:component-scan base-package="com.kh.spring"></context:component-scan>
 	 <task:annotation-driven scheduler="khScheduler" />
 	 <task:scheduler id="khScheduler" pool-size="10"/>
-	 <!-- 
+	 
 	 	쓰레드 풀 갯수 지정. 지정하지 않으면 기본값 1
 	 	메인스레드에 영향을 기치지 않게하기위해서 비동기적으로 사용하기위해 선언
-	  -->
+	 
 	 <task:scheduled-tasks  scheduler="khScheduler">
-	 	 <!--
+	 	 
 	 	 	ref : 빈클래스이름(어노테이션으로 등록한 빈객체의 경우 카멀표기법으로 등록됨)
 	 	 	method : 해당빈클래스에서 스케쥴링할 메소드명
-	 	  -->	 	 
+	 	 	 	 
 	 	<task:scheduled ref="memberController" method="testCron" cron="5 * * * * *"/>
-	 	<!-- 
+	 	
 	 		cron 표현식
 	 		*   *    *   *   *   *     * 
 	 		초  분   시   일   월  요일  년도(생략가능)
@@ -61,7 +61,7 @@
 	 		5 * * * * * *
 	 		
 	 		크론메이커 -> 크론설정 쉽게 해주는 사이트
-	 	 -->
-	 </task:scheduled-tasks>
+	 	
+	 </task:scheduled-tasks -->
 
 </beans>
