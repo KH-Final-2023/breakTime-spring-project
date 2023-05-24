@@ -13,7 +13,7 @@
 
 </head>
 <body>
-    sadasdasdasdasdasdasd
+     <a href="<%=  request.getContextPath() %>/notice/list">공지사항</a>
    
 </body>
 </html>
