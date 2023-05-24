@@ -1,0 +1,56 @@
+
+#header {
+height: 80px;
+width: 100%;
+position: fixed;
+top: 0;
+z-index:1;
+border-bottom: 1px solid gray;
+background-color: rgb(255, 255, 255);
+}
+
+#header-content {
+width: 75%;
+margin: auto;
+display: flex;
+justify-content: space-between;
+margin-top: 19px;
+margin-left: 405px;
+padding: 5px 300px 0px 100px;
+}
+
+#navbar {
+padding: 8px 20px;
+width: 380px;
+display: flex;
+justify-content: space-between;
+align-items: end;
+font-size: 16px;
+}
+
+
+#navbar > div:hover{
+color:greenyellow;
+cursor:pointer;
+}
+
+
+#home-logo {
+height: 35px;
+width: 100px;
+cursor: pointer;
+}
+
+#home-logo>img {
+width: 100px;
+height: 35px;
+cursor: pointer;
+}
+
+
+#search>img{
+    width: 20px;
+    height: 18px;
+}
+
+
