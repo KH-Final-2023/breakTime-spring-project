@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="main"/>
+<%@include file="/WEB-INF/views/businessRoom/buRoomList.jsp" %>
 </body>
 </html>

@@ -8,6 +8,8 @@
 	</settings>
 	
 	<typeAliases>
+		<typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinesRoom" alias="room" />
+		<typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinesRoomImg" alias="roomImg" />		
 		<!-- <typeAlias type="com.kh.spring.member.model.vo.Member" alias="member" />
 		<typeAlias type="com.kh.spring.board.model.vo.BoardType" alias="boardType"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Board" alias="board"/>
