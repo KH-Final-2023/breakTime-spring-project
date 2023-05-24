@@ -32,7 +32,7 @@
         <div>
         <form action="insert" method="post">
             <div>
-                <input type="email" id="email" placeholder="이메일입력">
+                <input type="email" name="email" id="email" placeholder="이메일입력">
                 <input type="button" value="인증번호 전송">
             </div>
 
@@ -44,7 +44,7 @@
             <input type="text" name="userId" id="userId" placeholder="아이디입력 : 4~12자 영문 대소문자, 숫자만 입력하세요." required>
             <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호 입력 - 4~12자 영문 대소문자, 숫자만 입력하세요.">
             <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호확인">
-            <input type="text" id="userName" placeholder="이름">
+            <input type="text" name="userName" id="userName" placeholder="이름">
             <input type="submit" onclick="validation()" value="회원가입">
         </form>
         </div>  

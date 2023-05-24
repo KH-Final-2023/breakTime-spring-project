@@ -14,6 +14,11 @@
 </head>
 <body>
     sadasdasdasdasdasdasd
-   
+   	<button id="loginType">로그인</button>
+   	<script>
+   		 document.getElementById("loginType").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/loginType";
+        })
+   	</script>
 </body>
 </html>
