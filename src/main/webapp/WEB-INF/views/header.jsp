@@ -13,11 +13,11 @@
     <div id="header">
         <div id="header-content">
             <div id="home-logo">
-                <img src="resources/IMG/로고.png" alt="로고이미지">
+                <img src="resources/images/로고.png" alt="로고이미지">
             </div>
             <div id="navbar">
                 <div id="search">
-                  <img src="resources/IMG/돋보기.png" alt="검색">
+                  <img src="resources/images/돋보기.png" alt="검색">
                 </div>
                 <div id="login">로그인</div>
                 <div id="mybooking">예약내역</div>

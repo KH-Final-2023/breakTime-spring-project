@@ -25,7 +25,7 @@
 
     <div class="mainContent">
         <div id="backgroundArea">
-            <a href=""><img src="/${contextPath}/resources/images/한옥.jpg" id="backImg"></a>
+            <a href=""><img src="resources/images/한옥.jpg" id="backImg"></a>
         </div>
     
     </div>
@@ -36,10 +36,18 @@
       </div>
       
 <div class="category">
-    <div class="categorySubBox" id="hotel"></div>
-    <div class="categorySubBox" id="motel"></div>
-    <div class="categorySubBox" id="resort"></div>
-    <div class="categorySubBox" id="pension"></div>
+    <div class="categorySubBox" id="hotel">
+    	<a href=""><img src="resources/images/호텔.jpg" id="hotelBox"></a>
+    </div>
+    <div class="categorySubBox" id="motel">
+    	<a href=""><img src="resources/images/모텔.jpg" id="motelBox"></a>
+    </div>
+    <div class="categorySubBox" id="resort">
+    	<a href=""><img src="resources/images/리조트.jpg" id="resortBox"></a>
+    </div>
+    <div class="categorySubBox" id="pension">
+    	<a href=""><img src="resources/images/펜션.jpg" id="pensionBox"></a>
+    </div>
 </div>
 
     <div class="rankingText">
