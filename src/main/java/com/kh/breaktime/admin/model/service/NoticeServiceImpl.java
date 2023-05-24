@@ -39,9 +39,16 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDao.selectNoticeDetail(noticeNo);
 	}
 	
-	public int insertNotice(Notice n) {
+//	public int insertNotice(Notice n) {
+//		
+//		return noticeDao.insertNotice(n);
+//	}
+	
+public int insertNotice(Notice n) throws Exception{
+		int noticeNo = noticeDao.insertNotice(n);
 		
-		return noticeDao.insertNotice(n);
+		
+		return noticeNo;
 	}
 	
 	public int updateNotice(Notice n) {

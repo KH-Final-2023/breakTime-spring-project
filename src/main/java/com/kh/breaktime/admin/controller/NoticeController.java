@@ -87,7 +87,7 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/insert")
-	public String insertBoard(
+	public String insertNotice(
 			Notice n,
 			@RequestParam(value="mode", required=false, defaultValue = "insert") String mode,
 			HttpSession session,
@@ -99,24 +99,18 @@ public class NoticeController {
 
 		if(mode.equals("insert")) {
 			
-			// db에 Board테이블에 데이터 추가 
 			try {
 				result = noticeService.insertNotice(n);
 			}catch(Exception e){
 				
 			}
 		} else {
-			// 게시글 수정 서비스 호출
-			// b객체 안에 boardNo이 들어간 상태일 것.
-			
 			try {
 				result = noticeService.updateNotice(n);
 			} catch (Exception e) {
 				
 			}
 		}
-		
-		
 		
 		if(result > 0) { // 성공적으로 추가시 
 			session.setAttribute("alertMsg", "게시글 작성에 성공하셨습니다.");

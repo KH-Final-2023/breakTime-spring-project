@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="pi" value="${map.pi }"/>
-<c:set var="list" value="${map.list }"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -273,18 +272,22 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                      <c:if test="${empty list }">
-						<td colspan="5" style="text-align:center;">게시글이 없습니다</td>
-					  </c:if>
-					  <c:forEach items="${list }" var="n">
-						<tr onclick="movePage(${n.noticeNo});">
-							<td class="nno">${n.noticeNo}</td>
-							<td>${n.noticeTitle }</td>
-							<%-- <td>${m.userName }</td>  --%>
-						</tr>				
-					</c:forEach>
-					  </tr>
+                      <c:choose>
+						<c:when test="${empty selectNoticeList.list } ">
+							<tr>
+								<td colspan="5">게시글이 없습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${selectNoticeList.list}" var="n">
+								<tr onclick="location.href='<%=request.getContextPath()%>/notice/detail?noticeNo=${n.noticeNo}'">
+									<td>${n.noticeNo }</td>
+									<td>${n.noticeContent }</td>
+									<td>${n.userNo }</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
                     <!--  <tr>
                         <td data-th="글 번호">
                         	1
@@ -299,11 +302,7 @@
                      
                     </tbody>
                   </table>
-                  <script>
-				function movePage(nno){
-					location.href='${contextPath}/notice/detail/'+nno;					
-				}
-			</script>
+     
                   <br>
                   <div class="paging">
                       <nav aria-label="Page navigation example">

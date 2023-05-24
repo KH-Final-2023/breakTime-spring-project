@@ -37,7 +37,12 @@ public class NoticeDao {
 	}
 	
 	public int insertNotice(Notice n) {
-		return sqlSession.insert("notice-mapper.insertNotice");
+		int result = sqlSession.insert("notice-mapper.insertNotice");
+		
+		if(result > 0) {
+			result = n.getNoticeNo();
+		}
+		return result;
 	}
 	
 	public int updateNotice(Notice n) {

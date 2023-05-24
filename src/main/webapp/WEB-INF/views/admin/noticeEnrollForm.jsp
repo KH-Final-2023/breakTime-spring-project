@@ -179,7 +179,7 @@
 					<textarea id="summernote" name="noticeContent"  required value="${n.noticeContent }"></textarea>
 					</div>
 					<input type="hidden" name="mode" value="${param.mode}"/>
-					<input type="hidden" name="noticeNo" value="${empty n.noticeNo ? 0 : n.noticeNo}" />
+					<input type="hidden" name="noticeNo" value="${empty n.noticeNo ? 0 : n.noticeNo}" /> 
 					<div id="box" style="float: right;">
 						<button type="submit" class="btn btn-primary"
 							data-text="등록" style="width: 100px;">
