@@ -41,7 +41,7 @@
 		)
 	</insert>
 
-	<!-- <insert id="insertRoomImg" parameterType="roomImg">
+	<insert id="insertRoomImg" parameterType="roomImg">
 		INSERT INTO ROOM_IMG
 		(
 		FILE_NO,
@@ -62,5 +62,5 @@
 		#{fileLevel},
 		#{status}
 		)
-	</insert> -->
+	</insert> 
 </mapper>
