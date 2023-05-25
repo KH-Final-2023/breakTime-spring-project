@@ -16,9 +16,7 @@
                 <img src="resources/images/로고.png" alt="로고이미지">
             </div>
             <div id="navbar">
-                <div id="search">
-                  <img src="resources/images/돋보기.png" alt="검색">
-                </div>
+                
                 <div id="login">로그인</div>
                 <div id="mybooking">예약내역</div>
                 <div class="dropdown">
@@ -30,9 +28,31 @@
                     <a href="#">장바구니</a>
                   </div>
                 </div> 
+                <div class="search-wrapper">
+    			<div class="input-holder">
+        			<input type="text" class="search-input" placeholder="Type to search" />
+        			<button class="search-icon" onclick="searchToggle(this, event);"><span></span></button>
+    			</div>
+    				<span class="close" onclick="searchToggle(this, event);"></span>
+			 </div>
             </div>
         </div>
     </div>
+    
+    <script>
+    function searchToggle(obj, evt){
+    var container = $(obj).closest('.search-wrapper');
+        if(!container.hasClass('active')){
+            container.addClass('active');
+            evt.preventDefault();
+        }
+        else if(container.hasClass('active') && $(obj).closest('.input-holder').length == 0){
+            container.removeClass('active');
+            // clear input
+            container.find('.search-input').val('');
+        }
+}
+    </script>
     
 </body>
 </html>
