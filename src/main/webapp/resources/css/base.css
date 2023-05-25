@@ -1,0 +1,22 @@
+* {
+    /* border: 1px solid rgba(128, 128, 128, 0.568); */
+}
+body {
+    padding : 0px;
+    margin: 0px;
+}
+div {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#wrapper {
+    width: 100%;
+    min-width: 1180px;
+    background-color: #f1f4f9;
+}
