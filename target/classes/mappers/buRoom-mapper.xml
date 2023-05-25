@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="buRoom-mapper">
+	<resultMap id="businessRoomResultMap" type="room">
+		<id property="roomNo" column="ROOM_NO" />
+		<result property="buId" column="BU_ID" />
+		<result property="roomName" column="ROOM_NAME" />
+		<result property="roomCount" column="ROOM_COUNT" />
+		<result property="roomPrice" column="ROOM_PRICE" />
+		<result property="roomInfo" column="ROOM_INFO" />
+	</resultMap>
+
+	<resultMap id="businessRoomImgResultMap" type="roomImg">
+		<id property="fileNo" column="FILE_NO" />
+		<result property="roomNo" column="ROOM_NO" />
+		<result property="originName" column="ORIGIN_NAME" />
+		<result property="saveName" column="SAVE_NAME" />
+		<result property="filePath" column="FILE_PATH" />
+		<result property="fileLevel" column="FILE_LEVEL" />
+		<result property="status" column="STATUS" />
+	</resultMap>
+	
+	<insert id="insertBuRoom" parameterType="room">
+		INSERT INTO ROOM
+		(
+		ROOM_NO,
+		BU_ID,
+		ROOM_COUNT,
+		ROOM_NAME,
+		ROOM_PRICE,
+		ROOM_INFO
+		)
+		VALUES
+		(
+		#{roomNo},
+		#{buId},
+		#{roomCount},
+		#{roomName},
+		#{roomPrice},
+		#{roomInfo}
+		)
+	</insert>
+
+	<insert id="insertRoomImg" parameterType="roomImg">
+		INSERT INTO ROOM_IMG
+		(
+		FILE_NO,
+		ROOM_NO,
+		ORIGIN_NAME,
+		SAVE_NAME,
+		FILE_PATH,
+		FILE_LEVEL,
+		STATUS
+		)
+		VALUES
+		(
+		#{fileNo},
+		#{roomNo},
+		#{originName},
+		#{saveName},
+		#{filePath},
+		#{fileLevel},
+		#{status}
+		)
+	</insert> 
+</mapper>
