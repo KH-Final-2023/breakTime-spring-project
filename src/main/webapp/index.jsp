@@ -8,5 +8,6 @@
 </head>
 <body>
 <%@include file="/WEB-INF/views/businessRoom/buRoomList.jsp" %>
+
 </body>
 </html>
