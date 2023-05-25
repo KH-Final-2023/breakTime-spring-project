@@ -18,12 +18,12 @@ public class BuDao {
 	
 	    
 	    public int insertBuRoom(BusinessRoom buRoom) {
-	        return sqlSession.insert("buMapper.insertBuRoom", buRoom);
+	        return sqlSession.insert("buRoom-mapper.insertBuRoom", buRoom);
 	    }
 	    
 	    
 	    public int insertRoomImgList(List<BusinessRoomImg> roomImgList) {
-	        return sqlSession.insert("buMapper.insertRoomImgList", roomImgList);
+	        return sqlSession.insert("buRoom-mapper.insertRoomImgList", roomImgList);
 	    }
 }
 

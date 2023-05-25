@@ -32,7 +32,7 @@
     </div>
     <div id="content">
 		     <div id="content1">
-		     <form action="/breaktime/businessRoom/register" method="GET">
+		     <form action="/breaktime/businessRoom/resister" method="GET">
    				 <button type="submit" id="buRoomRegister">객실 등록</button>
 			</form>
 		    <form action="/breaktime/businessRoom/reservation" method="GET">

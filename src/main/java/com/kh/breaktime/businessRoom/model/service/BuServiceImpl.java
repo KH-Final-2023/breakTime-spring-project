@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +23,10 @@ public class BuServiceImpl implements BuService {
 
 	@Autowired
 	private BuDao buDao;
+	
+	@Autowired
+	private ServletContext servletContext;
+
 
 	@Transactional(rollbackFor = Exception.class)
 	public int insertBuRoom(BusinessRoom buRoom, List<MultipartFile> upfiles) throws Exception {
@@ -39,7 +45,7 @@ public class BuServiceImpl implements BuService {
 					roomImg.setRoomNo(buRoom.getRoomNo());
 					roomImg.setOriginName(file.getOriginalFilename());
 					roomImg.setSaveName(savedImagePath);
-					roomImg.setFilePath("webapp/resources/images");
+					roomImg.setFilePath("/resources/images");
 					roomImg.setFileLevel(0);
 					roomImg.setStatus("ACTIVE");
 
@@ -55,11 +61,12 @@ public class BuServiceImpl implements BuService {
 	}
 
 	public String saveImage(MultipartFile file) {
-		String uploadPath = "webapp/resources/images"; // 이미지 저장 디렉토리 경로
+		String uploadPath = servletContext.getRealPath("/resources/images"); // 이미지 저장 디렉토리 경로
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename()); // 파일명
 
 		try {
 			// 이미지 저장 경로
+			
 			String savePath = uploadPath + File.separator + fileName;
 
 			// 이미지 저장
