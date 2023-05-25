@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/header.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
             </div>
             <div id="navbar">
                 
-                <div id="login">로그인</div>
+                <div id="loginType">로그인</div>
                 <div id="mybooking">예약내역</div>
                 <div class="dropdown">
                   <span class="dropbtn">더보기</span>
@@ -54,5 +55,10 @@
 }
     </script>
     
+      <script>
+          document.getElementById("loginType").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/loginType";
+        })
+      </script>
 </body>
 </html>
