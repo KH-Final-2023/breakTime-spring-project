@@ -14,7 +14,7 @@
 		<typeAlias type="com.kh.breaktime.business.model.vo.Business" alias="business" />
 	</typeAliases>
 	 
-	 <mappers>	 	
+	 <mappers>
 	 	<mapper resource="/mappers/buRoom-mapper.xml"/>
 	 	<mapper resource="/mappers/member-mapper.xml"/>
 	 	<mapper resource="/mappers/business-mapper.xml"/>
