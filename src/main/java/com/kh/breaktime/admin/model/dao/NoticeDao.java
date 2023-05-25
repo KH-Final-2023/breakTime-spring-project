@@ -37,17 +37,20 @@ public class NoticeDao {
 	}
 	
 	public int insertNotice(Notice n) {
-		int result = sqlSession.insert("notice-mapper.insertNotice");
-		
-		if(result > 0) {
-			result = n.getNoticeNo();
-		}
-		return result;
+//		int result = sqlSession.insert("notice-mapper.insertNotice");
+//		
+//		if(result > 0) {
+//			result = n.getNoticeNo();
+//		}
+//		return result;
+		return sqlSession.insert("notice-mapper.insertNotice", n);
 	}
 	
 	public int updateNotice(Notice n) {
 		return sqlSession.update("notice-mapper.updateNotice", n);
 	}
 	
-	
+	public int deleteNotice(int noticeNo) {
+		return sqlSession.delete("notice-mapper.deleteNotice",noticeNo);
+	}
 }

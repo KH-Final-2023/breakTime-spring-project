@@ -154,7 +154,7 @@
         
         <div class="nav">
             <ul>
-                <li><a href="">공지사항</a></li>
+                <li><a href="<%=request.getContextPath()%>/notice/list">공지사항</a></li>
                 <li><a href="">사업자 가입 승인</a></li>
                 <li><a href="">고객 정보 관리</a></li>
                 <li><a href="">악성 리뷰 관리</a></li>      

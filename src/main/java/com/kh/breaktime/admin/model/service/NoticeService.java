@@ -10,8 +10,9 @@ public interface NoticeService {
 	
 	public Notice selectNoticeDetail(int noticeNo);
 	
-	public int insertNotice(Notice n) throws Exception;
+	public int insertNotice(Notice n); //throws Exception;
 
-	public int updateNotice(Notice n) throws Exception;
-
+	public int updateNotice(Notice n); //throws Exception;
+	
+	public int deleteNotice(int noticeNo);
 }

@@ -30,20 +30,6 @@ public class NoticeController {
 	private NoticeService noticeService;
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 	
-//	@GetMapping("/list")
-//	public String noticeList(
-//							Model model,
-//						    @RequestParam(value = "cpage", defaultValue="1") int currentPage,
-//						    @RequestParam Map<String, Object> paramMap) {
-//
-//		Map<String, Object> map= new HashMap();
-//	
-//		
-//		model.addAttribute("map",map);
-//		
-//		return "admin/noticeListView";
-//		
-//	}
 	@GetMapping("/list")
 	public String notice(Model model,
 						 @RequestParam(value="cpage", required=false, defaultValue="1") int cp
@@ -53,18 +39,11 @@ public class NoticeController {
 		model.addAttribute("selectNoticeList",map);
 		return "admin/noticeListView";
 	}
-	// 상세조회
-	@GetMapping("/detail/{noticeNo}")
-	public String noticeDetail( @PathVariable("noticeNo") int noticeNo,
-		      @RequestParam(value="cpage",required=false, defaultValue="1") int cp,
-		      Model model,
-		      HttpSession session,
-		      HttpServletRequest req, HttpServletResponse resp) {
-		// 게시글 상세조회 서비스 호출 
-		Notice detail = noticeService.selectNoticeDetail(noticeNo);
+	@GetMapping("/detail")
+	public String noticeDetail( Model model,
+		      					@RequestParam(value="noticeNo",required=false, defaultValue="0") int noticeNo){
 		
-		
-		model.addAttribute("n",detail);
+		model.addAttribute("notice",noticeService.selectNoticeDetail(noticeNo));
 		return "admin/noticeDetailView";
 	}
 	
@@ -75,8 +54,6 @@ public class NoticeController {
 				@RequestParam(value="nno", defaultValue = "0", required = false) int nno
 			) {
 		if(mode.equals("update")) {
-			// 수정하기 페이지 요청 
-			// 선택한 게시판 정보 조회 후 이동. 
 			Notice n = noticeService.selectNoticeDetail(nno);
 			
 			model.addAttribute("n", n);
@@ -87,44 +64,29 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/insert")
-	public String insertNotice(
-			Notice n,
-			@RequestParam(value="mode", required=false, defaultValue = "insert") String mode,
-			HttpSession session,
-			Model model,
-			@RequestParam(value="deleteList", required=false) String deleteList
-			) {
-
-		int result = 0; 
-
-		if(mode.equals("insert")) {
-			
-			try {
-				result = noticeService.insertNotice(n);
-			}catch(Exception e){
-				
-			}
-		} else {
-			try {
-				result = noticeService.updateNotice(n);
-			} catch (Exception e) {
-				
-			}
+	public String noticeEnroll(Notice n , HttpSession session, Model model ) {
+		
+		if(n.getNoticeNo() == 0) {
+			int result = noticeService.insertNotice(n);
+			session.setAttribute("alertMsg", "게시글 작성에 성공하셨습니다.");
 		}
 		
-		if(result > 0) { // 성공적으로 추가시 
-			session.setAttribute("alertMsg", "게시글 작성에 성공하셨습니다.");
-			return "redirect:../list/";
-		}else { // errorPage 포워딩 
+		int result = 0;
+		if(result < 0) { 
 			model.addAttribute("errorMsg", "게시글 작성 실패");
 			return "common/errorPage";
+		}else { // 
+			session.setAttribute("alertMsg", "게시글 작성에 성공하셨습니다.");
+			return "redirect:../notice/list/";
 		}
 	}
 	
-	
-	
-	
-	
-	
+	@GetMapping("/delete")
+	public String noticeDelte(@RequestParam(value="noticeNo", required=false, defaultValue="0") int noticeNo) {
+		
+		noticeService.deleteNotice(noticeNo);
+		
+		return "redirect:../notice/list/";
+	}
 	
 }
