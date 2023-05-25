@@ -41,7 +41,7 @@
       
 <div class="category">
     <div class="categorySubBox" id="hotel" >
-    	<p id="pHotel">호텔</p>
+    	<p id="pHotel" >호텔</p>
     </div>
     <div class="categorySubBox" id="motel">
  		<p id="pMotel">모텔</p>

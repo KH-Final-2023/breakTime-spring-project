@@ -83,6 +83,7 @@
   height: 200px;
   text-align: center;
   cursor: pointer;
+  
 }
 
 
@@ -109,12 +110,14 @@
 	background: url("/breaktime/resources/images/호텔.jpg");
 	background-size : 200px 200px;
 	filter : brightness(50%);
+	
 }
 
 #motel{
 	background: url("/breaktime/resources/images/모텔.jpg");
 	background-size : 200px 200px;
 	filter : brightness(50%);
+	
 }
 
 #resort{
