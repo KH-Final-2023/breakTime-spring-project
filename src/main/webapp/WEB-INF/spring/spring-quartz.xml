@@ -4,8 +4,8 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-	<!-- 
-		Spring Quartz ? 스프링에서 스케쥴링을 하기위한 2번째 방법
+	
+	<!-- 	Spring Quartz ? 스프링에서 스케쥴링을 하기위한 2번째 방법
 		
 		1. context:componentscan 추가하기(빈객체 등록)
 		2. pom.xml에 의존성 추가
@@ -17,10 +17,12 @@
 		Trigger : 내가 정의한 Job을 어떤 방식으로 실행시킨건지 시간을 정의함
 		
 		Scheduler : 내가 만든 트리거들을 등록해서 내가 원하는 시간에 작업들이 이루어지도록 스케쥴링함.
-	 -->
-	 <!-- <context:component-scan base-package="com.kh.spring"></context:component-scan>
+
+	
+	 <context:component-scan base-package="com.kh.spring"></context:component-scan>
 	 
 	 
+
 	 	Job 빈객체 생성
 	 	메서드 단위로 실행되는 스케쥴러
 	 	MethodInvokingJobDetailFactroyBean, 여러개의 job설정 가능하며, 매개변수로 데이터를 추가하는것도 가능함.
@@ -81,4 +83,6 @@
 	    	</property>
 	    	
 	    </bean> -->
-</beans>
+
+</beans> 
+
