@@ -62,6 +62,5 @@
 	 		
 	 		크론메이커 -> 크론설정 쉽게 해주는 사이트
 	 	
-	 </task:scheduled-tasks -->
-
+	 </task:scheduled-tasks> -->
 </beans>

@@ -18,8 +18,7 @@
 		
 		Scheduler : 내가 만든 트리거들을 등록해서 내가 원하는 시간에 작업들이 이루어지도록 스케쥴링함.
 
-	 <!-- <context:component-scan base-package="com.kh.spring"></context:component-scan>
-	 
+	  <context:component-scan base-package="com.kh.spring"></context:component-scan>
 
 	 	Job 빈객체 생성
 	 	메서드 단위로 실행되는 스케쥴러
@@ -83,5 +82,3 @@
 	    </bean> -->
 
 </beans> 
-
-
