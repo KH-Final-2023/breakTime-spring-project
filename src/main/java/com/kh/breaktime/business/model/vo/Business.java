@@ -2,7 +2,7 @@ package com.kh.breaktime.business.model.vo;
 
 import java.sql.Date;
 
-import com.kh.breaktime.member.model.vo.Member;
+import com.kh.breaktime.business.model.vo.Business;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,11 +20,13 @@ public class Business {
 	private String buPwd;
 	private int areaNo;
 	private String buCategory;
+	private String email;
 	private String buTel;
 	private String buUserName;
 	private String buAddress;
 	private String buTitle;
 	private String approval;
+	private Date enrollDate;
 	private int roomCount;
 	
 }

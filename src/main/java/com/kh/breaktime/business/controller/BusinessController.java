@@ -1,4 +1,4 @@
-package com.kh.breaktime.member.controller;
+package com.kh.breaktime.business.controller;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,39 +15,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.kh.breaktime.member.model.service.MemberService;
+import com.kh.breaktime.business.model.service.BusinessService;
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.member.model.vo.Member;
 
+
 @Controller
-@RequestMapping("/member")
+@RequestMapping("/business")
 @SessionAttributes({ "loginUser" })
-public class MemberController {
-
-	private MemberService memberService;
+public class BusinessController {
+	
+	private BusinessService businessService;
 
 	@Autowired
-	public MemberController(MemberService memberService) {
-		this.memberService = memberService;
+	public BusinessController(BusinessService businessService) {
+		this.businessService = businessService;
 
 	}
 
-	public MemberController() {
+	public BusinessController() {
 
 	}
 
 	@Autowired
-	public void setMemberService(MemberService memberService) {
-		this.memberService = memberService;
+	public void setBusinessService(BusinessService businessService) {
+		this.businessService = businessService;
 	}
 	
 	@GetMapping("/login") // /spring/member/insert
 	public String loginForm() {
 
-		return "member/memberLoginForm";
+		return "business/businessLoginForm";
 	}
 	
-	@PostMapping("/memberLogin")
-	public String loginMember(Model model, Member m, HttpSession session, RedirectAttributes ra,
+	@PostMapping("/buLogin")
+	public String loginMember(Model model, Business b, HttpSession session, RedirectAttributes ra,
 			HttpServletResponse resp, HttpServletRequest req,
 			@RequestParam(value = "saveId", required = false) String saveId) {
 
@@ -67,7 +69,7 @@ public class MemberController {
 		 * 아이디로 먼저 회원정보 조회 후 회원이 있으면 비밀번호 암호문 비교 메서드를 이용해서 일치하는지 확인 
 		 */
 		
-		Member loginUser = memberService.loginMember(m);
+		Business loginUser = businessService.loginBusiness(b);
 		// loginUser : 아이디 + 비밀번호로 조회한 회원정보 -------> 아이디로만 조회
 		// loginUser안의 userPwd : 암호화된 비밀번호
 		// m안의 userPwd은 : 암호화 되지 않은 평문 비밀번호
@@ -82,7 +84,7 @@ public class MemberController {
 			System.out.println(loginUser);
 			
 			//로그인 성공시 아이디값을 저장하고 있는 쿠키 생성(유효시간 1년)
-			Cookie cookie = new Cookie("saveId", loginUser.getUserId());
+			Cookie cookie = new Cookie("saveId", loginUser.getBuId());
 			if(saveId != null) { // 아이디 저장이 체크됐을때
 				cookie.setMaxAge(60*60*24*365); // 1년
 
@@ -106,13 +108,13 @@ public class MemberController {
 	@GetMapping("/insert") // /spring/member/insert
 	public String enrollForm() {
 
-		return "member/memberEnrollForm";
+		return "business/businessEnrollForm";
 	}
-
+	
 	@PostMapping("/insert")
-	public String insertMember(Member m, HttpSession session, Model model) {
+	public String insertBusiness(Business b, HttpSession session, Model model) {
 
-		int result = memberService.insertMember(m);
+		int result = businessService.insertBusiness(b);
 
 		String url = "";
 		if (result > 0) { // 성공시 - 메인페이지로
@@ -125,6 +127,4 @@ public class MemberController {
 
 		return url;
 	}
-	
-	
 }
