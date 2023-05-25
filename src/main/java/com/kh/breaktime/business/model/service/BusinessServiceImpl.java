@@ -1,10 +1,12 @@
 package com.kh.breaktime.business.model.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.breaktime.business.model.dao.BusinessDao;
 import com.kh.breaktime.business.model.vo.Business;
+
 
 
 @Service
@@ -19,5 +21,13 @@ public class BusinessServiceImpl implements BusinessService{
 		Business loginUser = businessDao.loginBusiness(inputBusiness);
 		
 		return loginUser;
+	}
+	
+	@Override
+	public int insertBusiness(Business inputBusiness) {
+		
+		int result = businessDao.insertBusiness(inputBusiness);
+		
+		return result;
 	}
 }

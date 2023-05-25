@@ -49,6 +49,7 @@
         </div>
     </div>
     
+    <!-- 사업자 회원가입페이지로 포워딩 -->
     <script>
     document.getElementById("buEnrollBtn").addEventListener("click",function(){
         location.href = "<%= request.getContextPath()%>/business/insert";

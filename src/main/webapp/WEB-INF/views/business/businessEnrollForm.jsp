@@ -28,9 +28,10 @@
 </head>
 <body>
     <div id="container">
-        <h1>사업자 회원가입</h1> 
-        <div>
+        
+        
         <form action="insert" method="post">
+        	<h1 style="display: flex; justify-content: center;">사업자 회원가입</h1> 
             <div>
                 <input type="email" name="email" id="email" placeholder="이메일입력" required>
                 <input type="button" value="인증번호 전송">
@@ -54,6 +55,7 @@
 					<option value="B02010900">모텔</option>
 				</select> 
 				<input type="text" name="buTitle" id="buTitle" placeholder="숙박업체이름">
+				<input type="number" name="roomCount" id="roomCount" placeholder="객실 갯수">
 			</div>
 			<div>
 				<select name="areaNo" id="areaNo" required>
@@ -78,10 +80,11 @@
 				</select>
 				<input type="text" name="buAddress" id="buAddress" placeholder="상세주소">
 			</div>
+			<input type="tel" name="buTel" id="buTel" placeholder="사업자연락처">
 			<input type="submit" onclick="validation()" value="회원가입">
 			</form>
         </div>  
-    </div>
+    
 
     <script>
         function validation(){
