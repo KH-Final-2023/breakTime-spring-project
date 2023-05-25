@@ -23,7 +23,7 @@ public class BuDao {
 	    
 	    
 	    public int insertRoomImgList(List<BusinessRoomImg> roomImgList) {
-	        return sqlSession.insert("buRoom-mapper.insertRoomImgList", roomImgList);
+	        return sqlSession.insert("buRoom-mapper.insertRoomImgList", roomImgList.get(0));
 	    }
 }
 
