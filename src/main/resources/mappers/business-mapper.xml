@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="businessMapper">
+
+	<resultMap type="business" id="businessResultSet">
+		<id column="BU_NO" property="buNo" />
+		<result column="BU_ID" property="buId" />
+		<result column="BU_PWD" property="buPwd" />
+		<result column="BU_USER_NAME" property="buUserName" />
+		<result column="AREA_NO" property="areaNo" />
+		<result column="BU_CATEGORY" property="buCategory" />
+		<result column="EMAIL" property="email" />
+		<result column="BU_TEL" property="buTel" />
+		<result column="BU_ADDRESS" property="buAddress"/>
+		<result column="ROOM_COUNT" property="roomCount" />
+		<result column="BU_TITLE" property="buTitle" />
+		<result column="ENROLL_DATE" property="enrollDate" />
+		<result column="APPROVAL" property="approval" />
+	</resultMap>
+	
+	
+	<!-- 로그인사업자 정보 SELECT(석범) -->
+	<select id="loginBusiness" parameterType="business"
+		resultMap="businessResultSet">
+		SELECT *
+		FROM BUSINESS
+		WHERE BU_ID = #{buId}
+		<!-- AND USER_PWD = #{userPwd} -->
+		AND APPROVAL = 'Y'
+	</select>
+	
+
+</mapper>

@@ -9,23 +9,17 @@
 	
 	<typeAliases>
 		<typeAlias type="com.kh.breaktime.admin.model.vo.Notice" alias="notice"/>
-		<!-- <typeAlias type="com.kh.spring.member.model.vo.Member" alias="member" />
-		<typeAlias type="com.kh.spring.board.model.vo.BoardType" alias="boardType"/>
-		<typeAlias type="com.kh.spring.board.model.vo.Board" alias="board"/>
-		<typeAlias type="com.kh.spring.board.model.vo.BoardImg" alias="boardImg"/>
-		<typeAlias type="com.kh.spring.board.model.vo.Reply" alias="reply"/>
-		
-		<typeAlias type="com.kh.spring.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
-		<typeAlias type="com.kh.spring.chat.model.vo.ChatRoom" alias="chatRoom"/>
-		<typeAlias type="com.kh.spring.chat.model.vo.ChatMessage" alias="chatMessage"/> -->
+    <typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinessRoom" alias="room" />
+		<typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinessRoomImg" alias="roomImg" />		
+		<typeAlias type="com.kh.breaktime.member.model.vo.Member" alias="member" />
+		<typeAlias type="com.kh.breaktime.business.model.vo.Business" alias="business" />
 	</typeAliases>
 	 
 	 <mappers>
 	 	<mapper resource="/mappers/notice-mapper.xml" />
-	 	<!-- <mapper resource="/mappers/member-mapper.xml"/>
-	 	<mapper resource="/mappers/board-mapper.xml"/>
-	 	<mapper resource="/mappers/reply-mapper.xml"/>
-	 	<mapper resource="/mappers/chattingMapper.xml"/> -->
+	 	<mapper resource="/mappers/buRoom-mapper.xml"/>
+	 	<mapper resource="/mappers/member-mapper.xml"/>
+	 	<mapper resource="/mappers/business-mapper.xml"/>
 	 </mappers>
-
+  
 </configuration>
