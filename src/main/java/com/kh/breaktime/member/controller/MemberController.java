@@ -100,7 +100,11 @@ public class MemberController {
 			// RedirectAttributes 객체(컨트롤러의 매개변수로 작성하면 Argument Resolver가 넣어줌)
 			// redirect의 특징 -> request에 데이터를 저장할 수 없다.
 		}
-		return "redirect:/";
+		if(loginUser.getAuthority() == 0 ) {
+			return "redirect:/notice/list";
+		} else {
+			return "redirect:/";
+		}
 	}
 	
 	@GetMapping("/insert") // /spring/member/insert

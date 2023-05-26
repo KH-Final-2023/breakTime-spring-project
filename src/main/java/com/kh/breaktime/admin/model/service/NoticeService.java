@@ -8,11 +8,15 @@ public interface NoticeService {
 	
 	public void selectNoticeList(int cp, Map<String, Object> map);
 	
+	public void selectNoticeList(Map<String,Object> paramMap, Map<String, Object> map);
+	
 	public Notice selectNoticeDetail(int noticeNo);
 	
-	public int insertNotice(Notice n); //throws Exception;
+	public int insertNotice(Notice n); 
 
-	public int updateNotice(Notice n); //throws Exception;
+	public void updateNotice(Notice n); 
 	
 	public int deleteNotice(int noticeNo);
+	
+	public int updateReadCount(int noticeNo);
 }

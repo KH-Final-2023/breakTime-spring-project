@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -202,13 +204,15 @@
                             <p>${notice.noticeTitle }</p>
                             
                         </div>
-                        <div class="dropdown">
-                            <button class="dropbtn"><img src="<%=request.getContextPath()%>/resources/images/noticeImg.png" style="width: 30px;"></button>
-                            <div class="dropdown-content">
-                              <a href="<%=request.getContextPath()%>/notice/enrollForm?noticeNo=${notice.noticeNo}">수정</a>
-                              <a href="<%=request.getContextPath()%>/notice/delete?noticeNo=${notice.noticeNo}" id="deleteNotice">삭제</a>             
-                            </div>
-                        </div>        
+                        <c:if test="${loginUser.getAuthority() == 0}">
+	                        <div class="dropdown">
+	                            <button class="dropbtn"><img src="<%=request.getContextPath()%>/resources/images/noticeImg.png" style="width: 30px;"></button>
+	                            <div class="dropdown-content">
+	                              <a href="<%=request.getContextPath()%>/notice/update?noticeNo=${notice.noticeNo}">수정</a>
+	                              <a href="<%=request.getContextPath()%>/notice/delete?noticeNo=${notice.noticeNo}" id="deleteNotice">삭제</a>             
+	                            </div>
+	                        </div>   
+                        </c:if>     
                     </div>
                     <hr>
                     <div id="content">

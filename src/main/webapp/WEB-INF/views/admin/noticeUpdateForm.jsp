@@ -168,18 +168,18 @@
                 공지사항
             </span>
             <hr>
-            <form action="<%=  request.getContextPath() %>/notice/insert" id="enrollForm" method="post">
+            <form action="<%=  request.getContextPath() %>/notice/update" id="updateForm" method="post">
 			
 				<div id="enrollWrap">
 					<div style="font-size: larger; font-weight: 600;">
-						 <input id="textInput" type="text" name="noticeTitle" required 
-							style="width: 100%;" placeholder="제목을 입력하세요">
+						 <input id="textInput" type="text" name="noticeTitle"  value="${notice.noticeTitle }" required
+							style="width: 100%;">
 					</div>
 					<br>
-					<textarea id="summernote" name="noticeContent"  required></textarea>
+					<textarea id="summernote" name="noticeContent" value="${notice.noticeContent }" required></textarea>
 					</div>
 					<input type="hidden" name="mode" value="${param.mode}"/>
-					<input type="hidden" name="noticeNo" value="${empty n.noticeNo ? 0 : n.noticeNo}" /> 
+					<input type="hidden" name="noticeNo" value="${empty notice.noticeNo ? 0 : notice.noticeNo}" /> 
 					<div id="box" style="float: right;">
 						<button type="submit" class="btn btn-primary"
 							data-text="등록" style="width: 100px;">
@@ -201,7 +201,6 @@
 		        maxHeight: null,
 		        focus: true, 
 		        lang : 'ko-KR',
-		        placeholder: '내용을 입력하세요',
 		        	toolbar: [
 		                ['fontname', ['fontname']],     // 글꼴 설정
 		                ['fontsize', ['fontsize']],    // 글자 크기 설정

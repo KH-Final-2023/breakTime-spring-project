@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<c:if test="${!empty param.condition}" >
+	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,20 +142,16 @@
 			border-collapse: collapse;
 		}
 		
-		#noticeList tr:first-child {
+		/* #noticeList tr:first-child {
 			border-top: none;
 			background: #428bca;
 			color: #fff;
-		}
+		} */
 		
 		#noticeList tr {
 			border-top: 1px solid #ddd;
 			border-bottom: 1px solid #ddd;
 			background-color: #f5f9fc;
-		}
-		
-		#noticeList tr:nth-child(odd):not(:first-child) {
-			background-color: #ebf3f9;
 		}
 		
 		#noticeList th {
@@ -205,7 +203,7 @@
 		}
 	
 		@media screen and (min-width: 600px) {
-		#noticeList tr:hover:not(:first-child) {
+		#noticeList tr:hover {
 			background-color: #d8e7f3;
 		}
 		#noticeList td:before {
@@ -229,6 +227,17 @@
 		.paging {
 			margin: 0px 0px 0px 40%;
 		}
+		#searchForm {
+            width:80%;
+            margin-left : 15%;
+        }
+        #searchForm>* {
+            float:left;
+            margin:5px;
+        }
+        .select {width:15%;}
+        .text {width:53%;}
+        .searchBtn {width:10%;}
 	</style>
 	</head>
 	<body>
@@ -253,16 +262,34 @@
 					<span id="notice_title"> 공지사항 </span>
 					<hr>
 				</div>
-				<a class="btn btn-secondary" style="margin-left: 112vh;"
-					href="<%=  request.getContextPath() %>/notice/enrollForm">글 등록</a>
-	
+				
+				<form id="searchForm" action="" method="get" align="center">
+				 	<div class="select">
+				 		<select class="custom-select" name="condition">
+				 			<option value="title" ${param.condition=='title' ? 'checked' : ''}>제목</option>
+				 			<option value="content" ${param.condition=='content' ? 'checked' : ''}>내용</option>
+				 			<option value="titleAndContent" ${param.condition=='titleAndContent' ? 'checked' : ''}>제목+내용</option>
+				 		</select>
+				 	</div>
+				 	<div class="text">
+				 		<input type="text" class="form-control" name="keyword" value="${param.keyword }">
+				 	</div>
+				 	<button type="submit" class="searchBtn btn btn-secondary">검색 </button>
+		 		</form>
+		 
+				<c:if test="${loginUser.getAuthority() == 0}">
+					<a class="btn btn-secondary" style="margin-left: 112vh;"
+						href="<%=  request.getContextPath() %>/notice/enrollForm">글 등록</a>
+				</c:if>
 				<div id="notice_board_area">
 					<table id="noticeList">
 						<thead>
-							<tr>
+							<tr style="background: #428bca;color: #fff;">
 								<th>글 번호</th>
 								<th>제목</th>
 								<th>작성자</th>
+								<th>작성일</th>
+								<th>조회수</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -278,7 +305,9 @@
 											onclick="location.href='<%=request.getContextPath()%>/notice/detail?noticeNo=${n.noticeNo}'">
 											<td>${n.noticeNo }</td>
 											<td>${n.noticeTitle }</td>
-											<td>${n.userNo }</td>
+											<td>${n.userName }</td>
+											<td>${n.createDate }</td>
+											<td>${n.count }</td>
 										</tr>
 									</c:forEach>
 								</c:otherwise>
