@@ -14,14 +14,19 @@
 
 <style>
 .optionArea {
-	width: 250px;
-	overflow-y: scroll;
-	overflow-x: hidden;
 	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 250px; /* 필요에 따라 너비 조정 */
+	background-color: #fff;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .optionTable {
 	min-width: 250px;
+	width: 100%;
 }
 
 .tableTitle {
@@ -215,35 +220,57 @@ input[type=range]::-webkit-slider-runnable-track {
 						class="fa-solid fa-star starStyle"></i><i
 						class="fa-solid fa-star starStyle"></i></td>
 				</tr>
+				<tr>
+					<th class="tableTitle">식사 계획</th>
+				</tr>
+				<tr>
+					<td><input type="checkbox">조식 포함</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox">조식 포함 안 됨</td>
+				</tr>
+				<tr>
+					<th class="tableTitle">인근 지역</th>
+				</tr>
+				<tr>
+					<td><input type="checkbox">인제군</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox">홍천군</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox">평창군</td>
+				</tr>
 			</table>
 		</div>
 	</div>
-	
+
 	<!-- 가격 슬라이더 스크립트 -->
 	<script>
-    const minPriceSlider = document.querySelector('.min-price');
-    const maxPriceSlider = document.querySelector('.max-price');
-    const minValueElement = document.querySelector('#min-value');
-    const maxValueElement = document.querySelector('#max-value');
+		const minPriceSlider = document.querySelector('.min-price');
+		const maxPriceSlider = document.querySelector('.max-price');
+		const minValueElement = document.querySelector('#min-value');
+		const maxValueElement = document.querySelector('#max-value');
 
-    minPriceSlider.addEventListener('input', updatePriceValues);
-    maxPriceSlider.addEventListener('input', updatePriceValues);
+		minPriceSlider.addEventListener('input', updatePriceValues);
+		maxPriceSlider.addEventListener('input', updatePriceValues);
 
-    function updatePriceValues() {
-        const minValue = '₩' + numberWithCommas(minPriceSlider.value);
-        const maxValue = '₩' + numberWithCommas(maxPriceSlider.value);
+		function updatePriceValues() {
+			const minValue = '₩' + numberWithCommas(minPriceSlider.value);
+			const maxValue = '₩' + numberWithCommas(maxPriceSlider.value);
 
-        minValueElement.textContent = minValue;
-        maxValueElement.textContent = maxValue;
-    }
+			minValueElement.textContent = minValue;
+			maxValueElement.textContent = maxValue;
+		}
 
-    function numberWithCommas(number) {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
+		function numberWithCommas(number) {
+			return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		}
 
-    minValueElement.textContent = '₩' + numberWithCommas(minPriceSlider.value);
-    maxValueElement.textContent = '₩' + numberWithCommas(maxPriceSlider.value);
-
-    </script>
+		minValueElement.textContent = '₩'
+				+ numberWithCommas(minPriceSlider.value);
+		maxValueElement.textContent = '₩'
+				+ numberWithCommas(maxPriceSlider.value);
+	</script>
 </body>
 </html>
