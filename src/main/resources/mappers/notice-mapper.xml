@@ -23,9 +23,25 @@
 		<result column="NOTICE_WRITER" property="noticeWriter" />
 	</resultMap>
 
+	<!-- 미승인 사업자 목록용 resultMap -->
+	<resultMap type="business" id="approvalResultSet">
+		<result column="BU_NO" property="buNo" />
+		<result column="BU_ID" property="buId" />
+		<result column="BU_PWD" property="buPwd" />
+		<result column="BU_USER_NAME" property="buUserName" />
+		<result column="AREA_NO" property="areaNo" />
+		<result column="BU_CATEGORY" property="buCategory" />
+		<result column="EMAIL" property="email" />
+		<result column="BU_TEL" property="buTel" />
+		<result column="BU_ADDRESS" property="buAddress"/>
+		<result column="ROOM_COUNT" property="roomCount" />
+		<result column="BU_TITLE" property="buTitle" />
+		<result column="ENROLL_DATE" property="enrollDate" />
+		<result column="APPROVAL" property="approval" />
+	</resultMap>
 
-
-	<select id="selectNoticeListCount" resultType="_int">
+	<!-- 공지사항 -->
+	<select id="selectNoticeListCount" resultType="_int"> 
 		SELECT COUNT(*) FROM NOTICE
 		WHERE STATUS = 'Y'
 	</select>
@@ -161,4 +177,32 @@
 	ORDER BY N.CREATE_DATE DESC
 	</select>
 	
+	<!-- 미승인 사업자목록  -->
+	<select id="selectApprovalListCount" resultType="_int"> 
+		SELECT COUNT(*) FROM BUSINESS
+		WHERE APPROVAL = 'N'
+	</select>
+
+	<select id="selectApprovalList" resultMap="approvalResultSet">
+		SELECT
+		BU_ID,
+		BU_USER_NAME,
+		BU_TEL,	
+		BU_TITLE,
+		BU_ADDRESS
+		FROM BUSINESS
+		WHERE APPROVAL = 'N'
+	</select>
+	
+	<update id="approvalAccept" parameterType="business">
+		UPDATE  BUSINESS SET
+		APPROVAL = 'Y'
+		WHERE BU_ID = #{buId}
+	</update>
+	
+	<delete id="approvalCancel">
+		DELETE   
+		FROM BUSINESS
+		WHERE BU_ID = #{buId}
+	</delete>
 </mapper>

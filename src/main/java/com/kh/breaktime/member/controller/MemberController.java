@@ -66,7 +66,7 @@ public class MemberController {
 		 * 암호화 작업을 하면 입력받은 비밀번호는 평문이지만 db에 등록된 비밀번호는 암호문이기때문에 비교시 무조건 다르게 나옴
 		 * 아이디로 먼저 회원정보 조회 후 회원이 있으면 비밀번호 암호문 비교 메서드를 이용해서 일치하는지 확인 
 		 */
-		
+			
 		Member loginUser = memberService.loginMember(m);
 		// loginUser : 아이디 + 비밀번호로 조회한 회원정보 -------> 아이디로만 조회
 		// loginUser안의 userPwd : 암호화된 비밀번호

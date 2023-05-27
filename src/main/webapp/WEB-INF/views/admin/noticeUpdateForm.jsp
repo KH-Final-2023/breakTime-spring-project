@@ -176,7 +176,7 @@
 							style="width: 100%;">
 					</div>
 					<br>
-					<textarea id="summernote" name="noticeContent" value="${notice.noticeContent }" required></textarea>
+					<textarea id="summernote" name="noticeContent" value="${notice.noticeContent }" required>${notice.noticeContent }</textarea>
 					</div>
 					<input type="hidden" name="mode" value="${param.mode}"/>
 					<input type="hidden" name="noticeNo" value="${empty notice.noticeNo ? 0 : notice.noticeNo}" /> 
