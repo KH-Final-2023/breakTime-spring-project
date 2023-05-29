@@ -2,7 +2,6 @@ package com.kh.breaktime.admin.model.service;
 
 import java.util.Map;
 
-import com.kh.breaktime.admin.model.vo.Approval;
 import com.kh.breaktime.business.model.vo.Business;
 
 public interface ApprovalService {

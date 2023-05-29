@@ -9,14 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.breaktime.admin.model.service.ApprovalService;
-import com.kh.breaktime.admin.model.vo.Approval;
 import com.kh.breaktime.business.model.vo.Business;
-import com.kh.breaktime.member.model.vo.Member;
 
 
 @Controller
@@ -46,7 +43,7 @@ public class ApprovalController {
 		return "redirect:/approval/list";
 	}
 	
-	@PostMapping("/update")
+	@GetMapping("/update")
 	public String approvalAccept(Business b) {
 		approvalService.approvalAccept(b);
 		return "redirect:/approval/list";

@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <!--  공통적으로사용할 라이브러리 추가 -->
     <!-- Jquey 라이브러리 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -79,7 +80,7 @@
        }
 
        .nav li{
-            width :400px;
+            width :500px;
        }
 
       .nav a{
@@ -150,10 +151,10 @@
         
         <div class="nav">
             <ul>
-                <li><a href="관리자-공지사항.html">공지사항</a></li>
-                <li><a href="관리자-사업자가입승인.html">사업자 가입 승인</a></li>
-                <li><a href="관리자-고객정보관리.html">고객 정보 관리</a></li>
-                <li><a href="관리자-악성리뷰관리.html">악성 리뷰 관리</a></li>      
+                <li><a href="<%=request.getContextPath()%>/notice/list">공지사항</a></li>
+                <li><a href="<%=request.getContextPath()%>/approval/list">사업자 가입 승인</a></li>
+                <li><a href="<%=request.getContextPath()%>/manage/list">고객 정보 관리</a></li>
+                <li><a href="<%=request.getContextPath()%>/report/list">악성 리뷰 관리</a></li>      
             </ul> 
         </div>
     </div>
@@ -187,21 +188,23 @@
                                     <td>${b.buTitle }</td>
                                     <td>${b.buAddress }</td>
                                     <td>
-                                        <button type="submit" class="btn btn-primary"
+                                        <a href="<%=request.getContextPath()%>/approval/update?buId=${b.buId}">
+                                        <button type="button"
+                                         class="btn btn-primary"
                                         data-text="승인">
                                         <span>승인</span>
                                         </button>
+                                        </a>
                                     </td>
                                     <td>
-                                        <button type="reset" class="btn btn-danger"
+                                     	<a href="<%=request.getContextPath()%>/approval/delete?buId=${b.buId}">
+                                        <button  type="button"
+                                        class="btn btn-danger"
                                         data-text="취소" >
                                         <span>취소</span>
                                        </button>
+                                       </a>
                                     </td>
-                                    <%-- <td><button class="ok_btn btn btn-outline-warning" 
-                                        onclick="approval('${business.bu_email}', '${business.bu_tel}', '${business.bu_title}')" id="${business.bu_tel}" type="button"></button></td>
-                                    <td><button class="ok_btn btn btn-outline-danger" 
-                                        onclick="cancel('${business.bu_email}', '${business.bu_tel}', '${business.bu_title}')" id="${business.bu_tel}Cancel" type="button"></button></td>  --%>
                                 </tr>
                            </c:forEach> 
                         </tbody>
@@ -221,7 +224,7 @@
 							</c:choose>
 	
 							<c:forEach var="item" begin="${selectApprovalList.pi.startPage }"
-								end="${selectNoticeList.pi.endPage }">
+								end="${selectApprovalList.pi.endPage }">
 								<li class="page-item"><a class="page-link"
 									href="${url}${item }${sUrl}">${item }</a></li>
 							</c:forEach>
@@ -234,7 +237,7 @@
 								</c:when>
 								<c:otherwise>
 									<li class="page-item"><a class="page-link"
-										href="${url}${selectNoticeList.pi.currentPage + 1 }${sUrl}">Next</a></li>
+										href="${url}${selectApprovalList.pi.currentPage + 1 }${sUrl}">Next</a></li>
 								</c:otherwise>
 							</c:choose>
 						</ul>

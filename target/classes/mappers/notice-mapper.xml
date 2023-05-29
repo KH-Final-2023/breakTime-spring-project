@@ -23,7 +23,7 @@
 		<result column="NOTICE_WRITER" property="noticeWriter" />
 	</resultMap>
 
-	<!-- 미승인 사업자 목록용 resultMap -->
+	<!-- 미승인 사업자 목록용 & 고객 정보 수정용 resultMap -->
 	<resultMap type="business" id="approvalResultSet">
 		<result column="BU_NO" property="buNo" />
 		<result column="BU_ID" property="buId" />
@@ -39,7 +39,21 @@
 		<result column="ENROLL_DATE" property="enrollDate" />
 		<result column="APPROVAL" property="approval" />
 	</resultMap>
-
+	
+	<!-- 리뷰 목록용 resultMap -->
+	<resultMap type="review" id="reivewResultSet">
+		<result column="REVIEW_NO" property="reviewNo" />
+		<result column="USER_NO" property="userNo" />
+		<result column="ROOM_NO" property="roomNo" />
+		<result column="BOOK_NO" property="bookNo" />
+		<result column="STAR_SCORE" property="starScore" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
+		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
+		<result column="PARENT_REVIEW_NO" property="parentReviewNo" />
+	</resultMap>
+	
 	<!-- 공지사항 -->
 	<select id="selectNoticeListCount" resultType="_int"> 
 		SELECT COUNT(*) FROM NOTICE
@@ -135,9 +149,9 @@
 			</when>			
 			<when test='condition == "titleAndContent"'>
 				(
-					BOARD_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%') 
+					NOTICE_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%') 
 					OR
-					BOARD_CONTENT LIKE '%${keyword}%'
+					NOTICE_CONTENT LIKE '%${keyword}%'
 				)
 			</when>			
 		</choose>	
@@ -205,4 +219,37 @@
 		FROM BUSINESS
 		WHERE BU_ID = #{buId}
 	</delete>
+	
+	<!-- 고객 정보 수정  -->
+	<select id="selectManageListCount" resultType="_int"> 
+		SELECT COUNT(*) FROM BUSINESS
+		WHERE APPROVAL = 'N'
+	</select>
+
+	<select id="selectManageList" resultMap="approvalResultSet">
+		SELECT
+		BU_ID,
+		BU_USER_NAME,
+		BU_TEL,	
+		BU_TITLE,
+		BU_ADDRESS
+		FROM BUSINESS
+		WHERE APPROVAL = 'Y'
+	</select>
+	
+	<update id="manageUpdate" parameterType="business">
+		UPDATE  BUSINESS SET
+		BU_USER_NAME = #{buUserName},
+		BU_TITLE = #{buTitle},
+		BU_ADDRESS = #{buAddress}
+		WHERE BU_ID = #{buId}
+	</update>
+	
+	<delete id="manageCancel">
+		DELETE   
+		FROM BUSINESS
+		WHERE BU_ID = #{buId}
+	</delete>
+	
+	<!-- 리뷰 목록 -->
 </mapper>

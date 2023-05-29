@@ -250,8 +250,8 @@
 				<ul>
 					<li><a href="<%=request.getContextPath()%>/notice/list">공지사항</a></li>
 					<li><a href="<%=request.getContextPath()%>/approval/list">사업자 가입 승인</a></li>
-					<li><a href="관리자-고객정보관리.html">고객 정보 관리</a></li>
-					<li><a href="관리자-악성리뷰관리.html">악성 리뷰 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/manage/list">고객 정보 관리</a></li>
+					<li><a href="<%=request.getContextPath()%>/report/list">악성 리뷰 관리</a></li>
 				</ul>
 			</div>
 		</div>
@@ -277,10 +277,10 @@
 				 	<button type="submit" class="searchBtn btn btn-secondary">검색 </button>
 		 		</form>
 		 
-				<c:if test="${loginUser.getAuthority() == 0}"> 
+				<%-- <c:if test="${loginUser.getAuthority() == 0}">  --%>
 					<a class="btn btn-secondary" style="margin-left: 112vh;"
 						href="<%=  request.getContextPath() %>/notice/enrollForm">글 등록</a>
-				</c:if>
+				<%-- </c:if> --%>
 				<div id="notice_board_area">
 					<table id="noticeList">
 						<thead>
