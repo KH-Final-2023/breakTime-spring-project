@@ -25,7 +25,7 @@
                     <a href="#">공지사항</a>
                     <a href="#">마이페이지</a>
                     <a href="#">쪽지함</a>
-                    <a href="#">장바구니</a>
+                    <a href="${contextPath}/detail2/myPage/profile">장바구니</a>
                   </div>
                 </div> 
                 <div class="search-wrapper">
@@ -53,6 +53,12 @@
         }
 }
     </script>
+    
+    <script>
+          document.getElementById("loginType").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/loginType";
+        })
+      </script>
     
 </body>
 </html>

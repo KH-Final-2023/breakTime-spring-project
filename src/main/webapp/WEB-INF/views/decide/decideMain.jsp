@@ -194,11 +194,9 @@
             });
 
             // 객실선택.html 페이지 자동로드
-            var target = "객실선택.html";
+            var target = "${contextPath}/decide/deroom";
             $("#section-content").load(target);
         });
-
-
     </script>
 </head>
 
@@ -218,7 +216,7 @@
                     <i class="icon heart-icon far fa-heart" title="찜하기"></i>
                 </div>
             </div>
-            <a href="후기.html" class="rating">
+            <a href="${contextPath}/decide/dereview" class="rating">
                 <span class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -241,9 +239,9 @@
     <div class="detail2-select">
         <!-- 섹션 선택 영역 -->
         <div class="section">
-            <a class="section-link" href="객실선택.html">객실 선택</a>
-            <a class="section-link" href="위치.html">위치 정보</a>
-            <a class="section-link review-link" href="후기.html">리뷰 / 후기</a>
+            <a class="section-link" href="${contextPath}/decide/deroom">객실 선택</a>
+            <a class="section-link" href="${contextPath}/decide/demap">위치 정보</a>
+            <a class="section-link review-link" href="${contextPath}/decide/dereview">리뷰 / 후기</a>
         </div>
 
         <!-- 섹션 내용 영역 -->

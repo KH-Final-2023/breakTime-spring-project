@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>객실 선택</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
 /* Reset CSS */
 * {
@@ -235,7 +234,7 @@ body {
 	<div class="container">
 		<div class="detail2-all">
 			<div class="button-container">
-				<a href="#" class="button">날짜</a>
+				<a href="${contextPath}/decide/dedate" class="button">날짜</a>
 			</div>
 			<div class="detail2-main">
 				<div class="detail2-card">
@@ -248,7 +247,7 @@ body {
 					<p class="description">숙소 설명</p>
 					<p class="price">100,000원~</p>
 					<div class="button-card">
-						<a href="장바구니.html" class="button-card1">장바구니 담기</a> <a href="#"
+						<a href="${contextPath}/decide/debasket" class="button-card1">장바구니 담기</a> <a href="#"
 							class="button-card2">객실 선택하기</a>
 					</div>
 				</div>
