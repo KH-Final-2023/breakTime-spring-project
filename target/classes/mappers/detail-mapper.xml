@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="detailMapper">
+
+	<!-- 카테고리 코드용 resultMap -->
+	<resultMap type="categoryCode" id="categoryCodeResultSet">
+		<id column="BU_CATEGORY" property="buCategory" />
+		<result column="CATEGORY_NAME" property="categoryName" />
+	</resultMap>
+
+	<!-- 목록용 resultMap -->
+	<resultMap type="board" id="detailResultSet">
+		<result column="BU_ADDRESS" property="address" />
+		<result column="AREA_NO" property="areaNo" />
+		<result column="BU_CATEGORY" property="buCategory" />
+		<result column="MAIN_IMG" property="mainImg" />
+		<result column="BU_TEL" property="tel" />
+		<result column="BU_TITLE" property="title" />
+		<result column="HOUSE" property="house" />
+	</resultMap>
+
+	<!-- 카테고리 코드 셀렉트 -->
+	<select id="selectCategoryCodeList"
+		resultMap="categoryCodeResultSet">
+		SELECT *
+		FROM CATEGORY_CODE
+		ORDER BY BU_CATEGORY
+	</select>
+
+	<!-- 일반 리스트 목록 -->
+	<select id="selectDetailList" resultMap="detailResultSet">
+		SELECT
+		BU_ADDRESS,
+		AREA_NO,
+		BU_CATEGORY,
+		MAIN_IMG,
+		BU_TEL,
+		BU_TITLE
+		FROM HOUSE
+		WHERE MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
+		ORDER BY AREA_NO ASC
+	</select>
+
+	<!-- 검색 리스트 목록 -->
+	<select id="searchDetailList" resultMap="detailResultSet">
+		SELECT
+		BU_ADDRESS,
+		AREA_NO,
+		BU_CATEGORY,
+		BU_TEL,
+		BU_TITLE
+		FROM HOUSE H
+		WHERE MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
+		<if test='areaCode != null and areaCode != ""'>		
+			AND AREA_NO = #{areaNo}
+		</if>
+	</select>
+
+</mapper>

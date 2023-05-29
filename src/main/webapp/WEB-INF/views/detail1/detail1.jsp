@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="list" value="${map.list }" />
+<c:if test="${!empty param.condition }">
+	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
+</c:if>
+<c:forEach items="${categoryCodeList }" var ="ccl">
+	<c:if test="${ccl.buCategory == category }">
+		<c:set var="detailNm" value="${ccl.categoryName }"/>
+	</c:if>
+</c:forEach>
+
 <!DOCTYPE html>
 <html lang="kor">
 <head>
@@ -133,6 +143,7 @@ button {
 </head>
 
 <body>
+	<jsp:include page="/WEB-INF/views/detail1/searchBar_detail.jsp" />
 	
 	<jsp:include page="/WEB-INF/views/detail1/option_modal.jsp" />
 
