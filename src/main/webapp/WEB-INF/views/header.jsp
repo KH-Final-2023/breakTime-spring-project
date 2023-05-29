@@ -17,7 +17,7 @@
             </div>
             <div id="navbar">
                 
-                <div id="login">로그인</div>
+                <div id="loginType">로그인</div>
                 <div id="mybooking">예약내역</div>
                 <div class="dropdown">
                   <span class="dropbtn">더보기</span>
