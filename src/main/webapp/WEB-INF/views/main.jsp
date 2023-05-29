@@ -16,13 +16,10 @@
 </head>
 <body>
 
-	<div class="nav">
-		<ul>
-			<c:forEach var="boardType" items="${boardTypeList}">
-				<li><a href="<%= request.getContextPath()%>/detail/list/${CategoryCode.buCategory}">${CategoryCode.categoryName}</a></li>
-			</c:forEach>
-		</ul>
-	</div>
+	<form action="/breaktime/detail1" method="get">
+		<input type="hidden" name="category" value="B02010100">
+		<button type="submit">이동</button>
+	</form>
 
 </body>
 </html>

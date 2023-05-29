@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/detail")
+@RequestMapping("/detail1")
 public class DetailController {
 
 	@Autowired
@@ -24,8 +24,9 @@ public class DetailController {
 
 	private static final Logger logger = LoggerFactory.getLogger(DetailController.class);
 
-	@GetMapping("/list/{category}")
-	public String detailList(@PathVariable("category") String category, Model model,
+	@GetMapping("")
+	public String detailList(@RequestParam("category") String category, 
+			Model model,
 			@RequestParam Map<String, Object> paramMap) {
 		
 		Map<String, Object> map = new HashMap();
@@ -33,16 +34,14 @@ public class DetailController {
 		if (paramMap.get("condition") == null) {
 			detailService.selectDetailList(category, map);
 		} else {
-			// 검색요청을 한경우
+			// 검색요청을 한 경우
 			// 검색조건을 추가한 상태로 게시글 셀렉트?
 			paramMap.put("category", category);
 			detailService.selectDetailList(paramMap, map);
-
 		}
 
 		model.addAttribute("map", map);
 
-		return "detail1/detail1";
-		
+		return "/detail1/detail1";
 	}
 }

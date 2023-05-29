@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +7,14 @@
 <title>search bar detail</title>
 <style>
 .dropdown {
-	position: relative;
+	position: fixed;
+	top: 0;
+	left: 400px;
 	display: inline-block;
+}
+
+.dateCheck{
+	margin-left: 400px;
 }
 
 .dropbtn_icon {
@@ -69,42 +75,60 @@
 </style>
 </head>
 <body>
- <div class="dropdown">
-            <button class="dropbtn">
-              <span class="dropbtn_icon">지역</span>
-              <span class="dropbtn_content"></span>
-              <span class="dropbtn_click" style="font-family: Material Icons; font-size : 16px; color : #3b3b3b; float:right;"
-                onclick="dropdown()">지역 선택</span>
-            </button>
-            <div class="dropdown-content">
-              <div class="categoryCode" name="seoul" id="1" onclick="showMenu(this.innerText)">서울</div>
-              <div class="categoryCode" name="incheon" id="2" onclick="showMenu(this.innerText)">인천</div>
-              <div class="categoryCode" name="daejeon" id="3" onclick="showMenu(this.innerText)">대전</div>
-              <div class="categoryCode" name="daegu" id="4" onclick="showMenu(this.innerText)">대구</div>
-              <div class="categoryCode" name="gwangju" id="5" onclick="showMenu(this.innerText)">광주</div>
-              <div class="categoryCode" name="busan" id="6" onclick="showMenu(this.innerText)">부산</div>
-              <div class="categoryCode" name="ulsan" id="7" onclick="showMenu(this.innerText)">울산</div>
-              <div class="categoryCode" name="sejong" id="8" onclick="showMenu(this.innerText)">세종</div>
-              <div class="categoryCode" name="gyeonggi" id="31" onclick="showMenu(this.innerText)">경기도</div>
-              <div class="categoryCode" name="gangwon" id="32" onclick="showMenu(this.innerText)">강원도</div>
-              <div class="categoryCode" name="chungbug" id="33" onclick="showMenu(this.innerText)">충청북도</div>
-              <div class="categoryCode" name="chungnam" id="34" onclick="showMenu(this.innerText)">충청남도</div>
-              <div class="categoryCode" name="gyeongbug" id="35" onclick="showMenu(this.innerText)">경상북도</div>
-              <div class="categoryCode" name="gyeongnam" id="36" onclick="showMenu(this.innerText)">경상남도</div>
-              <div class="categoryCode" name="jeonbug" id="37" onclick="showMenu(this.innerText)">전라북도</div>
-              <div class="categoryCode" name="jeonnam" id="38" onclick="showMenu(this.innerText)">전라남도</div>
-              <div class="categoryCode" name="jeju" id="39" onclick="showMenu(this.innerText)">제주도</div>
-            </div>
-        </div>
-        <div>
-            <div class="checkinout">
-                  <input type="text" placeholder="체크인 날짜를 선택해주세요" class="inputField" id="indatepicker"/>
-                  <input type="text" placeholder="체크아웃 날짜를 선택해주세요" class="inputField" id="outdatepicker"/>
-            </div>
-        </div>
-        
-        <!-- 지역 카테고리 설정 스크립트 -->
-<script>
+	<div class="dropdown">
+		<button class="dropbtn">
+			<span class="dropbtn_icon">지역</span> <span class="dropbtn_content"></span>
+			<span class="dropbtn_click"
+				style="font-family: Material Icons; font-size: 16px; color: #3b3b3b; float: right;"
+				onclick="dropdown()">지역 선택</span>
+		</button>
+		<div class="dropdown-content">
+			<div class="categoryCode" name="seoul" id="1"
+				onclick="showMenu(this.innerText)">서울</div>
+			<div class="categoryCode" name="incheon" id="2"
+				onclick="showMenu(this.innerText)">인천</div>
+			<div class="categoryCode" name="daejeon" id="3"
+				onclick="showMenu(this.innerText)">대전</div>
+			<div class="categoryCode" name="daegu" id="4"
+				onclick="showMenu(this.innerText)">대구</div>
+			<div class="categoryCode" name="gwangju" id="5"
+				onclick="showMenu(this.innerText)">광주</div>
+			<div class="categoryCode" name="busan" id="6"
+				onclick="showMenu(this.innerText)">부산</div>
+			<div class="categoryCode" name="ulsan" id="7"
+				onclick="showMenu(this.innerText)">울산</div>
+			<div class="categoryCode" name="sejong" id="8"
+				onclick="showMenu(this.innerText)">세종</div>
+			<div class="categoryCode" name="gyeonggi" id="31"
+				onclick="showMenu(this.innerText)">경기도</div>
+			<div class="categoryCode" name="gangwon" id="32"
+				onclick="showMenu(this.innerText)">강원도</div>
+			<div class="categoryCode" name="chungbug" id="33"
+				onclick="showMenu(this.innerText)">충청북도</div>
+			<div class="categoryCode" name="chungnam" id="34"
+				onclick="showMenu(this.innerText)">충청남도</div>
+			<div class="categoryCode" name="gyeongbug" id="35"
+				onclick="showMenu(this.innerText)">경상북도</div>
+			<div class="categoryCode" name="gyeongnam" id="36"
+				onclick="showMenu(this.innerText)">경상남도</div>
+			<div class="categoryCode" name="jeonbug" id="37"
+				onclick="showMenu(this.innerText)">전라북도</div>
+			<div class="categoryCode" name="jeonnam" id="38"
+				onclick="showMenu(this.innerText)">전라남도</div>
+			<div class="categoryCode" name="jeju" id="39"
+				onclick="showMenu(this.innerText)">제주도</div>
+		</div>
+	</div>
+	<div class="dateCheck">
+		<div class="checkinout">
+			<input type="text" placeholder="체크인 날짜를 선택해주세요" class="inputField"
+				id="indatepicker" /> <input type="text"
+				placeholder="체크아웃 날짜를 선택해주세요" class="inputField" id="outdatepicker" />
+		</div>
+	</div>
+
+	<!-- 지역 카테고리 설정 스크립트 -->
+	<script>
     window.onload=()=>{
       document.querySelector('.dropbtn_click').onclick = ()=>{
         dropdown();
@@ -152,13 +176,13 @@
 </script>
 
 
-<!-- 체크인아웃 설정 스크립트 -->
-<script>
+	<!-- 체크인아웃 설정 스크립트 -->
+	<script>
             $(function () {
             $("#indatepicker").datepicker({ dateFormat: "yy-mm-dd" });
             });
             </script>
-            <script>
+	<script>
             $.datepicker.setDefaults({
             dateFormat: 'yy-mm-dd',
             prevText: '이전 달',
@@ -175,12 +199,12 @@
             $("#indatepicker").datepicker();
             });
 </script>
-<script>
+	<script>
   $(function () {
   $("#outdatepicker").datepicker({ dateFormat: "yy-mm-dd" });
   });
   </script>
-  <script>
+	<script>
   $.datepicker.setDefaults({
   dateFormat: 'yy-mm-dd',
   prevText: '이전 달',

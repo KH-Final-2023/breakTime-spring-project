@@ -6,8 +6,8 @@ import lombok.Data;
 public class Detail {
 	private String address;
 	private String areaNo;
-	private String category;
+	private String buCategory;
 	private String mainImg;
-	private String tel;
-	private String title;
+	private String buTel;
+	private String buTitle;
 }

@@ -18,7 +18,7 @@
 	top: 0;
 	left: 0;
 	height: 100%;
-	width: 250px; /* 필요에 따라 너비 조정 */
+	width: 250px;
 	background-color: #fff;
 	overflow-y: auto;
 	overflow-x: hidden;

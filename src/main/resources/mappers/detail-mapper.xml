@@ -9,13 +9,13 @@
 	</resultMap>
 
 	<!-- 목록용 resultMap -->
-	<resultMap type="board" id="detailResultSet">
+	<resultMap type="detail" id="detailResultSet">
 		<result column="BU_ADDRESS" property="address" />
 		<result column="AREA_NO" property="areaNo" />
 		<result column="BU_CATEGORY" property="buCategory" />
 		<result column="MAIN_IMG" property="mainImg" />
-		<result column="BU_TEL" property="tel" />
-		<result column="BU_TITLE" property="title" />
+		<result column="BU_TEL" property="buTel" />
+		<result column="BU_TITLE" property="buTitle" />
 		<result column="HOUSE" property="house" />
 	</resultMap>
 

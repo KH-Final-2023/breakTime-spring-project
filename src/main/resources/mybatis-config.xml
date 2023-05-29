@@ -8,6 +8,8 @@
 	</settings>
 	
 	<typeAliases>
+		<typeAlias type="com.kh.breaktime.detail1.model.vo.CategoryCode" alias="categoryCode" />
+		<typeAlias type="com.kh.breaktime.detail1.model.vo.Detail" alias="detail" />
 		<!-- <typeAlias type="com.kh.spring.member.model.vo.Member" alias="member" />
 		<typeAlias type="com.kh.spring.board.model.vo.BoardType" alias="boardType"/>
 		<typeAlias type="com.kh.spring.board.model.vo.Board" alias="board"/>
@@ -20,6 +22,7 @@
 	</typeAliases>
 	 
 	 <mappers>
+	 	<mapper resource="/mappers/detail-mapper.xml"/>
 	 	<!-- <mapper resource="/mappers/member-mapper.xml"/>
 	 	<mapper resource="/mappers/board-mapper.xml"/>
 	 	<mapper resource="/mappers/reply-mapper.xml"/>
