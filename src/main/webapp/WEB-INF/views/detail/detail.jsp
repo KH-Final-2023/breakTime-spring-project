@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="list" value="${map.list}" />
 
 <!DOCTYPE html>
 <html lang="kor">
@@ -38,8 +39,7 @@ button {
 
 .houseContent {
 	min-width: 700px;
-	min-height: 200px;
-	height: 25%;
+	height: 200px;
 	border-radius: 0.75rem;
 	border: solid 1px darkgray;
 	box-shadow: 3px 3px 3px 3px gray;
@@ -50,7 +50,7 @@ button {
 
 .houseMainImg {
 	box-sizing: border-box;
-	min-height: 180px;
+	height: 200px;
 }
 
 .houseInfo {
@@ -59,7 +59,17 @@ button {
 }
 
 .houseTitle {
-	font-size: 25px;
+	font-size: 20px;
+	padding: 0 0 2%;
+}
+
+.houseAddress {
+	font-size: 14px;
+	padding: 2% 0 2%;
+}
+
+.houseTel {
+	font-size: 12px;
 	padding: 0 0 2%;
 }
 
@@ -139,29 +149,30 @@ button {
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
 	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
-	
-	<div>${map['mainImg']}</div>
 
 	<div class="mainArea">
 		<div class="houseList">
 			<ul>
-				<c:forEach items="${map}" var="item">
+				<c:if test="${empty list}">
+					<td>예약 가능한 숙소가 없습니다!</td>
+				</c:if>
+				<c:forEach items="${list }" var="d">
 					<li>
 						<div class="houseContent">
 							<div class="houseMainImg">
-								<img src="${item['mainImg']}">
+								<img src="${d.mainImg}">
 							</div>
 							<div class="houseInfo">
 								<a>
 									<div>
-										<div class="houseTitle">${item['buTitle']}</div>
+										<div class="houseTitle">${d.buTitle}</div>
 										<div class="starPlace">
 											<i class="fa-solid fa-star starStyle"></i> <i
 												class="fa-solid fa-star starStyle"></i> <i
 												class="fa-solid fa-star starStyle"></i>
 										</div>
-										<div class="houseAddress">${item['address']}</div>
-										<div class="houseTel">${item['buTel']}</div>
+										<div class="houseAddress">${d.address}</div>
+										<div class="houseTel">${d.buTel}</div>
 									</div>
 								</a>
 							</div>
@@ -183,14 +194,14 @@ button {
 		</div>
 	</div>
 
-	<div class id="houseMap"
+	<div class id="map"
 		style="width: 40%; height: 1080px; position: fixed; right: 0; top: 0;"></div>
 
 	<!-- 지도 api 스크립트 -->
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=55a7843b1806f000c969ae74b8fbf856&libraries=services"></script>
 	<script>
-	var mapContainer = document.getElementById('houseMap'); // 지도를 표시할 div 
+	var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
 	var mapOption = {
 	  center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 	  level: 3 // 지도의 확대 레벨
@@ -203,20 +214,15 @@ button {
 	var geocoder = new kakao.maps.services.Geocoder();
 
 	// 주소와 마커 정보를 배열로 저장합니다
-	var addresses = [
-	  {
-	    address: '경기도 가평군 가화로 1364-59',
-	    content: '마커 1에 대한 내용'
-	  },
-	  {
-	    address: '경기도 가평군 북면 가화로 2369-19',
-	    content: '마커 2에 대한 내용'
-	  },
-	  {
-	    address: '제주특별자치도 제주시 첨단로 242',
-	    content: '마커 3에 대한 내용'
-	  }
+	var addresses = [		
+	<c:forEach items="${list}" var="d" varStatus="status">
+            {
+                address: "${d.address}",
+                content: "${d.buTitle}"
+            }<c:if test="${!status.last}">,</c:if>
+        </c:forEach>
 	];
+       
 
 	// 주소로 좌표를 검색하여 마커를 생성하는 함수입니다
 	function createMarker(addressObj) {
