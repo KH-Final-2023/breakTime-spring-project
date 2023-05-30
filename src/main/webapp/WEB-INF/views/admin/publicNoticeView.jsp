@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/breaktime/resources/css/main.css">
     <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
 	<title>Document</title>
+   
 	<!--  공통적으로사용할 라이브러리 추가 -->
 	<!-- Jquey 라이브러리 -->
 	<script
@@ -56,13 +57,7 @@
 			overflow-x: hidden;
 			overflow-y: hidden;
 		}
-		/* 헤더 시작*/
-		.header {
-			width: 100%;
-			height: 12%;
-			background: #09ba1b !important;
-		}
-		
+
 		#bt_title {
 			width: 100%;
 			height: 70%;
@@ -243,6 +238,7 @@
 	</head>
 	<body>
 		<div id="wrapper">
+		
 			<%@ include file="/WEB-INF/views/header.jsp"%>
 			
 		
