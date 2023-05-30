@@ -36,84 +36,70 @@
 					id="backImg"></a>
 			</div>
 
+
 		</div>
 
 		<div class="categoryText">
 			<span>카테고리 별로 검색해 보세요!</span>
 		</div>
 
-		<div class="category">
-			<div class="categorySubBox" id="hotel">
-				<p id="pHotel">호텔</p>
-			</div>
-			<div class="categorySubBox" id="motel">
-				<p id="pMotel">모텔</p>
-			</div>
-			<div class="categorySubBox" id="resort">
-				<p id="pResort">리조트</p>
-			</div>
-			<div class="categorySubBox" id="pension">
-				<p id="pPension">펜션</p>
-			</div>
-		</div>
+
+      <div class="categoryText">
+            <span>카테고리 별로 검색해 보세요!</span>
+      </div>
+      
+   <div class="category">
+       <div class="categorySubBox" id="hotel">
+          <p id="pHotel" >호텔</p>
+       </div>
+       <div class="categorySubBox" id="motel">
+          <p id="pMotel">모텔</p>
+       </div>
+       <div class="categorySubBox" id="resort">
+          <p id="pResort">리조트</p>
+       </div>
+       <div class="categorySubBox" id="pension">
+          <p id="pPension">펜션</p>
+       </div>
+   </div>
+
 
 		<div class="rankingText">
 			<span>별점 순으로 검색해 보세요!</span>
 		</div>
 
-		<div class="ranking">
-			<div class="rankingSubBox" id="1st"></div>
-			<div class="rankingSubBox" id="2nd"></div>
-			<div class="rankingSubBox" id="3rd"></div>
-			<div class="rankingSubBox" id="4th"></div>
-		</div>
+
+    <div class="ranking">
+      <div class="rankingSubBox" id="1st">
+      
+         </div>
+      <div class="rankingSubBox" id="2nd">
+      
+         </div>
+      <div class="rankingSubBox" id="3rd">
+      
+         </div>
+      <div class="rankingSubBox" id="4th">
+      
+         </div>
+  </div>    
 
 
-		<%@ include file="footer.jsp"%>
+   <%@ include file="footer.jsp"%>
 
-	</div>
+</div>
 </body>
 
-<script>
-    // jQuery를 사용하여 문서가 완전히 로드된 후에 스크립트 실행
-    $(document).ready(function() {
-        // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
-        $("#hotel").click(function() {
-            // 리다이렉션할 URL
-            var redirectUrl = "<%=request.getContextPath()%>/detail?category=B02010100";
-            // 현재 창에서 새 URL로 리다이렉션
-            window.location.href = redirectUrl;
-        });
-    });
-    
-    $(document).ready(function() {
-        // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
-        $("#motel").click(function() {
-            // 리다이렉션할 URL
-            var redirectUrl = "<%=request.getContextPath()%>/detail?category=B02010900";
-            // 현재 창에서 새 URL로 리다이렉션
-            window.location.href = redirectUrl;
-        });
-    });
-    
-    $(document).ready(function() {
-        // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
-        $("#resort").click(function() {
-            // 리다이렉션할 URL
-            var redirectUrl = "<%=request.getContextPath()%>/detail?category=B02010500";
-            // 현재 창에서 새 URL로 리다이렉션
-            window.location.href = redirectUrl;
-        });
-    });
-    
-    $(document).ready(function() {
-        // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
-        $("#pension").click(function() {
-            // 리다이렉션할 URL
-            var redirectUrl = "<%=request.getContextPath()%>/detail?category=B02010700";
-            // 현재 창에서 새 URL로 리다이렉션
-            window.location.href = redirectUrl;
-        });
-    });
-</script>
+   <%-- <script>
+    $("hotel").click(function(){
+          location.href = "<%=request.getContextPath()%>/
+       })
+   
+   </script> --%>
+
+
+
+
+
+
 </html>
