@@ -7,7 +7,10 @@
 		<result column="NOTICE_NO" property="noticeNo" />
 		<result column="NOTICE_TITLE" property="noticeTitle" />
 		<result column="USER_NO" property="userNo" />
+		<result column="NOTICE_WRITER" property="noticeWriter" />
+		<result column="USER_NAME" property="userName" />
 		<result column="CREATE_DATE" property="createDate" />
+		<result column="COUNT" property="count" />
 	</resultMap>
 
 	<!-- 게시글 상세 조회용 resultMap -->
@@ -15,23 +18,59 @@
 		<result column="NOTICE_NO" property="noticeNo" />
 		<result column="NOTICE_TITLE" property="noticeTitle" />
 		<result column="NOTICE_CONTENT" property="noticeContent" />
-		<result column="USER_NO" property="userNo" />
+		<result column="NOTICE_WRITER" property="noticeWriter" />
+		<result column="USER_NAME" property="userName" />
+		<result column="NOTICE_WRITER" property="noticeWriter" />
 	</resultMap>
 
-
-
-	<select id="selectNoticeListCount" resultType="_int">
+	<!-- 미승인 사업자 목록용 & 고객 정보 수정용 resultMap -->
+	<resultMap type="business" id="approvalResultSet">
+		<result column="BU_NO" property="buNo" />
+		<result column="BU_ID" property="buId" />
+		<result column="BU_PWD" property="buPwd" />
+		<result column="BU_USER_NAME" property="buUserName" />
+		<result column="AREA_NO" property="areaNo" />
+		<result column="BU_CATEGORY" property="buCategory" />
+		<result column="EMAIL" property="email" />
+		<result column="BU_TEL" property="buTel" />
+		<result column="BU_ADDRESS" property="buAddress"/>
+		<result column="ROOM_COUNT" property="roomCount" />
+		<result column="BU_TITLE" property="buTitle" />
+		<result column="ENROLL_DATE" property="enrollDate" />
+		<result column="APPROVAL" property="approval" />
+	</resultMap>
+	
+	<!-- 리뷰 목록용 resultMap -->
+	<resultMap type="review" id="reivewResultSet">
+		<result column="REVIEW_NO" property="reviewNo" />
+		<result column="USER_NO" property="userNo" />
+		<result column="ROOM_NO" property="roomNo" />
+		<result column="BOOK_NO" property="bookNo" />
+		<result column="STAR_SCORE" property="starScore" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
+		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
+		<result column="PARENT_REVIEW_NO" property="parentReviewNo" />
+	</resultMap>
+	
+	<!-- 공지사항 -->
+	<select id="selectNoticeListCount" resultType="_int"> 
 		SELECT COUNT(*) FROM NOTICE
+		WHERE STATUS = 'Y'
 	</select>
 
 	<select id="selectNoticeList" resultMap="noticeResultSet">
 		SELECT
 		NOTICE_NO,
 		NOTICE_TITLE,
-		M.USER_NAME,
-		N.CREATE_DATE
+		NOTICE_WRITER,
+		
+		USER_NAME,
+		N.CREATE_DATE,
+		COUNT
 		FROM NOTICE N
-		JOIN MEMBER M ON M.USER_NO = N.USER_NO
+		JOIN MEMBER  ON USER_NO = NOTICE_WRITER
 		WHERE N.STATUS = 'Y'
 		ORDER BY N.CREATE_DATE DESC
 	</select>
@@ -39,11 +78,15 @@
 
 	<select id="selectNoticeDetail"
 		resultMap="noticeDetailResultSet">
-		SELECT *
+		SELECT 
+		NOTICE_NO,
+		NOTICE_WRITER,
+		USER_NAME,
+		NOTICE_TITLE,
+		NOTICE_CONTENT
 		FROM NOTICE N
-		JOIN MEMBER M ON M.USER_NO = N.USER_NO
-		WHERE NOTICE_NO =
-		#{noticeNo}
+		JOIN MEMBER M ON M.USER_NO = N.NOTICE_WRITER
+		WHERE NOTICE_NO = #{noticeNo}
 	</select>
 
 
@@ -59,7 +102,7 @@
 		INSERT INTO NOTICE(
 		NOTICE_NO,
 		NOTICE_TITLE,
-		USER_NO,
+		NOTICE_WRITER,
 		NOTICE_CONTENT
 		) VALUES (
 		#{noticeNo},
@@ -69,7 +112,6 @@
 		)
 
 	</insert>
-
 
 	<update id="updateNotice" parameterType="notice">
 		UPDATE NOTICE SET
@@ -83,10 +125,165 @@
 		NOTICE
 		WHERE NOTICE_NO = #{noticeNo}
 	</delete>
+	
+	<update id="updateReadCount">
+	UPDATE NOTICE SET
+	COUNT = COUNT +1
+	WHERE NOTICE_NO = #{noticeNo}
+	</update>
+	
+	<select id="searchNoticeListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM NOTICE N
+	LEFT JOIN MEMBER M ON (NOTICE_WRITER = USER_NO)
+	WHERE N.STATUS = 'Y'
+	
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "title"'>
+				NOTICE_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "content"'>
+				NOTICE_CONTENT LIKE '%${keyword}%'
+			</when>			
+			<when test='condition == "titleAndContent"'>
+				(
+					NOTICE_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%') 
+					OR
+					NOTICE_CONTENT LIKE '%${keyword}%'
+				)
+			</when>			
+		</choose>	
+	</if>	
+	</select>
+	
+	<select id="searchNoticeList" resultMap="noticeResultSet">
+	SELECT
+		NOTICE_NO,
+		NOTICE_TITLE,
+		NOTICE_WRITER,
+		
+		USER_NAME,
+		COUNT,
+		N.CREATE_DATE
+	FROM NOTICE N
+	LEFT JOIN MEMBER ON USER_NO = NOTICE_WRITER
+	WHERE N.STATUS = 'Y' 
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "title"'>
+				NOTICE_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "content"'>
+				NOTICE_CONTENT LIKE '%${keyword}%'
+			</when>			
+			<when test='condition == "titleAndContent"'>
+				(
+					NOTICE_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%') 
+					OR
+					NOTICE_CONTENT LIKE '%${keyword}%'
+				)
+			</when>			
+		</choose>	
+	</if>
+	ORDER BY N.CREATE_DATE DESC
+	</select>
+	
+	<!-- 미승인 사업자목록  -->
+	<select id="selectApprovalListCount" resultType="_int"> 
+		SELECT COUNT(*) FROM BUSINESS
+		WHERE APPROVAL = 'N'
+	</select>
 
+	<select id="selectApprovalList" resultMap="approvalResultSet">
+		SELECT
+		BU_ID,
+		BU_USER_NAME,
+		BU_TEL,	
+		BU_TITLE,
+		BU_ADDRESS
+		FROM BUSINESS
+		WHERE APPROVAL = 'N'
+	</select>
+	
+	<update id="approvalAccept" parameterType="business">
+		UPDATE  BUSINESS SET
+		APPROVAL = 'Y'
+		WHERE BU_ID = #{buId}
+	</update>
+	
+	<delete id="approvalCancel">
+		DELETE   
+		FROM BUSINESS
+		WHERE BU_ID = #{buId}
+	</delete>
+	
+	<!-- 고객 정보 수정  -->
+	<select id="selectManageListCount" resultType="_int"> 
+		SELECT COUNT(*) FROM BUSINESS
+		WHERE APPROVAL = 'N'
+	</select>
 
+	<select id="selectManageList" resultMap="approvalResultSet">
+		SELECT
+		BU_ID,
+		BU_USER_NAME,
+		BU_TEL,	
+		BU_TITLE,
+		BU_ADDRESS
+		FROM BUSINESS
+		WHERE APPROVAL = 'Y'
+	</select>
+	
+	<update id="manageUpdate" parameterType="business">
+		UPDATE  BUSINESS SET
+		BU_USER_NAME = #{buUserName},
+		BU_TITLE = #{buTitle},
+		BU_ADDRESS = #{buAddress}
+		WHERE BU_ID = #{buId}
+	</update>
+	
+	<delete id="manageCancel">
+		DELETE   
+		FROM BUSINESS
+		WHERE BU_ID = #{buId}
+	</delete>
+	
+	<!-- 리뷰 목록 -->
+	<!-- <select id="selectReportListCount" resultType="_int"> 
+		SELECT COUNT(*) FROM REVIEW
+		WHERE APPROVAL = 'Y'
+	</select>
 
-
-
-
+	<select id="selectReportList" resultMap="reivewResultSet">
+		SELECT
+		REVIEW_NO,
+		USER_NO,
+		USER_ID,
+		ROOM_NO,
+		BU_TITLE,
+		STAR_SCORE,
+		REVIEW_CONTENT,
+		PARENT_REVIEW_NO
+		FROM REVIEW R
+		LEFT JOIN MEMBER M ON (M.USER_ID = R.USER_NO)
+		LEFT JOIN BOOKING B ON (B.BU_TITLE = R.ROOM_NO)
+		WHERE REVIEW_DECLARIATION = 'Y'
+	</select>
+	
+	<update id="manageUpdate" parameterType="business">
+		UPDATE  BUSINESS SET
+		BU_USER_NAME = #{buUserName},
+		BU_TITLE = #{buTitle},
+		BU_ADDRESS = #{buAddress}
+		WHERE BU_ID = #{buId}
+	</update>
+	
+	<delete id="manageCancel">
+		DELETE   
+		FROM BUSINESS
+		WHERE BU_ID = #{buId}
+	</delete> -->
 </mapper>

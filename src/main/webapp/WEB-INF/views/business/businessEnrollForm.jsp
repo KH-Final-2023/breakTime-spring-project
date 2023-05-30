@@ -31,7 +31,10 @@
     <div id="container">
         
         
+
         <form action="insert" method="post" enctype="multipart/form-data">
+
+
         	<h1 style="display: flex; justify-content: center;">사업자 회원가입</h1> 
             <div>
                 <input type="email" name="email" id="email" placeholder="이메일입력" required>
@@ -82,14 +85,17 @@
 				<input type="text" name="buAddress" id="buAddress" placeholder="상세주소">
 			</div>
 			<input type="tel" name="buTel" id="buTel" placeholder="사업자연락처">
+
 			<input type = "file" name = "f" multiple="multiple" accept=".jpg, .png"/>
 	        <img id="buMainImg">
 	        <div id="div-preview" ></div>
 	        <br>
+
 			<input type="submit" onclick="validation()" value="회원가입">
 			</form>
         </div>  
     
+
 <script type="text/javascript">
 	
 		let fileTag = document.querySelector("input[name=f]");
@@ -128,6 +134,7 @@
 		}
 	
 	</script>
+
 
 
 

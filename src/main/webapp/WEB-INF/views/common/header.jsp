@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/header.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -17,16 +16,18 @@
                 <img src="resources/images/로고.png" alt="로고이미지">
             </div>
             <div id="navbar">
-                
-                <div id="loginType">로그인</div>
+                 <form action="/breaktime/business/login" method="GET">
+   				 <button type="submit" id="businesselogin">로그인</button>
+			</form>
+               
                 <div id="mybooking">예약내역</div>
                 <div class="dropdown">
                   <span class="dropbtn">더보기</span>
                   <div class="dropdown-content">
-                    <a href="<%=request.getContextPath()%>/notice/publicList">공지사항</a>
+                    <a href="#">공지사항</a>
                     <a href="#">마이페이지</a>
                     <a href="#">쪽지함</a>
-                    <a href="${contextPath}/detail2/myPage/profile">장바구니</a>
+                    <a href="#">장바구니</a>
                   </div>
                 </div> 
                 <div class="search-wrapper">
@@ -55,12 +56,5 @@
 }
     </script>
     
-
-      <script>
-          document.getElementById("loginType").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType";
-        })
-      </script>
-
 </body>
 </html>

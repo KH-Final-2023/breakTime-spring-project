@@ -29,12 +29,27 @@
     </style>
 </head>
 <body>
+
 	<!-- <div id="container">
+
         <h1>BreakTime</h1>
         <p>BreakTime에 오신것을 환영합니다.</p>
         <div>
-        
-        <form action="buLogin" method="post"> 
+     
+         <form action="buLogin" method="post"> 
+            <input type="text" name="buId" placeholder="아이디입력">
+            <input type="password" name="buPwd" placeholder="비밀번호입력">
+            <label for="remember-check">
+               <input type="checkbox" name="saveId" id="saveId">아이디 저장하기
+            </label>
+            <input type="submit" value="로그인">
+            
+            <div id="contnet3" style="border-top: 1px solid black; margin-top: 15px;">
+                <a>아이디/비밀번호찾기</a>
+                <a id="buEnrollBtn">사업자회원가입</a>
+            </div>
+        </form> 
+         <form action="/breaktime/businessRoom/businessRoomList" method="post"> 
             <input type="text" name="buId" placeholder="아이디입력">
             <input type="password" name="buPwd" placeholder="비밀번호입력">
             <label for="remember-check">
@@ -126,6 +141,7 @@
         </div>
       </form>
       <!-- END SIGN IN -->
+
     </div>
     <!-- END FORM SECTION -->
     <!-- CONTENT SECTION -->
@@ -162,6 +178,7 @@
   </div>    
     
     <!-- 제이쿼리 스크립트 -->
+
     <script>
     let container = document.getElementById('container')
 
@@ -175,7 +192,9 @@
     }, 200)
     </script>    
     
+
     <!-- 사업자 회원가입페이지로 포워딩 -->
+
     <script>
     document.getElementById("buEnrollBtn").addEventListener("click",function(){
         location.href = "<%= request.getContextPath()%>/business/insert";
