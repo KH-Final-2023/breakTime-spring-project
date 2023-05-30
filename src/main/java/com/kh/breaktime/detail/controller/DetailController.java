@@ -30,6 +30,13 @@ public class DetailController {
 			@RequestParam Map<String, Object> paramMap) {
 		
 		Map<String, Object> map = new HashMap();
+		// 데이터 가져오기 전에 속성 초기화
+		map.put("address", null);
+		map.put("areaNo", null);
+		map.put("buCategory", null);
+		map.put("mainImg", null);
+		map.put("buTel", null);
+		map.put("buTitle", null);
 		
 		if (paramMap.get("condition") == null) {
 			detailService.selectDetailList(category, map);

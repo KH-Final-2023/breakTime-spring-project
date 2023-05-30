@@ -140,7 +140,7 @@ button {
 
 	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
 	
-	<div>${map.mainImg}</div>
+	<div>${map['mainImg']}</div>
 
 	<div class="mainArea">
 		<div class="houseList">
@@ -183,14 +183,14 @@ button {
 		</div>
 	</div>
 
-	<div class id="map"
+	<div class id="houseMap"
 		style="width: 40%; height: 1080px; position: fixed; right: 0; top: 0;"></div>
 
 	<!-- 지도 api 스크립트 -->
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=55a7843b1806f000c969ae74b8fbf856&libraries=services"></script>
 	<script>
-	var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+	var mapContainer = document.getElementById('houseMap'); // 지도를 표시할 div 
 	var mapOption = {
 	  center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 	  level: 3 // 지도의 확대 레벨
