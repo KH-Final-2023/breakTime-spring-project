@@ -1,4 +1,4 @@
-package com.kh.breaktime.detail1.model.service;
+package com.kh.breaktime.detail.model.service;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -6,9 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.breaktime.detail1.model.dao.DetailDAO;
-import com.kh.breaktime.detail1.model.vo.CategoryCode;
-import com.kh.breaktime.detail1.model.vo.Detail;
+import com.kh.breaktime.detail.model.dao.DetailDAO;
+import com.kh.breaktime.detail.model.vo.CategoryCode;
+import com.kh.breaktime.detail.model.vo.Detail;
 
 @Service
 public class DetailServiceImpl implements DetailService{

@@ -1,4 +1,4 @@
-package com.kh.breaktime.detail1.controller;
+package com.kh.breaktime.detail.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.kh.breaktime.detail1.model.service.DetailService;
+import com.kh.breaktime.detail.model.service.DetailService;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/detail1")
+@RequestMapping("/detail")
 public class DetailController {
 
 	@Autowired
@@ -42,6 +42,6 @@ public class DetailController {
 
 		model.addAttribute("map", map);
 
-		return "/detail1/detail1";
+		return "/detail/detail";
 	}
 }

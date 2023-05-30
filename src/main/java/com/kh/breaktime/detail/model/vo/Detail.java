@@ -1,4 +1,4 @@
-package com.kh.breaktime.detail1.model.vo;
+package com.kh.breaktime.detail.model.vo;
 
 import lombok.Data;
 

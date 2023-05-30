@@ -134,246 +134,51 @@ button {
 </head>
 
 <body>
-	<jsp:include page="/WEB-INF/views/detail1/searchBar_detail.jsp" />
-	
-	<jsp:include page="/WEB-INF/views/detail1/option_modal.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/searchBar_detail.jsp" />
 
-	<jsp:include page="/WEB-INF/views/detail1/option_check.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
+
+	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
+	
+	<div>${map.mainImg}</div>
 
 	<div class="mainArea">
 		<div class="houseList">
 			<ul>
-				<li>
-					<div class="houseContent">
-						<div class="houseMainImg">
-							<img src="호텔_메인이미지.jpg">
-						</div>
-						<div class="houseInfo">
-							<a>
-								<div>
-									<div class="houseTitle">스타하우스</div>
-									<div class="starPlace">
-										<i class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i>
+				<c:forEach items="${map}" var="item">
+					<li>
+						<div class="houseContent">
+							<div class="houseMainImg">
+								<img src="${item['mainImg']}">
+							</div>
+							<div class="houseInfo">
+								<a>
+									<div>
+										<div class="houseTitle">${item['buTitle']}</div>
+										<div class="starPlace">
+											<i class="fa-solid fa-star starStyle"></i> <i
+												class="fa-solid fa-star starStyle"></i> <i
+												class="fa-solid fa-star starStyle"></i>
+										</div>
+										<div class="houseAddress">${item['address']}</div>
+										<div class="houseTel">${item['buTel']}</div>
 									</div>
-									<div></div>
-
+								</a>
+							</div>
+							<div class="housePrice">
+								<div class="priceHowMuch">16,000</div>
+								<div class="priceDetailList">
+									<p class="priceDetail1">1박 가격</p>
+									<p class="priceDetail2">모든 세금 및 수수료 포함</p>
 								</div>
-
-							</a>
-						</div>
-						<div class="housePrice">
-							<div class="priceHowMuch">₩ 160,000</div>
-							<div class="priceDetailList">
-								<p class="priceDetail1">1박 가격</p>
-								<p class="priceDetail2">모든 세금 및 수수료 포함</p>
-							</div>
-							<div class="hpButton">
-								<p class="rsButton">예약 무료 취소</p>
-								<button>예약하기</button>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="houseContent">
-						<div class="houseMainImg">
-							<img src="호텔_메인이미지.jpg">
-						</div>
-						<div class="houseInfo">
-							<a>
-								<div>
-									<div class="houseTitle">스타하우스</div>
-									<div class="starPlace">
-										<i class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i>
-									</div>
-									<div></div>
-
+								<div class="hpButton">
+									<p class="rsButton">예약 무료 취소</p>
+									<button>예약하기</button>
 								</div>
-
-							</a>
-						</div>
-						<div class="housePrice">
-							<div class="priceHowMuch">₩ 160,000</div>
-							<div class="priceDetailList">
-								<p class="priceDetail1">1박 가격</p>
-								<p class="priceDetail2">모든 세금 및 수수료 포함</p>
-							</div>
-							<div class="hpButton">
-								<p class="rsButton">예약 무료 취소</p>
-								<button>예약하기</button>
 							</div>
 						</div>
-					</div>
-				</li>
-				<li>
-					<div class="houseContent">
-						<div class="houseMainImg">
-							<img src="호텔_메인이미지.jpg">
-						</div>
-						<div class="houseInfo">
-							<a>
-								<div>
-									<div class="houseTitle">스타하우스</div>
-									<div class="starPlace">
-										<i class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i>
-									</div>
-									<div></div>
-
-								</div>
-
-							</a>
-						</div>
-						<div class="housePrice">
-							<div class="priceHowMuch">₩ 160,000</div>
-							<div class="priceDetailList">
-								<p class="priceDetail1">1박 가격</p>
-								<p class="priceDetail2">모든 세금 및 수수료 포함</p>
-							</div>
-							<div class="hpButton">
-								<p class="rsButton">예약 무료 취소</p>
-								<button>예약하기</button>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="houseContent">
-						<div class="houseMainImg">
-							<img src="호텔_메인이미지.jpg">
-						</div>
-						<div class="houseInfo">
-							<a>
-								<div>
-									<div class="houseTitle">스타하우스</div>
-									<div class="starPlace">
-										<i class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i>
-									</div>
-									<div></div>
-
-								</div>
-
-							</a>
-						</div>
-						<div class="housePrice">
-							<div class="priceHowMuch">₩ 160,000</div>
-							<div class="priceDetailList">
-								<p class="priceDetail1">1박 가격</p>
-								<p class="priceDetail2">모든 세금 및 수수료 포함</p>
-							</div>
-							<div class="hpButton">
-								<p class="rsButton">예약 무료 취소</p>
-								<button>예약하기</button>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="houseContent">
-						<div class="houseMainImg">
-							<img src="호텔_메인이미지.jpg">
-						</div>
-						<div class="houseInfo">
-							<a>
-								<div>
-									<div class="houseTitle">스타하우스</div>
-									<div class="starPlace">
-										<i class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i>
-									</div>
-									<div></div>
-
-								</div>
-
-							</a>
-						</div>
-						<div class="housePrice">
-							<div class="priceHowMuch">₩ 160,000</div>
-							<div class="priceDetailList">
-								<p class="priceDetail1">1박 가격</p>
-								<p class="priceDetail2">모든 세금 및 수수료 포함</p>
-							</div>
-							<div class="hpButton">
-								<p class="rsButton">예약 무료 취소</p>
-								<button>예약하기</button>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="houseContent">
-						<div class="houseMainImg">
-							<img src="호텔_메인이미지.jpg">
-						</div>
-						<div class="houseInfo">
-							<a>
-								<div>
-									<div class="houseTitle">스타하우스</div>
-									<div class="starPlace">
-										<i class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i>
-									</div>
-									<div></div>
-
-								</div>
-
-							</a>
-						</div>
-						<div class="housePrice">
-							<div class="priceHowMuch">₩ 160,000</div>
-							<div class="priceDetailList">
-								<p class="priceDetail1">1박 가격</p>
-								<p class="priceDetail2">모든 세금 및 수수료 포함</p>
-							</div>
-							<div class="hpButton">
-								<p class="rsButton">예약 무료 취소</p>
-								<button>예약하기</button>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="houseContent">
-						<div class="houseMainImg">
-							<img src="호텔_메인이미지.jpg">
-						</div>
-						<div class="houseInfo">
-							<a>
-								<div>
-									<div class="houseTitle">스타하우스</div>
-									<div class="starPlace">
-										<i class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i> <i
-											class="fa-solid fa-star starStyle"></i>
-									</div>
-									<div></div>
-
-								</div>
-
-							</a>
-						</div>
-						<div class="housePrice">
-							<div class="priceHowMuch">₩ 160,000</div>
-							<div class="priceDetailList">
-								<p class="priceDetail1">1박 가격</p>
-								<p class="priceDetail2">모든 세금 및 수수료 포함</p>
-							</div>
-							<div class="hpButton">
-								<p class="rsButton">예약 무료 취소</p>
-								<button>예약하기</button>
-							</div>
-						</div>
-					</div>
-				</li>
+					</li>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>

@@ -1,9 +1,9 @@
-package com.kh.breaktime.detail1.model.service;
+package com.kh.breaktime.detail.model.service;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.kh.breaktime.detail1.model.vo.CategoryCode;
+import com.kh.breaktime.detail.model.vo.CategoryCode;
 
 public interface DetailService {
 	

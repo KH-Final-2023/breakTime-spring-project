@@ -16,8 +16,23 @@
 </head>
 <body>
 
-	<form action="/breaktime/detail1" method="get">
-		<input type="hidden" name="category" value="B02010100">
+	<form action="/breaktime/detail" method="get">
+		<input type="hidden" name="category" value="B02010100" id="관광호텔">
+		<button type="submit">이동</button>
+	</form>
+	
+	<form action="/breaktime/detail" method="get">
+		<input type="hidden" name="category" value="B02010500" id="리조트">
+		<button type="submit">이동</button>
+	</form>
+	
+	<form action="/breaktime/detail" method="get">
+		<input type="hidden" name="category" value="B02010700" id="모텔">
+		<button type="submit">이동</button>
+	</form>
+	
+	<form action="/breaktime/detail" method="get">
+		<input type="hidden" name="category" value="B02010900" id="펜션">
 		<button type="submit">이동</button>
 	</form>
 

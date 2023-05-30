@@ -1,4 +1,4 @@
-package com.kh.breaktime.detail1.model.dao;
+package com.kh.breaktime.detail.model.dao;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -7,8 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.breaktime.detail1.model.vo.CategoryCode;
-import com.kh.breaktime.detail1.model.vo.Detail;
+import com.kh.breaktime.detail.model.vo.CategoryCode;
+import com.kh.breaktime.detail.model.vo.Detail;
 
 @Repository
 public class DetailDAO {
