@@ -29,7 +29,9 @@
     </style>
 </head>
 <body>
-<!-- 	<div id="container">
+
+	<!-- <div id="container">
+
         <h1>BreakTime</h1>
         <p>BreakTime에 오신것을 환영합니다.</p>
         <div>
@@ -139,6 +141,7 @@
         </div>
       </form>
       <!-- END SIGN IN -->
+
     </div>
     <!-- END FORM SECTION -->
     <!-- CONTENT SECTION -->
@@ -172,9 +175,10 @@
       <!-- END SIGN UP CONTENT -->
     </div>
     <!-- END CONTENT SECTION -->
-  </div>        
-  
-  <!-- 제이쿼리 스크립트 -->
+  </div>    
+    
+    <!-- 제이쿼리 스크립트 -->
+
     <script>
     let container = document.getElementById('container')
 
@@ -188,7 +192,9 @@
     }, 200)
     </script>    
     
-    <!-- 사업자 회원가입페이지로 이동 -->
+
+    <!-- 사업자 회원가입페이지로 포워딩 -->
+
     <script>
     document.getElementById("buEnrollBtn").addEventListener("click",function(){
         location.href = "<%= request.getContextPath()%>/business/insert";

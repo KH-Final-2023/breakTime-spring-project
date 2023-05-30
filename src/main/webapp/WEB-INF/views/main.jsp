@@ -24,6 +24,16 @@
 
 </head>
 <body>
+
+
+   	<button id="loginType">로그인</button>
+   	
+   	<script>
+   		 document.getElementById("loginType").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/loginType";
+        })
+   	</script>
+
 <div id="wrapper">
 
 	<%@ include file="header.jsp"%>
@@ -76,5 +86,6 @@
 	<%@ include file="footer.jsp"%>
 
 </div>
+
 </body>
 </html>

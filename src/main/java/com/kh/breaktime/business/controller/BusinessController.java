@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.business.model.service.BusinessService;
 import com.kh.breaktime.business.model.vo.Business;
-import com.kh.breaktime.member.model.vo.Member;
+
 
 
 @Controller
@@ -112,9 +112,9 @@ public class BusinessController {
 	}
 	
 	@PostMapping("/insert")
-	public String insertBusiness(Business b, HttpSession session, Model model) {
+	public String insertBusiness(Business b, HttpSession session, Model model, HttpServletRequest req) {
 
-		int result = businessService.insertBusiness(b);
+		int result = businessService.insertBusiness(b, req);
 
 		String url = "";
 		if (result > 0) { // 성공시 - 메인페이지로
