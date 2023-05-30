@@ -134,7 +134,7 @@ public class NoticeController {
 		}
 		
 		model.addAttribute("notice",noticeService.selectNoticeDetail(noticeNo));
-		return "admin/publicNoticeDetail";
+		return "admin/noticeDetailView";
 	}
 	
 	// 고객용 상세보기
@@ -194,7 +194,8 @@ public class NoticeController {
 			model.addAttribute("notice",noticeService.selectNoticeDetail(noticeNo));
 			return "admin/publicNoticeDetail";
 		}
-		
+	
+	// 관리자 글등록 폼
 	@GetMapping("/enrollForm")
 	public String noticeEnrollForm(
 				Model model,
@@ -206,7 +207,7 @@ public class NoticeController {
 	}
 	
 	
-	
+	// 관리자 글 등록
 	@PostMapping("/insert")
 	public String noticeEnroll(Notice n ) {
 		
@@ -216,6 +217,7 @@ public class NoticeController {
 		return "redirect:/notice/list";
 	}
 	
+	// 글 삭제
 	@GetMapping("/delete")
 	public String noticeDelete(@RequestParam(value="noticeNo", required=false, defaultValue="0") int noticeNo) {
 		
@@ -224,6 +226,7 @@ public class NoticeController {
 		return "redirect:/notice/list";
 	}
 	
+	// 글 수정 폼
 	@GetMapping("/update")
 	public String updateForm( Model model,
 		      					@RequestParam(value="noticeNo",required=false, defaultValue="0") int noticeNo){
@@ -232,6 +235,7 @@ public class NoticeController {
 		return "admin/noticeUpdateForm";
 	}
 	
+	// 글 수정
 	@PostMapping("/update")
 	public String noticeUpdatePost(Notice n) {
 		noticeService.updateNotice(n);
