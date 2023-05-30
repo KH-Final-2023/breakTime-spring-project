@@ -1,5 +1,12 @@
 package com.kh.breaktime.review.model.vo;
 
-public class StarHistory {
+import java.sql.Date;
 
+public class StarHistory {
+	
+	private int starNo;
+	private int userNo;
+	private int reviewNo;
+	private int starScore;
+	private Date createDate;
 }

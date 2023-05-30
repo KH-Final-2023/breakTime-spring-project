@@ -39,20 +39,20 @@
             <span>카테고리 별로 검색해 보세요!</span>
       </div>
       
-<div class="category">
-    <div class="categorySubBox" id="hotel" >
-    	<p id="pHotel" >호텔</p>
-    </div>
-    <div class="categorySubBox" id="motel">
- 		<p id="pMotel">모텔</p>
-    </div>
-    <div class="categorySubBox" id="resort">
-    	<p id="pResort">리조트</p>
-    </div>
-    <div class="categorySubBox" id="pension">
-    	<p id="pPension">펜션</p>
-    </div>
-</div>
+	<div class="category">
+	    <div class="categorySubBox" id="hotel" value="B02010100">
+	    	<p id="pHotel" >호텔</p>
+	    </div>
+	    <div class="categorySubBox" id="motel">
+	 		<p id="pMotel">모텔</p>
+	    </div>
+	    <div class="categorySubBox" id="resort">
+	    	<p id="pResort">리조트</p>
+	    </div>
+	    <div class="categorySubBox" id="pension">
+	    	<p id="pPension">펜션</p>
+	    </div>
+	</div>
 
     <div class="rankingText">
       <span>별점 순으로 검색해 보세요!</span>
@@ -79,10 +79,7 @@
 </div>
 </body>
 
-
-
-
-
+	
 
 
 
