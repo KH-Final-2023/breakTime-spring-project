@@ -112,10 +112,6 @@ String alertMsg = (String) session.getAttribute("alertMsg");
       })
       <% }%>
       
-      
-      
-      
-      </script>
     
     
     
