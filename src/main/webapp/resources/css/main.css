@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+/* #body {
+    width: 1180px;
+    margin: auto;
+    margin-top: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} */
+
+
+
+/*   div{
+    border: 1px solid red;
+} */
+
+.mainContent{
+    width: 100%;
+    height: 650px;
+    margin-top: 80px;
+    position: relative;
+}
+
+#backgroundArea{
+    width: 45%;
+    height: 300px;
+    display: flex;
+    margin-left: 515px;
+    margin-top: 40px;
+    position: absolute;
+    border-radius: 20px;
+}
+#backImg{
+  width: 110%;
+  height: 600px;
+  border-radius: 20px;
+ 
+}
+
+
+.categoryText{
+  width: 50%;
+  height: 50px;
+  position: relative;
+  margin-top : 13px;
+  margin-left: 510px;
+  
+}
+
+.categoryText>span{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+}
+
+.rankingText{
+  width: 50%;
+  height: 50px;
+  position: relative;
+  margin-left: 510px;
+}
+
+.rankingText>span{
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+}
+
+
+.category{
+  width: 100%;
+  height: 250px;
+  margin-top: 1px;
+  position: relative;
+  padding: 16px 430px 230px 500px;
+  display: flex;
+  justify-content: space-between;
+  
+
+}
+.category > .categorySubBox {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px #000;
+  height: 200px;
+  text-align: center;
+  cursor: pointer;
+  
+}
+
+
+.ranking{
+  width: 100%;
+  height: 250px;
+  margin-top: 1px;
+  position: relative;
+  padding: 16px 430px 230px 500px;
+  display: flex;
+  justify-content: space-between;
+
+}
+.ranking > .rankingSubBox {
+  width: 200px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px #000;
+  padding: 56px;
+  height: 200px;
+  text-align: center;
+}
+
+#hotel{
+	background: url("/breaktime/resources/images/호텔.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+	
+}
+
+#motel{
+	background: url("/breaktime/resources/images/모텔.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+	
+}
+
+#resort{
+	background: url("/breaktime/resources/images/리조트.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+}
+
+#pension{
+	background: url("/breaktime/resources/images/펜션.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+}
+
+#pHotel, #pMotel, #pResort, #pPension{
+	margin-top: 75px;
+	color : white;
+	font-size : 35px;
+}
+
+
+
+
+
+.dropdown{
+  position : relative;
+  display : inline-block;
+  width: 100px;
+}
+
+.dropdown-content{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+}
+
+.dropdown-content a{
+  display : block;
+  color : white;
+  background-color : yellowgreen;
+  
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
