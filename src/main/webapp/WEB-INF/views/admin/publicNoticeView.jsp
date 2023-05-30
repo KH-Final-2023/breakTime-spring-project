@@ -301,7 +301,7 @@
 	
 					<br>
 	
-					<c:set var="url" value="list?cpage=" />
+					<c:set var="url" value="list?pcpage=" />
 					<div class="paging">
 						<ul class="pagination">
 							<c:choose>

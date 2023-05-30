@@ -177,18 +177,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                             <c:forEach var="b" items="${selectManageList.list}"> 
+                             <c:forEach var="b" items="${selectManageList.list}" varStatus="vs"> 
                                 <tr>
                                     <td>${b.buUserName }</td>
                                     <td>${b.buTel }</td>
                                     <td>${b.buTitle }</td>
                                     <td>${b.buAddress }</td>
                                     <td>
-                                        <button id="update-btn" type="submit" class="btn btn-primary"
-                                        data-text="수정" data-toggle="modal" data-target="#updateMember" >
-                                        	<span>수정</span>
-                                        </button>
-                                        
+	                                        <button id="update-btn" type="submit" class="btn btn-primary"
+	                                        data-text="수정" data-toggle="modal" data-target="#updateMember${vs.index}"
+	                                         >
+	                                        	<span>수정</span>
+	                                        </button>
                                     </td>
                                     <td>
                                      	<a href="<%=request.getContextPath()%>/manage/delete?buId=${b.buId}">
@@ -201,7 +201,7 @@
                                 
                                 <!--  수정 모달창 -->
 							<form action="<%=  request.getContextPath() %>/manage/update" id="updateForm" method="post"> 
-								<div id="updateMember" class="modal fade" id="registerModal"
+								<div id="updateMember${vs.index}" class="modal fade" id="registerModal"
 									tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
 									<div
 										class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -240,6 +240,7 @@
 									</div>
 								</div>
 							 </form> 
+
 						</c:forEach>
                         </tbody>
                     </table>
