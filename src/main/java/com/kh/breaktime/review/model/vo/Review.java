@@ -1,5 +1,28 @@
 package com.kh.breaktime.review.model.vo;
 
-public class Review {
+import java.sql.Date;
 
+import com.kh.breaktime.business.model.vo.Business;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
+public class Review {
+	
+	private int reviewNo;							//	REVIEW_NO, 
+	private int userNo;							//	USER_NO, 
+	private int roomNo;							//	ROOM_NO, 
+	private String bookNo;							//	BOOK_NO, 
+	private int starScore;							//	STAR_SCORE,
+	private String reviewContnet;							//	REVIEW_CONTENT,
+	private String reviewAvailable;							//	REVIEW_AVAILABLE,
+	private Date createDate;							//	CREATE_DATE, 
+	private String reviewDeclariation;							//	REVIEW_DECLARIATION, 
+	private String parentReviewNo;							//	PARENT_REVIEW_NO
 }
