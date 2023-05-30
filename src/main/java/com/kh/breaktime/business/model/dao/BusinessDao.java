@@ -22,7 +22,7 @@ public class BusinessDao {
 		return sqlSession.selectOne("businessMapper.loginBusiness", inputBusiness);
 	}
 	
-	public int insertBusiness(Business inputBusiness, HttpServletRequest req) {
+	public int insertBusiness(Business inputBusiness) {
 		
 		return sqlSession.insert("businessMapper.insertBusiness", inputBusiness);
 	}

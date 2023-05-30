@@ -9,5 +9,5 @@ public interface BusinessService {
 	
 	public abstract Business loginBusiness(Business inputBusiness);
 		
-	public abstract int insertBusiness(Business inputBusiness, HttpServletRequest req);
+	public abstract int insertBusiness(Business inputBusiness);
 }
