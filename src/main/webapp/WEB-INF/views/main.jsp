@@ -40,7 +40,7 @@
       </div>
       
 	<div class="category">
-	    <div class="categorySubBox" id="hotel" value="B02010100">
+	    <div class="categorySubBox" id="hotel">
 	    	<p id="pHotel" >호텔</p>
 	    </div>
 	    <div class="categorySubBox" id="motel">
@@ -79,7 +79,12 @@
 </div>
 </body>
 
+	<%-- <script>
+	 $("hotel").click(function(){
+	    	location.href = "<%=request.getContextPath()%>/
+	    })
 	
+	</script> --%>
 
 
 
