@@ -48,8 +48,9 @@ public class buController {
 			buRoom.setRoomImg(savedImagePaths);
 			buService.insertBuRoom(buRoom, upfiles);
 			session.setAttribute("alertMsg", "객실 등록이 완료되었습니다.");
-			return "redirect:/businessRoom/buRoomList";
+			return "redirect:http://localhost:8081/breaktime/";
 		} catch (Exception e) {
+			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 등록 실패");
 			return "common/errorPage";
 		}
@@ -82,16 +83,8 @@ public class buController {
 			return null;
 			//저장 중에 발생한 예외나 오류는 IOException으로 처리되며, 예외가 발생한 경우 null반환
 		}
-	}
+	}	
 	
-
-	
-	
-	
-	
-	
-	
-
 	@GetMapping("/resister")
 	public String buRoomEnroll() {
 		return "businessRoom/buRoomEnroll";

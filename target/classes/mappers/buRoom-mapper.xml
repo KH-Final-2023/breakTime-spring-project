@@ -19,8 +19,11 @@
 		<result property="fileLevel" column="FILE_LEVEL" />
 		<result property="status" column="STATUS" />
 	</resultMap>
-	
 	<insert id="insertBuRoom" parameterType="room">
+		<selectKey keyProperty="roomNo" resultType="_int"
+			order="BEFORE">
+			SELECT SEQ_FNO.NEXTVAL FROM DUAL
+		</selectKey>
 		INSERT INTO ROOM
 		(
 		ROOM_NO,
@@ -41,7 +44,7 @@
 		)
 	</insert>
 
-	<insert id="insertRoomImg" parameterType="roomImg">
+	<insert id="insertRoomImgList" parameterType="roomImg">
 		INSERT INTO ROOM_IMG
 		(
 		FILE_NO,
@@ -54,7 +57,7 @@
 		)
 		VALUES
 		(
-		#{fileNo},
+		SEQ_FNO.NEXTVAL,
 		#{roomNo},
 		#{originName},
 		#{saveName},
@@ -62,5 +65,5 @@
 		#{fileLevel},
 		#{status}
 		)
-	</insert> 
+	</insert>
 </mapper>

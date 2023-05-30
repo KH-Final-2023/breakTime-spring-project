@@ -8,6 +8,7 @@
 	</settings>
 	
 	<typeAliases>
+
 		<typeAlias type="com.kh.breaktime.admin.model.vo.Notice" alias="notice"/>
     <typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinessRoom" alias="room" />
 		<typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinessRoomImg" alias="roomImg" />		
