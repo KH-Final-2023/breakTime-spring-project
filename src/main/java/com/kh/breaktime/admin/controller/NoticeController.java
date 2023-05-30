@@ -33,6 +33,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 	
+	// 관리자용 공지사항 리스트
 	@GetMapping("/list")
 	public String noticeList(Model model,
 						 	@RequestParam(value="cpage", defaultValue="1") int cp,
@@ -54,6 +55,31 @@ public class NoticeController {
 		model.addAttribute("selectNoticeList",map);
 		return "admin/noticeListView";
 	}
+	
+	// 고객용 공지사항 리스트
+	@GetMapping("/publicList")
+	public String publicNoticeList(Model model,
+						 	@RequestParam(value="cpage", defaultValue="1") int cp,
+						 	@RequestParam Map<String, Object> paramMap
+						 	) {
+		System.out.println(paramMap);
+		Map<String, Object> map = new HashMap();
+
+		if(paramMap.get("condition")==null) {
+			noticeService.selectNoticeList(cp, map);
+		}else {
+			// 검색요청을 한 경우 
+			// 검색조건을 추가한 상태로 게시글 셀렉트 
+			paramMap.put("currentPage", cp);
+			noticeService.selectNoticeList(paramMap, map);
+		}
+		
+		//noticeService.selectNoticeList(cp,map);
+		model.addAttribute("selectNoticeList",map);
+		return "admin/publicNoticeView";
+	}
+	
+	// 관리자용 상세보기
 	@GetMapping("/detail")
 	public String noticeDetail( Model model,
 		      					@RequestParam(value="noticeNo",required=false, defaultValue="0") int noticeNo,
@@ -108,9 +134,67 @@ public class NoticeController {
 		}
 		
 		model.addAttribute("notice",noticeService.selectNoticeDetail(noticeNo));
-		return "admin/noticeDetailView";
+		return "admin/publicNoticeDetail";
 	}
 	
+	// 고객용 상세보기
+		@GetMapping("/publicDetail")
+		public String publicNoticeDetail( Model model,
+			      					@RequestParam(value="noticeNo",required=false, defaultValue="0") int noticeNo,
+			      					HttpSession session, HttpServletRequest req, HttpServletResponse resp){
+			Notice detail = noticeService.selectNoticeDetail(noticeNo);
+			
+			if(detail != null) { // 상세조회 성공
+				
+				Member loginUser = (Member)session.getAttribute("loginUser");
+				int memberNo = 0;
+				if(loginUser != null) { // 로그인한 상태일때
+					memberNo = loginUser.getUserNo();
+				}
+				//글쓴이와 현제 상세보기요청을 한 클라이언트가 같지 않을 경우에만 조회수 증가 서비스 호출
+				if(Integer.parseInt(detail.getNoticeWriter()) != memberNo) {
+					Cookie cookie = null;
+					
+					Cookie[] cArr =req.getCookies(); // 쿠기 얻어보기
+					
+					if(cArr != null && cArr.length > 0) { // 얻어온 쿠기가 있을 경우
+						for( Cookie c : cArr) {
+							if(c.getName().equals("readNoticeNo")) {
+								cookie = c; 
+							}
+						}
+					}
+					int result = 0;
+					if(cookie == null) { // 기존에 readBoardNo라는 이름의 쿠키가 없던 경우
+						cookie = new Cookie("readNoticeNo", noticeNo+"");
+						result = noticeService.updateReadCount(noticeNo); // 조회수 증가 서비스 호출 
+						
+					}else {
+						String temp[] = cookie.getValue().split("/"); // 기존 value
+						
+						List<String> list = Arrays.asList(temp); // 배열 --> List로 변환시켜주는 함수
+						
+						if(list.indexOf(noticeNo+"") == -1) { // 즉, 기본값에 같은 글번호가 없다면
+							cookie.setValue(cookie.getValue()+"/"+noticeNo);
+							result = noticeService.updateReadCount(noticeNo); // 조회수 증가 서비스 호출
+							
+						}
+					}
+					if(result>0) {
+						cookie.setPath(req.getContextPath());
+						cookie.setMaxAge(60*60*1); // 1시간
+						resp.addCookie(cookie);
+					}
+					
+					
+				}
+				
+			}
+			
+			model.addAttribute("notice",noticeService.selectNoticeDetail(noticeNo));
+			return "admin/publicNoticeDetail";
+		}
+		
 	@GetMapping("/enrollForm")
 	public String noticeEnrollForm(
 				Model model,
@@ -120,6 +204,8 @@ public class NoticeController {
 			return "admin/noticeEnrollForm";
 		
 	}
+	
+	
 	
 	@PostMapping("/insert")
 	public String noticeEnroll(Notice n ) {

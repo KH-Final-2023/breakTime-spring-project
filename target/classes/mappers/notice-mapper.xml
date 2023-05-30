@@ -252,4 +252,38 @@
 	</delete>
 	
 	<!-- 리뷰 목록 -->
+	<!-- <select id="selectReportListCount" resultType="_int"> 
+		SELECT COUNT(*) FROM REVIEW
+		WHERE APPROVAL = 'Y'
+	</select>
+
+	<select id="selectReportList" resultMap="reivewResultSet">
+		SELECT
+		REVIEW_NO,
+		USER_NO,
+		USER_ID,
+		ROOM_NO,
+		BU_TITLE,
+		STAR_SCORE,
+		REVIEW_CONTENT,
+		PARENT_REVIEW_NO
+		FROM REVIEW R
+		LEFT JOIN MEMBER M ON (M.USER_ID = R.USER_NO)
+		LEFT JOIN BOOKING B ON (B.BU_TITLE = R.ROOM_NO)
+		WHERE REVIEW_DECLARIATION = 'Y'
+	</select>
+	
+	<update id="manageUpdate" parameterType="business">
+		UPDATE  BUSINESS SET
+		BU_USER_NAME = #{buUserName},
+		BU_TITLE = #{buTitle},
+		BU_ADDRESS = #{buAddress}
+		WHERE BU_ID = #{buId}
+	</update>
+	
+	<delete id="manageCancel">
+		DELETE   
+		FROM BUSINESS
+		WHERE BU_ID = #{buId}
+	</delete> -->
 </mapper>

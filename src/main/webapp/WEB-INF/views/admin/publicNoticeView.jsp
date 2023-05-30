@@ -10,6 +10,10 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/breaktime/resources/css/header.css">
+	<link rel="stylesheet" href="/breaktime/resources/css/base.css">
+    <link rel="stylesheet" href="/breaktime/resources/css/main.css">
+    <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
 	<title>Document</title>
 	<!--  공통적으로사용할 라이브러리 추가 -->
 	<!-- Jquey 라이브러리 -->
@@ -114,7 +118,7 @@
 		#notice_area {
 			width: 70%;
 			height: 90%;
-			margin-top: 5vh;
+			margin-top: 15vh;
 			margin-left: 30vh;
 		}
 		
@@ -219,7 +223,7 @@
 	}
 	
 		.paging {
-			margin: 0px 0px 0px 40%;
+			margin: 0px 0px 0px 45%;
 		}
 		#searchForm {
             width:80%;
@@ -232,23 +236,16 @@
         .select {width:15%;}
         .text {width:53%;}
         .searchBtn {width:10%;}
+        
+        #wrapper {height:95%;}
+        #footer {height:18.5%;}
 	</style>
 	</head>
 	<body>
-		<div class="header">
-			<div id="bt_title">
-				<span id="title">breaktime admin</span>
-			</div>
-	
-			<div class="nav">
-				<ul>
-					<li><a href="<%=request.getContextPath()%>/notice/list">공지사항</a></li>
-					<li><a href="<%=request.getContextPath()%>/approval/list">사업자 가입 승인</a></li>
-					<li><a href="<%=request.getContextPath()%>/manage/list">고객 정보 관리</a></li>
-					<li><a href="<%=request.getContextPath()%>/report/list">악성 리뷰 관리</a></li>
-				</ul>
-			</div>
-		</div>
+		<div id="wrapper">
+			<%@ include file="/WEB-INF/views/header.jsp"%>
+			
+		
 	
 		<div class="notice">
 			<div id="notice_area">
@@ -271,10 +268,7 @@
 				 	<button type="submit" class="searchBtn btn btn-secondary">검색 </button>
 		 		</form>
 		 
-				<c:if test="${loginUser.getAuthority() == 0}"> 
-					<a class="btn btn-secondary" style="margin-left: 112vh;"
-						href="<%=  request.getContextPath() %>/notice/enrollForm">글 등록</a>
-				</c:if> 
+				
 				<div id="notice_board_area">
 					<table id="noticeList">
 						<thead>
@@ -296,7 +290,7 @@
 								<c:otherwise>
 									<c:forEach items="${selectNoticeList.list}" var="n">
 										<tr
-											onclick="location.href='<%=request.getContextPath()%>/notice/detail?noticeNo=${n.noticeNo}'">
+											onclick="location.href='<%=request.getContextPath()%>/notice/publicDetail?noticeNo=${n.noticeNo}'">
 											<td>${n.noticeNo }</td>
 											<td>${n.noticeTitle }</td>
 											<td>${n.userName }</td>
@@ -345,6 +339,10 @@
 						</ul>
 					</div>
 				</div>
+			</div>
+		</div>
+			<div id= "footer">
+				<%@ include file="/WEB-INF/views/footer.jsp"%>
 			</div>
 		</div>
 	</body>

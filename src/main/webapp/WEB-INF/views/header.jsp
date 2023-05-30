@@ -23,7 +23,7 @@
                 <div class="dropdown">
                   <span class="dropbtn">더보기</span>
                   <div class="dropdown-content">
-                    <a href="#">공지사항</a>
+                    <a href="<%=request.getContextPath()%>/notice/publicList">공지사항</a>
                     <a href="#">마이페이지</a>
                     <a href="#">쪽지함</a>
                     <a href="#">장바구니</a>
