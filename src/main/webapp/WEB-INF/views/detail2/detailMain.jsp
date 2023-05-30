@@ -113,7 +113,7 @@
             height: 40px;
             line-height: 40px;
             padding: 0 2rem;
-            border-bottom: 1px solid #f2f2f2;
+            border-bottom: 1px solid #8888883b;
         }
 
         #section-content {
@@ -185,18 +185,23 @@
                 e.preventDefault();
                 var target = $(this).attr("href");
                 $("#section-content").load(target);
+            });
 
-                // 리뷰/후기 섹션 클릭 시 스타일 변경
-                if ($(this).hasClass("rating")) {
-                    $(".section-link").removeClass("active"); // 모든 링크의 active 클래스 제거
-                    $(".section-link.review-link").addClass("active"); // 리뷰/후기 섹션 링크에 active 클래스 추가
-                }
+            // 별점 리뷰갯수 클릭 시 비동기식으로 리뷰/후기 섹션 로드 및 스타일 변경
+            $(".rating").click(function (e) {
+                e.preventDefault();
+                var target = "후기.html"; // 로드할 페이지 경로
+                $("#section-content").load(target);
+                $(".section-link").removeClass("active"); // 모든 링크의 active 클래스 제거
+                $(".section-link[href='후기.html']").addClass("active"); // 후기 섹션 링크에 active 클래스 추가
             });
 
             // 객실선택.html 페이지 자동로드
-            var target = "${contextPath}/decide/deroom";
+            var target = "객실선택.html";
             $("#section-content").load(target);
         });
+
+
     </script>
 </head>
 
@@ -216,7 +221,7 @@
                     <i class="icon heart-icon far fa-heart" title="찜하기"></i>
                 </div>
             </div>
-            <a href="${contextPath}/decide/dereview" class="rating">
+            <a href="후기.html" class="rating">
                 <span class="stars">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
@@ -239,9 +244,9 @@
     <div class="detail2-select">
         <!-- 섹션 선택 영역 -->
         <div class="section">
-            <a class="section-link" href="${contextPath}/decide/deroom">객실 선택</a>
-            <a class="section-link" href="${contextPath}/decide/demap">위치 정보</a>
-            <a class="section-link review-link" href="${contextPath}/decide/dereview">리뷰 / 후기</a>
+            <a class="section-link" href="객실선택.html">객실 선택</a>
+            <a class="section-link" href="위치.html">위치 정보</a>
+            <a class="section-link" href="후기.html">리뷰 / 후기</a>
         </div>
 
         <!-- 섹션 내용 영역 -->

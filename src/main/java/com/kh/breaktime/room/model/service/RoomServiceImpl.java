@@ -1,4 +1,4 @@
-package com.kh.breaktime.businessRoom.model.service;
+package com.kh.breaktime.room.model.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,35 +13,35 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kh.breaktime.businessRoom.model.dao.BuDao;
-import com.kh.breaktime.businessRoom.model.vo.BusinessRoom;
-import com.kh.breaktime.businessRoom.model.vo.BusinessRoomImg;
+import com.kh.breaktime.room.model.dao.RoomDao;
+import com.kh.breaktime.room.model.vo.Room;
+import com.kh.breaktime.room.model.vo.RoomImg;
 
 
 @Service
-public class BuServiceImpl implements BuService {
+public class RoomServiceImpl implements RoomService {
 
 	@Autowired
-	private BuDao buDao;
+	private RoomDao buDao;
 	
 	@Autowired
 	private ServletContext servletContext;
 
 
 	@Transactional(rollbackFor = Exception.class)
-	public int insertBuRoom(BusinessRoom buRoom, List<MultipartFile> upfiles) throws Exception {
+	public int insertBuRoom(Room buRoom, List<MultipartFile> upfiles) throws Exception {
 		// 1) 객실 정보 등록
 		int result = buDao.insertBuRoom(buRoom);
 
 		if (result > 0 && upfiles != null) {
 			// 2) 이미지 등록
-			List<BusinessRoomImg> roomImgList = new ArrayList<>();
+			List<RoomImg> roomImgList = new ArrayList<>();
 
 			for (MultipartFile file : upfiles) {
 				if (!file.isEmpty()) {
 					String savedImagePath = saveImage(file);
 
-					BusinessRoomImg roomImg = new BusinessRoomImg();
+					RoomImg roomImg = new RoomImg();
 					roomImg.setRoomNo(buRoom.getRoomNo());
 					roomImg.setOriginName(file.getOriginalFilename());
 					roomImg.setSaveName(savedImagePath);
@@ -82,7 +82,11 @@ public class BuServiceImpl implements BuService {
 			
 		}
 	}
-
-
-
+	/*
+	 * @Override public List<BusinessRoom> getRoomsByBuId(String buId) { return
+	 * buDao.getRoomsByBuId(buId); }
+	 * 
+	 * @Override public List<BusinessRoomImg> getRoomImagesByBuId(String buId) {
+	 * return buDao.getRoomImagesByBuId(buId); }
+	 */
 }

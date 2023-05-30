@@ -1,5 +1,8 @@
 package com.kh.breaktime.business.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.breaktime.booking.model.vo.Booking;
 import com.kh.breaktime.business.model.service.BusinessService;
 import com.kh.breaktime.business.model.vo.Business;
+import com.kh.breaktime.room.model.vo.Room;
+import com.kh.breaktime.room.model.vo.RoomImg;
 
 
 
@@ -70,6 +76,7 @@ public class BusinessController {
 		 */
 		
 		Business loginUser = businessService.loginBusiness(b);
+		
 		// loginUser : 아이디 + 비밀번호로 조회한 회원정보 -------> 아이디로만 조회
 		// loginUser안의 userPwd : 암호화된 비밀번호
 		// m안의 userPwd은 : 암호화 되지 않은 평문 비밀번호
@@ -92,17 +99,26 @@ public class BusinessController {
 				cookie.setMaxAge(0); // 바로 소멸				
 			}
 			
-			//쿠키를 응답시 클라이언트에 전달
 			resp.addCookie(cookie);
-			
-		}else { // 로그인실패
-			ra.addFlashAttribute("errorMsg","로그인 실패");
-			// redirect시 잠깐 데이터를 sessionScope에 보관 -> redirect완료 후 다시 requestScope로 이관
-			// : redirect(페이지 재요청) 시에도 request scope로 세팅된 데이터가 유지될 수 있도록 하는 방법을 spring에서 제공해줌.
-			// RedirectAttributes 객체(컨트롤러의 매개변수로 작성하면 Argument Resolver가 넣어줌)
-			// redirect의 특징 -> request에 데이터를 저장할 수 없다.
+		
+			// 방 이미지와 방 정보 페이지로 이동
+			List<Room> roomList = businessService.getRoomsByBuId(loginUser.getBuId());
+
+			List<RoomImg> roomImgList = new ArrayList<RoomImg>();
+			for(int i = 0; i < roomList.size(); i++) {
+				
+				RoomImg roomImg = businessService.getRoomImagesByBuId(roomList.get(i).getRoomNo());
+				roomImgList.add(roomImg);
+			}
+
+			model.addAttribute("roomList", roomList);
+			model.addAttribute("roomImgList", roomImgList);
+
+			return "businessRoom/buRoomList";
+		} else { // 로그인 실패
+			ra.addFlashAttribute("errorMsg", "로그인 실패");
+			return "redirect:/"; // 로그인 실패 시 메인페이지로 이동하도록 수정
 		}
-		return "redirect:/";
 	}
 	
 	@GetMapping("/insert") // /spring/member/insert
@@ -112,9 +128,9 @@ public class BusinessController {
 	}
 	
 	@PostMapping("/insert")
-	public String insertBusiness(Business b, HttpSession session, Model model, HttpServletRequest req) {
+	public String insertBusiness(Business b, HttpSession session, Model model) {
 
-		int result = businessService.insertBusiness(b, req);
+		int result = businessService.insertBusiness(b);
 
 		String url = "";
 		if (result > 0) { // 성공시 - 메인페이지로
@@ -127,4 +143,12 @@ public class BusinessController {
 
 		return url;
 	}
+	
+	@GetMapping("/reservation")
+	public String buReservation(Model model) {
+		 List<Booking> bookingList = businessService.getAllBookings();
+		 model.addAttribute("bookingList",bookingList);
+		return "businessRoom/buReservation";
+	}
+
 }
