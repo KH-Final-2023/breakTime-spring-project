@@ -1,4 +1,4 @@
-package com.kh.breaktime.businessRoom.controller;
+package com.kh.breaktime.room.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,18 +16,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.kh.breaktime.businessRoom.model.service.BuService;
-import com.kh.breaktime.businessRoom.model.vo.BusinessRoom;
+import com.kh.breaktime.booking.model.vo.Booking;
+import com.kh.breaktime.business.model.vo.Business;
+import com.kh.breaktime.room.model.service.RoomService;
+import com.kh.breaktime.room.model.vo.Room;
 
 @Controller
 @RequestMapping("/businessRoom")
-public class buController {
+@SessionAttributes({ "loginUser" })
+public class RoomController {
 
 	// ...
 	@Autowired
-	private BuService buService;
+	private RoomService buService;
 	
 	@Autowired
 	private ServletContext servletContext;
@@ -35,7 +39,7 @@ public class buController {
 //	  private static final Logger Logger = LoggerFactory.getLogger(buController.class);
 
 	@PostMapping("/enroll")
-	public String registerBuRoom(BusinessRoom buRoom, @RequestParam("upfiles") List<MultipartFile> upfiles,
+	public String registerBuRoom(Room buRoom, @RequestParam("upfiles") List<MultipartFile> upfiles,
 			HttpSession session, Model model) {
 		try {
 			List<String> savedImagePaths = new ArrayList<>();
@@ -85,16 +89,45 @@ public class buController {
 		}
 	}	
 	
+	
+//	@PostMapping("/businessRoomList")
+//	public String businessList() {Model model, HttpSession session
+//	     로그인된 사업자 정보 가져오기
+//	    Business loginUser = (Business) session.getAttribute("loginUser");
+//
+//	     사업자의 방 정보와 이미지 정보 가져오기
+//	    List<BusinessRoom> roomList = buService.getRoomsByBuId(loginUser.getBuId());
+//	    List<BusinessRoomImg> roomImgList = buService.getRoomImagesByBuId(loginUser.getBuId());
+//
+//	     Model에 방 정보와 이미지 정보 저장
+//	    model.addAttribute("roomList", roomList);
+//	    model.addAttribute("roomImgList", roomImgList);
+//
+//	    return "businessRoom/buRoomList";
+//	    
+//	}
+	@PostMapping("/businessRoomList")
+	public String businessList(Model model, HttpSession session) {
+	    // 세션에서 loginUser 속성 가져오기
+	    Business loginUser = (Business) session.getAttribute("loginUser");
+
+	    // loginUser 값 확인
+	    System.out.println("loginUser: " + loginUser);
+
+	    // loginUser 사용
+	    // ...
+	    
+	    return "businessRoom/buRoomList";
+	}
+
+
+	
 	@GetMapping("/resister")
 	public String buRoomEnroll() {
 		return "businessRoom/buRoomEnroll";
 	}
 
-	@GetMapping("/reservation")
-	public String buReservation() {
-		return "businessRoom/buReservation";
-	}
-
+	
 	@GetMapping("/review")
 	public String buReview() {
 		return "businessRoom/buReview";

@@ -52,7 +52,7 @@
             // clear input
             container.find('.search-input').val('');
         }
-}
+	}
     </script>
     
 

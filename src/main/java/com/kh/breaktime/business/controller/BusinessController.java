@@ -112,9 +112,9 @@ public class BusinessController {
 	}
 	
 	@PostMapping("/insert")
-	public String insertBusiness(Business b, HttpSession session, Model model, HttpServletRequest req) {
+	public String insertBusiness(Business b, HttpSession session, Model model) {
 
-		int result = businessService.insertBusiness(b, req);
+		int result = businessService.insertBusiness(b);
 
 		String url = "";
 		if (result > 0) { // 성공시 - 메인페이지로
