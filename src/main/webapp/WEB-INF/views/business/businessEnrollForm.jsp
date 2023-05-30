@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +22,7 @@
         form{
             display: flex;
             flex-direction: column;
-            height: 200px;
+            
             justify-content: space-evenly;
         }
     </style>
@@ -30,7 +31,7 @@
     <div id="container">
         
         
-        <form action="insert" method="post">
+        <form action="insert" method="post" enctype="multipart/form-data">
         	<h1 style="display: flex; justify-content: center;">사업자 회원가입</h1> 
             <div>
                 <input type="email" name="email" id="email" placeholder="이메일입력" required>
@@ -81,10 +82,55 @@
 				<input type="text" name="buAddress" id="buAddress" placeholder="상세주소">
 			</div>
 			<input type="tel" name="buTel" id="buTel" placeholder="사업자연락처">
+			<input type = "file" name = "f" multiple="multiple" accept=".jpg, .png"/>
+	        <img id="buMainImg">
+	        <div id="div-preview" ></div>
+	        <br>
 			<input type="submit" onclick="validation()" value="회원가입">
 			</form>
         </div>  
     
+<script type="text/javascript">
+	
+		let fileTag = document.querySelector("input[name=f]");
+		let divPreview = document.querySelector("#div-preview");
+		
+		fileTag.onchange = function(){
+			
+			//파일 올렸을 때 : fileTag.files.length > 0
+			if(fileTag.files.length>0){
+				//이미지 src에 들어갈 데이터 구하기
+				for(let i=0; i<fileTag.files.length; i++){
+					let reader = new FileReader();
+					reader.onload = function(data){
+						let src = data.target.result;
+						//이미지 태그를 만들어서 넣어줄거임
+						//1. 이미지 태그 만들기
+						let imgTag = document.createElement('img');
+						
+						//2. 이미지 태그 속성들 세팅하기
+						imgTag.setAttribute('src', src);
+						imgTag.setAttribute('width', '100');
+						imgTag.setAttribute('height', '100');
+						
+						//3. 이미지 태그 div안에 넣기
+						divPreview.appendChild(imgTag);
+					}
+					reader.readAsDataURL(fileTag.files[i]);
+					
+				}//for end
+				
+			}else{
+			//취소 버튼을 눌렀을 때
+				//div 안에 싹 다 비우기
+				divPreview.innerHTML = "";
+			}
+		}
+	
+	</script>
+
+
+
 
     <script>
         function validation(){

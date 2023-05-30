@@ -15,6 +15,7 @@
 <body>
 
    	<button id="loginType">로그인</button>
+   	<input type="file">
    	<script>
    		 document.getElementById("loginType").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/loginType";

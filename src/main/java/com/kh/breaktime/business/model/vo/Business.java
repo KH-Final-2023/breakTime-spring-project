@@ -2,6 +2,8 @@ package com.kh.breaktime.business.model.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.kh.breaktime.business.model.vo.Business;
 
 import lombok.AllArgsConstructor;
@@ -28,5 +30,7 @@ public class Business {
 	private String approval;
 	private Date enrollDate;
 	private int roomCount;
+	private MultipartFile f;
+	private String changeName;
 	
 }

@@ -1,6 +1,8 @@
 package com.kh.breaktime.business.model.dao;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +22,7 @@ public class BusinessDao {
 		return sqlSession.selectOne("businessMapper.loginBusiness", inputBusiness);
 	}
 	
-	public int insertBusiness(Business inputBusiness) {
+	public int insertBusiness(Business inputBusiness, HttpServletRequest req) {
 		
 		return sqlSession.insert("businessMapper.insertBusiness", inputBusiness);
 	}
