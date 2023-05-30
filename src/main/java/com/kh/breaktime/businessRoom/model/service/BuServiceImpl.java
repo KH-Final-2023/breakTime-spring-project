@@ -47,7 +47,7 @@ public class BuServiceImpl implements BuService {
 					roomImg.setSaveName(savedImagePath);
 					roomImg.setFilePath("/resources/images");
 					roomImg.setFileLevel(0);
-					roomImg.setStatus("ACTIVE");
+					roomImg.setStatus("N");
 
 					roomImgList.add(roomImg);
 				}
