@@ -2,125 +2,103 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
-	<!--
-		 root-context.xml
-		 서버 구동과 동시에 web.xml파일을 거쳐서 곧바로 로딩되는 문서
-		 - 보통 서버구동과 동시에 세팅해야하는 내용들 작성함(db연결, 트랜잭션처리)
-	 -->
-	 
-	 <!-- DB연결 설정(3단계) -->
-	 <!-- 1단계 DB연결을 위한 도구 설정 
-	    dataSource : java에서 Connection Pool을 지우너하기 위한 인터페이스
-	 	destory-method="close" : 주어진 세션을 자동으로 반환하는 설정
-	 -->
-	 <bean class="org.apache.commons.dbcp.BasicDataSource" id="realDataSource" destroy-method="close">
-	 	
-	 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-	 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
-	 	<property name="username" value="BREAKTIME"/>
-	 	<property name="password" value="BREAKTIME"/>
-	 	
-	 	<!-- SQL이 수행된후 자동으로 COMMIT 되는것을 지정 -->
-	 	<property name="defaultAutoCommit" value="false"/>
-	 	
-	 	<!-- 커넥션풀 설정 -->
-	 	<property name="initialSize" value="10" /> <!-- 초기 커넥션수 , 기본 0 -->
-	 	<property name="maxActive" value="50" /><!-- 최대 커넥션 수 , 기본 8  -->
-	 	<property name="minIdle" value="10" /> <!-- 유휴 상태로 존재할수있는 커넥션 최소수 , 기본 0 -->
-	 	<property name="maxIdle" value="20"/> <!--  유휴 상태로 존재할수있는 커넥션 최대 수 , 기본 8 -->
-	 	<property name="maxWait" value="-1" /><!--  예외 발생전 커넥션이 반환돨때까지 대기하는시간 , 기본값 = -1(무기한) -->
-	 </bean>
-	 
-	 <!-- 
-	 	log4j를 이용한 SQL로그 출력용 BEAN생성
-	 	
-	 	* readDatatSource이용해서 SQL수행 내용 ,수행결과를 출력하는 역할 
-	  -->
-	 <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-	 	
-	 	<constructor-arg ref="realDataSource" />
-	 	
-	 	<property name="logFormatter">
-	 		<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
-	 			<property name="loggingType" value="MULTI_LINE" />
-	 			<property name="sqlPrefix" value="[SQL]"/>
-	 		</bean>
-	 	</property>
-	 	
-	 </bean>
-	 
-	 <!-- 
-	 	BasicDataSource datasource = new BasicDataSource();
-	 	datasource.setDriverClssName("oracle.jdbc.driver.OracleDriver");
-	 	...
-	  -->
-	 
-	 <!-- 
-	 	2단계 MyBatis Spring에서 제공하는 sql명령어 실행을 위한 도구 등록
-	 	SqlSession : sql구문을 db에전달 , 실행하는 객체
-	 	
-	 	SqlSessionFactory : SqlSession을 만드는 객체	 	
-	 	SqlSessionFactoryBean : mybatis설정파일과 Connection pool정보를 이용하여 
-	 	sqlSessionFactory를 만드는 객체	 	
-	 	sqlSessionTemplate : SqlSession객체에 트랜잭션처리 역할이 가능하도록 하는 객체
-	  -->
-	  <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
-		  	<!-- mybatis 설정파일 위치를 지정 -->
-	  		<property name="configLocation" value="classpath:mybatis-config.xml"/>
-	  		
-	  		<!-- 연결을 위한 도구 -->
-	  		<property name="dataSource" ref="dataSource"/>
-	  </bean>
-	 <!-- 
-	 	내부적으로 객체를 필요할대 실행되는 코드
-	 	SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
-	 	sqlSessionFactory.setConfigLocation("classpath:mybatis-config.xml");
-	 	sqlSessionFactory.setDataSource(datasource);
-	  -->
-	 
-	 <!-- 3단계 . SQL구문 실행을 위한 템플릿을 제공하는 도구 등록 
-	 	SqlSessionTemplate : 기본 SQL문 실행 + 트랜잭션관리 
-	 -->
-	 <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
-	 	<!-- Sql명령어 실행을 위한 도구에대한 참조 변수 -->
-	 	<constructor-arg ref="sqlSessionFactory" />
-	 </bean>
-	 
-	 <!-- SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory); 
-	 -->
-	 
-	 <!-- 
-	 	property => setter를 통해 값을 주입  
-	 	constructor-arg => 매개변수 있는 생성자를 통해 값을 주입
-	  -->
-	 
-	 <!-- 스프링에서 사용하는 proxy를 이용한 트랜잭션제어가 안먹힐 경우 트랜잭션 매니저를 추가 -->
-	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>	 
-	 </bean>
-	 
-	 <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
-	 	
-	 	<!-- defaultEncoding : 업로드 되는 파일에대한 인코딩처리 여부 -->
-	 	<property name="defaultEncoding" value="UTF-8" />
-	 	
-	 	<!-- 
-	 		maxUploadSize : 한번에 전체 업로드 되는 파일의 총 용량 설정
-	 	 -->
-	 	 <property name="maxUploadSize" value="10000000"/> <!-- 10mbyte -->
-	 	
-	 	<!-- 
-	 		maxInMemorySize : 디스크에 임시파일을 생성하기전에 메모리에 보관할수 있는 최대바이트 크기 
-	 	 -->
-	 	 <property name="maxInMemorySize" value="10000000"/>
-	 </bean>
-	 
-	
-		
-		
-		
-		
+
+	<!-- root-context.xml 서버 구동과 동시에 web.xml파일을 거쳐서 곧바로 로딩되는 문서 - 보통 서버구동과 동시에 
+		세팅해야하는 내용들 작성함(db연결, 트랜잭션처리) -->
+
+	<!-- DB연결 설정(3단계) -->
+	<!-- 1단계 DB연결을 위한 도구 설정 dataSource : java에서 Connection Pool을 지우너하기 위한 인터페이스 
+		destory-method="close" : 주어진 세션을 자동으로 반환하는 설정 -->
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		id="realDataSource" destroy-method="close">
+
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property name="username" value="BREAKTIME" />
+		<property name="password" value="BREAKTIME" />
+
+		<!-- SQL이 수행된후 자동으로 COMMIT 되는것을 지정 -->
+		<property name="defaultAutoCommit" value="false" />
+
+		<!-- 커넥션풀 설정 -->
+		<property name="initialSize" value="10" /> <!-- 초기 커넥션수 , 기본 0 -->
+		<property name="maxActive" value="50" /><!-- 최대 커넥션 수 , 기본 8 -->
+		<property name="minIdle" value="10" /> <!-- 유휴 상태로 존재할수있는 커넥션 최소수 , 기본 0 -->
+		<property name="maxIdle" value="20" /> <!-- 유휴 상태로 존재할수있는 커넥션 최대 수 , 기본 8 -->
+		<property name="maxWait" value="-1" /><!-- 예외 발생전 커넥션이 반환돨때까지 
+			대기하는시간 , 기본값 = -1(무기한) -->
+	</bean>
+
+	<!-- log4j를 이용한 SQL로그 출력용 BEAN생성 * readDatatSource이용해서 SQL수행 내용 ,수행결과를 출력하는 
+		역할 -->
+	<bean id="dataSource"
+		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+
+		<constructor-arg ref="realDataSource" />
+
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="[SQL]" />
+			</bean>
+		</property>
+
+	</bean>
+
+	<!-- BasicDataSource datasource = new BasicDataSource(); datasource.setDriverClssName("oracle.jdbc.driver.OracleDriver"); 
+		... -->
+
+	<!-- 2단계 MyBatis Spring에서 제공하는 sql명령어 실행을 위한 도구 등록 SqlSession : sql구문을 db에전달 
+		, 실행하는 객체 SqlSessionFactory : SqlSession을 만드는 객체 SqlSessionFactoryBean : 
+		mybatis설정파일과 Connection pool정보를 이용하여 sqlSessionFactory를 만드는 객체 sqlSessionTemplate 
+		: SqlSession객체에 트랜잭션처리 역할이 가능하도록 하는 객체 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="sqlSessionFactory">
+		<!-- mybatis 설정파일 위치를 지정 -->
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml" />
+
+		<!-- 연결을 위한 도구 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 내부적으로 객체를 필요할대 실행되는 코드 SqlSessionFactoryBean sqlSessionFactory = new 
+		SqlSessionFactoryBean(); sqlSessionFactory.setConfigLocation("classpath:mybatis-config.xml"); 
+		sqlSessionFactory.setDataSource(datasource); -->
+
+	<!-- 3단계 . SQL구문 실행을 위한 템플릿을 제공하는 도구 등록 SqlSessionTemplate : 기본 SQL문 실행 
+		+ 트랜잭션관리 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate"
+		id="sqlSession">
+		<!-- Sql명령어 실행을 위한 도구에대한 참조 변수 -->
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory); -->
+
+	<!-- property => setter를 통해 값을 주입 constructor-arg => 매개변수 있는 생성자를 통해 값을 
+		주입 -->
+
+	<!-- 스프링에서 사용하는 proxy를 이용한 트랜잭션제어가 안먹힐 경우 트랜잭션 매니저를 추가 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver">
+
+		<!-- defaultEncoding : 업로드 되는 파일에대한 인코딩처리 여부 -->
+		<property name="defaultEncoding" value="UTF-8" />
+
+		<!-- maxUploadSize : 한번에 전체 업로드 되는 파일의 총 용량 설정 -->
+		<property name="maxUploadSize" value="10000000" /> <!-- 10mbyte -->
+
+		<!-- maxInMemorySize : 디스크에 임시파일을 생성하기전에 메모리에 보관할수 있는 최대바이트 크기 -->
+		<property name="maxInMemorySize" value="10000000" />
+	</bean>
 </beans>

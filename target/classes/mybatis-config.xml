@@ -8,7 +8,8 @@
 	</settings>
 	
 	<typeAliases>
-
+    <typeAlias type="com.kh.breaktime.detail.model.vo.CategoryCode" alias="categoryCode" />
+		<typeAlias type="com.kh.breaktime.detail.model.vo.Detail" alias="d
 		<typeAlias type="com.kh.breaktime.admin.model.vo.Notice" alias="notice"/>
     	<typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinessRoom" alias="room" />
 		<typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinessRoomImg" alias="roomImg" />		
@@ -18,6 +19,7 @@
 	</typeAliases>
 	 
 	 <mappers>
+     <mapper resource="/mappers/detail-mapper.xml"/>                                                                     
 	 	<mapper resource="/mappers/notice-mapper.xml" />
 	 	<mapper resource="/mappers/buRoom-mapper.xml"/>
 	 	<mapper resource="/mappers/member-mapper.xml"/>
