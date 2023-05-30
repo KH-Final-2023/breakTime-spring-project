@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
-<html lang="kor">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,18 +24,9 @@
 </head>
 <body>
 
-
-   	<button id="loginType">로그인</button>
-   	
-   	<script>
-   		 document.getElementById("loginType").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType";
-        })
-   	</script>
-
 <div id="wrapper">
 
-	<%@ include file="header.jsp"%>
+   <%@ include file="header.jsp"%>
 
     <div class="mainContent">
         <div id="backgroundArea">
@@ -49,20 +39,20 @@
             <span>카테고리 별로 검색해 보세요!</span>
       </div>
       
-<div class="category">
-    <div class="categorySubBox" id="hotel" >
-    	<p id="pHotel" >호텔</p>
-    </div>
-    <div class="categorySubBox" id="motel">
- 		<p id="pMotel">모텔</p>
-    </div>
-    <div class="categorySubBox" id="resort">
-    	<p id="pResort">리조트</p>
-    </div>
-    <div class="categorySubBox" id="pension">
-    	<p id="pPension">펜션</p>
-    </div>
-</div>
+   <div class="category">
+       <div class="categorySubBox" id="hotel">
+          <p id="pHotel" >호텔</p>
+       </div>
+       <div class="categorySubBox" id="motel">
+          <p id="pMotel">모텔</p>
+       </div>
+       <div class="categorySubBox" id="resort">
+          <p id="pResort">리조트</p>
+       </div>
+       <div class="categorySubBox" id="pension">
+          <p id="pPension">펜션</p>
+       </div>
+   </div>
 
     <div class="rankingText">
       <span>별점 순으로 검색해 보세요!</span>
@@ -71,21 +61,33 @@
     <div class="ranking">
       <div class="rankingSubBox" id="1st">
       
-      	</div>
+         </div>
       <div class="rankingSubBox" id="2nd">
       
-      	</div>
+         </div>
       <div class="rankingSubBox" id="3rd">
       
-      	</div>
+         </div>
       <div class="rankingSubBox" id="4th">
       
-      	</div>
+         </div>
   </div>    
 
-	<%@ include file="footer.jsp"%>
+
+   <%@ include file="footer.jsp"%>
 
 </div>
-
 </body>
+
+   <%-- <script>
+    $("hotel").click(function(){
+          location.href = "<%=request.getContextPath()%>/
+       })
+   
+   </script> --%>
+
+
+
+
+
 </html>

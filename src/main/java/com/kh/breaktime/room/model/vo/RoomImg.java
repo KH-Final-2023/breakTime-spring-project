@@ -1,9 +1,9 @@
-package com.kh.breaktime.businessRoom.model.vo;
+package com.kh.breaktime.room.model.vo;
 
 import lombok.Data;
 
 @Data
-public class BusinessRoomImg {
+public class RoomImg {
 	
     private int fileNo;
     private int roomNo;

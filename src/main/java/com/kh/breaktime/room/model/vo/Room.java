@@ -1,10 +1,10 @@
-package com.kh.breaktime.businessRoom.model.vo;
+package com.kh.breaktime.room.model.vo;
 
 import java.util.List;
 
 import lombok.Data;
 @Data
-public class BusinessRoom {
+public class Room {
 	private int roomNo;
 	private String buId;
 	private int roomImgNo;
