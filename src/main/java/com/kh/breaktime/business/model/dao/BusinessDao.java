@@ -13,18 +13,18 @@ import com.kh.breaktime.business.model.vo.Business;
 
 @Repository
 public class BusinessDao {
-	
-	@Autowired
-	private SqlSessionTemplate sqlSession;
+   
+   @Autowired
+   private SqlSessionTemplate sqlSession;
 
-	public Business loginBusiness(Business inputBusiness) {
+   public Business loginBusiness(Business inputBusiness) {
 
-		return sqlSession.selectOne("businessMapper.loginBusiness", inputBusiness);
-	}
-	
-	public int insertBusiness(Business inputBusiness, HttpServletRequest req) {
-		
-		return sqlSession.insert("businessMapper.insertBusiness", inputBusiness);
-	}
-	
+      return sqlSession.selectOne("businessMapper.loginBusiness", inputBusiness);
+   }
+   
+   public int insertBusiness(Business inputBusiness) {
+      
+      return sqlSession.insert("businessMapper.insertBusiness", inputBusiness);
+   }
+   
 }
