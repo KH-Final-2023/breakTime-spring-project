@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>캘린더 페이지</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style>
 /* Reset CSS */
 * {

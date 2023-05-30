@@ -610,9 +610,9 @@ input[type="checkbox"] {
 						src="https://emons.co.kr/shop/data/goods/JF_Doit_7ZmU7J207Yq4_02.jpg"
 						alt="상품 이미지" class="item-image">
 				</div>
-				<div class="item-name">상품 1</div>
+				<div class="item-name">${r.roomName}</div>
 			</div>
-			<div class="item-price">50000원</div>
+			<div class="item-price">${r.roomPrice}+"원"</div>
 		</div>
 	</div>
 

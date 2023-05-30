@@ -194,7 +194,7 @@ body {
 			e.preventDefault();
 
 			var overlay = $("<div>").addClass("overlay");
-			var datePicker = $("<iframe>").attr("src", "날짜선택.html");
+			var datePicker = $("<iframe>").attr("src", "${contextPath}/decide/dedate");
 			var closeBtn = $("<i>").addClass("fas fa-times close-btn").css({
 				"animation-name" : "reverse-animation",
 				"animation-duration" : "0.1s",
@@ -227,6 +227,8 @@ body {
 			}
 		});
 	});
+	
+	
 </script>
 </head>
 
