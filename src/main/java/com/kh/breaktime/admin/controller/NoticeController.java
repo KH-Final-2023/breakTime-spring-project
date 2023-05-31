@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.admin.model.service.NoticeService;
 import com.kh.breaktime.admin.model.vo.Notice;
@@ -209,11 +210,9 @@ public class NoticeController {
 	
 	// 관리자 글 등록
 	@PostMapping("/insert")
-	public String noticeEnroll(Notice n ) {
-		
-		if(n.getNoticeNo() == 0) {
-			 int result = noticeService.insertNotice(n);
-		}
+	public String noticeEnroll(Notice n , RedirectAttributes rttr) {
+	    noticeService.insertNotice(n);
+		rttr.addFlashAttribute("insert", n.getNoticeNo());
 		return "redirect:/notice/list";
 	}
 	
@@ -237,8 +236,9 @@ public class NoticeController {
 	
 	// 글 수정
 	@PostMapping("/update")
-	public String noticeUpdatePost(Notice n) {
+	public String noticeUpdatePost(Notice n, RedirectAttributes rttr) {
 		noticeService.updateNotice(n);
+		rttr.addFlashAttribute("update", n.getNoticeNo());
 		return "redirect:/notice/list";
 	}
 }
