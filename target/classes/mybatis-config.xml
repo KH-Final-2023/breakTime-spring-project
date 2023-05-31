@@ -10,6 +10,7 @@
    <typeAliases>
 
     	<typeAlias type="com.kh.breaktime.detail.model.vo.CategoryCode" alias="categoryCode" />
+
 		<typeAlias type="com.kh.breaktime.detail.model.vo.Detail" alias="detail" />
 		<typeAlias type="com.kh.breaktime.admin.model.vo.Notice" alias="notice"/>
     	<typeAlias type="com.kh.breaktime.room.model.vo.Room" alias="room" />
