@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ page import="com.kh.breaktime.member.model.vo.Member"%>
 
+
 <%@ page import="com.kh.breaktime.business.model.vo.Business"%>
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-
 String alertMsg = (String) session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
@@ -29,8 +29,6 @@ String alertMsg = (String) session.getAttribute("alertMsg");
                    <img src="resources/images/흰돋보기.png" alt="로고이미지">
                 </div>
 
-                <%if (loginUser == null && loginBusiness == null) {%>
-
                 <div id="loginType">로그인</div>
                 <% } else { %>
                 <div id="logoutType">로그아웃</div>
@@ -44,10 +42,6 @@ String alertMsg = (String) session.getAttribute("alertMsg");
                     <a href="#" id="message">쪽지함</a>
                     <a href="#" id="cart">장바구니</a>
                     <a href="#" id="review">리뷰관리</a>
-
-                    <%if (loginBusiness != null) {%>
-                    <a href="#" id="asd">사업자</a>
-                    <% } %>
 
                   </div>
                 </div> 
@@ -124,9 +118,11 @@ String alertMsg = (String) session.getAttribute("alertMsg");
       <% }%>
       
 
+
       
 
       </script>
+
 
     
     

@@ -40,10 +40,6 @@
 
 		</div>
 
-		<div class="categoryText">
-			<span>카테고리 별로 검색해 보세요!</span>
-		</div>
-
 
       <div class="categoryText">
             <span>카테고리 별로 검색해 보세요!</span>
@@ -65,9 +61,11 @@
    </div>
 
 
+
 		<div class="rankingText">
 			<span>별점 순으로 검색해 보세요!</span>
 		</div>
+
 
 
     <div class="ranking">
@@ -98,6 +96,7 @@
        })
    
    </script> --%>
+
 
 
 
