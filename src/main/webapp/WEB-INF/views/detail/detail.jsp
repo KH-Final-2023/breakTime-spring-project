@@ -146,7 +146,7 @@ button {
 <body>
 
 	<jsp:include page="/WEB-INF/views/header.jsp" />
-	
+
 	<jsp:include page="/WEB-INF/views/detail/searchBar_detail.jsp" />
 
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
@@ -280,9 +280,7 @@ button {
     
     window.addEventListener('resize', checkScreenWidth);
     checkScreenWidth();
-</script>
-
-
+	</script>
 
 	<!-- 모달창 열기/닫기 스크립트 -->
 	<script>

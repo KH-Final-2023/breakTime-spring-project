@@ -12,5 +12,7 @@ public interface DetailService {
 	public void selectDetailList(String category, Map<String, Object> map);
 	
 	public void selectDetailList(Map<String, Object> paramMap, Map<String, Object> map);
+	
+	public void getFilteredData(Map<String, Object> paramMap, Map<String, Object> map);
 
 }
