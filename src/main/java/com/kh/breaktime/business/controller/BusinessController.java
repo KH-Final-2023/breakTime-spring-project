@@ -25,6 +25,7 @@ import com.kh.breaktime.business.model.vo.Business;
 @SessionAttributes({ "loginBusiness" })
 public class BusinessController {
 
+
 	
 	private BusinessService businessService;
 
