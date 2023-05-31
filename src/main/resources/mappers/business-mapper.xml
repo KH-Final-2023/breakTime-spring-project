@@ -46,6 +46,19 @@
 			<result property="roomCheckout" column="ROOM_CHECKOUT" />
 			<result property="status" column="STATUS" />
 		</resultMap>
+	
+	<resultMap id="reviewMap" type="review">
+		  <id property="reviewNo" column="REVIEW_NO" />
+		  <result property="reviewWriter" column="REVIEW_WRITER" />
+		  <result property="usingRoom" column="USING_ROOM" />
+		  <result property="bookNo" column="BOOK_NO" />
+		  <result property="starScore" column="STAR_SCORE" />
+		  <result property="reviewContent" column="REVIEW_CONTENT" />
+		  <result property="reviewAvailable" column="REVIEW_AVAILABLE" />
+		  <result property="createDate" column="CREATE_DATE" />
+		  <result property="reviewDeclaration" column="REVIEW_DECLARATION" />
+		  <result property="parentReviewNo" column="PARENT_REVIEW_NO" />
+	</resultMap>
 	<!-- 로그인사업자 정보 SELECT(석범) -->
 	<select id="loginBusiness" parameterType="business" resultMap="businessResultSet">
 		SELECT *
