@@ -36,6 +36,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
 <!-- include summernote-ko-KR -->
 <script src="/resources/js/summernote-ko-KR.js"></script>
+
     <style>
         div {
          box-sizing: border-box;
@@ -155,9 +156,9 @@
         <div class="nav">
             <ul>
                 <li><a href="<%=request.getContextPath()%>/notice/list">공지사항</a></li>
-                <li><a href="">사업자 가입 승인</a></li>
-                <li><a href="">고객 정보 관리</a></li>
-                <li><a href="">악성 리뷰 관리</a></li>      
+                <li><a href="<%=request.getContextPath()%>/approval/list">사업자 가입 승인</a></li>
+                <li><a href="<%=request.getContextPath()%>/manage/list">고객 정보 관리</a></li>
+                <li><a href="<%=request.getContextPath()%>/report/list">악성 리뷰 관리</a></li>      
             </ul> 
         </div>
     </div>
@@ -172,11 +173,11 @@
 			
 				<div id="enrollWrap">
 					<div style="font-size: larger; font-weight: 600;">
-						 <input id="textInput" type="text" name="noticeTitle" required value="${n.noticeTitle }"
+						 <input id="textInput" type="text" name="noticeTitle" required 
 							style="width: 100%;" placeholder="제목을 입력하세요">
 					</div>
 					<br>
-					<textarea id="summernote" name="noticeContent"  required value="${n.noticeContent }"></textarea>
+					<textarea id="summernote" name="noticeContent"  required></textarea>
 					</div>
 					<input type="hidden" name="mode" value="${param.mode}"/>
 					<input type="hidden" name="noticeNo" value="${empty n.noticeNo ? 0 : n.noticeNo}" /> 
