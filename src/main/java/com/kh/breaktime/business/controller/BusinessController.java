@@ -30,6 +30,7 @@ import com.kh.breaktime.room.model.vo.RoomImg;
 @RequestMapping("/business")
 @SessionAttributes({ "loginBusiness" })
 public class BusinessController {
+
    
    private BusinessService businessService;
 
@@ -59,6 +60,7 @@ public class BusinessController {
          HttpServletResponse resp, HttpServletRequest req,
          @RequestParam(value = "saveId", required = false) String saveId) {
 
+
 		//암호화 전 loginUser처리
 //		Member loginUser = memberService.loginMember(m);
 //		if (loginUser == null) { // 실패
@@ -75,8 +77,10 @@ public class BusinessController {
 		 * 아이디로 먼저 회원정보 조회 후 회원이 있으면 비밀번호 암호문 비교 메서드를 이용해서 일치하는지 확인 
 		 */
 		
+
 		Business loginBusiness = businessService.loginBusiness(b);
 		
+
 		// loginUser : 아이디 + 비밀번호로 조회한 회원정보 -------> 아이디로만 조회
 		// loginUser안의 userPwd : 암호화된 비밀번호
 		// m안의 userPwd은 : 암호화 되지 않은 평문 비밀번호
@@ -84,6 +88,7 @@ public class BusinessController {
 		// BCryptPasswordEncoder객체의 메서드중 matches사용
 		// matches(평문, 암호문)을 작성하면 내부적으로 복호화 작업이 이루어져서 일치여부를 boolean값으로 반환(true 일치, false불일치)
 		
+
       if(loginBusiness != null) {
          //         session.setAttribute("loginUser", loginUser);
                   model.addAttribute("loginBusiness", loginBusiness);
@@ -97,10 +102,12 @@ public class BusinessController {
                      cookie.setMaxAge(60*60*24*365); // 1년
 
 
+
 			}else { // 아이디 저장 체크하지 않았을 때
 				cookie.setMaxAge(0); // 바로 소멸				
 			}
 			
+
 			resp.addCookie(cookie);
 		
 			// 방 이미지와 방 정보 페이지로 이동
@@ -121,6 +128,7 @@ public class BusinessController {
 			ra.addFlashAttribute("errorMsg", "로그인 실패");
 			return "redirect:/"; // 로그인 실패 시 메인페이지로 이동하도록 수정
 		}
+
 	}
 	
 	@GetMapping("/insert") // /spring/member/insert
@@ -128,7 +136,7 @@ public class BusinessController {
 
 		return "business/businessEnrollForm";
 	}
-	
+
    @PostMapping("/insert")
    public String insertBusiness(Business b, HttpSession session, Model model) {
 
@@ -156,4 +164,5 @@ public class BusinessController {
 }
 
    
+
 

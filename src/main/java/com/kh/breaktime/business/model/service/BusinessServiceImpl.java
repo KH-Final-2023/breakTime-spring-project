@@ -20,6 +20,7 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public Business loginBusiness(Business inputBusiness) {
 
+
 		Business loginUser = businessDao.loginBusiness(inputBusiness);
 
 		return loginUser;
@@ -48,3 +49,4 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.getAllBookings();
 	}
 }
+

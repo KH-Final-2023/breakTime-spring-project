@@ -29,7 +29,7 @@ import com.kh.breaktime.room.model.vo.Room;
 @SessionAttributes({ "loginUser" })
 public class RoomController {
 
-	// ...
+
 	@Autowired
 	private RoomService buService;
 	
@@ -132,5 +132,8 @@ public class RoomController {
 	public String buReview() {
 		return "businessRoom/buReview";
 	}
+
+
+
 
 }

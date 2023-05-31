@@ -9,10 +9,14 @@ import com.kh.breaktime.room.model.vo.RoomImg;
 
 
 public interface BusinessService {
+
+
+
 	
 	public abstract Business loginBusiness(Business inputBusiness);
 		
 	public abstract int insertBusiness(Business inputBusiness);
+
 	
 	public List<Room> getRoomsByBuId(String buId);
 	 
@@ -22,3 +26,4 @@ public interface BusinessService {
 	    
 	
 }
+

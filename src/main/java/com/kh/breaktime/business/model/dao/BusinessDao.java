@@ -14,6 +14,7 @@ import com.kh.breaktime.room.model.vo.RoomImg;
 @Repository
 public class BusinessDao {
 
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
@@ -39,3 +40,4 @@ public class BusinessDao {
 		return sqlSession.selectList("businessMapper.selectBookings");
 	}
 }
+
