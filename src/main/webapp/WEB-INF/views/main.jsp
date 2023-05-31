@@ -26,6 +26,7 @@
 <body>
 
 
+
 	<div id="wrapper">
 
 		<%@ include file="header.jsp"%>
@@ -37,10 +38,6 @@
 			</div>
 
 
-		</div>
-
-		<div class="categoryText">
-			<span>카테고리 별로 검색해 보세요!</span>
 		</div>
 
 
@@ -64,9 +61,11 @@
    </div>
 
 
+
 		<div class="rankingText">
 			<span>별점 순으로 검색해 보세요!</span>
 		</div>
+
 
 
     <div class="ranking">
@@ -96,9 +95,6 @@
        })
    
    </script> --%>
-
-
-
 
 
 
