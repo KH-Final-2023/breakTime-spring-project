@@ -24,6 +24,7 @@ import com.kh.breaktime.business.model.vo.Business;
 @RequestMapping("/business")
 @SessionAttributes({ "loginUser" })
 public class BusinessController {
+
 	
 	private BusinessService businessService;
 

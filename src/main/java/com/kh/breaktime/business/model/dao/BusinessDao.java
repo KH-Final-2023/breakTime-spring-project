@@ -13,6 +13,7 @@ import com.kh.breaktime.business.model.vo.Business;
 
 @Repository
 public class BusinessDao {
+
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;

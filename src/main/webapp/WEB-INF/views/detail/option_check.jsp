@@ -15,8 +15,8 @@
 <style>
 .optionArea {
 	position: fixed;
-	top: 0;
 	left: 0;
+	top: 80px;
 	height: 100%;
 	width: 250px;
 	background-color: #fff;

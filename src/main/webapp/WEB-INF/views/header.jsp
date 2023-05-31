@@ -48,6 +48,13 @@ String alertMsg = (String) session.getAttribute("alertMsg");
         </div>
     </div>
     
+ 	  <script>
+    document.getElementById("notice").addEventListener("click",function(){
+         location.href = "<%=request.getContextPath()%>/notice/publicList";
+      })
+    </script> 
+    
+    
     <script>
     document.getElementById("review").addEventListener("click",function(){
          location.href = "<%=request.getContextPath()%>/decideReview";
@@ -105,8 +112,10 @@ String alertMsg = (String) session.getAttribute("alertMsg");
       })
       <% }%>
       
+
       
       </script>
+
     
     
     
