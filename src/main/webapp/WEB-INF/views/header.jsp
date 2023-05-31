@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ page import="com.kh.breaktime.member.model.vo.Member"%>
-
-
 <%@ page import="com.kh.breaktime.business.model.vo.Business"%>
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
@@ -17,6 +15,9 @@ String alertMsg = (String) session.getAttribute("alertMsg");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/header.css">
     <title>Document</title>
+    <style>
+
+    </style>
 </head>
 <body>
     <div id="header">
@@ -25,7 +26,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
                 <img src="resources/images/로고.png" alt="로고이미지">
             </div>
             <div id="navbar">
-                <div id="search">
+                <div class="openBtn" id="search">
                    <img src="resources/images/흰돋보기.png" alt="로고이미지">
                 </div>
 
@@ -59,7 +60,61 @@ String alertMsg = (String) session.getAttribute("alertMsg");
         </div>
     </div>
     
- 	  <script>
+    
+    <div class="modal hidden">
+            <div class="bg"></div>
+            <div class="modalBox">
+				<button class="closeBtn">X</button>
+				<div class="searchheader">
+					<p>검색</p>
+				</div>
+				<div class="searchbody" style="overflow: auto;">
+                    
+					<input type="search" id="search-input" placeholder="키워드로 검색하세요" name="keyword" onkeyup="enterkey()" >
+                
+				</div>
+            </div>
+        </div>
+    
+    
+    <script>
+    function enterkey() {
+    	if (window.event.keyCode == 13) {
+        	// 엔터키가 눌렸을 때
+        }
+    }
+     
+    </script>
+    
+    
+    
+    
+     <script>
+            const open = () => {
+                document.querySelector(".modal").classList.remove("hidden");
+                getDday();
+            }
+            const close = () => {
+				console.log('cdlose')
+                document.querySelector(".modal").classList.add("hidden");
+            }
+            document.querySelector(".openBtn").addEventListener("click", open); 
+            document.querySelector(".closeBtn").addEventListener("click", close); 
+            document.querySelector(".bg").addEventListener("click", close); 
+
+        </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      <script>
     document.getElementById("notice").addEventListener("click",function(){
          location.href = "<%=request.getContextPath()%>/notice/publicList";
       })
@@ -125,8 +180,9 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 
       
       </script>
-
-    
+      
+      
+      
     
     
 </body>

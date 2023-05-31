@@ -1,7 +1,160 @@
 
-#footer {
-height: 300px;
-width: 100%;
-background-color: gray;
-}
+ #footer {
+            width: 100%;
+            height: 341.38px;
+            padding-bottom: 123px;
+            margin-top: 30px;
+            margin-left : 500px;
+        }
 
+ #container {
+            width: 51%;
+            margin: 0 auto;
+            max-width: 1550px;
+        }
+
+        #top {
+            width: 100%;
+            height: 79px;
+            padding-bottom: 36px;
+            border-bottom: 1px solid rgb(100, 111, 124);
+            display: flex;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            -webkit-box-align: center;
+            align-items: center;
+        }
+
+        #top>#footerBanner {
+            float: left;
+            width: 146px;
+            height: 27px;
+        }
+
+        #top>#sns {
+            width: 204px;
+            height: 42px;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+        }
+
+        .snsIcon {
+            width: 42px;
+            height: 42px;
+            position: relative;
+            background-color: rgb(255, 255, 255);
+            border-radius: 50%;
+            display: inline-flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+        }
+
+        .icon_instagram {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("인스타배너.svg");
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+            text-indent: -999999px;
+            cursor: pointer;
+        }
+
+        .icon_facebook {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("페북배너.svg");
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+            text-indent: -999999px;
+            cursor: pointer;
+        }
+
+        .icon_youtube {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("유튜브배너.svg");
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+            text-indent: -999999px;
+            cursor: pointer;
+            background-size: 12px 14px;
+        }
+
+        .icon_blog {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url("B배너.svg");
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+            text-indent: -999999px;
+            cursor: pointer;
+        }
+
+        #bottom {
+            padding-top: 42px;
+        }
+
+        #left {
+            width: 564.45px;
+            height: 83.83px;
+            margin-bottom: 1.4rem;
+        }
+
+        #left a {
+            font-weight: 600;
+            position: relative;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .copyright {
+            margin-top: 42px;
+            font-family: Campton, sans-serif;
+            font-weight: 500;
+        }
+
+        .right {
+            width: 204px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+        }
+
+        .right span {
+            display: inline-flex;
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: center;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .right span i {
+            margin-right: 8px;
+            margin-left: 6px;
+        }
+
+        .icon_arrowDown {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-image: url(/_next/static/media/arrow_down.477ca509.svg);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: cover;
+            text-indent: -999999px;
+            cursor: pointer;
+        }

@@ -33,8 +33,7 @@
 
 		<div class="mainContent">
 			<div id="backgroundArea">
-				<a href=""><img src="/breaktime/resources/images/한옥.jpg"
-					id="backImg"></a>
+				<a href=""><img src="/breaktime/resources/images/한옥.jpg" id="backImg"></a>
 			</div>
 
 
@@ -82,6 +81,11 @@
       
          </div>
   </div>    
+  
+  
+  
+    	
+    	
 
 
 
@@ -90,33 +94,6 @@
 </div>
 </body>
 
-   <%-- <script>
-    $("hotel").click(function(){
-          location.href = "<%=request.getContextPath()%>/
-       })
-   
-   </script> --%>
-
-
-
-
-
-
-
-		<div class="ranking">
-			<div class="rankingSubBox" id="1st"></div>
-			<div class="rankingSubBox" id="2nd"></div>
-			<div class="rankingSubBox" id="3rd"></div>
-			<div class="rankingSubBox" id="4th"></div>
-		</div>
-
-
-
-
-   <%@ include file="footer.jsp"%>
-
-</div>
-</body>
 
 
 <script>
@@ -162,14 +139,7 @@
     });
 </script>
 
-   <%-- <script>
-    $("hotel").click(function(){
-          location.href = "<%=request.getContextPath()%>/
-       })
-   
-   </script> --%>
-
-
+  
 
 
 

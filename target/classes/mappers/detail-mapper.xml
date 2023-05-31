@@ -55,5 +55,14 @@
 			AND AREA_NO = #{areaNo}
 		</if>
 	</select>
+	
+	<select id="mainSearch" resultMap="detailResultSet">
+		
+	
+	
+	
+	</select>
+	
+	
 
 </mapper>
