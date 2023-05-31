@@ -69,9 +69,9 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 					<p>검색</p>
 				</div>
 				<div class="searchbody" style="overflow: auto;">
-                    
+                    <form action="<%=request.getContextPath()%>/" method="GET" >
 					<input type="search" id="search-input" placeholder="키워드로 검색하세요" name="keyword" onkeyup="enterkey()" >
-                
+                	</form>
 				</div>
             </div>
         </div>
