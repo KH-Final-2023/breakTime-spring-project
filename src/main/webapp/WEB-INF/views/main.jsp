@@ -86,6 +86,7 @@
   </div>    
 
 
+
    <%@ include file="footer.jsp"%>
 
 </div>
@@ -102,7 +103,7 @@
 
 
 
-=======
+
 		<div class="ranking">
 			<div class="rankingSubBox" id="1st"></div>
 			<div class="rankingSubBox" id="2nd"></div>
@@ -111,10 +112,13 @@
 		</div>
 
 
-		<%@ include file="footer.jsp"%>
 
-	</div>
+
+   <%@ include file="footer.jsp"%>
+
+</div>
 </body>
+
 
 <script>
     // jQuery를 사용하여 문서가 완전히 로드된 후에 스크립트 실행
@@ -158,5 +162,18 @@
         });
     });
 </script>
+
+   <%-- <script>
+    $("hotel").click(function(){
+          location.href = "<%=request.getContextPath()%>/
+       })
+   
+   </script> --%>
+
+
+
+
+
+
 
 </html>

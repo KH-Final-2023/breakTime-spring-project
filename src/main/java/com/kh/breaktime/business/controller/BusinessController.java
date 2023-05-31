@@ -22,8 +22,9 @@ import com.kh.breaktime.business.model.vo.Business;
 
 @Controller
 @RequestMapping("/business")
-@SessionAttributes({ "loginUser" })
+@SessionAttributes({ "loginBusiness" })
 public class BusinessController {
+
 
 	
 	private BusinessService businessService;
@@ -129,3 +130,4 @@ public class BusinessController {
 		return url;
 	}
 }
+
