@@ -1,36 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.kh.breaktime.booking.model.vo.Booking"%>
 <!DOCTYPE html>
 <html>
 <head>
    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-   <link rel="stylesheet" type="text/css" href="/breaktime/resources/css/buReservation.css">
+   <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buReservation.css">
     <title>Document</title>
 </head>
 
 <body>
-    <div id="header">
-        <div id="header-content">
-            <div id="home-logo">
-                <img src="resources/IMG/로고.jpg" alt="로고이미지">
-            </div>
-            <div id="navbar">
-                <div id="login">로그인</div>
-                <div id="enroll">회원가입</div>
-                <div id="notice">공지사항</div>
-                <div id="mypage">마이페이지</div>
-                <div id="mybooking">예약내역</div>
-                <div id="wishList">
-                    장바구니
-                </div>
-                <div id="message">
-                    쪽지
-                </div>
-            </div>
-        </div>
-    </div>
-
+<%--  <%@ include file="../header.jsp"%> --%>
     <div id="content">
         <div id="content1">
            <form action="/breaktime/businessRoom/resister" method="GET">
@@ -44,27 +26,28 @@
 		    </form>
         </div>
         <div id="content2">
-            <div style="font-size: xx-large; margin: 50px; margin-bottom: 70px;">예약 내역</div>
-            <hr style="background-color: black; width: 100%;">
-            <div id="reservationList">
-                <div>객실이름</div>
-                <div>이용인원수</div>
-                <div>체크인</div>
-                <div>체크아웃</div>
-                <div>예약명</div>
-                <div>연락처</div>
-                <div>예약상태</div>
-            </div>
-            <hr style="width: 100%;">
-            <div>예약 내용</div>
-            <hr style=" width: 100%;">
-            <div>예약 내용</div>
-            <hr style=" width: 100%;">
-            <div>예약 내용</div>
-            <hr style="  width: 100%;">
-            <div>예약 내용</div>
-            <hr style=" width: 100%;">
+        <div style="font-size: xx-large; margin: 50px; margin-bottom: 70px;">예약 내역</div>
+        <hr style="background-color: black; width: 100%;">
+        <div id="reservationList">
+            <div>객실이름</div>
+            <div>이용인원수</div>
+            <div>예약번호</div>
+            <div>체크인</div>
+            <div>체크아웃</div>
+            <div>예약상태</div>
         </div>
+        <hr style="width: 100%;">
+        <%-- bookingList는 서버에서 받은 Booking 정보를 담고 있는 List 객체 --%>
+       <div>
+       <%--  <% for (Booking booking : bookingList) { %>
+            <div>${booking.roomName}</div>
+            <div>${booking.roomCount}</div>
+            <div>${booking.reservationNo}</div>
+            <div>${booking.roomCheckin}</div>
+            <div>${booking.roomCheckout}</div>
+            <div>${booking.status}</div>
+        <% } %> --%>
+    </div>
     </div>
 </body>
 

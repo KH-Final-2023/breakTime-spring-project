@@ -1,35 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-   <link rel="stylesheet" type="text/css" href="/breaktime/resources/css/buRoomEnroll.css">
+   <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buRoomEnroll.css">
     <title>Document</title>
 </head>
 
 <body>
-  <div id="header">
-        <div id="header-content">
-            <div id="home-logo">
-                <img src="resources/IMG/로고.jpg" alt="로고이미지">
-            </div>
-            <div id="navbar">
-                <div id="login">로그인</div>
-                <div id="enroll">회원가입</div>
-                <div id="notice">공지사항</div>
-                <div id="mypage">마이페이지</div>
-                <div id="mybooking">예약내역</div>
-                <div id="wishList">
-                    장바구니
-                </div>
-                <div id="message">
-                    쪽지
-                </div>
-            </div>
-        </div>
-    </div>
+<%--   <%@ include file="../header.jsp"%> --%>
     <div id="content">
         <div id="content1">
              <form action="/breaktime/businessRoom/resister" method="GET">

@@ -9,7 +9,7 @@
     <title>일반고객 회원가입 폼</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <style>
-/*         #container{
+        #container{
             width: 100%;
             height: 700px;
             border: 1px solid black;
@@ -23,56 +23,7 @@
             flex-direction: column;
             height: 200px;
             justify-content: space-evenly;
-        } */
-        
-        body {
-        background-color: #f0f0f0;
-        font-family: Arial, sans-serif;
-    }
-
-    #container {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 20px;
-        background-color: #e8f5e9;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-        text-align: center;
-        color: #388e3c;
-    }
-
-    form {
-        margin-top: 20px;
-    }
-
-    input[type="email"],
-    input[type="text"],
-    input[type="password"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #81c784;
-        border-radius: 3px;
-    }
-
-    input[type="button"],
-    input[type="submit"] {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        background-color: #388e3c;
-        color: #fff;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-
-    p {
-        color: #388e3c;
-    }
+        }
     </style>
 </head>
 <body>

@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class Booking {
-	 private String bookNo;
+
+	 	private String bookNo;
 	    private int userNo;
 	    private int roomNo;
 	    private String roomCount;

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,9 +181,9 @@
         <div class="nav">
             <ul>
                 <li><a href="<%=request.getContextPath()%>/notice/list">공지사항</a></li>
-                <li><a href="<%=request.getContextPath()%>/approval/list">사업자 가입 승인</a></li>
-                <li><a href="<%=request.getContextPath()%>/manage/list">고객 정보 관리</a></li>
-                <li><a href="<%=request.getContextPath()%>/report/list">악성 리뷰 관리</a></li>      
+                <li><a href="">사업자 가입 승인</a></li>
+                <li><a href="">고객 정보 관리</a></li>
+                <li><a href="">악성 리뷰 관리</a></li>      
             </ul> 
         </div>
     </div>
@@ -204,15 +202,13 @@
                             <p>${notice.noticeTitle }</p>
                             
                         </div>
-                        <c:if test="${loginUser.getAuthority() == 0}">
-	                        <div class="dropdown">
-	                            <button class="dropbtn"><img src="<%=request.getContextPath()%>/resources/images/noticeImg.png" style="width: 30px;"></button>
-	                            <div class="dropdown-content">
-	                              <a href="<%=request.getContextPath()%>/notice/update?noticeNo=${notice.noticeNo}">수정</a>
-	                              <a href="<%=request.getContextPath()%>/notice/delete?noticeNo=${notice.noticeNo}" id="deleteNotice">삭제</a>             
-	                            </div>
-	                        </div>   
-                        </c:if>     
+                        <div class="dropdown">
+                            <button class="dropbtn"><img src="<%=request.getContextPath()%>/resources/images/noticeImg.png" style="width: 30px;"></button>
+                            <div class="dropdown-content">
+                              <a href="<%=request.getContextPath()%>/notice/enrollForm?noticeNo=${notice.noticeNo}">수정</a>
+                              <a href="<%=request.getContextPath()%>/notice/delete?noticeNo=${notice.noticeNo}" id="deleteNotice">삭제</a>             
+                            </div>
+                        </div>        
                     </div>
                     <hr>
                     <div id="content">

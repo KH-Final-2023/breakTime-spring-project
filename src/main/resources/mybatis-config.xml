@@ -12,18 +12,24 @@
 		<typeAlias type="com.kh.breaktime.detail.model.vo.Detail" alias="detail" />
 		<typeAlias type="com.kh.breaktime.admin.model.vo.Notice" alias="notice"/>
     	<typeAlias type="com.kh.breaktime.room.model.vo.Room" alias="room" />
+
 		<typeAlias type="com.kh.breaktime.room.model.vo.RoomImg" alias="roomImg" />  		
+
 		<typeAlias type="com.kh.breaktime.member.model.vo.Member" alias="member" />
 		<typeAlias type="com.kh.breaktime.business.model.vo.Business" alias="business" />
 		<typeAlias type="com.kh.breaktime.review.model.vo.Review" alias="review" />
+		<typeAlias type="com.kh.breaktime.booking.model.vo.Booking" alias="booking" />
 	</typeAliases>
 	 
 	 <mappers>
     <mapper resource="/mappers/detail-mapper.xml"/>
-       <mapper resource="/mappers/notice-mapper.xml" />
-       <mapper resource="/mappers/buRoom-mapper.xml"/>
-       <mapper resource="/mappers/member-mapper.xml"/>
-       <mapper resource="/mappers/business-mapper.xml"/>
-    </mappers>
+
+	 	<mapper resource="/mappers/notice-mapper.xml" />
+	 	<mapper resource="/mappers/buRoom-mapper.xml"/>
+	 	<mapper resource="/mappers/member-mapper.xml"/>
+	 	<mapper resource="/mappers/business-mapper.xml"/>
+	 
+	 </mappers>
+
   
 </configuration>

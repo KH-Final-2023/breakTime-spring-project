@@ -66,4 +66,18 @@
 		#{status}
 		)
 	</insert>
+	
+<!-- 	<select id="getRoomsByBuId" parameterType="String" resultMap="roomResultSet">
+        SELECT *
+        FROM ROOM
+        WHERE BU_ID = #{buId}
+    </select>
+
+    사업자의 방 이미지 정보 가져오기
+    <select id="getRoomImagesByBuId" parameterType="String" resultMap="roomImgResultSet">
+        SELECT *
+        FROM ROOM_IMG
+        WHERE ROOM_NO IN (SELECT ROOM_NO FROM ROOM WHERE BU_ID = #{buId})
+    </select> -->
+
 </mapper>
