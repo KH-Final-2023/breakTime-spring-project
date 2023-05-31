@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.booking.model.vo.Booking;
@@ -90,7 +91,7 @@ public class BusinessController {
 		
 
       if(loginBusiness != null) {
-         //         session.setAttribute("loginUser", loginUser);
+         //       session.setAttribute("loginUser", loginUser);
                   model.addAttribute("loginBusiness", loginBusiness);
                   session.setAttribute("alertMsg", "로그인 성공");
                   System.out.println(loginBusiness);
@@ -98,10 +99,8 @@ public class BusinessController {
                   //로그인 성공시 아이디값을 저장하고 있는 쿠키 생성(유효시간 1년)
                   Cookie cookie = new Cookie("saveId", loginBusiness.getBuId());
          
-                  if(saveId != null) { // 아이디 저장이 체크됐을때
+             if(saveId != null) { // 아이디 저장이 체크됐을때
                      cookie.setMaxAge(60*60*24*365); // 1년
-
-
 
 			}else { // 아이디 저장 체크하지 않았을 때
 				cookie.setMaxAge(0); // 바로 소멸				
@@ -141,9 +140,11 @@ public class BusinessController {
    public String insertBusiness(Business b, HttpSession session, Model model) {
 
       int result = businessService.insertBusiness(b);
-
+      Business loginBusiness = businessService.loginBusiness(b);
+      
       String url = "";
       if (result > 0) { // 성공시 - 메인페이지로
+    	 model.addAttribute("loginBusiness", loginBusiness);
          session.setAttribute("alertMsg", "회원가입");
          url = "redirect:/";
       } else { // 실패 - 에러페이지
@@ -152,6 +153,13 @@ public class BusinessController {
       }
 
       return url;
+   }
+   
+   @GetMapping("/logout")
+   public String logoutBusiness(HttpSession session, SessionStatus status) throws Exception{
+      
+	   status.setComplete();
+       return "redirect:/";        
    }
 	
 	@GetMapping("/reservation")

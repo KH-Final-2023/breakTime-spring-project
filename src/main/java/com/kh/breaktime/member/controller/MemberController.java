@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.member.model.service.MemberService;
@@ -129,6 +130,21 @@ public class MemberController {
 		}
 
 		return url;
+	}
+	
+
+	@GetMapping("/logout")
+    public String logoutMember(HttpSession session , SessionStatus status) throws Exception{
+       
+		status.setComplete();
+		session.setAttribute("alertMsg", "일반고객 로그아웃성공");
+        return "redirect:/";              
+    }
+	
+	@GetMapping("/myPage") // /spring/member/insert
+	public String myPageForm() {
+
+		return "member/myPage";
 	}
 	
 	
