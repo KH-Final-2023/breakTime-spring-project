@@ -28,36 +28,36 @@ import com.kh.breaktime.room.model.vo.RoomImg;
 
 @Controller
 @RequestMapping("/business")
-@SessionAttributes({ "loginUser" })
+@SessionAttributes({ "loginBusiness" })
 public class BusinessController {
-	
-	private BusinessService businessService;
+   
+   private BusinessService businessService;
 
-	@Autowired
-	public BusinessController(BusinessService businessService) {
-		this.businessService = businessService;
+   @Autowired
+   public BusinessController(BusinessService businessService) {
+      this.businessService = businessService;
 
-	}
+   }
 
-	public BusinessController() {
+   public BusinessController() {
 
-	}
+   }
 
-	@Autowired
-	public void setBusinessService(BusinessService businessService) {
-		this.businessService = businessService;
-	}
-	
-	@GetMapping("/login") // /spring/member/insert
-	public String loginForm() {
+   @Autowired
+   public void setBusinessService(BusinessService businessService) {
+      this.businessService = businessService;
+   }
+   
+   @GetMapping("/login") // /spring/member/insert
+   public String loginForm() {
 
-		return "business/businessLoginForm";
-	}
-	
-	@PostMapping("/buLogin")
-	public String loginMember(Model model, Business b, HttpSession session, RedirectAttributes ra,
-			HttpServletResponse resp, HttpServletRequest req,
-			@RequestParam(value = "saveId", required = false) String saveId) {
+      return "business/businessLoginForm";
+   }
+   
+   @PostMapping("/buLogin")
+   public String loginMember(Model model, Business b, HttpSession session, RedirectAttributes ra,
+         HttpServletResponse resp, HttpServletRequest req,
+         @RequestParam(value = "saveId", required = false) String saveId) {
 
 		//암호화 전 loginUser처리
 //		Member loginUser = memberService.loginMember(m);
@@ -75,7 +75,7 @@ public class BusinessController {
 		 * 아이디로 먼저 회원정보 조회 후 회원이 있으면 비밀번호 암호문 비교 메서드를 이용해서 일치하는지 확인 
 		 */
 		
-		Business loginUser = businessService.loginBusiness(b);
+		Business loginBusiness = businessService.loginBusiness(b);
 		
 		// loginUser : 아이디 + 비밀번호로 조회한 회원정보 -------> 아이디로만 조회
 		// loginUser안의 userPwd : 암호화된 비밀번호
@@ -84,16 +84,18 @@ public class BusinessController {
 		// BCryptPasswordEncoder객체의 메서드중 matches사용
 		// matches(평문, 암호문)을 작성하면 내부적으로 복호화 작업이 이루어져서 일치여부를 boolean값으로 반환(true 일치, false불일치)
 		
-		if(loginUser != null) {
-//			session.setAttribute("loginUser", loginUser);
-			model.addAttribute("loginUser", loginUser);
-			session.setAttribute("alertMsg", "로그인 성공");
-			System.out.println(loginUser);
-			
-			//로그인 성공시 아이디값을 저장하고 있는 쿠키 생성(유효시간 1년)
-			Cookie cookie = new Cookie("saveId", loginUser.getBuId());
-			if(saveId != null) { // 아이디 저장이 체크됐을때
-				cookie.setMaxAge(60*60*24*365); // 1년
+      if(loginBusiness != null) {
+         //         session.setAttribute("loginUser", loginUser);
+                  model.addAttribute("loginBusiness", loginBusiness);
+                  session.setAttribute("alertMsg", "로그인 성공");
+                  System.out.println(loginBusiness);
+                  
+                  //로그인 성공시 아이디값을 저장하고 있는 쿠키 생성(유효시간 1년)
+                  Cookie cookie = new Cookie("saveId", loginBusiness.getBuId());
+         
+                  if(saveId != null) { // 아이디 저장이 체크됐을때
+                     cookie.setMaxAge(60*60*24*365); // 1년
+
 
 			}else { // 아이디 저장 체크하지 않았을 때
 				cookie.setMaxAge(0); // 바로 소멸				
@@ -102,7 +104,7 @@ public class BusinessController {
 			resp.addCookie(cookie);
 		
 			// 방 이미지와 방 정보 페이지로 이동
-			List<Room> roomList = businessService.getRoomsByBuId(loginUser.getBuId());
+			List<Room> roomList = businessService.getRoomsByBuId(loginBusiness.getBuId());
 
 			List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 			for(int i = 0; i < roomList.size(); i++) {
@@ -127,22 +129,22 @@ public class BusinessController {
 		return "business/businessEnrollForm";
 	}
 	
-	@PostMapping("/insert")
-	public String insertBusiness(Business b, HttpSession session, Model model) {
+   @PostMapping("/insert")
+   public String insertBusiness(Business b, HttpSession session, Model model) {
 
-		int result = businessService.insertBusiness(b);
+      int result = businessService.insertBusiness(b);
 
-		String url = "";
-		if (result > 0) { // 성공시 - 메인페이지로
-			session.setAttribute("alertMsg", "회원가입");
-			url = "redirect:/";
-		} else { // 실패 - 에러페이지
-			model.addAttribute("errorMsg", "회원가입 실패");
-			url = "common/errorPage";
-		}
+      String url = "";
+      if (result > 0) { // 성공시 - 메인페이지로
+         session.setAttribute("alertMsg", "회원가입");
+         url = "redirect:/";
+      } else { // 실패 - 에러페이지
+         model.addAttribute("errorMsg", "회원가입 실패");
+         url = "common/errorPage";
+      }
 
-		return url;
-	}
+      return url;
+   }
 	
 	@GetMapping("/reservation")
 	public String buReservation(Model model) {
@@ -152,3 +154,6 @@ public class BusinessController {
 	}
 
 }
+
+   
+

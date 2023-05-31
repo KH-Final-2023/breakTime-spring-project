@@ -17,7 +17,7 @@ public class BusinessDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public Business loginBusiness(Business inputBusiness) {
+   public Business loginBusiness(Business inputBusiness) {
 
 		return sqlSession.selectOne("businessMapper.loginBusiness", inputBusiness);
 	}
