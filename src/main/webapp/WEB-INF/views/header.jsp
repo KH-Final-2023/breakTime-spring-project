@@ -14,34 +14,56 @@ String alertMsg = (String) session.getAttribute("alertMsg");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/header.css">
-    <title>Document</title>
-    <style>
+    <title>헤더</title>
+    <!--  공통적으로사용할 라이브러리 추가 -->
+<!-- Jquey 라이브러리 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- 부트스트랩에서 제공하있는 스타일 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- 부투스트랩에서 제공하고있는 스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    </style>
+<!-- alertify -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<!-- alertify css -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 </head>
 <body>
+	
+	<!-- alertMsg 사용하려고 코드추가 (석범) -->
+	<c:if test="${ not empty alertMsg }">
+		<script>
+			alert( '${alertMsg}' );
+		</script>
+		<c:remove var="alertMsg"/>
+	</c:if>
+	
     <div id="header">
         <div id="header-content">
             <div id="home-logo">
-                <img src="resources/images/로고.png" alt="로고이미지">
+                <img src="<%=request.getContextPath()%>/resources/images/로고.png" alt="로고이미지">
             </div>
             <div id="navbar">
-                <div class="openBtn" id="search">
-                   <img src="resources/images/흰돋보기.png" alt="로고이미지">
+                <div id="search">
+                   <img src="<%=request.getContextPath()%>/resources/images/흰돋보기.png" alt="로고이미지">
                 </div>
 
                 <%if (loginUser == null && loginBusiness == null) {%>
 
                 <div id="loginType">로그인</div>
                 <% } else { %>
-                <div id="logoutType">로그아웃</div>
+                <div id="logout">로그아웃</div>
                 <% } %>   
                 <div id="mybooking">예약내역</div>
                 <div class="dropdown">
                   <span class="dropbtn">더보기</span>
                   <div class="dropdown-content">
                     <a href="#" id="notice">공지사항</a>
-                    <a href="#" id="myPage">마이페이지</a>
+                    <a id="myPage">마이페이지</a>
                     <a href="#" id="message">쪽지함</a>
                     <a href="#" id="cart">장바구니</a>
                     <a href="#" id="review">리뷰관리</a>
@@ -52,10 +74,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 
                   </div>
                 </div> 
-                
-                
-                
-                
+        
             </div>
         </div>
     </div>
@@ -131,11 +150,15 @@ String alertMsg = (String) session.getAttribute("alertMsg");
           document.getElementById("loginType").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/loginType";
         })
-      </script>
+     </script>
       
       <script>
-          document.getElementById("logoutType").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/member/logoutType";
+        document.getElementById("logout").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/member/logout";
+        })
+        
+         document.getElementById("logout").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/business/logout";
         })
       </script>
       
@@ -147,12 +170,16 @@ String alertMsg = (String) session.getAttribute("alertMsg");
       
       
       <script>
-      
+      <!-- 로그인 안된 상태에서 마이페이지 클릭시 알랏출력, 로그인유저세션에 값이있을시 마이페이지로  -->
       <%if (loginUser == null) {%> 
       document.getElementById("myPage").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType"; 
+        alert("로그인 후 이용해주세요");
       })
-      <% }%>
+      <% } else {%>
+      document.getElementById("myPage").addEventListener("click",function(){
+          location.href = "<%=request.getContextPath()%>/member/myPage"; 
+        })
+      <%} %>
       
       <%if (loginUser == null) {%> 
       document.getElementById("message").addEventListener("click",function(){
