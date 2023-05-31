@@ -25,7 +25,7 @@ public class DetailDAO {
 		return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", category);
 	}
 	
-	public ArrayList<Detail> selectDetailList(Map<String, Object> paramMap){
+	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap){
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.searchDetailList", paramMap);
 	}
