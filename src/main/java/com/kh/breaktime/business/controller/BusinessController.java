@@ -169,6 +169,9 @@ public class BusinessController {
 	        String businessId = loginBusiness.getBuId();
 	        List<Review> businessReviews = businessService.getReviewsForBusiness(businessId);
 	        model.addAttribute("businessReviews", businessReviews);
+	        model.addAttribute("businessId", businessId);
+	        System.out.println(businessReviews);
+	        System.out.println(businessId);
 	        return "businessRoom/buReview";
 	    } else {
 	        // 로그인되지 않은 경우 처리
