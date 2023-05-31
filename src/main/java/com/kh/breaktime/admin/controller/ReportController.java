@@ -36,7 +36,7 @@ public class ReportController {
 	}
 	
 	@GetMapping("/delete")
-	public String approvalCancel(@RequestParam(value="reviewNo", required=false, defaultValue="0") int reviewNo) {
+	public String reportCancel(@RequestParam(value="reviewNo", required=false, defaultValue="0") int reviewNo) {
 		
 		reportService.reportCancel(reviewNo);
 		

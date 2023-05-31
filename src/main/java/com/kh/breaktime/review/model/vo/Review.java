@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class Review {
 	
 	private int reviewNo;							//	REVIEW_NO, 
-	private int userNo;							//	USER_NO, 
-	private int roomNo;							//	ROOM_NO, 
+	private int reviewWriter;							//	USER_NO, 
+	private int usingRoom;							//	ROOM_NO, 
 	private String bookNo;							//	BOOK_NO, 
 	private int starScore;							//	STAR_SCORE,
 	private String reviewContnet;							//	REVIEW_CONTENT,
@@ -25,4 +25,6 @@ public class Review {
 	private Date createDate;							//	CREATE_DATE, 
 	private String reviewDeclariation;							//	REVIEW_DECLARIATION, 
 	private String parentReviewNo;							//	PARENT_REVIEW_NO
+	private String userName;
+	private String roomName;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,10 +155,10 @@
         
         <div class="nav">
             <ul>
-                <li><a href="관리자-공지사항.html">공지사항</a></li>
-                <li><a href="관리자-사업자가입승인.html">사업자 가입 승인</a></li>
-                <li><a href="관리자-고객정보관리.html">고객 정보 관리</a></li>
-                <li><a href="관리자-악성리뷰관리.html">악성 리뷰 관리</a></li>      
+                <li><a href="<%=request.getContextPath()%>/notice/list">공지사항</a></li>
+				<li><a href="<%=request.getContextPath()%>/approval/list">사업자 가입 승인</a></li>
+				<li><a href="<%=request.getContextPath()%>/manage/list">고객 정보 관리</a></li>
+				<li><a href="<%=request.getContextPath()%>/report/list">악성 리뷰 관리</a></li>    
             </ul> 
         </div>
     </div>
@@ -172,34 +173,31 @@
 			
 				<div id="enrollWrap">
 					<div>
-                        <c:forEach var="review" items="${reviewList}">
+                        <c:forEach var="r" items="${selectReportList.list}"> 
                             <div id="review-box" style="padding: 20px 20px 20px 20px; margin:0 auto;
                                 width:60%; border : 1px solid rgba(0, 0, 0, 0.1); border-radius: 5px;">
                                 <div style="color:#c8c8c8; font-size: 14px">
                                     <div class="row">
                                         <div class="col-sm-6 review_star">
-                                            <!-- <c:choose>
+                                            <%--  <c:choose>
                                                 <c:when test="${review.score == '1' }">⭐</c:when>
                                                 <c:when test="${review.score == '2' }">⭐ ⭐</c:when>
                                                 <c:when test="${review.score == '3' }">⭐ ⭐ ⭐</c:when>
-                                                <c:when test="${review.score == '4' }">⭐ ⭐ ⭐ ⭐</c:when> -->
+                                                <c:when test="${review.score == '4' }">⭐ ⭐ ⭐ ⭐</c:when> 
                                                 <c:when test="${review.score == '5' }">⭐ ⭐ ⭐ ⭐ ⭐</c:when>
-                                            </c:choose>	
+                                            </c:choose>	 --%>
                                         </div>
                                         <div class="col-sm-6 review_email" style="text-align: right;">
                                             <span>
-                                                <!-- ${fn:substring(review.review_date,0,4)} -
-                                                ${fn:substring(review.review_date,4,6)} -
-                                                ${fn:substring(review.review_date,6,8)} -->
                                                 2023-11-11
                                         </span>
                                         </div>
                                     </div>
                     
                                     <div class="review_email">
-                                        <span>No : 1</span> <br> 
-                                        <span>작성자 ID : user1</span> <br> 
-                                        <span>업체명 : hotel</span>
+                                        <span>${r.reviewNo }</span> <br> 
+                                        <span></span> <br> 
+                                        <span></span>
                                     </div>
                                 </div>
                                 
@@ -207,115 +205,19 @@
                                 
                                 <div class="review_content mt-1">
                                     <span>리뷰내용</span>
-                                    <c:if test="${review.content_reply ne null}">
+                                   <%--  <c:if test="${review.content_reply ne null}">
                                         <br><br>&nbsp;&nbsp;
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 15l-6 6-1.42-1.42L15.17 16H4V4h2v10h9.17l-3.59-3.58L13 9l6 6z"/></svg>
                                         <!-- ${review.content_reply} -->test 대댓글
-                                    </c:if>
+                                    </c:if> --%>
                                 </div>
                                 <hr style="color: rgba(0, 0, 0, 0.5);">
                                 <button type="button" onclick="" class="btn btn-outline-danger">삭제</button>
                                 <button type="button" onclick="" class="btn btn-outline-success">유지</button>
                             </div>
                             <br>
-                        </c:forEach>
-                        <c:forEach var="review" items="${reviewList}">
-                            <div id="review-box" style="padding: 20px 20px 20px 20px; margin:0 auto;
-                                width:60%; border : 1px solid rgba(0, 0, 0, 0.1); border-radius: 5px;">
-                                <div style="color:#c8c8c8; font-size: 14px">
-                                    <div class="row">
-                                        <div class="col-sm-6 review_star">
-                                            <!-- <c:choose>
-                                                <c:when test="${review.score == '1' }">⭐</c:when>
-                                                <c:when test="${review.score == '2' }">⭐ ⭐</c:when>
-                                                <c:when test="${review.score == '3' }">⭐ ⭐ ⭐</c:when>
-                                                <c:when test="${review.score == '4' }">⭐ ⭐ ⭐ ⭐</c:when> -->
-                                                <c:when test="${review.score == '5' }">⭐ ⭐ ⭐ ⭐ ⭐</c:when>
-                                            </c:choose>	
-                                        </div>
-                                        <div class="col-sm-6 review_email" style="text-align: right;">
-                                            <span>
-                                                <!-- ${fn:substring(review.review_date,0,4)} -
-                                                ${fn:substring(review.review_date,4,6)} -
-                                                ${fn:substring(review.review_date,6,8)} -->
-                                                2023-11-11
-                                        </span>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="review_email">
-                                        <span>No : 1</span> <br> 
-                                        <span>작성자 ID : user1</span> <br> 
-                                        <span>업체명 : hotel</span>
-                                    </div>
-                                </div>
-                                
-                                <hr style="color: rgba(0, 0, 0, 0.5);">
-                                
-                                <div class="review_content mt-1">
-                                    <span>리뷰내용</span>
-                                    <c:if test="${review.content_reply ne null}">
-                                        <br><br>&nbsp;&nbsp;<span class="material-icons">subdirectory_arrow_right</span>
-                                        ${review.content_reply}
-                                    </c:if>
-                                </div>
-                                <hr style="color: rgba(0, 0, 0, 0.5);">
-                                <button type="button" onclick="" class="btn btn-outline-danger">삭제</button>
-                                <button type="button" onclick="" class="btn btn-outline-success">유지</button>
-                            </div>
-                            <br>
-                        </c:forEach>
-                        
-                        <c:forEach var="review" items="${reviewList}">
-                            <div id="review-box" style="padding: 20px 20px 20px 20px; margin:0 auto;
-                                width:60%; border : 1px solid rgba(0, 0, 0, 0.1); border-radius: 5px;">
-                                <div style="color:#c8c8c8; font-size: 14px">
-                                    <div class="row">
-                                        <div class="col-sm-6 review_star">
-                                            <!-- <c:choose>
-                                                <c:when test="${review.score == '1' }">⭐</c:when>
-                                                <c:when test="${review.score == '2' }">⭐ ⭐</c:when>
-                                                <c:when test="${review.score == '3' }">⭐ ⭐ ⭐</c:when>
-                                                <c:when test="${review.score == '4' }">⭐ ⭐ ⭐ ⭐</c:when> -->
-                                                <c:when test="${review.score == '5' }">⭐ ⭐ ⭐ ⭐ ⭐</c:when>
-                                            </c:choose>	
-                                        </div>
-                                        <div class="col-sm-6 review_email" style="text-align: right;">
-                                            <span>
-                                                <!-- ${fn:substring(review.review_date,0,4)} -
-                                                ${fn:substring(review.review_date,4,6)} -
-                                                ${fn:substring(review.review_date,6,8)} -->
-                                                2023-11-11
-                                        </span>
-                                        </div>
-                                    </div>
-                    
-                                    <div class="review_email">
-                                        <span>No : 1</span> <br> 
-                                        <span>작성자 ID : user1</span> <br> 
-                                        <span>업체명 : hotel</span>
-                                    </div>
-                                </div>
-                                
-                                <hr style="color: rgba(0, 0, 0, 0.5);">
-                                
-                                <div class="review_content mt-1">
-                                    <span>리뷰내용</span>
-                                    <c:if test="${review.content_reply ne null}">
-                                        <br><br>&nbsp;&nbsp;<span class="material-icons">subdirectory_arrow_right</span>
-                                        ${review.content_reply}
-                                    </c:if>
-                                </div>
-                                <hr style="color: rgba(0, 0, 0, 0.5);">
-                                <button type="button" onclick="" class="btn btn-outline-danger">삭제</button>
-                                <button type="button" onclick="" class="btn btn-outline-success">유지</button>
-                            </div>
-                        </c:forEach>
-                    </div>
-                    <br>
-
-
-
+                         </c:forEach>
+ 
                     <div class="paging">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-center">
