@@ -26,8 +26,23 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
     <script src="/js/summernote/summernote-lite.js"></script>
     <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-
     <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+    <script type="text/javascript">
+        function deleteManage(){
+								
+			if(!confirm("해당 사업자를 탈퇴 처리하시겠습니까?")){
+				return false;
+			}else{
+				location.href="<%=request.getContextPath()%>/manage/delete?buId=${b.buId}";
+			}
+			}
+        
+        $(document).ready(function() {
+            var updateManage = '<c:out value="${updateManage}"/>';
+            if(!(updateManage==''))
+                alert("해당 사업자 정보수정에 성공하였습니다.");
+        });
+	</script>   
     <style>
         div {
          box-sizing: border-box;
@@ -184,15 +199,15 @@
                                     <td>${b.buTitle }</td>
                                     <td>${b.buAddress }</td>
                                     <td>
-                                        <button id="update-btn" type="submit" class="btn btn-primary"
+                                        <button id="update-btn" type="submit" class="btn btn-outline-primary"
                                         data-text="수정" data-toggle="modal" data-target="#updateMember${vs.index }" >
                                         	<span>수정</span>
                                         </button>
                                         
                                     </td>
                                     <td>
-                                     	<a href="<%=request.getContextPath()%>/manage/delete?buId=${b.buId}">
-	                                        <button  type="button" class="btn btn-danger" data-text="탈퇴" >
+                                     	<a href="javascript:void(0);" onclick="deleteManage();">
+	                                        <button  type="button" class="btn btn-outline-danger" data-text="탈퇴" >
 	                                        	<span>탈퇴</span>
 	                                       </button>
                                        </a>

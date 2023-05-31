@@ -20,7 +20,7 @@ public class Review {
 	private int usingRoom;							//	ROOM_NO, 
 	private String bookNo;							//	BOOK_NO, 
 	private int starScore;							//	STAR_SCORE,
-	private String reviewContnet;							//	REVIEW_CONTENT,
+	private String reviewContent;							//	REVIEW_CONTENT,
 	private String reviewAvailable;							//	REVIEW_AVAILABLE,
 	private Date createDate;							//	CREATE_DATE, 
 	private String reviewDeclariation;							//	REVIEW_DECLARIATION, 

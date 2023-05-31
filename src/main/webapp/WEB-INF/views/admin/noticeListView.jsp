@@ -39,16 +39,14 @@
 		
 	<script type="text/javascript">
     $(document).ready(function() {
-        var insert = '<c:out value="${insert}"/>';
-        if(!(insert==''))
+        var insertNotice = '<c:out value="${insertNotice}"/>';
+        if(!(insertNotice==''))
             alert("공지사항 작성 완료");
     });
-	</script>
-	
-	<script type="text/javascript">
+
     $(document).ready(function() {
-        var update = '<c:out value="${update}"/>';
-        if(!(update==''))
+        var updateNotice = '<c:out value="${updateNotice}"/>';
+        if(!(updateNotice==''))
             alert("공지사항 수정 완료");
     });
 	</script>
@@ -289,7 +287,7 @@
 		 		</form>
 		 
 				<c:if test="${loginUser.getAuthority() == 0}"> 
-					<a class="btn btn-secondary" style="margin-left: 112vh;"
+					<a class="btn btn-primary" style="margin-left: 112vh;"
 						href="<%=  request.getContextPath() %>/notice/enrollForm">글 등록</a>
 				</c:if> 
 				<div id="notice_board_area">

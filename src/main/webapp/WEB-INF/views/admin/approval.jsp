@@ -27,8 +27,23 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
     <script src="/js/summernote/summernote-lite.js"></script>
     <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-
     <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+    <script type="text/javascript">
+        function approvalCancle(){
+								
+			if(!confirm("해당 사업자를 가입 취소 처리하시겠습니까?")){
+				return false;
+			}else{
+				location.href="<%=request.getContextPath()%>/manage/delete?buId=${b.buId}";
+			}
+			}
+        
+        $(document).ready(function() {
+            var approvalAccept = '<c:out value="${approvalAccept}"/>';
+            if(!(approvalAccept==''))
+                alert("해당 사업자 가입 승인에 성공하였습니다.");
+        });
+	</script>   
     <style>
         div {
          box-sizing: border-box;
@@ -189,20 +204,16 @@
                                     <td>${b.buAddress }</td>
                                     <td>
                                         <a href="<%=request.getContextPath()%>/approval/update?buId=${b.buId}">
-                                        <button type="button"
-                                         class="btn btn-primary"
-                                        data-text="승인">
-                                        <span>승인</span>
-                                        </button>
+	                                        <button type="button" class="btn btn-outline-primary" data-text="승인">
+	                                        	<span>승인</span>
+	                                        </button>
                                         </a>
                                     </td>
                                     <td>
-                                     	<a href="<%=request.getContextPath()%>/approval/delete?buId=${b.buId}">
-                                        <button  type="button"
-                                        class="btn btn-danger"
-                                        data-text="취소" >
-                                        <span>취소</span>
-                                       </button>
+                                     	<a href="javascript:void(0);" onclick="approvalCancle();">
+	                                        <button  type="button" class="btn btn-outline-danger" data-text="취소" >
+	                                        	<span>취소</span>
+	                                       </button>
                                        </a>
                                     </td>
                                 </tr>
