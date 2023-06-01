@@ -41,17 +41,19 @@
 	</resultMap>
 	
 	<!-- 리뷰 목록용 resultMap -->
-	<resultMap type="review" id="reivewResultSet">
+	<resultMap type="review" id="reviewResultSet">
 		<result column="REVIEW_NO" property="reviewNo" />
-		<result column="USER_NO" property="userNo" />
-		<result column="ROOM_NO" property="roomNo" />
+		<result column="REVIEW_WRITER" property="reviewWriter" />
+		<result column="USING_ROOM" property="usingRoom" />
 		<result column="BOOK_NO" property="bookNo" />
 		<result column="STAR_SCORE" property="starScore" />
 		<result column="REVIEW_CONTENT" property="reviewContent" />
 		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
 		<result column="CREATE_DATE" property="createDate" />
 		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
-		<result column="PARENT_REVIEW_NO" property="parentReviewNo" />
+		<result column="REVIEW_CONTENT_REPLY" property="reviewContentReply" />
+		<result column="USER_NAME" property="userName" />
+		<result column="ROOM_NAME" property="roomName" />
 	</resultMap>
 	
 	<!-- 공지사항 -->
@@ -251,39 +253,31 @@
 		WHERE BU_ID = #{buId}
 	</delete>
 	
-	<!-- 리뷰 목록 -->
-	<!-- <select id="selectReportListCount" resultType="_int"> 
+	<!-- 리뷰 신고 목록 -->
+	<select id="selectReportListCount" resultType="_int"> 
 		SELECT COUNT(*) FROM REVIEW
-		WHERE APPROVAL = 'Y'
+		WHERE REVIEW_DECLARIATION = 'Y'
 	</select>
 
-	<select id="selectReportList" resultMap="reivewResultSet">
-		SELECT
-		REVIEW_NO,
-		USER_NO,
-		USER_ID,
-		ROOM_NO,
-		BU_TITLE,
-		STAR_SCORE,
-		REVIEW_CONTENT,
-		PARENT_REVIEW_NO
+	<select id="selectReportList" resultMap="reviewResultSet">
+		SELECT 
+		REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
+		USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY
 		FROM REVIEW R
-		LEFT JOIN MEMBER M ON (M.USER_ID = R.USER_NO)
-		LEFT JOIN BOOKING B ON (B.BU_TITLE = R.ROOM_NO)
+		JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER
+		JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM
 		WHERE REVIEW_DECLARIATION = 'Y'
 	</select>
 	
-	<update id="manageUpdate" parameterType="business">
-		UPDATE  BUSINESS SET
-		BU_USER_NAME = #{buUserName},
-		BU_TITLE = #{buTitle},
-		BU_ADDRESS = #{buAddress}
-		WHERE BU_ID = #{buId}
+	<update id="reportKeep" parameterType="review">
+		UPDATE  REVIEW SET
+		REVIEW_DECLARIATION = 'N'
+		WHERE REVIEW_NO = #{reviewNo}
 	</update>
 	
-	<delete id="manageCancel">
+	<delete id="reportCancel">
 		DELETE   
-		FROM BUSINESS
-		WHERE BU_ID = #{buId}
-	</delete> -->
+		FROM REVIEW
+		WHERE REVIEW_NO = #{reviewNo}
+	</delete> 
 </mapper>

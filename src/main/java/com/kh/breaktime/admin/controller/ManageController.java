@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.admin.model.service.ManageService;
 import com.kh.breaktime.business.model.vo.Business;
@@ -45,8 +46,9 @@ public class ManageController {
 	}
 	
 	@PostMapping("/update")
-	public String manageUpdate(Business b) {
+	public String manageUpdate(Business b, RedirectAttributes rttr) {
 		manageService.manageUpdate(b);
+		rttr.addFlashAttribute("updateManage", b.getBuId());
 		return "redirect:/manage/list";
 	}
 }
