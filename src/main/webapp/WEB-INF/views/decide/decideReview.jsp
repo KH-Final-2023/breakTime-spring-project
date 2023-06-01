@@ -565,7 +565,7 @@
                             <div id="buReviewList">
                                 <span style="font-size: larger;"><b>숙소 답변</b></span> 
                                 <span class="buReviewDate">${r.createDate}</span>   
-                                <p class="buReview">${r. }</p>
+                                <p class="buReview"><%-- ${r. } --%></p>
                             </div>
                         </div>
                     </div>

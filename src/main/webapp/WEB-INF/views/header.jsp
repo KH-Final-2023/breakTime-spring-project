@@ -129,7 +129,7 @@
     
     <script>
     document.getElementById("review").addEventListener("click",function(){
-         location.href = "<%=request.getContextPath()%>/";
+         location.href = "<%=request.getContextPath()%>/decide/dereview";
       })
     </script>
     
