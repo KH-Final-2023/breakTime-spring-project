@@ -9,6 +9,7 @@
 .searchBar_detail {
 	margin-left: 500px;
 	margin-top: 100px;
+	margin-bottom: 50px;
 }
 
 .dropdown {

@@ -97,6 +97,11 @@ input[type=range]::-webkit-slider-runnable-track {
 .optionTable>tbody>tr>td {
 	font-size: 14px;
 }
+
+a{
+	cursor: pointer;
+}
+
 </style>
 </head>
 <body>
@@ -181,8 +186,7 @@ input[type=range]::-webkit-slider-runnable-track {
 							name="houseOption" value="에어컨">에어컨</td>
 					</tr>
 					<tr>
-						<td><button class="house-option-checkbox"
-								class="option_openBtn">더 보기</button></td>
+						<td><a class="option_openBtn">더 보기</a></td>
 					</tr>
 					<tr>
 						<th class="tableTitle">투숙객 별점</th>
@@ -198,15 +202,6 @@ input[type=range]::-webkit-slider-runnable-track {
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starCount" value="4.5"><i
-							class="fa-solid fa-star starStyle"></i><i
-							class="fa-solid fa-star starStyle"></i><i
-							class="fa-solid fa-star starStyle"></i><i
-							class="fa-solid fa-star starStyle"></i><i
-							class="fa-solid fa-star-half starStyle"></i></td>
-					</tr>
-					<tr>
-						<td><input class="star-count-checkbox" type="checkbox"
 							name="starCount" value="4"><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
@@ -215,17 +210,20 @@ input[type=range]::-webkit-slider-runnable-track {
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starCount" value="3.5"><i
-							class="fa-solid fa-star starStyle"></i><i
-							class="fa-solid fa-star starStyle"></i><i
-							class="fa-solid fa-star starStyle"></i><i
-							class="fa-solid fa-star-half starStyle"></i></td>
-					</tr>
-					<tr>
-						<td><input class="star-count-checkbox" type="checkbox"
 							name="starCount" value="3"><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i></td>
+					</tr>
+					<tr>
+						<td><input class="star-count-checkbox" type="checkbox"
+							name="starCount" value="2"><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i></td>
+					</tr>
+					<tr>
+						<td><input class="star-count-checkbox" type="checkbox"
+							name="starCount" value="1"><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 				</table>

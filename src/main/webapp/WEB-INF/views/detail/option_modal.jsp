@@ -13,8 +13,8 @@
 <style>
 /* 모달창 배경 */
 .modal_background {
-	visibility: hidden;
 	position: fixed;
+	visibility: hidden;
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -88,7 +88,7 @@
 
 .modal_grid3>table{
 	position: absolute;
-	top: -250px;
+	top: -200px;
 }
 </style>
 </head>

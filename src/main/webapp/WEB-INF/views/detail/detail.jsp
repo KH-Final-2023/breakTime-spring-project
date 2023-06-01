@@ -187,7 +187,7 @@ button {
 								</div>
 								<div class="hpButton">
 									<p class="rsButton">예약 무료 취소</p>
-									<button>예약하기</button>
+									<button>자세히 보기</button>
 								</div>
 							</div>
 						</div>
