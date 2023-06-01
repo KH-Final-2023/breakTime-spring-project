@@ -527,7 +527,7 @@
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">
-                <span>후기 (후기갯수)</span>
+                <span>후기 +" (" + ${r.reviewCount}+ ") "</span>
             </div>
 
             <div class="review-star">
@@ -554,18 +554,18 @@
                                 <span class="fa fa-star"></span>
                             </div>
                             <div id="reviewNickname">
-                                <div>손육공 | 2023.05.03 </div>
+                                <div>${m.userName} +" | "+ ${r.createDate}</div>
                             </div>
                             <div id="reviewRoomName">
                                 <div id="reviewRoomNameList">객실명</div>
-                                <div id="reviewRoomNameInfo">미니룸(인터넷,넷플릭스사용가능)</div>
+                                <div id="reviewRoomNameInfo">${r.roomName} + " (" + ${r.roomInfo} + ")"</div>
                             </div>
-                            <div id="review">방도 깔끔하고 생각보다 넓어서 좋아요!</div>
+                            <div id="review">${r.reviewContent }</div>
 
                             <div id="buReviewList">
                                 <span style="font-size: larger;"><b>숙소 답변</b></span> 
-                                <span class="buReviewDate">2023.05.03</span>   
-                                <p class="buReview">저희 숙소를 이용해주셔서 감사합니다</p>
+                                <span class="buReviewDate">${r.createDate}</span>   
+                                <p class="buReview">${r. }</p>
                             </div>
                         </div>
                     </div>

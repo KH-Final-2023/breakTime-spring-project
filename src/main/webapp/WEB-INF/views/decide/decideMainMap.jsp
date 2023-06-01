@@ -143,15 +143,17 @@ body {
 				<span>위치</span>
 			</div>
 			<div class="map-image">
-				<a href="메인.html"> <img
+			<!-- 지도 페이지 만들어지기 전까지 demain으로 경로 지정 -->
+				<a href="${contextPath}/decide/demain"> <img
 					src="https://navermaps.github.io/ios-map-sdk/assets/2-3-basic.png"
 					alt="지도 이미지">
+					<!-- 각 업체의 지도 사진 썸네일 들어가야함 -->
 				</a>
 			</div>
 			<div class="detail2-main">
 				<div class="address-container">
 					<i class="fas fa-map-marker-alt address-icon"></i> <span
-						class="address-text">상세 주소 입니다 여기는</span>
+						class="address-text">${b.buAddress}</span>
 				</div>
 				<button class="copy-button">주소 복사</button>
 			</div>
