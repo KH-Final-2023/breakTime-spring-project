@@ -27,7 +27,7 @@ public class DetailController {
 	private static final Logger logger = LoggerFactory.getLogger(DetailController.class);
 
 	@GetMapping("")
-	public String detailList(@RequestParam("category") String category, 
+	public String detailList(@RequestParam(value="category" , required=false) String category, 
 			Model model,
 			@RequestParam Map<String, Object> paramMap) {
 		
@@ -47,29 +47,6 @@ public class DetailController {
 		return "/detail/detail";
 	}
 	
-	@PostMapping("/getFilteredData")
-	public String getFilteredData(@RequestParam("category") String category,
-			@RequestParam("price") String price,
-			@RequestParam("refund") String refund,
-			@RequestParam(value = "houseOption", required = false) List<String> houseOptions,
-			@RequestParam(value = "starCount", required = false) List<String> starCount,
-			@RequestParam(value = "mealPlan", required = false) List<String> mealPlan,
-			Model model) {
-		
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("category", category);
-		paramMap.put("price", price);
-		paramMap.put("refund", refund);
-		paramMap.put("houseOptions", houseOptions);
-		paramMap.put("starCount", starCount);
-		paramMap.put("mealPlan", mealPlan);
-		
-		Map<String, Object> map = new HashMap<>();
-		detailService.getFilteredData(paramMap, map);
-		
-		model.addAttribute("map", map);
-		
-		return "/detail/detail";
-	}
+
 }
 	

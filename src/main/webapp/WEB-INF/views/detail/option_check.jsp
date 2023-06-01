@@ -15,7 +15,7 @@
 <style>
 .optionArea {
 	position: fixed;
-	left: 10;
+	left: 20px;
 	top: 80px;
 	height: 100%;
 	width: 250px;
@@ -38,7 +38,9 @@
 .card {
 	width: 220px;
 	background-color: #fff;
+	border: none;
 	padding: 5px;
+	margin-top: 30px;
 }
 
 .price-content {

@@ -174,13 +174,13 @@ button {
 												class="fa-solid fa-star starStyle"></i> <i
 												class="fa-solid fa-star starStyle"></i>
 										</div>
-										<div class="houseAddress">${d.address}</div>
+										<div class="houseAddress">${d.buAddress}</div>
 										<div class="houseTel">${d.buTel}</div>
 									</div>
 								</a>
 							</div>
 							<div class="housePrice">
-								<div class="priceHowMuch">16,000</div>
+								<div class="priceHowMuch">${d.roomPrice }</div>
 								<div class="priceDetailList">
 									<p class="priceDetail1">1박 가격</p>
 									<p class="priceDetail2">모든 세금 및 수수료 포함</p>
@@ -220,7 +220,7 @@ button {
 	var addresses = [		
 	<c:forEach items="${list}" var="d" varStatus="status">
             {
-                address: "${d.address}",
+                address: "${d.buAddress}",
                 content: "${d.buTitle}"
             }<c:if test="${!status.last}">,</c:if>
         </c:forEach>
@@ -262,6 +262,27 @@ button {
 	  createMarker(addresses[i]);
 	}
 
+	</script>
+
+	<script>
+		// houseContent div 클릭 시 해당 주소의 마커로 이동하는 함수
+		function moveMarker(address) {
+		  geocoder.addressSearch(address, function(result, status) {
+		    if (status === kakao.maps.services.Status.OK) {
+		      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		      map.setCenter(coords);
+		    }
+		  });
+		}
+		
+		// houseContent div 클릭 이벤트 처리
+		var houseContents = document.getElementsByClassName('houseContent');
+		for (var i = 0; i < houseContents.length; i++) {
+		  houseContents[i].addEventListener('click', function() {
+		    var address = this.getElementsByClassName('houseAddress')[0].innerText;
+		    moveMarker(address);
+		  });
+		}
 	</script>
 
 
