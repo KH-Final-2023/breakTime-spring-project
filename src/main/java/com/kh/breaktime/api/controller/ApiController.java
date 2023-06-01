@@ -133,7 +133,7 @@ public class ApiController extends HttpServlet {
 	                if (cat3.equals("B02010100") || cat3.equals("B02010500") || cat3.equals("B02010700") || cat3.equals("B02010900")) {
 	                    String title = (String) item.get("title");
 	                    String addr1 = (String) item.get("addr1");
-	                    String areacode = (String) item.get("areacode");
+	                    int areacode = Integer.parseInt((String) item.get("areacode"));
 	                    String firstimage = (String) item.get("firstimage");
 	                    String tel = (String) item.get("tel");
 
@@ -145,7 +145,7 @@ public class ApiController extends HttpServlet {
 	                    // 값을 바인딩하여 SQL 쿼리 실행
 	                    insertStatement.setString(1, title);
 	                    insertStatement.setString(2, addr1);
-	                    insertStatement.setString(3, areacode);
+	                    insertStatement.setInt(3, areacode);
 	                    insertStatement.setString(4, cat3); 
 	                    insertStatement.setString(5, firstimage);
 	                    insertStatement.setString(6, tel);
@@ -155,7 +155,7 @@ public class ApiController extends HttpServlet {
 	                    } catch (SQLIntegrityConstraintViolationException e) {
 	                        // PRIMARY KEY 제약 조건에 위배되어 INSERT가 실패한 경우, UPDATE 실행
 	                        updateStatement.setString(1, addr1);
-	                        updateStatement.setString(2, areacode);
+	                        updateStatement.setInt(2, areacode);
 	                        updateStatement.setString(3, cat3); 
 	                        updateStatement.setString(4, firstimage);
 	                        updateStatement.setString(5, tel);

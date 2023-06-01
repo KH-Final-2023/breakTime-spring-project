@@ -4,10 +4,15 @@ import lombok.Data;
 
 @Data
 public class Detail {
-	private String address;
-	private String areaNo;
-	private String buCategory;
 	private String mainImg;
-	private String buTel;
-	private String buTitle;
+    private int roomNo;
+    private int roomHCount;
+    private String roomPrice;
+    private int buNo;
+    private String buAddress;
+    private int areaNo;
+    private String buCategory;
+    private String buTel;
+    private String buTitle;
+
 }
