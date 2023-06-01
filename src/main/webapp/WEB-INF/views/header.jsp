@@ -8,7 +8,7 @@
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-String alertMsg = (String) session.getAttribute("alertMsg");
+	String alertMsg = (String) session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +18,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/header.css">
     <title>헤더</title>
+
 </head>
 <body>
 	
