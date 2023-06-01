@@ -10,6 +10,7 @@
    <typeAliases>
 
     	<typeAlias type="com.kh.breaktime.detail.model.vo.CategoryCode" alias="categoryCode" />
+
 		<typeAlias type="com.kh.breaktime.detail.model.vo.Detail" alias="detail" />
 		<typeAlias type="com.kh.breaktime.admin.model.vo.Notice" alias="notice"/>
     	<typeAlias type="com.kh.breaktime.room.model.vo.Room" alias="room" />
@@ -29,6 +30,7 @@
 	 	<mapper resource="/mappers/buRoom-mapper.xml"/>
 	 	<mapper resource="/mappers/member-mapper.xml"/>
 	 	<mapper resource="/mappers/business-mapper.xml"/>
+	 	<mapper resource="/mappers/review-mapper.xml"/>
 	 
 	 </mappers>
 

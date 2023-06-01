@@ -26,8 +26,8 @@ public class DetailServiceImpl implements DetailService{
 		map.put("list", list);
 	}
 	
-	public void selectDetailList(Map<String, Object> paramMap, Map<String, Object> map) {
-		ArrayList<Detail> list = detailDao.selectDetailList(paramMap);
+	public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map) {
+		ArrayList<Detail> list = detailDao.searchDetailList(paramMap);
 		
 		map.put("list", list);
 	}
