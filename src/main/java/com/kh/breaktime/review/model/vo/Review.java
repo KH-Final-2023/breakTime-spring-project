@@ -24,7 +24,7 @@ public class Review {
 	private String reviewAvailable;							//	REVIEW_AVAILABLE,
 	private Date createDate;							//	CREATE_DATE, 
 	private String reviewDeclariation;							//	REVIEW_DECLARIATION, 
-	private String parentReviewNo;							//	PARENT_REVIEW_NO
+	private String reviewContentReply;						//	PARENT_REVIEW_NO
 	private String userName;
 	private String roomName;
 }

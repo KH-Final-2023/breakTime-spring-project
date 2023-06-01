@@ -51,7 +51,7 @@
 		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
 		<result column="CREATE_DATE" property="createDate" />
 		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
-		<result column="PARENT_REVIEW_NO" property="parentReviewNo" />
+		<result column="REVIEW_CONTENT_REPLY" property="reviewContentReply" />
 		<result column="USER_NAME" property="userName" />
 		<result column="ROOM_NAME" property="roomName" />
 	</resultMap>
@@ -262,10 +262,10 @@
 	<select id="selectReportList" resultMap="reviewResultSet">
 		SELECT 
 		REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
-		USING_ROOM, ROOM_NAME, REVIEW_CONTENT, PARENT_REVIEW_NO
+		USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY
 		FROM REVIEW R
-		JOIN MEMBER ON USER_NO = REVIEW_WRITER
-		JOIN ROOM ON ROOM_NO = USING_ROOM
+		JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER
+		JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM
 		WHERE REVIEW_DECLARIATION = 'Y'
 	</select>
 	
