@@ -128,7 +128,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
     
     <script>
     document.getElementById("review").addEventListener("click",function(){
-         location.href = "<%=request.getContextPath()%>/decideReview";
+         location.href = "<%=request.getContextPath()%>/";
       })
     </script>
     
