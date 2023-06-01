@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ page import="com.kh.breaktime.member.model.vo.Member"%>
 <%@ page import="com.kh.breaktime.business.model.vo.Business"%>
+<c:if test="${!empty param.condition}" >
+	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
+</c:if>
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
@@ -15,22 +18,6 @@ String alertMsg = (String) session.getAttribute("alertMsg");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/header.css">
     <title>헤더</title>
-    <!--  공통적으로사용할 라이브러리 추가 -->
-<!-- Jquey 라이브러리 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- 부트스트랩에서 제공하있는 스타일 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- 부투스트랩에서 제공하고있는 스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- alertify -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<!-- alertify css -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 </head>
 <body>
 	
@@ -48,8 +35,8 @@ String alertMsg = (String) session.getAttribute("alertMsg");
                 <img src="<%=request.getContextPath()%>/resources/images/로고.png" alt="로고이미지">
             </div>
             <div id="navbar">
-                <div id="search">
-                   <img src="<%=request.getContextPath()%>/resources/images/흰돋보기.png" alt="로고이미지">
+                <div class="openBtn" id="search" >
+                   <img src="<%=request.getContextPath()%>/resources/images/흰돋보기.png" alt="로고이미지" >
                 </div>
 
                 <%if (loginUser == null && loginBusiness == null) {%>
@@ -79,7 +66,60 @@ String alertMsg = (String) session.getAttribute("alertMsg");
         </div>
     </div>
     
- 	  <script>
+    
+    <!-- 검색 모달창 html -->
+    <div class="modal hidden">
+            <div class="bg"></div>
+            <div class="modalBox">
+				<button class="closeBtn">X</button>
+				<div class="searchheader">
+					<p>검색</p>
+				</div>
+				<div class="searchbody" style="overflow: auto;">
+                    <form action="<%=request.getContextPath()%>/detail/search" method="GET" >
+					<input type="search" id="search-input" placeholder="키워드로 검색하세요" value="${param.keyword }" name="keyword" onkeyup="enterkey()" >
+                	</form>
+				</div>
+            </div>
+        </div>
+    
+    
+    <!-- 검색창 모달창 스크립트 -->
+    <script>
+            const open = () => {
+                document.querySelector(".modal").classList.remove("hidden");
+                
+            }
+            const close = () => {
+				console.log('cdlose')
+                document.querySelector(".modal").classList.add("hidden");
+            }
+            document.querySelector(".openBtn").addEventListener("click", open); 
+            document.querySelector(".closeBtn").addEventListener("click", close); 
+            document.querySelector(".bg").addEventListener("click", close); 
+
+        </script>
+    
+    
+    
+    
+    <!-- 검색창 엔터키 스크립트 -->
+    <script>
+    function enterkey() {
+    	if (window.event.keyCode == 13) {
+        	// 엔터키가 눌렸을 때
+        }
+    }
+     
+    </script>
+    
+    
+    
+    
+     
+    
+    
+      <script>
     document.getElementById("notice").addEventListener("click",function(){
          location.href = "<%=request.getContextPath()%>/notice/publicList";
       })
@@ -88,7 +128,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
     
     <script>
     document.getElementById("review").addEventListener("click",function(){
-         location.href = "<%=request.getContextPath()%>/decideReview";
+         location.href = "<%=request.getContextPath()%>/";
       })
     </script>
     
@@ -153,8 +193,9 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 
       
       </script>
-
-    
+      
+      
+      
     
     
 </body>

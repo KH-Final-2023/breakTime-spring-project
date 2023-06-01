@@ -341,6 +341,7 @@
 				</div>
 			</div>
 		</div>
+		
 			<div id= "footer">
 				<%@ include file="/WEB-INF/views/footer.jsp"%>
 			</div>
