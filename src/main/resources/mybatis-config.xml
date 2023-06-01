@@ -30,6 +30,7 @@
 	 	<mapper resource="/mappers/buRoom-mapper.xml"/>
 	 	<mapper resource="/mappers/member-mapper.xml"/>
 	 	<mapper resource="/mappers/business-mapper.xml"/>
+	 	<mapper resource="/mappers/review-mapper.xml"/>
 	 
 	 </mappers>
 

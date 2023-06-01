@@ -14,14 +14,19 @@
     border: 1px solid red;
 } */
 
-.mainContent{
-    width: 100%;
+
+
+
+/* Slideshow container */
+.slideshow-container {
+  	width: 100%;
     height: 650px;
     margin-top: 80px;
     position: relative;
 }
 
-#backgroundArea{
+
+.mySlideDiv{
     width: 45%;
     height: 300px;
     display: flex;
@@ -30,12 +35,62 @@
     position: absolute;
     border-radius: 20px;
 }
+
+
 #backImg{
   width: 110%;
   height: 600px;
   border-radius: 20px;
  
 }
+
+
+/* effect */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;	
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+
+
 
 
 .categoryText{
@@ -113,10 +168,26 @@
 	
 }
 
+#hotel:hover{
+	background: url("/breaktime/resources/images/호텔.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+	
+}
+
 #motel{
 	background: url("/breaktime/resources/images/모텔.jpg");
 	background-size : 200px 200px;
 	filter : brightness(50%);
+	
+}
+
+#motel:hover{
+	background: url("/breaktime/resources/images/모텔.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
 	
 }
 
@@ -126,10 +197,24 @@
 	filter : brightness(50%);
 }
 
+#resort:hover{
+	background: url("/breaktime/resources/images/리조트.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+}
+
 #pension{
 	background: url("/breaktime/resources/images/펜션.jpg");
 	background-size : 200px 200px;
 	filter : brightness(50%);
+}
+
+#pension:hover{
+	background: url("/breaktime/resources/images/펜션.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
 }
 
 #pHotel, #pMotel, #pResort, #pPension{
@@ -164,3 +249,19 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

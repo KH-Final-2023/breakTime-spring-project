@@ -15,4 +15,7 @@ public interface DetailService {
 	
 	public void getFilteredData(Map<String, Object> paramMap, Map<String, Object> map);
 
+	public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map);
+
+
 }

@@ -26,7 +26,7 @@ public class DetailController {
 
 	private static final Logger logger = LoggerFactory.getLogger(DetailController.class);
 
-	@GetMapping("")
+	@GetMapping("/search")
 	public String detailList(@RequestParam(value="category" , required=false) String category, 
 			Model model,
 			@RequestParam Map<String, Object> paramMap) {
@@ -39,14 +39,20 @@ public class DetailController {
 			// 검색요청을 한 경우
 			// 검색조건을 추가한 상태로 게시글 셀렉트?
 			paramMap.put("category", category);
-			detailService.selectDetailList(paramMap, map);
+			detailService.searchDetailList(paramMap, map);
+			map.put("condition", paramMap.get("condition"));
+			map.put("keyword", "%"+paramMap.get("keyword")+"%");
 		}
-
+		String sUrl = "";
+		if(paramMap.get("condition") != null && paramMap.get("keyword")!=null) {
+			sUrl = "&condition="+paramMap.get("condition")+"&keyword="+paramMap.get("keyword");
+		}
+		
+		model.addAttribute("sUrl",sUrl);
 		model.addAttribute("map", map);
 
 		return "/detail/detail";
 	}
 	
-
 }
 	
