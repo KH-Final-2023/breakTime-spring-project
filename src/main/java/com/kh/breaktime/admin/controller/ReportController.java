@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.admin.model.service.ReportService;
 import com.kh.breaktime.review.model.vo.Review;
@@ -36,7 +37,7 @@ public class ReportController {
 	}
 	
 	@GetMapping("/delete")
-	public String approvalCancel(@RequestParam(value="reviewNo", required=false, defaultValue="0") int reviewNo) {
+	public String reportCancel(@RequestParam(value="reviewNo", required=false, defaultValue="0") int reviewNo) {
 		
 		reportService.reportCancel(reviewNo);
 		
@@ -44,8 +45,9 @@ public class ReportController {
 	}
 	
 	@GetMapping("/update")
-	public String reportKeep(Review r) {
+	public String reportKeep(Review r, RedirectAttributes rttr) {
 		reportService.reportKeep(r);
+		rttr.addFlashAttribute("reportKeep", r.getReviewNo());
 		return "redirect:/report/list";
 	}
 }
