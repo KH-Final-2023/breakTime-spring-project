@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class Review {
+
 	
 	private int reviewNo;							//	REVIEW_NO, 
 	private int reviewWriter;							//	USER_NO, 
@@ -27,4 +28,5 @@ public class Review {
 	private String reviewContentReply;						//	PARENT_REVIEW_NO
 	private String userName;
 	private String roomName;
+
 }
