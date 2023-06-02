@@ -51,8 +51,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-    public List<Review> getReviewsForBusiness(String businessId , Review businessReviews) {
-        return businessDao.getReviewsForBusiness(businessId , businessReviews);
+    public List<Review> getReviewsForBusiness(String businessId ) {
+        return businessDao.getReviewsForBusiness(businessId );
     }
 }
 

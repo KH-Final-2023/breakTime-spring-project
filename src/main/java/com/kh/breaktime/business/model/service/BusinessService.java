@@ -25,6 +25,6 @@ public interface BusinessService {
 	
 	public List<Booking> getAllBookings();
 	    
-	public List<Review> getReviewsForBusiness(String businessId , Review businessReviews);
+	public List<Review> getReviewsForBusiness(String businessId);
 }
 
