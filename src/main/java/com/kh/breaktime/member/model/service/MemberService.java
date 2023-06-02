@@ -7,4 +7,8 @@ public interface MemberService {
 	public abstract Member loginMember(Member inputMember);
 	
 	public abstract int insertMember(Member inputMember);
+	
+	public abstract int deleteMember(Member inputMember);
+	
+	public abstract int updateId(Member inputMember,String newId);
 }

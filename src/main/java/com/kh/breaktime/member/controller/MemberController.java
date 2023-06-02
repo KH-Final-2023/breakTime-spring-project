@@ -26,11 +26,6 @@ public class MemberController {
 
 	private MemberService memberService;
 
-	@Autowired
-	public MemberController(MemberService memberService) {
-		this.memberService = memberService;
-
-	}
 
 	public MemberController() {
 
@@ -148,5 +143,35 @@ public class MemberController {
 		return "member/myPage";
 	}
 	
+	@GetMapping("/delete")
+	public String deleteMember(Member m, SessionStatus status) {
+		int result = memberService.deleteMember(m);
+
+		String url = "";
+		if (result > 0) { // 성공시 - 세션도 날리고 메인페이지로
+			status.setComplete();
+			url = "redirect:/";
+		} else { // 실패 - 에러페이지
+
+			url = "common/errorPage";
+		}
+		return url;
+	}
 	
+	@PostMapping("/updateId")
+	public String updateId(Member m,  @RequestParam("newId") String newId, Model model, HttpSession session) {
+		
+		int result = memberService.updateId(m,newId);
+
+		String url = "";
+		if (result > 0) { // 성공시 - 메인페이지로
+			session.setAttribute("alertMsg", "변경성공");
+			url = "redirect:/";
+		} else { // 실패 - 에러페이지
+			model.addAttribute("errorMsg", "아이디변경 실패");
+			url = "common/errorPage";
+		}
+
+		return url;
+	}
 }

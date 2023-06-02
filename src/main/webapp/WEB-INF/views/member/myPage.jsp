@@ -85,7 +85,7 @@
 					<li><a class="sideMenu">쿠폰함(미정)</a></li>
 				</ul>
 				<div style="margin-top: auto; position: relative;">
-					<button class="btn btn-primary btn-ghost btn-slash">회원탈퇴</button>
+					<button class="btn btn-primary btn-ghost btn-slash" id="confirmStart">회원탈퇴</button>
 				</div>
 			</div>
 		
@@ -99,17 +99,18 @@
 							<img style="width: 100%;height: 100%;"src="<%=request.getContextPath()%>/resources/images/마이페이지.png">
 						</div>
 						<div style=" padding-left:25%">
-						<button class="btn btn-primary btn-ghost btn-slash">로그아웃</button>
+						<button class="btn btn-primary btn-ghost btn-slash" id="logOut">로그아웃</button>
 						</div>
 					</div>
 					<div style="display:flex; margin-bottom:1%">
 						<b>아이디</b>
 						<b class="sessionData"><%= loginUser.getUserId() %></b>
 					</div>
-					<div style="margin-bottom:3%">
-						<button class="btn btn-primary btn-ghost btn-slash">아이디수정</button>
+					<div style="margin-bottom:2%">
+						<button class="btn btn-primary btn-ghost btn-slash" id="promptStart">아이디수정</button>
 						<button class="btn btn-primary btn-ghost btn-slash">비밀번호수정</button>
-					</div>
+					</div>			
+					
 					<div style="display:flex; margin-bottom:1%">
 						<b>예약자이름</b>
 						<b class="sessionData"><%= loginUser.getUserName() %></b>
@@ -128,6 +129,76 @@
 		</div>
 	</div>
 	
+	
+	<!--  회원탈퇴 모달창 -->
+	<script>
+	const userId = '${loginUser.userId}';
+		
+	$("#confirmStart").click(function () {
+	    Swal.fire({
+	      title: '탈퇴하시겠습니까?',
+	      text: "다시 되돌릴 수 없습니다. 신중하세요.",
+	      icon: 'warning',
+	      showCancelButton: true,
+	      confirmButtonColor: '#3085d6',
+	      cancelButtonColor: '#d33',
+	      confirmButtonText: '탈퇴',
+	      cancelButtonText: '취소',
+	      reverseButtons: true, // 버튼 순서 거꾸로
+	      
+	    }).then((result) => {
+	      if (result.isConfirmed) {
+	    	  $.ajax({
+					url : "${contextPath}/member/delete",
+					data : {userId},
+					success : function (){			
+							location.href="${contextPath}/main";
+					}
+				}) 	
+	        Swal.fire(
+	          '탈퇴가 완료되었습니다.',
+	          '탈퇴성공'
+	        )
+	      }
+	    })
+	  });
+	</script>
+	
+	<!-- 아이디수정 모달창 -->
+	<script>
+
+	
+	  $("#promptStart").click(function () {
+		    
+		    (async () => {
+		        const { value: 'text'.val() } = await Swal.fire({
+		            title: '아이디 변경',
+		            text: '4~12자 영문 대소문자, 숫자만 입력하세요.',
+		            input: 'text',
+		            inputPlaceholder: '변경할 아이디입력'
+		        })
+
+		        // 이후 처리되는 내용.
+		        if ('text'.val()) {
+		        	  $.ajax({
+		        		   type : "POST",
+							url : "${contextPath}/member/updateId",
+							data : 'text'.val(),
+							success : function (){			
+									location.href="${contextPath}/member/myPage";
+							}
+						}) 	
+			         Swal.fire(`변경성공`)
+		        }
+		    })()
+		  });
+	</script>
+	
+	<script>
+	document.getElementById("logOut").addEventListener("click",function(){
+        location.href = "<%= request.getContextPath()%>/member/logout";
+    })
+	</script>
 	
 </body>
 </html>

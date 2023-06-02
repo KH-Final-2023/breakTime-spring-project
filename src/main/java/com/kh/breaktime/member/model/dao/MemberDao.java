@@ -21,4 +21,16 @@ public class MemberDao {
 
 		return sqlSession.insert("memberMapper.insertMember", inputMember);
 	}
+	
+	public int deleteMember(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.deleteMember", inputMember);
+		
+	}
+	
+	public int updateId(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.updateId", inputMember);
+	}
+	
 }
