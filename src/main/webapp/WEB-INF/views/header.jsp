@@ -17,6 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="resources/css/header.css">
+    <link rel="stylesheet" href="/breaktime/resources/css/font.css">
     <title>헤더</title>
 
 </head>

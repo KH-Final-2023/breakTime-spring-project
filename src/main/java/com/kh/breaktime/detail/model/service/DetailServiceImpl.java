@@ -34,7 +34,8 @@ public class DetailServiceImpl implements DetailService {
 
 	public void getFilteredData(Map<String, Object> paramMap, Map<String, Object> map) {
 		ArrayList<Detail> list = detailDao.getFilteredData(paramMap);
-
+		
+	}
 	
 	public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map) {
 		ArrayList<Detail> list = detailDao.searchDetailList(paramMap);

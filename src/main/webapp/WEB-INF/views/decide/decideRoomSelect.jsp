@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>객실 선택</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <style>
 /* Reset CSS */
 * {
@@ -186,49 +187,51 @@ body {
 }
 </style>
 <script>
-	$(document).ready(function() {
-		var currentUrl = window.location.href;
-		var previousUrl = document.referrer;
+	$(document).ready(
+			function() {
+				var currentUrl = window.location.href;
+				var previousUrl = document.referrer;
 
-		$(".button").click(function(e) {
-			e.preventDefault();
+				$(".button").click(
+						function(e) {
+							e.preventDefault();
 
-			var overlay = $("<div>").addClass("overlay");
-			var datePicker = $("<iframe>").attr("src", "${contextPath}/decide/dedate");
-			var closeBtn = $("<i>").addClass("fas fa-times close-btn").css({
-				"animation-name" : "reverse-animation",
-				"animation-duration" : "0.1s",
-				"animation-timing-function" : "ease-in-out"
+							var overlay = $("<div>").addClass("overlay");
+							var datePicker = $("<iframe>").attr("src",
+									"${contextPath}/decide/dedate");
+							var closeBtn = $("<i>").addClass(
+									"fas fa-times close-btn").css({
+								"animation-name" : "reverse-animation",
+								"animation-duration" : "0.1s",
+								"animation-timing-function" : "ease-in-out"
+							});
+
+							overlay.append(datePicker, closeBtn);
+							$(".container").prepend(overlay);
+
+							setTimeout(function() {
+								overlay.addClass("open");
+							}, 300);
+
+							closeBtn.click(function() {
+								overlay.removeClass("open");
+
+								setTimeout(function() {
+									overlay.remove();
+								}, 300);
+							});
+						});
+
+				$(".close-btn").click(function(e) {
+					e.preventDefault();
+
+					if (previousUrl) {
+						window.location.href = previousUrl;
+					} else {
+						window.location.href = currentUrl;
+					}
+				});
 			});
-
-			overlay.append(datePicker, closeBtn);
-			$(".container").prepend(overlay);
-
-			setTimeout(function() {
-				overlay.addClass("open");
-			}, 300);
-
-			closeBtn.click(function() {
-				overlay.removeClass("open");
-
-				setTimeout(function() {
-					overlay.remove();
-				}, 300);
-			});
-		});
-
-		$(".close-btn").click(function(e) {
-			e.preventDefault();
-
-			if (previousUrl) {
-				window.location.href = previousUrl;
-			} else {
-				window.location.href = currentUrl;
-			}
-		});
-	});
-	
-	
 </script>
 </head>
 
@@ -239,62 +242,43 @@ body {
 				<a href="${contextPath}/decide/dedate" class="button">날짜</a>
 			</div>
 			<div class="detail2-main">
+				<c:forEach items="${list }" var="d">
+					<div class="detail2-card">
+						<div class="image">
+							<img src="${d.roomImg}" alt="숙소 이미지">
+						</div>
+						<h2 class="title">${d.roomName}</h2>
+						<p class="description">${d.roomInfo}</p>
+						<p class="price">${d.roomPrice}</p>
+						
+						<c:if test="${empty list}">
+							<div class="button-card" disabled>
+								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
+									담기</a> <a href="#" class="button-card2">객실 선택하기</a>
+							</div>
+						</c:if>
+						
+						<c:if test="${!empty list}">
+							<div class="button-card">
+								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
+									담기</a> <a href="#" class="button-card2">객실 선택하기</a>
+							</div>
+						</c:if>
+					</div>
+				</c:forEach>
 				<div class="detail2-card">
 					<div class="image">
-						<img
-							src="https://www.sonohotelsresorts.com/img/front/saupjang/geoje/family06.jpg"
-							alt="숙소 이미지">
+						<img src="${d.roomImg}" alt="숙소 이미지">
 					</div>
-					<h2 class="title">숙소 제목</h2>
-					<p class="description">숙소 설명</p>
-					<p class="price">100,000원~</p>
+					<h2 class="title">${d.buTitle}</h2>
+					<p class="description">${d.roomInfo}</p>
+					<p class="price">${d.roomPrice}</p>
 					<div class="button-card">
-						<a href="${contextPath}/decide/debasket" class="button-card1">장바구니 담기</a> <a href="#"
-							class="button-card2">객실 선택하기</a>
+						<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
+							담기</a> <a href="#" class="button-card2">객실 선택하기</a>
 					</div>
 				</div>
-				<div class="detail2-card">
-					<div class="image">
-						<img
-							src="https://www.sonohotelsresorts.com/img/front/saupjang/geoje/family06.jpg"
-							alt="숙소 이미지">
-					</div>
-					<h2 class="title">숙소 제목</h2>
-					<p class="description">숙소 설명</p>
-					<p class="price">120,000원~</p>
-					<div class="button-card">
-						<a href="장바구니.html" class="button-card1">장바구니 담기</a> <a href="#"
-							class="button-card2">객실 선택하기</a>
-					</div>
-				</div>
-				<div class="detail2-card">
-					<div class="image">
-						<img
-							src="https://www.sonohotelsresorts.com/img/front/saupjang/geoje/family06.jpg"
-							alt="숙소 이미지">
-					</div>
-					<h2 class="title">숙소 제목</h2>
-					<p class="description">숙소 설명</p>
-					<p class="price">140,000원~</p>
-					<div class="button-card">
-						<a href="장바구니.html" class="button-card1">장바구니 담기</a> <a href="#"
-							class="button-card2">객실 선택하기</a>
-					</div>
-				</div>
-				<div class="detail2-card">
-					<div class="image">
-						<img
-							src="https://www.sonohotelsresorts.com/img/front/saupjang/geoje/family06.jpg"
-							alt="숙소 이미지">
-					</div>
-					<h2 class="title">숙소 제목</h2>
-					<p class="description">숙소 설명</p>
-					<p class="price">160,000원~</p>
-					<div class="button-card">
-						<a href="장바구니.html" class="button-card1">장바구니 담기</a> <a href="#"
-							class="button-card2">객실 선택하기</a>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>

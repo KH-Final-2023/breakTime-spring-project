@@ -10,12 +10,15 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- Bootstrap JavaScript and jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 
 
 <style>
@@ -586,54 +589,53 @@ input[type="checkbox"] {
 <body>
 	<!-- 메인 부분 -->
 	<div class="container-main">
-		<div class="detail2-one-main">
-			<div class="select-all">
-				<input type="checkbox" id="select-all" style="display: none;">
-				<label for="select-all" class="select-all-label"> <span
-					class="custom-checkbox"></span> 전체 선택 (<span id="selected-count">0</span>
-					/ <span id="total-count">0</span>)
-				</label>
-				<button id="delete-selected">선택 삭제</button>
-			</div>
-		</div>
-	</div>
-	<div class="detail2-select">
-		<div class="item-top">
-			<div class="item-remove">X</div>
-			<div class="item-check-image-name">
-				<input type="checkbox" id="item-checkbox-1" class="item-checkbox"
-					style="display: none;"> <label for="item-checkbox-1">
-					<span class="custom-checkbox"></span>
-				</label>
-				<div class="item-image">
-					<img
-						src="https://emons.co.kr/shop/data/goods/JF_Doit_7ZmU7J207Yq4_02.jpg"
-						alt="상품 이미지" class="item-image">
+		<c:if test="${!empty list}">
+			<div class="detail2-one-main"
+				style="height: 350px; text-align: center; display: flex; justify-content: center; flex-direction: column; line-heigth: 10px">
+				<i class="fas fa-shopping-cart"
+					style="font-size: 54px; color: #0000001a; margin-bottom: 16px;"></i>
+				<span style="font-size: 20px; color: #1a1a1a;">장바구니에 담긴 상품이
+					없습니다</span> <span style="color: #616161; font-size: 18.5px;">원하는
+					상품을 담아보세요</span>
+				<div class="select-all"></div>
+				<div style="text-align: center;">
+					<button
+						style="font-size: 16px; color: #008000; margin-top: 20px; padding: 10px 50px; border: 1px solid #008000; border-radius: 5px; background-color: #ffffff; cursor: pointer;">홈으로
+						가기</button>
 				</div>
-				<div class="item-name">${r.roomName}</div>
 			</div>
-			<div class="item-price">${r.roomPrice}+"원"</div>
-		</div>
-	</div>
+		</c:if>
 
-	<div class="detail2-select">
-		<div class="item-top">
-			<div class="item-remove">X</div>
-			<div class="item-check-image-name">
-				<input type="checkbox" id="item-checkbox-2" class="item-checkbox"
-					style="display: none;"> <label for="item-checkbox-2">
-					<span class="custom-checkbox"></span>
-				</label>
-				<div class="item-image">
-					<img
-						src="https://emons.co.kr/shop/data/goods/JF_Doit_7ZmU7J207Yq4_02.jpg"
-						alt="상품 이미지" class="item-image">
+		<c:if test="${empty list}">
+			<div class="detail2-one-main">
+				<div class="select-all">
+					<input type="checkbox" id="select-all" style="display: none;">
+					<label for="select-all" class="select-all-label"> <span
+						class="custom-checkbox"></span> 전체 선택 (<span id="selected-count">0</span>
+						/ <span id="total-count">0</span>)
+					</label>
+					<button id="delete-selected">선택 삭제</button>
 				</div>
-				<div class="item-name">상품 2</div>
 			</div>
-			<div class="item-price">70000원</div>
-		</div>
 	</div>
+	<c:forEach items="${list }" var="d">
+		<div class="detail2-select">
+			<div class="item-top">
+				<div class="item-remove">X</div>
+				<div class="item-check-image-name">
+					<input type="checkbox" id="item-checkbox-1" class="item-checkbox"
+						style="display: none;"> <label for="item-checkbox-1">
+						<span class="custom-checkbox"></span>
+					</label>
+					<div class="item-image">
+						<img src="${d.mainImg}" alt="상품 이미지" class="item-image">
+					</div>
+					<div class="item-name">${d.roomName}</div>
+				</div>
+				<div class="item-price">${d.roomPrice}+"원"</div>
+			</div>
+		</div>
+	</c:forEach>
 
 	<div class="reservation-section">
 		<div class="reservation-title">예약 상품</div>
@@ -652,6 +654,7 @@ input[type="checkbox"] {
 		</div>
 		<button id="reservation-button" class="reservation-button" disabled>예약하기</button>
 	</div>
+	</c:if>
 
 	<!-- 모달창 -->
 	<div class="modal" tabindex="-1" role="dialog" id="confirm-modal"
