@@ -14,17 +14,17 @@
 <body>
 <%--  <%@ include file="../header.jsp"%> --%>
     <div id="content">
-        <div id="content1">
-           <form action="/breaktime/businessRoom/resister" method="GET">
-   				 <button type="submit" id="buRoomRegister">객실 등록</button>
+      <div id="content1">
+			<form action="/breaktime/businessRoom/resister" method="GET">
+				<button type="submit" id="buRoomRegister">객실 등록</button>
 			</form>
-		    <form action="/breaktime/businessRoom/reservation" method="GET">
-		        <button type="submit" id="buRoomReservation">예약 내역</button>
-		    </form>
-		    <form action="/breaktime/businessRoom/review" method="GET">
-		        <button type="submit" id="buReview">리뷰</button>
-		    </form>
-        </div>
+			<form action="/breaktime/business/reservation" method="GET">
+				<button type="submit" id="buRoomReservation">예약 내역</button>
+			</form>
+			<form action="/breaktime/business/review" method="GET">
+				<button type="submit" id="buReview">리뷰</button>
+			</form>
+		</div>
         <div id="content2">
         <div style="font-size: xx-large; margin: 50px; margin-bottom: 70px;">예약 내역</div>
         <hr style="background-color: black; width: 100%;">
@@ -39,14 +39,15 @@
         <hr style="width: 100%;">
         <%-- bookingList는 서버에서 받은 Booking 정보를 담고 있는 List 객체 --%>
        <div>
-       <%--  <% for (Booking booking : bookingList) { %>
+    <c:forEach items="${bookingList}" var="booking">
             <div>${booking.roomName}</div>
             <div>${booking.roomCount}</div>
             <div>${booking.reservationNo}</div>
             <div>${booking.roomCheckin}</div>
             <div>${booking.roomCheckout}</div>
             <div>${booking.status}</div>
-        <% } %> --%>
+            <hr style="width: 100%;">
+        </c:forEach>
     </div>
     </div>
 </body>
