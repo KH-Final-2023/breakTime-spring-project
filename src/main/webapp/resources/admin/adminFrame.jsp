@@ -315,7 +315,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="<%=request.getContextPath()%>/manage/list">
-          <i class="bi bi-layout-text-window-reverse"></i><span>사업자 정보 수정</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-layout-text-window-reverse"></i><span>사업자 정보 관리</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
       </li><!-- End Tables Nav -->
 

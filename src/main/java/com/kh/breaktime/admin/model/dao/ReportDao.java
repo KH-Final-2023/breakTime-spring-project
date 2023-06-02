@@ -34,8 +34,8 @@ public class ReportDao {
 		return sqlSession.update("notice-mapper.reportKeep", r);
 	}
 	
-	public int reportCancel(int reviewNo) {
-		return sqlSession.delete("notice-mapper.reportCancel",reviewNo);
+	public int reportCancel(Review r) {
+		return sqlSession.delete("notice-mapper.reportCancel",r);
 	}
 	
 }

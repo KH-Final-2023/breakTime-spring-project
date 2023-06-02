@@ -78,7 +78,7 @@
 					<li><a class="sideMenu">내 정보</a></li>
 					<li><a class="sideMenu">예약내역</a></li>
 					<li><a class="sideMenu">찜한 목록</a></li>
-					<li><a href="<%=request.getContextPath()%>/member/list"class="sideMenu">문의쪽지</a></li>
+					<li><a class="sideMenu">문의쪽지</a></li>
 					<li><a class="sideMenu">쿠폰함(미정)</a></li>
 				</ul>
 				<div style="margin-top: auto; position: relative;">
@@ -87,40 +87,48 @@
 			</div>
 		
 			<div id="content2">
-					<div style="margin-bottom:3%">
-						<b class="sessionData"><%= loginUser.getUserName()%></b>
-						<span>님 환영합니다.</span>
-					</div>
-					<div style="display:flex;">
-						<div style="height:128px; width:128px; margin-bottom:5%;">
-							<img style="width: 100%;height: 100%;"src="<%=request.getContextPath()%>/resources/images/마이페이지.png">
-						</div>
-						<div style=" padding-left:25%">
-						<button class="btn btn-primary btn-ghost btn-slash">로그아웃</button>
-						</div>
-					</div>
-					<div style="display:flex; margin-bottom:1%">
-						<b>아이디</b>
-						<b class="sessionData"><%= loginUser.getUserId() %></b>
-					</div>
-					<div style="margin-bottom:3%">
-						<button class="btn btn-primary btn-ghost btn-slash">아이디수정</button>
-						<button class="btn btn-primary btn-ghost btn-slash">비밀번호수정</button>
-					</div>
-					<div style="display:flex; margin-bottom:1%">
-						<b>예약자이름</b>
-						<b class="sessionData"><%= loginUser.getUserName() %></b>
-					</div>
-					<div style="margin-bottom:3%">
-						<button class="btn btn-primary btn-ghost btn-slash">예약자이름수정</button>
-					</div>
-					<div style="display:flex; margin-bottom:1%">
-						<b>이메일</b>
-						<b class="sessionData"><%= loginUser.getEmail() %></b>
-					</div>
-					<div style="margin-bottom:3%">
-						<button class="btn btn-primary btn-ghost btn-slash">이메일 수정</button>
-					</div>
+				<form id="searchForm" action="" method="get" align="center">
+				 	<input type="hidden" class="custom-select" name="condition" value="title" ${param.condition=='title' ? 'checked' : ''}>
+				 	
+				 	<div class="text">
+				 		<input type="text" class="form-control" name="keyword" placeholder="문의하실 숙소를 검색하세요."value="${param.keyword }">
+				 	</div>
+				 	<button type="submit" class="searchBtn btn btn-secondary">검색 </button>
+		 		</form>		
+		 		
+		 		<table id="noticeList">
+		 				<thead>
+							<tr style="background: #428bca;color: #fff;">
+								<th>숙소명</th>
+								<th>지역</th>
+								<th>전화번호</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:choose>
+								<c:when test="${empty selectSearchList.list } ">
+									<tr>
+										<td></td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<c:forEach items="${selectSearchList.list}" var="s">
+										<tr>
+											<td>
+												${s.buTitle }
+												<button class="btn btn-primary"
+												onclick="location.href='${contextPath}/chat/room/${s.buNo}'">
+												문의</button>
+											</td>
+											<td>${s.buAddress }</td>
+											<td>${s.buTel }</td>
+											
+										</tr>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</tbody>
+					</table>	
 			</div>
 		</div>
 	</div>

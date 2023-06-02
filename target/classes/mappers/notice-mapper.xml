@@ -201,6 +201,7 @@
 
 	<select id="selectApprovalList" resultMap="approvalResultSet">
 		SELECT
+		BU_NO,
 		BU_ID,
 		BU_USER_NAME,
 		BU_TEL,	
@@ -225,11 +226,12 @@
 	<!-- 고객 정보 수정  -->
 	<select id="selectManageListCount" resultType="_int"> 
 		SELECT COUNT(*) FROM BUSINESS
-		WHERE APPROVAL = 'N'
+		WHERE APPROVAL = 'Y'
 	</select>
 
 	<select id="selectManageList" resultMap="approvalResultSet">
 		SELECT
+		BU_NO,
 		BU_ID,
 		BU_USER_NAME,
 		BU_TEL,	
@@ -244,13 +246,13 @@
 		BU_USER_NAME = #{buUserName},
 		BU_TITLE = #{buTitle},
 		BU_ADDRESS = #{buAddress}
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</update>
 	
 	<delete id="manageCancel">
 		DELETE   
 		FROM BUSINESS
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</delete>
 	
 	<!-- 리뷰 신고 목록 -->
