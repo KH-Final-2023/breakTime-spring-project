@@ -1,6 +1,8 @@
 package com.kh.breaktime.detail.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -24,20 +26,32 @@ public class DetailDAO {
 
 		return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", category);
 	}
+	
+	public ArrayList<Detail> selectDetailList(String category, List<List<Integer>> priceRanges) {
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("category", category);
+	    paramMap.put("priceRanges", priceRanges);
+	    List<Object> resultList = sqlSession.selectList("detailMapper.selectDetailList", paramMap);
 
-	public ArrayList<Detail> selectDetailList(Map<String, Object> paramMap) {
+	    ArrayList<Detail> detailList = new ArrayList<>();
+	    for (Object result : resultList) {
+	        Detail detail = (Detail) result;
+	        detailList.add(detail);
+	    }
 
-		return (ArrayList) sqlSession.selectList("boardMapper.searchDetailList", paramMap);
+	    return detailList;
 	}
+
+
 
 	public ArrayList<Detail> getFilteredData(Map<String, Object> paramMap) {
 
-		return (ArrayList) sqlSession.selectList("boardMapper.getFilteredData", paramMap);
+		return (ArrayList) sqlSession.selectList("detailMapper.getFilteredData", paramMap);
 	}
 	
 	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap){
 		
-		return (ArrayList)sqlSession.selectList("boardMapper.searchDetailList", paramMap);
+		return (ArrayList)sqlSession.selectList("detailMapper.searchDetailList", paramMap);
 	}
 
 }

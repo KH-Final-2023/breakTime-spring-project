@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="kor">
 <head>
@@ -58,17 +58,19 @@
 	text-align: center;
 }
 
-.modal_grid3{
+.modal_grid3 {
 	position: relative;
 }
+
 .modal_grid3:nth-child(3) {
 	grid-column: 2/3;
 	grid-row: 2/12;
 }
+
 .option_closeBtn1, .option_closeBtn2, .option_closeBtn3,
-.option_closeBtn4, .option_closeBtn5, .option_closeBtn6,
-.option_closeBtn7, .option_closeBtn8, .option_closeBtn9,
-.option_closeBtn10  {
+	.option_closeBtn4, .option_closeBtn5, .option_closeBtn6,
+	.option_closeBtn7, .option_closeBtn8, .option_closeBtn9,
+	.option_closeBtn10 {
 	position: absolute;
 	right: 3%;
 	top: 3%;
@@ -81,45 +83,47 @@
 	padding: 1rem;
 }
 
-.modal_grid3>table>tbody>tr>td{
-	width:300px; 
-	padding:20px;
+.modal_grid3>table>tbody>tr>td {
+	width: 300px;
+	padding: 20px;
 }
 
-.modal_grid3>table{
+.modal_grid3>table {
 	position: absolute;
 	top: -200px;
 }
 </style>
 </head>
 <body>
-<div class="modal_background">
+	<div class="modal_background">
 		<div class="modal_box" id="div_01">
 			<div class="modal_grid1">
 				옵션 검색 <input id="optionSearch" type="search">
 				<button class="option_closeBtn1">X</button>
 			</div>
 			<a>전용 시설</a>
-			<div class="modal_grid3"> 
+			<div class="modal_grid3">
 				<table>
 					<tr>
-						<td><input type="checkbox"> 애완동물 허용</td>
-						<td><input type="checkbox"> 바다가 보이는 객실</td>
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="애완동물 허용"> 애완동물 허용</td>
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="바다가 보이는 객실"> 바다가 보이는 객실</td>
 					</tr>
 					<tr>
 						<td><input type="checkbox"> 호수가 보이는 객실</td>
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a
+				href="javascript:show_layer('3');">가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a
+				href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -133,7 +137,7 @@
 				<button class="option_closeBtn2">X</button>
 			</div>
 			<a href="javascript:show_layer('1');">전용 시설</a>
-			<div class="modal_grid3"> 
+			<div class="modal_grid3">
 				<table>
 					<tr>
 						<td><input type="checkbox"> 식당</td>
@@ -149,15 +153,14 @@
 					</tr>
 				</table>
 			</div>
-			<a>음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a>음식 및 음료</a> <a href="javascript:show_layer('3');">가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a
+				href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -183,15 +186,14 @@
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a>가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a>가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a
+				href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -221,15 +223,14 @@
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a>호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a
+				href="javascript:show_layer('3');">가족 친화</a> <a>호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a
+				href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -255,15 +256,14 @@
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a>객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a
+				href="javascript:show_layer('3');">가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a>객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a
+				href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -300,15 +300,14 @@
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a>레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a
+				href="javascript:show_layer('3');">가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a>레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a
+				href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -345,15 +344,14 @@
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a>서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a
+				href="javascript:show_layer('3');">가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a>서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a
+				href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -383,15 +381,14 @@
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a>스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a
+				href="javascript:show_layer('3');">가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a>스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a
+				href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -417,15 +414,14 @@
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a>이동 수단 및 주차 관련</a>
-			<a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a
+				href="javascript:show_layer('3');">가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a>이동 수단 및 주차
+				관련</a> <a href="javascript:show_layer('10');">WiFi 및 인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -450,15 +446,15 @@
 					</tr>
 				</table>
 			</div>
-			<a href="javascript:show_layer('2');">음식 및 음료</a>
-			<a href="javascript:show_layer('3');">가족 친화</a>
-			<a href="javascript:show_layer('4');">호텔 및 야외 부대시설</a>
-			<a href="javascript:show_layer('5');">객실 내</a>
-			<a href="javascript:show_layer('6');">레저 및 엔터테인먼트</a>
-			<a href="javascript:show_layer('7');">서비스</a>
-			<a href="javascript:show_layer('8');">스포츠 및 피트니스</a>
-			<a href="javascript:show_layer('9');">이동 수단 및 주차 관련</a>
-			<a>WiFi 및 인터넷</a>
+			<a href="javascript:show_layer('2');">음식 및 음료</a> <a
+				href="javascript:show_layer('3');">가족 친화</a> <a
+				href="javascript:show_layer('4');">호텔 및 야외 부대시설</a> <a
+				href="javascript:show_layer('5');">객실 내</a> <a
+				href="javascript:show_layer('6');">레저 및 엔터테인먼트</a> <a
+				href="javascript:show_layer('7');">서비스</a> <a
+				href="javascript:show_layer('8');">스포츠 및 피트니스</a> <a
+				href="javascript:show_layer('9');">이동 수단 및 주차 관련</a> <a>WiFi 및
+				인터넷</a>
 			<div></div>
 			<div class="modal_grid22">
 				<button id="optionReset" type="reset">지우기</button>
@@ -466,36 +462,56 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- 옵션 모달창 스크립트 -->
 	<script type="text/javascript">
-		function show_layer(div_name){
-		  document.all.div_01.style.display="none";
-		  document.all.div_02.style.display="none";
-		  document.all.div_03.style.display="none";
-		  document.all.div_04.style.display="none";
-		  document.all.div_05.style.display="none";
-		  document.all.div_06.style.display="none";
-		  document.all.div_07.style.display="none";
-		  document.all.div_08.style.display="none";
-		  document.all.div_09.style.display="none";
-		  document.all.div_10.style.display="none";
-		
-		  switch(div_name){
-			case '1': document.all.div_01.style.display=""; break;
-			case '2': document.all.div_02.style.display=""; break;
-			case '3': document.all.div_03.style.display=""; break;
-			case '4': document.all.div_04.style.display=""; break;
-			case '5': document.all.div_05.style.display=""; break;
-			case '6': document.all.div_06.style.display=""; break;
-			case '7': document.all.div_07.style.display=""; break;
-			case '8': document.all.div_08.style.display=""; break;
-			case '9': document.all.div_09.style.display=""; break;
-			case '10': document.all.div_10.style.display=""; break;
-		  }
+		function show_layer(div_name) {
+			document.all.div_01.style.display = "none";
+			document.all.div_02.style.display = "none";
+			document.all.div_03.style.display = "none";
+			document.all.div_04.style.display = "none";
+			document.all.div_05.style.display = "none";
+			document.all.div_06.style.display = "none";
+			document.all.div_07.style.display = "none";
+			document.all.div_08.style.display = "none";
+			document.all.div_09.style.display = "none";
+			document.all.div_10.style.display = "none";
+
+			switch (div_name) {
+			case '1':
+				document.all.div_01.style.display = "";
+				break;
+			case '2':
+				document.all.div_02.style.display = "";
+				break;
+			case '3':
+				document.all.div_03.style.display = "";
+				break;
+			case '4':
+				document.all.div_04.style.display = "";
+				break;
+			case '5':
+				document.all.div_05.style.display = "";
+				break;
+			case '6':
+				document.all.div_06.style.display = "";
+				break;
+			case '7':
+				document.all.div_07.style.display = "";
+				break;
+			case '8':
+				document.all.div_08.style.display = "";
+				break;
+			case '9':
+				document.all.div_09.style.display = "";
+				break;
+			case '10':
+				document.all.div_10.style.display = "";
+				break;
+			}
 		}
-	  </script>
-	  
-	 
+	</script>
+
+
 </body>
 </html>

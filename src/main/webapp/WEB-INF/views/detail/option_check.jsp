@@ -98,38 +98,49 @@ input[type=range]::-webkit-slider-runnable-track {
 	font-size: 14px;
 }
 
-a{
+a {
 	cursor: pointer;
 }
-
 </style>
 </head>
 <body>
 
 	<div class="optionArea">
 		<div class="houseOption">
-			<form id="houseOption" action="">
+			<form id="houseOption" name="option"
+				action="<%=request.getContextPath()%>/detail" method="GET">
 				<table class="optionTable">
 					<tr>
 						<th class="tableTitle">가격</th>
 					</tr>
 					<tr>
 						<td><input class="price-checkbox" type="checkbox"
-							name="price" value="">₩0 - ₩100,000</td>
+							name="prices[]" value="0,100000">₩0 - ₩100,000</td>
 					</tr>
 					<tr>
 						<td><input class="price-checkbox" type="checkbox"
-							name="price" value="">₩100,000 - ₩200,000</td>
+							name="prices[]" value="100000,200000">₩100,000 -
+							₩200,000</td>
 					</tr>
 					<tr>
 						<td><input class="price-checkbox" type="checkbox"
-							name="price" value="">₩200,000 - ₩300,000</td>
+							name="prices[]" value="200000,300000">₩200,000 -
+							₩300,000</td>
 					</tr>
 					<tr>
 						<td><input class="price-checkbox" type="checkbox"
-							name="price" value="">₩300,000 - ₩400,000</td>
+							name="prices[]" value="300000,400000">₩300,000 -
+							₩400,000</td>
 					</tr>
-					<tr>
+				</table>
+			</form>
+			<div>
+				<button type="submit" form="houseOption">검색하기</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- <tr>
 						<td>
 							<div class="card">
 								<div class="price-content">
@@ -152,38 +163,39 @@ a{
 								</div>
 							</div>
 						</td>
-					</tr>
-					<tr>
+					</tr> -->
+
+	<!-- <tr>
 						<th class="tableTitle">예약 종류</th>
 					</tr>
 					<tr>
-						<td><input class="refund-checkbox" type="checkbox"
-							name="refund" value="무료 취소">무료 취소</td>
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="무료 취소">무료 취소</td>
 					</tr>
 					<tr>
-						<td><input class="refund-checkbox" type="checkbox"
-							name="refund" value="환불 불가">환불 불가</td>
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="환불 불가">환불 불가</td>
 					</tr>
 					<tr>
 						<th class="tableTitle">편의시설</th>
 					</tr>
 					<tr>
 						<td><input class="house-option-checkbox" type="checkbox"
-							name="houseOption" value="와이파이"><i
+							name="houseOptions" value="와이파이"><i
 							class="fa-solid fa-wifi"></i> 와이파이</td>
 					</tr>
 					<tr>
 						<td><input class="house-option-checkbox" type="checkbox"
-							name="houseOption" value="금연"> <i
+							name="houseOptions" value="금연"> <i
 							class="fa-solid fa-ban-smoking"></i> 금연</td>
 					</tr>
 					<tr>
 						<td><input class="house-option-checkbox" type="checkbox"
-							name="houseOption" value="주차장">주차장</td>
+							name="houseOptions" value="주차장">주차장</td>
 					</tr>
 					<tr>
 						<td><input class="house-option-checkbox" type="checkbox"
-							name="houseOption" value="에어컨">에어컨</td>
+							name="houseOptions" value="에어컨">에어컨</td>
 					</tr>
 					<tr>
 						<td><a class="option_openBtn">더 보기</a></td>
@@ -193,7 +205,7 @@ a{
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starCount" value="5"><i
+							name="starScore" value="5"><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
@@ -202,7 +214,7 @@ a{
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starCount" value="4"><i
+							name="starScore" value="4"><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
@@ -210,31 +222,25 @@ a{
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starCount" value="3"><i
+							name="starScore" value="3"><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starCount" value="2"><i
+							name="starScore" value="2"><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starCount" value="1"><i
+							name="starScore" value="1"><i
 							class="fa-solid fa-star starStyle"></i></td>
-					</tr>
-				</table>
-			</form>
-			<div>
-				<button type="submit" form="houseOption">검색하기</button>
-			</div>
-		</div>
-	</div>
+					</tr> -->
 
-	<!-- 가격 슬라이더 스크립트 -->
+
+	<!-- 가격 슬라이더 스크립트 
 	<script>
 		const minPriceSlider = document.querySelector('.min-price');
 		const maxPriceSlider = document.querySelector('.max-price');
@@ -260,7 +266,7 @@ a{
 				+ numberWithCommas(minPriceSlider.value);
 		maxValueElement.textContent = '₩'
 				+ numberWithCommas(maxPriceSlider.value);
-	</script>
+	</script> -->
 
 	<!-- 필터링 스크립트 -->
 	<script>

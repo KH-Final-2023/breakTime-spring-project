@@ -145,7 +145,7 @@ button {
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/header.jsp" />
+	<%-- <jsp:include page="/WEB-INF/views/header.jsp" /> --%>
 
 	<jsp:include page="/WEB-INF/views/detail/searchBar_detail.jsp" />
 

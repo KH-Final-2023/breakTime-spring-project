@@ -117,7 +117,7 @@
         // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
         $("#hotel").click(function() {
             // 리다이렉션할 URL
-            var redirectUrl = "<%=request.getContextPath()%>/detail?category=B02010100";
+            var redirectUrl = "<%=request.getContextPath()%>/detail/list/B02010100";
             // 현재 창에서 새 URL로 리다이렉션
             window.location.href = redirectUrl;
         });
@@ -127,7 +127,7 @@
         // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
         $("#motel").click(function() {
             // 리다이렉션할 URL
-            var redirectUrl = "<%=request.getContextPath()%>/detail?category=B02010900";
+            var redirectUrl = "<%=request.getContextPath()%>/detail/list/B02010900";
             // 현재 창에서 새 URL로 리다이렉션
             window.location.href = redirectUrl;
         });
@@ -137,7 +137,7 @@
         // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
         $("#resort").click(function() {
             // 리다이렉션할 URL
-            var redirectUrl = "<%=request.getContextPath()%>/detail?category=B02010500";
+            var redirectUrl = "<%=request.getContextPath()%>/detail/list/B02010500";
             // 현재 창에서 새 URL로 리다이렉션
             window.location.href = redirectUrl;
         });
@@ -147,7 +147,7 @@
         // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
         $("#pension").click(function() {
             // 리다이렉션할 URL
-            var redirectUrl = "<%=request.getContextPath()%>/detail?category=B02010700";
+            var redirectUrl = "<%=request.getContextPath()%>/detail/list/B02010700";
             // 현재 창에서 새 URL로 리다이렉션
             window.location.href = redirectUrl;
         });

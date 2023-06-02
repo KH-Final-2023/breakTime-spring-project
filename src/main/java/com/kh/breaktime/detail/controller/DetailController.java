@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.breaktime.detail.model.service.DetailService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,33 +28,34 @@ public class DetailController {
 
 	private static final Logger logger = LoggerFactory.getLogger(DetailController.class);
 
-	@GetMapping("/search")
-	public String detailList(@RequestParam(value="category" , required=false) String category, 
-			Model model,
-			@RequestParam Map<String, Object> paramMap) {
-		
-		Map<String, Object> map = new HashMap();
-		
-		if (paramMap.get("condition") == null) {
-			detailService.selectDetailList(category, map);
-		} else {
-			// 검색요청을 한 경우
-			// 검색조건을 추가한 상태로 게시글 셀렉트?
-			paramMap.put("category", category);
-			detailService.searchDetailList(paramMap, map);
-			map.put("condition", paramMap.get("condition"));
-			map.put("keyword", "%"+paramMap.get("keyword")+"%");
-		}
-		String sUrl = "";
-		if(paramMap.get("condition") != null && paramMap.get("keyword")!=null) {
-			sUrl = "&condition="+paramMap.get("condition")+"&keyword="+paramMap.get("keyword");
-		}
-		
-		model.addAttribute("sUrl",sUrl);
-		model.addAttribute("map", map);
+	@GetMapping("/list/{category}")
+	public String detailList(@RequestParam(value = "category", required = false) String category, Model model,
+	        @RequestParam(value = "prices[]", required = false) List<String> prices) {
 
-		return "/detail/detail";
+	    Map<String, Object> map = new HashMap<>();
+	    
+	    if (prices == null || prices.isEmpty()) {
+	        detailService.selectDetailList(category, map);
+	    } else {
+	        // 옵션 선택을 한 경우
+	    	List<List<Integer>> priceRanges = new ArrayList<>();
+	    	for (String price : prices) {
+	    	    System.out.println("price: " + price);
+	    	    String[] range = price.split(",");
+	    	    System.out.println("price: " + price); 
+	    	    System.out.println("range 배열의 길이: " + range.length);
+	    	    int minPrice = Integer.parseInt(range[0].trim());
+	    	    int maxPrice = Integer.parseInt(range[1].trim());
+	    	    priceRanges.add(Arrays.asList(minPrice, maxPrice));
+	    	}
+
+	        detailService.selectDetailList(category, priceRanges);
+	    }
+	    
+	    model.addAttribute("map", map);
+	    
+	    return "/detail/detail";
 	}
-	
+
+
 }
-	
