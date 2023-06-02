@@ -33,7 +33,7 @@ public class DetailDAO {
 	public ArrayList<Detail> getFilteredData(Map<String, Object> paramMap) {
 
 		return (ArrayList) sqlSession.selectList("boardMapper.getFilteredData", paramMap);
-	
+	}
 	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap){
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.searchDetailList", paramMap);

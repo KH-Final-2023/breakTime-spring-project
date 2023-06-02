@@ -132,7 +132,12 @@ public class RoomController {
 	public String buReview() {
 		return "businessRoom/buReview";
 	}
+	
 
+	@GetMapping("/buRoomModify")
+	public String buRoomModify() {
+		return "businessRoom/buRoomModify";
+	}
 
 
 
