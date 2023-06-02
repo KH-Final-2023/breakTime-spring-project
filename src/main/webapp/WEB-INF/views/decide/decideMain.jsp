@@ -224,14 +224,14 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star-half-alt"></i>
                 </span>
-                <span class="score"><b>4.5 (리뷰갯수)</b></span>
+                <span class="score"><b>${r.starScore} +" (" + ${r.reviewCount}+ ") "</b></span>
             </a>
 
             <!-- 주소와 지도 표시 -->
             <div class="location">
                 <a class="map-link" href="https://maps.google.com/maps?q=경기도 부천시 송내동 경인로169번길 571-12" target="_blank">
                     <i class="fas fa-map-marker-alt"></i>
-                    <span class="address">경기도 부천시 송내동 경인로169번길 571-12</span>
+                    <span class="address">${b.buAddress}</span>
                 </a>
             </div>
         </div>

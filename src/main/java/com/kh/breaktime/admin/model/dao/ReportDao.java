@@ -31,7 +31,7 @@ public class ReportDao {
 	}
 	
 	public int reportKeep(Review r) {
-		return sqlSession.update("notice-mapper.approvalAccept", r);
+		return sqlSession.update("notice-mapper.reportKeep", r);
 	}
 	
 	public int reportCancel(int reviewNo) {

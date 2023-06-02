@@ -10,13 +10,16 @@
 
 	<!-- 목록용 resultMap -->
 	<resultMap type="detail" id="detailResultSet">
-		<result column="BU_ADDRESS" property="address" />
-		<result column="AREA_NO" property="areaNo" />
-		<result column="BU_CATEGORY" property="buCategory" />
-		<result column="MAIN_IMG" property="mainImg" />
-		<result column="BU_TEL" property="buTel" />
-		<result column="BU_TITLE" property="buTitle" />
-		<result column="HOUSE" property="house" />
+		<id property="roomNo" column="ROOM_NO" />
+		<result property="mainImg" column="MAIN_IMG" />
+		<result property="roomHCount" column="ROOM_H_COUNT" />
+		<result property="roomPrice" column="ROOM_PRICE" />
+		<result property="buNo" column="BU_NO" />
+		<result property="buAddress" column="BU_ADDRESS" />
+		<result property="areaNo" column="AREA_NO" />
+		<result property="buCategory" column="BU_CATEGORY" />
+		<result property="buTel" column="BU_TEL" />
+		<result property="buTitle" column="BU_TITLE" />
 	</resultMap>
 
 	<!-- 카테고리 코드 셀렉트 -->
@@ -30,15 +33,22 @@
 	<!-- 일반 리스트 목록 -->
 	<select id="selectDetailList" resultMap="detailResultSet">
 		SELECT
-		BU_ADDRESS,
-		AREA_NO,
-		BU_CATEGORY,
-		MAIN_IMG,
-		BU_TEL,
-		BU_TITLE
-		FROM HOUSE
-		WHERE MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
-		ORDER BY AREA_NO ASC
+		H.MAIN_IMG,
+		R.ROOM_NO,
+		R.ROOM_H_COUNT,
+		R.ROOM_PRICE,
+		B.BU_NO,
+		B.BU_ADDRESS,
+		B.AREA_NO,
+		B.BU_CATEGORY,
+		B.BU_TEL,
+		B.BU_TITLE
+		FROM BUSINESS B
+		INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+		INNER JOIN HOUSE H ON B.BU_TITLE = H.BU_TITLE
+		WHERE H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND B.BU_CATEGORY =
+		#{category} AND R.ROOM_H_COUNT = 1
+
 	</select>
 
 	<!-- 검색 리스트 목록 -->
@@ -50,10 +60,36 @@
 		BU_TEL,
 		BU_TITLE
 		FROM HOUSE H
-		WHERE MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
-		<if test='areaCode != null and areaCode != ""'>		
+		WHERE
+		MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
+		<if test='areaCode != null and areaCode != ""'>
 			AND AREA_NO = #{areaNo}
 		</if>
 	</select>
+
+	<!-- 필터링된 데이터 리스트 목록 -->
+	<select id="getFilteredData" resultMap="detailResultSet">
+		SELECT
+		BU_ADDRESS,
+		AREA_NO,
+		BU_CATEGORY,
+		BU_TITLE
+		FROM HOUSE H
+		WHERE
+		MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
+		<if test='areaCode != null and areaCode != ""'>
+			AND AREA_NO = #{areaNo}
+		</if>
+		<choose>
+			<when test="condition == 'address'"> AND BU_ADDRESS LIKE #{keyword} </when>
+			<when test="condition == 'areano'"> AND AREA_NO LIKE #{keyword} </when>
+			<when test="condition == 'category'"> AND BU_CATEGORY LIKE #{keyword} </when>
+			<when test="condition == 'title'"> AND BU_TITLE LIKE #{keyword} </when>
+		</choose>
+	</select>
+	
+	
+	
+	
 
 </mapper>

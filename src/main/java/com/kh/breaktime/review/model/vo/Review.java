@@ -15,14 +15,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Review {
 
-	private int reviewNo;
-	private int reviewWriter;
-	private int usingRoom;
-	private String bookNo;
-	private int starScore;
-	private String reviewContent;
-	private String reviewAvailable;
-	private Date createDate;
-	private String reviewDeclaration;
-	private String parentReviewNo; // PARENT_REVIEW_NO
+	
+	private int reviewNo;							//	REVIEW_NO, 
+	private int reviewWriter;							//	USER_NO, 
+	private int usingRoom;							//	ROOM_NO, 
+	private String bookNo;							//	BOOK_NO, 
+	private int starScore;							//	STAR_SCORE,
+	private String reviewContent;							//	REVIEW_CONTENT,
+	private String reviewAvailable;							//	REVIEW_AVAILABLE,
+	private Date createDate;							//	CREATE_DATE, 
+	private String reviewDeclariation;							//	REVIEW_DECLARIATION, 
+	private String reviewContentReply;						//	PARENT_REVIEW_NO
+	private String userName;
+	private String roomName;
+
 }

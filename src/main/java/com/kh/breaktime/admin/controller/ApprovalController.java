@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.admin.model.service.ApprovalService;
 import com.kh.breaktime.business.model.vo.Business;
@@ -44,8 +45,9 @@ public class ApprovalController {
 	}
 	
 	@GetMapping("/update")
-	public String approvalAccept(Business b) {
+	public String approvalAccept(Business b, RedirectAttributes rttr) {
 		approvalService.approvalAccept(b);
+		rttr.addFlashAttribute("approvalAccept", b.getBuId());
 		return "redirect:/approval/list";
 	}
 }

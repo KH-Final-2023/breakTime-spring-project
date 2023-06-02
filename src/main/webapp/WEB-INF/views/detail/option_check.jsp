@@ -15,7 +15,7 @@
 <style>
 .optionArea {
 	position: fixed;
-	left: 0;
+	left: 20px;
 	top: 80px;
 	height: 100%;
 	width: 250px;
@@ -31,14 +31,16 @@
 
 .tableTitle {
 	height: 60px;
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: bolder;
 }
 
 .card {
 	width: 220px;
 	background-color: #fff;
+	border: none;
 	padding: 5px;
+	margin-top: 30px;
 }
 
 .price-content {
@@ -54,7 +56,7 @@ label {
 }
 
 .price-content>div>p {
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 600;
 }
 
@@ -91,157 +93,144 @@ input[type=range]::-webkit-slider-runnable-track {
 	border-radius: 3px;
 	border: none;
 }
+
+.optionTable>tbody>tr>td {
+	font-size: 14px;
+}
+
+a{
+	cursor: pointer;
+}
+
 </style>
 </head>
 <body>
 
 	<div class="optionArea">
 		<div class="houseOption">
-			<table class="optionTable">
-				<tr>
-					<th class="tableTitle">가격</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox">₩0 - ₩100,000</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">₩100,000 - ₩200,000</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">₩200,000 - ₩300,000</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">₩300,000 - ₩400,000</td>
-				</tr>
-				<tr>
-					<td>
-						<div class="card">
-							<div class="price-content">
-								<div>
-									<label>Min</label>
-									<p id="min-value"></p>
+			<form id="houseOption" action="">
+				<table class="optionTable">
+					<tr>
+						<th class="tableTitle">가격</th>
+					</tr>
+					<tr>
+						<td><input class="price-checkbox" type="checkbox"
+							name="price" value="">₩0 - ₩100,000</td>
+					</tr>
+					<tr>
+						<td><input class="price-checkbox" type="checkbox"
+							name="price" value="">₩100,000 - ₩200,000</td>
+					</tr>
+					<tr>
+						<td><input class="price-checkbox" type="checkbox"
+							name="price" value="">₩200,000 - ₩300,000</td>
+					</tr>
+					<tr>
+						<td><input class="price-checkbox" type="checkbox"
+							name="price" value="">₩300,000 - ₩400,000</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="card">
+								<div class="price-content">
+									<div>
+										<label>Min</label>
+										<p id="min-value"></p>
+									</div>
+
+									<div>
+										<label>Max</label>
+										<p id="max-value"></p>
+									</div>
 								</div>
 
-								<div>
-									<label>Max</label>
-									<p id="max-value"></p>
+								<div class="range-slider">
+									<input type="range" class="min-price" value="0" min="0"
+										max="400000" step="5000"> <input type="range"
+										class="max-price" value="400000" min="0" max="400000"
+										step="5000">
 								</div>
 							</div>
-
-							<div class="range-slider">
-								<input type="range" class="min-price" value="0" min="0"
-									max="400000" step="5000"> <input type="range"
-									class="max-price" value="400000" min="0" max="400000"
-									step="5000">
-							</div>
-						</div>
-					</td>
-				</tr>
-				<tr>
-					<th class="tableTitle">숙소 종류</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox">호텔</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">리조트</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">콘도</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">모텔</td>
-				</tr>
-				<tr>
-					<th class="tableTitle">예약 종류</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox">무료 취소</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">환불 불가</td>
-				</tr>
-				<tr>
-					<th class="tableTitle">편의시설</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox"><i class="fa-solid fa-wifi"></i>
-						와이파이</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"><i
-						class="fa-solid fa-ban-smoking"></i> 금연</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">주차장</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">에어컨</td>
-				</tr>
-				<tr>
-					<td><button class="option_openBtn">더 보기</button></td>
-				</tr>
-				<tr>
-					<th class="tableTitle">투숙객 별점</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox"><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star-half starStyle"></i></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star-half starStyle"></i></td>
-				</tr>
-				<tr>
-					<td><input type="checkbox"><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i><i
-						class="fa-solid fa-star starStyle"></i></td>
-				</tr>
-				<tr>
-					<th class="tableTitle">식사 계획</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox">조식 포함</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">조식 포함 안 됨</td>
-				</tr>
-				<tr>
-					<th class="tableTitle">인근 지역</th>
-				</tr>
-				<tr>
-					<td><input type="checkbox">인제군</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">홍천군</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox">평창군</td>
-				</tr>
-			</table>
+						</td>
+					</tr>
+					<tr>
+						<th class="tableTitle">예약 종류</th>
+					</tr>
+					<tr>
+						<td><input class="refund-checkbox" type="checkbox"
+							name="refund" value="무료 취소">무료 취소</td>
+					</tr>
+					<tr>
+						<td><input class="refund-checkbox" type="checkbox"
+							name="refund" value="환불 불가">환불 불가</td>
+					</tr>
+					<tr>
+						<th class="tableTitle">편의시설</th>
+					</tr>
+					<tr>
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOption" value="와이파이"><i
+							class="fa-solid fa-wifi"></i> 와이파이</td>
+					</tr>
+					<tr>
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOption" value="금연"> <i
+							class="fa-solid fa-ban-smoking"></i> 금연</td>
+					</tr>
+					<tr>
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOption" value="주차장">주차장</td>
+					</tr>
+					<tr>
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOption" value="에어컨">에어컨</td>
+					</tr>
+					<tr>
+						<td><a class="option_openBtn">더 보기</a></td>
+					</tr>
+					<tr>
+						<th class="tableTitle">투숙객 별점</th>
+					</tr>
+					<tr>
+						<td><input class="star-count-checkbox" type="checkbox"
+							name="starCount" value="5"><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i></td>
+					</tr>
+					<tr>
+						<td><input class="star-count-checkbox" type="checkbox"
+							name="starCount" value="4"><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i></td>
+					</tr>
+					<tr>
+						<td><input class="star-count-checkbox" type="checkbox"
+							name="starCount" value="3"><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i></td>
+					</tr>
+					<tr>
+						<td><input class="star-count-checkbox" type="checkbox"
+							name="starCount" value="2"><i
+							class="fa-solid fa-star starStyle"></i><i
+							class="fa-solid fa-star starStyle"></i></td>
+					</tr>
+					<tr>
+						<td><input class="star-count-checkbox" type="checkbox"
+							name="starCount" value="1"><i
+							class="fa-solid fa-star starStyle"></i></td>
+					</tr>
+				</table>
+			</form>
+			<div>
+				<button type="submit" form="houseOption">검색하기</button>
+			</div>
 		</div>
 	</div>
 
@@ -271,6 +260,11 @@ input[type=range]::-webkit-slider-runnable-track {
 				+ numberWithCommas(minPriceSlider.value);
 		maxValueElement.textContent = '₩'
 				+ numberWithCommas(maxPriceSlider.value);
+	</script>
+
+	<!-- 필터링 스크립트 -->
+	<script>
+		
 	</script>
 </body>
 </html>

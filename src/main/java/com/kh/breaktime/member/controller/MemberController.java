@@ -141,9 +141,10 @@ public class MemberController {
         return "redirect:/";              
     }
 	
-	@GetMapping("/myPage") // /spring/member/insert
+	@GetMapping("/myPage") 
 	public String myPageForm() {
-
+		
+		
 		return "member/myPage";
 	}
 	

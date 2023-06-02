@@ -212,7 +212,7 @@ public class NoticeController {
 	@PostMapping("/insert")
 	public String noticeEnroll(Notice n , RedirectAttributes rttr) {
 	    noticeService.insertNotice(n);
-		rttr.addFlashAttribute("insert", n.getNoticeNo());
+		rttr.addFlashAttribute("insertNotice", n.getNoticeNo());
 		return "redirect:/notice/list";
 	}
 	
@@ -238,7 +238,7 @@ public class NoticeController {
 	@PostMapping("/update")
 	public String noticeUpdatePost(Notice n, RedirectAttributes rttr) {
 		noticeService.updateNotice(n);
-		rttr.addFlashAttribute("update", n.getNoticeNo());
+		rttr.addFlashAttribute("updateNotice", n.getNoticeNo());
 		return "redirect:/notice/list";
 	}
 }

@@ -15,17 +15,26 @@ public class DetailDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
-	public ArrayList<CategoryCode> selectCategoryCodeList(){
-		return (ArrayList)sqlSession.selectList("detailMapper.selectCategoryCodeList");
+
+	public ArrayList<CategoryCode> selectCategoryCodeList() {
+		return (ArrayList) sqlSession.selectList("detailMapper.selectCategoryCodeList");
 	}
 
 	public ArrayList<Detail> selectDetailList(String category) {
 
 		return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", category);
 	}
+
+	public ArrayList<Detail> selectDetailList(Map<String, Object> paramMap) {
+
+		return (ArrayList) sqlSession.selectList("boardMapper.searchDetailList", paramMap);
+	}
+
+	public ArrayList<Detail> getFilteredData(Map<String, Object> paramMap) {
+
+		return (ArrayList) sqlSession.selectList("boardMapper.getFilteredData", paramMap);
 	
-	public ArrayList<Detail> selectDetailList(Map<String, Object> paramMap){
+	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap){
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.searchDetailList", paramMap);
 	}

@@ -24,7 +24,7 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		int listCount = noticeDao.selectNoticeListCount();
 		int pageLimit = 10;
-		int boardLimit = 5;
+		int boardLimit = 10;
 		PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
 
 
