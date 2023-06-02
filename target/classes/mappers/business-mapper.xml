@@ -35,19 +35,34 @@
 		<result column="FILE_LEVEL" property="fileLevel" />
 		<result column="STATUS" property="status" />
 	</resultMap>
-	
+
 	<resultMap id="bookingResultMap" type="booking">
-			<id property="bookNo" column="BOOK_NO" />
-			<result property="userNo" column="USER_NO" />
-			<result property="roomCount" column="ROOM_COUNT" />
-			<result property="reservationNo" column="RESERVATION_NO" />
-			<result property="roomName" column="ROOM_NAME" />
-			<result property="roomCheckin" column="ROOM_CHECKIN" />
-			<result property="roomCheckout" column="ROOM_CHECKOUT" />
-			<result property="status" column="STATUS" />
-		</resultMap>
+		<id property="bookNo" column="BOOK_NO" />
+		<result property="userNo" column="USER_NO" />
+		<result property="roomCount" column="ROOM_COUNT" />
+		<result property="reservationNo" column="RESERVATION_NO" />
+		<result property="roomName" column="ROOM_NAME" />
+		<result property="roomCheckin" column="ROOM_CHECKIN" />
+		<result property="roomCheckout" column="ROOM_CHECKOUT" />
+		<result property="status" column="STATUS" />
+	</resultMap>
+
+	<resultMap id="reviewMap" type="review">
+		<id property="reviewNo" column="REVIEW_NO" />
+		<result property="reviewWriter" column="REVIEW_WRITER" />
+		<result property="usingRoom" column="USING_ROOM" />
+		<result property="bookNo" column="BOOK_NO" />
+		<result property="starScore" column="STAR_SCORE" />
+		<result property="reviewContent" column="REVIEW_CONTENT" />
+		<result property="reviewAvailable" column="REVIEW_AVAILABLE" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="reviewDeclaration"
+			column="REVIEW_DECLARATION" />
+		<result property="parentReviewNo" column="PARENT_REVIEW_NO" />
+	</resultMap>
 	<!-- 로그인사업자 정보 SELECT(석범) -->
-	<select id="loginBusiness" parameterType="business" resultMap="businessResultSet">
+	<select id="loginBusiness" parameterType="business"
+		resultMap="businessResultSet">
 		SELECT *
 		FROM BUSINESS
 		WHERE BU_ID = #{buId}
@@ -89,7 +104,8 @@
 
 
 	<!-- 사업자의 방 목록 SELECT (준석) -->
-	<select id="getRoomsByBuId" parameterType="String" resultMap="roomResultMap">
+	<select id="getRoomsByBuId" parameterType="String"
+		resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM
 		WHERE BU_ID = #{buId}
@@ -97,7 +113,8 @@
 
 	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
 	<!-- 방 이미지 조회 -->
-	<select id="getRoomImagesByBuId" parameterType="_int" resultMap="roomImgResultMap">
+	<select id="getRoomImagesByBuId" parameterType="_int"
+		resultMap="roomImgResultMap">
 		SELECT *
 		FROM ROOM_IMG
 		WHERE ROOM_NO = #{roomNo}
@@ -106,6 +123,19 @@
 	<select id="selectBookings" resultMap="bookingResultMap">
 		SELECT *
 		FROM BOOKING
+	</select>
+
+	<select id="getReviewsForBusiness" parameterType="String"
+		resultType="review">
+		SELECT REVIEW_NO, REVIEW_WRITER, USING_ROOM, BOOK_NO, STAR_SCORE,
+		REVIEW_CONTENT, REVIEW_AVAILABLE,
+		CREATE_DATE, REVIEW_DECLARIATION, PARENT_REVIEW_NO
+		FROM REVIEW
+		WHERE REVIEW_DECLARIATION = 'Y' AND USING_ROOM IN (
+		SELECT ROOM_NO
+		FROM ROOM
+		WHERE BU_ID = #{businessId}
+		)
 	</select>
 
 </mapper>
