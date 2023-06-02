@@ -20,7 +20,7 @@ public class DetailServiceImpl implements DetailService {
 		return detailDao.selectCategoryCodeList();
 	}
 
-	public void selectDetailList(String category, Map<String, Object> map) {
+	public void selectDetailList(String category, Map<String, Object> map) {TDT
 		ArrayList<Detail> list = detailDao.selectDetailList(category);
 
 		map.put("list", list);
@@ -35,7 +35,7 @@ public class DetailServiceImpl implements DetailService {
 	public void getFilteredData(Map<String, Object> paramMap, Map<String, Object> map) {
 		ArrayList<Detail> list = detailDao.getFilteredData(paramMap);
 
-	
+	}
 	public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map) {
 		ArrayList<Detail> list = detailDao.searchDetailList(paramMap);
 		
