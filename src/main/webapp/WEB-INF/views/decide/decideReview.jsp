@@ -416,12 +416,10 @@ opacity
             }
 
             // 후기 개수 및 별점 표시
-            var reviewCount = ${r.reviewCount}; // 후기 개수
-            var ratingScore = ${r.starScore}; // 평점
-            var starRatingHTML = showRating(${r.starScore});	
+            var starRatingHTML = showRating(${r.starScore});
 
-            $('.review-container span').text('후기 (' + reviewCount + ')');
-            $('.review-star').html('<div class="star-rating">' + starRatingHTML + '<span class="rating-score">' + ratingScore + '<span class="rating-small">/5</span></span></div>');
+            $('.review-container span').text('후기 (' + ${r.reviewCount} + ')');
+            $('.review-star').html('<div class="star-rating">' + starRatingHTML + '<span class="rating-score">' + ${starScore} + '<span class="rating-small">/5</span></span></div>');
             $('.review-avg').html("누적 평점");
 
             // 별 크기 변경
@@ -551,7 +549,7 @@ opacity
 	<div class="container">
 		<div class="detail2-all">
 			<div class="review-container">
-				<span>후기 +" (" + ${r.reviewCount}+ ") "</span>
+				<span>후기 (${r.reviewCount})</span>
 			</div>
 
 			<div class="review-star">
@@ -577,12 +575,11 @@ opacity
 									<span class="fa fa-star"></span>
 								</div>
 								<div id="reviewNickname">
-									<div>${m.userName}+" | "+ ${r.createDate}</div>
+									<div>${m.userName} | ${r.createDate}</div>
 								</div>
 								<div id="reviewRoomName">
 									<div id="reviewRoomNameList">객실명</div>
-									<div id="reviewRoomNameInfo">${r.roomName}+ " (" +
-										${r.roomInfo} + ")"</div>
+									<div id="reviewRoomNameInfo">${r.roomName}(${r.roomInfo})</div>
 								</div>
 								<div id="review">${r.reviewContent }</div>
 

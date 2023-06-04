@@ -224,8 +224,7 @@ body {
 				class="stars"> <i class="fas fa-star"></i> <i
 					class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 					class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-			</span> <span class="score"><b>${r.starScore} +" (" +
-						${r.reviewCount}+ ") "</b></span>
+			</span> <span class="score"><b>${r.starScore} (${r.reviewCount})</b></span>
 			</a>
 
 			<!-- 주소와 지도 표시 -->
