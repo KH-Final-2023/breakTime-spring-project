@@ -100,13 +100,13 @@ overflow: hidden;
 				<c:forEach items="${list}" var="msg">
 					<fmt:formatDate var="chatDate" value="${msg.createDate }"
 						pattern="yyyy년 MM월 dd일 HH:mm:ss" />
-					<c:if test="${msg.userNo == loginUser.userNo }">
+					<c:if test="${msg.buNo == loginBusiness.buNo }">
 						<li class="myChat"><span class="chatDate">${chatDate}</span>
 							<p class="chat">${msg.message }</p></li>
 					</c:if>
 
-					<c:if test="${msg.userNo != loginUser.userNo }">
-						<li><b>${msg.userId }</b> <br>
+					<c:if test="${msg.buNo != loginBusiness.buNo }">
+						<li><b>사용자</b> <br>
 							<p class="chat">${msg.message }</p> <span class="chatDate">${chatDate}</span>
 						</li>
 					</c:if>
@@ -123,14 +123,13 @@ overflow: hidden;
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	
 	<script>
-   		const userNo = '${loginUser.userNo}';
-   		const userId = '${loginUser.userId}';
+   		const buNo = '${loginBusiness.buNo}';
    		const buNo = '${buNo}';
    		const contextPath = '${contextPath}';
    		
    		let chattingSock = new SockJS(contextPath+"/chat");
    </script>
 
-	<script src="${contextPath }/resources/js/chat/chat.js"></script>
+	<script src="${contextPath }/resources/js/chat/chatBu.js"></script>
 </body>
 </html>

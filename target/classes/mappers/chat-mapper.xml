@@ -2,24 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="chat-mapper">
 	
-	<resultMap type="chatRoom" id="chatRoomResultSet">
-		<result column="BU_NO" property="buNo"/>
-		<result column="TITLE" property="title"/>
-		<result column="CNT" property="cnt"/>
-		<result column="USER_NO" property="userNo"/>
-		<result column="USER_ID" property="userId"/>
-		<result column="STATUS" property="status"/>
-	</resultMap>
-	
-	<resultMap type="chatRoomBu" id="chatRoomBuResultSet">
-		<result column="CHAT_ROOM_NO" property="chatRoomNo"/>
-		<result column="TITLE" property="title"/>
-		<result column="CNT" property="cnt"/>
-		<result column="USER_NO" property="userNo"/>
-		<result column="USER_ID" property="userId"/>
-		<result column="STATUS" property="status"/>
-	</resultMap>
-	
 	<resultMap type="chatMessage" id="chatMessageResultSet">
 		<result column="CM_NO" property="cmNo" />
 		<result column="MESSAGE" property="message" />
@@ -29,17 +11,6 @@
 		<result column="USER_ID" property="userId"/>
 	</resultMap>
 	
-	<insert id="openChatRoom" useGeneratedKeys="true">
-		
-		<selectKey keyProperty="buNo" resultType="int" order="BEFORE">
-			SELECT SEQ_CR_NO.NEXTVAL FROM DUAL
-		</selectKey>
-		
-		INSERT INTO CHAT_ROOM_BU VALUES
-		(#{chatRoomNo} , #{title}, #{buNo}, DEFAULT)
-	</insert>
-	
-	
 	<!-- 채팅방 참여여부 확인 -->
 	<select id="joinCheck" resultType="_int" parameterType="chatRoomJoin">
 		SELECT COUNT(*)
@@ -48,10 +19,21 @@
 		AND USER_NO = #{userNo}
 	</select>
 	
+	<select id="joinCheckBu" resultType="_int" parameterType="chatRoomJoinBu">
+		SELECT COUNT(*)
+		FROM CHAT_ROOM_JOIN_BU
+		WHERE BU_NO = #{buNo}
+	</select>
+	
 	<!-- 채팅방 참여하기 -->
 	<insert id="joinChatRoom" parameterType="chatRoomJoin">
 		INSERT INTO CHAT_ROOM_JOIN
 		VALUES (#{userNo}, #{buNo})
+	</insert>
+	
+	<insert id="joinChatRoomBu" parameterType="chatRoomJoinBu">
+		INSERT INTO CHAT_ROOM_JOIN_BU
+		VALUES (#{buNo})
 	</insert>
 	
 	<!-- 채팅 메세지 목록 조회 -->
@@ -71,30 +53,11 @@
 	<insert id="insertMessage" parameterType="chatMessage">
 		INSERT INTO CHAT_MESSAGE
 		VALUES (SEQ_CM_NO.NEXTVAL, #{message}, DEFAULT, #{buNo}, #{userNo})
-	</insert>
+	</insert> 
 	
-	<!-- 채팅방 나가기 -->
-	<delete id="exitChatRoom" parameterType="chatRoomJoin">
-		DELETE FROM CHAT_ROOM_JOIN
-		WHERE USER_NO = #{userNo} 
-		  AND BU_NO = #{buNo}
-	</delete>
-	
-	<!-- 채팅방 인원 수 확인 -->
-	<select id="countChatRoomMember" resultType="_int">
-		SELECT
-			COUNT(*)
-		FROM  CHAT_ROOM_JOIN
-		WHERE BU_NO = #{buNo}
-	</select>
-	
-	<!-- 채팅방 닫기 -->
-	<update id="closeChatRoom">
-		UPDATE CHAT_ROOM SET
-		STATUS = 'N'
-		WHERE BU_NO = #{buNo}
-	</update>
-	
-	
+	<insert id="insertMessageBu" parameterType="chatMessageBu">
+		INSERT INTO CHAT_MESSAGE_BU
+		VALUES (SEQ_CM_NO.NEXTVAL, #{message}, DEFAULT, #{buNo})
+	</insert> 
 	
 </mapper>

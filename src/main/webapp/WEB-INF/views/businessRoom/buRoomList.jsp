@@ -23,6 +23,9 @@
 			<form action="/breaktime/businessRoom/review" method="GET">
 				<button type="submit" id="buReview">리뷰</button>
 			</form>
+			<a href="<%=  request.getContextPath() %>/chat/roomBu">
+			<button type="submit" id="buReview">문의내역</button>
+			</a>
 		</div>
 		<div id="content2">
 			<div id="resistedRoomListText">등록한 객실 리스트</div>

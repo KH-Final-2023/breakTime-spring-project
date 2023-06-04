@@ -3,17 +3,18 @@ package com.kh.breaktime.chat.model.service;
 import java.util.List;
 
 import com.kh.breaktime.chat.model.vo.ChatMessage;
-import com.kh.breaktime.chat.model.vo.ChatRoom;
-import com.kh.breaktime.chat.model.vo.ChatRoomBu;
+import com.kh.breaktime.chat.model.vo.ChatMessageBu;
 import com.kh.breaktime.chat.model.vo.ChatRoomJoin;
+import com.kh.breaktime.chat.model.vo.ChatRoomJoinBu;
 
 public interface ChatService {
 
 	List<ChatMessage> joinChatRoom(ChatRoomJoin join);
 	
-	int openChatRoom(ChatRoomBu cr);
+	List<ChatMessage> joinBuChatRoom(ChatRoomJoinBu join);
 	
 	int insertMessage(ChatMessage cm);
 	
-	int exitChatRoom(ChatRoomJoin crj);
+	int insertMessageBu(ChatMessageBu cmb);
+	
 }
