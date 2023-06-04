@@ -7,198 +7,110 @@
 <meta charset="UTF-8">
 <title>메인</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" href="/breaktime/resources/css/header.css">
-<link rel="stylesheet" href="/breaktime/resources/css/font.css">
-<style>
-/* Reset CSS */
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/header.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/font.css">
 
-/* 전체적인 스타일 */
-body {
-	
-	font-size: 14px;
-	line-height: 1.4;
-	color: #333;
-	background-color: #f2f2f2;
-}
-
-.container-main {
-	max-width: 768px;
-	margin: 0 auto;
-	background-color: #fff;
-	/* 컨테이너 배경색상 */
-}
-
-.detail2-one-main {
-	padding: 0 2rem;
-}
-
-.main-image {
-	width: 100%;
-	height: auto;
-	margin-bottom: 10px;
-}
-
-.company-info {
-	display: flex;
-}
-
-.company-name {
-	font-size: 20px;
-	font-weight: bold;
-}
-
-.icons {
-	margin-left: auto;
-}
-
-.icon {
-	font-size: 24px;
-	margin-left: 10px;
-	color: #333;
-	cursor: pointer;
-}
-
-.icon.red {
-	color: #ff0000;
-}
-
-.rating {
-	display: flex;
-	align-items: center;
-	margin-top: 3px;
-	text-decoration: none;
-}
-
-.stars {
-	color: rgba(255, 204, 0, 0.852);
-	margin-right: 5px;
-}
-
-.score {
-	font-size: 14px;
-	color: #333;
-}
-
-.location {
-	display: flex;
-	align-items: center;
-	margin-top: 10px;
-	padding-bottom: 15px;
-}
-
-.map-link {
-	display: inline-block;
-	color: #0000ff86;
-	text-decoration: none;
-	margin-right: 5px;
-}
-
-.map-icon {
-	font-size: 16px;
-	margin-right: 5px;
-}
-
-.address {
-	font-size: 13px;
-	color: #0000ff86;
-}
-
-.section {
-	margin-top: 10px;
-	height: 40px;
-	line-height: 40px;
-	padding: 0 2rem;
-	border-bottom: 1px solid #f2f2f2;
-}
-
-#section-content {
-	margin-top: 20px;
-}
-
-.detail2-select {
-	max-width: 768px;
-	margin: 0 auto;
-	background-color: #fff;
-}
-
-.section-link {
-	font-size: 16px;
-	text-decoration: none;
-	margin-right: 10px;
-	text-underline-offset: 13px;
-	color: #333333c7;
-	transition: color 0.3s;
-	position: relative;
-}
-
-.section-link::after {
-	content: "";
-	position: absolute;
-	left: 0;
-	bottom: -12px;
-	width: 100%;
-	height: 2px;
-	background-color: #8888883b;
-	visibility: hidden;
-	transition: visibility 0s ease-in-out, background-color 0.3s ease-in-out;
-}
-
-.section-link.active {
-	color: #0000ff;
-}
-
-.section-link.active::after {
-	visibility: visible;
-	background-color: #0000ff;
-}
-</style>
 
 <script>
-	$(document).ready(function() {
-		// 공유 아이콘 클릭 시 페이지 링크 복사
-		$(".share-icon").click(function() {
-			var pageUrl = window.location.href;
-			navigator.clipboard.writeText(pageUrl);
-			alert("페이지 링크가 복사되었습니다!");
-		});
-		// 하트 아이콘 클릭 시 색상 변경
-		$(".heart-icon").click(function() {
-			$(this).toggleClass("far fa-heart");
-			$(this).toggleClass("fas fa-heart");
-			$(this).toggleClass("red"); // 빨간색 클래스 추가 및 제거
-		});
+$(document).ready(function() {
+	
+	/* // 별점을 업데이트하는 함수
+	function updateStars(starScore) {
+		let intPart = Math.floor(starScore);
+		let decimalPart = starScore - intPart;
+		let starHTML = '';
+		for (let i = 0; i < intPart; i++) {
+			starHTML += '<i class="fas fa-star"></i>';
+		}
+		if (decimalPart >= 0.5) {
+			starHTML += '<i class="fas fa-star-half-alt"></i>';
+		}
+		$('.stars').html(starHTML);
+	}
 
-		// 섹션 링크 클릭 시 스타일 변경
-		$(".section-link").click(function(e) {
-			e.preventDefault();
-			$(".section-link").removeClass("active"); // 모든 링크의 active 클래스 제거
-			$(this).addClass("active"); // 클릭한 링크에 active 클래스 추가
-		});
+	// 별점이 존재하면 업데이트
+	if (${r.starScore} != null) {
+		updateStars(${r.starScore});
+	} */
+	
+	// 별점을 업데이트하는 함수
+	function updateStars(starScore) {
+		let intPart = Math.floor(starScore);
+		let decimalPart = starScore - intPart;
+		let starHTML = '';
+		for (let i = 0; i < intPart; i++) {
+			starHTML += '<i class="fas fa-star"></i>';
+		}
+		if (decimalPart >= 0.5) {
+			starHTML += '<i class="fas fa-star-half-alt"></i>';
+		}
+		$('.stars').html(starHTML);
+	}
 
-		// 섹션 링크 클릭 시 비동기식으로 JSP 로드
-		$(".section-link, .rating").click(function(e) {
-			e.preventDefault();
-			var target = $(this).attr("href");
-			$("#section-content").load(target);
-
-			// 리뷰/후기 섹션 클릭 시 스타일 변경
-			if ($(this).hasClass("rating")) {
-				$(".section-link").removeClass("active"); // 모든 링크의 active 클래스 제거
-				$(".section-link.review-link").addClass("active"); // 리뷰/후기 섹션 링크에 active 클래스 추가
-			}
-		});
-
-		// 객실선택.html 페이지 자동로드
-		var target = "${contextPath}/decide/deroom";
-		$("#section-content").load(target);
+	// 별점이 존재하면 업데이트
+	var starScoreStr = "${r.starScore}";
+	if (starScoreStr !== "null") {
+		updateStars(parseFloat(starScoreStr));
+	}
+	
+	// 공유 아이콘 클릭 시 페이지 링크 복사
+	$(".share-icon").click(function() {
+		var pageUrl = window.location.href;
+		navigator.clipboard.writeText(pageUrl);
+		alert("페이지 링크가 복사되었습니다!");
 	});
+	
+	// 별점 점수를 받아옵니다.
+	let starScore = 3.7;
+	// 별점 점수를 정수와 소수 부분으로 분리합니다.
+	let intPart = Math.floor(starScore);
+	let decimalPart = starScore - intPart;
+	// 별을 출력하는 변수를 생성합니다.
+	let starHTML = '';
+	// 정수 부분의 수만큼 전체 별을 출력합니다.
+	for (let i = 0; i < intPart; i++) {
+	    starHTML += '<i class="fas fa-star"></i>';
+	}
+	// 소수 부분이 0.5 이상이면 반개 별을 출력합니다.
+	if (decimalPart >= 0.5) {
+	    starHTML += '<i class="fas fa-star-half-alt"></i>';
+	}
+	// 생성한 HTML을 별점 요소에 삽입합니다.
+	$('.stars').html(starHTML);
+	
+	// 하트 아이콘 클릭 시 색상 변경
+	$(".heart-icon").click(function() {
+		$(this).toggleClass("far fa-heart");
+		$(this).toggleClass("fas fa-heart");
+		$(this).toggleClass("red"); // 빨간색 클래스 추가 및 제거
+	});
+
+	// 섹션 링크 클릭 시 스타일 변경
+	$(".section-link").click(function(e) {
+		e.preventDefault();
+		$(".section-link").removeClass("active"); // 모든 링크의 active 클래스 제거
+		$(this).addClass("active"); // 클릭한 링크에 active 클래스 추가
+	});
+
+	// 섹션 링크 클릭 시 비동기식으로 JSP 로드
+	$(".section-link, .rating").click(function(e) {
+		e.preventDefault();
+		var target = $(this).attr("href");
+		$("#section-content").load(target);
+
+		// 리뷰/후기 섹션 클릭 시 스타일 변경
+		if ($(this).hasClass("rating")) {
+			$(".section-link").removeClass("active"); // 모든 링크의 active 클래스 제거
+			$(".section-link.review-link").addClass("active"); // 리뷰/후기 섹션 링크에 active 클래스 추가
+		}
+	});
+
+	// 객실선택.html 페이지 자동로드
+	var target = "${contextPath}/decide/deroom";
+	$("#section-content").load(target);
+});
 </script>
 </head>
 
