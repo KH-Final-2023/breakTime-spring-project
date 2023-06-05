@@ -45,7 +45,8 @@
 	</insert>
 
 	<insert id="insertRoomImgList" parameterType="roomImg">
-		INSERT INTO ROOM_IMG
+		INSERT INTO
+		ROOM_IMG
 		(
 		FILE_NO,
 		ROOM_NO,
@@ -66,18 +67,21 @@
 		#{status}
 		)
 	</insert>
-	
-<!-- 	<select id="getRoomsByBuId" parameterType="String" resultMap="roomResultSet">
-        SELECT *
-        FROM ROOM
-        WHERE BU_ID = #{buId}
-    </select>
-
-    사업자의 방 이미지 정보 가져오기
-    <select id="getRoomImagesByBuId" parameterType="String" resultMap="roomImgResultSet">
-        SELECT *
-        FROM ROOM_IMG
-        WHERE ROOM_NO IN (SELECT ROOM_NO FROM ROOM WHERE BU_ID = #{buId})
-    </select> -->
-
+	<update id="updateRoom" parameterType="room">
+		UPDATE ROOM SET
+		ROOM_COUNT = #{roomCount},
+		ROOM_NAME = #{roomName},
+		ROOM_PRICE = #{roomPrice},
+		ROOM_INFO = #{roomInfo}
+		WHERE ROOM_NO = #{roomNo}
+	</update>
+	<update id="updateRoomImg" parameterType="roomImg">
+		UPDATE ROOM_IMG SET
+		ORIGIN_NAME = #{originName},
+		SAVE_NAME = #{saveName},
+		FILE_PATH = #{filePath},
+		FILE_LEVEL = #{fileLevel},
+		STATUS = #{status}
+		WHERE FILE_NO = #{fileNo}
+	</update>
 </mapper>

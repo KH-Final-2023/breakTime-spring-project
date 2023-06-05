@@ -23,24 +23,24 @@ import com.kh.breaktime.booking.model.vo.Booking;
 import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.room.model.service.RoomService;
 import com.kh.breaktime.room.model.vo.Room;
+import com.kh.breaktime.room.model.vo.RoomImg;
 
 @Controller
 @RequestMapping("/businessRoom")
 @SessionAttributes({ "loginUser" })
 public class RoomController {
 
-
 	@Autowired
 	private RoomService buService;
-	
+
 	@Autowired
 	private ServletContext servletContext;
 
 //	  private static final Logger Logger = LoggerFactory.getLogger(buController.class);
 
 	@PostMapping("/enroll")
-	public String registerBuRoom(Room buRoom, @RequestParam("upfiles") List<MultipartFile> upfiles,
-			HttpSession session, Model model) {
+	public String registerBuRoom(Room buRoom, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
+			Model model) {
 		try {
 			List<String> savedImagePaths = new ArrayList<>();
 			for (MultipartFile file : upfiles) {
@@ -61,35 +61,36 @@ public class RoomController {
 	}
 
 	public String saveImage(MultipartFile file) {
-		//MultipartFile 객체인 file을 매개변수로 받습니다. 이 객체는 업로드된 이미지 파일을 나타냅니다.
+		// MultipartFile 객체인 file을 매개변수로 받습니다. 이 객체는 업로드된 이미지 파일을 나타냅니다.
 		String uploadPath = servletContext.getRealPath("/resources/images"); // 이미지 저장 디렉토리 경로
-		//servletContext.getRealPath("/resources/images")를 사용하여 이미지 저장 디렉토리 경로인 uploadPath를 가져옵니다. 
-		//servletContext.getRealPath 메서드는 서블릿 컨텍스트를 통해 실제 파일 시스템 경로를 얻을 수 있습니다. 여기서는 /resources/images 디렉토리를 사용합니다.
+		// servletContext.getRealPath("/resources/images")를 사용하여 이미지 저장 디렉토리 경로인
+		// uploadPath를 가져옵니다.
+		// servletContext.getRealPath 메서드는 서블릿 컨텍스트를 통해 실제 파일 시스템 경로를 얻을 수 있습니다. 여기서는
+		// /resources/images 디렉토리를 사용합니다.
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename()); // 파일명
-		//file.getOriginalFilename()을 호출하여 업로드된 파일의 원래 파일명을 가져옵니다.
+		// file.getOriginalFilename()을 호출하여 업로드된 파일의 원래 파일명을 가져옵니다.
 		try {
-			//	StringUtils.cleanPath를 사용하여 파일명에서 잠재적인 경로 조작을 정리합니다. 
-			//이는 파일명에 포함된 경로 구분자 등을 제거하여 안전한 파일명을 생성하는 작업입니다.
+			// StringUtils.cleanPath를 사용하여 파일명에서 잠재적인 경로 조작을 정리합니다.
+			// 이는 파일명에 포함된 경로 구분자 등을 제거하여 안전한 파일명을 생성하는 작업입니다.
 			String savePath = uploadPath + File.separator + fileName;
-			//이미지 저장 경로인 savePath를 uploadPath + File.separator + fileName로 생성합니다. 
-			//File.separator는 파일 시스템의 경로 구분자를 나타냅니다.
+			// 이미지 저장 경로인 savePath를 uploadPath + File.separator + fileName로 생성합니다.
+			// File.separator는 파일 시스템의 경로 구분자를 나타냅니다.
 			// 이미지 저장
 			File dest = new File(savePath);
 			file.transferTo(dest);
-			//	File 객체를 생성하여 savePath에 해당하는 파일을 나타냅니다.
-			//file.transferTo(dest)를 호출하여 업로드된 파일을 지정된 위치에 저장합니다.
+			// File 객체를 생성하여 savePath에 해당하는 파일을 나타냅니다.
+			// file.transferTo(dest)를 호출하여 업로드된 파일을 지정된 위치에 저장합니다.
 			// 저장된 파일 경로 반환
 			return savePath;
-			//파일이 성공적으로 저장되면 저장된 파일 경로인 savePath를 반환합니다.
+			// 파일이 성공적으로 저장되면 저장된 파일 경로인 savePath를 반환합니다.
 		} catch (IOException e) {
 			// 저장 실패 시 예외 처리
 			e.printStackTrace();
 			return null;
-			//저장 중에 발생한 예외나 오류는 IOException으로 처리되며, 예외가 발생한 경우 null반환
+			// 저장 중에 발생한 예외나 오류는 IOException으로 처리되며, 예외가 발생한 경우 null반환
 		}
-	}	
-	
-	
+	}
+
 //	@PostMapping("/businessRoomList")
 //	public String businessList() {Model model, HttpSession session
 //	     로그인된 사업자 정보 가져오기
@@ -108,37 +109,63 @@ public class RoomController {
 //	}
 	@PostMapping("/businessRoomList")
 	public String businessList(Model model, HttpSession session) {
-	    // 세션에서 loginUser 속성 가져오기
-	    Business loginUser = (Business) session.getAttribute("loginUser");
+		// 세션에서 loginUser 속성 가져오기
+		Business loginUser = (Business) session.getAttribute("loginUser");
 
-	    // loginUser 값 확인
-	    System.out.println("loginUser: " + loginUser);
+		// loginUser 값 확인
+		System.out.println("loginUser: " + loginUser);
 
-	    // loginUser 사용
-	    // ...
-	    
-	    return "businessRoom/buRoomList";
+		// loginUser 사용
+		// ...
+
+		return "businessRoom/buRoomList";
 	}
 
-
-	
 	@GetMapping("/resister")
 	public String buRoomEnroll() {
 		return "businessRoom/buRoomEnroll";
 	}
 
-	
 	@GetMapping("/review")
 	public String buReview() {
 		return "businessRoom/buReview";
 	}
-	
 
-	@GetMapping("/buRoomModify")
-	public String buRoomModify() {
-		return "businessRoom/buRoomModify";
+	@PostMapping("/buRoomModify")
+	public String updateBuRoom(Room room, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
+			Model model) {
+		try {
+			List<String> savedImagePaths = new ArrayList<>();
+			for (MultipartFile file : upfiles) {
+				if (!file.isEmpty()) {
+					String savedImagePath = saveImage(file);
+					savedImagePaths.add(savedImagePath);
+				}
+			}
+
+			// Room 정보 수정
+			buService.updateRoom(room);
+
+			// RoomImg 정보 수정
+			for (String imagePath : savedImagePaths) {
+				RoomImg roomImg = new RoomImg();
+				roomImg.setFilePath(imagePath);
+				// RoomImg 정보 업데이트 호출
+				buService.updateRoomImg(roomImg);
+			}
+
+			session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
+			return "redirect:/businessRoom/buRoomList";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMsg", "객실 수정 실패");
+			return "common/errorPage";
+		}
 	}
 
-
+		@GetMapping("/modifyPage")
+		public String modifyPage() {
+			return "businessRoom/buRoomModify";
+		}
 
 }

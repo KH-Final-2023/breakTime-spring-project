@@ -100,40 +100,24 @@ img {
 							</div>
 						</div>
 					</c:forEach>
-
 				</div>
+			</div>
+		</div>
+	</div>
 
-				<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-				<script>
-					$(document).ready(function() {
-						// 각 room-info를 클릭했을 때의 동작 처리
-						$('.room-info').click(function() {
-							var roomNo = $(this).data('room-no'); // 클릭한 방의 roomNo 값을 가져옴
-							// roomNo 값을 이용하여 원하는 동작 수행 (예: 페이지 이동, AJAX 요청 등)
-							// 예시로 AJAX 요청을 통해 roomNo 값을 서버로 전달하는 코드 작성
-							$.ajax({
-								url : '/breaktime/businessRoom/buRoomModify', // 수정 페이지의 URL
-								method : 'GET',
-								data : {
-									roomNo : roomNo
-								}, // roomNo 값을 파라미터로 전달
-								success : function(response) {
-									// AJAX 요청이 성공했을 때의 동작 처리
-									// 서버로부터의 응답(response)에 따라 필요한 동작을 수행
-									console.log("eeeeee");
-									console.log(roomNo);
-									alert("성공");
-									  window.location.href = '/breaktime/businessRoom/buRoomModify';
-								},
-								error : function(xhr, status, error) {
-									// AJAX 요청이 실패했을 때의 동작 처리
-									// 오류 처리 등 필요한 동작을 수행
-									alert("실패");
-								}
-							});
-						});
-					});
-				</script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+	 $(document).ready(function() {
+	    	  // 각 room-info를 클릭했을 때의 동작 처리
+	    	  $('.room-info').click(function(event) {
+	    	     event.preventDefault();  // 기본 클릭 동작 방지
+	    	   var roomNo = $(this).data('room-no'); // 클릭한 방의 roomNo 값을 가져옴
+	    	    if (roomNo !== undefined) {
+	    	    	 window.location.href = '/breaktime/businessRoom/modifyPage?roomNo=' + roomNo;
+	    	    }
+	    	  }); 
+	    	}); 
+	    	
+    </script>
 </body>
-
 </html>

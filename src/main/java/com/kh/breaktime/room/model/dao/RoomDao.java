@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
@@ -26,12 +27,13 @@ public class RoomDao {
 	        return sqlSession.insert("buRoom-mapper.insertRoomImgList", roomImgList.get(0));
 	    }
 	    
-		/*
-		 * public List<BusinessRoom> getRoomsByBuId(String buId) { return
-		 * sqlSession.selectList("buRoom-mapperr.getRoomsByBuId", buId); }
-		 * 
-		 * public List<BusinessRoomImg> getRoomImagesByBuId(String buId) { return
-		 * sqlSession.selectList("buRoom-mapper.getRoomImagesByBuId", buId); }
-		 */
+
+	    public int updateRoom(Room room ) {
+	        return sqlSession.update("buRoom-mapper.updateRoom", room);
+	    }
+	    
+	    public int updateRoomImg(RoomImg roomImg) {
+	        return sqlSession.update("buRoom-mapper.updateRoomImg", roomImg);
+	    }
 }
 

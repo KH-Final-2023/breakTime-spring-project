@@ -17,16 +17,14 @@ import com.kh.breaktime.room.model.dao.RoomDao;
 import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
 
-
 @Service
 public class RoomServiceImpl implements RoomService {
 
 	@Autowired
 	private RoomDao buDao;
-	
+
 	@Autowired
 	private ServletContext servletContext;
-
 
 	@Transactional(rollbackFor = Exception.class)
 	public int insertBuRoom(Room buRoom, List<MultipartFile> upfiles) throws Exception {
@@ -66,7 +64,7 @@ public class RoomServiceImpl implements RoomService {
 
 		try {
 			// 이미지 저장 경로
-			
+
 			String savePath = uploadPath + File.separator + fileName;
 
 			// 이미지 저장
@@ -79,14 +77,15 @@ public class RoomServiceImpl implements RoomService {
 			// 저장 실패 시 예외 처리
 			e.printStackTrace();
 			return null;
-			
+
 		}
 	}
-	/*
-	 * @Override public List<BusinessRoom> getRoomsByBuId(String buId) { return
-	 * buDao.getRoomsByBuId(buId); }
-	 * 
-	 * @Override public List<BusinessRoomImg> getRoomImagesByBuId(String buId) {
-	 * return buDao.getRoomImagesByBuId(buId); }
-	 */
+
+	public void updateRoom(Room room) {
+		buDao.updateRoom(room);
+	}
+
+	public void updateRoomImg(RoomImg roomImg) {
+		buDao.updateRoomImg(roomImg);
+	}
 }
