@@ -42,13 +42,19 @@ public class RoomServiceImpl implements RoomService {
 					String savedImagePath = saveImage(file);
 
 					RoomImg roomImg = new RoomImg();
-					roomImg.setRoomNo(buRoom.getRoomNo());
+					
+					roomImg.setRoomNo(result);
 					roomImg.setOriginName(file.getOriginalFilename());
 					roomImg.setSaveName(savedImagePath);
 					roomImg.setFilePath("/resources/images");
 					roomImg.setFileLevel(0);
 					roomImg.setStatus("N");
+					
+					System.out.print("junseok debug\n\n");
+					System.out.print(roomImg);
 
+					System.out.print("junseok debug\n");
+					System.out.print(roomImgList);
 					roomImgList.add(roomImg);
 				}
 			}
@@ -83,19 +89,13 @@ public class RoomServiceImpl implements RoomService {
 		}
 	}
 
-    public void updateRoom(int roomNo, Room room) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("roomNo", roomNo);
-        params.put("room", room);
-        buDao.updateRoom(params);
-        System.out.println(params);
-    }
+	public int updateRoom(int roomNo, Room room) {
+		System.out.println("roomNo: " + roomNo);
+	    return buDao.updateRoom(roomNo, room);
+	}
 
-    public void updateRoomImg(int roomNo, List<RoomImg> roomImgList) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("roomNo", roomNo);
-        params.put("roomImgList", roomImgList);
-        buDao.updateRoomImg(params);
-        System.out.println(params);
-    }
+	public int updateRoomImg(int roomNo, List<RoomImg> roomImgList) {
+		System.out.println("roomImgList: " + roomImgList);
+	    return buDao.updateRoomImg(roomNo, roomImgList);
+	}
 }

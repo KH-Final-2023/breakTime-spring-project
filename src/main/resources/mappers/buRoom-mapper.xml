@@ -19,30 +19,29 @@
 		<result property="fileLevel" column="FILE_LEVEL" />
 		<result property="status" column="STATUS" />
 	</resultMap>
-	<insert id="insertBuRoom" parameterType="room">
-		<selectKey keyProperty="roomNo" resultType="_int"
-			order="BEFORE">
-			SELECT SEQ_FNO.NEXTVAL FROM DUAL
-		</selectKey>
+		<insert id="insertBuRoom" parameterType="room" >
+	<selectKey keyProperty="roomNo" resultType="int" order="BEFORE">
+		SELECT SEQ_BNO.NEXTVAL FROM DUAL
+	</selectKey>
 		INSERT INTO ROOM
-		(
-		ROOM_NO,
-		BU_ID,
-		ROOM_COUNT,
-		ROOM_NAME,
-		ROOM_PRICE,
-		ROOM_INFO
-		)
-		VALUES
-		(
+			(
+			ROOM_NO,
+			BU_ID,
+			ROOM_COUNT,
+			ROOM_NAME,
+			ROOM_PRICE,
+			ROOM_INFO
+			)
+			VALUES
+			(
 		#{roomNo},
-		#{buId},
-		#{roomCount},
-		#{roomName},
-		#{roomPrice},
-		#{roomInfo}
-		)
-	</insert>
+			#{buId},
+			#{roomCount},
+			#{roomName},
+			#{roomPrice},
+			#{roomInfo}
+			)
+		</insert>
 
 	<insert id="insertRoomImgList" parameterType="roomImg">
 		INSERT INTO
@@ -66,22 +65,29 @@
 		#{fileLevel},
 		#{status}
 		)
+		
+		
 	</insert>
-	<update id="updateRoom" >
-		UPDATE ROOM SET
-		ROOM_COUNT = #{roomCount},
-		ROOM_NAME = #{roomName},
-		ROOM_PRICE = #{roomPrice},
-		ROOM_INFO = #{roomInfo}
-		WHERE ROOM_NO = #{roomNo}
-	</update>
-	<update id="updateRoomImg" >
-		UPDATE ROOM_IMG SET
-		ORIGIN_NAME = #{originName},
-		SAVE_NAME = #{saveName},
-		FILE_PATH = #{filePath},
-		FILE_LEVEL = #{fileLevel},
-		STATUS = #{status}
-		WHERE FILE_NO = #{fileNo}
-	</update>
+	<update id="updateRoom">
+    UPDATE ROOM SET
+    ROOM_COUNT = #{room.roomCount},
+    ROOM_NAME = #{room.roomName},
+    ROOM_PRICE = #{room.roomPrice},
+    ROOM_INFO = #{room.roomInfo}
+    WHERE ROOM_NO = #{roomNo}
+</update>
+
+<update id="updateRoomImg">
+    <!-- 반복문을 통해 roomImgList의 각 요소를 처리해야 할 수 있습니다. -->
+    <foreach collection="roomImgList" item="roomImg" separator=";">
+        UPDATE ROOM_IMG SET
+        ORIGIN_NAME = #{roomImg.originName},
+        SAVE_NAME = #{roomImg.saveName},
+        FILE_PATH = #{roomImg.filePath},
+        FILE_LEVEL = #{roomImg.fileLevel},
+        STATUS = #{roomImg.status}
+        WHERE FILE_NO = #{roomImg.fileNo}
+    </foreach>
+</update>
+
 </mapper>

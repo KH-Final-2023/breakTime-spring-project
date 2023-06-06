@@ -135,8 +135,7 @@ public class RoomController {
 	}
 
 	@PostMapping("/buRoomModify")
-	public String updateBuRoom(int roomNo, Room room, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
-	        Model model) {
+	public String updateBuRoom(@RequestParam Room room, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session, Model model) {
 	    try {
 	        List<String> savedImagePaths = new ArrayList<>();
 	        for (MultipartFile file : upfiles) {

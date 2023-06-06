@@ -11,7 +11,7 @@ public interface RoomService {
 	
 	public int insertBuRoom(Room buRoom, List<MultipartFile> upfiles) throws Exception;
 	
-	public void updateRoom(int roomNo, Room room );
+	public int updateRoom(int roomNo, Room room );
 	
-	public void updateRoomImg(int roomNo, List<RoomImg> roomImgList);
+	public int updateRoomImg(int roomNo, List<RoomImg> roomImgList);
 }
