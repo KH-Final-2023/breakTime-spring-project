@@ -141,11 +141,11 @@
      </script>
       
       <script>
-        document.getElementById("logout").addEventListener("click",function(){
+      	document.getElementById("logout").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/member/logout";
         })
         
-         document.getElementById("logout").addEventListener("click",function(){
+        document.getElementById("logout").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/business/logout";
         })
       </script>

@@ -1,6 +1,10 @@
+<%@page import="com.kh.breaktime.decide.model.vo.Decide"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="m" value="${map}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +67,7 @@ $(document).ready(function() {
 	});
 	
 	// 별점 점수를 받아옵니다.
-	let starScore = 3.7;
+	let starScore = 4.1;
 	// 별점 점수를 정수와 소수 부분으로 분리합니다.
 	let intPart = Math.floor(starScore);
 	let decimalPart = starScore - intPart;
@@ -108,7 +112,7 @@ $(document).ready(function() {
 	});
 
 	// 객실선택.html 페이지 자동로드
-	var target = "${contextPath}/decide/deroom";
+	var target = "${contextPath}/decide/deroom/${m.buNo}";
 	$("#section-content").load(target);
 });
 </script>
@@ -120,13 +124,13 @@ $(document).ready(function() {
 	<div class="container-main">
 		<!-- 업체 메인 객실 이미지 -->
 		<img class="main-image"
-			src="https://www.sonohotelsresorts.com/img/front/saupjang/geoje/family06.jpg"
+			src="${m.mainImg}"
 			alt="업체 메인 객실 이미지">
 
 		<!-- 업체 정보 -->
 		<div class="detail2-one-main">
 			<div class="company-info">
-				<h1 class="company-name">${b.buTitle}</h1>
+				<h1 class="company-name">${m.buTitle}</h1>
 				<div class="icons">
 					<i class="icon share-icon fas fa-share-alt" title="공유하기"></i> <i
 						class="icon heart-icon far fa-heart" title="찜하기"></i>
@@ -136,7 +140,7 @@ $(document).ready(function() {
 				class="stars"> <i class="fas fa-star"></i> <i
 					class="fas fa-star"></i> <i class="fas fa-star"></i> <i
 					class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-			</span> <span class="score"><b>${r.starScore} (${r.reviewCount})</b></span>
+			</span> <span class="score"><b>${m.starScore} (${m.reviewCount})</b></span>
 			</a>
 
 			<!-- 주소와 지도 표시 -->
@@ -144,7 +148,7 @@ $(document).ready(function() {
 				<a class="map-link"
 					href="https://maps.google.com/maps?q=경기도 부천시 송내동 경인로169번길 571-12"
 					target="_blank"> <i class="fas fa-map-marker-alt"></i> <span
-					class="address">${b.buAddress}</span>
+					class="address">${m.buAddress}</span>
 				</a>
 			</div>
 		</div>
@@ -152,7 +156,7 @@ $(document).ready(function() {
 	<div class="detail2-select">
 		<!-- 섹션 선택 영역 -->
 		<div class="section">
-			<a class="section-link" href="${contextPath}/decide/deroom">객실 선택</a>
+			<a class="section-link" href="${contextPath}/decide/deroom/${m.buNo}">객실 선택</a>
 			<a class="section-link" href="${contextPath}/decide/demap">위치 정보</a>
 			<a class="section-link review-link" href="${contextPath}/decide/dereview">리뷰 / 후기</a>
 		</div>

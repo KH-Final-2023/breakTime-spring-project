@@ -9,12 +9,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/map.css">
-<script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=55a7843b1806f000c969ae74b8fbf856&libraries=services&autoload=false"></script>
+<script>    
 $(document).ready(function() {
 // 주소 복사 버튼 클릭 이벤트 핸들러
 $(".copy-button").click(function() {
 	var address = "상세 주소"; // 복사할 주소 정보를 입력해주세요.
 	copyToClipboard(address);
+
 });
 
 // 주소 복사 함수
@@ -30,7 +32,6 @@ function copyToClipboard(text) {
 });
 </script>
 </head>
-
 <body>
 	<div class="container">
 		<div class="detail2-all">
@@ -38,12 +39,7 @@ function copyToClipboard(text) {
 				<span>위치</span>
 			</div>
 			<div class="map-image">
-			<!-- 지도 페이지 만들어지기 전까지 demain으로 경로 지정 -->
-				<a href="${contextPath}/decide/demain"> <img
-					src="https://navermaps.github.io/ios-map-sdk/assets/2-3-basic.png"
-					alt="지도 이미지">
-					<!-- 각 업체의 지도 사진 썸네일 들어가야함 -->
-				</a>
+				<iframe src="${contextPath}/decide/detailmap" scrolling="no"></iframe>
 			</div>
 			<div class="detail2-main">
 				<div class="address-container">

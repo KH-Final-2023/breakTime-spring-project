@@ -61,6 +61,14 @@ body {
 	/* 클릭시 zoom-in 커서 효과 */
 }
 
+.map-image iframe {
+		overflow: hidden; /* 스크롤바 숨김 */
+		width: 100%; /* 가로 너비 100%로 설정 */
+		height: 500px; /* 원하는 높이로 조절 */
+		border: none;
+		pointer-events: none;
+}
+
 .map-image a {
 	display: flex;
 	justify-content: center;

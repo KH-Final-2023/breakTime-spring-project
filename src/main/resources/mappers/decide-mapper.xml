@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="decideMapper">
+	
+		<!-- <select id="selectDecideBasket" resultMap="basketResultSet">
+		SELECT R.ROOM_NO    AS ROOM_NO,		 
+			   B.BU_NO      AS BU_NO,
+			   H.MAIN_IMG   AS HOUSE_MAIN_IMG,
+			   IMG.SAVE_NAME AS IMG_SAVE_NAME,
+			   IMG.FILE_PATH AS IMG_FILE_PATH,
+			   R.ROOM_H_COUNT  AS ROOM_H_COUNT,
+			   R.ROOM_PRICE AS ROOM_PRICE,
+			   R.ROOM_NAME  AS ROOM_NAME,
+			   R.ROOM_INFO  AS ROOM_INFO
+		FROM BUSINESS B
+        INNER JOIN BU_MAIN_IMG IMG ON B.BU_NO = IMG.BU_NO
+        INNER JOIN HOUSE H 	ON B.BU_TITLE = H.BU_TITLE
+        INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+        WHERE BU_NO = #{buNo}
+	</select> -->
+	
+  	<select id="selectDecideMain" resultType="com.kh.breaktime.decide.model.vo.Decide">
+  	/*decideMapper.selectDecideMain*/
+    	SELECT  B.BU_NO         AS buNo,
+				B.BU_TITLE      AS buTitle,
+				B.BU_ADDRESS    AS buAddress,
+				H.MAIN_IMG      AS mainImg,
+				(SELECT ROUND(AVG(V.STAR_SCORE), 1) 
+						FROM BUSINESS B
+						INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+						INNER JOIN HOUSE H ON B.BU_TITLE = H.BU_TITLE
+						INNER JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
+						WHERE H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
+						AND B.BU_NO = #{buNo}
+			 	) AS starScore 
+		FROM BUSINESS B
+		INNER JOIN ROOM R 	ON B.BU_NO = R.BU_NO
+		INNER JOIN HOUSE H 	ON B.BU_TITLE = H.BU_TITLE
+		LEFT JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
+		WHERE H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
+		AND B.BU_NO = #{buNo}
+		AND ROWNUM = 1 
+	</select>
+	
+	<select id="selectReviewCount" resultType="_int">
+		SELECT COUNT(*)
+          FROM BUSINESS B
+          INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+          INNER JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
+          WHERE B.BU_NO = #{BU_NO} 
+	</select>
+	
+	<select id="selectDecideRoom" resultType="com.kh.breaktime.decide.model.vo.Decide">
+	/*decideMapper.selectDecideRoom*/
+		SELECT R.ROOM_NO		AS roomNo,		 
+			   B.BU_NO			AS buNo,
+			   R.ROOM_H_COUNT	AS roomHCount,
+			   R.ROOM_PRICE		AS roomPrice,
+			   R.ROOM_NAME		AS roomName,
+			   R.ROOM_INFO		AS roomInfo,
+			   IMG.FILE_PATH	AS filePath,
+			   IMG.SAVE_NAME	AS saveName,
+			   IMG.FILE_LEVEL	AS fileLevel
+		FROM ROOM R
+        LEFT JOIN ROOM_IMG IMG ON R.ROOM_NO = IMG.ROOM_NO
+        INNER JOIN BUSINESS B 	ON B.BU_NO = R.BU_NO
+        WHERE B.BU_NO = #{buNo}
+	</select>
+	
+	<!-- <select id="selectDecideReview" resultMap="reviewResultSet">
+	/*decideMapper.selectDecideReview*/
+		SELECT  R.REVIEW_NO,
+				R.STAR_SCORE, 
+				R.REVIEW_WRITER, 
+				M.USER_NAME, 
+				R.CREATE_DATE,
+				R.BOOK_NO, 
+				R.USING_ROOM, 
+				RO.ROOM_NAME, 
+				R.REVIEW_CONTENT, 
+				R.REVIEW_CONTENT_REPLY
+		FROM REVIEW R
+		JOIN MEMBER M   ON M.USER_NO = R.REVIEW_WRITER
+		JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
+        JOIN BUSINESS B ON B.BU_NO = R.BOOK_NO
+		WHERE R.REVIEW_AVAILABLE = 'Y'
+        AND B.BU_NO = #{buNo}
+        ;
+	</select> -->
+	
+	<!-- <select id="selectDecideMap" resultMap="mapResultSet">
+		SELECT BU_ADRESS 
+		FROM BUSINESS
+		WHERE BU_NO = #{buNo}
+ 	</select>  -->
+</mapper>

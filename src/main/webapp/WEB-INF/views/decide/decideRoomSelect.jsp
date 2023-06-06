@@ -65,7 +65,7 @@ function() {
 				<a href="${contextPath}/decide/dedate" class="button">날짜</a>
 			</div>
 			<div class="detail2-main">
-				<c:forEach items="${list }" var="d">
+				<c:forEach items="${roomList}" var="d">
 					<div class="detail2-card">
 						<div class="image">
 							<img src="${d.roomImg}" alt="숙소 이미지">
@@ -74,14 +74,14 @@ function() {
 						<p class="description">${d.roomInfo}</p>
 						<p class="price">${d.roomPrice}</p>
 						
-						<c:if test="${empty list}">
+						<c:if test="${empty roomList}">
 							<div class="button-card" disabled>
 								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
 									담기</a> <a href="#" class="button-card2">객실 선택하기</a>
 							</div>
 						</c:if>
 						
-						<c:if test="${!empty list}">
+						<c:if test="${!empty roomList}">
 							<div class="button-card">
 								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
 									담기</a> <a href="#" class="button-card2">객실 선택하기</a>
@@ -89,19 +89,6 @@ function() {
 						</c:if>
 					</div>
 				</c:forEach>
-				<div class="detail2-card">
-					<div class="image">
-						<img src="${d.roomImg}" alt="숙소 이미지">
-					</div>
-					<h2 class="title">${d.buTitle}</h2>
-					<p class="description">${d.roomInfo}</p>
-					<p class="price">${d.roomPrice}</p>
-					<div class="button-card">
-						<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
-							담기</a> <a href="#" class="button-card2">객실 선택하기</a>
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</div>

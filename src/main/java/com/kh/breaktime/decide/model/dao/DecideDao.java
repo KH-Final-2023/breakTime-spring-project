@@ -1,19 +1,48 @@
 package com.kh.breaktime.decide.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.breaktime.member.model.vo.Member;
+import com.kh.breaktime.decide.model.vo.Decide;
 
 @Repository
 public class DecideDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-
-//	public Member loginMember(Member inputMember) {
-//
-//		return sqlSession.selectOne("memberMapper.loginMember", inputMember);
-//	}
+	
+	// 메인 조회
+	public ArrayList<Decide> selectDecideMain(int buNo) {
+		
+		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideMain", buNo);
+	}
+	
+	// 메인 리뷰 개수 조회
+	public int selectReviewCount(int buNo) {
+			
+		return sqlSession.selectOne("decideMapper.selectReviewCount", buNo);
+	}
+	
+	// 객실 조회
+	public ArrayList<Decide> selectDecideRoom(int buNo) {
+		
+		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideRoom", buNo);
+	}
+	
+	// 지도 조회
+	public ArrayList<Decide> selectDecideMap(int buNo) {
+		
+		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideMap", buNo);
+	}
+	
+	// 리뷰 조회
+	public ArrayList<Decide> selectDecideReview(int buNo) {
+		
+		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideReview", buNo);
+	}
+	
+	
 }

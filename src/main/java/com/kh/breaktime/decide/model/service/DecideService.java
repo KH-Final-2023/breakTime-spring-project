@@ -1,12 +1,25 @@
 package com.kh.breaktime.decide.model.service;
 
+import java.util.ArrayList;
+
 import com.kh.breaktime.decide.model.vo.Decide;
-import com.kh.breaktime.member.model.vo.Member;
 
 public interface DecideService {
 	
-	/* public abstract Decide loginMember(Decide inputMember); */
+	// 메인 조회
+	ArrayList<Decide> selectDecideMain(int buNo);
 	
-//	public abstract Member loginMember(Member inputMember);
+	// 메인 리뷰 개수 조회
+	int selectReviewCount(int buNo);
+	
+	// 객실 조회
+	ArrayList<Decide> selectDecideRoom(int buNo);
+	
+	// 지도 조회
+	ArrayList<Decide> selectDecideMap(int buNo);
+	
+	// 리뷰 조회
+	ArrayList<Decide> selectDecideReview(int buNo);
+
 	
 }

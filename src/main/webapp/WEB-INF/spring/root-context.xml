@@ -59,8 +59,7 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
 		id="sqlSessionFactory">
 		<!-- mybatis 설정파일 위치를 지정 -->
-		<property name="configLocation"
-			value="classpath:mybatis-config.xml" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
 
 		<!-- 연결을 위한 도구 -->
 		<property name="dataSource" ref="dataSource" />
