@@ -12,4 +12,5 @@ public class ChatMessage {
 	private int buNo;
 	private int userNo;
 	private String userId;
+	private String buTitle;
 }

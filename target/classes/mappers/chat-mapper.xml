@@ -7,9 +7,11 @@
 		<result column="MESSAGE" property="message" />
 		<result column="CREATE_DATE" property="createDate" />
 		<result column="BU_NO" property="buNo" />
+		<result column="BU_TITLE" property="buTitle" />
 		<result column="USER_NO" property="userNo" />
 		<result column="USER_ID" property="userId"/>
 	</resultMap>
+	
 	
 	<!-- 채팅방 참여여부 확인 -->
 	<select id="joinCheck" resultType="_int" parameterType="chatRoomJoin">
@@ -18,22 +20,11 @@
 		WHERE BU_NO = #{buNo}
 		AND USER_NO = #{userNo}
 	</select>
-	
-	<select id="joinCheckBu" resultType="_int" parameterType="chatRoomJoinBu">
-		SELECT COUNT(*)
-		FROM CHAT_ROOM_JOIN_BU
-		WHERE BU_NO = #{buNo}
-	</select>
-	
+		
 	<!-- 채팅방 참여하기 -->
 	<insert id="joinChatRoom" parameterType="chatRoomJoin">
 		INSERT INTO CHAT_ROOM_JOIN
 		VALUES (#{userNo}, #{buNo})
-	</insert>
-	
-	<insert id="joinChatRoomBu" parameterType="chatRoomJoinBu">
-		INSERT INTO CHAT_ROOM_JOIN_BU
-		VALUES (#{buNo})
 	</insert>
 	
 	<!-- 채팅 메세지 목록 조회 -->
@@ -42,9 +33,12 @@
 			MESSAGE,
 			CREATE_DATE,
 			USER_NO,
-			USER_ID
+			USER_ID,
+			BU_NO,
+			BU_TITLE
 		FROM CHAT_MESSAGE
 		JOIN MEMBER USING(USER_NO)
+		JOIN BUSINESS USING(BU_NO)
 		WHERE BU_NO = #{buNo}
 		ORDER BY CM_NO
 	</select>
@@ -53,11 +47,6 @@
 	<insert id="insertMessage" parameterType="chatMessage">
 		INSERT INTO CHAT_MESSAGE
 		VALUES (SEQ_CM_NO.NEXTVAL, #{message}, DEFAULT, #{buNo}, #{userNo})
-	</insert> 
-	
-	<insert id="insertMessageBu" parameterType="chatMessageBu">
-		INSERT INTO CHAT_MESSAGE_BU
-		VALUES (SEQ_CM_NO.NEXTVAL, #{message}, DEFAULT, #{buNo})
 	</insert> 
 	
 </mapper>

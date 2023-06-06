@@ -15,11 +15,10 @@ import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.chat.model.service.ChatService;
 import com.kh.breaktime.chat.model.vo.ChatMessage;
 import com.kh.breaktime.chat.model.vo.ChatRoomJoin;
-import com.kh.breaktime.chat.model.vo.ChatRoomJoinBu;
 import com.kh.breaktime.member.model.vo.Member;
 
 @Controller
-@SessionAttributes({"loginUser" , "loginBusiness", "chatRoomNo"})
+@SessionAttributes({"loginUser" , "buNo"})
 public class ChatController {
 
 	@Autowired
@@ -35,7 +34,6 @@ public class ChatController {
 				) {
 		join.setUserNo(loginUser.getUserNo());
 		List<ChatMessage> list = service.joinChatRoom(join);
-		
 		if(list != null) {
 			model.addAttribute("list", list);
 			model.addAttribute("buNo", buNo);  // session에 올림
@@ -45,23 +43,5 @@ public class ChatController {
 			return "redirect:../chatRoomList";
 		}
 	}
-	
-	@GetMapping("/chat/roomBu")
-	public String joinBuChatRoom(
-				@ModelAttribute("loginBusiness") Business loginBusiness,
-				Model model,
-				ChatRoomJoinBu join,
-				RedirectAttributes ra
-				) {
-		join.setBuNo(loginBusiness.getBuNo());
-		List<ChatMessage> list = service.joinBuChatRoom(join);
-		
-		if(list != null) {
-			model.addAttribute("list", list);
-			return "member/chatRoomBu";
-		} else {
-			ra.addFlashAttribute("alertMsg", "채팅방이 존재하지 않습니다");
-			return "redirect:../chatRoomList";
-		}
-	}
+
 }

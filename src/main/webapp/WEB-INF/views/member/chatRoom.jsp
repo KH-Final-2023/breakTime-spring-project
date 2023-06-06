@@ -1,8 +1,11 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.breaktime.chat.model.vo.ChatMessage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%List<ChatMessage> list = (List<ChatMessage>) request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,6 +92,15 @@ overflow: hidden;
 .chatDate {
 	font-size: 15px;
 }
+
+#firstMsg {
+	width: 50%;
+	margin-left : 25%;
+	text-align  : center;
+	font-weight : bold;
+	background-color : yellow;
+	border-radius: 20px;	
+}
 </style>
 </head>
 <body>
@@ -97,6 +109,20 @@ overflow: hidden;
 
 		<div class="chatting-area">
 			<ul class="display-chatting">
+				<% if(list.size()==0) {%>
+					<div id="firstMsg">
+						<p>본 문의창은 다수의 사용자가 사용하므로 개인정보에 관한 내용은 삼가해주시길 바랍니다.
+						자세한 문의가 필요할 시 본 숙소로 전화해주시길 바랍니다.</p>
+					</div>
+				<%} else {%>	
+					<% for(int i = 0; i<list.size()*0+1; i++) { %>
+						<div id="firstMsg">
+							<p>안녕하세요 <%=list.get(i).getBuTitle() %> 입니다.
+							본 문의창은 다수의 사용자가 사용하므로<br>  개인정보에 관한 내용은 삼가해주시길 바랍니다.
+							자세한 문의가 필요할 시  본 숙소로 전화해주시길 바랍니다.</p>
+						</div>
+					<%} %>
+				<%} %>
 				<c:forEach items="${list}" var="msg">
 					<fmt:formatDate var="chatDate" value="${msg.createDate }"
 						pattern="yyyy년 MM월 dd일 HH:mm:ss" />

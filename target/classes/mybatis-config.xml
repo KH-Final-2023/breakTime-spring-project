@@ -23,9 +23,7 @@
 		<typeAlias type="com.kh.breaktime.booking.model.vo.Booking" alias="booking" />
 		
 		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
-		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatRoomJoinBu" alias="ChatRoomJoinBu"/>
 		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatMessage" alias="chatMessage"/>
-		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatMessageBu" alias="chatMessageBu"/>
 	</typeAliases>
 	 
 	 <mappers>

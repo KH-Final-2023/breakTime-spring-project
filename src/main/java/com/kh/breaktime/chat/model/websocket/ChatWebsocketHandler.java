@@ -9,13 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.kh.breaktime.chat.model.service.ChatService;
 import com.kh.breaktime.chat.model.vo.ChatMessage;
-import com.kh.breaktime.chat.model.vo.ChatMessageBu;
 
 public class ChatWebsocketHandler extends TextWebSocketHandler {
 
@@ -52,48 +52,24 @@ public class ChatWebsocketHandler extends TextWebSocketHandler {
 		
 		ChatMessage chatMessage = objectMapper.readValue(message.getPayload(), ChatMessage.class);
 		
-		ChatMessageBu chatMessageBu = objectMapper.readValue(message.getPayload(), ChatMessageBu.class);
-		
 		chatMessage.setCreateDate(new Date(System.currentTimeMillis()));
-		
-		chatMessageBu.setCreateDate(new Date(System.currentTimeMillis()));
 		
 		// 전달받은 채팅메세지를 db에 삽입
 		System.out.println(chatMessage);
-		System.out.println(chatMessageBu);
 		
 		int result = chatService.insertMessage(chatMessage);
-		
 		if(result > 0) {
 			// 같은 방에 접속중인 클라이언트에게 전달받은 메세지 뿌리기
 			for(WebSocketSession s : sessions) {
 				
 				// 반복을 진행중인 WebSocketSession안에 담겨있는 방번호 == 메세지 안에 담겨있는 방번호가 일치하는 경우 메세지 뿌리기
-				int buNo = (int) s.getAttributes().get("buNo");
+				 Integer buNo = (Integer) s.getAttributes().get("buNo");
 				
 				// 메세지에 담겨있는 채팅방 번호와 chatRoomNo 일치하는지 비교
-				if(chatMessage.getBuNo() == buNo) {
+				 if (buNo != null && chatMessage.getBuNo() == buNo.intValue()) {
 					// 같은방 클라이언트에게 JSON형태로 메세지를 보냄
 					// s.sendMessage( new TextMessage( message.getPayload() ) )
 					s.sendMessage(new TextMessage( new Gson().toJson(chatMessage)));
-				}
-			}
-		}
-		
-		int result2 = chatService.insertMessageBu(chatMessageBu);
-		
-		if(result2 > 0) {
-			// 같은 방에 접속중인 클라이언트에게 전달받은 메세지 뿌리기
-			for(WebSocketSession s : sessions) {
-				
-				// 반복을 진행중인 WebSocketSession안에 담겨있는 방번호 == 메세지 안에 담겨있는 방번호가 일치하는 경우 메세지 뿌리기
-				int buNo = (int) s.getAttributes().get("buNo");
-				
-				// 메세지에 담겨있는 채팅방 번호와 chatRoomNo 일치하는지 비교
-				if(chatMessageBu.getBuNo() == buNo) {
-					// 같은방 클라이언트에게 JSON형태로 메세지를 보냄
-					// s.sendMessage( new TextMessage( message.getPayload() ) )
-					s.sendMessage(new TextMessage( new Gson().toJson(chatMessageBu)));
 				}
 			}
 		}

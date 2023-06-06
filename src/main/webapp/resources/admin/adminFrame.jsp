@@ -295,7 +295,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " >
           <i class="bi bi-grid"></i>
           <span>관리자 페이지</span>
         </a>
@@ -322,6 +322,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="<%=request.getContextPath()%>/report/list">
           <i class="bi bi-bar-chart"></i><span>신고 리뷰 관리</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+      </li>  
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="<%=request.getContextPath()%>/notice/chatList">
+          <i class="bi bi-bar-chart"></i><span>문의 내역</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
       </li>  
     </ul>

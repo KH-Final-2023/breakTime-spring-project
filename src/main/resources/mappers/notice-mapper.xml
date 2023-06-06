@@ -21,6 +21,7 @@
 		<result column="NOTICE_WRITER" property="noticeWriter" />
 		<result column="USER_NAME" property="userName" />
 		<result column="NOTICE_WRITER" property="noticeWriter" />
+		<result column="CREATE_DATE" property="createDate" />
 	</resultMap>
 
 	<!-- 미승인 사업자 목록용 & 고객 정보 수정용 resultMap -->
@@ -56,6 +57,22 @@
 		<result column="ROOM_NAME" property="roomName" />
 	</resultMap>
 	
+	<resultMap type="business" id="businessResultSet">
+		<id column="BU_NO" property="buNo" />
+		<result column="BU_ID" property="buId" />
+		<result column="BU_PWD" property="buPwd" />
+		<result column="BU_USER_NAME" property="buUserName" />
+		<result column="AREA_NO" property="areaNo" />
+		<result column="BU_CATEGORY" property="buCategory" />
+		<result column="EMAIL" property="email" />
+		<result column="BU_TEL" property="buTel" />
+		<result column="BU_ADDRESS" property="buAddress" />
+		<result column="ROOM_COUNT" property="roomCount" />
+		<result column="BU_TITLE" property="buTitle" />
+		<result column="ENROLL_DATE" property="enrollDate" />
+		<result column="APPROVAL" property="approval" />
+	</resultMap>
+	
 	<!-- 공지사항 -->
 	<select id="selectNoticeListCount" resultType="_int"> 
 		SELECT COUNT(*) FROM NOTICE
@@ -85,7 +102,8 @@
 		NOTICE_WRITER,
 		USER_NAME,
 		NOTICE_TITLE,
-		NOTICE_CONTENT
+		NOTICE_CONTENT,
+		N.CREATE_DATE
 		FROM NOTICE N
 		JOIN MEMBER M ON M.USER_NO = N.NOTICE_WRITER
 		WHERE NOTICE_NO = #{noticeNo}
@@ -282,4 +300,39 @@
 		FROM REVIEW
 		WHERE REVIEW_NO = #{reviewNo}
 	</delete> 
+	
+	<!--  채팅 -->
+	<select id="selectChatSearchListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM BUSINESS
+	WHERE APPROVAL = 'Y'
+	
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "title"'>
+				BU_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+		</choose>	
+	</if>	
+	</select>
+	
+	<select id="selectChatSearchList" resultMap="businessResultSet">
+	SELECT
+		BU_NO,
+		BU_ID,
+		BU_TITLE,
+		BU_ADDRESS,
+		BU_TEL
+	FROM BUSINESS
+	WHERE APPROVAL = 'Y' 
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "title"'>
+				BU_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+		</choose>	
+	</if>
+	</select>
 </mapper>
