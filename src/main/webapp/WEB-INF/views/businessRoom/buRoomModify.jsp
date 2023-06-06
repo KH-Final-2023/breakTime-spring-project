@@ -21,6 +21,7 @@
             <div id="roomModifyText1" style="font-size: x-large; margin: 15px;">객실 수정</div>
 
             <form action="/breaktime/businessRoom/buRoomModify" method="POST" enctype="multipart/form-data">
+              <input type="hidden" name="roomNo" value="${room.roomNo}">
                 <div id="ModifyroomName">객실 이름 : </div>
                 <div><input name="roomName" placeholder=" 수정할 객실 이름을 입력해주세요"></div>
                   <div id="ModifyroomCount">인원 수: </div>

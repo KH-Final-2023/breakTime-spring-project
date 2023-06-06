@@ -3,7 +3,9 @@ package com.kh.breaktime.room.model.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 
@@ -81,11 +83,19 @@ public class RoomServiceImpl implements RoomService {
 		}
 	}
 
-	public void updateRoom(Room room) {
-		buDao.updateRoom(room);
-	}
+    public void updateRoom(int roomNo, Room room) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("roomNo", roomNo);
+        params.put("room", room);
+        buDao.updateRoom(params);
+        System.out.println(params);
+    }
 
-	public void updateRoomImg(RoomImg roomImg) {
-		buDao.updateRoomImg(roomImg);
-	}
+    public void updateRoomImg(int roomNo, List<RoomImg> roomImgList) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("roomNo", roomNo);
+        params.put("roomImgList", roomImgList);
+        buDao.updateRoomImg(params);
+        System.out.println(params);
+    }
 }

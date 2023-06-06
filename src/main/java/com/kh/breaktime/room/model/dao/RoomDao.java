@@ -1,7 +1,9 @@
 package com.kh.breaktime.room.model.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +30,15 @@ public class RoomDao {
 	    }
 	    
 
-	    public int updateRoom(Room room ) {
-	        return sqlSession.update("buRoom-mapper.updateRoom", room);
+	    public int updateRoom(Map<String, Object> params) {
+	        return sqlSession.update("buRoom-mapper.updateRoom", params);
+	        
+	    }
+
+	    public int updateRoomImg(Map<String, Object> params) {
+	        return sqlSession.update("buRoom-mapper.updateRoomImg", params);
 	    }
 	    
-	    public int updateRoomImg(RoomImg roomImg) {
-	        return sqlSession.update("buRoom-mapper.updateRoomImg", roomImg);
-	    }
+	  
 }
 

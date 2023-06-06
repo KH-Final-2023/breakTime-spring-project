@@ -67,7 +67,7 @@
 		#{status}
 		)
 	</insert>
-	<update id="updateRoom" parameterType="room">
+	<update id="updateRoom" >
 		UPDATE ROOM SET
 		ROOM_COUNT = #{roomCount},
 		ROOM_NAME = #{roomName},
@@ -75,7 +75,7 @@
 		ROOM_INFO = #{roomInfo}
 		WHERE ROOM_NO = #{roomNo}
 	</update>
-	<update id="updateRoomImg" parameterType="roomImg">
+	<update id="updateRoomImg" >
 		UPDATE ROOM_IMG SET
 		ORIGIN_NAME = #{originName},
 		SAVE_NAME = #{saveName},

@@ -2,6 +2,9 @@ package com.kh.breaktime.room.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,40 +135,69 @@ public class RoomController {
 	}
 
 	@PostMapping("/buRoomModify")
-	public String updateBuRoom(Room room, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
-			Model model) {
-		try {
-			List<String> savedImagePaths = new ArrayList<>();
-			for (MultipartFile file : upfiles) {
-				if (!file.isEmpty()) {
-					String savedImagePath = saveImage(file);
-					savedImagePaths.add(savedImagePath);
-				}
-			}
+	public String updateBuRoom(int roomNo, Room room, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
+	        Model model) {
+	    try {
+	        List<String> savedImagePaths = new ArrayList<>();
+	        for (MultipartFile file : upfiles) {
+	            if (!file.isEmpty()) {
+	                String savedImagePath = saveImage1(file);
+	                savedImagePaths.add(savedImagePath);
+	            }
+	        }
 
-			// Room 정보 수정
-			buService.updateRoom(room);
+	        // Room 정보 수정
+	        room.setRoomNo(roomNo); // roomNo 설정
+	        buService.updateRoom(roomNo, room);
+	        System.out.println("======== :  "+roomNo);
+	        // RoomImg 정보 수정
+	        List<RoomImg> roomImgList = new ArrayList<>();
+	        for (String imagePath : savedImagePaths) {
+	            RoomImg roomImg = new RoomImg();
+	            roomImg.setRoomNo(roomNo); // roomNo 설정
+	            roomImg.setOriginName(imagePath); // 여기서는 임시로 imagePath를 OriginName으로 사용하였습니다.
+	            roomImg.setSaveName(imagePath); // 여기서는 임시로 imagePath를 SaveName으로 사용하였습니다.
+	            roomImg.setFilePath("/resources/images");
+	            roomImg.setFileLevel(0);
+	            roomImg.setStatus("N");
 
-			// RoomImg 정보 수정
-			for (String imagePath : savedImagePaths) {
-				RoomImg roomImg = new RoomImg();
-				roomImg.setFilePath(imagePath);
-				// RoomImg 정보 업데이트 호출
-				buService.updateRoomImg(roomImg);
-			}
+	            roomImgList.add(roomImg);
+	        }
 
-			session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
-			return "redirect:/businessRoom/buRoomList";
-		} catch (Exception e) {
-			e.printStackTrace();
-			model.addAttribute("errorMsg", "객실 수정 실패");
-			return "common/errorPage";
-		}
+	        // RoomImg 리스트 업데이트
+	        buService.updateRoomImg(roomNo, roomImgList);
+	        System.out.println("======== :  "+roomNo);
+	        session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
+	        return "redirect:/businessRoom/buRoomList";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        model.addAttribute("errorMsg", "객실 수정 실패");
+	        return "common/errorPage";
+	    }
 	}
 
-		@GetMapping("/modifyPage")
-		public String modifyPage() {
-			return "businessRoom/buRoomModify";
-		}
+	private String saveImage1(MultipartFile file) throws IOException {
+	    // 저장할 디렉토리 경로
+	    String uploadDir = "C:/BREAKTIME/breakTime-spring-project/src/main/webapp/resources/images";
+	    // 저장할 파일명
+	    String fileName = file.getOriginalFilename();
+	    // 저장된 이미지 경로
+	    String savedImagePath = uploadDir + "/" + fileName;
+
+	    try {
+	        // 이미지 파일을 지정된 경로에 저장
+	        Files.copy(file.getInputStream(), Paths.get(savedImagePath), StandardCopyOption.REPLACE_EXISTING);
+	        return savedImagePath;
+	    } catch (IOException e) {
+	        // 오류 처리 로직 추가
+	        e.printStackTrace();
+	        throw new IOException("이미지 저장에 실패하였습니다.");
+	    }
+	}
+
+	@GetMapping("/modifyPage")
+	public String modifyPage() {
+		return "businessRoom/buRoomModify";
+	}
 
 }
