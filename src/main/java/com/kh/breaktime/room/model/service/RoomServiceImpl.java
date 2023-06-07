@@ -89,13 +89,24 @@ public class RoomServiceImpl implements RoomService {
 		}
 	}
 
-	public int updateRoom(int roomNo, Room room) {
-		System.out.println("roomNo: " + roomNo);
-	    return buDao.updateRoom(roomNo, room);
+	public int updateRoom( Room room) {
+	    System.out.println("room: "+room);
+	    return buDao.updateRoom(room);
 	}
 
-	public int updateRoomImg(int roomNo, List<RoomImg> roomImgList) {
-		System.out.println("roomImgList: " + roomImgList);
-	    return buDao.updateRoomImg(roomNo, roomImgList);
+	public int updateRoomImg(List<RoomImg> roomImgList) {
+	    System.out.println("roomImgList: " + roomImgList);
+	    return buDao.updateRoomImg(roomImgList);
 	}
+	
+	@Override
+	public List<Room> getRoomsByBuId(int roomNo) {
+		return buDao.getRoomsByBuId( roomNo);
+	}
+
+	@Override
+	public RoomImg getRoomImagesByBuId(int roomNo) {
+		return buDao.getRoomImagesByBuId(roomNo);
+	}
+
 }

@@ -8,10 +8,14 @@ import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
 
 public interface RoomService {
-	
+
 	public int insertBuRoom(Room buRoom, List<MultipartFile> upfiles) throws Exception;
-	
-	public int updateRoom(int roomNo, Room room );
-	
-	public int updateRoomImg(int roomNo, List<RoomImg> roomImgList);
+
+	public int updateRoom( Room room);
+
+	public int updateRoomImg(List<RoomImg> roomImgList);
+
+	public List<Room> getRoomsByBuId(int roomNo);
+
+	public RoomImg getRoomImagesByBuId(int roomNo);
 }

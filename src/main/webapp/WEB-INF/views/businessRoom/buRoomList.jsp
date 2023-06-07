@@ -113,7 +113,7 @@ img {
 	    	     event.preventDefault();  // 기본 클릭 동작 방지
 	    	   var roomNo = $(this).data('room-no'); // 클릭한 방의 roomNo 값을 가져옴
 	    	    if (roomNo !== undefined) {
-	    	    	 window.location.href = '/breaktime/businessRoom/modifyPage?roomNo=' + roomNo;
+	    	    	 window.location.href = '/breaktime/businessRoom/modifyPage?roomNo=' + roomNo; 
 	    	    }
 	    	  }); 
 	    	}); 
