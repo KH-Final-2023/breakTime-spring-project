@@ -30,22 +30,14 @@ public class DetailServiceImpl implements DetailService {
 		ArrayList<Detail> list = detailDao.selectDetailList(category);
 		map.put("list", list);
 	}
-	
-    @Override
-    public List<Map<String, Object>> selectDetailList(String category, List<List<Integer>> priceRanges) {
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("category", category);
-        paramMap.put("priceRanges", priceRanges);
-        return sqlSession.selectList("com.example.mapper.selectDetailListByPrice", paramMap);
-    }
 
-	public void getFilteredData(Map<String, Object> paramMap, Map<String, Object> map) {
-		ArrayList<Detail> list = detailDao.getFilteredData(paramMap);
+	public void getFilteredData(String category, List<String> prices, Map<String, Object> map) {
+		ArrayList<Detail> list = detailDao.getFilteredData(category, prices);
+		map.put("list", list);
 	}
-	
+
 	public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map) {
 		ArrayList<Detail> list = detailDao.searchDetailList(paramMap);
-		
 		map.put("list", list);
 	}
 

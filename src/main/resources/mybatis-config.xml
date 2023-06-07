@@ -24,7 +24,7 @@
 	</typeAliases>
 	 
 	 <mappers>
-    <mapper resource="/mappers/detail-mapper.xml"/>
+    	<mapper resource="/mappers/detail-mapper.xml"/>
 
 	 	<mapper resource="/mappers/notice-mapper.xml" />
 	 	<mapper resource="/mappers/buRoom-mapper.xml"/>

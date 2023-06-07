@@ -54,16 +54,7 @@
 		WHERE
 		H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND
 		R.ROOM_H_COUNT = 1
-		<if test="category != null">
-			AND B.BU_CATEGORY = #{category}
-		</if>
-		<if test="prices != null and prices.size() > 0">
-			AND R.ROOM_PRICE BETWEEN
-			<foreach item="priceRange" collection="prices"
-				separator=" AND ">
-				#{priceRange[0]} AND #{priceRange[1]}
-			</foreach>
-		</if>
+		AND B.BU_CATEGORY = #{category}
 	</select>
 
 
@@ -80,25 +71,20 @@
 		B.BU_CATEGORY,
 		B.BU_TEL,
 		B.BU_TITLE
-		FROM BUSINESS
-		B
+		FROM
+		BUSINESS B
 		INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
-		INNER JOIN HOUSE H ON
-		B.BU_TITLE = H.BU_TITLE
-		WHERE H.MAIN_IMG IS NOT NULL
-		AND B.APPROVAL =
-		'Y'
-		AND B.BU_CATEGORY =
-		'B02010100'
+		INNER JOIN HOUSE H ON B.BU_TITLE = H.BU_TITLE
+		WHERE
+		H.MAIN_IMG IS NOT NULL
+		AND B.APPROVAL = 'Y'
+		AND B.BU_CATEGORY = #{category}
 		AND R.ROOM_H_COUNT = 1
-		<if test="prices != null and prices.size() > 0">
-			AND R.ROOM_PRICE BETWEEN
-			<foreach item="priceRange" collection="prices"
-				separator=" AND ">
-				#{priceRange[0]} AND #{priceRange[1]}
-			</foreach>
-		</if>
+		AND TO_NUMBER(REPLACE(R.ROOM_PRICE, ',', '')) BETWEEN
+		TO_NUMBER(REPLACE(#{prices[0]}, '[', '')) AND
+		TO_NUMBER(REPLACE(#{prices[1]}, ']', ''))
 	</select>
+
 
 
 	<!-- <if test="roomInfos != null"> AND ROOM_INFO IN <foreach item="roomInfo" 

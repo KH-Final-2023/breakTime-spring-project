@@ -72,6 +72,68 @@
 .dropdown-content.show {
 	display: block;
 }
+
+/* 스타일링 */
+.calendar {
+	font-family: Arial, sans-serif;
+}
+
+.calendar button {
+	padding: 5px 10px;
+	margin-right: 10px;
+}
+
+.calendar table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.calendar th, .calendar td {
+	border: 1px solid black;
+	padding: 5px;
+	text-align: center;
+}
+
+.calendar th {
+	background-color: #f2f2f2;
+}
+
+.calendar .current-month {
+	font-weight: bold;
+}
+
+.calendar .selected-date {
+	background-color: #ffc107;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+	background-color: white;
+	margin: 10% auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 300px;
+}
+
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.modal-header button {
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -120,113 +182,164 @@
 					onclick="showMenu(this.innerText)">제주도</div>
 			</div>
 		</div>
-		<div class="dateCheck">
-			<div class="checkinout">
-				<input type="text" placeholder="체크인 날짜를 선택해주세요" class="inputField"
-					id="indatepicker" /> <input type="text"
-					placeholder="체크아웃 날짜를 선택해주세요" class="inputField" id="outdatepicker" />
+		<div class="calendar">
+			<button id="checkinBtn" onclick="openCalendar('checkin')">체크인
+				날짜 선택</button>
+			<button id="checkoutBtn" onclick="openCalendar('checkout')">체크아웃
+				날짜 선택</button>
+		</div>
+
+		<div id="calendarModal" class="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button onclick="changeMonth('prev')">◀</button>
+					<span id="currentMonth"></span>
+					<button onclick="changeMonth('next')">▶</button>
+				</div>
+				<table id="calendarTable">
+					<thead>
+						<tr>
+							<th>일</th>
+							<th>월</th>
+							<th>화</th>
+							<th>수</th>
+							<th>목</th>
+							<th>금</th>
+							<th>토</th>
+						</tr>
+					</thead>
+					<tbody id="calendarBody"></tbody>
+				</table>
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	<!-- 체크인아웃 설정 스크립트 -->
-	<script>
-            $(function () {
-            $("#indatepicker").datepicker({ dateFormat: "yy-mm-dd" });
-            });
-            </script>
-	<script>
-            $.datepicker.setDefaults({
-            dateFormat: 'yy-mm-dd',
-            prevText: '이전 달',
-            nextText: '다음 달',
-            monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-            dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-            dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-            showMonthAfterYear: true,
-            yearSuffix: '년'
-            });
-            $(function() {
-            $("#indatepicker").datepicker();
-            });
-</script>
-	<script>
-  $(function () {
-  $("#outdatepicker").datepicker({ dateFormat: "yy-mm-dd" });
-  });
-  </script>
-	<script>
-  $.datepicker.setDefaults({
-  dateFormat: 'yy-mm-dd',
-  prevText: '이전 달',
-  nextText: '다음 달',
-  monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-  monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-  dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-  dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-  dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-  showMonthAfterYear: true,
-  yearSuffix: '년'
-  });
-  $(function() {
-  $("#outdatepicker").datepicker();
-  });
-</script>
 
 
 
 
-	<!-- 지역 카테고리 설정 스크립트 -->
+
+	<!-- 체크인아웃 -->
 	<script>
-    window.onload=()=>{
-      document.querySelector('.dropbtn_click').onclick = ()=>{
-        dropdown();
-      }
-      document.getElementsByClassName('categoryCode').onclick = ()=>{
-        showMenu(value);
-      };
-      dropdown = () => {
-        var v = document.querySelector('.dropdown-content');
-        var dropbtn = document.querySelector('.dropbtn')
-        v.classList.toggle('show');
-        dropbtn.style.borderColor = 'rgb(94, 94, 94)';
+    // 현재 날짜 정보 가져오기
+    const currentDate = new Date();
+
+    // 선택한 날짜를 저장할 변수
+    let selectedCheckinDate = null;
+    let selectedCheckoutDate = null;
+
+    // 체크인/체크아웃 버튼 클릭 시 달력 모달창 열기
+    function openCalendar(target) {
+      const modal = document.getElementById('calendarModal');
+      modal.style.display = 'block';
+
+      // 체크인/체크아웃 구분하여 날짜 선택 정보 설정
+      if (target === 'checkin') {
+        selectedCheckinDate = null;
+        selectedCheckoutDate = null;
+      } else {
+        selectedCheckinDate = document.getElementById('checkinBtn').textContent;
       }
 
-      showMenu=(value)=>{
-        var dropbtn_icon = document.querySelector('.dropbtn_icon');
-        var dropbtn_content = document.querySelector('.dropbtn_content');
-        var dropbtn_click = document.querySelector('.dropbtn_click');
-        var dropbtn = document.querySelector('.dropbtn');
-
-        dropbtn_icon.innerText = '';
-        dropbtn_content.innerText = value;
-        dropbtn_content.style.color = '#252525';
-        dropbtn.style.borderColor = '#3992a8';
-      }
+      // 현재 날짜로 달력 생성
+      generateCalendar(currentDate);
     }
-    window.onclick= (e)=>{
-      if(!e.target.matches('.dropbtn_click')){
-        var dropdowns = document.getElementsByClassName("dropdown-content");
 
-        var dropbtn_icon = document.querySelector('.dropbtn_icon');
-        var dropbtn_content = document.querySelector('.dropbtn_content');
-        var dropbtn_click = document.querySelector('.dropbtn_click');
-        var dropbtn = document.querySelector('.dropbtn');
+    // 달력 생성
+    function generateCalendar(date) {
+      const tableBody = document.getElementById('calendarBody');
+      tableBody.innerHTML = '';
 
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
+      const currentYear = date.getFullYear();
+      const currentMonth = date.getMonth();
+
+      // 현재 달의 첫째 날
+      const firstDay = new Date(currentYear, currentMonth, 1);
+
+      // 현재 달의 마지막 날
+      const lastDay = new Date(currentYear, currentMonth + 1, 0);
+
+      // 첫째 날이 속한 주의 일요일로 이동
+      const startDate = new Date(firstDay);
+      startDate.setDate(startDate.getDate() - startDate.getDay());
+
+      // 마지막 날이 속한 주의 토요일로 이동
+      const endDate = new Date(lastDay);
+      endDate.setDate(endDate.getDate() + (6 - endDate.getDay()));
+
+      let tableRow = document.createElement('tr');
+      let currentDate = new Date(startDate);
+
+      // 달력 테이블 생성
+      while (currentDate <= endDate) {
+        if (currentDate.getDay() === 0) {
+          tableBody.appendChild(tableRow);
+          tableRow = document.createElement('tr');
         }
+
+        const tableData = document.createElement('td');
+        tableData.textContent = currentDate.getDate();
+
+        if (
+          currentDate >= firstDay &&
+          currentDate <= lastDay &&
+          currentDate.getMonth() === currentMonth
+        ) {
+          tableData.classList.add('current-month');
+
+          // 체크인/체크아웃 날짜에 따른 스타일 설정
+          if (currentDate.toDateString() === selectedCheckinDate) {
+            tableData.classList.add('selected-date');
+          } else if (currentDate.toDateString() === selectedCheckoutDate) {
+            tableData.classList.add('selected-date');
+          } else {
+            tableData.addEventListener('click', () =>
+              selectDate(currentDate)
+            );
+          }
+        } else {
+          tableData.classList.add('other-month');
+        }
+
+        tableRow.appendChild(tableData);
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+
+      tableBody.appendChild(tableRow);
+
+      // 현재 달 표시
+      const currentMonthText = `${currentYear}년 ${currentMonth + 1}월`;
+      document.getElementById('currentMonth').textContent = currentMonthText;
+    }
+
+    // 날짜 선택
+    function selectDate(date) {
+      if (!selectedCheckinDate) {
+        selectedCheckinDate = date.toDateString();
+        document.getElementById('checkinBtn').textContent = selectedCheckinDate;
+      } else if (!selectedCheckoutDate) {
+        selectedCheckoutDate = date.toDateString();
+        document.getElementById('checkoutBtn').textContent = selectedCheckoutDate;
+        closeCalendar();
       }
     }
-</script>
+
+    // 이전 달 또는 다음 달로 이동
+    function changeMonth(direction) {
+      if (direction === 'prev') {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+      } else if (direction === 'next') {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+      }
+
+      generateCalendar(currentDate);
+    }
+
+    // 달력 모달창 닫기
+    function closeCalendar() {
+      const modal = document.getElementById('calendarModal');
+      modal.style.display = 'none';
+    }
+  </script>
 
 
 </body>

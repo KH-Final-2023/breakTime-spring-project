@@ -153,6 +153,8 @@ public class ApiController extends HttpServlet {
 	                    try {
 	                        insertStatement.executeUpdate();
 	                    } catch (SQLIntegrityConstraintViolationException e) {
+	                         e.printStackTrace();
+	                         
 	                        // PRIMARY KEY 제약 조건에 위배되어 INSERT가 실패한 경우, UPDATE 실행
 	                        updateStatement.setString(1, addr1);
 	                        updateStatement.setInt(2, areacode);

@@ -23,31 +23,16 @@ public class DetailDAO {
 	}
 
 	public ArrayList<Detail> selectDetailList(String category) {
-
 		return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", category);
 	}
-	
-	public ArrayList<Detail> selectDetailList(String category, List<List<Integer>> priceRanges) {
-	    Map<String, Object> paramMap = new HashMap<>();
-	    paramMap.put("category", category);
-	    paramMap.put("priceRanges", priceRanges);
-	    List<Object> resultList = sqlSession.selectList("detailMapper.selectDetailList", paramMap);
 
-	    ArrayList<Detail> detailList = new ArrayList<>();
-	    for (Object result : resultList) {
-	        Detail detail = (Detail) result;
-	        detailList.add(detail);
-	    }
-
-	    return detailList;
+	public ArrayList<Detail> getFilteredData(String category, List<String> prices) {
+	    Map<String, Object> map = new HashMap<>();
+	    map.put("category", category);
+	    map.put("prices", prices);
+	    return (ArrayList) sqlSession.selectList("detailMapper.getFilteredData", map);
 	}
 
-
-
-	public ArrayList<Detail> getFilteredData(Map<String, Object> paramMap) {
-
-		return (ArrayList) sqlSession.selectList("detailMapper.getFilteredData", paramMap);
-	}
 	
 	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap){
 		

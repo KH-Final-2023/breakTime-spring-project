@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.detail.model.service.DetailService;
 
@@ -18,44 +20,42 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/detail")
+@RequestMapping("/list")
 public class DetailController {
 
 	@Autowired
 	private DetailService detailService;
 
 	private static final Logger logger = LoggerFactory.getLogger(DetailController.class);
-
-	@GetMapping("/list/{category}")
-	public String detailList(@RequestParam(value = "category", required = false) String category, Model model,
-	        @RequestParam(value = "prices[]", required = false) List<String> prices) {
-
+	
+	@GetMapping("/detail/{category}")
+	public String detailList(@PathVariable("category") String category, Model model) {
 	    Map<String, Object> map = new HashMap<>();
-	    
-	    if (prices == null || prices.isEmpty()) {
-	        detailService.selectDetailList(category, map);
-	    } else {
-	        // 옵션 선택을 한 경우
-	    	List<List<Integer>> priceRanges = new ArrayList<>();
-	    	for (String price : prices) {
-	    	    System.out.println("price: " + price);
-	    	    String[] range = price.split(",");
-	    	    System.out.println("price: " + price); 
-	    	    System.out.println("range 배열의 길이: " + range.length);
-	    	    int minPrice = Integer.parseInt(range[0].trim());
-	    	    int maxPrice = Integer.parseInt(range[1].trim());
-	    	    priceRanges.add(Arrays.asList(minPrice, maxPrice));
-	    	}
 
-	        detailService.selectDetailList(category, priceRanges);
-	    }
-	    
+	    detailService.selectDetailList(category, map);
+
 	    model.addAttribute("map", map);
-	    
-	    return "/detail/detail";
+
+	    return "detail/detail";
+	}
+
+	@GetMapping("/filter/{category}")
+	public String detailListSubmit(@PathVariable("category") String category,
+	                               @RequestParam(value = "prices") List<String> prices, Model model) {
+	    Map<String, Object> map = new HashMap<>();
+
+	    detailService.getFilteredData(category, prices, map);
+
+	    model.addAttribute("map", map);
+
+	    return "detail/detail";
 	}
 
 
+	
 }
