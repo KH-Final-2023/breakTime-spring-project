@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
-import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,7 +17,6 @@ import com.kh.breaktime.chat.model.service.ChatService;
 import com.kh.breaktime.chat.model.vo.ChatMessage;
 
 public class ChatWebsocketHandler extends TextWebSocketHandler {
-
 	// 채팅서비스 주입
 	@Autowired
 	private ChatService chatService;

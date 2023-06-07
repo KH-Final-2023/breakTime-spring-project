@@ -110,7 +110,7 @@
  }
  // 10보다 작은 숫자일 경우 앞에 0을 붙여준느 함수
  function addZero(number) {
- 	return number < 10 ? "0"+number : number;
+ 	return number < 10 ? "0" + number : String(number);
  }
 
  

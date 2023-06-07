@@ -124,7 +124,7 @@ overflow: hidden;
 					<%} %>
 				<%} %>
 				<c:forEach items="${list}" var="msg">
-					<fmt:formatDate var="chatDate" value="${msg.createDate }"
+					<fmt:formatDate var="chatDate" value="${msg.createDate}"
 						pattern="yyyy년 MM월 dd일 HH:mm:ss" />
 					<c:if test="${msg.userNo == loginUser.userNo }">
 						<li class="myChat"><span class="chatDate">${chatDate}</span>
