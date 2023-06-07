@@ -35,9 +35,9 @@ public class DecideController {
  
 		Map<String, Object> map = new HashMap();
 		
-		ArrayList<Decide> mainList = decideService.selectDecideMain(buNo);
+		ArrayList<Decide> mainList = decideService.selectDecideMain(buNo); // 메인 조회
 		
-		int rCnt = decideService.selectReviewCount(buNo);
+		int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
 		
 		map.put("buNo", mainList.get(0).getBuNo());
 		map.put("buTitle", mainList.get(0).getBuTitle());
@@ -60,22 +60,36 @@ public class DecideController {
 		return "decide/decideRoomSelect";
 	}
 	
-	@GetMapping("/demap/{buNo}") // 지도 조회
+	@GetMapping("/demap/{buNo}") // 메인 지도 화면 조회
 	public String decideMainMap(@PathVariable("buNo") int buNo, Model model) {	
 		
+		Map<String, Object> map = new HashMap();
+		
 		ArrayList<Decide> mapList = decideService.selectDecideMap(buNo);
-		model.addAttribute("mapList", mapList);
+		
+		map.put("buNo", mapList.get(0).getBuNo());
+		map.put("buAddress", mapList.get(0).getBuAddress());
+		
+		model.addAttribute("map", map);
 		
 		return "decide/decideMainMap";
 	}
 	
-	@GetMapping("/detailmap/{buNo}") // 상세지도 조회
-	public String decideDetailMap(@PathVariable("buNo") int buNo, Model model) {	
-		
-		ArrayList<Decide> mapDetailList = decideService.selectDecideMap(buNo);
-		model.addAttribute("mapDetailList", mapDetailList);
-		
-		return "decide/decideDetailMap";
+	
+	 @GetMapping("/detailmap/{buNo}") // 지도 메인 썸네일 조회
+	 public String decideDetailMap(@PathVariable("buNo") int buNo, Model model) {
+	 
+	 ArrayList<Decide> mapDetailList = decideService.selectDetailMap(buNo);
+	 
+	 model.addAttribute("mapDetailList", mapDetailList);
+	 
+	 return "decide/decideDetailMap"; }
+	 
+	
+	@GetMapping("/depopupmap") // 팝업 지도 조회
+	public String decidePopupMap() {
+
+		return "decide/decidePopupMap";
 	}
 	
 	@GetMapping("/dereview/{buNo}") // 리뷰 조회
@@ -98,6 +112,7 @@ public class DecideController {
 
 		return "decide/decideBasket";
 	}
+	
 	
 
 }

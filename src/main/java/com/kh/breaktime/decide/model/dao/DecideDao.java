@@ -32,10 +32,16 @@ public class DecideDao {
 		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideRoom", buNo);
 	}
 	
-	// 지도 조회
+	// 지도 메인 화면 조회
 	public ArrayList<Decide> selectDecideMap(int buNo) {
 		
 		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideMap", buNo);
+	}
+	
+	// 지도 메인 화면 조회
+	public ArrayList<Decide> selectDetailMap(int buNo) {
+		
+		return (ArrayList)sqlSession.selectList("decideMapper.selectDetailMap", buNo);
 	}
 	
 	// 리뷰 조회

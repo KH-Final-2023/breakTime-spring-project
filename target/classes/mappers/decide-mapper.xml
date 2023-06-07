@@ -19,6 +19,7 @@
         WHERE BU_NO = #{buNo}
 	</select> -->
 	
+	<!-- 메인 조회 -->
   	<select id="selectDecideMain" resultType="com.kh.breaktime.decide.model.vo.Decide">
   	/*decideMapper.selectDecideMain*/
     	SELECT  B.BU_NO         AS buNo,
@@ -42,7 +43,9 @@
 		AND ROWNUM = 1 
 	</select>
 	
+	<!-- 메인 리뷰 개수 조회 -->
 	<select id="selectReviewCount" resultType="_int">
+	/*decideMapper.selectReviewCount*/
 		SELECT COUNT(*)
           FROM BUSINESS B
           INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
@@ -50,6 +53,7 @@
           WHERE B.BU_NO = #{BU_NO} 
 	</select>
 	
+	<!-- 객실 조회 -->
 	<select id="selectDecideRoom" resultType="com.kh.breaktime.decide.model.vo.Decide">
 	/*decideMapper.selectDecideRoom*/
 		SELECT R.ROOM_NO		AS roomNo,		 
@@ -67,18 +71,35 @@
         WHERE B.BU_NO = #{buNo}
 	</select>
 	
-	<!-- <select id="selectDecideReview" resultMap="reviewResultSet">
+	<!-- 메인 지도 화면 조회 -->
+	<select id="selectDecideMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
+	/*decideMapper.selectDecideMap*/
+		SELECT BU_ADDRESS AS buAddress
+		FROM BUSINESS
+		WHERE BU_NO = #{buNo}
+ 	</select>
+ 	
+ 	<!-- 지도 메인 썸네일 조회 -->
+ 	 <select id="selectDetailMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
+ 	/*decideMapper.selectDetailMap*/
+		SELECT BU_ADDRESS AS buAddress
+		FROM BUSINESS
+		WHERE BU_NO = #{buNo}
+ 	</select>
+	
+	<!-- 리뷰 조회 -->
+	 <select id="selectDecideReview" resultType="com.kh.breaktime.decide.model.vo.Decide">
 	/*decideMapper.selectDecideReview*/
-		SELECT  R.REVIEW_NO,
-				R.STAR_SCORE, 
-				R.REVIEW_WRITER, 
-				M.USER_NAME, 
-				R.CREATE_DATE,
-				R.BOOK_NO, 
-				R.USING_ROOM, 
-				RO.ROOM_NAME, 
-				R.REVIEW_CONTENT, 
-				R.REVIEW_CONTENT_REPLY
+		SELECT  R.REVIEW_NO				AS reviewNo,
+				R.STAR_SCORE			AS starScore, 
+				R.REVIEW_WRITER			AS reviewWriter, 
+				M.USER_NAME				AS userName, 
+				R.CREATE_DATE			AS createDate,
+				R.BOOK_NO				AS bookNo, 
+				R.USING_ROOM			AS usingRoom, 
+				RO.ROOM_NAME			AS roomName, 
+				R.REVIEW_CONTENT		AS reviewContent, 
+				R.REVIEW_CONTENT_REPLY	AS reviewContentReply
 		FROM REVIEW R
 		JOIN MEMBER M   ON M.USER_NO = R.REVIEW_WRITER
 		JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
@@ -86,11 +107,8 @@
 		WHERE R.REVIEW_AVAILABLE = 'Y'
         AND B.BU_NO = #{buNo}
         ;
-	</select> -->
+	</select>
 	
-	<!-- <select id="selectDecideMap" resultMap="mapResultSet">
-		SELECT BU_ADRESS 
-		FROM BUSINESS
-		WHERE BU_NO = #{buNo}
- 	</select>  -->
+	
+ 	
 </mapper>

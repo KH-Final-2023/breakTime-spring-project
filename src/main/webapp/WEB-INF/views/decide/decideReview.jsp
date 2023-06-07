@@ -138,13 +138,13 @@ $(document).on('click', '.modal-close', function () {
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">
-                <span>후기 (${r.reviewCount})</span>
+                <span>후기 (${d.reviewCount})</span>
             </div>
 
             <div class="review-star">
                 <div class="star-rating">
                 <span><i class="fas fa-star"></i></span>
-                <span class="rating-score">${r.starScore}
+                <span class="rating-score">${d.starScore}
                 <span class="rating-small">/5</span></span>
                  </div>
             </div>
@@ -158,61 +158,35 @@ $(document).on('click', '.modal-close', function () {
             </div>
 
             <div class="review-main-star">
-                <div id="content">
-                    <div id="content2">
-                        <div id="reviewBackground">
-                            <div id="review-star-rating">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <div id="reviewNickname">
-                                <div>${m.userName} | ${r.createDate}</div>
-                            </div>
-                            <div id="reviewRoomName">
-                                <div id="reviewRoomNameList">객실명</div>
-                                <div id="reviewRoomNameInfo">${r.roomName} (${r.roomInfo})</div>
-                            </div>
-                            <div id="review">${r.reviewContent }</div>
-
-                            <div id="buReviewList">
-                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
-                                <span class="buReviewDate">${r.createDate}</span>   
-                                <p class="buReview">${r.reviewContentReply}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="content">
-                    <div id="content2">
-                        <div id="reviewBackground">
-                            <div id="review-star-rating">
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                                <span class="fa fa-star"></span>
-                            </div>
-                            <div id="reviewNickname">
-                                <div>기구구구구 | 2023.05.04</div>
-                            </div>
-                            <div id="reviewRoomName">
-                                <div id="reviewRoomNameList">객실명</div>
-                                <div id="reviewRoomNameInfo">미니룸(인터넷,넷플릭스사용가능)</div>
-                            </div>
-                            <div id="review">방도 깔끔하고 생각보다 넓어서 싫어용!</div>
-
-                            <div id="buReviewList">
-                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
-                                <span class="buReviewDate">2023.05.04</span>   
-                                <p class="buReview">저희 숙소를 이용해주셔서 감사합니다</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            	<c:forEach items="${reviewList}" var="d">
+	                <div id="content">
+	                    <div id="content2">
+	                        <div id="reviewBackground">
+	                            <div id="review-star-rating">
+	                                <span class="fa fa-star"></span>
+	                                <span class="fa fa-star"></span>
+	                                <span class="fa fa-star"></span>
+	                                <span class="fa fa-star"></span>
+	                                <span class="fa fa-star"></span>
+	                            </div>
+	                            <div id="reviewNickname">
+	                                <div>${d.userName} | ${d.createDate}</div>
+	                            </div>
+	                            <div id="reviewRoomName">
+	                                <div id="reviewRoomNameList">객실명</div>
+	                                <div id="reviewRoomNameInfo">${d.roomName} (${d.roomInfo})</div>
+	                            </div>
+	                            <div id="review">${d.reviewContent }</div>
+	
+	                            <div id="buReviewList">
+	                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
+	                                <span class="buReviewDate">${d.createDate}</span>   
+	                                <p class="buReview">${d.reviewContentReply}</p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
             </div>
 
             <!-- 모달 창 -->
