@@ -54,6 +54,23 @@ function() {
 			window.location.href = currentUrl;
 		}
 	});
+	
+	$(".button-card1").click(
+            function(e) {
+                e.preventDefault();
+
+                // 장바구니에 상품이 담겼습니다.
+                alert("장바구니에 상품이 담겼습니다.");
+
+                // 장바구니로 가시겠습니까?
+                var isConfirm = confirm("장바구니로 가시겠습니까?");
+
+                if (isConfirm) {
+                    // 확인을 눌렀을 경우, 장바구니 페이지로 이동
+                    window.location.href = "${contextPath}/decide/debasket";
+                }
+            }
+        );
 });
 </script>
 </head>

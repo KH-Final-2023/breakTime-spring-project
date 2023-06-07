@@ -42,13 +42,13 @@ $(document).ready(
 			var currentUrl = window.location.href;
 			var previousUrl = document.referrer;
 
-			$(".button").click(
+			$(".mapButton").click(
 					function(e) {
 						e.preventDefault();
 
 						var overlay = $("<div>").addClass("overlay");
-						var datePicker = $("<iframe>").attr("src",
-								"${contextPath}/decide/depopupmap");
+						var depopupmap = $("<iframe>").attr("src",
+								"${contextPath}/decide/depopupmap/${m.buNo}");
 						var closeBtn = $("<i>").addClass(
 								"fas fa-times close-btn").css({
 							"animation-name" : "reverse-animation",
@@ -56,7 +56,7 @@ $(document).ready(
 							"animation-timing-function" : "ease-in-out"
 						});
 
-						overlay.append(datePicker, closeBtn);
+						overlay.append(depopupmap, closeBtn);
 						$(".container").prepend(overlay);
 
 						setTimeout(function() {
@@ -91,7 +91,7 @@ $(document).ready(
 				<span>위치</span>
 			</div>
 			<div class="map-image">
-				<a href="${contextPath}/decide/depopupmap" class="button">
+				<a href="${contextPath}/decide/depopupmap/${m.buNo}" class="mapButton">
 				<iframe src="${contextPath}/decide/detailmap/${m.buNo}" scrolling="no"></iframe>
 				</a>
 			</div>

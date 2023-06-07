@@ -20,6 +20,9 @@ public interface DecideService {
 	
 	//지도 메인 썸네일 조회 
 	ArrayList<Decide> selectDetailMap(int buNo);
+	
+	//지도 팝업 지도 조회 
+	ArrayList<Decide> selectPopupMap(int buNo);
 	 
 	// 리뷰 조회
 	ArrayList<Decide> selectDecideReview(int buNo);

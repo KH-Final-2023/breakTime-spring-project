@@ -44,6 +44,12 @@ public class DecideServiceImpl implements DecideService {
 		return decideDao.selectDetailMap(buNo);
 	}
 	
+	// 지도 팝업 지도 조회
+	@Override
+	public ArrayList<Decide> selectPopupMap(int buNo) {
+		return decideDao.selectPopupMap(buNo);
+	}
+	
 	// 리뷰 조회
 	@Override
 	public ArrayList<Decide> selectDecideReview(int buNo) {

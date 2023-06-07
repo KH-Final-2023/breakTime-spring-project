@@ -44,6 +44,12 @@ public class DecideDao {
 		return (ArrayList)sqlSession.selectList("decideMapper.selectDetailMap", buNo);
 	}
 	
+	// 지도 팝업 지도 조회
+	public ArrayList<Decide> selectPopupMap(int buNo) {
+		
+		return (ArrayList)sqlSession.selectList("decideMapper.selectPopupMap", buNo);
+	}
+	
 	// 리뷰 조회
 	public ArrayList<Decide> selectDecideReview(int buNo) {
 		

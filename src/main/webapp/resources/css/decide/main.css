@@ -80,13 +80,6 @@ body {
 	padding-bottom: 15px;
 }
 
-.map-link {
-	display: inline-block;
-	color: #0000ff86;
-	text-decoration: none;
-	margin-right: 5px;
-}
-
 .map-icon {
 	font-size: 16px;
 	margin-right: 5px;
@@ -144,4 +137,41 @@ body {
 .section-link.active::after {
 	visibility: visible;
 	background-color: #0000ff;
+}
+
+.mapButton{
+	text-decoration: none;
+}
+
+.overlay {
+	position: fixed;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: top 0.3s ease-in-out;
+	z-index: 9999;
+}
+
+.overlay.open {
+	top: 0;
+}
+
+.overlay iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.overlay .close-btn {
+	position: absolute;
+	top: 14px;
+	left: 480px;
+	font-size: 20px;
+	color: black;
+	cursor: pointer;
 }

@@ -74,7 +74,8 @@
 	<!-- 메인 지도 화면 조회 -->
 	<select id="selectDecideMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
 	/*decideMapper.selectDecideMap*/
-		SELECT BU_ADDRESS AS buAddress
+		SELECT 	BU_NO AS buNo, 
+				BU_ADDRESS AS buAddress
 		FROM BUSINESS
 		WHERE BU_NO = #{buNo}
  	</select>
@@ -82,7 +83,18 @@
  	<!-- 지도 메인 썸네일 조회 -->
  	 <select id="selectDetailMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
  	/*decideMapper.selectDetailMap*/
-		SELECT BU_ADDRESS AS buAddress
+		SELECT BU_NO AS buNo,
+			   BU_ADDRESS AS buAddress,
+			   BU_TITLE AS buTitle
+		FROM BUSINESS
+		WHERE BU_NO = #{buNo}
+ 	</select>
+ 	
+ 	<!-- 지도 팝업 지도 조회 -->
+ 	 <select id="selectPopupMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
+ 	/*decideMapper.selectPopupMap*/
+		SELECT BU_ADDRESS AS buAddress,
+			   BU_TITLE AS buTitle
 		FROM BUSINESS
 		WHERE BU_NO = #{buNo}
  	</select>

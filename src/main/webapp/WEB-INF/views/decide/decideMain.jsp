@@ -115,6 +115,84 @@ $(document).ready(function() {
 	var target = "${contextPath}/decide/deroom/${m.buNo}";
 	$("#section-content").load(target);
 });
+
+$(document).ready(
+		function() {
+			var currentUrl = window.location.href;
+			var previousUrl = document.referrer;
+			
+			$(".mapButton").click(
+					function(e) {
+						e.preventDefault();
+
+						var overlay = $("<div>").addClass("overlay");
+						var depopupmap = $("<iframe>").attr("src",
+								"${contextPath}/decide/depopupmap/${m.buNo}");
+						var closeBtn = $("<i>").addClass(
+								"fas fa-times close-btn").css({
+							"animation-name" : "reverse-animation",
+							"animation-duration" : "0.1s",
+							"animation-timing-function" : "ease-in-out"
+						});
+
+						overlay.append(depopupmap, closeBtn);
+						$(".container").prepend(overlay);
+
+						setTimeout(function() {
+							overlay.addClass("open");
+						}, 300);
+
+						closeBtn.click(function() {
+							overlay.removeClass("open");
+
+							setTimeout(function() {
+								overlay.remove();
+							}, 300);
+						});
+					});
+
+			$(".button").click(
+					function(e) {
+						e.preventDefault();
+
+						var overlay = $("<div>").addClass("overlay");
+						var depopupmap = $("<iframe>").attr("src",
+								"${contextPath}/decide/depopupmap/${m.buNo}");
+						var closeBtn = $("<i>").addClass(
+								"fas fa-times close-btn").css({
+							"animation-name" : "reverse-animation",
+							"animation-duration" : "0.1s",
+							"animation-timing-function" : "ease-in-out"
+						});
+
+						overlay.append(depopupmap, closeBtn);
+						$(".container").prepend(overlay);
+
+						setTimeout(function() {
+							overlay.addClass("open");
+						}, 300);
+
+						closeBtn.click(function() {
+							overlay.removeClass("open");
+
+							setTimeout(function() {
+								overlay.remove();
+							}, 300);
+						});
+					});
+			
+
+
+			$(".close-btn").click(function(e) {
+				e.preventDefault();
+
+				if (previousUrl) {
+					window.location.href = previousUrl;
+				} else {
+					window.location.href = currentUrl;
+				}
+			});
+		});
 </script>
 </head>
 
@@ -145,10 +223,9 @@ $(document).ready(function() {
 
 			<!-- 주소와 지도 표시 -->
 			<div class="location">
-				<a class="map-link"
-					href="https://maps.google.com/maps?q=경기도 부천시 송내동 경인로169번길 571-12"
-					target="_blank"> <i class="fas fa-map-marker-alt"></i> <span
-					class="address">${m.buAddress}</span>
+				<a class="mapButton"
+					href="${contextPath}/decide/depopupmap/${m.buNo}"><i class="fas fa-map-marker-alt"></i> 
+					<span class="address">${m.buAddress}</span>
 				</a>
 			</div>
 		</div>
