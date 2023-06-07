@@ -20,11 +20,17 @@ public class DecideServiceImpl implements DecideService {
 		return decideDao.selectDecideMain(buNo);
 	}
 	
-	// 메인 리뷰 갯수 조회
+	// 리뷰 개수 조회
 	@Override
 	public int selectReviewCount(int buNo) {
 		return decideDao.selectReviewCount(buNo);
 	}
+	
+	// 리뷰 평점 조회
+//	@Override
+//	public double selectReviewScore(int buNo) {
+//		return decideDao.selectReviewScore(buNo);
+//	}
 	
 	// 객실 조회
 	@Override

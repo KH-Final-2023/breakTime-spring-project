@@ -43,6 +43,21 @@
 		AND ROWNUM = 1 
 	</select>
 	
+	<!-- 메인 조회 -->
+  	<!-- <select id="selectDecideMain" resultType="com.kh.breaktime.decide.model.vo.Decide">
+  	/*decideMapper.selectDecideMain*/
+    	SELECT  B.BU_NO         AS buNo,
+				B.BU_TITLE      AS buTitle,
+				B.BU_ADDRESS    AS buAddress,
+				H.MAIN_IMG      AS mainImg
+		FROM BUSINESS B
+		INNER JOIN ROOM R 	ON B.BU_NO = R.BU_NO
+		INNER JOIN HOUSE H 	ON B.BU_TITLE = H.BU_TITLE
+		WHERE H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
+		AND B.BU_NO = #{buNo}
+		AND ROWNUM = 1
+	</select> -->
+	
 	<!-- 메인 리뷰 개수 조회 -->
 	<select id="selectReviewCount" resultType="_int">
 	/*decideMapper.selectReviewCount*/
@@ -52,6 +67,18 @@
           INNER JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
           WHERE B.BU_NO = #{BU_NO} 
 	</select>
+	
+	<!-- 리뷰 평점 조회 -->
+	<!-- <select id="selectReviewScore" resultType="_double">
+	/*decideMapper.selectReviewScore*/
+		SELECT 	ROUND(AVG(V.STAR_SCORE), 1) AS starScore
+				FROM BUSINESS B
+				INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+				LEFT JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
+				WHERE B.APPROVAL = 'Y' 
+				AND B.BU_NO = #{buNo}
+	</select> -->
+	
 	
 	<!-- 객실 조회 -->
 	<select id="selectDecideRoom" resultType="com.kh.breaktime.decide.model.vo.Decide">

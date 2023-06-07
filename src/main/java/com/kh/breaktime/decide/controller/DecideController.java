@@ -37,6 +37,9 @@ public class DecideController {
 		
 		ArrayList<Decide> mainList = decideService.selectDecideMain(buNo); // 메인 조회
 		
+		//double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
+		//System.out.println("reviewScore============" + reviewScore);
+		
 		int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
 		
 		map.put("buNo", mainList.get(0).getBuNo());
@@ -44,6 +47,8 @@ public class DecideController {
 		map.put("buAddress", mainList.get(0).getBuAddress());
 		map.put("mainImg", mainList.get(0).getMainImg());
 		map.put("starScore", mainList.get(0).getStarScore());
+		
+		//map.put("starScore", reviewScore);
 		map.put("reviewCount", rCnt);
 		
 		model.addAttribute("map", map);
@@ -109,8 +114,19 @@ public class DecideController {
 	
 	@GetMapping("/dereview/{buNo}") // 리뷰 조회
 	public String decideReview(@PathVariable("buNo") int buNo, Model model) {
+		
+		Map<String, Object> map = new HashMap();
 
 		ArrayList<Decide> reviewList = decideService.selectDecideReview(buNo);
+		
+		//double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
+		
+		int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
+		
+		//map.put("starScore", reviewScore);
+		map.put("reviewCount", rCnt);
+		
+		model.addAttribute("map", map);
 		model.addAttribute("reviewList", reviewList);
 		
 		return "decide/decideReview";

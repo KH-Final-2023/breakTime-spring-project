@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:set var="m" value="${map}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,7 +130,7 @@ $('.modal-overlay').on('animationend', function () {
 /* X 버튼 클릭 이벤트 */
 $(document).on('click', '.modal-close', function () {
     closeModal();
-});
+	});
 });
 </script>
 </head>
@@ -138,13 +139,13 @@ $(document).on('click', '.modal-close', function () {
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">
-                <span>후기 (${d.reviewCount})</span>
+                <span>후기 (${m.reviewCount})</span>
             </div>
 
             <div class="review-star">
                 <div class="star-rating">
                 <span><i class="fas fa-star"></i></span>
-                <span class="rating-score">${d.starScore}
+                <span class="rating-score">${m.starScore}
                 <span class="rating-small">/5</span></span>
                  </div>
             </div>

@@ -15,7 +15,8 @@ public class Decide {
 	private String mainImg;
 	private String filePath;
     private String saveName;
-	private int starScore;
+    private int starScore;
+	//private double starScore;
     
 	private int areaNo;
 	private String buCategory;

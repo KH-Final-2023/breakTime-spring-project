@@ -9,8 +9,11 @@ public interface DecideService {
 	// 메인 조회
 	ArrayList<Decide> selectDecideMain(int buNo);
 	
-	// 메인 리뷰 개수 조회
+	// 리뷰 개수 조회
 	int selectReviewCount(int buNo);
+	
+	// 리뷰 평점 조회
+	//double selectReviewScore(int buNo);
 	
 	// 객실 조회
 	ArrayList<Decide> selectDecideRoom(int buNo);

@@ -20,11 +20,17 @@ public class DecideDao {
 		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideMain", buNo);
 	}
 	
-	// 메인 리뷰 개수 조회
+	// 리뷰 개수 조회
 	public int selectReviewCount(int buNo) {
 			
 		return sqlSession.selectOne("decideMapper.selectReviewCount", buNo);
 	}
+	
+	// 리뷰 평점 조회
+//	public double selectReviewScore(int buNo) {
+//			
+//		return sqlSession.selectOne("decideMapper.selectReviewScore", buNo);
+//	}
 	
 	// 객실 조회
 	public ArrayList<Decide> selectDecideRoom(int buNo) {
