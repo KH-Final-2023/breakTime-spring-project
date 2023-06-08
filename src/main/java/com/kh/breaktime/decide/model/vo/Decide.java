@@ -24,7 +24,7 @@ public class Decide {
 	private String bookNo;
 	private String reviewContent;
 	private String reviewAvailable;
-	private Date createDate;
+	private String createDate;
 	private String reviewContentReply;
 	private String userName;
 	

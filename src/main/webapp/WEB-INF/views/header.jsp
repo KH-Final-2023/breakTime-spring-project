@@ -5,6 +5,7 @@
 <c:if test="${!empty param.condition}" >
 	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
 </c:if>
+<c:set var="m" value="${map}"/>
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
