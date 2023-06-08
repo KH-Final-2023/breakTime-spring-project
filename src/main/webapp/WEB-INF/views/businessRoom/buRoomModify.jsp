@@ -31,22 +31,23 @@ img {
 		<div id="content2">
 			<div id="roomModifyText1" style="font-size: x-large; margin: 15px;">객실
 				수정</div>
-				
-			<form action="/breaktime/businessRoom/buRoomModify" method="POST" enctype="multipart/form-data">
-				
-				<input type="hidden"name="roomNo"value="${ room.roomNo}"/>
-					<div class="room-info" data-room-no="${room.roomNo}">
-						<div id="imgList">
-							<img
-								src="<%=request.getContextPath() %>${roomImg.filePath}/${roomImg.originName}">
-						</div>
-						<div>
-							<div>${room.roomName}</div>
-							<div>인원: ${room.roomCount}</div>
-							<div>가격: ${room.roomPrice}</div>
-						</div>
+
+			<form action="/breaktime/businessRoom/buRoomModify" method="POST"
+				enctype="multipart/form-data">
+				<input type="hidden" name="fileNo" value="${roomImg.fileNo}">
+				<input type="hidden" name="roomNo" value="${ room.roomNo}" />
+				<div class="room-info" data-room-no="${room.roomNo}">
+					<div id="imgList">
+						<img
+							src="<%=request.getContextPath() %>${roomImg.filePath}/${roomImg.originName}">
 					</div>
-				
+					<div>
+						<div>${room.roomName}</div>
+						<div>인원: ${room.roomCount}</div>
+						<div>가격: ${room.roomPrice}</div>
+					</div>
+				</div>
+
 				<div id="ModifyroomName">객실 이름 :</div>
 				<div>
 					<input name="roomName" placeholder="수정할 객실 이름을 입력해주세요">
@@ -68,7 +69,12 @@ img {
 					<input type="file" name="upfiles" multiple style="height: 150px;">
 				</div>
 				<div>
+
 					<button type="submit" id="resisterBtn">수정하기</button>
+					<%-- <a
+						href="<%=request.getContextPath()%>/businessRoom/buRoomList">
+						<button type="submit" id="resisterBtn">확인수정하기button>
+					</a> --%>
 				</div>
 			</form>
 		</div>

@@ -1,6 +1,7 @@
 package com.kh.breaktime.room.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,4 +19,6 @@ public interface RoomService {
 	public List<Room> getRoomsByBuId(int roomNo); 
 
 	public RoomImg getRoomImagesByBuId(int roomNo);
+	
+	public void selectBuRoomList(int cp, Map<String, Object> map);
 }

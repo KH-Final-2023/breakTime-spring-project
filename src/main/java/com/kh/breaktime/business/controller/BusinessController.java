@@ -115,7 +115,7 @@ public class BusinessController {
 			model.addAttribute("roomList", roomList);
 			model.addAttribute("roomImgList", roomImgList);
 
-			return "businessRoom/buRoomList";
+			return "redirect:/businessRoom/list";
 		} else { // 로그인 실패
 			ra.addFlashAttribute("errorMsg", "로그인 실패");
 			return "redirect:/"; // 로그인 실패 시 메인페이지로 이동하도록 수정

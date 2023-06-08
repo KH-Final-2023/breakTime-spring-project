@@ -6,7 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -56,7 +58,7 @@ public class RoomController {
 			buRoom.setRoomImg(savedImagePaths);
 			buService.insertBuRoom(buRoom, upfiles);
 			session.setAttribute("alertMsg", "객실 등록이 완료되었습니다.");
-			return "redirect:http://localhost:8081/breaktime/";
+			return "redirect:/businessRoom/list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 등록 실패");
@@ -134,56 +136,56 @@ public class RoomController {
 	public String buReview() {
 		return "businessRoom/buReview";
 	}
-	
+
 	@PostMapping("/buRoomModify")
 	public String updateBuRoom(Room room, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
-	        Model model, @RequestParam(value="roomNo") int roomNo) {
-	    System.out.println("준석");
-	    System.out.println("===================" + room);
-	    System.out.println(room);
-	    try {
-	        List<String> savedImagePaths = new ArrayList<>();
-	        for (MultipartFile file : upfiles) {
-	            if (!file.isEmpty()) {
-	                String savedImagePath = saveImage1(file);
-	                savedImagePaths.add(savedImagePath);
-	            }
-	        }
+			Model model, @RequestParam(value = "roomNo") int roomNo, @RequestParam(value = "fileNo") int fileNo) {
+		System.out.println("준석");
+		System.out.println("===================" + room);
+		System.out.println(room);
+		try {
+			List<String> savedImagePaths = new ArrayList<>();
+			for (MultipartFile file : upfiles) {
+				if (!file.isEmpty()) {
+					String savedImagePath = saveImage1(file);
+					savedImagePaths.add(savedImagePath);
+				}
+			}
 
-	        int result = buService.updateRoom(room);
+			int result = buService.updateRoom(room);
 
-	        // RoomImg 정보 수정
-	        List<RoomImg> roomImgList = new ArrayList<>();
+			// RoomImg 정보 수정
+			List<RoomImg> roomImgList = new ArrayList<>();
 
-	        for (MultipartFile file : upfiles) {
-	            if (!file.isEmpty()) {
-	                String savedImagePath = saveImage(file);
+			for (MultipartFile file : upfiles) {
+				if (!file.isEmpty()) {
+					String savedImagePath = saveImage(file);
 
-	                RoomImg roomImg = new RoomImg();
+					RoomImg roomImg = new RoomImg();
+					roomImg.setFileNo(fileNo);
+					roomImg.setRoomNo(result);
+					roomImg.setOriginName(file.getOriginalFilename());
+					roomImg.setSaveName(savedImagePath);
+					roomImg.setFilePath("/resources/images");
+					roomImg.setFileLevel(0);
+					roomImg.setStatus("N");
 
-	                roomImg.setRoomNo(result);
-	                roomImg.setOriginName(file.getOriginalFilename());
-	                roomImg.setSaveName(savedImagePath);
-	                roomImg.setFilePath("/resources/images");
-	                roomImg.setFileLevel(0);
-	                roomImg.setStatus("N");
+					roomImgList.add(roomImg);
 
-	                roomImgList.add(roomImg);
+					System.out.println(roomImgList);
+				}
+			}
 
-	                System.out.println(roomImgList);
-	            }
-	        }
+			// RoomImg 리스트 업데이트
+			buService.updateRoomImg(roomImgList);
+			session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
+			return "redirect:/business/buLogin";
 
-	        // RoomImg 리스트 업데이트
-	        buService.updateRoomImg(roomImgList);
-
-	        session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
-	        return "redirect:/businessRoom/buRoomList";
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        model.addAttribute("errorMsg", "객실 수정 실패");
-	        return "common/errorPage";
-	    }
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("errorMsg", "객실 수정 실패");
+			return "common/errorPage";
+		}
 	}
 
 	private String saveImage1(MultipartFile file) throws IOException {
@@ -207,20 +209,32 @@ public class RoomController {
 
 	@GetMapping("/modifyPage")
 	public String modifyPage(Model model, HttpSession session, @RequestParam("roomNo") int roomNo) {
-	    // 방 이미지와 방 정보 페이지로 이동
-	    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-	    List<Room> roomList = buService.getRoomsByBuId(roomNo);
-	    System.out.println("니가 조회한 룸이다:" + roomList);
-	    List<RoomImg> roomImgList = new ArrayList<RoomImg>();
-	    for (int i = 0; i < roomList.size(); i++) {
-	        RoomImg roomImg = buService.getRoomImagesByBuId(roomList.get(i).getRoomNo());
-	        roomImgList.add(roomImg);
-	    }
+		// 방 이미지와 방 정보 페이지로 이동
+		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
+		List<Room> roomList = buService.getRoomsByBuId(roomNo);
+		System.out.println("니가 조회한 룸이다:" + roomList);
+		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
+		for (int i = 0; i < roomList.size(); i++) {
+			RoomImg roomImg = buService.getRoomImagesByBuId(roomList.get(i).getRoomNo());
+			roomImgList.add(roomImg);
+		}
 
-	    model.addAttribute("room", roomList.get(0));
-	    model.addAttribute("roomImg", roomImgList.get(0));
+		model.addAttribute("room", roomList.get(0));
+		model.addAttribute("roomImg", roomImgList.get(0));
 
-	    return "businessRoom/buRoomModify";
+		return "businessRoom/buRoomModify";
 	}
 
+	
+	@GetMapping("/list")
+	   public String selectBuRoomList(Model model,
+	                      @RequestParam(value="cpage", defaultValue="1") int cp ,  HttpSession session
+	                      ) {
+		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
+	      Map<String, Object> map = new HashMap();
+	      buService.selectBuRoomList(cp,map);
+	      model.addAttribute("selectBuRoomList", map);
+	      System.out.println(loginBusiness.getBuId());
+	      return "businessRoom/buRoomList";
+	   }
 }

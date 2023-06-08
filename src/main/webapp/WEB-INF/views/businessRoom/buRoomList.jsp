@@ -86,7 +86,8 @@ img {
 			<hr>
 			<div id="lodging">
 				<div>
-					<c:forEach items="${roomList}" var="room" varStatus="roomStatus">
+					<c:forEach items="${selectBuRoomList.list}" var="room" varStatus="roomStatus">
+					<input type="hidden" name="roomNo" value="${empty room.roomNo ? 0 : room.roomNo}" />
 						<div class="room-info" data-room-no="${room.roomNo}">
 							<div id="imgList">
 								<!-- 해당 방의 이미지 출력 -->

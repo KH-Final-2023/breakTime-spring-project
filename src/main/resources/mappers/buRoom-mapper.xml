@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="buRoom-mapper">
-	
+
 	<resultMap type="room" id="roomResultMap">
 		<id column="ROOM_NO" property="roomNo" />
 		<result column="BU_ID" property="buId" />
@@ -72,41 +72,60 @@
 	<update id="updateRoom">
 		UPDATE ROOM SET
 		ROOM_COUNT = #{roomCount},
-		ROOM_NAME = #{roomName},
+		ROOM_NAME =#{roomName},
 		ROOM_PRICE = #{roomPrice},
 		ROOM_INFO = #{roomInfo}
 		WHERE ROOM_NO = #{roomNo}
 	</update>
 
-<update id="updateRoomImg">
-    <!-- 반복문을 통해 roomImgList의 각 요소를 처리해야 할 수 있습니다. -->
-    <foreach collection="list" item="roomImg" separator=";">
-        UPDATE
-        ROOM_IMG SET
-        ORIGIN_NAME = #{roomImg.originName},
-        SAVE_NAME = #{roomImg.saveName},
-        FILE_PATH = #{roomImg.filePath},
-        FILE_LEVEL = #{roomImg.fileLevel},
-        STATUS = #{roomImg.status}
-        WHERE FILE_NO = #{roomImg.fileNo}
-    </foreach>
-</update>
+	<update id="updateRoomImg">
+		<!-- 반복문을 통해 roomImgList의 각 요소를 처리해야 할 수 있습니다. -->
+		<foreach collection="list" item="roomImg" separator=";">
+			UPDATE
+			ROOM_IMG SET
+			FILE_NO = #{roomImg.fileNo},
+			ORIGIN_NAME = #{roomImg.originName},
+			SAVE_NAME = #{roomImg.saveName},
+			FILE_PATH = #{roomImg.filePath},
+			FILE_LEVEL = #{roomImg.fileLevel},
+			STATUS = #{roomImg.status}
+			WHERE FILE_NO = #{roomImg.fileNo}
+		</foreach>
+	</update>
 
-<!-- 사업자의 방 목록 SELECT (준석) -->
-<select id="getRoomsByBuId" parameterType="_int"
-	resultMap="roomResultMap">
-	SELECT *
-	FROM ROOM
-	WHERE ROOM_NO = #{roomNo}
+	<!-- 사업자의 방 목록 SELECT (준석) -->
+	<select id="getRoomsByBuId" parameterType="_int"
+		resultMap="roomResultMap">
+		SELECT *
+		FROM ROOM
+		WHERE ROOM_NO = #{roomNo}
+	</select>
+
+	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
+	<!-- 방 이미지 조회 -->
+	<select id="getRoomImagesByBuId" parameterType="_int"
+		resultMap="roomImgResultMap">
+		SELECT *
+		FROM ROOM_IMG
+		WHERE ROOM_NO = #{roomNo}
+	</select>
+	
+	<!-- <select id="selectBuRoomList" resultMap="roomResultMap">
+		SELECT *
+		FROM ROOM
+		WHERE ROOM_NO = #{roomNo}
+	</select> -->
+	
+	<select id="selectBuRoomListCount" resultType="int">
+   SELECT COUNT(*) FROM ROOM
+   JOIN BUSINESS B ON B.BU_ID = ROOM.BU_ID
+   WHERE B.BU_ID = #{buId}
 </select>
 
-<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
-<!-- 방 이미지 조회 -->
-<select id="getRoomImagesByBuId" parameterType="_int"
-	resultMap="roomImgResultMap">
-	SELECT *
-	FROM ROOM_IMG
-	WHERE ROOM_NO = #{roomNo}
-</select>
 
+   <select id="selectBuRoomList"  parameterType="String"  resultMap="roomResultMap">
+     SELECT *  FROM ROOM
+   JOIN BUSINESS B ON B.BU_ID = ROOM.BU_ID
+   WHERE B.BU_ID = #{buId}
+   </select>
 </mapper>
