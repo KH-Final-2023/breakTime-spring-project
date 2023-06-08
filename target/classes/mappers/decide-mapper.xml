@@ -41,7 +41,7 @@
           FROM BUSINESS B
           INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
           INNER JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
-          WHERE B.BU_NO = #{BU_NO} 
+          WHERE B.BU_NO = #{buNo} 
 	</select>
 	
 	<!-- 리뷰 평점 조회 -->
@@ -54,6 +54,17 @@
 				WHERE B.APPROVAL = 'Y' 
 				AND B.BU_NO = #{buNo}
 	</select> 
+	
+	<!-- 유저 리뷰 점수 조회 -->
+	 <select id="selectuserStarScore" resultType="_double">
+	/*decideMapper.selectuserStarScore*/
+		SELECT  ROUND(R.STAR_SCORE, 1)	AS userStarScore
+				FROM REVIEW R
+				JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
+		        JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
+				WHERE R.REVIEW_AVAILABLE = 'Y'
+		        AND B.BU_NO = #{buNo}
+	</select>
 	
 	<!-- 객실 조회 -->
 	<select id="selectDecideRoom" resultType="com.kh.breaktime.decide.model.vo.Decide">
@@ -107,7 +118,9 @@
 		SELECT  R.REVIEW_NO				AS reviewNo,
 				R.REVIEW_WRITER			AS reviewWriter, 
 				M.USER_NAME				AS userName, 
-				TO_CHAR(R.CREATE_DATE, 'YYYY-MM-DD')			AS createDate,
+
+				TO_CHAR(R.CREATE_DATE, 'YYYY.MM.DD')  AS createDate,
+
 				R.USING_ROOM			AS usingRoom, 
 				RO.ROOM_NAME			AS roomName,
 				RO.ROOM_INFO			AS roomInfo, 

@@ -1,6 +1,7 @@
 package com.kh.breaktime.decide.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,13 @@ public class DecideDao {
 	public double selectReviewScore(int buNo) {
 			
 		return sqlSession.selectOne("decideMapper.selectReviewScore", buNo);
+	}
+	
+	
+	// 유저 리뷰 점수 조회
+	public List<Double> selectuserStarScore(int buNo) {
+			
+		return sqlSession.selectList("decideMapper.selectuserStarScore", buNo);
 	}
 	
 	// 객실 조회

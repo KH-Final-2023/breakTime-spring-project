@@ -1,6 +1,7 @@
 package com.kh.breaktime.decide.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,12 @@ public class DecideServiceImpl implements DecideService {
 	@Override
 	public double selectReviewScore(int buNo) {
 		return decideDao.selectReviewScore(buNo);
+	}
+	
+	// 유저 리뷰 점수 조회
+	@Override
+	public List<Double> selectuserStarScore(int buNo) {
+		return decideDao.selectuserStarScore(buNo);
 	}
 	
 	// 객실 조회

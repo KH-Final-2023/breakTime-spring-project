@@ -1,6 +1,7 @@
 package com.kh.breaktime.decide.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.breaktime.decide.model.vo.Decide;
 
@@ -14,6 +15,9 @@ public interface DecideService {
 	
 	// 리뷰 평점 조회
 	double selectReviewScore(int buNo);
+	
+	// 유저 리뷰 점수 조회
+	List<Double> selectuserStarScore(int buNo);
 	
 	// 객실 조회
 	ArrayList<Decide> selectDecideRoom(int buNo);
