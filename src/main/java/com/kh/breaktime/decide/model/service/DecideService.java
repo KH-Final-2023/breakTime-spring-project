@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.breaktime.decide.model.vo.Decide;
+import com.kh.breaktime.review.model.vo.Review;
 
 public interface DecideService {
 	
 	// 메인 조회
 	ArrayList<Decide> selectDecideMain(int buNo);
+	
+	// 리뷰 등록
+	int insertReview(Decide decide);
 	
 	// 리뷰 개수 조회
 	int selectReviewCount(int buNo);

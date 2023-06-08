@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="decideMapper">
+<!-- <resultMap type="review" id="reviewResultSet">
+		<result column="REVIEW_NO" property="reviewNo" />
+		<result column="REVIEW_WRITER" property="reviewWriter" />
+		<result column="USING_ROOM" property="usingRoom" />
+		<result column="BOOK_NO" property="bookNo" />
+		<result column="STAR_SCORE" property="starScore" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
+		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
+		<result column="REVIEW_CONTENT_REPLY" property="reviewContentReply" />
+		<result column="USER_NAME" property="userName" />
+		<result column="ROOM_NAME" property="roomName" />
+	</resultMap> -->
+	
 	
 		<!-- <select id="selectDecideBasket" resultMap="basketResultSet">
 		SELECT R.ROOM_NO    AS ROOM_NO,		 
@@ -118,9 +133,7 @@
 		SELECT  R.REVIEW_NO				AS reviewNo,
 				R.REVIEW_WRITER			AS reviewWriter, 
 				M.USER_NAME				AS userName, 
-
 				TO_CHAR(R.CREATE_DATE, 'YYYY.MM.DD')  AS createDate,
-
 				R.USING_ROOM			AS usingRoom, 
 				RO.ROOM_NAME			AS roomName,
 				RO.ROOM_INFO			AS roomInfo, 
@@ -134,8 +147,9 @@
         AND B.BU_NO = #{buNo}
 	</select>
 	
+	
 	<!-- 리뷰 insert -->
-	<insert id="insertReview" parameterType="review"> 
+	<insert id="insertReview" parameterType="decide" > 
 	INSERT INTO REVIEW(
 	 REVIEW_NO,
 	 STAR_SCORE,
