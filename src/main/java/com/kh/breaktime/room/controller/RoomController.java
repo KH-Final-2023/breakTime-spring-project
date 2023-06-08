@@ -134,12 +134,13 @@ public class RoomController {
 	public String buReview() {
 		return "businessRoom/buReview";
 	}
-	/* @RequestParam("roomNo") int roomNo*/
+	
 	@PostMapping("/buRoomModify")
 	public String updateBuRoom(Room room, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
-	        Model model) {
+	        Model model, @RequestParam(value="roomNo") int roomNo) {
 	    System.out.println("준석");
 	    System.out.println("===================" + room);
+	    System.out.println(room);
 	    try {
 	        List<String> savedImagePaths = new ArrayList<>();
 	        for (MultipartFile file : upfiles) {
@@ -209,15 +210,15 @@ public class RoomController {
 	    // 방 이미지와 방 정보 페이지로 이동
 	    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
 	    List<Room> roomList = buService.getRoomsByBuId(roomNo);
-
+	    System.out.println("니가 조회한 룸이다:" + roomList);
 	    List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 	    for (int i = 0; i < roomList.size(); i++) {
 	        RoomImg roomImg = buService.getRoomImagesByBuId(roomList.get(i).getRoomNo());
 	        roomImgList.add(roomImg);
 	    }
 
-	    model.addAttribute("roomList", roomList);
-	    model.addAttribute("roomImgList", roomImgList);
+	    model.addAttribute("room", roomList.get(0));
+	    model.addAttribute("roomImg", roomImgList.get(0));
 
 	    return "businessRoom/buRoomModify";
 	}

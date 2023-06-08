@@ -11,11 +11,11 @@ public interface RoomService {
 
 	public int insertBuRoom(Room buRoom, List<MultipartFile> upfiles) throws Exception;
 
-	public int updateRoom( Room room);
+	public int updateRoom(Room room);
 
 	public int updateRoomImg(List<RoomImg> roomImgList);
 
-	public List<Room> getRoomsByBuId(int roomNo);
+	public List<Room> getRoomsByBuId(int roomNo); 
 
 	public RoomImg getRoomImagesByBuId(int roomNo);
 }

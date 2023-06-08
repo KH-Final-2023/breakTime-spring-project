@@ -31,13 +31,14 @@ img {
 		<div id="content2">
 			<div id="roomModifyText1" style="font-size: x-large; margin: 15px;">객실
 				수정</div>
-
+				
 			<form action="/breaktime/businessRoom/buRoomModify" method="POST" enctype="multipart/form-data">
-				<c:forEach items="${roomList}" var="room" varStatus="roomStatus">
+				
+				<input type="hidden"name="roomNo"value="${ room.roomNo}"/>
 					<div class="room-info" data-room-no="${room.roomNo}">
 						<div id="imgList">
 							<img
-								src="<%=request.getContextPath() %>${roomImgList[roomStatus.index].filePath}/${roomImgList[roomStatus.index].originName}">
+								src="<%=request.getContextPath() %>${roomImg.filePath}/${roomImg.originName}">
 						</div>
 						<div>
 							<div>${room.roomName}</div>
@@ -45,7 +46,7 @@ img {
 							<div>가격: ${room.roomPrice}</div>
 						</div>
 					</div>
-				</c:forEach>
+				
 				<div id="ModifyroomName">객실 이름 :</div>
 				<div>
 					<input name="roomName" placeholder="수정할 객실 이름을 입력해주세요">

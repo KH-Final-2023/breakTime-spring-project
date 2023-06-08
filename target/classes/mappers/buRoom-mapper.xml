@@ -78,19 +78,19 @@
 		WHERE ROOM_NO = #{roomNo}
 	</update>
 
-	<update id="updateRoomImg">
-		<!-- 반복문을 통해 roomImgList의 각 요소를 처리해야 할 수 있습니다. -->
-		<foreach collection="list" item="roomImg" separator=";">
-			UPDATE
-			ROOM_IMG SET
-			ORIGIN_NAME = #{originName},
-			SAVE_NAME = #{saveName},
-			FILE_PATH = #{filePath},
-			FILE_LEVEL = #{fileLevel},
-			STATUS = #{status}
-			WHERE FILE_NO = #{fileNo}
-		</foreach>
-	</update>
+<update id="updateRoomImg">
+    <!-- 반복문을 통해 roomImgList의 각 요소를 처리해야 할 수 있습니다. -->
+    <foreach collection="list" item="roomImg" separator=";">
+        UPDATE
+        ROOM_IMG SET
+        ORIGIN_NAME = #{roomImg.originName},
+        SAVE_NAME = #{roomImg.saveName},
+        FILE_PATH = #{roomImg.filePath},
+        FILE_LEVEL = #{roomImg.fileLevel},
+        STATUS = #{roomImg.status}
+        WHERE FILE_NO = #{roomImg.fileNo}
+    </foreach>
+</update>
 
 <!-- 사업자의 방 목록 SELECT (준석) -->
 <select id="getRoomsByBuId" parameterType="_int"

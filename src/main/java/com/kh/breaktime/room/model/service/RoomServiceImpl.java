@@ -89,8 +89,8 @@ public class RoomServiceImpl implements RoomService {
 		}
 	}
 
-	public int updateRoom( Room room) {
-	    System.out.println("room: "+room);
+	public int updateRoom(Room room) {
+	    System.out.println("roomNo:=================================================================================== "+room);
 	    return buDao.updateRoom(room);
 	}
 
