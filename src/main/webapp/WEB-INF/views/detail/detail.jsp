@@ -150,7 +150,7 @@ button {
 
 	<%-- <jsp:include page="/WEB-INF/views/header.jsp" /> --%>
 
-	<jsp:include page="/WEB-INF/views/detail/searchBar_detail.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/area_detail.jsp" />
 
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
@@ -327,6 +327,8 @@ button {
 		document.querySelector(".option_closeBtn9").addEventListener("click", close); 
 		document.querySelector(".option_closeBtn10").addEventListener("click", close); 
     </script>
+
+
 
 	<!-- footer include -->
 
