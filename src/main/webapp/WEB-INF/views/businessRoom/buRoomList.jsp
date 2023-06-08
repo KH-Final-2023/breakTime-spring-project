@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css"
-	href="/breaktime/resources/room.css/buRoomList.css">
+<link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buRoomList.css">
 <title>Document</title>
 <style>
 /* 전체적인 초록색 계열 스타일 */
@@ -20,9 +19,10 @@ body {
 	display: flex;
 	justify-content: space-around;
 	width: 300px;
-	margin: 0 auto;
+	
 	background-color: greenyellow;
 	border-radius: 15px;
+	margin-top: 100px;
 }
 
 #content2 {
@@ -68,7 +68,7 @@ img {
 <title>Document</title>
 </head>
 <body>
-	<%--  <%@ include file="../header.jsp"%> --%>
+	 <%@ include file="/WEB-INF/views/header.jsp"%> 
 	<div id="content">
 		<div id="content1">
 			<form action="/breaktime/businessRoom/resister" method="GET">
@@ -86,8 +86,7 @@ img {
 			<hr>
 			<div id="lodging">
 				<div>
-					<c:forEach items="${selectBuRoomList.list}" var="room" varStatus="roomStatus">
-					<input type="hidden" name="roomNo" value="${empty room.roomNo ? 0 : room.roomNo}" />
+					<c:forEach items="${roomList}" var="room" varStatus="roomStatus">
 						<div class="room-info" data-room-no="${room.roomNo}">
 							<div id="imgList">
 								<!-- 해당 방의 이미지 출력 -->

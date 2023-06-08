@@ -58,7 +58,7 @@ public class RoomController {
 			buRoom.setRoomImg(savedImagePaths);
 			buService.insertBuRoom(buRoom, upfiles);
 			session.setAttribute("alertMsg", "객실 등록이 완료되었습니다.");
-			return "redirect:/businessRoom/list";
+			return "redirect:/businessRoom/buRoomList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 등록 실패");
@@ -179,7 +179,7 @@ public class RoomController {
 			// RoomImg 리스트 업데이트
 			buService.updateRoomImg(roomImgList);
 			session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
-			return "redirect:/business/buLogin";
+			return "redirect:/businessRoom/buRoomList";
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -226,15 +226,22 @@ public class RoomController {
 	}
 
 	
-	@GetMapping("/list")
-	   public String selectBuRoomList(Model model,
-	                      @RequestParam(value="cpage", defaultValue="1") int cp ,  HttpSession session
+	@GetMapping("buRoomList")
+	   public String selectBuRoomList(Model model,  HttpSession session
 	                      ) {
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-	      Map<String, Object> map = new HashMap();
-	      buService.selectBuRoomList(cp,map);
-	      model.addAttribute("selectBuRoomList", map);
-	      System.out.println(loginBusiness.getBuId());
-	      return "businessRoom/buRoomList";
+		List<Room> roomList = buService.standardRoom(loginBusiness.getBuId());
+
+		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
+		for (int i = 0; i < roomList.size(); i++) {
+
+			RoomImg roomImg = buService.standardRoomImg(roomList.get(i).getRoomNo());
+			roomImgList.add(roomImg);
+		}
+
+		model.addAttribute("roomList", roomList);
+		model.addAttribute("roomImgList", roomImgList);
+
+		return "businessRoom/buRoomList";
 	   }
 }

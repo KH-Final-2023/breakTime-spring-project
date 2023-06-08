@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<%--  <%@ include file="../header.jsp"%> --%>
+ <%@ include file="../header.jsp"%> 
     <div id="content">
       <div id="content1">
 			<form action="/breaktime/businessRoom/resister" method="GET">

@@ -110,13 +110,30 @@
 		WHERE ROOM_NO = #{roomNo}
 	</select>
 	
+	<!-- 사업자의 방 목록 SELECT (준석) -->
+	<select id="standardRoom" parameterType="String"
+		resultMap="roomResultMap">
+		SELECT *
+		FROM ROOM
+		WHERE BU_ID = #{buId}
+	</select>
+
+	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
+	<!-- 방 이미지 조회 -->
+	<select id="standardRoomImg" parameterType="_int"
+		resultMap="roomImgResultMap">
+		SELECT *
+		FROM ROOM_IMG
+		WHERE ROOM_NO = #{roomNo}
+	</select>
+	
 	<!-- <select id="selectBuRoomList" resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM
 		WHERE ROOM_NO = #{roomNo}
 	</select> -->
 	
-	<select id="selectBuRoomListCount" resultType="int">
+<!-- 	<select id="selectBuRoomListCount" resultType="int">
    SELECT COUNT(*) FROM ROOM
    JOIN BUSINESS B ON B.BU_ID = ROOM.BU_ID
    WHERE B.BU_ID = #{buId}
@@ -127,5 +144,5 @@
      SELECT *  FROM ROOM
    JOIN BUSINESS B ON B.BU_ID = ROOM.BU_ID
    WHERE B.BU_ID = #{buId}
-   </select>
+   </select> -->
 </mapper>

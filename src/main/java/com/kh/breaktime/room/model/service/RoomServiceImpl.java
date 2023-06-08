@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.common.model.vo.PageInfo;
 import com.kh.breaktime.common.template.Pagination;
 import com.kh.breaktime.room.model.dao.RoomDao;
@@ -111,18 +112,13 @@ public class RoomServiceImpl implements RoomService {
 		return buDao.getRoomImagesByBuId(roomNo);
 	}
 	
-	@Autowired
-	   private Pagination pagination;
+	@Override
+	public List<Room> standardRoom(String buId) {
+		return buDao.standardRoom(buId);
+	}
 
-	   public void selectBuRoomList(int cp, Map<String, Object> map) {
-	      
-	      int listCount = buDao.selectBuRoomListCount();
-	      int pageLimit = 10;
-	      int boardLimit = 5;
-	      PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
-
-
-	      map.put("pi", pi);
-	      map.put("list", buDao.selectBuRoomList(pi));
-	   }
+	@Override
+	public RoomImg standardRoomImg(int roomNo) {
+		return buDao.standardRoomImg(roomNo);
+	}
 }

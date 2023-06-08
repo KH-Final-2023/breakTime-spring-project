@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
 
@@ -20,5 +21,8 @@ public interface RoomService {
 
 	public RoomImg getRoomImagesByBuId(int roomNo);
 	
-	public void selectBuRoomList(int cp, Map<String, Object> map);
+	public List<Room> standardRoom(String buId);
+
+	public RoomImg standardRoomImg(int roomNo);
+	
 }

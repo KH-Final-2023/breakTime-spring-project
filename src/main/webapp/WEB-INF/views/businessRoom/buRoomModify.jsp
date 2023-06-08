@@ -21,7 +21,7 @@ img {
 
 </head>
 <body>
-	<%-- <%@ include file="../header.jsp"%> --%>
+	 <%@ include file="../header.jsp"%> 
 	<div id="content">
 		<div id="content1">
 			<div id="buRoomRegister">객실 등록</div>

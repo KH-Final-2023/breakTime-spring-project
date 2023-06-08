@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.common.model.vo.PageInfo;
 import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
@@ -67,17 +68,12 @@ public class RoomDao {
 	public RoomImg getRoomImagesByBuId(int roomNo) {
 		return sqlSession.selectOne("buRoom-mapper.getRoomImagesByBuId", roomNo);
 	}
-	public int selectBuRoomListCount() {
-	      return sqlSession.selectOne("buRoom-mapper.selectBuRoomListCount");
-	   }
-	   
-	   public ArrayList<Room> selectBuRoomList(PageInfo pi){
-	      
-	      int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-	      int limit = pi.getBoardLimit();
-	      
-	      RowBounds rowBounds = new RowBounds(offset, limit);
-	      
-	      return (ArrayList)sqlSession.selectList("buRoom-mapper.selectBuRoomList", "", rowBounds);
-	   }
+	
+	public List<Room> standardRoom(String buId) {
+		return sqlSession.selectList("buRoom-mapper.standardRoom", buId);
+	}
+
+	public RoomImg standardRoomImg(int roomNo) {
+		return sqlSession.selectOne("buRoom-mapper.standardRoomImg", roomNo);
+	}
 }
