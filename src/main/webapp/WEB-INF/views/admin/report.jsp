@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +10,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-
-
-
 </head>
 <body>
 	<%@ include file="/resources/admin/adminFrame.jsp"%>
@@ -50,29 +49,14 @@
 								</div>
 							</div>
 							<hr style="color: rgba(0, 0, 0, 0.5);">
-
-							<a href="javascript:void(0);" onclick="reportCancel();">
+							
+							<a href="<%=request.getContextPath()%>/report/delete?reviewNo=${r.reviewNo}">
 								<button type="button" class="btn btn-outline-danger">삭제</button>
 							</a>
-							<script type="text/javascript">
-							function reportCancel(){
-												
-								if(!confirm("해당 리뷰를 삭제 처리하시겠습니까?")){
-									return false;
-								}else{
-									location.href="<%=request.getContextPath()%>
-								/report/delete?reviewNo=${r.reviewNo}";
-									}
-								}
-							</script>
 
-							<a
-								href="<%=request.getContextPath()%>/report/update?reviewNo=${r.reviewNo}">
-								<button type="submit" class="btn btn-outline-success"
-									data-text="유지">유지</button>
+							<a href="<%=request.getContextPath()%>/report/update?reviewNo=${r.reviewNo}">
+								<button type="submit" class="btn btn-outline-success" data-text="유지">유지</button>
 							</a>
-							
-
 						</div>
 					</c:forEach>
 
@@ -119,6 +103,12 @@
 			var reportKeep = '<c:out value="${reportKeep}"/>';
 			if(!(reportKeep==''))
 			alert("해당 리뷰를 반려 처리였습니다.");
+		});
+		
+		$(document).ready(function() {
+			var reportCancel = '<c:out value="${reportCancel}"/>';
+			if(!(reportCancel==''))
+			alert("해당 리뷰를 삭제 처리였습니다.");
 		});
 	</script>
 </body>

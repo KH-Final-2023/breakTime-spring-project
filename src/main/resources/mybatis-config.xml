@@ -17,7 +17,13 @@
 		<typeAlias type="com.kh.breaktime.member.model.vo.Member" alias="member" />
 		<typeAlias type="com.kh.breaktime.business.model.vo.Business" alias="business" />
 		<typeAlias type="com.kh.breaktime.booking.model.vo.Booking" alias="booking" />
+
 		<typeAlias type="com.kh.breaktime.review.model.vo.Review" alias="review" />
+
+		
+		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
+		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatMessage" alias="chatMessage"/>
+
 	</typeAliases>
 	 
 	 <mappers>
@@ -28,6 +34,10 @@
 	 	<mapper resource="/mappers/member-mapper.xml"/>
 	 	<mapper resource="/mappers/business-mapper.xml"/>
 	 	<mapper resource="/mappers/review-mapper.xml"/>
+
+	 	<mapper resource="/mappers/chat-mapper.xml"/>
+	 
+
 	 </mappers>
 
   

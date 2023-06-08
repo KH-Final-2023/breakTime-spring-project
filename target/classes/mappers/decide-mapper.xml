@@ -118,7 +118,9 @@
 		SELECT  R.REVIEW_NO				AS reviewNo,
 				R.REVIEW_WRITER			AS reviewWriter, 
 				M.USER_NAME				AS userName, 
+
 				TO_CHAR(R.CREATE_DATE, 'YYYY.MM.DD')  AS createDate,
+
 				R.USING_ROOM			AS usingRoom, 
 				RO.ROOM_NAME			AS roomName,
 				RO.ROOM_INFO			AS roomInfo, 
@@ -131,6 +133,30 @@
 		WHERE R.REVIEW_AVAILABLE = 'Y'
         AND B.BU_NO = #{buNo}
 	</select>
+	
+	<!-- 리뷰 insert -->
+	<insert id="insertReview" parameterType="review"> 
+	INSERT INTO REVIEW(
+	 REVIEW_NO,
+	 STAR_SCORE,
+	 REVIEW_WRITER,
+	 CREATE_DATE,
+	 REVIEW_CONTENT
+	 ) 
+	VALUES( 
+	SEQ_RNO.NEXTVAL, 
+	#{starScore}, 
+	#{reviewWriter},
+	#{createDate}, 
+	#{reviewContent} 
+	) 
+	</insert>
+	
+	
+	
+	
+	
+	
 	
 	
  	

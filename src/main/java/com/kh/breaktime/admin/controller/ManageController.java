@@ -24,7 +24,7 @@ public class ManageController {
 
 	@Autowired
 	private ManageService manageService;
-	private static final Logger logger = LoggerFactory.getLogger(ApprovalController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ManageController.class);
 	
 	@GetMapping("/list")
 	public String selectManageList(Model model,
@@ -38,17 +38,17 @@ public class ManageController {
 	}
 	
 	@GetMapping("/delete")
-	public String manageCancel(@RequestParam(value="buId", required=false, defaultValue="0") String buId) {
+	public String manageCancel(Business b, RedirectAttributes rttr) {
 		
-		manageService.manageCancel(buId);
-		
+		manageService.manageCancel(b);
+		rttr.addFlashAttribute("manageCancel", b.getBuNo());
 		return "redirect:/manage/list";
 	}
 	
 	@PostMapping("/update")
 	public String manageUpdate(Business b, RedirectAttributes rttr) {
 		manageService.manageUpdate(b);
-		rttr.addFlashAttribute("updateManage", b.getBuId());
+		rttr.addFlashAttribute("updateManage", b.getBuNo());
 		return "redirect:/manage/list";
 	}
 }

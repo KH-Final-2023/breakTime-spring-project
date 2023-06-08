@@ -5,6 +5,7 @@
 <c:if test="${!empty param.condition}" >
 	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
 </c:if>
+<c:set var="m" value="${map}"/>
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
@@ -55,7 +56,7 @@
                     <a id="myPage">마이페이지</a>
                     <a href="#" id="message">쪽지함</a>
                     <a href="#" id="cart">장바구니</a>
-                    <a href="#" id="review">리뷰관리</a>
+                    <a href="#" id="review">리뷰</a>
 
                     <%if (loginBusiness != null) {%>
                     <a href="#" id="asd">사업자</a>
@@ -128,9 +129,11 @@
     </script> 
     
     
+    
+    
     <script>
     document.getElementById("review").addEventListener("click",function(){
-         location.href = "<%=request.getContextPath()%>/";
+         location.href = "<%=request.getContextPath()%>/decide/dereview";
       })
     </script>
     

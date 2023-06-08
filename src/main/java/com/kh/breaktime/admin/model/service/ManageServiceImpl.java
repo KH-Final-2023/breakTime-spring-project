@@ -38,8 +38,8 @@ public class ManageServiceImpl implements ManageService{
 		return manageDao.manageUpdate(b);
 	}
 	
-	public int manageCancel(String buId) {
-		return manageDao.manageCancel(buId);
+	public int manageCancel(Business b) {
+		return manageDao.manageCancel(b);
 	}
 	
 }
