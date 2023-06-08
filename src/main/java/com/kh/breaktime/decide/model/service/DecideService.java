@@ -13,7 +13,7 @@ public interface DecideService {
 	int selectReviewCount(int buNo);
 	
 	// 리뷰 평점 조회
-	//double selectReviewScore(int buNo);
+	double selectReviewScore(int buNo);
 	
 	// 객실 조회
 	ArrayList<Decide> selectDecideRoom(int buNo);

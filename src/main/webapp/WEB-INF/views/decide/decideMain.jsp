@@ -14,30 +14,39 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
-<link rel="stylesheet" href="${contextPath}/resources/css/font.css">
+<link rel="stylesheet" href="/breaktime/resources/css/font.css">
+
 
 
 <script>
 $(document).ready(function() {
 	
-	/* // 별점을 업데이트하는 함수
-	function updateStars(starScore) {
-		let intPart = Math.floor(starScore);
-		let decimalPart = starScore - intPart;
-		let starHTML = '';
-		for (let i = 0; i < intPart; i++) {
-			starHTML += '<i class="fas fa-star"></i>';
-		}
-		if (decimalPart >= 0.5) {
-			starHTML += '<i class="fas fa-star-half-alt"></i>';
-		}
-		$('.stars').html(starHTML);
-	}
 
-	// 별점이 존재하면 업데이트
-	if (${r.starScore} != null) {
-		updateStars(${r.starScore});
-	} */
+	
+	// 공유 아이콘 클릭 시 페이지 링크 복사
+	$(".share-icon").click(function() {
+		var pageUrl = window.location.href;
+		navigator.clipboard.writeText(pageUrl);
+		alert("페이지 링크가 복사되었습니다!");
+	});
+	
+	// 별점 점수를 받아옵니다.
+	let starScore = '${m.starScore}';
+	// 별점 점수를 정수와 소수 부분으로 분리합니다.
+	let intPart = Math.floor(starScore);
+	let decimalPart = starScore - intPart;
+	// 별을 출력하는 변수를 생성합니다.
+	let starHTML = '';
+	// 정수 부분의 수만큼 전체 별을 출력합니다.
+	for (let i = 0; i < intPart; i++) {
+	    starHTML += '<i class="fas fa-star"></i>';
+	}
+	// 소수 부분이 0.5 이상이면 반개 별을 출력합니다.
+	if (decimalPart >= 0.5) {
+	    starHTML += '<i class="fas fa-star-half-alt"></i>';
+	}
+	// 생성한 HTML을 별점 요소에 삽입합니다.
+	$('.stars').html(starHTML);
 	
 	// 별점을 업데이트하는 함수
 	function updateStars(starScore) {
@@ -54,35 +63,9 @@ $(document).ready(function() {
 	}
 
 	// 별점이 존재하면 업데이트
-	var starScoreStr = "${r.starScore}";
-	if (starScoreStr !== "null") {
-		updateStars(parseFloat(starScoreStr));
-	}
-	
-	// 공유 아이콘 클릭 시 페이지 링크 복사
-	$(".share-icon").click(function() {
-		var pageUrl = window.location.href;
-		navigator.clipboard.writeText(pageUrl);
-		alert("페이지 링크가 복사되었습니다!");
-	});
-	
-	// 별점 점수를 받아옵니다.
-	let starScore = 4.1;
-	// 별점 점수를 정수와 소수 부분으로 분리합니다.
-	let intPart = Math.floor(starScore);
-	let decimalPart = starScore - intPart;
-	// 별을 출력하는 변수를 생성합니다.
-	let starHTML = '';
-	// 정수 부분의 수만큼 전체 별을 출력합니다.
-	for (let i = 0; i < intPart; i++) {
-	    starHTML += '<i class="fas fa-star"></i>';
-	}
-	// 소수 부분이 0.5 이상이면 반개 별을 출력합니다.
-	if (decimalPart >= 0.5) {
-	    starHTML += '<i class="fas fa-star-half-alt"></i>';
-	}
-	// 생성한 HTML을 별점 요소에 삽입합니다.
-	$('.stars').html(starHTML);
+	if (starScore != null) {
+		updateStars(starScore);
+	} 
 	
 	// 하트 아이콘 클릭 시 색상 변경
 	$(".heart-icon").click(function() {
@@ -125,28 +108,28 @@ $(document).ready(
 					function(e) {
 						e.preventDefault();
 
-						var overlay = $("<div>").addClass("overlay");
-						var depopupmap = $("<iframe>").attr("src",
+						var overlay1 = $("<div>").addClass("overlay");
+						var depopupmap1 = $("<iframe>").attr("src",
 								"${contextPath}/decide/depopupmap/${m.buNo}");
-						var closeBtn = $("<i>").addClass(
+						var closeBtn1 = $("<i>").addClass(
 								"fas fa-times close-btn").css({
 							"animation-name" : "reverse-animation",
 							"animation-duration" : "0.1s",
 							"animation-timing-function" : "ease-in-out"
 						});
 
-						overlay.append(depopupmap, closeBtn);
-						$(".container").prepend(overlay);
+						overlay1.append(depopupmap1, closeBtn1);
+						$(".container").prepend(overlay1);
 
 						setTimeout(function() {
-							overlay.addClass("open");
+							overlay1.addClass("open");
 						}, 300);
 
-						closeBtn.click(function() {
-							overlay.removeClass("open");
+						closeBtn1.click(function() {
+							overlay1.removeClass("open");
 
 							setTimeout(function() {
-								overlay.remove();
+								overlay1.remove();
 							}, 300);
 						});
 					});

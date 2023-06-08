@@ -15,11 +15,9 @@ public class Decide {
 	private String mainImg;
 	private String filePath;
     private String saveName;
-    private int starScore;
-	//private double starScore;
+	private double starScore;
     
-	private int areaNo;
-	private String buCategory;
+	// review
 	private int reviewNo;
 	private int reviewWriter;
 	private int usingRoom;
@@ -29,6 +27,10 @@ public class Decide {
 	private Date createDate;
 	private String reviewContentReply;
 	private String userName;
+	
+	// room
+	private int areaNo;
+	private String buCategory;
 	private String roomImg;
     private int roomNo;
     private int roomHCount;

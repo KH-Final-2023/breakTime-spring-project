@@ -20,31 +20,7 @@
 	</select> -->
 	
 	<!-- 메인 조회 -->
-  	<select id="selectDecideMain" resultType="com.kh.breaktime.decide.model.vo.Decide">
-  	/*decideMapper.selectDecideMain*/
-    	SELECT  B.BU_NO         AS buNo,
-				B.BU_TITLE      AS buTitle,
-				B.BU_ADDRESS    AS buAddress,
-				H.MAIN_IMG      AS mainImg,
-				(SELECT ROUND(AVG(V.STAR_SCORE), 1) 
-						FROM BUSINESS B
-						INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
-						INNER JOIN HOUSE H ON B.BU_TITLE = H.BU_TITLE
-						INNER JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
-						WHERE H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
-						AND B.BU_NO = #{buNo}
-			 	) AS starScore 
-		FROM BUSINESS B
-		INNER JOIN ROOM R 	ON B.BU_NO = R.BU_NO
-		INNER JOIN HOUSE H 	ON B.BU_TITLE = H.BU_TITLE
-		LEFT JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
-		WHERE H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
-		AND B.BU_NO = #{buNo}
-		AND ROWNUM = 1 
-	</select>
-	
-	<!-- 메인 조회 -->
-  	<!-- <select id="selectDecideMain" resultType="com.kh.breaktime.decide.model.vo.Decide">
+  	 <select id="selectDecideMain" resultType="com.kh.breaktime.decide.model.vo.Decide">
   	/*decideMapper.selectDecideMain*/
     	SELECT  B.BU_NO         AS buNo,
 				B.BU_TITLE      AS buTitle,
@@ -56,7 +32,7 @@
 		WHERE H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
 		AND B.BU_NO = #{buNo}
 		AND ROWNUM = 1
-	</select> -->
+	</select> 
 	
 	<!-- 메인 리뷰 개수 조회 -->
 	<select id="selectReviewCount" resultType="_int">
@@ -69,7 +45,7 @@
 	</select>
 	
 	<!-- 리뷰 평점 조회 -->
-	<!-- <select id="selectReviewScore" resultType="_double">
+	 <select id="selectReviewScore" resultType="_double">
 	/*decideMapper.selectReviewScore*/
 		SELECT 	ROUND(AVG(V.STAR_SCORE), 1) AS starScore
 				FROM BUSINESS B
@@ -77,8 +53,7 @@
 				LEFT JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
 				WHERE B.APPROVAL = 'Y' 
 				AND B.BU_NO = #{buNo}
-	</select> -->
-	
+	</select> 
 	
 	<!-- 객실 조회 -->
 	<select id="selectDecideRoom" resultType="com.kh.breaktime.decide.model.vo.Decide">
@@ -130,22 +105,20 @@
 	 <select id="selectDecideReview" resultType="com.kh.breaktime.decide.model.vo.Decide">
 	/*decideMapper.selectDecideReview*/
 		SELECT  R.REVIEW_NO				AS reviewNo,
-				R.STAR_SCORE			AS starScore, 
 				R.REVIEW_WRITER			AS reviewWriter, 
 				M.USER_NAME				AS userName, 
 				R.CREATE_DATE			AS createDate,
-				R.BOOK_NO				AS bookNo, 
 				R.USING_ROOM			AS usingRoom, 
-				RO.ROOM_NAME			AS roomName, 
+				RO.ROOM_NAME			AS roomName,
+				RO.ROOM_INFO			AS roomInfo, 
 				R.REVIEW_CONTENT		AS reviewContent, 
 				R.REVIEW_CONTENT_REPLY	AS reviewContentReply
 		FROM REVIEW R
 		JOIN MEMBER M   ON M.USER_NO = R.REVIEW_WRITER
 		JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
-        JOIN BUSINESS B ON B.BU_NO = R.BOOK_NO
+        JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
 		WHERE R.REVIEW_AVAILABLE = 'Y'
         AND B.BU_NO = #{buNo}
-        ;
 	</select>
 	
 	

@@ -27,10 +27,10 @@ public class DecideDao {
 	}
 	
 	// 리뷰 평점 조회
-//	public double selectReviewScore(int buNo) {
-//			
-//		return sqlSession.selectOne("decideMapper.selectReviewScore", buNo);
-//	}
+	public double selectReviewScore(int buNo) {
+			
+		return sqlSession.selectOne("decideMapper.selectReviewScore", buNo);
+	}
 	
 	// 객실 조회
 	public ArrayList<Decide> selectDecideRoom(int buNo) {

@@ -97,7 +97,7 @@ $('.modal-list-item-text').on('click', function () {
     closeModal();
 });
 
-function openModal() {
+function openModal1() {
     $('.modal').addClass('active');
     $('.modal-overlay').addClass('active');
     $('body').css('overflow', 'hidden');
