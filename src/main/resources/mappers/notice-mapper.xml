@@ -263,6 +263,7 @@
 		UPDATE  BUSINESS SET
 		BU_USER_NAME = #{buUserName},
 		BU_TITLE = #{buTitle},
+		BU_TEL = #{buTel},
 		BU_ADDRESS = #{buAddress}
 		WHERE BU_NO = #{buNo}
 	</update>

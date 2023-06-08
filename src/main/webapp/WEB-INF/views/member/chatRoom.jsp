@@ -6,6 +6,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%List<ChatMessage> list = (List<ChatMessage>) request.getAttribute("list"); %>
+<!-- Jquey 라이브러리 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- 부트스트랩에서 제공하있는 스타일 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- 부투스트랩에서 제공하고있는 스크립트 -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +35,7 @@ overflow: hidden;
 }
 
 .chatting-area {
-	height: 600px;
+	height:600px;
 	width: 100%;
 	margin-top: 100px;
 	margin-bottom: 500px;
@@ -39,7 +48,7 @@ overflow: hidden;
 
 .display-chatting {
 	width: 80%;
-	height: 450px;
+	height: 780px;
 	overflow: auto; /*스크롤 처럼*/
 	list-style: none;
 	padding: 10px 10px;
@@ -60,7 +69,7 @@ overflow: hidden;
 .chat {
 	display: inline-block;
 	border-radius: 15px;
-	height: 30px;
+	height: 45px;
 	padding: 5px;
 	font-size: 20px;
 	background-color: #eee;
@@ -68,6 +77,7 @@ overflow: hidden;
 
 .input-area {
 	width: 100%;
+	height: 50px;
 	display: flex;
 	justify-content: center;
 }
@@ -75,6 +85,7 @@ overflow: hidden;
 #inputChatting {
 	width: 32%;
 	resize: none;
+	font-size: 20px;
 }
 
 #send {
@@ -141,7 +152,7 @@ overflow: hidden;
 
 			<div class="input-area">
 				<textarea id="inputChatting" row="3"></textarea>
-				<button id="send">보내기</button>
+				<button id="send" class="btn btn-primary">보내기</button>
 			</div>
 		</div>
 
