@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.breaktime.booking.model.vo.Booking;
 import com.kh.breaktime.business.model.vo.Business;
+import com.kh.breaktime.review.model.vo.Review;
 import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
 
@@ -38,6 +39,10 @@ public class BusinessDao {
 
 	public List<Booking> getAllBookings() {
 		return sqlSession.selectList("businessMapper.selectBookings");
+	}
+	
+	public List<Review> getReviewsForBusiness(String businessId){
+		return sqlSession.selectList("businessMapper.getReviewsForBusiness");
 	}
 }
 

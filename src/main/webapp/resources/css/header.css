@@ -54,48 +54,6 @@ cursor: pointer;
     height: 18px;
 }
 
-
-
-
-
-.dropdown{
-  position : relative;
-  display : inline-block;
-  width: 100px;
-}
-
-.dropdown-content{
-  display : none;
-  position : absolute;
-  z-index : 1; /*다른 요소들보다 앞에 배치*/
-}
-
-.dropdown-content a{
-  display : block;
-  color : white;
-  background-color : yellowgreen;
-  
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* 모달 */
 .modal{
     position: fixed;
@@ -165,4 +123,31 @@ cursor: pointer;
 
 
 
+
+
+
+
+
+.dropdown{
+  position : relative;
+  display : inline-block;
+  width: 100px;
+}
+
+.dropdown-content{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+}
+
+.dropdown-content a{
+  display : block;
+  color : white;
+  background-color : yellowgreen;
+  
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
