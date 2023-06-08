@@ -153,7 +153,59 @@
 				</div>
             </div>
         </div>
-    
+        
+        
+        <!-- 댓글등록기능 -->
+			<table id="reviewArea" class="table" align="center">
+				<thead>
+					<tr>
+						<th colspan="2">
+							<textarea class="form-control" name="reviewContent" id="reviewContent" rows="2" cols="55" 
+							style="resize:none; width:100%;"></textarea>
+						</th>
+						<th style="vertical-align: middle;"><button class="btn btn-secondary" onclick="insertReview();">등록하기</button></th> 
+					</tr>
+					<tr>
+						<td colspan="3">댓글(<span id="rcount">3</span>)</td>
+					</tr>
+				</thead>
+				<tbody>
+					<!--  스크립트 구문으로 댓글 추가 -->
+					
+					
+				</tbody>
+			</table>
+        
+        
+        <script>
+        function insertReview(){
+						
+						$.ajax({
+							url: "${contextPath}/review/insert",
+							data : {
+								reviewNo : '${reviewNo}',
+								reviewContent: $("#reviewContent").val(),
+								reviewWriter : '${loginUser.userNo}'
+							},
+							type : 'POST',
+							success : function (result){
+								if(result == "1"){
+									alertify.alert("서비스 요청 성공", '댓글 등록 성공' );
+								}else{
+									alertify.alert("서비스 요청 실패", '댓글 등록 실패' );
+								}
+								selectReviewList();
+							},
+							complete : function(){
+								$("#reviewContent").val("");
+							}
+							
+						})
+						
+					}
+        
+    		</script>		
+    			
     
     
     <script>
@@ -172,7 +224,87 @@
         </script>
         
         
+        <%-- <script >
+        function insertReview(){
+        	
+        	$.ajax({
+        		url : '<%=request.getContextPath()%>/',
+        		data : { "contents" : $('#reviewContents').val()
+        		},
+        		complete : function(){
+        			getReview();
+        		}
+        		
+        	});
+        }
         
+        </script> --%>
+        
+        
+        
+        
+        <%-- <script>
+    	function getDday(){
+    		$.ajax({
+    			url : '<%=request.getContextPath()%>/',
+    			
+    			success : function(Dday){
+    				console.log(Dday);
+    				if(Dday.length == 0){
+                        $('#dDayList').html(`
+                        		<div class="openBtn2" id="ddayBox">
+        						<div>
+        							<p class="titleText">디데이 예시</p>
+        							<p class="dateText">2023.09.09(일)</p>
+        						</div>
+        						<div>
+        							<p class="ddayText">D-100</p>
+        						</div>
+        					</div>`);
+                    }else{
+                    	$('#dDayList').html('');
+                    	$(Dday).each(function(index,item){
+                    		let dDaySplit = item.dDay.replace('월',',').split(',');
+                    		let dDay = dDaySplit[2]+'/'+dDaySplit[0] + '/' +dDaySplit[1];
+               				if(Math.ceil((new Date(dDay)-new Date())/1000/60/60/24) > 0){
+	                    		$('#dDayList').append(`
+	                    				<div class="openBtn2" id="ddayBox\${index}" data-dno="\${item.dDayNo}">
+	            						<div>
+	            							<p class="titleText">\${item.title}</p>
+	            							<p class="dateText">\${item.dDay}</p>
+	            						</div>
+	            						<div>
+	            							<p class="ddayText">D-\${Math.ceil((new Date(dDay)-new Date())/1000/60/60/24)}일</p>
+	            						</div>
+	            					</div><br>`);
+               				}else {
+               					$('#dDayList').append(`
+	                    				<div class="openBtn2" id="ddayBox\${index}" data-dno="\${item.dDayNo}">
+	            						<div>
+	            							<p class="titleText">\${item.title}</p>
+	            							<p class="dateText">\${item.dDay}</p>
+	            						</div>
+	            						<div>
+	            							<p class="ddayText">종료</p>
+	            						</div>
+	            					</div><br>`);
+               				}
+                    		
+                    		$('#ddayBox'+index).click(updateDday(item.dDayNo));
+                    		
+                    	})
+                    	
+                    	
+                    }
+    				
+    			}
+    			
+    		})
+    		
+    	}
+    	
+    
+    </script> --%>
         
         
         

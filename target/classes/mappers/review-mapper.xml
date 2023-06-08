@@ -21,16 +21,37 @@
 	INSERT INTO REVIEW(
 	 REVIEW_NO,
 	 STAR_SCORE,
+	 REVIEW_WRITER,
 	 CREATE_DATE,
 	 REVIEW_CONTENT
 	 ) 
 	VALUES( 
 	SEQ_RNO.NEXTVAL, 
 	#{starScore}, 
+	#{reviewWriter},
 	#{createDate}, 
 	#{reviewContent} 
 	) 
 	</insert>
+	
+	
+	<select id="selectReviewList" resultMap="reviewResultSet">
+		SELECT REVIEW_NO,
+	 	REVIEW_CONTENT,
+	  	REVIEW_WRITER, 
+	  	R.CREATE_DATE,
+	  	USER_NO 
+	  	FROM REVIEW R 
+		JOIN MEMBER M ON R.REVIEW_WRITER = M.USER_NO 
+		WHERE REVIEW_NO = #{reviewNo} 
+		AND REVIEW_AVAILABLE = 'Y' 
+	</select>
+	
+	
+	
+	
+	
+	
 	
 
 </mapper>
