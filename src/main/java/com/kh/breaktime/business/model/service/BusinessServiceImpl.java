@@ -21,7 +21,6 @@ public class BusinessServiceImpl implements BusinessService {
 	@Override
 	public Business loginBusiness(Business inputBusiness) {
 
-
 		Business loginUser = businessDao.loginBusiness(inputBusiness);
 
 		return loginUser;
@@ -45,14 +44,12 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.getRoomImagesByBuId(roomNo);
 	}
 
-	@Override
-	public List<Booking> getAllBookings() {
-		return businessDao.getAllBookings();
-	}
-	
-	@Override
-    public List<Review> getReviewsForBusiness(String businessId ) {
-        return businessDao.getReviewsForBusiness(businessId );
+    @Override
+    public List<Booking> getBookingsByBusinessId(String businessId) {
+        return businessDao.getBookingsByBusinessId(businessId);
     }
+	@Override
+	public List<Review> getReviewsForBusiness(String businessId) {
+		return businessDao.getReviewsForBusiness(businessId);
+	}
 }
-
