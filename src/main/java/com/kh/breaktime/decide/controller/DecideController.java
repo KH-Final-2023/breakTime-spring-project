@@ -1,11 +1,20 @@
 package com.kh.breaktime.decide.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.breaktime.decide.model.service.DecideService;
+import com.kh.breaktime.decide.model.vo.Decide;
 
 @Controller
 @RequestMapping("/decide")
@@ -13,45 +22,127 @@ public class DecideController {
 	
 	private DecideService decideService;
 	
+	private static final Logger logger = LoggerFactory.getLogger(DecideController.class);
+	
 	@Autowired
 	public void setDecideService(DecideService decideService) {
 		this.decideService = decideService;
 	}
 	
-	@GetMapping("/demain") 
-	public String decideMain() {
+	// url : {contextPath}/decide/demain/{buNo}
+	@GetMapping("/demain/{buNo}") // 메인 조회
+	public String decideMain(@PathVariable("buNo") int buNo, Model model) {
+ 
+		Map<String, Object> map = new HashMap();
+		
+		ArrayList<Decide> mainList = decideService.selectDecideMain(buNo); // 메인 조회
+		
+		double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
+		System.out.println("reviewScore============" + reviewScore);
+		
+		int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
+		
+		map.put("buNo", mainList.get(0).getBuNo());
+		map.put("buTitle", mainList.get(0).getBuTitle());
+		map.put("buAddress", mainList.get(0).getBuAddress());
+		map.put("mainImg", mainList.get(0).getMainImg());
+		
+		map.put("starScore", reviewScore);
+		map.put("reviewCount", rCnt);
+		
+		model.addAttribute("map", map);
 
 		return "decide/decideMain";
 	}
 	
-	@GetMapping("/deroom") 
-	public String decideRoomSelect() {
-
+	@GetMapping("/deroom/{buNo}") // 객실 조회
+	public String decideRoomSelect(@PathVariable("buNo") int buNo, Model model) {
+		
+		ArrayList<Decide> roomList = decideService.selectDecideRoom(buNo);
+		model.addAttribute("roomList", roomList);
+		
 		return "decide/decideRoomSelect";
 	}
 	
-	@GetMapping("/demap") 
-	public String decideMainMap() {
-
+	@GetMapping("/demap/{buNo}") // 메인 지도 화면 조회
+	public String decideMainMap(@PathVariable("buNo") int buNo, Model model) {	
+		
+		Map<String, Object> map = new HashMap();
+		
+		ArrayList<Decide> mapList = decideService.selectDecideMap(buNo);
+		
+		map.put("buNo", mapList.get(0).getBuNo());
+		map.put("buAddress", mapList.get(0).getBuAddress());
+		
+		model.addAttribute("map", map);
+		
 		return "decide/decideMainMap";
 	}
 	
-	@GetMapping("/dereview") 
-	public String decideReview() {
+	
+	 @GetMapping("/detailmap/{buNo}") // 지도 메인 썸네일 조회
+	 public String decideDetailMap(@PathVariable("buNo") int buNo, Model model) {
+	 
+		 Map<String, Object> map = new HashMap();
+			 
+		 ArrayList<Decide> mapDetailList = decideService.selectDetailMap(buNo);
+		 map.put("buNo", mapDetailList.get(0).getBuNo());
+		 map.put("buAddress", mapDetailList.get(0).getBuAddress());
+		 map.put("buTitle", mapDetailList.get(0).getBuTitle());
+		 
+		 model.addAttribute("map", map);
+		 
+		 return "decide/decideDetailMap"; 
+	 }
+	 
+	
+	@GetMapping("/depopupmap/{buNo}") // 팝업 지도 조회
+	public String decidePopupMap(@PathVariable("buNo") int buNo, Model model) {
+	
+	 Map<String, Object> map = new HashMap();
+		
+	 ArrayList<Decide> mappopupList = decideService.selectPopupMap(buNo);
+	 
+	 map.put("buAddress", mappopupList.get(0).getBuAddress());
+	 map.put("buTitle", mappopupList.get(0).getBuTitle());
+	 
+	 model.addAttribute("map", map);
 
+	 return "decide/decidePopupMap";
+	}
+	
+	@GetMapping("/dereview/{buNo}") // 리뷰 조회
+	public String decideReview(@PathVariable("buNo") int buNo, Model model) {
+		
+		Map<String, Object> map = new HashMap();
+
+		ArrayList<Decide> reviewList = decideService.selectDecideReview(buNo);
+		
+		double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
+		
+		int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
+		
+		map.put("starScore", reviewScore);
+		map.put("reviewCount", rCnt);
+		
+		model.addAttribute("map", map);
+		model.addAttribute("reviewList", reviewList);
+		
 		return "decide/decideReview";
 	}
 	
-	@GetMapping("/dedate") 
+	@GetMapping("/dedate") // 날짜 조회
 	public String decideDateSelect() {
 
 		return "decide/decideDateSelect";
 	}
 	
-	@GetMapping("/debasket") 
+	@GetMapping("/debasket") // 장바구니 조회
 	public String decideBasket() {
 
 		return "decide/decideBasket";
 	}
+	
+	
 
 }
