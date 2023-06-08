@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+/* Reset CSS */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* 전체적인 스타일 */
+body {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.4;
+	color: #333;
+	background-color: #f2f2f2;
+}
+
+.container {
+	max-width: 768px;
+	margin: 0 auto;
+	background-color: #fff;
+	/* 컨테이너 배경색상 */
+}
+
+.detail2-main {
+	margin-top: -24px;
+	margin-bottom: 50px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0;
+	position: relative;
+	flex-wrap: wrap;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.detail2-all {
+	display: flex;
+	padding: 0;
+	position: relative;
+	flex-direction: column;
+}
+
+.map-container {
+	display: flex;
+	margin-bottom: 20px;
+	justify-content: flex-start;
+	margin-left: 31px;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.map-image {
+	display: flex;
+	margin-bottom: 30px;
+	justify-content: center;
+	cursor: zoom-in;
+	/* 클릭시 zoom-in 커서 효과 */
+}
+
+.map-image iframe {
+		overflow: hidden; /* 스크롤바 숨김 */
+		width: 100%; /* 가로 너비 100%로 설정 */
+		height: 500px; /* 원하는 높이로 조절 */
+		border: none;
+		pointer-events: none;
+}
+
+.map-image a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 94%;
+}
+
+.map-image img {
+	max-width: 100%;
+}
+
+.address-container {
+	display: flex;
+	align-items: center;
+	margin-left: 35px;
+	/* 주소를 왼쪽으로 옮김 */
+}
+
+.address-icon {
+	margin-right: 5px;
+	font-size: 14px;
+}
+
+.address-text {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.copy-button {
+	margin-left: auto;
+	/* 주소 복사 버튼을 오른쪽으로 옮김 */
+	margin-right: 20px;
+	padding: 5px 10px;
+	background-color: transparent;
+	color: blue;
+	/* 파란색으로 변경 */
+	border: none;
+	border-radius: 4px;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.overlay {
+	position: fixed;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: top 0.3s ease-in-out;
+	z-index: 9999;
+}
+
+.overlay.open {
+	top: 0;
+}
+
+.overlay iframe {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+.overlay .close-btn {
+	position: absolute;
+	top: 14px;
+	left: 480px;
+	font-size: 20px;
+	color: black;
+	cursor: pointer;
+}

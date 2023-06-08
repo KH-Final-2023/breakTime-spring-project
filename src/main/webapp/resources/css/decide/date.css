@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+/* Reset CSS */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* 전체 컨테이너 스타일 */
+.container {
+	display: flex;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	max-width: 768px;
+	margin: 0 auto;
+	background-color: #fff;
+	opacity: 1;
+	/* 초기에 투명하지 않도록 설정 */
+	animation: 0.1s ease 0s 1 normal none running pageAnimation;
+}
+
+/* 열릴 때 애니메이션 */
+@
+keyframes pageAnimation { 0% {
+	transform: translate3d(0px, 100%, 0px);
+	opacity: 0;
+}
+
+100
+%
+{
+transform
+:
+translate3d(
+0px
+,
+0px
+,
+0px
+);
+opacity
+:
+1;
+}
+}
+.detail2-main {
+	padding: 0 2rem;
+}
+
+/* 달력 컨테이너 스타일 */
+.calendar-container {
+	max-height: 400px;
+	overflow-y: auto;
+	scrollbar-width: none;
+	/* Firefox용 스크롤바 감추기 */
+	-ms-overflow-style: none;
+	/* IE/Edge용 스크롤바 감추기 */
+	max-height: calc(100vh - 100px);
+}
+
+/* 스크롤바 감추기 */
+.calendar-container::-webkit-scrollbar {
+	display: none;
+	/* Chrome/Safari용 스크롤바 감추기 */
+}
+
+/* 달력 테이블 스타일 */
+.calendar-table {
+	width: 100%;
+	/* border-collapse: collapse; */
+	table-layout: fixed;
+	border-spacing: 0; /* 추가된 부분 */
+}
+
+/* 날짜 셀 스타일 */
+.calendar-table td {
+	text-align: center;
+	padding: 10px;
+	/* border: 1px solid #ccc; */
+	border: 1px solid transparent; /* 변경된 부분 */
+	cursor: pointer;
+	box-sizing: border-box; /* 변경된 부분 */
+}
+
+/* 선택할 수 없는 날짜 스타일 */
+.calendar-table td.disabled {
+	color: #ccc;
+	cursor: not-allowed;
+}
+
+.calendar-table th, .calendar-table td {
+	border: none;
+}
+
+.calendar-table td {
+	padding: 5px;
+	text-align: center;
+}
+
+/* 토요일 색상 변경 */
+.calendar-table td:nth-child(7), .calendar-table th:nth-child(7) {
+	color: #0000ff86;
+}
+
+/* 일요일 색상 변경 */
+.calendar-table td:nth-child(1), .calendar-table th:nth-child(1) {
+	color: rgb(46, 204, 113);
+}
+
+.calendar-table th:nth-child(1), .calendar-table th:nth-child(2),
+	.calendar-table th:nth-child(3), .calendar-table th:nth-child(4),
+	.calendar-table th:nth-child(5), .calendar-table th:nth-child(6),
+	.calendar-table th:nth-child(7) {
+	color: rgba(0, 0, 0, 0.6);
+}
+
+/* 선택된 날짜 스타일 적용 */
+.calendar-table td.selected {
+	/* border: 1px solid #A5FF00; */
+	/* border-color: #0000ff86;  */
+	/* color: #0000ff86; */
+	border-radius: 50%;
+	/* box-shadow: inset 0 0 20px #A5FF00; */
+	/* background-image: linear-gradient(to outer top, rgba(61, 20, 204, 0), #3D14CC); */
+	/* color: #3D14CC; */
+	border: 1px solid #3D14CC;
+	background-color: #3D14CC;
+	color: #fff;
+	position: relative;
+	box-sizing: border-box; /* 추가된 부분 */
+}
+
+.selected-light {
+	border-radius: 50%;
+	border: 1px solid #6941f2;
+	background-color: #6941f2;
+	color: #fff;
+	position: relative;
+	box-sizing: border-box; /* 연한 배경색으로 변경 */
+}
+
+.calendar-table td {
+	padding: 17px;
+	text-align: center;
+	border: 1px solid transparent; /* border를 투명하게 설정 */
+	box-sizing: border-box; /* 추가된 부분 */
+}
+
+.calendar-table {
+	table-layout: auto;
+}
+
+.calendar-table td {
+	width: 40px;
+	padding: 17px;
+	text-align: center;
+}
+
+.month-header {
+	text-align: left;
+	height: 100px;
+}
+
+/* 추가된 스타일: 초기화 버튼 */
+.reset-button {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	cursor: pointer;
+	font-size: 13px;
+	color: blue;
+}
+
+/* 추가된 스타일: 날짜 선택 */
+.date-select {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	margin-top: 20px;
+	width: 100%;
+	position: absolute;
+	bottom: 20px;
+}
+
+.button-container button {
+	width: 95%;
+	height: 50px;
+	background-color: #4CAF50;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
