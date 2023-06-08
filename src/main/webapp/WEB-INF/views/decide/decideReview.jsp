@@ -10,6 +10,104 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/review.css">
+<style>
+
+    .reviewModal{
+    position: fixed;
+    bottom: 5%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index : 1;
+    
+}
+
+
+.reviewModal .reviewBg{
+    width: 100%;
+    height: 1000%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+
+.reviewModal .reviewCloseBtn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    background-color: #fff;
+    border: none;
+    font-size: 24px;
+}
+
+
+.modalBox {
+    position: absolute;
+    background-color: #fff;
+    width: 450px;
+    height: 550px;
+    border-radius: 16px;
+    
+}
+.modalBox .reviewHeader{
+    width: 100%;
+    height: 29px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalBox .reviewBody{
+    width: 500px;
+    height: 150px;
+    padding: 20px 20px;
+}
+
+#search-input{
+   width: 430px;
+   height: 45px;
+}
+
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform label:hover{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform label:hover ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+#reviewContents {
+    width: 400px;
+    height: 350px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid 1.5px #D3D3D3;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+}
+	
+
+</style>
 <script>
 $(document).ready(function () {
 // 별 크기 변경
@@ -136,10 +234,63 @@ $(document).on('click', '.modal-close', function () {
 </head>
 
 <body>
+
+
+<div class="reviewModal hidden">
+            <div class="reviewBg"></div>
+            <div class="modalBox">
+				<button class="reviewCloseBtn">X</button>
+				<div class="reviewHeader">
+					<p>리뷰</p>
+				</div>
+				<div class="reviewBody">
+					<form class="mb-3" name="myform" id="myform" method="post">
+                        <fieldset>
+                            <input type="radio" name="reviewStar" value="5" id="rate1"><label
+								for="rate1">★</label>
+							<input type="radio" name="reviewStar" value="4" id="rate2"><label
+								for="rate2">★</label>
+							<input type="radio" name="reviewStar" value="3" id="rate3"><label
+								for="rate3">★</label>
+							<input type="radio" name="reviewStar" value="2" id="rate4"><label
+								for="rate4">★</label>
+							<input type="radio" name="reviewStar" value="1" id="rate5"><label
+								for="rate5">★</label>
+                        </fieldset>
+                        <div>
+                            <textarea class="col-auto form-control" type="text" id="reviewContents"
+                                      placeholder="breaktime 리뷰를 남겨주세요"></textarea>
+                        </div>
+                    </form>
+                    <input type="submit" value="리뷰작성" id="reviewCommit" onclick="insertReview()">
+				</div>
+            </div>
+        </div>
+        
+        <script>
+            const open = () => {
+                document.querySelector(".reviewModal").classList.remove("hidden");
+                
+            }
+            const close = () => {
+            console.log('cdlose')
+                document.querySelector(".reviewModal").classList.add("hidden");
+            }
+            document.querySelector(".reviewOpenBtn").addEventListener("click", open); 
+            document.querySelector(".reviewCloseBtn").addEventListener("click", close); 
+            document.querySelector(".reviewBg").addEventListener("click", close); 
+
+        </script>
+        
+
+        
+        
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">
                 <span>후기 (${m.reviewCount})</span>
+                <button class="reviewOpenBtn">리뷰작성</button>
+                
             </div>
 
             <div class="review-star">
@@ -189,6 +340,9 @@ $(document).on('click', '.modal-close', function () {
 	                </div>
                 </c:forEach>
             </div>
+            
+             
+        
 
             <!-- 모달 창 -->
             <div class="modal">
