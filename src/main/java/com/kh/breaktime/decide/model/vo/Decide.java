@@ -1,6 +1,7 @@
 package com.kh.breaktime.decide.model.vo;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -18,13 +19,14 @@ public class Decide {
 	private double starScore;
     
 	// review
+	private double userStarScore;
 	private int reviewNo;
 	private int reviewWriter;
 	private int usingRoom;
 	private String bookNo;
 	private String reviewContent;
 	private String reviewAvailable;
-	private Date createDate;
+	private String createDate;
 	private String reviewContentReply;
 	private String userName;
 	

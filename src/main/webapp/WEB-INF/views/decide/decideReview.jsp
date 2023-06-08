@@ -17,6 +17,67 @@ $('.review-star i').removeClass('fa-star').addClass('fa-star');
 // 평점 크기 변경
 $('.rating-score').css('font-size', '35px').css('font-weight', 'bold');
 
+$('.review-star i').removeClass('fa-star').addClass('fa-star').css('color', 'yellow');
+
+/* //별점 점수를 받아옵니다.
+let starScore1 = '${m.userStarScore}';
+// 별점 점수를 정수와 소수 부분으로 분리합니다.
+let intPart1 = Math.floor(starScore1);
+let decimalPart1 = starScore1 - intPart1;
+// 별을 출력하는 변수를 생성합니다.
+let starHTML1 = '';
+// 정수 부분의 수만큼 전체 별을 출력합니다.
+for (let i = 0; i < intPart1; i++) {
+    starHTML1 += '<i class="fas fa-star"></i>';
+}
+// 소수 부분이 0.5 이상이면 반개 별을 출력합니다.
+if (decimalPart1 >= 0.5) {
+    starHTML1 += '<i class="fas fa-star-half-alt"></i>';
+}
+// 생성한 HTML을 별점 요소에 삽입합니다.
+$('.star').html(starHTML1); */
+
+
+let userStarScore = ${m.userStarScore}; // JSP에서 전달한 데이터를 JavaScript 변수에 할당
+
+for (let i = 0; i < userStarScore.length; i++) {
+    let starScore1 = userStarScore[i];
+    let intPart1 = Math.floor(starScore1);
+    let decimalPart1 = starScore1 - intPart1;
+    let starHTML1 = '';
+    for (let j = 0; j < intPart1; j++) {
+        starHTML1 += '<i class="fas fa-star"></i>';
+    }
+    if (decimalPart1 >= 0.5) {
+        starHTML1 += '<i class="fas fa-star-half-alt"></i>';
+    }
+    $('.star').eq(i).html(starHTML1); // 별점을 표시할 요소에 HTML 삽입
+}
+
+let starScore1 = userStarScore[i];
+let intPart1 = Math.floor(starScore1);
+let decimalPart1 = starScore1 - intPart1;
+let starHTML1 = '';
+
+// 별점을 업데이트하는 함수
+function updateStars1(starScore1) {
+	let intPart1 = Math.floor(starScore1);
+	let decimalPart1 = starScore1 - intPart1;
+	let starHTML1 = '';
+	for (let i = 0; i < intPart1; i++) {
+		starHTML1 += '<i class="fas fa-star"></i>';
+	}
+	if (decimalPart1 >= 0.5) {
+		starHTML1 += '<i class="fas fa-star-half-alt"></i>';
+	}
+	$('.star').html(starHTML1);
+}
+
+// 별점이 존재하면 업데이트
+if (starScore1 != null) {
+	updateStars1(starScore1);
+} 
+
 // 첫 로딩시 최근 작성순에 체크 아이콘 추가
 $('.modal-list-item-text').each(function () {
     if ($(this).text() === '최근 작성순') {
@@ -164,11 +225,13 @@ $(document).on('click', '.modal-close', function () {
 	                    <div id="content2">
 	                        <div id="reviewBackground">
 	                            <div id="review-star-rating">
-	                                <span class="fa fa-star"></span>
-	                                <span class="fa fa-star"></span>
-	                                <span class="fa fa-star"></span>
-	                                <span class="fa fa-star"></span>
-	                                <span class="fa fa-star"></span>
+	                            <span class="star" style="color : rgba(255, 204, 0, 0.852);">
+	                                <i class="fas fa-star"></i>
+	                                <i class="fas fa-star"></i>
+	                                <i class="fas fa-star"></i>
+	                                <i class="fas fa-star"></i>
+	                                <i class="fas fa-star-half-alt"></i>
+	                                </span>
 	                            </div>
 	                            <div id="reviewNickname">
 	                                <div>${d.userName} | ${d.createDate}</div>

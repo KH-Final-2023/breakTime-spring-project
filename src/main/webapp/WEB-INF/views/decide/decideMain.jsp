@@ -21,8 +21,6 @@
 <script>
 $(document).ready(function() {
 	
-
-	
 	// 공유 아이콘 클릭 시 페이지 링크 복사
 	$(".share-icon").click(function() {
 		var pageUrl = window.location.href;
@@ -197,11 +195,15 @@ $(document).ready(
 						class="icon heart-icon far fa-heart" title="찜하기"></i>
 				</div>
 			</div>
-			<a href="${contextPath}/decide/dereview/${m.buNo}" class="rating"> <span
-				class="stars"> <i class="fas fa-star"></i> <i
-					class="fas fa-star"></i> <i class="fas fa-star"></i> <i
-					class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i>
-			</span> <span class="score"><b>${m.starScore} (${m.reviewCount})</b></span>
+			<a href="${contextPath}/decide/dereview/${m.buNo}" class="rating"> 
+			<span class="stars"> 
+			<i class="fas fa-star"></i> 
+			<i class="fas fa-star"></i> 
+			<i class="fas fa-star"></i> 
+			<i class="fas fa-star"></i> 
+			<i class="fas fa-star-half-alt"></i>
+			</span> 
+			<span class="score"><b>${m.starScore} (${m.reviewCount})</b></span>
 			</a>
 
 			<!-- 주소와 지도 표시 -->

@@ -384,7 +384,7 @@ opacity
 }
 
 #review-star-rating .fa {
-	color: #ffc107;
+	color: rgba(255, 204, 0, 0.852);
 }
 
 #review-star-rating {

@@ -1,7 +1,10 @@
 package com.kh.breaktime.decide.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -38,7 +41,6 @@ public class DecideController {
 		ArrayList<Decide> mainList = decideService.selectDecideMain(buNo); // 메인 조회
 		
 		double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
-		System.out.println("reviewScore============" + reviewScore);
 		
 		int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
 		
@@ -120,9 +122,13 @@ public class DecideController {
 		
 		double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
 		
+		List<Double> userStarScore  = decideService.selectuserStarScore(buNo); // 유저 리뷰 점수 조회
+		
 		int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
 		
+		
 		map.put("starScore", reviewScore);
+		map.put("userStarScore", userStarScore);
 		map.put("reviewCount", rCnt);
 		
 		model.addAttribute("map", map);
