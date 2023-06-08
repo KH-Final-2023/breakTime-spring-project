@@ -1,0 +1,293 @@
+@charset "UTF-8";
+
+/* Reset CSS */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* 전체적인 스타일 */
+body {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.4;
+	color: #333;
+	background-color: #f2f2f2;
+}
+
+.container-main {
+	max-width: 768px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+
+.detail2-one-main {
+	padding: 0 2rem;
+	height: 40px;
+}
+
+.detail2-select {
+	max-width: 768px;
+	margin: 0 auto;
+	background-color: #fff;
+	margin-top: 10px;
+	height: 150px;
+	padding: 0 2rem;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.select-all {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	padding-top: 8px;
+}
+
+/* 아이템 스타일 */
+.item-top {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.item-check-image-name {
+	display: flex;
+	align-items: flex-start;
+}
+
+.item-image {
+	width: 75px;
+	height: 75px;
+	margin-left: 0;
+	margin-right: 10px;
+	border-radius: 3px;
+}
+
+.item-remove {
+	padding: 5px;
+	color: #919191;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-self: flex-start;
+	position: relative;
+	top: 18px;
+	margin-left: auto;
+	cursor: default;
+}
+
+.item-price {
+	color: #666;
+	align-self: flex-end;
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.item-name {
+	font-weight: bold;
+}
+
+/* 기본 체크박스 스타일 */
+input[type="checkbox"] {
+	display: none;
+}
+
+/* 커스텀 체크박스 스타일 */
+.custom-checkbox {
+	position: relative;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #999;
+	cursor: pointer;
+	margin-right: 7px;
+	background-color: white;
+	color: rgb(204, 204, 204);
+}
+
+/* 커스텀 체크박스 선택 시 스타일 */
+.custom-checkbox.checked {
+	background-color: green;
+	color: white;
+}
+
+/* 커스텀 체크박스 내부 체크 마크 스타일 */
+.custom-checkbox::after {
+	content: "";
+	position: absolute;
+	left: 5px;
+	top: 2px;
+	width: 5px;
+	height: 10px;
+	border: solid #999;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+	display: none;
+}
+
+/* 커스텀 체크박스 선택 시 내부 체크 마크 스타일 */
+.custom-checkbox.checked::after {
+	display: block;
+	border-color: #fff;
+}
+
+#delete-selected {
+	background: none;
+	border: none;
+	color: #cccccc;
+	font-size: 10px;
+	cursor: pointer;
+}
+
+#delete-selected:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.select-all-label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	font-size: 10px;
+}
+
+/* 모달 스타일 수정 */
+.modal-dialog {
+	position: absolute;
+	left: 42%;
+	top: 35%;
+	width: 300px;
+	max-width: calc(100% - 2rem);
+	/* 모달 너비가 최대 너비보다 클 경우 최대 너비로 설정 */
+	height: 120px;
+	max-height: calc(100% - 2rem);
+	/* 모달 높이가 최대 높이보다 클 경우 최대 높이로 설정 */
+	box-shadow: none;
+}
+
+.modal-content {
+	text-align: center;
+	border: none;
+	/* 모든 테두리 제거 */
+	box-shadow: none;
+}
+
+.modal-header, .modal-footer {
+	border: none;
+	/* 모달 헤더와 푸터의 테두리 제거 */
+	background-color: transparent;
+	/* 배경색을 투명으로 설정 */
+}
+
+.modal-body {
+	margin-bottom: -26px;
+}
+
+.modal-footer {
+	justify-content: center;
+}
+
+.modal-footer button {
+	background-color: transparent;
+	/* 배경색을 투명으로 설정 */
+	border: none;
+}
+
+.modal-footer #confirm-delete:hover {
+	background-color: transparent;
+	/* 호버 시 배경색을 투명으로 설정 */
+}
+
+.modal-footer #confirm-delete {
+	color: #0152cc;
+	/* 삭제하기 버튼의 색상을 설정합니다 */
+	font-weight: bold;
+	/* 삭제하기 버튼의 글꼴을 굵게 설정합니다 */
+}
+
+.modal-footer .btn-secondary {
+	color: #919191;
+	/* 아니요 버튼의 색상을 설정합니다 */
+	background-color: transparent;
+	/* 배경색을 투명으로 설정 */
+}
+
+.modal-footer .btn-primary:focus, .modal-footer .btn-primary.focus,
+	.modal-footer .btn-primary:not(:disabled):not(.disabled):active,
+	.modal-footer .btn-primary:not(:disabled):not(.disabled).active {
+	background-color: transparent;
+	box-shadow: none;
+}
+
+.modal-footer .btn-secondary:focus, .modal-footer .btn-secondary.focus,
+	.modal-footer .btn-secondary:not(:disabled):not(.disabled):active,
+	.modal-footer .btn-secondary:not(:disabled):not(.disabled).active {
+	background-color: transparent;
+	box-shadow: none;
+}
+
+.reservation-section {
+	background-color: #fff;
+	padding: 20px;
+	max-width: 768px;
+	margin: 10px auto;
+	background-color: #fff;
+}
+
+.reservation-title {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.reservation-items {
+	margin-bottom: 10px;
+}
+
+.reservation-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.item-price {
+	text-align: right;
+}
+
+.reservation-summary {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 5px;
+}
+
+.summary-label {
+	line-height: 40px;
+}
+
+.reservation-button {
+	width: 100%;
+	background-color: #cccccc;
+	color: #ffffff;
+	border: none;
+	padding: 10px;
+	font-weight: bold;
+	cursor: not-allowed;
+}
+
+.reservation-button:disabled {
+	background-color: #cccccc;
+	cursor: not-allowed;
+}
+
+.reservation-button.enabled {
+	background-color: #009900;
+	cursor: pointer;
+}
