@@ -37,17 +37,17 @@ public class ApprovalController {
 	}
 	
 	@GetMapping("/delete")
-	public String approvalCancel(@RequestParam(value="buId", required=false, defaultValue="0") String buId) {
+	public String approvalCancel(Business b, RedirectAttributes rttr) {
 		
-		approvalService.approvalCancel(buId);
-		
+		approvalService.approvalCancel(b);
+		rttr.addFlashAttribute("approvalCancel", b.getBuNo());
 		return "redirect:/approval/list";
 	}
 	
 	@GetMapping("/update")
 	public String approvalAccept(Business b, RedirectAttributes rttr) {
 		approvalService.approvalAccept(b);
-		rttr.addFlashAttribute("approvalAccept", b.getBuId());
+		rttr.addFlashAttribute("approvalAccept", b.getBuNo());
 		return "redirect:/approval/list";
 	}
 }

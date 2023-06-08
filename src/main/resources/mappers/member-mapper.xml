@@ -13,6 +13,21 @@
 		<result column="STATUS" property="status" />
 	</resultMap>
 	
+	<resultMap type="business" id="businessResultSet">
+		<id column="BU_NO" property="buNo" />
+		<result column="BU_ID" property="buId" />
+		<result column="BU_PWD" property="buPwd" />
+		<result column="BU_USER_NAME" property="buUserName" />
+		<result column="AREA_NO" property="areaNo" />
+		<result column="BU_CATEGORY" property="buCategory" />
+		<result column="EMAIL" property="email" />
+		<result column="BU_TEL" property="buTel" />
+		<result column="BU_ADDRESS" property="buAddress" />
+		<result column="ROOM_COUNT" property="roomCount" />
+		<result column="BU_TITLE" property="buTitle" />
+		<result column="ENROLL_DATE" property="enrollDate" />
+		<result column="APPROVAL" property="approval" />
+	</resultMap>
 	
 	<!-- 로그인유저 정보 SELECT(석범) -->
 	<select id="loginMember" parameterType="member"
@@ -40,4 +55,39 @@
 		, #{email}
 		, 1)
 	</insert>
+	
+	<!--  충영 -->
+	<select id="selectSearchListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM BUSINESS
+	WHERE APPROVAL = 'Y'
+	
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "title"'>
+				BU_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+		</choose>	
+	</if>	
+	</select>
+	
+	<select id="selectSearchList" resultMap="businessResultSet">
+	SELECT
+		BU_NO,
+		BU_ID,
+		BU_TITLE,
+		BU_ADDRESS,
+		BU_TEL
+	FROM BUSINESS
+	WHERE APPROVAL = 'Y' 
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "title"'>
+				BU_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+		</choose>	
+	</if>
+	</select>
 </mapper>

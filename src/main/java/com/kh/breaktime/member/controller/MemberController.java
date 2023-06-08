@@ -1,5 +1,8 @@
 package com.kh.breaktime.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -147,6 +150,26 @@ public class MemberController {
 		
 		return "member/myPage";
 	}
-	
-	
+	// 충영
+	@GetMapping("/list")
+	public String noticeList(Model model,
+						 	@RequestParam(value="cpage", defaultValue="1") int cp,
+						 	@RequestParam Map<String, Object> paramMap
+						 	) {
+		System.out.println(paramMap);
+		Map<String, Object> map = new HashMap();
+
+		if(paramMap.get("condition")==null) {
+			memberService.selectSearchList(cp, map);
+		}else {
+			// 검색요청을 한 경우 
+			// 검색조건을 추가한 상태로 게시글 셀렉트 
+			paramMap.put("currentPage", cp);
+			memberService.selectSearchList(paramMap, map);
+		}
+		
+		//noticeService.selectNoticeList(cp,map);
+		model.addAttribute("selectSearchList",map);
+		return "member/chatRoomList";
+	}
 }

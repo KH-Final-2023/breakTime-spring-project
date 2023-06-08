@@ -39,8 +39,8 @@ public class ReportServiceImpl implements ReportService{
 		return reportDao.reportKeep(r);
 	}
 	
-	public int reportCancel(int reviewNo) {
-		return reportDao.reportCancel(reviewNo);
+	public int reportCancel(Review r) {
+		return reportDao.reportCancel(r);
 	}
 	
 }
