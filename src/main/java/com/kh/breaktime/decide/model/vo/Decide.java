@@ -13,7 +13,7 @@ public class Decide {
 	//main 
 	private String buTitle;
 	private String buAddress;
-	private String mainImg;
+	private String buMainImg;
 	private String filePath;
     private String saveName;
 	private double starScore;
@@ -40,6 +40,11 @@ public class Decide {
     private String roomInfo;
     private String roomName;
     
-    private	int fileLevel;
+    // cart
+    private String cartCheckIn;
+    private String cartCheckOut;
     private int userNo;
+    
+    
+    private	int fileLevel;
 }

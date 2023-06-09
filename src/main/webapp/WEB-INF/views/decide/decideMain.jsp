@@ -184,7 +184,7 @@ $(document).ready(
 	<div class="container-main">
 		<!-- 업체 메인 객실 이미지 -->
 		<img class="main-image"
-			src="${m.mainImg}"
+			src="${m.buMainImg}"
 			alt="업체 메인 객실 이미지">
 
 		<!-- 업체 정보 -->
