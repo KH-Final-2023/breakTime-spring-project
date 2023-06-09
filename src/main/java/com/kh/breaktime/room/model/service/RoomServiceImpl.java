@@ -111,18 +111,4 @@ public class RoomServiceImpl implements RoomService {
 		return buDao.getRoomImagesByBuId(roomNo);
 	}
 	
-	@Autowired
-	   private Pagination pagination;
-
-	   public void selectBuRoomList(int cp, Map<String, Object> map) {
-	      
-	      int listCount = buDao.selectBuRoomListCount();
-	      int pageLimit = 10;
-	      int boardLimit = 5;
-	      PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
-
-
-	      map.put("pi", pi);
-	      map.put("list", buDao.selectBuRoomList(pi));
-	   }
 }

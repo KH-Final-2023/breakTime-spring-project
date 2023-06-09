@@ -251,6 +251,10 @@ $(document).on("shown.bs.modal", "#confirm-modal",
 	function() {
 		$(this).find(".modal-dialog");
 	});
+	
+	document.getElementById("home-button").addEventListener("click", function() {
+	  window.location.href = "${contextPath}";
+	});
 });
 </script>
 </head>
@@ -258,7 +262,7 @@ $(document).on("shown.bs.modal", "#confirm-modal",
 <body>
 	<!-- 메인 부분 -->
 	<div class="container-main">
-		<c:if test="${!empty list}">
+		<c:if test="${empty list}">
 			<div class="detail2-one-main"
 				style="height: 350px; text-align: center; display: flex; justify-content: center; flex-direction: column; line-heigth: 10px">
 				<i class="fas fa-shopping-cart"
@@ -268,14 +272,12 @@ $(document).on("shown.bs.modal", "#confirm-modal",
 					상품을 담아보세요</span>
 				<div class="select-all"></div>
 				<div style="text-align: center;">
-					<button
-						style="font-size: 16px; color: #008000; margin-top: 20px; padding: 10px 50px; border: 1px solid #008000; border-radius: 5px; background-color: #ffffff; cursor: pointer;">홈으로
-						가기</button>
+					<button id="home-button" style="font-size: 16px; color: #008000; margin-top: 20px; padding: 10px 50px; border: 1px solid #008000; border-radius: 5px; background-color: #ffffff; cursor: pointer;">홈으로 가기</button>
 				</div>
 			</div>
 		</c:if>
 
-		<c:if test="${empty list}">
+		<c:if test="${!empty list}">
 			<div class="detail2-one-main">
 				<div class="select-all">
 					<input type="checkbox" id="select-all" style="display: none;">

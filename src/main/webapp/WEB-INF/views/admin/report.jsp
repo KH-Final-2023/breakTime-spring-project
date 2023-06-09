@@ -26,7 +26,7 @@
 					<c:forEach var="r" items="${selectReportList.list}">
 						<div id="content">
 							<div id="content2">
-								<div id="reviewBackground">
+								<div id="reviewBackground" style="width:100%;">
 									<div id="review-star-rating">
 										<span class="fa fa-star"></span> <span class="fa fa-star"></span>
 										<span class="fa fa-star"></span> <span class="fa fa-star"></span>
@@ -40,12 +40,13 @@
 										<div id="reviewRoomNameInfo">${r.roomName }</div>
 									</div>
 									<div id="review">${r.reviewContent }</div>
-
-									<div id="buReviewList">
-										<span style="font-size: larger;"><b>숙소 답변</b></span>
-										<!-- <span class="buReviewDate">2023.05.04</span>  -->
-										<p class="buReview">${r.reviewContentReply }</p>
-									</div>
+									<c:if test="${r.reviewContentReply ne null}">
+										<div id="buReviewList">
+											<span style="font-size: larger;"><b>숙소 답변</b></span>
+											<!-- <span class="buReviewDate">2023.05.04</span>  -->
+											<p class="buReview">${r.reviewContentReply }</p>
+										</div>
+									</c:if>
 								</div>
 							</div>
 							<hr style="color: rgba(0, 0, 0, 0.5);">

@@ -4,8 +4,8 @@
 
 	<resultMap type="room" id="roomResultMap">
 		<id column="ROOM_NO" property="roomNo" />
-		<result column="BU_ID" property="buId" />
-		<result column="ROOM_COUNT" property="roomCount" />
+		<result column="BU_NO" property="buNo" />
+		<result column="ROOM_H_COUNT" property="roomHCount" />
 		<result column="ROOM_NAME" property="roomName" />
 		<result column="ROOM_PRICE" property="roomPrice" />
 		<result column="ROOM_INFO" property="roomInfo" />
@@ -27,8 +27,8 @@
 		INSERT INTO ROOM
 		(
 		ROOM_NO,
-		BU_ID,
-		ROOM_COUNT,
+		BU_NO,
+		ROOM_H_COUNT,
 		ROOM_NAME,
 		ROOM_PRICE,
 		ROOM_INFO
@@ -36,8 +36,8 @@
 		VALUES
 		(
 		#{roomNo},
-		#{buId},
-		#{roomCount},
+		#{buNo},
+		#{roomHCount},
 		#{roomName},
 		#{roomPrice},
 		#{roomInfo}
@@ -71,7 +71,7 @@
 	</insert>
 	<update id="updateRoom">
 		UPDATE ROOM SET
-		ROOM_COUNT = #{roomCount},
+		ROOM_H_COUNT = #{roomHCount},
 		ROOM_NAME =#{roomName},
 		ROOM_PRICE = #{roomPrice},
 		ROOM_INFO = #{roomInfo}
@@ -110,22 +110,5 @@
 		WHERE ROOM_NO = #{roomNo}
 	</select>
 	
-	<!-- <select id="selectBuRoomList" resultMap="roomResultMap">
-		SELECT *
-		FROM ROOM
-		WHERE ROOM_NO = #{roomNo}
-	</select> -->
 	
-	<select id="selectBuRoomListCount" resultType="int">
-   SELECT COUNT(*) FROM ROOM
-   JOIN BUSINESS B ON B.BU_ID = ROOM.BU_ID
-   WHERE B.BU_ID = #{buId}
-</select>
-
-
-   <select id="selectBuRoomList"  parameterType="String"  resultMap="roomResultMap">
-     SELECT *  FROM ROOM
-   JOIN BUSINESS B ON B.BU_ID = ROOM.BU_ID
-   WHERE B.BU_ID = #{buId}
-   </select>
 </mapper>

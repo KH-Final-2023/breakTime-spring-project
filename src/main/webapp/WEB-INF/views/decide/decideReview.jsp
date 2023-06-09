@@ -18,26 +18,7 @@ $('.review-star i').removeClass('fa-star').addClass('fa-star');
 // 평점 크기 변경
 $('.rating-score').css('font-size', '35px').css('font-weight', 'bold');
 
-$('.review-star i').removeClass('fa-star').addClass('fa-star').css('color', 'yellow');
-
-/* //별점 점수를 받아옵니다.
-let starScore1 = '${m.userStarScore}';
-// 별점 점수를 정수와 소수 부분으로 분리합니다.
-let intPart1 = Math.floor(starScore1);
-let decimalPart1 = starScore1 - intPart1;
-// 별을 출력하는 변수를 생성합니다.
-let starHTML1 = '';
-// 정수 부분의 수만큼 전체 별을 출력합니다.
-for (let i = 0; i < intPart1; i++) {
-    starHTML1 += '<i class="fas fa-star"></i>';
-}
-// 소수 부분이 0.5 이상이면 반개 별을 출력합니다.
-if (decimalPart1 >= 0.5) {
-    starHTML1 += '<i class="fas fa-star-half-alt"></i>';
-}
-// 생성한 HTML을 별점 요소에 삽입합니다.
-$('.star').html(starHTML1); */
-
+$('.review-star i').removeClass('fa-star').addClass('fa-star').css('color', 'rgba(255, 204, 0, 0.852)');
 
 let userStarScore = ${m.userStarScore}; // JSP에서 전달한 데이터를 JavaScript 변수에 할당
 
@@ -197,16 +178,14 @@ $(document).on('click', '.modal-close', function () {
 </script>
 </head>
 
+
 <body>    
-        
+
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">
                 <span>후기 (${m.reviewCount})</span>
-                <button class="reviewOpenBtn">리뷰작성</button>
-                
             </div>
-
             <div class="review-star">
                 <div class="star-rating">
                 <span><i class="fas fa-star"></i></span>
@@ -214,20 +193,17 @@ $(document).on('click', '.modal-close', function () {
                 <span class="rating-small">/5</span></span>
                  </div>
             </div>
-
             <div class="review-avg">
                 누적 평점
             </div>
-
             <div class="recent-reviews">
                 <span style="cursor: pointer;">최근 작성순</span>
             </div>
-
             <div class="review-main-star">
             	<c:forEach items="${reviewList}" var="d">
 	                <div id="content">
 	                    <div id="content2">
-	                        <div id="reviewBackground">
+	                        <div id="reviewBackground" style="width: 100%;">
 	                            <div id="review-star-rating">
 	                            <span class="star" style="color : rgba(255, 204, 0, 0.852);">
 	                                <i class="fas fa-star"></i>
@@ -245,21 +221,23 @@ $(document).on('click', '.modal-close', function () {
 	                                <div id="reviewRoomNameInfo">${d.roomName} (${d.roomInfo})</div>
 	                            </div>
 	                            <div id="review">${d.reviewContent }</div>
-	
+	                            
+	                            <c:if test="${empty reviewList}">
+	                            </c:if>
+	                            
+								<c:if test="${!empty reviewList}">
 	                            <div id="buReviewList">
 	                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
 	                                <span class="buReviewDate">${d.createDate}</span>   
 	                                <p class="buReview">${d.reviewContentReply}</p>
 	                            </div>
+	                            </c:if>
 	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
             </div>
             
-             
-        
-
             <!-- 모달 창 -->
             <div class="modal">
                 <span class="modal-close">X</span> <!-- "X" 버튼을 모달 왼쪽 상단에 추가 -->

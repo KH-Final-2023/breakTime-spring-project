@@ -17,6 +17,9 @@
 <!-- fontawesome라이브러리추가 다양한 아이콘을 지원함.(EX) 검색용 돋보기 버튼) -->
 <script src="https://kit.fontawesome.com/a2e8ca0ae3.js"
 	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
 
 <style>
 body {
@@ -69,6 +72,11 @@ button {
 }
 
 .houseTel {
+	font-size: 12px;
+	padding: 0 0 2%;
+}
+
+.room_options {
 	font-size: 12px;
 	padding: 0 0 2%;
 }
@@ -145,9 +153,9 @@ button {
 
 <body>
 
-	<jsp:include page="/WEB-INF/views/header.jsp" />
+	<%-- <jsp:include page="/WEB-INF/views/header.jsp" /> --%>
 
-	<jsp:include page="/WEB-INF/views/detail/searchBar_detail.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/area_detail.jsp" />
 
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
@@ -176,6 +184,7 @@ button {
 										</div>
 										<div class="houseAddress">${d.buAddress}</div>
 										<div class="houseTel">${d.buTel}</div>
+										<div class="room_options">${d.roomInfo }</div>
 									</div>
 								</a>
 							</div>
@@ -186,9 +195,13 @@ button {
 									<p class="priceDetail2">모든 세금 및 수수료 포함</p>
 								</div>
 								<div class="hpButton">
-									<p class="rsButton">예약 무료 취소</p>
+									<p class="rsButton"
+										th:if="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}">${d.roomInfo}</p>
+									<p class="rsButton"
+										th:unless="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}"></p>
 									<button>자세히 보기</button>
 								</div>
+
 							</div>
 						</div>
 					</li>
@@ -324,6 +337,9 @@ button {
 		document.querySelector(".option_closeBtn9").addEventListener("click", close); 
 		document.querySelector(".option_closeBtn10").addEventListener("click", close); 
     </script>
+
+
+
 
 	<!-- footer include -->
 

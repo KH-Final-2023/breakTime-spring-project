@@ -28,19 +28,19 @@ public class BusinessDao {
 		return sqlSession.insert("businessMapper.insertBusiness", inputBusiness);
 	}
 
-	public List<Room> getRoomsByBuId(String buId) {
-		return sqlSession.selectList("businessMapper.getRoomsByBuId", buId);
+	public List<Room> getRoomsByBuId(int buNo) {
+		return sqlSession.selectList("businessMapper.getRoomsByBuId", buNo);
 	}
 
 	public RoomImg getRoomImagesByBuId(int roomNo) {
 		return sqlSession.selectOne("businessMapper.getRoomImagesByBuId", roomNo);
 	}
 
-	public List<Booking> getBookingsByBusinessId(String businessId) {
-		return sqlSession.selectList("businessMapper.selectBookingsByBusinessId", businessId);
+	public List<Booking> getBookingsByBusinessId(int buNo) {
+		return sqlSession.selectList("businessMapper.selectBookingsByBusinessId", buNo);
 	}
 
-	public List<Review> getReviewsForBusiness(String businessId) {
-		return sqlSession.selectList("businessMapper.getReviewsForBusiness", businessId);
+	public List<Review> getReviewsForBusiness(int buNo) {
+		return sqlSession.selectList("businessMapper.getReviewsForBusiness", buNo);
 	}
 }
