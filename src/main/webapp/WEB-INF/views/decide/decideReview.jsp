@@ -177,7 +177,10 @@ $(document).on('click', '.modal-close', function () {
 });
 </script>
 </head>
-<body>
+
+
+<body>    
+
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">

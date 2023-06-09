@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.breaktime.decide.model.service.DecideService;
 import com.kh.breaktime.decide.model.vo.Decide;
+import com.kh.breaktime.review.model.vo.Review;
 
 @Controller
 @RequestMapping("/decide")
@@ -122,6 +123,16 @@ public class DecideController {
 
 	 return "decide/decidePopupMap";
 	}
+	
+	@GetMapping("/insert")
+	public String insertReview(Decide decide) {
+		
+		decideService.insertReview(decide);
+		
+		return "decide/decideReview";
+			
+		}
+	
 	
 	@GetMapping("/dereview/{buNo}") // 리뷰 조회
 	public String decideReview(@PathVariable("buNo") int buNo, Model model) {

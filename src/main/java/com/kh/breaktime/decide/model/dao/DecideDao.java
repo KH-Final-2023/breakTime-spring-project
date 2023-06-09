@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.breaktime.decide.model.vo.Decide;
+import com.kh.breaktime.review.model.vo.Review;
 
 @Repository
 public class DecideDao {
@@ -19,6 +20,12 @@ public class DecideDao {
 	public ArrayList<Decide> selectDecideMain(int buNo) {
 		
 		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideMain", buNo);
+	}
+	
+	// 리뷰 등록
+	public int insertReview(Decide decide) {
+		return sqlSession.insert("decideMapper.insertReview",decide);
+		
 	}
 	
 	// 리뷰 개수 조회

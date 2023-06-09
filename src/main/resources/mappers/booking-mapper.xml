@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookingMapper">
+	<resultMap type="booking" id="bookingResultSet">
+		<result column="BOOK_NO" property="bookNo" />
+		<result column="USER_NO" property="userNo" />
+		<result column="ROOM_NO" property="roomNo" />
+		<result column="ROOM_H_COUNT" property="roomHCount" />
+		<result column="RESERVATION_NO" property="reservationNo" />
+		<result column="ROOM_NAME" property="roomName" />
+		<result column="ROOM_CHECKIN" property="roomCheckin" />
+		<result column="ROOM_CHECKOUT" property="roomCheckout" />
+		<result column="STATUS" property="status" />
+	</resultMap>
+	
+	<select id="selectBookingList" resultMap="bookingResultSet">
+		SELECT  B.BOOK_NO,
+				B.USER_NO,
+				B.ROOM_NO,
+				B.ROOM_H_COUNT,
+				B.RESERVATION_NO,
+				B.ROOM_NAME,
+				B.ROOM_CHECKIN,
+				B.ROOM_CHECKOUT,
+				B.STATUS
+				FROM BOOKING B
+				JOIN MEMBER M ON M.USER_NO = B.USER_NO
+				WHERE B.STATUS = 'Y'
+				AND B.USER_NO = #{userNo}
+	</select>
+
+
+
+	
+
+</mapper>
