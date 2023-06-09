@@ -39,6 +39,7 @@
 		R.ROOM_NO,
 		R.ROOM_H_COUNT,
 		R.ROOM_PRICE,
+		R.ROOM_INFO,
 		B.BU_NO,
 		B.BU_ADDRESS,
 		B.AREA_NO,
@@ -82,8 +83,12 @@
 		H.MAIN_IMG IS NOT NULL
 		AND B.APPROVAL = 'Y'
 		AND B.BU_CATEGORY = #{category}
-		AND R.ROOM_H_COUNT = 1
-
+		<if test="guests == null">
+			AND R.ROOM_H_COUNT = 1
+		</if>
+		<if test="guests != null">
+			AND R.ROOM_H_COUNT = #{guests}
+		</if>
 		<if test="prices != null">
 			AND TO_NUMBER(REPLACE(R.ROOM_PRICE, ',', '')) BETWEEN
 			TO_NUMBER(REPLACE(#{prices[0]}, '[', '')) AND

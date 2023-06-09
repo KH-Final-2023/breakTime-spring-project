@@ -31,8 +31,8 @@ public class DetailServiceImpl implements DetailService {
 		map.put("list", list);
 	}
 
-	public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Map<String, Object> map) {
-		ArrayList<Detail> list = detailDao.getFilteredData(category, prices, reserves, options);
+	public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Integer guests, Map<String, Object> map) {
+		ArrayList<Detail> list = detailDao.getFilteredData(category, prices, reserves, options, guests);
 		map.put("list", list);
 	}
 	

@@ -199,7 +199,7 @@ button {
 										th:if="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}">${d.roomInfo}</p>
 									<p class="rsButton"
 										th:unless="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}"></p>
-									<button>자세히 보기</button>
+									<button onclick="redirectToDetail('${d.buNo}')">자세히 보기</button>
 								</div>
 
 							</div>
@@ -338,6 +338,11 @@ button {
 		document.querySelector(".option_closeBtn10").addEventListener("click", close); 
     </script>
 
+	<script>
+	  function redirectToDetail(buNo) {
+	    window.location.href = '/breaktime/decide/demain/' + buNo;
+	  }
+	</script>
 
 
 

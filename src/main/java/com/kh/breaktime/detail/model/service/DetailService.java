@@ -12,7 +12,7 @@ public interface DetailService {
 
     public void selectDetailList(String category, Map<String, Object> map);
 
-    public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Map<String, Object> map);
+    public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Integer guests, Map<String, Object> map);
     
     public void getAreaData(String category, String area, Map<String, Object> map);
 
