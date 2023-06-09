@@ -20,5 +20,4 @@ public interface RoomService {
 
 	public RoomImg getRoomImagesByBuId(int roomNo);
 	
-	public void selectBuRoomList(int cp, Map<String, Object> map);
 }

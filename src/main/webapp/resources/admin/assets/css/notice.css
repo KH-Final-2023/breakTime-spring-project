@@ -218,7 +218,7 @@ notice {
 }
 
 #reviewRoomNameList {
-	width: 8%;
+	width: 5%;
 	height: 20px;
 	border-radius: 2px;
 	text-align: center;
@@ -227,7 +227,7 @@ notice {
 }
 
 #reviewRoomNameInfo {
-	width: 92%;
+	width: 95%;
 	margin-left: 10px;
 	border-radius: 2px;
 	color: rgb(97, 97, 97);

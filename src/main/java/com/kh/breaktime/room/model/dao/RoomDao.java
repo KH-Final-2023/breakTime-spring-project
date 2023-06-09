@@ -67,17 +67,4 @@ public class RoomDao {
 	public RoomImg getRoomImagesByBuId(int roomNo) {
 		return sqlSession.selectOne("buRoom-mapper.getRoomImagesByBuId", roomNo);
 	}
-	public int selectBuRoomListCount() {
-	      return sqlSession.selectOne("buRoom-mapper.selectBuRoomListCount");
-	   }
-	   
-	   public ArrayList<Room> selectBuRoomList(PageInfo pi){
-	      
-	      int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-	      int limit = pi.getBoardLimit();
-	      
-	      RowBounds rowBounds = new RowBounds(offset, limit);
-	      
-	      return (ArrayList)sqlSession.selectList("buRoom-mapper.selectBuRoomList", "", rowBounds);
-	   }
 }
