@@ -8,7 +8,7 @@ public class Booking {
 	 	private String bookNo;
 	    private int userNo;
 	    private int roomNo;
-	    private String roomCount;
+	    private String roomHCount;
 	    private String reservationNo;
 	    private String roomName;
 	    private String roomCheckin;

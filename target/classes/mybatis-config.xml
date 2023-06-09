@@ -34,7 +34,7 @@
 	 	<mapper resource="/mappers/member-mapper.xml"/>
 	 	<mapper resource="/mappers/business-mapper.xml"/>
 	 	<mapper resource="/mappers/review-mapper.xml"/>
-
+		<mapper resource="/mappers/booking-mapper.xml"/>
 	 	<mapper resource="/mappers/chat-mapper.xml"/>
 	 
 
