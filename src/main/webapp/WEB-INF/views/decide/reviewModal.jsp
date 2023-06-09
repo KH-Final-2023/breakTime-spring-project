@@ -155,26 +155,7 @@
         </div>
         
         
-        <!-- 댓글등록기능 -->
-			<table id="reviewArea" class="table" align="center">
-				<thead>
-					<tr>
-						<th colspan="2">
-							<textarea class="form-control" name="reviewContent" id="reviewContent" rows="2" cols="55" 
-							style="resize:none; width:100%;"></textarea>
-						</th>
-						<th style="vertical-align: middle;"><button class="btn btn-secondary" onclick="insertReview();">등록하기</button></th> 
-					</tr>
-					<tr>
-						<td colspan="3">댓글(<span id="rcount">3</span>)</td>
-					</tr>
-				</thead>
-				<tbody>
-					<!--  스크립트 구문으로 댓글 추가 -->
-					
-					
-				</tbody>
-			</table>
+       
         
         
         <script>
