@@ -36,11 +36,11 @@ public class BusinessDao {
 		return sqlSession.selectOne("businessMapper.getRoomImagesByBuId", roomNo);
 	}
 
-	public List<Booking> getBookingsByBusinessId(String businessId) {
-		return sqlSession.selectList("businessMapper.selectBookingsByBusinessId", businessId);
+	public List<Booking> getBookingsByBusinessId(int buNo) {
+		return sqlSession.selectList("businessMapper.selectBookingsByBusinessId", buNo);
 	}
 
-	public List<Review> getReviewsForBusiness(String businessId) {
-		return sqlSession.selectList("businessMapper.getReviewsForBusiness", businessId);
+	public List<Review> getReviewsForBusiness(int buNo) {
+		return sqlSession.selectList("businessMapper.getReviewsForBusiness", buNo);
 	}
 }

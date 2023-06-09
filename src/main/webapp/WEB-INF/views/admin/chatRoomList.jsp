@@ -33,9 +33,10 @@
 				<form id="searchForm" action="" method="get" align="center">
 				 	<input type="hidden" class="custom-select" name="condition" value="title" ${param.condition=='title' ? 'checked' : ''}>
 		 			<div class="text">
-				 		<input type="text" class="form-control" name="keyword" placeholder="문의하실 숙소를 검색하세요."value="${param.keyword }">
+				 		<input type="text" class="form-control" name="keyword" placeholder="문의하실 숙소를 검색하세요."value="${param.keyword }"
+				 				style="margin-left:30%;">
 				 	</div>
-				 	<button type="submit" class="searchBtn btn btn-secondary">검색 </button>
+				 	<button type="submit" class="searchBtn btn btn-secondary" style="margin-left:20%;">검색 </button>
 		 		</form>
 		 
 				

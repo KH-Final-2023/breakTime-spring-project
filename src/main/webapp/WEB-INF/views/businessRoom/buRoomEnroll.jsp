@@ -28,12 +28,11 @@
     <div id="roomResisterText1" style="font-size: x-large; margin: 15px;">객실 등록</div>
 
    		<form id="buRoomEnrollForm" action="/breaktime/businessRoom/enroll" enctype="multipart/form-data" method="POST">	   
-		    <div id="ResisterbuId">아이디 :</div>
-		    <div><input name="buId" placeholder="등록할 아이디을 입력해주세요"></div>
+		    <div><input type="hidden" name="buNo" placeholder="등록할 아이디을 입력해주세요" value="${loginBusiness.buNo }"></div> 
 		    <div id="ResisterRoomName">객실 이름 :</div>
 		    <div><input name="roomName" placeholder="등록할 객실 이름을 입력해주세요"></div>
 		    <div id="ResisterRoomCount">인원 :</div>
-		    <div><input name="roomCount" placeholder="등록할 인원을 입력해주세요"></div>
+		    <div><input name="roomHCount" placeholder="등록할 인원을 입력해주세요"></div>
 		    <div id="ResisterRoomPrice">가격 :</div>
 		    <div><input name="roomPrice" placeholder="등록할 가격을 입력해주세요"></div>
 		    <div id="roomStandardInfoText">객실 기본 정보</div>

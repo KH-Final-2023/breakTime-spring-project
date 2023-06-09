@@ -150,30 +150,30 @@ public class BusinessController {
 	public String buReservation(Model model, HttpSession session) {
 		// 로그인한 사업자의 ID를 세션에서 가져옴
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-		String businessId = loginBusiness.getBuId();
+		int buNo = loginBusiness.getBuNo();
 
-		List<Booking> bookingList = businessService.getBookingsByBusinessId(businessId);
+		List<Booking> bookingList = businessService.getBookingsByBusinessId(buNo);
 		model.addAttribute("bookingList", bookingList);
 		System.out.println(bookingList);
-		System.out.println(businessId);
+		System.out.println(buNo);
 		return "businessRoom/buReservation";
 	}
 
 	@GetMapping("/review")
 	public String getBusinessReviews(Model model, HttpSession session) {
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-		if (loginBusiness != null) {
-			String businessId = loginBusiness.getBuId();
-			List<Review> businessReviews = businessService.getReviewsForBusiness(businessId);
-			model.addAttribute("businessId", businessId);
+		int buNo = loginBusiness.getBuNo();
+		
+			List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
+			
 			model.addAttribute("businessReviews", businessReviews);
-			System.out.println(businessId);
+			System.out.println(buNo);
 			System.out.println(businessReviews);
 			return "businessRoom/buReview";
-		} else {
-			// 로그인되지 않은 경우 처리
-			return "redirect:/login"; // 로그인 페이지로 리다이렉트 또는 적절한 처리를 해주세요.
-		}
+		
+			
+			
+		
 	}
 
 }

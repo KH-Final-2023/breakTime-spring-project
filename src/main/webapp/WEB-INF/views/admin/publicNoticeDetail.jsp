@@ -66,9 +66,10 @@ body {
 }
 
 .inquiryDetail {
-	width: 70%;
-	margin-top: 30px;
-	margin-bottom: 80px;
+	width: 1000px;
+	margin-top: 80px;
+	margin-bottom: 0px;
+	margin-left : 500px;
 	border-top: 3px solid #623f30;
 	border-collapse: collapse;
 }
@@ -130,6 +131,7 @@ body {
 #footer {
 	height: 18.5%;
 }
+
 </style>
 </head>
 <body>

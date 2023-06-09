@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -12,57 +12,57 @@
 <style>
 /* 전체적인 초록색 계열 스타일 */
 body {
-	background-color: #f0f8f0;
+   background-color: #f0f8f0;
 }
 
 #content1 {
-	display: flex;
-	justify-content: space-around;
-	width: 300px;
-	
-	background-color: greenyellow;
-	border-radius: 15px;
-	margin-top: 100px;
+   display: flex;
+   justify-content: space-around;
+   width: 300px;
+   
+   background-color: greenyellow;
+   border-radius: 15px;
+   margin-top: 100px;
 }
 
 #content2 {
-	background-color: #f0fff0;
+   background-color: #f0fff0;
 }
 
 #resistedRoomListText {
-	font-size: 24px;
-	color: #228b22;
-	margin-bottom: 10px;
+   font-size: 24px;
+   color: #228b22;
+   margin-bottom: 10px;
 }
 
 #lodging {
-	text-align: center;
-	margin-top: 20px;
+   text-align: center;
+   margin-top: 20px;
 }
 
 img {
-	width: 210x;
-	height: 170px;
-	margin: 10px;
+   width: 210x;
+   height: 170px;
+   margin: 10px;
 }
 
 /* 포인트 스타일 */
 .room-info {
-	display: flex;
-	justify-content: space-between;
-	padding: 10px;
-	border-radius: 5px;
-	margin-bottom: 10px;
+   display: flex;
+   justify-content: space-between;
+   padding: 10px;
+   border-radius: 5px;
+   margin-bottom: 10px;
 }
 
 .room-info>div {
-	flex: 1;
-	margin-right: 10px;
+   flex: 1;
+   margin-right: 10px;
 }
 
 #imgList {
-	max-width: 250px;
-	width: 100%;
+   max-width: 250px;
+   width: 100%;
 }
 </style>
 <title>Document</title>
@@ -104,19 +104,19 @@ img {
 		</div>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script>
-	 $(document).ready(function() {
-	    	  // 각 room-info를 클릭했을 때의 동작 처리
-	    	  $('.room-info').click(function(event) {
-	    	     event.preventDefault();  // 기본 클릭 동작 방지
-	    	   var roomNo = $(this).data('room-no');// 클릭한 방의 roomNo 값을 가져옴
-	    	    if (roomNo !== undefined) {
-	    	    	 window.location.href = '/breaktime/businessRoom/modifyPage?roomNo=' + roomNo; 
-	    	    }
-	    	  }); 
-	    	}); 
-	    	
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script>
+    $(document).ready(function() {
+            // 각 room-info를 클릭했을 때의 동작 처리
+            $('.room-info').click(function(event) {
+               event.preventDefault();  // 기본 클릭 동작 방지
+             var roomNo = $(this).data('room-no');// 클릭한 방의 roomNo 값을 가져옴
+              if (roomNo !== undefined) {
+                  window.location.href = '/breaktime/businessRoom/modifyPage?roomNo=' + roomNo; 
+              }
+            }); 
+          }); 
+          
     </script>
 </body>
 </html>

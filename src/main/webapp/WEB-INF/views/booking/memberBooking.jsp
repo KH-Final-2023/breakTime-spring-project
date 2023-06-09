@@ -28,61 +28,62 @@
 </head>
 
 <body>
- <%@ include file="../header.jsp"%> 
+<%--  <%@ include file="../header.jsp"%> --%>
+
     <div id="content">
       <div id="content1">
-			<form action="/breaktime/businessRoom/resister" method="GET">
-				<button type="submit" id="buRoomRegister">객실 등록</button>
-			</form>
-			<form action="/breaktime/business/reservation" method="GET">
-				<button type="submit" id="buRoomReservation">예약 내역</button>
-			</form>
-			<form action="/breaktime/business/review" method="GET">
-				<button type="submit" id="buReview">리뷰</button>
-			</form>
-		</div>
+         <form action="/breaktime/businessRoom/resister" method="GET">
+            <button type="submit" id="buRoomRegister">객실 등록</button>
+         </form>
+         <form action="/breaktime/business/reservation" method="GET">
+            <button type="submit" id="buRoomReservation">예약 내역</button>
+         </form>
+         <form action="/breaktime/business/review" method="GET">
+            <button type="submit" id="buReview">리뷰</button>
+         </form>
+      </div>
         <div id="content2">
         <div style="font-size: xx-large; margin: 50px; margin-bottom: 70px;">예약 내역</div>
         <hr style="background-color: black; width: 100%;">
         <div id="reservationList">
-        	<table class="table table-hover" style="width:1800px;">
-						<thead>
-							<tr>
-								<th>객실이름</th>
-								<th>이용인원수</th>
-								<th>예약번호</th>
-								<th>체크인</th>
-								<th>체크아웃</th>
-								<th>예약상태</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${bookingList}" var="booking">
-								<tr>
-									<td>${booking.roomName}</td>
-									<td>${booking.roomHCount}</td>
-									<td>${booking.reservationNo}</td>
-									<td>
-										<button id="update-btn" type="submit"
-												class="btn btn-outline-primary" 
-												data-toggle="modal">
-												<span>입실전</span>
-										</button>
-									</td>
-									<td>
-											<button type="button" class="btn btn-outline-danger">
-												<span>퇴실전</span>
-										</a>
-									</td>
-									<td>
-											<button type="button" class="btn btn-outline-success">
-												<span>예약전</span>
-											</button>
-									</td>
-								</tr>
-								 </c:forEach>
-								</tbody>
-					</table>
+           <table class="table table-hover" style="width:1800px;">
+                  <thead>
+                     <tr>
+                        <th>객실이름</th>
+                        <th>이용인원수</th>
+                        <th>예약번호</th>
+                        <th>체크인</th>
+                        <th>체크아웃</th>
+                        <th>예약상태</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <c:forEach items="${bookingList}" var="booking">
+                        <tr>
+                           <td>${booking.roomName}</td>
+                           <td>${booking.roomHCount}</td>
+                           <td>${booking.reservationNo}</td>
+                           <td>
+                              <button id="update-btn" type="submit"
+                                    class="btn btn-outline-primary" 
+                                    data-toggle="modal">
+                                    <span>입실전</span>
+                              </button>
+                           </td>
+                           <td>
+                                 <button type="button" class="btn btn-outline-danger">
+                                    <span>퇴실전</span>
+                              </a>
+                           </td>
+                           <td>
+                                 <button type="button" class="btn btn-outline-success">
+                                    <span>예약전</span>
+                                 </button>
+                           </td>
+                        </tr>
+                         </c:forEach>
+                        </tbody>
+               </table>
            <!--  <div>객실이름</div>
             <div>이용인원수</div>
             <div>예약번호</div>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.breaktime.decide.model.dao.DecideDao;
 import com.kh.breaktime.decide.model.vo.Decide;
+import com.kh.breaktime.review.model.vo.Review;
 
 @Service
 public class DecideServiceImpl implements DecideService {
@@ -20,6 +21,13 @@ public class DecideServiceImpl implements DecideService {
 	public ArrayList<Decide> selectDecideMain(int buNo) {
 		return decideDao.selectDecideMain(buNo);
 	}
+	
+	@Override
+	public int insertReview(Decide decide) {
+	     
+	     return decideDao.insertReview(decide);
+	     
+	  }
 	
 	// 리뷰 개수 조회
 	@Override

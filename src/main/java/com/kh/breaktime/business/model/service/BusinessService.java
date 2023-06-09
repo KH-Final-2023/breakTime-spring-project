@@ -18,7 +18,7 @@ public interface BusinessService {
 
 	public RoomImg getRoomImagesByBuId(int roomNo);
 
-	public List<Booking> getBookingsByBusinessId(String businessId);
+	public List<Booking> getBookingsByBusinessId(int buNo);
 
-	public List<Review> getReviewsForBusiness(String businessId);
+	public List<Review> getReviewsForBusiness(int buNo);
 }
