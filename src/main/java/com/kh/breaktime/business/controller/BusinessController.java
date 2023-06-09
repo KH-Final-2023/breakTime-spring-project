@@ -103,7 +103,7 @@ public class BusinessController {
 			resp.addCookie(cookie);
 
 			// 방 이미지와 방 정보 페이지로 이동
-			List<Room> roomList = businessService.getRoomsByBuId(loginBusiness.getBuId());
+			List<Room> roomList = businessService.getRoomsByBuId(loginBusiness.getBuNo());
 
 			List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 			for (int i = 0; i < roomList.size(); i++) {

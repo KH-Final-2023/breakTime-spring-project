@@ -20,8 +20,8 @@
 
 	<resultMap type="room" id="roomResultMap">
 		<id column="ROOM_NO" property="roomNo" />
-		<result column="BU_ID" property="buId" />
-		<result column="ROOM_COUNT" property="roomCount" />
+		<result column="BU_NO" property="buNo" />
+		<result column="ROOM_H_COUNT" property="roomHCount" />
 		<result column="ROOM_NAME" property="roomName" />
 		<result column="ROOM_PRICE" property="roomPrice" />
 		<result column="ROOM_INFO" property="roomInfo" />
@@ -106,7 +106,7 @@
 	<select id="getRoomsByBuId" parameterType="String" resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</select>
 
 	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->

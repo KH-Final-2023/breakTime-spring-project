@@ -90,8 +90,7 @@ img {
 						<div class="room-info" data-room-no="${room.roomNo}">
 							<div id="imgList">
 								<!-- 해당 방의 이미지 출력 -->
-								<img
-									src="<%=request.getContextPath() %>${roomImgList[roomStatus.index].filePath}/${roomImgList[roomStatus.index].originName}">
+								<img src="<%=request.getContextPath() %>${roomImgList[roomStatus.index].filePath}/${roomImgList[roomStatus.index].originName}">
 							</div>
 							<div>
 								<div>${room.roomName}</div>

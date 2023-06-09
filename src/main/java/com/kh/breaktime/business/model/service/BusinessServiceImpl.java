@@ -35,8 +35,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public List<Room> getRoomsByBuId(String buId) {
-		return businessDao.getRoomsByBuId(buId);
+	public List<Room> getRoomsByBuId(int buNo) {
+		return businessDao.getRoomsByBuId(buNo);
 	}
 
 	@Override

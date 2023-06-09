@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class Room {
 	private int roomNo;
-	private String buId;
+	private String buNo;
 	private int roomImgNo;
-	private String roomCount;
+	private String roomHCount;
 	private String roomName;
 	private String roomPrice;
 	private String roomCheckin;

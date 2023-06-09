@@ -28,8 +28,8 @@ public class BusinessDao {
 		return sqlSession.insert("businessMapper.insertBusiness", inputBusiness);
 	}
 
-	public List<Room> getRoomsByBuId(String buId) {
-		return sqlSession.selectList("businessMapper.getRoomsByBuId", buId);
+	public List<Room> getRoomsByBuId(int buNo) {
+		return sqlSession.selectList("businessMapper.getRoomsByBuId", buNo);
 	}
 
 	public RoomImg getRoomImagesByBuId(int roomNo) {

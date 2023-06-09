@@ -14,7 +14,7 @@ public interface BusinessService {
 
 	public abstract int insertBusiness(Business inputBusiness);
 
-	public List<Room> getRoomsByBuId(String buId);
+	public List<Room> getRoomsByBuId(int buNo);
 
 	public RoomImg getRoomImagesByBuId(int roomNo);
 
