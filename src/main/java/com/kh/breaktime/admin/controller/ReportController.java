@@ -37,10 +37,10 @@ public class ReportController {
 	}
 	
 	@GetMapping("/delete")
-	public String reportCancel(@RequestParam(value="reviewNo", required=false, defaultValue="0") int reviewNo) {
+	public String reportCancel(Review r, RedirectAttributes rttr) {
 		
-		reportService.reportCancel(reviewNo);
-		
+		reportService.reportCancel(r);
+		rttr.addFlashAttribute("reportCancel", r.getReviewNo());
 		return "redirect:/report/list";
 	}
 	

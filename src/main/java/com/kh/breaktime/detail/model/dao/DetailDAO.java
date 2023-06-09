@@ -42,6 +42,7 @@ public class DetailDAO {
 	    return (ArrayList) sqlSession.selectList("detailMapper.getAreaData", map);
 	}
 	
+
 	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap){
 		
 		return (ArrayList)sqlSession.selectList("detailMapper.searchDetailList", paramMap);

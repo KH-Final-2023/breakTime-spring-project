@@ -23,6 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.admin.model.service.NoticeService;
 import com.kh.breaktime.admin.model.vo.Notice;
+import com.kh.breaktime.member.model.service.MemberService;
 import com.kh.breaktime.member.model.vo.Member;
 
 
@@ -241,4 +242,27 @@ public class NoticeController {
 		rttr.addFlashAttribute("updateNotice", n.getNoticeNo());
 		return "redirect:/notice/list";
 	}
+	
+	// 채팅
+		@GetMapping("/chatList")
+		public String chatList(Model model,
+							 	@RequestParam(value="cpage", defaultValue="1") int cp,
+							 	@RequestParam Map<String, Object> paramMap
+							 	) {
+			System.out.println(paramMap);
+			Map<String, Object> map = new HashMap();
+
+			if(paramMap.get("condition")==null) {
+				noticeService.selectChatSearchList(cp, map);
+			}else {
+				// 검색요청을 한 경우 
+				// 검색조건을 추가한 상태로 게시글 셀렉트 
+				paramMap.put("currentPage", cp);
+				noticeService.selectChatSearchList(paramMap, map);
+			}
+			
+			//noticeService.selectNoticeList(cp,map);
+			model.addAttribute("selectChatSearchList",map);
+			return "admin/chatRoomList";
+		}
 }

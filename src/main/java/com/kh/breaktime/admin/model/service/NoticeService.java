@@ -19,4 +19,9 @@ public interface NoticeService {
 	public int deleteNotice(int noticeNo);
 	
 	public int updateReadCount(int noticeNo);
+	
+	//채팅
+	public void selectChatSearchList(int cp, Map<String, Object> map);
+	
+	public void selectChatSearchList(Map<String,Object> paramMap, Map<String, Object> map);
 }

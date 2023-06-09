@@ -123,6 +123,7 @@ public class ApiController extends HttpServlet {
 	            // SQL 쿼리를 실행할 PreparedStatement 생성
 	            PreparedStatement insertStatement = connection.prepareStatement(insertSql);
 	            PreparedStatement updateStatement = connection.prepareStatement(updateSql);
+	            int result0 =0;
 
 	            // "item" 배열의 각 요소를 순회하며 값을 DB에 저장 또는 업데이트
 	            for (Object itemObj : itemArray) {
@@ -149,9 +150,9 @@ public class ApiController extends HttpServlet {
 	                    insertStatement.setString(4, cat3); 
 	                    insertStatement.setString(5, firstimage);
 	                    insertStatement.setString(6, tel);
-
 	                    try {
-	                        insertStatement.executeUpdate();
+	                        result0 = insertStatement.executeUpdate();
+	                        
 	                    } catch (SQLIntegrityConstraintViolationException e) {
 	                         e.printStackTrace();
 	                         

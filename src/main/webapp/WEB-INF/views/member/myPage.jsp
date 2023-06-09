@@ -78,7 +78,7 @@
 					<li><a class="sideMenu">내 정보</a></li>
 					<li><a class="sideMenu">예약내역</a></li>
 					<li><a class="sideMenu">찜한 목록</a></li>
-					<li><a class="sideMenu">문의쪽지</a></li>
+					<li><a href="<%=request.getContextPath()%>/member/list"class="sideMenu">문의쪽지</a></li>
 					<li><a class="sideMenu">쿠폰함(미정)</a></li>
 				</ul>
 				<div style="margin-top: auto; position: relative;">

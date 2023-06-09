@@ -54,25 +54,6 @@ cursor: pointer;
     height: 18px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* 모달 */
 .modal{
     position: fixed;
@@ -140,12 +121,6 @@ cursor: pointer;
     display: none;
 }
 
-
-
-
-
-
-
 .dropdown{
   position : relative;
   display : inline-block;
@@ -168,5 +143,4 @@ cursor: pointer;
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 

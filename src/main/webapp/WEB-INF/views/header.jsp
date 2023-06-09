@@ -5,6 +5,7 @@
 <c:if test="${!empty param.condition}" >
 	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
 </c:if>
+<c:set var="m" value="${map}"/>
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
@@ -16,7 +17,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/css/header.css">
+    <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
+    <link rel="stylesheet" href="/breaktime/resources/css/font.css">
     <title>헤더</title>
 
 </head>
@@ -54,7 +56,7 @@
                     <a id="myPage">마이페이지</a>
                     <a href="#" id="message">쪽지함</a>
                     <a href="#" id="cart">장바구니</a>
-                    <a href="#" id="review">리뷰관리</a>
+                    <a href="#" id="review">리뷰</a>
 
                     <%if (loginBusiness != null) {%>
                     <a href="#" id="asd">사업자</a>
@@ -127,9 +129,11 @@
     </script> 
     
     
+    
+    
     <script>
     document.getElementById("review").addEventListener("click",function(){
-         location.href = "<%=request.getContextPath()%>/";
+         location.href = "<%=request.getContextPath()%>/decide/dereview";
       })
     </script>
     
@@ -140,11 +144,11 @@
      </script>
       
       <script>
-        document.getElementById("logout").addEventListener("click",function(){
+      	document.getElementById("logout").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/member/logout";
         })
         
-         document.getElementById("logout").addEventListener("click",function(){
+        document.getElementById("logout").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/business/logout";
         })
       </script>

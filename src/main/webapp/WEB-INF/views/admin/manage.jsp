@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,23 +10,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-
-<script type="text/javascript">
-        function deleteManage(){
-								
-			if(!confirm("해당 사업자를 탈퇴 처리하시겠습니까?")){
-				return false;
-			}else{
-				location.href="<%=request.getContextPath()%>/manage/delete?buId=${b.buId}";
-			}
-			}
-        
-        $(document).ready(function() {
-            var updateManage = '<c:out value="${updateManage}"/>';
-            if(!(updateManage==''))
-                alert("해당 사업자 정보수정에 성공하였습니다.");
-        });
-	</script>
 
 </head>
 <body>
@@ -65,18 +50,18 @@
 										</button>
 
 									</td>
-									<td><a href="javascript:void(0);"
-										onclick="deleteManage();">
-											<button type="button" class="btn btn-outline-danger"
-												data-text="탈퇴">
+									<td>
+										<a href="<%=request.getContextPath()%>/manage/delete?buNo=${b.buNo}">
+											<button type="button" class="btn btn-outline-danger"data-text="탈퇴">
 												<span>탈퇴</span>
 											</button>
-									</a></td>
+										</a>
+									</td>
 								</tr>
+									
 
 								<!--  수정 모달창 -->
-								<form action="<%=  request.getContextPath() %>/manage/update"
-									id="updateForm" method="post">
+								<form action="<%=  request.getContextPath() %>/manage/update" id="updateForm" method="post">
 									<div id="updateMember${vs.index }" class="modal fade"
 										id="registerModal" tabindex="-1" aria-labelledby="modalLabel"
 										aria-hidden="true">
@@ -107,13 +92,12 @@
 															value="${b.buAddress} ">
 													</p>
 												</div>
-												<input type="hidden" name="buId"
-													value="${empty b.buId ? 0 : b.buId}" />
+												<input type="hidden" name="buNo" value="${empty b.buNo ? 0 : b.buNo}" />
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-dismiss="modal">취소</button>
 													<a
-														href="<%=request.getContextPath()%>/manage/update?buId=${b.buId}">
+														href="<%=request.getContextPath()%>/manage/update?buNo=${b.buNo}">
 														<button type="submit" id="btn_register"
 															class="btn btn-primary">확인</button>
 													</a>
@@ -162,5 +146,20 @@
 			</div>
 		</div>
 	</main>
+	
+	<script>
+		$(document).ready(function() {
+	        var updateManage = '<c:out value="${updateManage}"/>';
+	        if(!(updateManage==''))
+	            alert("해당 사업자 정보수정에 성공하였습니다.");
+	    });
+		
+		$(document).ready(function() {
+	        var manageCancel = '<c:out value="${manageCancel}"/>';
+	        if(!(manageCancel==''))
+	            alert("해당 사업자를 탈퇴 처리하였습니다.");
+	    });
+	</script>
 </body>
+
 </html>

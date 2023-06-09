@@ -48,8 +48,8 @@
          <a href=""><img src="/breaktime/resources/images/리조트.jpg" id="backImg"></a>
      </div>
 
-     <a class="prev" onclick="prevSlide()">&#10094;</a>
-     <a class="next" onclick="nextSlide()">&#10095;</a>
+     <!-- <a class="prev" onclick="prevSlide()">&#10094;</a>
+     <a class="next" onclick="nextSlide()">&#10095;</a> -->
             
 </div>
 
