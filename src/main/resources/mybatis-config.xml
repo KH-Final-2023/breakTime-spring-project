@@ -2,24 +2,43 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
-	<settings>
-		<setting name="jdbcTypeForNull" value="NULL"/>
-		<setting name="logImpl" value="LOG4J"/>
-	</settings>
-	
-	<typeAliases>
+   <settings>
+      <setting name="jdbcTypeForNull" value="NULL"/>
+      <setting name="logImpl" value="LOG4J"/>
+   </settings>
+   
+   <typeAliases>
+    	<typeAlias type="com.kh.breaktime.detail.model.vo.CategoryCode" alias="categoryCode" />
+		<typeAlias type="com.kh.breaktime.detail.model.vo.Detail" alias="detail" />
+		<typeAlias type="com.kh.breaktime.decide.model.vo.Decide" alias="decide" />
 		<typeAlias type="com.kh.breaktime.admin.model.vo.Notice" alias="notice"/>
-    <typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinessRoom" alias="room" />
-		<typeAlias type="com.kh.breaktime.businessRoom.model.vo.BusinessRoomImg" alias="roomImg" />		
+    	<typeAlias type="com.kh.breaktime.room.model.vo.Room" alias="room" />
+		<typeAlias type="com.kh.breaktime.room.model.vo.RoomImg" alias="roomImg" />  		
 		<typeAlias type="com.kh.breaktime.member.model.vo.Member" alias="member" />
 		<typeAlias type="com.kh.breaktime.business.model.vo.Business" alias="business" />
+		<typeAlias type="com.kh.breaktime.booking.model.vo.Booking" alias="booking" />
+
+		<typeAlias type="com.kh.breaktime.review.model.vo.Review" alias="review" />
+
+		
+		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
+		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatMessage" alias="chatMessage"/>
+
 	</typeAliases>
 	 
 	 <mappers>
+    	<mapper resource="/mappers/detail-mapper.xml"/>
+		<mapper resource="/mappers/decide-mapper.xml"/>
 	 	<mapper resource="/mappers/notice-mapper.xml" />
 	 	<mapper resource="/mappers/buRoom-mapper.xml"/>
 	 	<mapper resource="/mappers/member-mapper.xml"/>
 	 	<mapper resource="/mappers/business-mapper.xml"/>
+	 	<mapper resource="/mappers/review-mapper.xml"/>
+		<mapper resource="/mappers/booking-mapper.xml"/>
+	 	<mapper resource="/mappers/chat-mapper.xml"/>
+	 
+
 	 </mappers>
+
   
 </configuration>

@@ -1,5 +1,8 @@
 package com.kh.breaktime.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.member.model.service.MemberService;
@@ -100,7 +104,12 @@ public class MemberController {
 			// RedirectAttributes 객체(컨트롤러의 매개변수로 작성하면 Argument Resolver가 넣어줌)
 			// redirect의 특징 -> request에 데이터를 저장할 수 없다.
 		}
-		return "redirect:/";
+		
+		if(loginUser.getAuthority() == 0 ) {
+			return "redirect:/notice/list";
+		} else {
+			return "redirect:/";
+	    }
 	}
 	
 	@GetMapping("/insert") // /spring/member/insert
@@ -126,5 +135,41 @@ public class MemberController {
 		return url;
 	}
 	
+
+	@GetMapping("/logout")
+    public String logoutMember(HttpSession session , SessionStatus status) throws Exception{
+       
+		status.setComplete();
+		session.setAttribute("alertMsg", "일반고객 로그아웃성공");
+        return "redirect:/";              
+    }
 	
+	@GetMapping("/myPage") 
+	public String myPageForm() {
+		
+		
+		return "member/myPage";
+	}
+	// 충영
+	@GetMapping("/list")
+	public String noticeList(Model model,
+						 	@RequestParam(value="cpage", defaultValue="1") int cp,
+						 	@RequestParam Map<String, Object> paramMap
+						 	) {
+		System.out.println(paramMap);
+		Map<String, Object> map = new HashMap();
+
+		if(paramMap.get("condition")==null) {
+			memberService.selectSearchList(cp, map);
+		}else {
+			// 검색요청을 한 경우 
+			// 검색조건을 추가한 상태로 게시글 셀렉트 
+			paramMap.put("currentPage", cp);
+			memberService.selectSearchList(paramMap, map);
+		}
+		
+		//noticeService.selectNoticeList(cp,map);
+		model.addAttribute("selectSearchList",map);
+		return "member/chatRoomList";
+	}
 }

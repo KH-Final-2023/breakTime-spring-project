@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'YanoljaYache';
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/yanolja/YanoljaYacheBold.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html{
+	font-family: 'YanoljaYache';
+}

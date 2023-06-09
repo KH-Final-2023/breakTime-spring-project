@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="review-mapper">
+	<resultMap type="review" id="reviewResultSet">
+		<result column="REVIEW_NO" property="reviewNo" />
+		<result column="REVIEW_WRITER" property="reviewWriter" />
+		<result column="USING_ROOM" property="usingRoom" />
+		<result column="BOOK_NO" property="bookNo" />
+		<result column="STAR_SCORE" property="starScore" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
+		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
+		<result column="REVIEW_CONTENT_REPLY" property="reviewContentReply" />
+		<result column="USER_NAME" property="userName" />
+		<result column="ROOM_NAME" property="roomName" />
+	</resultMap>
+	
+	
+	<insert id="insertReview" parameterType="review"> 
+	INSERT INTO REVIEW(
+	 REVIEW_NO,
+	 STAR_SCORE,
+	 REVIEW_WRITER,
+	 CREATE_DATE,
+	 REVIEW_CONTENT
+	 ) 
+	VALUES( 
+	SEQ_RNO.NEXTVAL, 
+	#{starScore}, 
+	#{reviewWriter},
+	#{createDate}, 
+	#{reviewContent} 
+	) 
+	</insert>
+	
+	
+	<select id="selectReviewList" resultMap="reviewResultSet">
+		SELECT REVIEW_NO,
+	 	REVIEW_CONTENT,
+	  	REVIEW_WRITER, 
+	  	R.CREATE_DATE,
+	  	USER_NO 
+	  	FROM REVIEW R 
+		JOIN MEMBER M ON R.REVIEW_WRITER = M.USER_NO 
+		WHERE REVIEW_NO = #{reviewNo} 
+		AND REVIEW_AVAILABLE = 'Y' 
+	</select>
+	
+	
+	
+	
+	
+	
+	
+
+</mapper>

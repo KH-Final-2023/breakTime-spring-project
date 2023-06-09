@@ -1,6 +1,7 @@
 package com.kh.breaktime.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,6 +20,10 @@ public class NoticeDao {
 		return sqlSession.selectOne("notice-mapper.selectNoticeListCount");
 	}
 	
+	public int selectNoticeListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("notice-mapper.searchNoticeListCount", paramMap);
+		
+	}
 	
 	public ArrayList<Notice> selectNoticeList(PageInfo pi){
 		
@@ -31,18 +36,23 @@ public class NoticeDao {
 		return (ArrayList)sqlSession.selectList("notice-mapper.selectNoticeList", "", rowBounds);
 	}
 	
+	public ArrayList<Notice> selectNoticeList(PageInfo pi,Map<String, Object> paramMap){
+		
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		
+		
+		return (ArrayList)sqlSession.selectList("notice-mapper.searchNoticeList", paramMap, rowBounds);
+	}
+	
 	
 	public Notice selectNoticeDetail(int noticeNo) {
 		return sqlSession.selectOne("notice-mapper.selectNoticeDetail", noticeNo);
 	}
 	
 	public int insertNotice(Notice n) {
-//		int result = sqlSession.insert("notice-mapper.insertNotice");
-//		
-//		if(result > 0) {
-//			result = n.getNoticeNo();
-//		}
-//		return result;
 		return sqlSession.insert("notice-mapper.insertNotice", n);
 	}
 	
@@ -52,5 +62,39 @@ public class NoticeDao {
 	
 	public int deleteNotice(int noticeNo) {
 		return sqlSession.delete("notice-mapper.deleteNotice",noticeNo);
+	}
+	
+	public int updateReadCount(int noticeNo) {
+		return sqlSession.update("notice-mapper.updateReadCount", noticeNo);
+	}
+	
+	// 채팅
+	public int selectChatSearchListCount() {
+		return sqlSession.selectOne("notice-mapper.selectChatSearchListCount");
+	}
+
+	public int selectChatSearchListCount(Map<String, Object> paramMap) {
+		return sqlSession.selectOne("notice-mapper.selectChatSearchListCount", paramMap);
+
+	}
+
+	public ArrayList<Notice> selectChatSearchList(PageInfo pi) {
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return (ArrayList) sqlSession.selectList("notice-mapper.selectChatSearchList", "", rowBounds);
+	}
+
+	public ArrayList<Notice> selectChatSearchList(PageInfo pi, Map<String, Object> paramMap) {
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, limit);
+
+		return (ArrayList) sqlSession.selectList("notice-mapper.selectChatSearchList", paramMap, rowBounds);
 	}
 }

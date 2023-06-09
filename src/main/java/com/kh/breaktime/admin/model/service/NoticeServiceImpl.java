@@ -24,7 +24,7 @@ public class NoticeServiceImpl implements NoticeService{
 		
 		int listCount = noticeDao.selectNoticeListCount();
 		int pageLimit = 10;
-		int boardLimit = 5;
+		int boardLimit = 10;
 		PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
 
 
@@ -39,22 +39,61 @@ public class NoticeServiceImpl implements NoticeService{
 		return noticeDao.selectNoticeDetail(noticeNo);
 	}
 	
-//	public int insertNotice(Notice n) {
-//		
-//		return noticeDao.insertNotice(n);
-//	}
+	// 검색 게시글 목록 조회 서비스 구현 
+	public void selectNoticeList(Map<String, Object> paramMap, Map<String, Object> map) {
+		int listCount = noticeDao.selectNoticeListCount(paramMap);
+		int pageLimit = 10;
+		int boardLimit = 5;
+		PageInfo pi = pagination.getPageInfo(listCount, (int)paramMap.get("currentPage"), pageLimit, boardLimit);
+
+		ArrayList<Notice> list = noticeDao.selectNoticeList(pi, paramMap);
+
+		map.put("pi", pi);
+//		map.put("list", noticeDao.selectNoticeList(pi));
+		map.put("list", list);
+	}
 	
 	public int insertNotice(Notice n) {
 	
 		return noticeDao.insertNotice(n);
 	}
 	
-	public int updateNotice(Notice n) {
+	public void updateNotice(Notice n) {
 		
-		return noticeDao.updateNotice(n);
+		noticeDao.updateNotice(n);
 	}
 	
 	public int deleteNotice(int noticeNo) {
 		return noticeDao.deleteNotice(noticeNo);
+	}
+	
+	public int updateReadCount(int noticeNo) {
+		return noticeDao.updateReadCount(noticeNo);
+	}
+	
+	// 채팅
+	// 검색 게시글 목록 조회 서비스 구현
+	public void selectChatSearchList(Map<String, Object> paramMap, Map<String, Object> map) {
+		int listCount = noticeDao.selectChatSearchListCount(paramMap);
+		int pageLimit = 10;
+		int boardLimit = 5;
+		PageInfo pi = pagination.getPageInfo(listCount, (int) paramMap.get("currentPage"), pageLimit, boardLimit);
+
+		ArrayList<Notice> list = noticeDao.selectChatSearchList(pi, paramMap);
+
+		map.put("pi", pi);
+		map.put("list", list);
+	}
+
+	@Override
+	public void selectChatSearchList(int cp, Map<String, Object> map) {
+		int listCount = noticeDao.selectChatSearchListCount();
+		int pageLimit = 10;
+		int boardLimit = 10;
+		PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
+
+		map.put("pi", pi);
+		map.put("list", noticeDao.selectChatSearchList(pi));
+
 	}
 }

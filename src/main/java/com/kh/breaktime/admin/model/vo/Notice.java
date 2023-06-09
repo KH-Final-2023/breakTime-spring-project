@@ -25,6 +25,8 @@ public class Notice {
 	private String noticeContent;		//	NOTICE_CONTENT
 	private String status;		//	STATUS
 	private Date createDate;
-	
+	private String userName;
+	private String noticeWriter;
+	private int count;
 	
 }

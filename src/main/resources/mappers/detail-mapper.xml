@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="detailMapper">
+
+	<!-- 카테고리 코드용 resultMap -->
+	<resultMap type="categoryCode" id="categoryCodeResultSet">
+		<id column="BU_CATEGORY" property="buCategory" />
+		<result column="CATEGORY_NAME" property="categoryName" />
+	</resultMap>
+
+	<!-- 목록용 resultMap -->
+	<resultMap type="detail" id="detailResultSet">
+		<id property="roomNo" column="ROOM_NO" />
+		<result property="mainImg" column="MAIN_IMG" />
+		<result property="roomHCount" column="ROOM_H_COUNT" />
+		<result property="roomPrice" column="ROOM_PRICE" />
+		<result property="buNo" column="BU_NO" />
+		<result property="buAddress" column="BU_ADDRESS" />
+		<result property="areaNo" column="AREA_NO" />
+		<result property="buCategory" column="BU_CATEGORY" />
+		<result property="buTel" column="BU_TEL" />
+		<result property="buTitle" column="BU_TITLE" />
+		<result property="roomInfo" column="ROOM_INFO" />
+		<result property="starScore" column="STAR_SCORE" />
+	</resultMap>
+
+	<!-- 카테고리 코드 셀렉트 -->
+	<select id="selectCategoryCodeList"
+		resultMap="categoryCodeResultSet">
+		SELECT *
+		FROM CATEGORY_CODE
+		ORDER BY BU_CATEGORY
+	</select>
+
+	<!-- 일반 리스트 목록 -->
+	<select id="selectDetailList" resultMap="detailResultSet">
+		SELECT
+		H.MAIN_IMG,
+		R.ROOM_NO,
+		R.ROOM_H_COUNT,
+		R.ROOM_PRICE,
+		B.BU_NO,
+		B.BU_ADDRESS,
+		B.AREA_NO,
+		B.BU_CATEGORY,
+		B.BU_TEL,
+		B.BU_TITLE
+		FROM BUSINESS
+		B
+		INNER JOIN ROOM R ON
+		B.BU_NO = R.BU_NO
+		INNER JOIN HOUSE H ON B.BU_TITLE
+		= H.BU_TITLE
+		WHERE
+		H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND
+		R.ROOM_H_COUNT = 1
+		AND
+		B.BU_CATEGORY = #{category}
+	</select>
+
+
+	<!-- 필터링된 데이터 리스트 목록 -->
+	<select id="getFilteredData" resultMap="detailResultSet">
+		SELECT
+		H.MAIN_IMG,
+		R.ROOM_NO,
+		R.ROOM_H_COUNT,
+		R.ROOM_PRICE,
+		R.ROOM_INFO,
+		B.BU_NO,
+		B.BU_ADDRESS,
+		B.AREA_NO,
+		B.BU_CATEGORY,
+		B.BU_TEL,
+		B.BU_TITLE
+		FROM
+		BUSINESS B
+		INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+		INNER JOIN HOUSE H ON
+		B.BU_TITLE = H.BU_TITLE
+		WHERE
+		H.MAIN_IMG IS NOT NULL
+		AND B.APPROVAL = 'Y'
+		AND B.BU_CATEGORY = #{category}
+		AND R.ROOM_H_COUNT = 1
+
+		<if test="prices != null">
+			AND TO_NUMBER(REPLACE(R.ROOM_PRICE, ',', '')) BETWEEN
+			TO_NUMBER(REPLACE(#{prices[0]}, '[', '')) AND
+			TO_NUMBER(REPLACE(#{prices[1]}, ']', ''))
+		</if>
+		<if test="reserves != null and reserves.size() > 0">
+			AND R.ROOM_INFO IN
+			<foreach collection="reserves" item="reserve" open="("
+				close=")" separator=",">
+				#{reserve}
+			</foreach>
+		</if>
+		<if test="options != null and options.size() > 0">
+			AND R.ROOM_INFO IN
+			<foreach collection="options" item="option" open="("
+				close=")" separator=",">
+				#{option}
+			</foreach>
+		</if>
+
+	</select>
+
+
+	<!-- 필터링된 데이터 리스트 목록 -->
+	<select id="getAreaData" resultMap="detailResultSet">
+		SELECT
+		H.MAIN_IMG,
+		R.ROOM_NO,
+		R.ROOM_H_COUNT,
+		R.ROOM_PRICE,
+		B.BU_NO,
+		B.BU_ADDRESS,
+		B.AREA_NO,
+		B.BU_CATEGORY,
+		B.BU_TEL,
+		B.BU_TITLE
+		FROM
+		BUSINESS B
+		INNER JOIN ROOM R ON
+		B.BU_NO = R.BU_NO
+		INNER JOIN HOUSE H ON B.BU_TITLE = H.BU_TITLE
+		WHERE
+		H.MAIN_IMG IS NOT NULL
+		AND B.APPROVAL = 'Y'
+		AND B.BU_CATEGORY =
+		#{category}
+		AND R.ROOM_H_COUNT = 1
+		AND TO_NUMBER(#{area}) = B.AREA_NO
+	</select>
+
+
+
+	<!-- <if test="roomInfos != null"> AND ROOM_INFO IN <foreach item="roomInfo" 
+		collection="roomInfos" open="(" separator="," close=")"> #{roomInfo} </foreach> 
+		</if> <if test="starScore >= 0"> AND STAR_SCORE = #{starScore} </if> -->
+
+	<!-- 검색 리스트 목록 -->
+	<select id="searchDetailList" resultMap="detailResultSet">
+		SELECT
+		BU_ADDRESS,
+		AREA_NO,
+		BU_CATEGORY,
+		BU_TITLE
+		FROM HOUSE H
+		WHERE
+		MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
+		<if test='areaCode != null and areaCode != ""'>
+			AND AREA_NO = #{areaNo}
+		</if>
+		<choose>
+			<when test="condition == 'address'"> AND BU_ADDRESS LIKE #{keyword} </when>
+			<when test="condition == 'areano'"> AND AREA_NO LIKE #{keyword} </when>
+			<when test="condition == 'category'"> AND BU_CATEGORY LIKE #{keyword} </when>
+			<when test="condition == 'title'"> AND BU_TITLE LIKE #{keyword} </when>
+		</choose>
+	</select>
+
+
+
+
+
+</mapper>

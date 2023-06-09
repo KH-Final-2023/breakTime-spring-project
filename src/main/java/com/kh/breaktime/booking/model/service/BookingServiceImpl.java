@@ -1,0 +1,23 @@
+package com.kh.breaktime.booking.model.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kh.breaktime.booking.model.dao.BookingDao;
+import com.kh.breaktime.booking.model.vo.Booking;
+import com.kh.breaktime.decide.model.vo.Decide;
+
+@Service
+public class BookingServiceImpl implements BookingService{
+	
+	@Autowired
+	private BookingDao bookingDao;
+	
+	
+	@Override
+	public ArrayList<Booking> selectBookingList(int userNo) {
+		return bookingDao.selectBookingList(userNo);
+	}
+}
