@@ -16,9 +16,6 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
 <link rel="stylesheet" href="/breaktime/resources/css/font.css">
 
-
-
-
 <script>
 $(document).ready(function() {
 	
@@ -229,8 +226,6 @@ $(document).ready(
 			<!-- 객실선택.html 페이지가 자동으로 로드될 것입니다. -->
 		</div>
 	</div>
-	
-	
 </body>
 
 </html>
