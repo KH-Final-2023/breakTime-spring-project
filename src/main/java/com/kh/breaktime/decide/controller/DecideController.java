@@ -44,10 +44,20 @@ public class DecideController {
 		
 		int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
 		
-		map.put("buNo", mainList.get(0).getBuNo());
-		map.put("buTitle", mainList.get(0).getBuTitle());
-		map.put("buAddress", mainList.get(0).getBuAddress());
-		map.put("mainImg", mainList.get(0).getMainImg());
+		if (mainList.size() > 0) {
+	        Decide main = mainList.get(0);
+	        map.put("buNo", main.getBuNo());
+	        map.put("buTitle", main.getBuTitle());
+	        map.put("buAddress", main.getBuAddress());
+	        map.put("buMainImg", main.getBuMainImg());
+	    } else {
+	        // mainList가 비어 있는 경우에 대한 처리
+	    	map.put("buNo", 0);
+	        map.put("buTitle", "No Data");
+	        map.put("buAddress", "No Data");
+	        map.put("buMainImg", "No Image");
+	    }
+		
 		
 		map.put("starScore", reviewScore);
 		map.put("reviewCount", rCnt);

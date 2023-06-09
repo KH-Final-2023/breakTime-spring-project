@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="decideMapper">
 	
-		<!-- <select id="selectDecideBasket" resultMap="basketResultSet">
+		<!-- <select id="selectDecideBasket" resultMap="com.kh.breaktime.decide.model.vo.Decide">
 		SELECT R.ROOM_NO    AS ROOM_NO,		 
 			   B.BU_NO      AS BU_NO,
 			   H.MAIN_IMG   AS HOUSE_MAIN_IMG,
@@ -25,11 +25,10 @@
     	SELECT  B.BU_NO         AS buNo,
 				B.BU_TITLE      AS buTitle,
 				B.BU_ADDRESS    AS buAddress,
-				H.MAIN_IMG      AS mainImg
+				B.BU_MAIN_IMG   AS buMainImg
 		FROM BUSINESS B
-		INNER JOIN ROOM R 	ON B.BU_NO = R.BU_NO
-		INNER JOIN HOUSE H 	ON B.BU_TITLE = H.BU_TITLE
-		WHERE H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
+		INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+		WHERE B.BU_MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
 		AND B.BU_NO = #{buNo}
 		AND ROWNUM = 1
 	</select> 
@@ -47,7 +46,7 @@
 	<!-- 리뷰 평점 조회 -->
 	 <select id="selectReviewScore" resultType="_double">
 	/*decideMapper.selectReviewScore*/
-		SELECT 	ROUND(AVG(V.STAR_SCORE), 1) AS starScore
+		SELECT 	NVL(ROUND(AVG(V.STAR_SCORE), 1), 0) AS starScore
 				FROM BUSINESS B
 				INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
 				LEFT JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO

@@ -10,104 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/review.css">
-<style>
 
-    .reviewModal{
-    position: fixed;
-    bottom: 5%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index : 1;
-    
-}
-
-
-.reviewModal .reviewBg{
-    width: 100%;
-    height: 1000%;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-
-
-.reviewModal .reviewCloseBtn {
-    position: absolute;
-    top: 10px;
-    right: 25px;
-    background-color: #fff;
-    border: none;
-    font-size: 24px;
-}
-
-
-.modalBox {
-    position: absolute;
-    background-color: #fff;
-    width: 450px;
-    height: 550px;
-    border-radius: 16px;
-    
-}
-.modalBox .reviewHeader{
-    width: 100%;
-    height: 29px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.modalBox .reviewBody{
-    width: 500px;
-    height: 150px;
-    padding: 20px 20px;
-}
-
-#search-input{
-   width: 430px;
-   height: 45px;
-}
-
-#myform fieldset{
-    display: inline-block;
-    direction: rtl;
-    border:0;
-}
-#myform fieldset legend{
-    text-align: right;
-}
-#myform input[type=radio]{
-    display: none;
-}
-#myform label{
-    font-size: 3em;
-    color: transparent;
-    text-shadow: 0 0 0 #f0f0f0;
-}
-#myform label:hover{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform label:hover ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#reviewContents {
-    width: 400px;
-    height: 350px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: solid 1.5px #D3D3D3;
-    border-radius: 5px;
-    font-size: 16px;
-    resize: none;
-}
-	
-
-</style>
 <script>
 $(document).ready(function () {
 // 별 크기 변경
@@ -115,26 +18,7 @@ $('.review-star i').removeClass('fa-star').addClass('fa-star');
 // 평점 크기 변경
 $('.rating-score').css('font-size', '35px').css('font-weight', 'bold');
 
-$('.review-star i').removeClass('fa-star').addClass('fa-star').css('color', 'yellow');
-
-/* //별점 점수를 받아옵니다.
-let starScore1 = '${m.userStarScore}';
-// 별점 점수를 정수와 소수 부분으로 분리합니다.
-let intPart1 = Math.floor(starScore1);
-let decimalPart1 = starScore1 - intPart1;
-// 별을 출력하는 변수를 생성합니다.
-let starHTML1 = '';
-// 정수 부분의 수만큼 전체 별을 출력합니다.
-for (let i = 0; i < intPart1; i++) {
-    starHTML1 += '<i class="fas fa-star"></i>';
-}
-// 소수 부분이 0.5 이상이면 반개 별을 출력합니다.
-if (decimalPart1 >= 0.5) {
-    starHTML1 += '<i class="fas fa-star-half-alt"></i>';
-}
-// 생성한 HTML을 별점 요소에 삽입합니다.
-$('.star').html(starHTML1); */
-
+$('.review-star i').removeClass('fa-star').addClass('fa-star').css('color', 'rgba(255, 204, 0, 0.852)');
 
 let userStarScore = ${m.userStarScore}; // JSP에서 전달한 데이터를 JavaScript 변수에 할당
 
@@ -293,67 +177,12 @@ $(document).on('click', '.modal-close', function () {
 });
 </script>
 </head>
-
 <body>
-
-
-<div class="reviewModal hidden">
-            <div class="reviewBg"></div>
-            <div class="modalBox">
-				<button class="reviewCloseBtn">X</button>
-				<div class="reviewHeader">
-					<p>리뷰</p>
-				</div>
-				<div class="reviewBody">
-					<form class="mb-3" name="myform" id="myform" method="post">
-                        <fieldset>
-                            <input type="radio" name="reviewStar" value="5" id="rate1"><label
-								for="rate1">★</label>
-							<input type="radio" name="reviewStar" value="4" id="rate2"><label
-								for="rate2">★</label>
-							<input type="radio" name="reviewStar" value="3" id="rate3"><label
-								for="rate3">★</label>
-							<input type="radio" name="reviewStar" value="2" id="rate4"><label
-								for="rate4">★</label>
-							<input type="radio" name="reviewStar" value="1" id="rate5"><label
-								for="rate5">★</label>
-                        </fieldset>
-                        <div>
-                            <textarea class="col-auto form-control" type="text" id="reviewContents"
-                                      placeholder="breaktime 리뷰를 남겨주세요"></textarea>
-                        </div>
-                    </form>
-                    <input type="submit" value="리뷰작성" id="reviewCommit" onclick="insertReview()">
-				</div>
-            </div>
-        </div>
-        
-        <script>
-            const open = () => {
-                document.querySelector(".reviewModal").classList.remove("hidden");
-                
-            }
-            const close = () => {
-            console.log('cdlose')
-                document.querySelector(".reviewModal").classList.add("hidden");
-            }
-            document.querySelector(".reviewOpenBtn").addEventListener("click", open); 
-            document.querySelector(".reviewCloseBtn").addEventListener("click", close); 
-            document.querySelector(".reviewBg").addEventListener("click", close); 
-
-        </script>
-        
-
-        
-        
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">
                 <span>후기 (${m.reviewCount})</span>
-                <button class="reviewOpenBtn">리뷰작성</button>
-                
             </div>
-
             <div class="review-star">
                 <div class="star-rating">
                 <span><i class="fas fa-star"></i></span>
@@ -361,20 +190,17 @@ $(document).on('click', '.modal-close', function () {
                 <span class="rating-small">/5</span></span>
                  </div>
             </div>
-
             <div class="review-avg">
                 누적 평점
             </div>
-
             <div class="recent-reviews">
                 <span style="cursor: pointer;">최근 작성순</span>
             </div>
-
             <div class="review-main-star">
             	<c:forEach items="${reviewList}" var="d">
 	                <div id="content">
 	                    <div id="content2">
-	                        <div id="reviewBackground">
+	                        <div id="reviewBackground" style="width: 100%;">
 	                            <div id="review-star-rating">
 	                            <span class="star" style="color : rgba(255, 204, 0, 0.852);">
 	                                <i class="fas fa-star"></i>
@@ -392,21 +218,23 @@ $(document).on('click', '.modal-close', function () {
 	                                <div id="reviewRoomNameInfo">${d.roomName} (${d.roomInfo})</div>
 	                            </div>
 	                            <div id="review">${d.reviewContent }</div>
-	
+	                            
+	                            <c:if test="${empty reviewList}">
+	                            </c:if>
+	                            
+								<c:if test="${!empty reviewList}">
 	                            <div id="buReviewList">
 	                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
 	                                <span class="buReviewDate">${d.createDate}</span>   
 	                                <p class="buReview">${d.reviewContentReply}</p>
 	                            </div>
+	                            </c:if>
 	                        </div>
 	                    </div>
 	                </div>
                 </c:forEach>
             </div>
             
-             
-        
-
             <!-- 모달 창 -->
             <div class="modal">
                 <span class="modal-close">X</span> <!-- "X" 버튼을 모달 왼쪽 상단에 추가 -->
