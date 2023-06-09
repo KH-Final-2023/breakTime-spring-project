@@ -47,6 +47,7 @@ public class RoomController {
 	@PostMapping("/enroll")
 	public String registerBuRoom(Room buRoom, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
 			Model model) {
+		System.out.println(buRoom);
 		try {
 			List<String> savedImagePaths = new ArrayList<>();
 			for (MultipartFile file : upfiles) {
@@ -58,7 +59,7 @@ public class RoomController {
 			buRoom.setRoomImg(savedImagePaths);
 			buService.insertBuRoom(buRoom, upfiles);
 			session.setAttribute("alertMsg", "객실 등록이 완료되었습니다.");
-			return "redirect:/businessRoom/list";
+			return "businessRoom/buRoomList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 등록 실패");
@@ -225,16 +226,4 @@ public class RoomController {
 		return "businessRoom/buRoomModify";
 	}
 
-	
-	@GetMapping("/list")
-	   public String selectBuRoomList(Model model,
-	                      @RequestParam(value="cpage", defaultValue="1") int cp ,  HttpSession session
-	                      ) {
-		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-	      Map<String, Object> map = new HashMap();
-	      buService.selectBuRoomList(cp,map);
-	      model.addAttribute("selectBuRoomList", map);
-	      System.out.println(loginBusiness.getBuId());
-	      return "businessRoom/buRoomList";
-	   }
 }

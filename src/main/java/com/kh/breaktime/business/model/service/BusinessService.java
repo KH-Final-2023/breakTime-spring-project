@@ -14,11 +14,11 @@ public interface BusinessService {
 
 	public abstract int insertBusiness(Business inputBusiness);
 
-	public List<Room> getRoomsByBuId(String buId);
+	public List<Room> getRoomsByBuId(int buNo);
 
 	public RoomImg getRoomImagesByBuId(int roomNo);
 
-	public List<Booking> getBookingsByBusinessId(String businessId);
+	public List<Booking> getBookingsByBusinessId(int buNo);
 
-	public List<Review> getReviewsForBusiness(String businessId);
+	public List<Review> getReviewsForBusiness(int buNo);
 }

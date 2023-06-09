@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/breaktime/resources/css/header.css">
 	<link rel="stylesheet" href="/breaktime/resources/css/base.css">
     <link rel="stylesheet" href="/breaktime/resources/css/main.css">
-    <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
+    <link rel="stylesheet" href="resources/css/footer.css">
 	<title>Document</title>
 	<!--  공통적으로사용할 라이브러리 추가 -->
 	<!-- Jquey 라이브러리 -->
