@@ -76,6 +76,11 @@ button {
 	padding: 0 0 2%;
 }
 
+.room_options {
+	font-size: 12px;
+	padding: 0 0 2%;
+}
+
 .housePrice {
 	position: relative;
 	border-left: 1px solid darkgrey;
@@ -179,6 +184,7 @@ button {
 										</div>
 										<div class="houseAddress">${d.buAddress}</div>
 										<div class="houseTel">${d.buTel}</div>
+										<div class="room_options">${d.roomInfo }</div>
 									</div>
 								</a>
 							</div>
@@ -189,9 +195,13 @@ button {
 									<p class="priceDetail2">모든 세금 및 수수료 포함</p>
 								</div>
 								<div class="hpButton">
-									<p class="rsButton">예약 무료 취소</p>
+									<p class="rsButton"
+										th:if="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}">${d.roomInfo}</p>
+									<p class="rsButton"
+										th:unless="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}"></p>
 									<button>자세히 보기</button>
 								</div>
+
 							</div>
 						</div>
 					</li>
@@ -327,6 +337,7 @@ button {
 		document.querySelector(".option_closeBtn9").addEventListener("click", close); 
 		document.querySelector(".option_closeBtn10").addEventListener("click", close); 
     </script>
+
 
 
 
