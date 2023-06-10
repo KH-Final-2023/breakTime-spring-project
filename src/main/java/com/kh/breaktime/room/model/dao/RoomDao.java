@@ -69,8 +69,8 @@ public class RoomDao {
 		return sqlSession.selectOne("buRoom-mapper.getRoomImagesByBuId", roomNo);
 	}
 	
-	public List<Room> standardRoom(String buId) {
-		return sqlSession.selectList("buRoom-mapper.standardRoom", buId);
+	public List<Room> standardRoom(int buNo) {
+		return sqlSession.selectList("buRoom-mapper.standardRoom", buNo);
 	}
 
 	public RoomImg standardRoomImg(int roomNo) {

@@ -24,9 +24,15 @@ img {
 	 <%@ include file="../header.jsp"%> 
 	<div id="content">
 		<div id="content1">
-			<div id="buRoomRegister">객실 등록</div>
-			<div id="buRoomReservation">예약 내역</div>
-			<div id="buReview">리뷰</div>
+			<form action="/breaktime/businessRoom/resister" method="GET">
+				<button type="submit" id="buRoomRegister">객실 등록</button>
+			</form>
+			<form action="/breaktime/business/reservation" method="GET">
+				<button type="submit" id="buRoomReservation">예약 내역</button>
+			</form>
+			<form action="/breaktime/business/review" method="GET">
+				<button type="submit" id="buReview">리뷰</button>
+			</form>
 		</div>
 		<div id="content2">
 			<div id="roomModifyText1" style="font-size: x-large; margin: 15px;">객실
@@ -43,7 +49,7 @@ img {
 					</div>
 					<div>
 						<div>${room.roomName}</div>
-						<div>인원: ${room.roomCount}</div>
+						<div>인원: ${room.roomHCount}</div>
 						<div>가격: ${room.roomPrice}</div>
 					</div>
 				</div>
@@ -54,7 +60,7 @@ img {
 				</div>
 				<div id="ModifyroomCount">인원 수:</div>
 				<div>
-					<input name="roomCount" placeholder="인원을 입력해주세요">
+					<input name="roomHCount" placeholder="인원을 입력해주세요">
 				</div>
 				<div id="ModifyroomPrice">가격 :</div>
 				<div>

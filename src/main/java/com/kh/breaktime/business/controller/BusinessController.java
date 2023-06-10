@@ -163,17 +163,14 @@ public class BusinessController {
 	public String getBusinessReviews(Model model, HttpSession session) {
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
 		int buNo = loginBusiness.getBuNo();
-		
-			List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
-			
-			model.addAttribute("businessReviews", businessReviews);
-			System.out.println(buNo);
-			System.out.println(businessReviews);
-			return "businessRoom/buReview";
-		
-			
-			
-		
+
+		List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
+
+		model.addAttribute("businessReviews", businessReviews);
+		System.out.println(buNo);
+		System.out.println(businessReviews);
+		return "businessRoom/buReview";
+
 	}
 
 }

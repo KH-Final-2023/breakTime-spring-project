@@ -20,8 +20,7 @@
 		<result column="STATUS" property="status" />
 	</resultMap>
 	<insert id="insertBuRoom" parameterType="room">
-		<selectKey keyProperty="roomNo" resultType="int"
-			order="BEFORE">
+		<selectKey keyProperty="roomNo" resultType="int" order="BEFORE">
 			SELECT SEQ_BNO.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO ROOM
@@ -111,11 +110,11 @@
 	</select>
 	
 	<!-- 사업자의 방 목록 SELECT (준석) -->
-	<select id="standardRoom" parameterType="String"
+	<select id="standardRoom" parameterType="_int"
 		resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</select>
 
 	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->

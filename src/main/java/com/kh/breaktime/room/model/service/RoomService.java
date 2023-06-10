@@ -21,7 +21,7 @@ public interface RoomService {
 
 	public RoomImg getRoomImagesByBuId(int roomNo);
 	
-	public List<Room> standardRoom(String buId);
+	public List<Room> standardRoom(int buNo);
 
 	public RoomImg standardRoomImg(int roomNo);
 	

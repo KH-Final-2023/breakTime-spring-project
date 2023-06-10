@@ -38,9 +38,10 @@
 	</resultMap>
 
 	<resultMap id="bookingResultMap" type="booking">
-		<id property="bookNo" column="BOOK_NO" />
+		<result property="bookNo" column="BOOK_NO" />
 		<result property="userNo" column="USER_NO" />
-		<result property="roomCount" column="ROOM_COUNT" />
+		<result property="roomNo" column="ROOM_NO" />
+		<result property="roomHCount" column="ROOM_H_COUNT" />
 		<result property="reservationNo" column="RESERVATION_NO" />
 		<result property="roomName" column="ROOM_NAME" />
 		<result property="roomCheckin" column="ROOM_CHECKIN" />
@@ -57,13 +58,10 @@
 		<result property="bookNo" column="BOOK_NO" />
 		<result property="starScore" column="STAR_SCORE" />
 		<result property="reviewContent" column="REVIEW_CONTENT" />
-		<result property="reviewCount" column="REVIEW_COUNT" />
 		<result property="reviewAvailable" column="REVIEW_AVAILABLE" />
 		<result property="createDate" column="CREATE_DATE" />
-		<result property="reviewDeclaration"
-			column="REVIEW_DECLARIATION" />
-		<result property="reviewContentReply"
-			column="REVIEW_CONTENT_REPLY" />
+		<result property="reviewDeclaration" column="REVIEW_DECLARIATION" />
+		<result property="reviewContentReply" column="REVIEW_CONTENT_REPLY" />
 	</resultMap>
 	<!-- 로그인사업자 정보 SELECT(석범) -->
 	<select id="loginBusiness" parameterType="business"
@@ -112,7 +110,8 @@
 	<select id="getRoomsByBuId" resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM
-		WHERE BU_NO = #{buNo}
+		WHERE
+		BU_NO = #{buNo}
 	</select>
 
 	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
@@ -130,26 +129,24 @@
 		FROM BOOKING
 		WHERE ROOM_NO IN (
 		SELECT ROOM_NO
-		FROM
-		ROOM
+		FROM ROOM
 		WHERE BU_NO = #{buNo}
 		)
 	</select>
 
-	<select id="getReviewsForBusiness" 
-		resultMap="reviewMap">
-	SELECT
-    R.REVIEW_NO, R.REVIEW_WRITER, R.USING_ROOM, R.USER_NO, R.ROOM_NO,
-    R.BOOK_NO, R.STAR_SCORE, R.REVIEW_CONTENT, R.REVIEW_AVAILABLE,
-    R.CREATE_DATE, R.REVIEW_DECLARIATION, R.REVIEW_CONTENT_REPLY
-FROM
-    REVIEW R
-    INNER JOIN ROOM RO ON R.USING_ROOM = RO.ROOM_NO
-WHERE
-    R.REVIEW_DECLARIATION = 'N'
-    AND RO.BU_NO = #{buNo}
+	<select id="getReviewsForBusiness" resultMap="reviewMap">
+    SELECT
+        R.REVIEW_NO, R.REVIEW_WRITER, R.USING_ROOM, R.USER_NO, R.ROOM_NO,
+        R.BOOK_NO, R.STAR_SCORE, R.REVIEW_CONTENT, R.REVIEW_AVAILABLE,
+        R.CREATE_DATE, R.REVIEW_DECLARIATION, R.REVIEW_CONTENT_REPLY
+    FROM
+        REVIEW R
+    INNER JOIN BOOKING B ON R.BOOK_NO = B.BOOK_NO
+    INNER JOIN ROOM RO ON B.ROOM_NO = RO.ROOM_NO
+    WHERE
+        R.REVIEW_AVAILABLE = 'Y'
+        AND RO.BU_NO = #{buNo}
+</select>
 
-
-	</select>
 
 </mapper>

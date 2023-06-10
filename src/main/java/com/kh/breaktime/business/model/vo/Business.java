@@ -29,8 +29,7 @@ public class Business {
 	private String approval;
 	private Date enrollDate;
 	private int roomCount;
-	private Date enrollDate;
-	private String approval;
+
 	
 }
 

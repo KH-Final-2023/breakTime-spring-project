@@ -19,10 +19,10 @@
 			<form action="/breaktime/businessRoom/resister" method="GET">
 				<button type="submit" id="buRoomRegister">객실 등록</button>
 			</form>
-			<form action="/breaktime/businessRoom/reservation" method="GET">
+			<form action="/breaktime/business/reservation" method="GET">
 				<button type="submit" id="buRoomReservation">예약 내역</button>
 			</form>
-			<form action="/breaktime/businessRoom/review" method="GET">
+			<form action="/breaktime/business/review" method="GET">
 				<button type="submit" id="buReview">리뷰</button>
 			</form>
 		</div>

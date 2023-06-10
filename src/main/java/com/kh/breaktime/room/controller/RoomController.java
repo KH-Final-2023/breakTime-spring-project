@@ -59,7 +59,7 @@ public class RoomController {
 			buRoom.setRoomImg(savedImagePaths);
 			buService.insertBuRoom(buRoom, upfiles);
 			session.setAttribute("alertMsg", "객실 등록이 완료되었습니다.");
-			return "businessRoom/buRoomList";
+			return "redirect:/businessRoom/buRoomList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 등록 실패");
@@ -231,7 +231,7 @@ public class RoomController {
 	   public String selectBuRoomList(Model model,  HttpSession session
 	                      ) {
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-		List<Room> roomList = buService.standardRoom(loginBusiness.getBuId());
+		List<Room> roomList = buService.standardRoom(loginBusiness.getBuNo());
 
 		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 		for (int i = 0; i < roomList.size(); i++) {
@@ -242,7 +242,8 @@ public class RoomController {
 
 		model.addAttribute("roomList", roomList);
 		model.addAttribute("roomImgList", roomImgList);
-
+		System.out.println(roomList);
+		System.out.println(roomImgList);
 		return "businessRoom/buRoomList";
 	   }
 }

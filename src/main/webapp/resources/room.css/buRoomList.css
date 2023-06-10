@@ -1,4 +1,4 @@
-
+/* 
 #content1{
     display: flex;
     justify-content: space-around;
@@ -10,7 +10,7 @@
   
 }
 #content1 div {
-margin: 10px; /* 요소 간격 조정 */
+margin: 10px; 요소 간격 조정
 }
  #buRoomRegister,#buRoomReservation,#buReview{
     font-size: large;
@@ -44,4 +44,4 @@ margin: 10px; /* 요소 간격 조정 */
     width: 100px;
 }
 
-  
+   */

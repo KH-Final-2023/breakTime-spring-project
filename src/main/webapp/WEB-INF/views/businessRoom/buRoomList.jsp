@@ -8,21 +8,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buRoomList.css">
+
 <title>Document</title>
 <style>
 /* 전체적인 초록색 계열 스타일 */
 body {
-   background-color: #f0f8f0;
+ background-color: #f0fff0; 
 }
 
 #content1 {
    display: flex;
    justify-content: space-around;
-   width: 300px;
-   
-   background-color: greenyellow;
+   width: 500px;
+   height:50px;
+   background-color: #00b5ff;
    border-radius: 15px;
    margin-top: 100px;
+   align-items: center;
 }
 
 #content2 {
@@ -64,6 +66,10 @@ img {
    max-width: 250px;
    width: 100%;
 }
+#buRoomRegister,#buRoomReservation,#buReview{
+	border: solid 1px black;
+	border-radius: 5px;
+}
 </style>
 <title>Document</title>
 </head>
@@ -94,7 +100,7 @@ img {
 							</div>
 							<div>
 								<div>${room.roomName}</div>
-								<div>인원: ${room.roomCount}</div>
+								<div>인원: ${room.roomHCount}</div>
 								<div>가격: ${room.roomPrice}</div>
 							</div>
 						</div>

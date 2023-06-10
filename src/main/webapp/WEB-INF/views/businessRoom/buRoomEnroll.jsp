@@ -14,21 +14,21 @@
   <%@ include file="../header.jsp"%> 
     <div id="content">
         <div id="content1">
-             <form action="/breaktime/businessRoom/resister" method="GET">
-   				 <button type="submit" id="buRoomRegister">객실 등록</button>
+            <form action="/breaktime/businessRoom/resister" method="GET">
+				<button type="submit" id="buRoomRegister">객실 등록</button>
 			</form>
-		    <form action="/breaktime/businessRoom/reservation" method="GET">
-		        <button type="submit" id="buRoomReservation">예약 내역</button>
-		    </form>
-		    <form action="/breaktime/businessRoom/review" method="GET">
-		        <button type="submit" id="buReview">리뷰</button>
-		    </form>
+			<form action="/breaktime/business/reservation" method="GET">
+				<button type="submit" id="buRoomReservation">예약 내역</button>
+			</form>
+			<form action="/breaktime/business/review" method="GET">
+				<button type="submit" id="buReview">리뷰</button>
+			</form>
         </div>
        <div id="content2">
     <div id="roomResisterText1" style="font-size: x-large; margin: 15px;">객실 등록</div>
 
    		<form id="buRoomEnrollForm" action="/breaktime/businessRoom/enroll" enctype="multipart/form-data" method="POST">	   
-		    <div><input type="hidden" name="buNo" placeholder="등록할 아이디을 입력해주세요" value="${loginBusiness.buNo }"></div> 
+		    <div><input type="hidden" name="buNo"  value="${loginBusiness.buNo }"></div> 
 		    <div id="ResisterRoomName">객실 이름 :</div>
 		    <div><input name="roomName" placeholder="등록할 객실 이름을 입력해주세요"></div>
 		    <div id="ResisterRoomCount">인원 :</div>

@@ -113,8 +113,8 @@ public class RoomServiceImpl implements RoomService {
 	}
 	
 	@Override
-	public List<Room> standardRoom(String buId) {
-		return buDao.standardRoom(buId);
+	public List<Room> standardRoom(int buNo) {
+		return buDao.standardRoom(buNo);
 	}
 
 	@Override
