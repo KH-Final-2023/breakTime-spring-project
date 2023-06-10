@@ -47,32 +47,27 @@ img {
 						<img
 							src="<%=request.getContextPath() %>${roomImg.filePath}/${roomImg.originName}">
 					</div>
-					<div>
-						<div>${room.roomName}</div>
-						<div>인원: ${room.roomHCount}</div>
-						<div>가격: ${room.roomPrice}</div>
-					</div>
 				</div>
 
 				<div id="ModifyroomName">객실 이름 :</div>
 				<div>
-					<input name="roomName" placeholder="수정할 객실 이름을 입력해주세요">
+					<input name="roomName" placeholder="수정할 객실 이름을 입력해주세요"  value ="${room.roomName}">
 				</div>
 				<div id="ModifyroomCount">인원 수:</div>
 				<div>
-					<input name="roomHCount" placeholder="인원을 입력해주세요">
+					<input name="roomHCount" placeholder="인원을 입력해주세요"  value ="${room.roomHCount}"	>
 				</div>
 				<div id="ModifyroomPrice">가격 :</div>
 				<div>
-					<input name="roomPrice" placeholder="수정할 객실 가격을 입력해주세요">
+					<input name="roomPrice" placeholder="수정할 객실 가격을 입력해주세요"  value ="${room.roomPrice}">
 				</div>
 				<div id="ModifyroomStandardInfoText">수정 객실 기본 정보</div>
 				<div>
-					<input name="roomInfo" placeholder="수정할 객실 정보를 입력해주세요">
+					<input name="roomInfo" placeholder="수정할 객실 정보를 입력해주세요" value ="${room.roomInfo}">
 				</div>
 				<div id="ModifyroomPhotoInfoText">수정 객실 사진 등록</div>
 				<div>
-					<input type="file" name="upfiles" multiple style="height: 150px;">
+					<input type="file" name="upfiles" multiple value ="${roomImg.saveName}">
 				</div>
 				<div>
 

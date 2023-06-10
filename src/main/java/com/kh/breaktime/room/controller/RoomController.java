@@ -143,24 +143,21 @@ public class RoomController {
 			Model model, @RequestParam(value = "roomNo") int roomNo, @RequestParam(value = "fileNo") int fileNo) {
 		System.out.println("준석");
 		System.out.println("===================" + room);
-		System.out.println(room);
+
 		try {
 			List<String> savedImagePaths = new ArrayList<>();
-			for (MultipartFile file : upfiles) {
-				if (!file.isEmpty()) {
-					String savedImagePath = saveImage1(file);
-					savedImagePaths.add(savedImagePath);
-				}
-			}
-
 			int result = buService.updateRoom(room);
-
+			
 			// RoomImg 정보 수정
 			List<RoomImg> roomImgList = new ArrayList<>();
 
 			for (MultipartFile file : upfiles) {
+				// 파일이 비어있지 않은 경우 -> 사진까지 수정한 경우
 				if (!file.isEmpty()) {
-					String savedImagePath = saveImage(file);
+					String savedImagePath = saveImage1(file);
+					savedImagePaths.add(savedImagePath);
+					
+					savedImagePath = saveImage(file);
 
 					RoomImg roomImg = new RoomImg();
 					roomImg.setFileNo(fileNo);
@@ -174,19 +171,22 @@ public class RoomController {
 					roomImgList.add(roomImg);
 
 					System.out.println(roomImgList);
-				}
-			}
 
-			// RoomImg 리스트 업데이트
-			buService.updateRoomImg(roomImgList);
-			session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
+					// RoomImg 리스트 업데이트
+					buService.updateRoomImg(roomImgList);
+				}
+				session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
+				return "redirect:/businessRoom/buRoomList";
+			}
 			return "redirect:/businessRoom/buRoomList";
 
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 수정 실패");
 			return "common/errorPage";
 		}
+		
 	}
 
 	private String saveImage1(MultipartFile file) throws IOException {
