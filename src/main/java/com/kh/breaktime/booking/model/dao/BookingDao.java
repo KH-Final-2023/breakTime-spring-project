@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.breaktime.booking.model.vo.Booking;
+import com.kh.breaktime.review.model.vo.Review;
+import com.kh.breaktime.room.model.vo.Room;
 
 @Repository
 public class BookingDao {
@@ -18,5 +20,14 @@ public class BookingDao {
 		
 		return (ArrayList)sqlSession.selectList("bookingMapper.selectBookingList", userNo);
 	}
+	
+	 public int insertReview(Review r) {
+	      return sqlSession.insert("bookingMapper.insertReview", r);
+	   }
+	 
+	 public ArrayList<Room> selectPay(int userNo) {
+			
+			return (ArrayList)sqlSession.selectList("bookingMapper.selectPay", userNo);
+		}
 
 }

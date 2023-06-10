@@ -53,6 +53,14 @@ public class DecideServiceImpl implements DecideService {
 		return decideDao.selectDecideRoom(buNo);
 	}
 	
+	// 선택 객실 조회
+	@Override
+	public ArrayList<Decide> payDecideRoom(int roomNo) {
+		return decideDao.payDecideRoom(roomNo);
+	}
+	
+	
+	
 	// 지도 메인 화면 조회
 	@Override
 	public ArrayList<Decide> selectDecideMap(int buNo) {

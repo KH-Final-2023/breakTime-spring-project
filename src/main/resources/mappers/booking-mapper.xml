@@ -13,6 +13,16 @@
 		<result column="STATUS" property="status" />
 	</resultMap>
 	
+	
+	<resultMap type="room" id="roomResultMap">
+		<id column="ROOM_NO" property="roomNo" />
+		<result column="BU_NO" property="buNo" />
+		<result column="ROOM_H_COUNT" property="roomHCount" />
+		<result column="ROOM_NAME" property="roomName" />
+		<result column="ROOM_PRICE" property="roomPrice" />
+		<result column="ROOM_INFO" property="roomInfo" />
+	</resultMap>
+	
 	<select id="selectBookingList" resultMap="bookingResultSet">
 		SELECT  B.BOOK_NO,
 				B.USER_NO,
@@ -27,6 +37,47 @@
 				JOIN MEMBER M ON M.USER_NO = B.USER_NO
 				WHERE B.STATUS = 'Y'
 				AND B.USER_NO = #{userNo}
+	</select>
+	
+	<insert id="insertReview" useGeneratedKeys="true"
+      parameterType="review">
+
+      <selectKey keyProperty="reviewNo" resultType="_int"
+         order="BEFORE">
+         SELECT SEQ_RNO.NEXTVAL FROM DUAL
+      </selectKey>
+
+      INSERT INTO REVIEW(
+      REVIEW_NO,
+      BOOK_NO,
+      REVIEW_WRITER,
+      USING_ROOM,
+      STAR_SCORE,
+      REVIEW_CONTENT,
+      CREATE_DATE,
+      REVIEW_DECLARIATION
+      ) VALUES (
+      #{reviewNo},
+      #{bookNo},
+      #{reviewWriter},
+      #{usingRoom},
+      #{starScore},
+      #{reviewContent},
+      SYSDATE,
+      'N'
+      )
+
+   </insert>
+	
+	
+	<select id="selectPay" resultMap="roomResultMap">
+		SELECT  R.ROOM_NO,
+				R.BU_NO,
+				R.ROOM_NAME,
+				R.ROOM_CHECKIN,
+				R.ROOM_CHECKIN
+				FROM ROOM R
+		JOIN BUSINESS B ON B.BU_NO = R.BU_NO
 	</select>
 
 

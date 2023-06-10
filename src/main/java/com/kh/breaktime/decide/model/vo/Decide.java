@@ -31,6 +31,7 @@ public class Decide {
 	private String userName;
 	
 	// room
+	
 	private int areaNo;
 	private String buCategory;
 	private String roomImg;
@@ -39,6 +40,8 @@ public class Decide {
     private String roomPrice;
     private String roomInfo;
     private String roomName;
+    private String roomCheckin;
+    private String roomCheckout;
     
     // cart
     private String cartCheckIn;

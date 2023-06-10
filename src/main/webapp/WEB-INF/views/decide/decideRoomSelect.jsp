@@ -1,6 +1,14 @@
+<%@page import="com.kh.breaktime.decide.model.vo.Decide"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.kh.breaktime.member.model.vo.Member"%>
+<%
+   Member loginUser = (Member) session.getAttribute("loginUser");
+%>
+<c:set var="m" value="${map}"/>
+<c:set var="room" value="${roomList}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,14 +102,14 @@ function() {
 						<c:if test="${empty roomList}">
 							<div class="button-card" disabled>
 								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
-									담기</a> <a href="#" class="button-card2">객실 선택하기</a>
+									담기</a> <a href="" class="button-card2" id="goPay">객실 선택하기</a>
 							</div>
 						</c:if>
 						
 						<c:if test="${!empty roomList}">
 							<div class="button-card">
 								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
-									담기</a> <a href="#" class="button-card2">객실 선택하기</a>
+									담기</a> <a href="" class="button-card2" id="goPay">객실 선택하기</a>
 							</div>
 						</c:if>
 					</div>
@@ -110,5 +118,6 @@ function() {
 		</div>
 	</div>
 </body>
+
 
 </html>

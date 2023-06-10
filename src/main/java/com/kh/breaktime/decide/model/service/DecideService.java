@@ -26,6 +26,9 @@ public interface DecideService {
 	// 객실 조회
 	ArrayList<Decide> selectDecideRoom(int buNo);
 	
+	// 선택 객실 조회
+	ArrayList<Decide> payDecideRoom(int roomNo);
+	
 	// 지도 조회
 	ArrayList<Decide> selectDecideMap(int buNo);
 	

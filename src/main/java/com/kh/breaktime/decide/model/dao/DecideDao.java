@@ -53,6 +53,14 @@ public class DecideDao {
 		return (ArrayList)sqlSession.selectList("decideMapper.selectDecideRoom", buNo);
 	}
 	
+	// 선택 객실 조회
+	public ArrayList<Decide> payDecideRoom(int roomNo) {
+			
+		return (ArrayList)sqlSession.selectList("decideMapper.payDecideRoom",roomNo);
+	}
+	
+	
+	
 	// 지도 메인 화면 조회
 	public ArrayList<Decide> selectDecideMap(int buNo) {
 		
