@@ -56,7 +56,7 @@ public class MemberServiceImpl implements MemberService {
 		public void selectSearchList(int cp, Map<String, Object> map) {
 			int listCount = memberDao.selectSearchListCount();
 			int pageLimit = 10;
-			int boardLimit = 10;
+			int boardLimit = 5;
 			PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
 
 
