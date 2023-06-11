@@ -455,13 +455,13 @@ function requestPay() {
       if (rsp.success) {
     	  $.ajax({
 	        	type : "POST",
-	        	url : "${pageContext.request.contextPath}/reservation/reservePro",
+	        	url : "${pageContext.request.contextPath}/",
 	        	contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 	        	header:{"Content-Type":"application/json"},
 	    		dateType:'json',
 	    		data:{bo_num:rsp.imp_uid, payment:rsp.pay_method},
 	        }).done(function(data){
-	        	location.href='${pageContext.request.contextPath}/reservation/reservationList'+data
+	        	location.href='${pageContext.request.contextPath}/'+data
 	        })
       } else {
      	alert('결제 실패')

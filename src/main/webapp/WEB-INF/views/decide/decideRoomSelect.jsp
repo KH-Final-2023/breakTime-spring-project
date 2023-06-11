@@ -102,14 +102,14 @@ function() {
 						<c:if test="${empty roomList}">
 							<div class="button-card" disabled>
 								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
-									담기</a> <a href="" class="button-card2" id="goPay">객실 선택하기</a>
+									담기</a> <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
 							</div>
 						</c:if>
 						
 						<c:if test="${!empty roomList}">
 							<div class="button-card">
 								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
-									담기</a> <a href="" class="button-card2" id="goPay">객실 선택하기</a>
+									담기</a> <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
 							</div>
 						</c:if>
 					</div>
