@@ -171,7 +171,7 @@ button {
 					<li>
 						<div class="houseContent">
 							<div class="houseMainImg">
-								<img src="${d.mainImg}">
+								<img src="${d.buMainImg}">
 							</div>
 							<div class="houseInfo">
 								<a>

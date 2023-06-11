@@ -11,7 +11,7 @@
 	<!-- 목록용 resultMap -->
 	<resultMap type="detail" id="detailResultSet">
 		<id property="roomNo" column="ROOM_NO" />
-		<result property="mainImg" column="MAIN_IMG" />
+		<result property="buMainImg" column="BU_MAIN_IMG" />
 		<result property="roomHCount" column="ROOM_H_COUNT" />
 		<result property="roomPrice" column="ROOM_PRICE" />
 		<result property="buNo" column="BU_NO" />
@@ -35,7 +35,7 @@
 	<!-- 일반 리스트 목록 -->
 	<select id="selectDetailList" resultMap="detailResultSet">
 		SELECT
-		H.MAIN_IMG,
+		B.BU_MAIN_IMG,
 		R.ROOM_NO,
 		R.ROOM_H_COUNT,
 		R.ROOM_PRICE,
@@ -50,10 +50,8 @@
 		B
 		INNER JOIN ROOM R ON
 		B.BU_NO = R.BU_NO
-		INNER JOIN HOUSE H ON B.BU_TITLE
-		= H.BU_TITLE
 		WHERE
-		H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND
+		B.BU_MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND
 		R.ROOM_H_COUNT = 1
 		AND
 		B.BU_CATEGORY = #{category}
@@ -63,7 +61,7 @@
 	<!-- 필터링된 데이터 리스트 목록 -->
 	<select id="getFilteredData" resultMap="detailResultSet">
 		SELECT
-		H.MAIN_IMG,
+		B.BU_MAIN_IMG,
 		R.ROOM_NO,
 		R.ROOM_H_COUNT,
 		R.ROOM_PRICE,
@@ -77,10 +75,8 @@
 		FROM
 		BUSINESS B
 		INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
-		INNER JOIN HOUSE H ON
-		B.BU_TITLE = H.BU_TITLE
 		WHERE
-		H.MAIN_IMG IS NOT NULL
+		B.BU_MAIN_IMG IS NOT NULL
 		AND B.APPROVAL = 'Y'
 		AND B.BU_CATEGORY = #{category}
 		<if test="guests == null">
@@ -115,7 +111,7 @@
 	<!-- 필터링된 데이터 리스트 목록 -->
 	<select id="getAreaData" resultMap="detailResultSet">
 		SELECT
-		H.MAIN_IMG,
+		B.BU_MAIN_IMG,
 		R.ROOM_NO,
 		R.ROOM_H_COUNT,
 		R.ROOM_PRICE,
@@ -129,9 +125,8 @@
 		BUSINESS B
 		INNER JOIN ROOM R ON
 		B.BU_NO = R.BU_NO
-		INNER JOIN HOUSE H ON B.BU_TITLE = H.BU_TITLE
 		WHERE
-		H.MAIN_IMG IS NOT NULL
+		B.BU_MAIN_IMG IS NOT NULL
 		AND B.APPROVAL = 'Y'
 		AND B.BU_CATEGORY =
 		#{category}
