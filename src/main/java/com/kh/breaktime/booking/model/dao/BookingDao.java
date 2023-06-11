@@ -25,9 +25,5 @@ public class BookingDao {
 	      return sqlSession.insert("bookingMapper.insertReview", r);
 	   }
 	 
-	 public ArrayList<Room> selectPay(int userNo) {
-			
-			return (ArrayList)sqlSession.selectList("bookingMapper.selectPay", userNo);
-		}
-
+	
 }

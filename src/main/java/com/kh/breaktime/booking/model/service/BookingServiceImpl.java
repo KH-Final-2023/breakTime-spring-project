@@ -28,9 +28,5 @@ public class BookingServiceImpl implements BookingService{
       return bookingDao.insertReview(r);
    }
    
-   @Override
-   public ArrayList<Room> selectPay(int userNo) {
-      return bookingDao.selectPay(userNo);
-   }
 
 }

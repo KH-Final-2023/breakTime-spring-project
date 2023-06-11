@@ -12,6 +12,4 @@ public interface BookingService {
    
    public int insertReview(Review r);
    
-   ArrayList<Room> selectPay(int userNo);
-   
 }

@@ -67,18 +67,7 @@ private BookingService bookingService;
    }
    
    
-   @GetMapping("/pay")
-   public String selectPay(Model model, HttpSession session) {
-      
-      Member loginUser = (Member) session.getAttribute("loginUser");
-      int userNo = loginUser.getUserNo();
-      ArrayList<Room> bookingList = bookingService.selectPay(userNo);
-      
-      model.addAttribute("bookingList", bookingList);
-      System.out.println(bookingList);
-       System.out.println(userNo);
-      return "pay/pay";
-   }
+ 
    
    
    

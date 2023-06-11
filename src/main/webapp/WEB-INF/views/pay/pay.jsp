@@ -3,13 +3,13 @@
 <%@ page import="com.kh.breaktime.member.model.vo.Member"%>
 <%@ page import="com.kh.breaktime.booking.model.vo.Booking"%>
 <%@ page import="com.kh.breaktime.room.model.vo.Room"%>
+<%
+   Member loginUser = (Member) session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/breaktime/resources/css/header.css">
-<link rel="stylesheet" href="/breaktime/resources/css/base.css">
-<link rel="stylesheet" href="/breaktime/resources/css/font.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js" charset="UTF-8"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
@@ -256,7 +256,7 @@
         <c:forEach items="${roomList}" var="room">
             <div class="item-list">
                 <div class="company-title">
-                    <h2>업체명</h2>
+                    <h2>${room.buTitle }</h2>
                 </div>
                 <div class="room-info">
                     <p>${room.roomName}</p>
@@ -274,9 +274,9 @@
             </div>
             </c:forEach>
             
-            <div class="total">
-                <span class="amount">${room.roomPrice}</span><span style="font-size: 18px;">원</span>
-            </div>
+            <!-- <div class="total">
+                <span class="amount"></span><span style="font-size: 18px;">원</span>
+            </div> -->
             
         </div>
     </div>
@@ -285,25 +285,26 @@
         <h3 style="margin-bottom: 15px;">예약자 정보</h3>
         <div class="form-group">
             <label for="customer-name">성명</label>
-            <span id="customer-name">홍길동</span>
+            <span id="customer-name"><%= loginUser.getUserName()%></span>
         </div>
     </div>
 </c:forEach>
      <div class="payment-amount-section" style="max-width: 768px; margin: 10px auto; background-color: #fff; padding: 20px;">
 
         <h3 style="margin-bottom: 15px;">결제 금액</h3>
-        
+        <c:forEach items="${roomList}" var="room">
         <div class="payment-details">
             <span style="font-size: 14px;">상품금액</span>
-            <span style="font-size: 18px; font-weight: bold;">44,900원</span>
+            <span style="font-size: 18px; font-weight: bold;">${room.roomPrice} 원</span>
         </div>
-
+		
         <div class="dotted-line"></div>
 
         <div class="payment-details">
             <span style="font-size: 14px;"><h3>총 결제 금액</h3></span>
-            <span class="total-payment-amount">44,900원</span>
+            <span class="total-payment-amount">${room.roomPrice} 원</span>
         </div>
+        </c:forEach>
     </div>
 
     <div class="pay-section">
@@ -360,9 +361,9 @@
                 <label for="accept-info-third-party">[필수] 개인정보 제 3자 제공</label>
             </div>
         </div>
-
-        <button class="pay-button" id="pay-button" onclick="requestPay()">49,800원 결제하기</button>
-        
+		<c:forEach items="${roomList}" var="room">
+        <button class="pay-button" id="pay-button" onclick="requestPay()">${room.roomPrice }원 결제하기</button>
+        </c:forEach>
        
         
     </div>

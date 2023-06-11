@@ -84,6 +84,8 @@ public class DecideController {
 		ArrayList<Decide> roomList = decideService.payDecideRoom(roomNo);
 		model.addAttribute("roomList", roomList);
 		
+		
+		
 		return "pay/pay";
 	}
 	
