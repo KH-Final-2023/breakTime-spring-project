@@ -25,4 +25,6 @@ public interface RoomService {
 
 	public RoomImg standardRoomImg(int roomNo);
 	
+	public List<Room> searchRooms(Map<String, Object> params);
+	
 }

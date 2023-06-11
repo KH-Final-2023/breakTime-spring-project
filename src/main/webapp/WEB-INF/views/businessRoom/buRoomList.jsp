@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css"
-	href="/breaktime/resources/room.css/buRoomList.css">
+<!-- <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buRoomList.css"> -->
 <title>Document</title>
 <style>
 /* 전체적인 초록색 계열 스타일 */
@@ -30,12 +29,14 @@ body {
 	border-radius: 15px;
 	margin-top: 150px;
 	align-items: center;
+	
 }
 
 #content2 {
 	background-color: #f0fff0;
 	display: flex;
 	justify-content: center;
+	z-index : -4;
 }
 
 #resistedRoomListText {
@@ -56,6 +57,8 @@ body {
 	justify-content: center;
 	width: 1150px;
 	margin-bottom: 40px;
+	z-index:0;
+	 
 }
 
 img {
@@ -70,12 +73,17 @@ img {
 	justify-content: space-between;
 	padding: 10px;
 	background-color: white;
-	margin-bottom: 10px;
+	margin-bottom: 30px;
 	width: 1000px;
 	border-radius: 15px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+ transition: transform 0.3s ease;
+  
 }
 
+.room-info:hover {
+  transform: scale(1.1);
+}
 #imgList, #roomListInfo {
 	max-width: 250px;
 	width: 100%;
@@ -89,12 +97,54 @@ img {
 	width: 100px;
 	height: 40px
 }
+#selectRoom{
+	margin-bottom : 30px; 
+	display : flex;
+	justify-content: space-between;
+}
+#roomName, #roomHCount, #roomPrice{
+	height :40px;
+	width : 200px;
+	border-radius: 5px;
+	border: 1px solid lightgreen;
+}
+#selectRoomBtn{
+width:50px;
+height:30px;
+border-radius: 5px;
+}
+button {
+  font-family: 'Arial', fantasy;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+/* 	#myImage {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index : -3;
+    left: -6.5px;
+  
+  } */
 </style>
 <title>Document</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>
 	<div id="content">
+	<div id="imageContainer">
+<!-- <img id="myImage" src="/breaktime/resources/images/buRoomListBack.jpg" style="width : 1900px; height : 620px"> -->
+	</div>
+  
+	<!-- 이미지를 정적으로 보여주는 <img> 요소 -->
+
+	<script>
+		// 이미지를 맨 뒤로 이동시키기 위해 이미지를 포함하는 <div> 요소를 <body> 맨 뒤에 추가
+		var imageContainer = document.getElementById('imageContainer');
+		var myImage = document.getElementById('myImage');
+		imageContainer.appendChild(myImage);
+	</script>
 		<div id="content1">
 			<div id="formMove">
 				<form action="/breaktime/businessRoom/resister" method="GET">
@@ -111,14 +161,52 @@ img {
 		<div id="resistedRoomListText">등록한 객실 리스트</div>
 		<hr>
 		<div id="content2">
-		<div><input id="searchRoom" placeholder="검색할 객실을 입력하세요"></div>
 			<div id="lodging">
+		<!-- 	function hideRoomList() {
+        var roomList = document.getElementById("roomList");
+        roomList.style.display = "none"; }-->
+            <div id="selectRoom">
+				<form action="/breaktime/businessRoom/searchRoomList" method="get" onsubmit="return validateSearchForm()">
+					<label for="roomName" style="font-size: 23px;">ROOM CLASS:</label>
+					 <input type="text" id="roomName" name="roomName"> 
+					 <label for="roomHCount" style="font-size: 23px;">PERSON COUNT:</label>
+					  <select id="roomHCount" name="roomHCount">
+						<option value="">Any</option>
+						<option value="1">1 Person</option>
+						<option value="2">2 Persons</option>
+						<option value="3">3 Persons</option>
+						<option value="4">4 Persons</option>
+						<!-- Add more options as needed -->
+					</select>
+					  <label for="roomPrice" style="font-size: 23px;">PRICE:</label>
+					  <select id="roomPrice" name="roomPrice">
+						<option value="">Default</option>
+						<option value="asc">Low to High</option>
+						<option value="desc">High to Low</option>
+					</select>
+					<button type="submit" onclick=" validateSearchForm()" id="selectRoomBtn">검색</button>
+				</form>
+				</div>
+
+				<script>
+				 function validateSearchForm() {
+				    var roomName = document.getElementById("roomName").value;
+				    var roomPrice = document.getElementById("roomPrice").value;
+				    var roomHCount = document.getElementById("roomHCount").value;
+
+				    if (roomName.trim() === "" || roomPrice.trim() === "" || roomHCount.trim() === "") {
+				        alert("Please enter all search criteria.");
+				        return false;
+				    }
+				    
+				    return true;
+				} 
+				</script> 
 				<c:forEach items="${roomList}" var="room" varStatus="roomStatus">
 					<div class="room-info" data-room-no="${room.roomNo}">
 						<div id="imgList">
 							<!-- 해당 방의 이미지 출력 -->
-							<img
-								src="<%=request.getContextPath() %>${roomImgList[roomStatus.index].filePath}/${roomImgList[roomStatus.index].originName}">
+							<img src="<%=request.getContextPath() %>${roomImgList[roomStatus.index].filePath}/${roomImgList[roomStatus.index].originName}">
 						</div>
 						<div id="roomListInfo">
 							<div>${room.roomName}</div>
@@ -126,7 +214,6 @@ img {
 							<div>가격: ${room.roomPrice}</div>
 						</div>
 					</div>
-					<div id="dd" style="height: 15px; background-color: #f0fff0;"></div>
 				</c:forEach>
 			</div>
 		</div>
@@ -145,8 +232,7 @@ img {
 												var roomNo = $(this).data(
 														'room-no');// 클릭한 방의 roomNo 값을 가져옴
 												if (roomNo !== undefined) {
-													window.location.href = '/breaktime/businessRoom/modifyPage?roomNo='
-															+ roomNo;
+													window.location.href = '/breaktime/businessRoom/modifyPage?roomNo='+ roomNo;
 												}
 											});
 						});

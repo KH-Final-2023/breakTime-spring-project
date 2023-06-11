@@ -246,4 +246,20 @@ public class RoomController {
 		System.out.println(roomImgList);
 		return "businessRoom/buRoomList";
 	   }
+	
+	@GetMapping("/searchRoomList")
+    public String searchRooms( @RequestParam Map<String, Object> paramMap,String roomName, int roomHCount, String roomPrice, Model model) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("roomName", roomName);
+		params.put("roomHCount", roomHCount);
+		params.put("roomPrice", roomPrice);
+        List<Room> roomList = buService.searchRooms(params);
+        if(roomList == null) {
+        model.addAttribute("errorMsg", "객실 등록 실패");
+		return "common/errorPage";
+        }
+        model.addAttribute("roomList", roomList);
+        System.out.println(roomList);
+        return "businessRoom/buRoomList";
+    }
 }

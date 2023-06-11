@@ -45,14 +45,14 @@ public class RoomServiceImpl implements RoomService {
 					String savedImagePath = saveImage(file);
 
 					RoomImg roomImg = new RoomImg();
-					
+
 					roomImg.setRoomNo(result);
 					roomImg.setOriginName(file.getOriginalFilename());
 					roomImg.setSaveName(savedImagePath);
 					roomImg.setFilePath("/resources/images");
 					roomImg.setFileLevel(0);
 					roomImg.setStatus("N");
-					
+
 					System.out.print("junseok debug\n\n");
 					System.out.print(roomImg);
 
@@ -93,25 +93,26 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	public int updateRoom(Room room) {
-	    System.out.println("roomNo:=================================================================================== "+room);
-	    return buDao.updateRoom(room);
+		System.out.println(
+				"roomNo:=================================================================================== " + room);
+		return buDao.updateRoom(room);
 	}
 
 	public int updateRoomImg(List<RoomImg> roomImgList) {
-	    System.out.println("roomImgList: " + roomImgList);
-	    return buDao.updateRoomImg(roomImgList);
+		System.out.println("roomImgList: " + roomImgList);
+		return buDao.updateRoomImg(roomImgList);
 	}
-	
+
 	@Override
 	public List<Room> getRoomsByBuId(int roomNo) {
-		return buDao.getRoomsByBuId( roomNo);
+		return buDao.getRoomsByBuId(roomNo);
 	}
 
 	@Override
 	public RoomImg getRoomImagesByBuId(int roomNo) {
 		return buDao.getRoomImagesByBuId(roomNo);
 	}
-	
+
 	@Override
 	public List<Room> standardRoom(int buNo) {
 		return buDao.standardRoom(buNo);
@@ -120,5 +121,11 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public RoomImg standardRoomImg(int roomNo) {
 		return buDao.standardRoomImg(roomNo);
+	}
+
+	@Override
+	public List<Room> searchRooms(Map<String, Object> params) {
+		// 필요한 로직 수행
+		return buDao.searchRooms(params);
 	}
 }

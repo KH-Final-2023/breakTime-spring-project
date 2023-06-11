@@ -126,6 +126,30 @@
 		WHERE ROOM_NO = #{roomNo}
 	</select>
 	
+	<select id="searchRooms" resultMap="roomResultMap">
+    SELECT *
+    FROM ROOM
+    WHERE 1=1
+    <if test="roomName != null and roomName != ''">
+        AND ROOM_NAME LIKE '%' || #{roomName} || '%'
+    </if>
+    <if test="roomHCount != null">
+        AND ROOM_H_COUNT = #{roomHCount}
+    </if>
+    <if test="roomPrice != null and roomPrice != ''">
+        ORDER BY ROOM_PRICE
+        <choose>
+            <when test="roomPrice == 'asc'">
+                ASC
+            </when>
+            <when test="roomPrice == 'desc'">
+                DESC
+            </when>
+        </choose>
+    </if>
+</select>
+
+
 	<!-- <select id="selectBuRoomList" resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM
