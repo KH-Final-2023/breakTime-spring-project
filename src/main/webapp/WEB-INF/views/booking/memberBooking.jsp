@@ -88,12 +88,9 @@ html, body {
 	font-size: 20px;
 	resize: none;
 }
-
-
-
 </style>
 <body>
-	 <%@ include file="/WEB-INF/views/header.jsp"%> 
+	<%-- <%@ include file="/WEB-INF/views/header.jsp"%> --%>
 	<main>
 		<div class="booking">
 			<div id="booking-area">
@@ -138,7 +135,7 @@ html, body {
 										</button>
 									</td>
 									<td>
-												<button id="rBtn "type="button" class="btn btn-outline-success"
+												<button id="rBtn${vs.index } " type="button" class="btn btn-outline-success"
 													data-toggle="modal" data-target="#updateMember${vs.index }">
 													<span>리뷰작성</span>
 												</button>
@@ -148,9 +145,9 @@ html, body {
 									</td>
 								</tr>
 									
-		
+
 								<!--  수정 모달창 -->
-								<form action="<%=  request.getContextPath() %>/booking/reviewInsert" class="mb-3"  method="post">
+								<form action="<%=  request.getContextPath() %>/booking/reviewInsert" method="post">
 									<div id="updateMember${vs.index }" class="modal fade"
 										id="registerModal" tabindex="-1" aria-labelledby="modalLabel"
 										aria-hidden="true">
@@ -170,18 +167,17 @@ html, body {
 													<input type="hidden" name="usingRoom" value="${empty booking.roomNo ? 0 : booking.roomNo}" />
 													
 													<div class="star-rating space-x-4 mx-auto">
-														<input type="radio" id="5-stars" name="starScore" value="5" v-model="ratings"/>
-														<label for="5-stars" class="star pr-4">★</label>
-														<input type="radio" id="4-stars" name="starScore" value="4" v-model="ratings"/>
-														<label for="4-stars" class="star">★</label>
-														<input type="radio" id="3-stars" name="starScore" value="3" v-model="ratings"/>
-														<label for="3-stars" class="star">★</label>
-														<input type="radio" id="2-stars" name="starScore" value="2" v-model="ratings"/>
-														<label for="2-stars" class="star">★</label>
-														<input type="radio" id="1-star" name="starScore" value="1" v-model="ratings"/>
-														<label for="1-star" class="star">★</label>
-													</div> 
-
+														<input type="radio" id="5-stars${vs.index}" name="starScore" value="5">
+											            <label for="5-stars${vs.index}" class="star">★</label>
+											            <input type="radio" id="4-stars${vs.index}" name="starScore" value="4">
+											            <label for="4-stars${vs.index}" class="star">★</label>
+											            <input type="radio" id="3-stars${vs.index}" name="starScore" value="3">
+											            <label for="3-stars${vs.index}" class="star">★</label>
+											            <input type="radio" id="2-stars${vs.index}" name="starScore" value="2">
+											            <label for="2-stars${vs.index}" class="star">★</label>
+											            <input type="radio" id="1-star${vs.index}" name="starScore" value="1">
+											            <label for="1-star${vs.index}" class="star">★</label> 
+													</div>
 													<div>
 														<textarea class="col-auto form-control" 
 															id="reviewContents" name="reviewContent"
@@ -215,21 +211,7 @@ html, body {
 	            alert("리뷰 등록에 성공하였습니다.");
 	    });
 	</script>
-	<!--  공통적으로사용할 라이브러리 추가 -->
-	<!-- Jquey 라이브러리 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<!-- 부트스트랩에서 제공하있는 스타일 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<!-- 부투스트랩에서 제공하고있는 스크립트 -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	<!-- alertify -->
-	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-	<!-- alertify css -->
-	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-	<!-- Default theme -->
-	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-	<!-- Semantic UI theme -->
-	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+	
 </body>
 
 </html>
