@@ -49,22 +49,12 @@ public class DetailController {
 			@RequestParam(value = "prices", required = false) List<String> prices,
 			@RequestParam(value = "reserveOptions", required = false) List<String> reserves,
 			@RequestParam(value = "houseOptions", required = false) List<String> options,
-			@RequestParam(value = "guests", required = false) Integer guests, Model model) {
+			@RequestParam(value = "guests", required = false) Integer guests, 
+			@RequestParam(value = "area", required = false) String area,
+			@RequestParam(value = "inOut", required = false) List<String> inOut, Model model) {
 		Map<String, Object> map = new HashMap<>();
 
-		detailService.getFilteredData(category, prices, reserves, options, guests, map);
-
-		model.addAttribute("map", map);
-
-		return "detail/detail";
-	}
-
-	@GetMapping("/area/{category}")
-	public String detailListSubmit(@PathVariable("category") String category, @RequestParam(value = "area") String area,
-			Model model) {
-		Map<String, Object> map = new HashMap<>();
-
-		detailService.getAreaData(category, area, map);
+		detailService.getFilteredData(category, prices, reserves, options, guests, area, inOut, map);
 
 		model.addAttribute("map", map);
 

@@ -12,10 +12,8 @@ public interface DetailService {
 
     public void selectDetailList(String category, Map<String, Object> map);
 
-    public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Integer guests, Map<String, Object> map);
+    public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Integer guests, String area, List<String> inOut, Map<String, Object> map);
     
-    public void getAreaData(String category, String area, Map<String, Object> map);
-
     public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map);
 
 }

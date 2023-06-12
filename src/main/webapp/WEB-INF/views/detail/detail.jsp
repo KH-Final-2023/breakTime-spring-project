@@ -157,7 +157,11 @@ button {
 
 	<jsp:include page="/WEB-INF/views/detail/area_detail.jsp" />
 
+	<jsp:include page="/WEB-INF/views/detail/date_detail.jsp" />
+
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
+
+
 
 	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
 
@@ -342,6 +346,82 @@ button {
 	  function redirectToDetail(buNo) {
 	    window.location.href = '/breaktime/decide/demain/' + buNo;
 	  }
+	</script>
+
+	<!-- 드롭다운 스크립트 -->
+	<script type="text/javascript">
+	var area = '';
+	
+	window.onload = () => {
+		  document.querySelector('.dropbtn2_click').onclick = () => {
+		    dropdown('.dropdown-content2', '.dropbtn2');
+		  };
+
+		  document.querySelector('.dropbtn1_click').onclick = () => {
+		    dropdown('.dropdown-content1', '.dropbtn1');
+		  };
+
+		  // 추가된 부분: dropdown-content2의 클릭 이벤트 핸들러 제거
+		  var dropdownContent2 = document.querySelector('.dropdown-content2');
+		  dropdownContent2.onclick = (event) => {
+		    event.stopPropagation();
+		  };
+
+		  // 추가된 부분: dropdown-content2의 마우스 강조 효과 제거
+		  dropdownContent2.onmouseover = (event) => {
+		    event.target.style.backgroundColor = 'transparent';
+		  };
+
+		  var categoryCodes = document.getElementsByClassName('categoryCode');
+		  for (var i = 0; i < categoryCodes.length; i++) {
+		    categoryCodes[i].onclick = function() {
+		      var id = this.getAttribute('id');
+		      showMenu(this.innerText, id);
+		    };
+		  }
+
+		  function dropdown(contentClass, btnClass) {
+		    var v = document.querySelector(contentClass);
+		    var dropbtn = document.querySelector(btnClass);
+		    v.classList.toggle('show');
+		    dropbtn.style.borderColor = 'rgb(94, 94, 94)';
+		  }
+
+		  function showMenu(value, id) {
+		    var dropbtn_icon = document.querySelector('.dropbtn1_icon');
+		    var dropbtn_content = document.querySelector('.dropbtn1_content');
+		    var dropbtn_click = document.querySelector('.dropbtn1_click');
+		    var dropbtn = document.querySelector('.dropbtn1');
+
+		    dropbtn_icon.innerText = '';
+		    dropbtn_content.innerText = value;
+		    dropbtn_content.style.color = '#252525';
+		    dropbtn.style.borderColor = '#3992a8';
+
+		    // 변수에 선택한 값을 저장
+		    area = value.toLowerCase();
+		    console.log('Selected Area:', area);
+		  }
+
+		  window.onclick = (e) => {
+		    if (!e.target.matches('.dropbtn1_click') && !e.target.matches('.dropbtn2_click')) {
+		      var dropdowns1 = document.getElementsByClassName('dropdown-content1');
+		      var dropdowns2 = document.getElementsByClassName('dropdown-content2');
+		      closeDropdowns(dropdowns1);
+		      closeDropdowns(dropdowns2);
+		    }
+		  };
+
+		  function closeDropdowns(dropdowns) {
+		    for (var i = 0; i < dropdowns.length; i++) {
+		      var openDropdown = dropdowns[i];
+		      if (openDropdown.classList.contains('show')) {
+		        openDropdown.classList.remove('show');
+		      }
+		    }
+		  }
+		};
+
 	</script>
 
 
