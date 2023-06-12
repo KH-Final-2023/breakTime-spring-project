@@ -88,9 +88,12 @@ html, body {
 	font-size: 20px;
 	resize: none;
 }
+
+
+
 </style>
 <body>
-	<%-- <%@ include file="/WEB-INF/views/header.jsp"%> --%>
+	 <%@ include file="/WEB-INF/views/header.jsp"%> 
 	<main>
 		<div class="booking">
 			<div id="booking-area">
@@ -145,9 +148,9 @@ html, body {
 									</td>
 								</tr>
 									
-
+		
 								<!--  수정 모달창 -->
-								<form action="<%=  request.getContextPath() %>/booking/reviewInsert" class="mb-3" id="reviewEnroll" method="post">
+								<form action="<%=  request.getContextPath() %>/booking/reviewInsert" class="mb-3"  method="post">
 									<div id="updateMember${vs.index }" class="modal fade"
 										id="registerModal" tabindex="-1" aria-labelledby="modalLabel"
 										aria-hidden="true">
@@ -177,7 +180,8 @@ html, body {
 														<label for="2-stars" class="star">★</label>
 														<input type="radio" id="1-star" name="starScore" value="1" v-model="ratings"/>
 														<label for="1-star" class="star">★</label>
-													</div>
+													</div> 
+
 													<div>
 														<textarea class="col-auto form-control" 
 															id="reviewContents" name="reviewContent"
@@ -211,7 +215,21 @@ html, body {
 	            alert("리뷰 등록에 성공하였습니다.");
 	    });
 	</script>
-	
+	<!--  공통적으로사용할 라이브러리 추가 -->
+	<!-- Jquey 라이브러리 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!-- 부트스트랩에서 제공하있는 스타일 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- 부투스트랩에서 제공하고있는 스크립트 -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- alertify -->
+	<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+	<!-- alertify css -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+	<!-- Default theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+	<!-- Semantic UI theme -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
 </body>
 
 </html>
