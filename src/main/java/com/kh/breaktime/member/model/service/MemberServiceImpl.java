@@ -36,11 +36,34 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public int updateId(Member inputMember,String newId) {
+	public int updateId(Member inputMember) {
 		
 		int result = memberDao.updateId(inputMember);
 
 		return result;
 	}
 	
+	@Override
+	public int updatePwd(Member inputMember) {
+		
+		int result = memberDao.updatePwd(inputMember);
+
+		return result;
+	}
+	
+	@Override
+	public int updateName(Member inputMember) {
+		
+		int result = memberDao.updateName(inputMember);
+
+		return result;
+	}
+	
+	@Override
+	public int updateEmail(Member inputMember) {
+		
+		int result = memberDao.updateEmail(inputMember);
+
+		return result;
+	}
 }

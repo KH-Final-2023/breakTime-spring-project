@@ -120,7 +120,7 @@ public class MemberController {
 			session.setAttribute("alertMsg", "회원가입");
 			url = "redirect:/";
 		} else { // 실패 - 에러페이지
-			model.addAttribute("errorMsg", "회원가입 실패");
+			model.addAttribute("alertMsg", "회원가입 실패");
 			url = "common/errorPage";
 		}
 
@@ -138,7 +138,6 @@ public class MemberController {
 	
 	@GetMapping("/myPage") 
 	public String myPageForm() {
-		
 		
 		return "member/myPage";
 	}
@@ -159,16 +158,76 @@ public class MemberController {
 	}
 	
 	@PostMapping("/updateId")
-	public String updateId(Member m,  @RequestParam("newId") String newId, Model model, HttpSession session) {
+	public String updateId(Member m, Model model, HttpSession session) {
 		
-		int result = memberService.updateId(m,newId);
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		m.setUserNo(userNo);
+		int result = memberService.updateId(m);
+
+		String url = "";
+		if (result > 0) { // 성공시 - 메인페이지로
+			session.setAttribute("alertMsg", "변경성공");
+			url = "redirect:/member/myPage";
+		} else { // 실패 - 에러페이지
+			model.addAttribute("errorMsg", "아이디변경 실패");
+			url = "common/errorPage";
+		}
+
+		return url;
+	}
+	
+	@PostMapping("/updatePwd")
+	public String updatePwd(Member m, Model model, HttpSession session) {
+		
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		m.setUserNo(userNo);
+		int result = memberService.updatePwd(m);
 
 		String url = "";
 		if (result > 0) { // 성공시 - 메인페이지로
 			session.setAttribute("alertMsg", "변경성공");
 			url = "redirect:/";
 		} else { // 실패 - 에러페이지
-			model.addAttribute("errorMsg", "아이디변경 실패");
+			model.addAttribute("alertMsg", "비밀번호변경 실패");
+			url = "common/errorPage";
+		}
+
+		return url;
+	}
+	
+	@PostMapping("/updateName")
+	public String updateName(Member m, Model model, HttpSession session) {
+		
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		m.setUserNo(userNo);
+		int result = memberService.updateName(m);
+
+		String url = "";
+		if (result > 0) { // 성공시 - 메인페이지로
+			session.setAttribute("alertMsg", "변경성공");
+			url = "redirect:/";
+		} else { // 실패 - 에러페이지
+			model.addAttribute("alertMsg", "이름변경 실패");
+			url = "common/errorPage";
+		}
+
+		return url;
+	}
+	
+	@PostMapping("/updateEmail")
+	public String updateEmail(Member m, Model model, HttpSession session) {
+		
+		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		m.setUserNo(userNo);
+		int result = memberService.updateEmail(m);
+
+		String url = "";
+		if (result > 0) { // 성공시 - 메인페이지로
+			
+			session.setAttribute("alertMsg", "변경성공");
+			url = "redirect:/";
+		} else { // 실패 - 에러페이지
+			model.addAttribute("alertMsg", "이름변경 실패");
 			url = "common/errorPage";
 		}
 

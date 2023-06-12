@@ -60,12 +60,14 @@
 			column="REVIEW_DECLARATION" />
 		<result property="parentReviewNo" column="PARENT_REVIEW_NO" />
 	</resultMap>
+	
+	
 	<!-- 로그인사업자 정보 SELECT(석범) -->
 	<select id="loginBusiness" parameterType="business"
 		resultMap="businessResultSet">
 		SELECT *
 		FROM BUSINESS
-		WHERE BU_ID = #{buId}
+		WHERE BU_ID= #{buId}
 		<!-- AND USER_PWD = #{userPwd} -->
 		AND APPROVAL = 'Y'
 	</select>
@@ -79,26 +81,28 @@
 		, BU_USER_NAME
 		, BU_CATEGORY
 		, BU_TITLE
-		,
-		BU_ADDRESS
+		, BU_ADDRESS
 		, EMAIL
 		, AREA_NO
 		, ROOM_COUNT
 		, BU_TEL
+		, BU_MAIN_IMG
+		, APPROVAL
 		)
 		VALUES(SEQ_BUNO.NEXTVAL
 		, #{buId}
 		, #{buPwd}
 		, #{buUserName}
-		,
-		#{buCategory}
+		, #{buCategory}
 		, #{buTitle}
 		, #{buAddress}
 		, #{email}
 		, #{areaNo}
-		,
-		#{roomCount}
-		, #{buTel})
+		, #{roomCount}
+		, #{buTel}
+		, #{buMainImg}
+		, 'N'
+		)
 	</insert>
 
 
@@ -108,7 +112,7 @@
 		resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</select>
 
 	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->

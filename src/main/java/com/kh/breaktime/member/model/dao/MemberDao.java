@@ -33,4 +33,19 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updateId", inputMember);
 	}
 	
+	public int updatePwd(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.updatePwd", inputMember);
+	}
+	
+	public int updateName(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.updateName", inputMember);
+	}
+	
+	public int updateEmail(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.updateEmail", inputMember);
+	}
+	
 }

@@ -10,5 +10,11 @@ public interface MemberService {
 	
 	public abstract int deleteMember(Member inputMember);
 	
-	public abstract int updateId(Member inputMember,String newId);
+	public abstract int updateId(Member inputMember);
+	
+	public abstract int updatePwd(Member inputMember);
+	
+	public abstract int updateName(Member inputMember);
+	
+	public abstract int updateEmail(Member inputMember);
 }
