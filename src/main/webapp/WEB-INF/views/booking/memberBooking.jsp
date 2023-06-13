@@ -33,7 +33,9 @@ html, body {
 	width: 100%;
 	height: 100%;
 }
-
+.booking {
+	margin-top:-10%;
+}
 #booking-area {
 	margin-top: 8%;
 	text-align: center;
@@ -93,7 +95,7 @@ html, body {
 	<%-- <%@ include file="/WEB-INF/views/header.jsp"%> --%>
 	<main>
 	<a href="<%=request.getContextPath()%>">
-		<img src="<%=request.getContextPath()%>/resources/images/homeBtn.png" style="width:100px; height:100px;">
+		<img src="<%=request.getContextPath()%>/resources/images/homeBtn.png" style="width:60px; height:60px;">
 	</a>
 		<div class="booking">
 			<div id="booking-area">
