@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.breaktime.detail.model.dao.DetailDAO;
+import com.kh.breaktime.detail.model.vo.AreaCode;
 import com.kh.breaktime.detail.model.vo.CategoryCode;
 import com.kh.breaktime.detail.model.vo.Detail;
 
@@ -45,5 +46,10 @@ public class DetailServiceImpl implements DetailService {
 		ArrayList<Detail> list = detailDao.searchDetailList(paramMap);
 		map.put("list", list);
 	}
+	
+	public void selectAreaList(String areaNo, Map<String, Object> map) {
+	      ArrayList<AreaCode> list = detailDao.selectAreaList(areaNo);
+	      map.put("list", list);
+	   }
 
 }

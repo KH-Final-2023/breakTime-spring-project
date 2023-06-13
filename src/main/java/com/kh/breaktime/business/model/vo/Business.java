@@ -30,6 +30,7 @@ public class Business {
 	private String buMainImg;
 	private Date enrollDate;
 	private int roomCount;
+
 	
 }
 

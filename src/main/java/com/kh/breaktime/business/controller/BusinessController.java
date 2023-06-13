@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.kh.breaktime.booking.model.vo.Booking;
 import com.kh.breaktime.business.model.service.BusinessService;
 import com.kh.breaktime.business.model.vo.Business;
+import com.kh.breaktime.member.model.vo.Member;
 import com.kh.breaktime.review.model.vo.Review;
 import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
@@ -172,17 +173,27 @@ public class BusinessController {
 	public String getBusinessReviews(Model model, HttpSession session) {
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
 		int buNo = loginBusiness.getBuNo();
-		
-			List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
-			
-			model.addAttribute("businessReviews", businessReviews);
-			System.out.println(buNo);
-			System.out.println(businessReviews);
-			return "businessRoom/buReview";
-		
-			
-			
-		
+
+		List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
+
+		model.addAttribute("businessReviews", businessReviews);
+		System.out.println(buNo);
+		System.out.println(businessReviews);
+		return "businessRoom/buReview";
+
 	}
 
+
+	@PostMapping("/reviewContentReply")
+	  public String updateReviewContentReply(@RequestParam("reviewContentReply") String reviewContentReply , int reviewNo) {
+		 Review review = new Review();
+	     review.setReviewNo(reviewNo);
+	     review.setReviewContentReply(reviewContentReply);
+		List<Review> result  = businessService.updateReviewContentReply(review);
+
+		
+
+		System.out.println(result);
+        return "businessRoom/buReview"; // 예시: 리뷰 목록 페이지로 리다이렉트
+    }
 }
