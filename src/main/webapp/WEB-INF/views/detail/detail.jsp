@@ -422,6 +422,17 @@ button {
 		  }
 		};
 
+		function submitForm() {
+		    var form = document.getElementById("houseOption");
+		    var formData = new FormData(form);
+		    var queryString = new URLSearchParams(formData).toString();
+		    
+		    var outsideValue = encodeURIComponent(outsideVariable);
+		    queryString += "&area=" + area;
+		    
+		    var url = form.action + "?" + queryString;
+		    window.location.href = url;
+		  }
 	</script>
 
 

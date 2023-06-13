@@ -282,6 +282,8 @@
 }
 </style>
 <script>
+	var inOut = [];
+
 	function init() {
 		// Dropdown 초기화
 		dropdown2();
@@ -463,36 +465,36 @@
 	}
 
 	function submitSelection() {
-		  var selectedDates = $(".selected-date");
-		  var inOut = [];
+		var selectedDates = $(".selected-date");
 
-		  if (selectedDates.length === 2) {
-		    var startDate = selectedDates.first().text().replace(/\(.*\)/g, "");
-		    var endDate = selectedDates.last().text().replace(/\(.*\)/g, "");
-		    var startMonth = startDate.split(" ")[0];
-		    var startDay = startDate.split(" ")[1];
-		    var endMonth = endDate.split(" ")[0];
-		    var endDay = endDate.split(" ")[1];
-		    var selectionText = startMonth + " " + startDay + "일 ~ " + endMonth + " " + endDay + "일";
-		    $(".dropbtn2_content").text(selectionText);
-		    inOut.push(startMonth + " " + startDay + "일");
-		    inOut.push(endMonth + " " + endDay + "일");
-		  } else if (selectedDates.length === 1) {
-		    var selectedDate = selectedDates.first().text().replace(/\(.*\)/g, "");
-		    var month = selectedDate.split(" ")[0];
-		    var day = selectedDate.split(" ")[1];
-		    var selectionText = month + " " + day + "일";
-		    $(".dropbtn2_content").text(selectionText);
-		    inOut.push(month + " " + day + "일");
-		  } else {
-		    $(".dropbtn2_content").text("날짜 선택");
-		  }
-		  closeDropdown();
-		  $("td").removeClass("selected-highlight");
-
-		  console.log(inOut);
+		if (selectedDates.length === 2) {
+			var startDate = selectedDates.first().text().replace(/\(.*\)/g, "");
+			var endDate = selectedDates.last().text().replace(/\(.*\)/g, "");
+			var startMonth = startDate.split(" ")[0];
+			var startDay = startDate.split(" ")[1];
+			var endMonth = endDate.split(" ")[0];
+			var endDay = endDate.split(" ")[1];
+			var selectionText = startMonth + " " + startDay + "일 ~ " + endMonth
+					+ " " + endDay + "일";
+			$(".dropbtn2_content").text(selectionText);
+			inOut.push(startMonth + " " + startDay + "일");
+			inOut.push(endMonth + " " + endDay + "일");
+		} else if (selectedDates.length === 1) {
+			var selectedDate = selectedDates.first().text().replace(/\(.*\)/g,
+					"");
+			var month = selectedDate.split(" ")[0];
+			var day = selectedDate.split(" ")[1];
+			var selectionText = month + " " + day + "일";
+			$(".dropbtn2_content").text(selectionText);
+			inOut.push(month + " " + day + "일");
+		} else {
+			$(".dropbtn2_content").text("날짜 선택");
 		}
+		closeDropdown();
+		$("td").removeClass("selected-highlight");
 
+		console.log(inOut);
+	}
 
 	function closeDropdownOutsideClick(event) {
 		var dropdown = $(".dropdown2");
