@@ -80,7 +80,6 @@
 		<if test='areaCode != null and areaCode != ""'>
 			AND AREA_NO = #{areaNo}
 		</if>
-
 		<choose>
 			<when test="condition == 'address'"> AND BU_ADDRESS LIKE #{keyword} </when>
 			<when test="condition == 'areano'"> AND AREA_NO LIKE #{keyword} </when>
