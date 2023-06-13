@@ -45,7 +45,7 @@ public class DetailController {
 	}
 
 	@GetMapping("/filter/{category}")
-	public String detailListSubmit(@PathVariable("category") String category,
+	public String filterListSubmit(@PathVariable("category") String category,
 			@RequestParam(value = "prices", required = false) List<String> prices,
 			@RequestParam(value = "reserveOptions", required = false) List<String> reserves,
 			@RequestParam(value = "houseOptions", required = false) List<String> options,
@@ -60,6 +60,5 @@ public class DetailController {
 
 		return "detail/detail";
 	}
-
 
 }
