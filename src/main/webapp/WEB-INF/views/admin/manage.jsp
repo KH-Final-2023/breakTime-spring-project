@@ -61,7 +61,7 @@
 									
 
 								<!--  수정 모달창 -->
-								<form action="<%=  request.getContextPath() %>/manage/update" id="updateForm" method="post">
+								<form action="<%=  request.getContextPath() %>/manage/update?buNo=${b.buNo}" id="updateForm" method="post">
 									<div id="updateMember${vs.index }" class="modal fade"
 										id="registerModal" tabindex="-1" aria-labelledby="modalLabel"
 										aria-hidden="true">

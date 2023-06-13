@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 
   <!-- Template Main CSS File -->
-  <link href="${pageContext.request.contextPath}/resources/admin/assets/css/style.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/admin/assets/css/style.css?after" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/resources/admin/assets/css/notice.css" rel="stylesheet">
   <!-- include summernote css/js-->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
@@ -55,9 +55,26 @@
 <script src="/resources/js/summernote-ko-KR.js"></script>
 <script src="/js/summernote/summernote-lite.js"></script>
 <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-  
-</head>
+<script>
+  // Get the current URL
+  var currentUrl = window.location.href;
 
+  // Select all sidebar menu items
+  var sidebarMenuItems = document.querySelectorAll('.sidebar-nav .nav-item');
+
+  // Iterate over each menu item and check if its href matches the current URL
+  sidebarMenuItems.forEach(function(item) {
+    var link = item.querySelector('.nav-link');
+    var href = link.getAttribute('href');
+    
+    // Add the "active" class to the menu item if its href matches the current URL
+    if (currentUrl.indexOf(href) !== -1) {
+      item.classList.add('active');
+    }
+  });
+</script>
+
+</head>
 <body>
 
   <!-- ======= Header ======= -->
@@ -322,7 +339,6 @@
 
   <!-- Template Main JS File -->
   <script src="${pageContext.request.contextPath}/resources/admin/assets/js/main.js"></script>
-
 </body>
 
 </html>
