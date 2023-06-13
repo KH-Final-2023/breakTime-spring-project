@@ -159,7 +159,7 @@ button {
 
 	<jsp:include page="/WEB-INF/views/detail/date_detail.jsp" />
 
-	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
+   <jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
 
 
