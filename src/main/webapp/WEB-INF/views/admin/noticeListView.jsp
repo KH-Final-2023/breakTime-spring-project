@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title></title>
 
 </head>
 
@@ -117,7 +118,19 @@
 			</div>
 		</div>
     </main>
-
+	<script>
+		$(document).ready(function() {
+	        var updateNotice = '<c:out value="${updateNotice}"/>';
+	        if(!(updateNotice==''))
+	            alert("공지사항 수정에 성공하였습니다.");
+	    });
+		
+		$(document).ready(function() {
+	        var insertNotice = '<c:out value="${insertNotice}"/>';
+	        if(!(insertNotice==''))
+	            alert("공지사항 등록에 성공하였습니다.");
+	    });
+	</script> 
  
 
 </body>

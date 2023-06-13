@@ -34,8 +34,8 @@ public class ManageDao {
 		return sqlSession.update("notice-mapper.manageUpdate", b);
 	}
 	
-	public int manageCancel(String buId) {
-		return sqlSession.delete("notice-mapper.manageCancel",buId);
+	public int manageCancel(Business b) {
+		return sqlSession.delete("notice-mapper.manageCancel",b);
 	}
 	
 }

@@ -70,4 +70,30 @@ public class NoticeServiceImpl implements NoticeService{
 	public int updateReadCount(int noticeNo) {
 		return noticeDao.updateReadCount(noticeNo);
 	}
+	
+	// 채팅
+	// 검색 게시글 목록 조회 서비스 구현
+	public void selectChatSearchList(Map<String, Object> paramMap, Map<String, Object> map) {
+		int listCount = noticeDao.selectChatSearchListCount(paramMap);
+		int pageLimit = 10;
+		int boardLimit = 5;
+		PageInfo pi = pagination.getPageInfo(listCount, (int) paramMap.get("currentPage"), pageLimit, boardLimit);
+
+		ArrayList<Notice> list = noticeDao.selectChatSearchList(pi, paramMap);
+
+		map.put("pi", pi);
+		map.put("list", list);
+	}
+
+	@Override
+	public void selectChatSearchList(int cp, Map<String, Object> map) {
+		int listCount = noticeDao.selectChatSearchListCount();
+		int pageLimit = 10;
+		int boardLimit = 10;
+		PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
+
+		map.put("pi", pi);
+		map.put("list", noticeDao.selectChatSearchList(pi));
+
+	}
 }

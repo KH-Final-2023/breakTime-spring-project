@@ -146,13 +146,14 @@ notice {
 }
 
 #RenrollWrap {
-        width: 100%;
-        height: 80%;
-        border: 1px solid rgb(224, 224, 224);
-        border-radius: 10px;
-        padding: 20px;
-        background: rgb(247, 247, 247);
-      }
+	width: 100%;
+	height: 80%;
+	border: 1px solid rgb(224, 224, 224);
+	border-radius: 10px;
+	padding: 20px;
+	background: rgb(247, 247, 247);
+}
+
 .dropbtn {
 	background-color: white;
 	color: white;
@@ -217,7 +218,7 @@ notice {
 }
 
 #reviewRoomNameList {
-	width: 8%;
+	width: 5%;
 	height: 20px;
 	border-radius: 2px;
 	text-align: center;
@@ -226,7 +227,7 @@ notice {
 }
 
 #reviewRoomNameInfo {
-	width: 92%;
+	width: 95%;
 	margin-left: 10px;
 	border-radius: 2px;
 	color: rgb(97, 97, 97);
@@ -257,4 +258,61 @@ notice {
 	float: right;
 	font-size: 16px;
 	color: rgb(97, 97, 97);
+}
+
+#detailcomment {
+	width: 50%;
+	height: 100px;
+	text-align: center;
+	margin: 40px auto;
+	font-size: x-large;
+}
+
+.inquiryDetail {
+	width: 70%;
+	margin-top: 30px;
+	margin-bottom: 80px;
+	border-top: 3px solid #623f30;
+	border-collapse: collapse;
+}
+
+.inquiryDetail tr {
+	border-bottom: 2px solid #e6e6e6;
+	padding: 10px;
+}
+
+.inquiryDetail tr td {
+	border-bottom: 2px solid #e6e6e6;
+	padding: 10px;
+	height: 30px;
+}
+
+#detail {
+	text-align: center;
+	width: 130px;
+	height: 40px;
+	color: white;
+	font-weight: 900;
+	background-color: #428bca;
+}
+
+#detailcontent {
+	text-align: center;
+	width: 130px;
+	height: 440px;
+	color: white;
+	font-weight: 900;
+	background-color: #428bca;
+}
+
+#detailtextarea {
+	width: 100%;
+	height: 440px;
+	font-size: 18px;
+	border: none;
+	background-color: white;
+}
+
+#detailtextarea:focus {
+	outline: none;
 }

@@ -15,11 +15,10 @@ import com.kh.breaktime.room.model.vo.RoomImg;
 @Repository
 public class BusinessDao {
 
-
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-   public Business loginBusiness(Business inputBusiness) {
+	public Business loginBusiness(Business inputBusiness) {
 
 		return sqlSession.selectOne("businessMapper.loginBusiness", inputBusiness);
 	}
@@ -29,20 +28,19 @@ public class BusinessDao {
 		return sqlSession.insert("businessMapper.insertBusiness", inputBusiness);
 	}
 
-	public List<Room> getRoomsByBuId(String buId) {
-		return sqlSession.selectList("businessMapper.getRoomsByBuId", buId);
+	public List<Room> getRoomsByBuId(int buNo) {
+		return sqlSession.selectList("businessMapper.getRoomsByBuId", buNo);
 	}
 
 	public RoomImg getRoomImagesByBuId(int roomNo) {
 		return sqlSession.selectOne("businessMapper.getRoomImagesByBuId", roomNo);
 	}
 
-	public List<Booking> getAllBookings() {
-		return sqlSession.selectList("businessMapper.selectBookings");
+	public List<Booking> getBookingsByBusinessId(int buNo) {
+		return sqlSession.selectList("businessMapper.selectBookingsByBusinessId", buNo);
 	}
-	
-	public List<Review> getReviewsForBusiness(String businessId){
-		return sqlSession.selectList("businessMapper.getReviewsForBusiness");
+
+	public List<Review> getReviewsForBusiness(int buNo) {
+		return sqlSession.selectList("businessMapper.getReviewsForBusiness", buNo);
 	}
 }
-
