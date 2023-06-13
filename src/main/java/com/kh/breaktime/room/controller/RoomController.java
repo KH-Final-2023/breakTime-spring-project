@@ -59,7 +59,7 @@ public class RoomController {
 			buRoom.setRoomImg(savedImagePaths);
 			buService.insertBuRoom(buRoom, upfiles);
 			session.setAttribute("alertMsg", "객실 등록이 완료되었습니다.");
-			return "businessRoom/buRoomList";
+			return "redirect:/businessRoom/buRoomList";
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 등록 실패");
@@ -143,24 +143,21 @@ public class RoomController {
 			Model model, @RequestParam(value = "roomNo") int roomNo, @RequestParam(value = "fileNo") int fileNo) {
 		System.out.println("준석");
 		System.out.println("===================" + room);
-		System.out.println(room);
+
 		try {
 			List<String> savedImagePaths = new ArrayList<>();
-			for (MultipartFile file : upfiles) {
-				if (!file.isEmpty()) {
-					String savedImagePath = saveImage1(file);
-					savedImagePaths.add(savedImagePath);
-				}
-			}
-
 			int result = buService.updateRoom(room);
-
+			
 			// RoomImg 정보 수정
 			List<RoomImg> roomImgList = new ArrayList<>();
 
 			for (MultipartFile file : upfiles) {
+				// 파일이 비어있지 않은 경우 -> 사진까지 수정한 경우
 				if (!file.isEmpty()) {
-					String savedImagePath = saveImage(file);
+					String savedImagePath = saveImage1(file);
+					savedImagePaths.add(savedImagePath);
+					
+					savedImagePath = saveImage(file);
 
 					RoomImg roomImg = new RoomImg();
 					roomImg.setFileNo(fileNo);
@@ -174,19 +171,22 @@ public class RoomController {
 					roomImgList.add(roomImg);
 
 					System.out.println(roomImgList);
+
+					// RoomImg 리스트 업데이트
+					buService.updateRoomImg(roomImgList);
 				}
+				session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
+				return "redirect:/businessRoom/buRoomList";
 			}
+			return "redirect:/businessRoom/buRoomList";
 
-			// RoomImg 리스트 업데이트
-			buService.updateRoomImg(roomImgList);
-			session.setAttribute("alertMsg", "객실 수정이 완료되었습니다.");
-			return "redirect:/business/buLogin";
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 수정 실패");
 			return "common/errorPage";
 		}
+		
 	}
 
 	private String saveImage1(MultipartFile file) throws IOException {
@@ -226,4 +226,56 @@ public class RoomController {
 		return "businessRoom/buRoomModify";
 	}
 
+	
+	@GetMapping("buRoomList")
+	   public String selectBuRoomList(Model model,  HttpSession session
+	                      ) {
+		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
+		List<Room> roomList = buService.standardRoom(loginBusiness.getBuNo());
+
+		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
+		for (int i = 0; i < roomList.size(); i++) {
+
+			RoomImg roomImg = buService.standardRoomImg(roomList.get(i).getRoomNo());
+			roomImgList.add(roomImg);
+		}
+
+		model.addAttribute("roomList", roomList);
+		model.addAttribute("roomImgList", roomImgList);
+		System.out.println(roomList);
+		System.out.println(roomImgList);
+		return "businessRoom/buRoomList";
+	   }
+	
+	@GetMapping("/searchRoomList")
+    public String searchRooms( @RequestParam Map<String, Object> paramMap,String roomName, int roomHCount, String roomPrice, Model model) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("roomName", roomName);
+		params.put("roomHCount", roomHCount);
+		params.put("roomPrice", roomPrice);
+        List<Room> roomList = buService.searchRooms(params);
+        if(roomList == null) {
+        model.addAttribute("errorMsg", "객실 등록 실패");
+		return "common/errorPage";
+        }
+        model.addAttribute("roomList", roomList);
+        System.out.println(roomList);
+        return "businessRoom/buRoomList";
+    }
+	
+	/*
+	 * @GetMapping("/paing") public String searchRoomList(@RequestParam(defaultValue
+	 * = "1") int page, Model model) { int pageSize = 10; // 한 페이지에 표시할 방 개수 int
+	 * totalCount = roomService.getTotalCount(); // 전체 방 개수
+	 * 
+	 * // 페이징 계산 Pagination pagination = new Pagination(totalCount, page, pageSize);
+	 * 
+	 * // 페이지에 해당하는 방 정보 가져오기 List<Room> roomList = roomService.getRoomsByPage(page,
+	 * pageSize);
+	 * 
+	 * model.addAttribute("roomList", roomList); model.addAttribute("pagination",
+	 * pagination);
+	 * 
+	 * return "searchRoomList"; }
+	 */
 }

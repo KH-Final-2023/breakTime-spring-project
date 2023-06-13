@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.breaktime.detail.model.vo.AreaCode;
 import com.kh.breaktime.detail.model.vo.CategoryCode;
 import com.kh.breaktime.detail.model.vo.Detail;
 
@@ -40,5 +41,8 @@ public class DetailDAO {
 		
 		return (ArrayList)sqlSession.selectList("detailMapper.searchDetailList", paramMap);
 	}
-
+	
+	public ArrayList<AreaCode> selectAreaList(String areaNo) {
+	      return (ArrayList) sqlSession.selectList("detailMapper.selectAreaList", areaNo);
+	   }
 }

@@ -61,4 +61,5 @@ public class DetailController {
 		return "detail/detail";
 	}
 
+
 }

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.common.model.vo.PageInfo;
 import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
@@ -59,7 +60,7 @@ public class RoomDao {
 	public int updateRoomImg(List<RoomImg> roomImgList) {
 		return sqlSession.update("buRoom-mapper.updateRoomImg", roomImgList);
 	}
-	
+
 	public List<Room> getRoomsByBuId(int roomNo) {
 		return sqlSession.selectList("buRoom-mapper.getRoomsByBuId", roomNo);
 	}
@@ -67,4 +68,17 @@ public class RoomDao {
 	public RoomImg getRoomImagesByBuId(int roomNo) {
 		return sqlSession.selectOne("buRoom-mapper.getRoomImagesByBuId", roomNo);
 	}
+
+	public List<Room> standardRoom(int buNo) {
+		return sqlSession.selectList("buRoom-mapper.standardRoom", buNo);
+	}
+
+	public RoomImg standardRoomImg(int roomNo) {
+		return sqlSession.selectOne("buRoom-mapper.standardRoomImg", roomNo);
+	}
+
+	public List<Room> searchRooms(Map<String, Object> params) {
+	    return sqlSession.selectList("buRoom-mapper.searchRooms", params);
+	}
+
 }

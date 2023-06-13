@@ -1,76 +1,111 @@
-#content1{
-    display: flex;
-    justify-content: space-around;
-    width: 300px;
-    margin: 0 auto;
-    background-color: greenyellow;
-    border-radius: 15px;
-    }
-    #content1 div {
-    margin: 10px; /* 요소 간격 조정 */
-    }
-    #content1{
-        margin-top: 100px;
-    }
-    #reservationList>div {
-        width: 80px;
-        margin-left: 45px;
-        margin-right: 45px;
-    }
-    #content2{
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-    #reservationList{
-        display: flex;
-        margin: 10px;
-    }
-    #header {
-        height: 80px;
-        width: 100%;
-        position: fixed;
-        top: 0;
-        z-index:1;
-        border-bottom: 1px solid gray;
-        }
-        
-        #header-content {
-        width: 1180px;
-        margin: auto;
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        }
-        
-        #navbar {
-        padding: 2px;
-        width: 600px;
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        font-size: 20px;
-        }
-       
-        
-        
-        #navbar > div:hover{
-        color:greenyellow;
-        cursor:pointer;
-        }
-        
-        
-        #home-logo {
-        height: 100%;
-        width: 120px;
-        cursor: pointer;
-        }
-        
-        #home-logo>img {
-        width: 100%;
-        height: 100%;
-        cursor: pointer;
-        }
-        
-        
+#content1 {
+	display: flex;
+	justify-content: center;
+}
+
+#reservationFormMove {
+	display: flex;
+	justify-content: space-around;
+	width: 600px;
+	height: 60px;
+	background-color: #c0e2c0;
+	border-radius: 15px;
+	margin-top: 150px;
+	align-items: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button {
+	font-family: 'Arial', fantasy;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: solid 1px black;
+	border-radius: 5px;
+	background-color: green;
+	color: white;
+	height : 30px;
+}
+
+#buRoomRegister, #buRoomReservation, #buReview {
+	border: solid 1px black;
+	border-radius: 5px;
+	background-color: green;
+	color: white;
+	width: 100px;
+	height: 40px;
+}
+
+table {
+	width: 1900px;
+
+
+}
+
+tbody {
+	text-align: center;
+	background-color: #c0e2c0;
+	height: 40px;
+}
+
+thead {
+	background-color: green;
+	height: 60px;
+}
+
+
+
+#content2 {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+#reservationList {
+	display: flex;
+
+}
+
+#header {
+	height: 80px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	border-bottom: 1px solid gray;
+}
+
+#header-content {
+	width: 1180px;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+#navbar {
+	padding: 2px;
+	width: 600px;
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	font-size: 20px;
+}
+
+#navbar>div:hover {
+	color: greenyellow;
+	cursor: pointer;
+}
+
+#home-logo {
+	height: 100%;
+	width: 120px;
+	cursor: pointer;
+}
+
+#home-logo>img {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}

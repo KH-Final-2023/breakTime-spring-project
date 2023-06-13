@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.breaktime.booking.model.dao.BookingDao;
 import com.kh.breaktime.booking.model.vo.Booking;
-import com.kh.breaktime.decide.model.vo.Decide;
+import com.kh.breaktime.review.model.vo.Review;
 
 @Service
 public class BookingServiceImpl implements BookingService{
@@ -20,4 +20,11 @@ public class BookingServiceImpl implements BookingService{
 	public ArrayList<Booking> selectBookingList(int userNo) {
 		return bookingDao.selectBookingList(userNo);
 	}
+	
+	@Override
+	public int insertReview(Review r) {
+		
+		return bookingDao.insertReview(r);
+	}
+
 }

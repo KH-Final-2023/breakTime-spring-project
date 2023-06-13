@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.breaktime.booking.model.vo.Booking;
+import com.kh.breaktime.review.model.vo.Review;
 
 @Repository
 public class BookingDao {
@@ -18,5 +19,9 @@ public class BookingDao {
 		
 		return (ArrayList)sqlSession.selectList("bookingMapper.selectBookingList", userNo);
 	}
-
+	
+	public int insertReview(Review r) {
+		return sqlSession.insert("bookingMapper.insertReview", r);
+	}
+	
 }
