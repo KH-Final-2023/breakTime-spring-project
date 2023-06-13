@@ -27,7 +27,7 @@ public class DetailServiceImpl implements DetailService {
 		return detailDao.selectCategoryCodeList();
 	}
 
-	public void selectDetailList(String category, Map<String, Object> map) {
+	public void selectDetailList(String category, Map<String, Object> map) {TDT
 		ArrayList<Detail> list = detailDao.selectDetailList(category);
 		map.put("list", list);
 	}

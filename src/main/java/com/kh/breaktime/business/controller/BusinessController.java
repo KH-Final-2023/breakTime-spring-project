@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.booking.model.vo.Booking;
@@ -118,7 +119,7 @@ public class BusinessController {
 
 			return "businessRoom/buRoomList";
 		} else { // 로그인 실패
-			ra.addFlashAttribute("errorMsg", "로그인 실패");
+			session.setAttribute("alertMsg", "관리자 승인대기중");
 			return "redirect:/"; // 로그인 실패 시 메인페이지로 이동하도록 수정
 		}
 
@@ -129,9 +130,17 @@ public class BusinessController {
 
 		return "business/businessEnrollForm";
 	}
-
-	@PostMapping("/insert")
-	public String insertBusiness(Business b, HttpSession session, Model model) {
+	
+	@GetMapping("/logout")
+    public String logoutBusiness(HttpSession session , SessionStatus status) throws Exception{
+       
+		status.setComplete();
+		session.setAttribute("alertMsg", "사업자 로그아웃성공");
+        return "redirect:/";              
+    }
+	
+   @PostMapping("/insert")
+   public String insertBusiness(Business b, HttpSession session, Model model) {
 
 		int result = businessService.insertBusiness(b);
 

@@ -27,6 +27,7 @@ public class Business {
 	private String buTitle;
 	private String buMainImg;
 	private String approval;
+	private String buMainImg;
 	private Date enrollDate;
 	private int roomCount;
 
