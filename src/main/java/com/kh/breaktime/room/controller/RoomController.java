@@ -47,7 +47,8 @@ public class RoomController {
 	@PostMapping("/enroll")
 	public String registerBuRoom(Room buRoom, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
 			Model model) {
-		System.out.println(buRoom);
+		System.out.println("=============================================================" + buRoom);
+
 		try {
 			List<String> savedImagePaths = new ArrayList<>();
 			for (MultipartFile file : upfiles) {
@@ -141,13 +142,11 @@ public class RoomController {
 	@PostMapping("/buRoomModify")
 	public String updateBuRoom(Room room, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
 			Model model, @RequestParam(value = "roomNo") int roomNo, @RequestParam(value = "fileNo") int fileNo) {
-		System.out.println("준석");
-		System.out.println("===================" + room);
 
 		try {
 			List<String> savedImagePaths = new ArrayList<>();
 			int result = buService.updateRoom(room);
-			
+
 			// RoomImg 정보 수정
 			List<RoomImg> roomImgList = new ArrayList<>();
 
@@ -156,7 +155,7 @@ public class RoomController {
 				if (!file.isEmpty()) {
 					String savedImagePath = saveImage1(file);
 					savedImagePaths.add(savedImagePath);
-					
+
 					savedImagePath = saveImage(file);
 
 					RoomImg roomImg = new RoomImg();
@@ -170,8 +169,6 @@ public class RoomController {
 
 					roomImgList.add(roomImg);
 
-					System.out.println(roomImgList);
-
 					// RoomImg 리스트 업데이트
 					buService.updateRoomImg(roomImgList);
 				}
@@ -180,13 +177,12 @@ public class RoomController {
 			}
 			return "redirect:/businessRoom/buRoomList";
 
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMsg", "객실 수정 실패");
 			return "common/errorPage";
 		}
-		
+
 	}
 
 	private String saveImage1(MultipartFile file) throws IOException {
@@ -213,26 +209,24 @@ public class RoomController {
 		// 방 이미지와 방 정보 페이지로 이동
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
 		List<Room> roomList = buService.getRoomsByBuId(roomNo);
-		System.out.println("니가 조회한 룸이다:" + roomList);
+
 		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 		for (int i = 0; i < roomList.size(); i++) {
 			RoomImg roomImg = buService.getRoomImagesByBuId(roomList.get(i).getRoomNo());
 			roomImgList.add(roomImg);
 		}
 
-		model.addAttribute("room", roomList.get(0));
+		model.addAttribute("room", roomList);
 		model.addAttribute("roomImg", roomImgList.get(0));
 
 		return "businessRoom/buRoomModify";
 	}
 
-	
 	@GetMapping("buRoomList")
-	   public String selectBuRoomList(Model model,  HttpSession session
-	                      ) {
+	public String selectBuRoomList(Model model, HttpSession session) {
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
 		List<Room> roomList = buService.standardRoom(loginBusiness.getBuNo());
-
+		System.out.println("===================================" + roomList);
 		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 		for (int i = 0; i < roomList.size(); i++) {
 
@@ -245,24 +239,25 @@ public class RoomController {
 		System.out.println(roomList);
 		System.out.println(roomImgList);
 		return "businessRoom/buRoomList";
-	   }
-	
+	}
+
 	@GetMapping("/searchRoomList")
-    public String searchRooms( @RequestParam Map<String, Object> paramMap,String roomName, int roomHCount, String roomPrice, Model model) {
+	public String searchRooms(@RequestParam Map<String, Object> paramMap, String roomName, int roomHCount,
+			String roomPrice, Model model) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("roomName", roomName);
 		params.put("roomHCount", roomHCount);
 		params.put("roomPrice", roomPrice);
-        List<Room> roomList = buService.searchRooms(params);
-        if(roomList == null) {
-        model.addAttribute("errorMsg", "객실 등록 실패");
-		return "common/errorPage";
-        }
-        model.addAttribute("roomList", roomList);
-        System.out.println(roomList);
-        return "businessRoom/buRoomList";
-    }
-	
+		List<Room> roomList = buService.searchRooms(params);
+		if (roomList == null) {
+			model.addAttribute("errorMsg", "객실 등록 실패");
+			return "common/errorPage";
+		}
+		model.addAttribute("roomList", roomList);
+
+		return "businessRoom/buRoomList";
+	}
+
 	/*
 	 * @GetMapping("/paing") public String searchRoomList(@RequestParam(defaultValue
 	 * = "1") int page, Model model) { int pageSize = 10; // 한 페이지에 표시할 방 개수 int

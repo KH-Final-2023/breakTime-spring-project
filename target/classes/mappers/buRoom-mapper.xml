@@ -6,6 +6,8 @@
 		<id column="ROOM_NO" property="roomNo" />
 		<result column="BU_NO" property="buNo" />
 		<result column="ROOM_H_COUNT" property="roomHCount" />
+		<result column="ROOM_CHECKIN" property="roomCheckin" />
+		<result column="ROOM_CHECKOUT" property="roomCheckout" />
 		<result column="ROOM_NAME" property="roomName" />
 		<result column="ROOM_PRICE" property="roomPrice" />
 		<result column="ROOM_INFO" property="roomInfo" />
@@ -28,6 +30,8 @@
 		ROOM_NO,
 		BU_NO,
 		ROOM_H_COUNT,
+		ROOM_CHECKIN,
+		ROOM_CHECKOUT,
 		ROOM_NAME,
 		ROOM_PRICE,
 		ROOM_INFO
@@ -37,6 +41,8 @@
 		#{roomNo},
 		#{buNo},
 		#{roomHCount},
+		#{roomCheckin},
+		#{roomCheckout},
 		#{roomName},
 		#{roomPrice},
 		#{roomInfo}
@@ -92,15 +98,15 @@
 		</foreach>
 	</update>
 
-	<!-- 사업자의 방 목록 SELECT (준석) -->
-	<select id="getRoomsByBuId" parameterType="_int"
-		resultMap="roomResultMap">
-		SELECT *
-		FROM ROOM
-		WHERE ROOM_NO = #{roomNo}
-	</select>
+	<!-- 사업자의 방 목록 SELECT (준석) 수정페이지-->
+	<select id="getRoomsByBuId" parameterType="_int" resultMap="roomResultMap">
+    SELECT *
+    FROM ROOM
+    WHERE ROOM_NO = #{roomNo}
+</select>
 
-	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
+
+	<!-- 사업자의 방 이미지 목록 SELECT (준석) 수정페이지 이미지 조회-->
 	<!-- 방 이미지 조회 -->
 	<select id="getRoomImagesByBuId" parameterType="_int"
 		resultMap="roomImgResultMap">

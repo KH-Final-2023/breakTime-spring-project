@@ -70,6 +70,7 @@ public class RoomDao {
 	}
 
 	public List<Room> standardRoom(int buNo) {
+		System.out.println("****************************8"+buNo);
 		return sqlSession.selectList("buRoom-mapper.standardRoom", buNo);
 	}
 

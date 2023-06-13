@@ -47,5 +47,10 @@ public class BusinessDao {
 	public List<Review> updateReviewContentReply(Review review) {
 	    return sqlSession.selectOne("businessMapper.updateReviewContentReply", review);
 	}
+	
+
+	public int updateReviewDeclaration(int review) {
+	    return sqlSession.update("businessMapper.updateReviewDeclaration", review);
+	}
 
 }

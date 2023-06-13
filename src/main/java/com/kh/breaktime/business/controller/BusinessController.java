@@ -194,6 +194,12 @@ public class BusinessController {
 		
 
 		System.out.println(result);
-        return "businessRoom/buReview"; // 예시: 리뷰 목록 페이지로 리다이렉트
+		 return "redirect:/business/review"; // 예시: 리뷰 목록 페이지로 리다이렉트
     }
+	
+	 @PostMapping("/reviewdeclariation")
+	    public String updateReviewDeclaration(@RequestParam("reviewNo") int reviewNo) {
+		 businessService.updateReviewDeclaration(reviewNo);
+		 return "redirect:/business/review";  // 리다이렉트할 페이지의 경로
+	    }
 }
