@@ -56,6 +56,41 @@
 		, 1)
 	</insert>
 	
+	<!-- 고객 회원탈퇴( 석범) -->
+	<update id="deleteMember" parameterType="member">
+		UPDATE MEMBER
+		   SET STATUS = 'N'
+		 WHERE USER_ID = #{userId}
+	</update>
+	
+	<!-- 아이디변경 -->
+	<update id="updateId" parameterType="member"> 
+		UPDATE MEMBER
+		   SET USER_ID = #{userId}
+		 WHERE USER_NO = #{userNo}
+	</update> 
+	
+	<!-- 비밀번호변경 -->
+	<update id="updatePwd" parameterType="member"> 
+		UPDATE MEMBER
+		   SET USER_PWD = #{userPwd}
+		WHERE USER_NO = #{userNo}
+	</update> 
+	
+	<!-- 이름변경 -->
+	<update id="updateName" parameterType="member"> 
+		UPDATE MEMBER
+		   SET USER_NAME = #{userName}
+		WHERE USER_NO = #{userNo}
+	</update> 
+	
+	<!-- 이메일변경 -->
+	<update id="updateEmail" parameterType="member"> 
+		UPDATE MEMBER
+		   SET EMAIL = #{email}
+		WHERE USER_NO = #{userNo}
+	</update> 
+	
 	<!--  충영 -->
 	<select id="selectSearchListCount" resultType="_int">
 	SELECT COUNT(*)

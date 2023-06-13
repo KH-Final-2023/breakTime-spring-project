@@ -29,6 +29,32 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.insertMember", inputMember);
 	}
 	
+	public int deleteMember(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.deleteMember", inputMember);
+		
+	}
+	
+	public int updateId(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.updateId", inputMember);
+	}
+	
+	public int updatePwd(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.updatePwd", inputMember);
+	}
+	
+	public int updateName(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.updateName", inputMember);
+	}
+	
+	public int updateEmail(Member inputMember) {
+		
+		return sqlSession.update("memberMapper.updateEmail", inputMember);
+	}
+	
 	// 충영
 	public int selectSearchListCount() {
 		return sqlSession.selectOne("memberMapper.selectSearchListCount");
