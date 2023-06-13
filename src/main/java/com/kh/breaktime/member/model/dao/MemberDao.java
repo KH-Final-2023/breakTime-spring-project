@@ -77,6 +77,7 @@ public class MemberDao {
 		
 		return (ArrayList)sqlSession.selectList("memberMapper.selectSearchList", "", rowBounds);
 	}
+	
 	public ArrayList<Notice> selectSearchList(PageInfo pi,Map<String, Object> paramMap){
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();

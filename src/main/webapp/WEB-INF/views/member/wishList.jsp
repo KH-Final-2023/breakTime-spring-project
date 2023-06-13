@@ -94,7 +94,7 @@
 				<c:forEach items="${list}" var="w">
 				<div style="border:1px solid black; width:90%; height:600px; display:flex;" >
 					<div style="border: 1px solid black; width: 50%; height: 100%; display:flex; align-items:center; flex-direction:column;">
-						<div style="height:45%; width:100%"><img>buMainImg</div>
+						<div style="height:45%; width:100%"><img></div>
 						<h2>업체타이틀</h2>
 						<div>
 							<img src="${w.buMainImg}">

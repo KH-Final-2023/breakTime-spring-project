@@ -97,7 +97,7 @@ public class MemberController {
 			resp.addCookie(cookie);
 			
 		}else { // 로그인실패
-			ra.addFlashAttribute("errorMsg","로그인 실패");
+			ra.addFlashAttribute("alertMsg","로그인 실패");
 			// redirect시 잠깐 데이터를 sessionScope에 보관 -> redirect완료 후 다시 requestScope로 이관
 			// : redirect(페이지 재요청) 시에도 request scope로 세팅된 데이터가 유지될 수 있도록 하는 방법을 spring에서 제공해줌.
 			// RedirectAttributes 객체(컨트롤러의 매개변수로 작성하면 Argument Resolver가 넣어줌)
@@ -207,6 +207,7 @@ public class MemberController {
 		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		m.setUserNo(userNo);
+		
 		int result = memberService.updateName(m);
 
 		String url = "";
@@ -267,7 +268,10 @@ public class MemberController {
 	@GetMapping("/wishList")
 	public String wishList( Model model, HttpSession session,  WishList w){
 		Member loginUser = (Member) session.getAttribute("loginUser");
+		
 		int userNo = loginUser.getUserNo();
+		w.setUserNo(userNo);
+		
 		List<WishList> list = memberService.selectWishList(w);
 		
 		model.addAttribute("list", list);

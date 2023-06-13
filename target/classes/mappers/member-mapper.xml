@@ -143,7 +143,7 @@
         JOIN MEMBER M ON M.USER_NO = W.USER_NO
         JOIN BUSINESS B ON B.BU_NO = W.BU_NO
         JOIN ROOM R ON R.BU_NO = W.BU_NO
-        WHERE W.USER_NO = 2
+        WHERE W.USER_NO = #{userNo}
 	</select>
 	
 	
