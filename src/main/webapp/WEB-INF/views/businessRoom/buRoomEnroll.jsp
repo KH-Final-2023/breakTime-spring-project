@@ -14,20 +14,23 @@
   <%@ include file="../header.jsp"%> 
     <div id="content">
         <div id="content1">
-            <form action="/breaktime/businessRoom/resister" method="GET">
-				<button type="submit" id="buRoomRegister">객실 등록</button>
-			</form>
-			<form action="/breaktime/business/reservation" method="GET">
-				<button type="submit" id="buRoomReservation">예약 내역</button>
-			</form>
-			<form action="/breaktime/business/review" method="GET">
-				<button type="submit" id="buReview">리뷰</button>
-			</form>
+            <div id="formMove">
+				<form action="/breaktime/businessRoom/resister" method="GET">
+					<button type="submit" id="buRoomRegister">객실 등록</button>
+				</form>
+				<form action="/breaktime/business/reservation" method="GET">
+					<button type="submit" id="buRoomReservation">예약 내역</button>
+				</form>
+				<form action="/breaktime/business/review" method="GET">
+					<button type="submit" id="buReview">리뷰</button>
+				</form>
+			</div>
         </div>
        <div id="content2">
-    <div id="roomResisterText1" style="font-size: x-large; margin: 15px;">객실 등록</div>
+       <div id="roomEnrollForm">
 
    		<form id="buRoomEnrollForm" action="/breaktime/businessRoom/enroll" enctype="multipart/form-data" method="POST">	   
+    		<div id="roomResisterText1" style="font-size: x-large; margin: 15px;">객실 등록</div>
 		    <div><input type="hidden" name="buNo"  value="${loginBusiness.buNo }"></div> 
 		    <div id="ResisterRoomName">객실 이름 :</div>
 		    <div><input name="roomName" placeholder="등록할 객실 이름을 입력해주세요"></div>
@@ -39,8 +42,9 @@
 		    <div><textarea name="roomInfo"></textarea></div>
 		    <div id="roomPhotoInfoText">객실 사진 등록</div>
 		    <div><input type="file" multiple style="height: 150px;" name="upfiles"></div>
-		    <div><button id="registerBtn" type="submit">등록하기</button></div>
+		    <div id="enrollBtn"><button id="registerBtn" type="submit">등록하기</button></div>
 		</form>
+	</div>
 	</div>
     </div>
 </body>

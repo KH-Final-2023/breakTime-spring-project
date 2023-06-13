@@ -71,6 +71,15 @@ public class DetailController {
 	    return "detail/detail";
 	}
 
+	@GetMapping("/marea/{areaNo}")
+	   public String selectAreaList(@PathVariable("areaNo") String areaNo, Model model) {
+	       Map<String, Object> map = new HashMap<>();
 
+	       detailService.selectAreaList(areaNo, map);
+
+	       model.addAttribute("map", map);
+
+	       return "detail/detail";
+	   }
 	
 }

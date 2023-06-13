@@ -60,8 +60,10 @@
 		<result property="reviewContent" column="REVIEW_CONTENT" />
 		<result property="reviewAvailable" column="REVIEW_AVAILABLE" />
 		<result property="createDate" column="CREATE_DATE" />
-		<result property="reviewDeclaration" column="REVIEW_DECLARIATION" />
-		<result property="reviewContentReply" column="REVIEW_CONTENT_REPLY" />
+		<result property="reviewDeclaration"
+			column="REVIEW_DECLARIATION" />
+		<result property="reviewContentReply"
+			column="REVIEW_CONTENT_REPLY" />
 	</resultMap>
 	<!-- 로그인사업자 정보 SELECT(석범) -->
 	<select id="loginBusiness" parameterType="business"
@@ -129,24 +131,30 @@
 		FROM BOOKING
 		WHERE ROOM_NO IN (
 		SELECT ROOM_NO
-		FROM ROOM
+		FROM
+		ROOM
 		WHERE BU_NO = #{buNo}
 		)
 	</select>
 
 	<select id="getReviewsForBusiness" resultMap="reviewMap">
-    SELECT
-        R.REVIEW_NO, R.REVIEW_WRITER, R.USING_ROOM, R.USER_NO, R.ROOM_NO,
-        R.BOOK_NO, R.STAR_SCORE, R.REVIEW_CONTENT, R.REVIEW_AVAILABLE,
-        R.CREATE_DATE, R.REVIEW_DECLARIATION, R.REVIEW_CONTENT_REPLY
-    FROM
-        REVIEW R
-    INNER JOIN BOOKING B ON R.BOOK_NO = B.BOOK_NO
-    INNER JOIN ROOM RO ON B.ROOM_NO = RO.ROOM_NO
-    WHERE
-        R.REVIEW_AVAILABLE = 'Y'
-        AND RO.BU_NO = #{buNo}
-</select>
+		SELECT
+		R.REVIEW_NO, R.REVIEW_WRITER, R.USING_ROOM, R.USER_NO, R.ROOM_NO,
+		R.BOOK_NO, R.STAR_SCORE, R.REVIEW_CONTENT, R.REVIEW_AVAILABLE,
+		R.CREATE_DATE, R.REVIEW_DECLARIATION, R.REVIEW_CONTENT_REPLY
+		FROM
+		REVIEW R
+		INNER JOIN BOOKING B ON R.BOOK_NO = B.BOOK_NO
+		INNER JOIN ROOM RO ON B.ROOM_NO = RO.ROOM_NO
+		WHERE
+		R.REVIEW_AVAILABLE = 'Y'
+		AND RO.BU_NO = #{buNo}
+	</select>
 
+	<update id="updateReviewContentReply" parameterType="_int" >
+		
+		SET REVIEW_CONTENT_REPLY = #{reviewContentReply}
+		WHERE REVIEW_NO = #{reviewNo}
 
+	</update>
 </mapper>

@@ -82,9 +82,9 @@
 
 
 
-    <div class="ranking">
-      <div class="rankingSubBox" id="1st">
-      
+    <div class="area">
+      <div class="rankingSubBox" id="seoul">
+         <p id="pHotel" >호텔</p>
          </div>
       <div class="rankingSubBox" id="2nd">
       
@@ -95,7 +95,7 @@
       <div class="rankingSubBox" id="4th">
       
          </div>
-  </div>    
+  </div> 
   
   
   
@@ -108,7 +108,19 @@
 
 </div>
 </body>
+<script>
+$(document).ready(function() {
+    // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
+    $("#seoul").click(function() {
+        // 리다이렉션할 URL
+        var redirectUrl = "<%=request.getContextPath()%>/list/marea/1";
+        // 현재 창에서 새 URL로 리다이렉션
+        window.location.href = redirectUrl;
+    });
+});
 
+
+</script>
 
 
 <script>

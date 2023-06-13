@@ -24,28 +24,28 @@ img {
 	 <%@ include file="../header.jsp"%> 
 	<div id="content">
 		<div id="content1">
-			<form action="/breaktime/businessRoom/resister" method="GET">
-				<button type="submit" id="buRoomRegister">객실 등록</button>
-			</form>
-			<form action="/breaktime/business/reservation" method="GET">
-				<button type="submit" id="buRoomReservation">예약 내역</button>
-			</form>
-			<form action="/breaktime/business/review" method="GET">
-				<button type="submit" id="buReview">리뷰</button>
-			</form>
+			<div id="modifyFormMove">
+				<form action="/breaktime/businessRoom/resister" method="GET">
+					<button type="submit" id="buRoomRegister">객실 등록</button>
+				</form>
+				<form action="/breaktime/business/reservation" method="GET">
+					<button type="submit" id="buRoomReservation">예약 내역</button>
+				</form>
+				<form action="/breaktime/business/review" method="GET">
+					<button type="submit" id="buReview">리뷰</button>
+				</form>
+			</div>
 		</div>
 		<div id="content2">
-			<div id="roomModifyText1" style="font-size: x-large; margin: 15px;">객실
-				수정</div>
-
-			<form action="/breaktime/businessRoom/buRoomModify" method="POST"
-				enctype="multipart/form-data">
+			<div id="modifyForm">
+			<form action="/breaktime/businessRoom/buRoomModify" method="POST"enctype="multipart/form-data">
+			<div id="roomModifyText1" style="font-size: x-large; margin: 15px; text-align :center;">객실 수정</div>
+				
 				<input type="hidden" name="fileNo" value="${roomImg.fileNo}">
 				<input type="hidden" name="roomNo" value="${ room.roomNo}" />
 				<div class="room-info" data-room-no="${room.roomNo}">
 					<div id="imgList">
-						<img
-							src="<%=request.getContextPath() %>${roomImg.filePath}/${roomImg.originName}">
+						<img src="<%=request.getContextPath() %>${roomImg.filePath}/${roomImg.originName}">
 					</div>
 				</div>
 
@@ -64,22 +64,19 @@ img {
 				<div id="ModifyroomStandardInfoText">수정 객실 기본 정보</div>
 				<div>
 					<input name="roomInfo" placeholder="수정할 객실 정보를 입력해주세요" value ="${room.roomInfo}">
+					<%--  <div><textarea name="roomInfo"  placeholder="수정할 객실 정보를 입력해주세요" value ="${room.roomInfo}"></textarea> --%>
 				</div>
 				<div id="ModifyroomPhotoInfoText">수정 객실 사진 등록</div>
 				<div>
 					<input type="file" name="upfiles" multiple value ="${roomImg.saveName}">
 				</div>
-				<div>
+				<div id=modifyBtn>
 
 					<button type="submit" id="resisterBtn">수정하기</button>
-					<%-- <a
-						href="<%=request.getContextPath()%>/businessRoom/buRoomList">
-						<button type="submit" id="resisterBtn">확인수정하기button>
-					</a> --%>
 				</div>
 			</form>
 		</div>
-
+	</div>
 	</div>
 	<script>
     var roomNo = "${room.roomNo}";

@@ -17,6 +17,7 @@ public interface DetailService {
     public void getAreaData(String category, String area, Map<String, Object> map);
 
     public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map);
-
+    
+    public void selectAreaList(String areaNo, Map<String, Object> map);
 }
 

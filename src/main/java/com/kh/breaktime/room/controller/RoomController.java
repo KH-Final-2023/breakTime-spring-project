@@ -262,4 +262,20 @@ public class RoomController {
         System.out.println(roomList);
         return "businessRoom/buRoomList";
     }
+	
+	/*
+	 * @GetMapping("/paing") public String searchRoomList(@RequestParam(defaultValue
+	 * = "1") int page, Model model) { int pageSize = 10; // 한 페이지에 표시할 방 개수 int
+	 * totalCount = roomService.getTotalCount(); // 전체 방 개수
+	 * 
+	 * // 페이징 계산 Pagination pagination = new Pagination(totalCount, page, pageSize);
+	 * 
+	 * // 페이지에 해당하는 방 정보 가져오기 List<Room> roomList = roomService.getRoomsByPage(page,
+	 * pageSize);
+	 * 
+	 * model.addAttribute("roomList", roomList); model.addAttribute("pagination",
+	 * pagination);
+	 * 
+	 * return "searchRoomList"; }
+	 */
 }

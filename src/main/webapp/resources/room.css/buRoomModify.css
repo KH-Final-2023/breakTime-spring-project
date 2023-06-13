@@ -1,92 +1,148 @@
-#content1{
-    display: flex;
-    justify-content: space-around;
-    width: 300px;
-    margin: 0 auto;
-    background-color: greenyellow;
-    border-radius: 15px;
+#content1 {
+	display: flex;
+	justify-content: center;
+}
 
-  
+#content2 {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin: 30px;
+	align-items: center;
 }
-#content1 div {
-margin: 10px; /* 요소 간격 조정 */
+
+input {
+	width: 350px;
+	border: solid 2px lightgray;
+	border-radius: 5px;
+	height: 30px;
 }
-#content1{
-    margin-top: 100px;
+
+#modifyFormMove {
+	display: flex;
+	justify-content: space-around;
+	width: 600px;
+	height: 60px;
+	background-color: #c0e2c0;
+	border-radius: 15px;
+	margin-top: 150px;
+	align-items: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-#content2{
-   
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        margin: 30px;
-        align-items: center;
+
+button {
+	font-family: 'Arial', fantasy;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: solid 1px black;
+	border-radius: 5px;
+	background-color: green;
+	color: white;
+	height: 30px;
 }
-input{
-    width: 300px;
-    border :solid 2px lightgray;
-    border-radius: 5px;
+
+#buRoomRegister, #buRoomReservation, #buReview {
+	border: solid 1px black;
+	border-radius: 5px;
+	background-color: green;
+	color: white;
+	width: 100px;
+	height: 40px;
 }
-#ModifyroomName,#ModifyroomPrice,#ModifyroomStandardInfoText,#ModifyroomPhotoInfoText{
-    text-align: left;
-    width: 300px;
-    margin: 5px;
+
+#ModifyroomName, #ModifyroomPrice, #ModifyroomStandardInfoText,
+	#ModifyroomPhotoInfoText {
+	text-align: left;
+	width: 300px;
+	margin: 5px;
 }
-#checkIn,#checkOut{
-    margin: 5px;
+
+#checkIn, #checkOut {
+	margin: 5px;
 }
-textarea{
-    width: 307px;
-    height: 150px;
+
+textarea {
+	width: 307px;
+	height: 150px;
 }
-#resisterBtn{
-    margin: 10px;
-    background-color: chartreuse;
-    border: solid 1px black;
-    border-radius: 5px;
+
+#modifyForm {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	width: 600px;
+	height: 680px;
+	background-color: #f0fff0;
+	border-radius: 15px;
+	display: flex;
+	justify-content: center;
 }
+#modifyBtn{
+display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#resisterBtn {
+	margin: 30px;
+	background-color: chartreuse;
+	border: solid 1px black;
+	border-radius: 5px;
+	font-family: 'Arial', fantasy;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: solid 1px black;
+	border-radius: 5px;
+	background-color: green;
+	color: white;
+	height: 35px;
+	width : 100px;
+}
+
+#imgList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 #header {
-    height: 80px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index:1;
-    border-bottom: 1px solid gray;
-    }
-    
-    #header-content {
-    width: 1180px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    }
-    
-    #navbar {
-    padding: 2px;
-    width: 600px;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    font-size: 20px;
-    }
-   
-    
-    
-    #navbar > div:hover{
-    color:greenyellow;
-    cursor:pointer;
-    }
-    
-    
-    #home-logo {
-    height: 100%;
-    width: 120px;
-    cursor: pointer;
-    }
-    
-    #home-logo>img {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    }
+	height: 80px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	z-index: 1;
+	border-bottom: 1px solid gray;
+}
+
+#header-content {
+	width: 1180px;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+#navbar {
+	padding: 2px;
+	width: 600px;
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	font-size: 20px;
+}
+
+#navbar>div:hover {
+	color: greenyellow;
+	cursor: pointer;
+}
+
+#home-logo {
+	height: 100%;
+	width: 120px;
+	cursor: pointer;
+}
+
+#home-logo>img {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
