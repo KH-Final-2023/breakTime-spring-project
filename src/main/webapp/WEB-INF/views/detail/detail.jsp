@@ -157,50 +157,54 @@ button {
 
    <jsp:include page="/WEB-INF/views/detail/area_detail.jsp" />
 
-   <jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/date_detail.jsp" />
 
-   <jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
-   <div class="mainArea">
-      <div class="houseList">
-         <ul>
-            <c:if test="${empty list}">
-               <td>예약 가능한 숙소가 없습니다!</td>
-            </c:if>
-            <c:forEach items="${list }" var="d">
-               <li>
-                  <div class="houseContent">
-                     <div class="houseMainImg">
-                        <img src="${d.mainImg}">
-                     </div>
-                     <div class="houseInfo">
-                        <a>
-                           <div>
-                              <div class="houseTitle">${d.buTitle}</div>
-                              <div class="starPlace">
-                                 <i class="fa-solid fa-star starStyle"></i> <i
-                                    class="fa-solid fa-star starStyle"></i> <i
-                                    class="fa-solid fa-star starStyle"></i>
-                              </div>
-                              <div class="houseAddress">${d.buAddress}</div>
-                              <div class="houseTel">${d.buTel}</div>
-                              <div class="room_options">${d.roomInfo }</div>
-                           </div>
-                        </a>
-                     </div>
-                     <div class="housePrice">
-                        <div class="priceHowMuch">${d.roomPrice }</div>
-                        <div class="priceDetailList">
-                           <p class="priceDetail1">1박 가격</p>
-                           <p class="priceDetail2">모든 세금 및 수수료 포함</p>
-                        </div>
-                        <div class="hpButton">
-                           <p class="rsButton"
-                              th:if="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}">${d.roomInfo}</p>
-                           <p class="rsButton"
-                              th:unless="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}"></p>
-                           <button onclick="redirectToDetail('${d.buNo}')">자세히 보기</button>
-                        </div>
+
+
+	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
+
+	<div class="mainArea">
+		<div class="houseList">
+			<ul>
+				<c:if test="${empty list}">
+					<td>예약 가능한 숙소가 없습니다!</td>
+				</c:if>
+				<c:forEach items="${list }" var="d">
+					<li>
+						<div class="houseContent">
+							<div class="houseMainImg">
+								<img src="${d.buMainImg}">
+							</div>
+							<div class="houseInfo">
+								<a>
+									<div>
+										<div class="houseTitle">${d.buTitle}</div>
+										<div class="starPlace">
+											<i class="fa-solid fa-star starStyle"></i> <i
+												class="fa-solid fa-star starStyle"></i> <i
+												class="fa-solid fa-star starStyle"></i>
+										</div>
+										<div class="houseAddress">${d.buAddress}</div>
+										<div class="houseTel">${d.buTel}</div>
+										<div class="room_options">${d.roomInfo }</div>
+									</div>
+								</a>
+							</div>
+							<div class="housePrice">
+								<div class="priceHowMuch">${d.roomPrice }</div>
+								<div class="priceDetailList">
+									<p class="priceDetail1">1박 가격</p>
+									<p class="priceDetail2">모든 세금 및 수수료 포함</p>
+								</div>
+								<div class="hpButton">
+									<p class="rsButton"
+										th:if="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}">${d.roomInfo}</p>
+									<p class="rsButton"
+										th:unless="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}"></p>
+									<button onclick="redirectToDetail('${d.buNo}')">자세히 보기</button>
+								</div>
 
                      </div>
                   </div>
@@ -338,11 +342,98 @@ button {
       document.querySelector(".option_closeBtn10").addEventListener("click", close); 
     </script>
 
-   <script>
-     function redirectToDetail(buNo) {
-       window.location.href = '/breaktime/decide/demain/' + buNo;
-     }
-   </script>
+	<script>
+	  function redirectToDetail(buNo) {
+	    window.location.href = '/breaktime/decide/demain/' + buNo;
+	  }
+	</script>
+
+	<!-- 드롭다운 스크립트 -->
+	<script type="text/javascript">
+	var area = '';
+	
+	window.onload = () => {
+		  document.querySelector('.dropbtn2_click').onclick = () => {
+		    dropdown('.dropdown-content2', '.dropbtn2');
+		  };
+
+		  document.querySelector('.dropbtn1_click').onclick = () => {
+		    dropdown('.dropdown-content1', '.dropbtn1');
+		  };
+
+		  // 추가된 부분: dropdown-content2의 클릭 이벤트 핸들러 제거
+		  var dropdownContent2 = document.querySelector('.dropdown-content2');
+		  dropdownContent2.onclick = (event) => {
+		    event.stopPropagation();
+		  };
+
+		  // 추가된 부분: dropdown-content2의 마우스 강조 효과 제거
+		  dropdownContent2.onmouseover = (event) => {
+		    event.target.style.backgroundColor = 'transparent';
+		  };
+
+		  var categoryCodes = document.getElementsByClassName('categoryCode');
+		  for (var i = 0; i < categoryCodes.length; i++) {
+		    categoryCodes[i].onclick = function() {
+		      var id = this.getAttribute('id');
+		      showMenu(this.innerText, id);
+		    };
+		  }
+
+		  function dropdown(contentClass, btnClass) {
+		    var v = document.querySelector(contentClass);
+		    var dropbtn = document.querySelector(btnClass);
+		    v.classList.toggle('show');
+		    dropbtn.style.borderColor = 'rgb(94, 94, 94)';
+		  }
+
+		  function showMenu(value, id) {
+		    var dropbtn_icon = document.querySelector('.dropbtn1_icon');
+		    var dropbtn_content = document.querySelector('.dropbtn1_content');
+		    var dropbtn_click = document.querySelector('.dropbtn1_click');
+		    var dropbtn = document.querySelector('.dropbtn1');
+
+		    dropbtn_icon.innerText = '';
+		    dropbtn_content.innerText = value;
+		    dropbtn_content.style.color = '#252525';
+		    dropbtn.style.borderColor = '#3992a8';
+
+		    // 변수에 선택한 값을 저장
+		    area = value.toLowerCase();
+		    console.log('Selected Area:', area);
+		  }
+
+		  window.onclick = (e) => {
+		    if (!e.target.matches('.dropbtn1_click') && !e.target.matches('.dropbtn2_click')) {
+		      var dropdowns1 = document.getElementsByClassName('dropdown-content1');
+		      var dropdowns2 = document.getElementsByClassName('dropdown-content2');
+		      closeDropdowns(dropdowns1);
+		      closeDropdowns(dropdowns2);
+		    }
+		  };
+
+		  function closeDropdowns(dropdowns) {
+		    for (var i = 0; i < dropdowns.length; i++) {
+		      var openDropdown = dropdowns[i];
+		      if (openDropdown.classList.contains('show')) {
+		        openDropdown.classList.remove('show');
+		      }
+		    }
+		  }
+		};
+
+		function submitForm() {
+		    var form = document.getElementById("houseOption");
+		    var formData = new FormData(form);
+		    var queryString = new URLSearchParams(formData).toString();
+		    
+		    var outsideValue = encodeURIComponent(outsideVariable);
+		    queryString += "&area=" + area;
+		    
+		    var url = form.action + "?" + queryString;
+		    window.location.href = url;
+		  }
+	</script>
 
 
 
