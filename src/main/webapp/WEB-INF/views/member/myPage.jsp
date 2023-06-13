@@ -31,7 +31,7 @@
 	}
 	
 	#content1 {
-    width: 40%;
+    width: 20%;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -79,11 +79,10 @@
 		<div style="width:100%; display: flex; flex-direction: row;">
 			<div id="content1">
 				<ul style="list-style:none;">
-					<li><a class="sideMenu">내 정보</a></li>
+					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/myPage">내 정보</a></li>
 					<li><a class="sideMenu">예약내역</a></li>
-					<li><a class="sideMenu">찜한 목록</a></li>
-					<li><a href="<%=request.getContextPath()%>/member/list"class="sideMenu">문의쪽지</a></li>
-					<li><a class="sideMenu">쿠폰함(미정)</a></li>
+					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/wishList">찜한 목록</a></li>
+					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/list">문의쪽지</a></li>
 				</ul>
 				<div style="margin-top: auto; position: relative;">
 					<button class="btn btn-primary btn-ghost btn-slash" id="confirmStart">회원탈퇴</button>
@@ -301,10 +300,15 @@
 		}
 		</script>
 	</div>
-	<!-- 로그아웃 스크맆트 -->
+	
+	<!-- 로그아웃,찜목록으로 포워딩 스크맆트 -->
 	<script>
 	document.getElementById("logOut").addEventListener("click",function(){
         location.href = "<%= request.getContextPath()%>/member/logout";
+    })
+    
+    document.getElementById("wishList").addEventListener("click",function(){
+        location.href = "<%= request.getContextPath()%>/member/wishList";
     })
 	</script>
 	

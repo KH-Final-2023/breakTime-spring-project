@@ -1,6 +1,7 @@
 package com.kh.breaktime.member.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +21,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.member.model.service.MemberService;
 import com.kh.breaktime.member.model.vo.Member;
+import com.kh.breaktime.member.model.vo.WishList;
 
 @Controller
 @RequestMapping("/member")
@@ -258,5 +262,17 @@ public class MemberController {
 		//noticeService.selectNoticeList(cp,map);
 		model.addAttribute("selectSearchList",map);
 		return "member/chatRoomList";
+	}
+	
+	@GetMapping("/wishList")
+	public String wishList( Model model, HttpSession session,  WishList w){
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		List<WishList> list = memberService.selectWishList(w);
+		
+		model.addAttribute("list", list);
+		
+		
+		return "member/wishList";
 	}
 }
