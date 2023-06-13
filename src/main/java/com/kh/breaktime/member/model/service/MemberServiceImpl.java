@@ -38,6 +38,44 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	
+	@Override
+	public int deleteMember(Member inputMember) {
+		
+		int result = memberDao.deleteMember(inputMember);
+		return result;
+	}
+	
+	@Override
+	public int updateId(Member inputMember) {
+		
+		int result = memberDao.updateId(inputMember);
+
+		return result;
+	}
+	
+	@Override
+	public int updatePwd(Member inputMember) {
+		
+		int result = memberDao.updatePwd(inputMember);
+
+		return result;
+	}
+	
+	@Override
+	public int updateName(Member inputMember) {
+		
+		int result = memberDao.updateName(inputMember);
+
+		return result;
+	}
+	
+	@Override
+	public int updateEmail(Member inputMember) {
+		
+		int result = memberDao.updateEmail(inputMember);
+
+		return result;
+	}
 	// 충영
 	// 검색 게시글 목록 조회 서비스 구현 
 		public void selectSearchList(Map<String, Object> paramMap, Map<String, Object> map) {

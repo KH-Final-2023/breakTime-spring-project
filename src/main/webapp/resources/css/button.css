@@ -2,7 +2,7 @@
 
 @import url('https://cdn.jsdelivr.net/npm/@alphardex/aqua.css/dist/aqua.min.css');
 .btn {
-  margin: 1rem;
+  /* margin: 1rem; */
 
   &-jittery {
     animation: jittery 4s infinite;
