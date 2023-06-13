@@ -92,6 +92,9 @@ html, body {
 <body>
 	<%-- <%@ include file="/WEB-INF/views/header.jsp"%> --%>
 	<main>
+	<a href="<%=request.getContextPath()%>">
+		<img src="<%=request.getContextPath()%>/resources/images/homeBtn.png" style="width:100px; height:100px;">
+	</a>
 		<div class="booking">
 			<div id="booking-area">
 				<span id="notice_title"> 예약 내역 </span>

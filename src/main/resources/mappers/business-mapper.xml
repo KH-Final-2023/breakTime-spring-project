@@ -50,23 +50,23 @@
 	</resultMap>
 
 	<resultMap id="reviewMap" type="review">
-		<id property="reviewNo" column="REVIEW_NO" />
-		<result property="reviewWriter" column="REVIEW_WRITER" />
-		<result property="usingRoom" column="USING_ROOM" />
-		<result property="userNo" column="USER_NO" />
-		<result property="roomNo" column="ROOM_NO" />
-		<result property="bookNo" column="BOOK_NO" />
-		<result property="starScore" column="STAR_SCORE" />
-		<result property="reviewContent" column="REVIEW_CONTENT" />
-		<result property="reviewAvailable" column="REVIEW_AVAILABLE" />
-		<result property="createDate" column="CREATE_DATE" />
-		<result property="reviewDeclaration"
-			column="REVIEW_DECLARIATION" />
-		<result property="reviewContentReply"
-			column="REVIEW_CONTENT_REPLY" />
+		<result column="REVIEW_NO" property="reviewNo" />
+		<result column="REVIEW_WRITER" property="reviewWriter" />
+		<result column="USING_ROOM" property="usingRoom" />
+		<result column="BOOK_NO" property="bookNo" />
+		<result column="STAR_SCORE" property="starScore" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
+		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_DECLARIATION"
+			property="reviewDeclariation" />
+		<result column="REVIEW_CONTENT_REPLY"
+			property="reviewContentReply" />
+		<result column="USER_NAME" property="userName" />
+		<result column="ROOM_NAME" property="roomName" />
 	</resultMap>
-	
-	
+
+
 	<!-- 로그인사업자 정보 SELECT(석범) -->
 	<select id="loginBusiness" parameterType="business"
 		resultMap="businessResultSet">
@@ -86,7 +86,8 @@
 		, BU_USER_NAME
 		, BU_CATEGORY
 		, BU_TITLE
-		, BU_ADDRESS
+		,
+		BU_ADDRESS
 		, EMAIL
 		, AREA_NO
 		, ROOM_COUNT
@@ -98,12 +99,14 @@
 		, #{buId}
 		, #{buPwd}
 		, #{buUserName}
-		, #{buCategory}
+		,
+		#{buCategory}
 		, #{buTitle}
 		, #{buAddress}
 		, #{email}
 		, #{areaNo}
-		, #{roomCount}
+		,
+		#{roomCount}
 		, #{buTel}
 		, #{buMainImg}
 		, 'N'
@@ -142,21 +145,45 @@
 	</select>
 
 	<select id="getReviewsForBusiness" resultMap="reviewMap">
+		<!-- SELECT REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
+			USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY, BOOK_NO FROM 
+			REVIEW R INNER JOIN BOOKING B ON R.BOOK_NO = B.BOOK_NO INNER JOIN ROOM RO 
+			ON B.ROOM_NO = RO.ROOM_NO INNER JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM 
+			INNER JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER WHERE R.REVIEW_AVAILABLE 
+			= 'Y' AND RO.BU_NO = #{buNo} -->
 		SELECT
-		R.REVIEW_NO, R.REVIEW_WRITER, R.USING_ROOM, R.USER_NO, R.ROOM_NO,
-		R.BOOK_NO, R.STAR_SCORE, R.REVIEW_CONTENT, R.REVIEW_AVAILABLE,
-		R.CREATE_DATE, R.REVIEW_DECLARIATION, R.REVIEW_CONTENT_REPLY
+		R.REVIEW_NO,
+		R.REVIEW_WRITER,
+		R.USING_ROOM,
+		R.USER_NO,
+		R.ROOM_NO,
+		R.BOOK_NO,
+		R.STAR_SCORE,
+		R.REVIEW_CONTENT,
+		R.REVIEW_AVAILABLE,
+		R.CREATE_DATE,
+		R.REVIEW_DECLARIATION,
+		R.REVIEW_CONTENT_REPLY,
+		U.USER_NAME,
+		M.ROOM_NAME
 		FROM
 		REVIEW R
-		INNER JOIN BOOKING B ON R.BOOK_NO = B.BOOK_NO
+		INNER JOIN BOOKING B ON R.BOOK_NO =
+		B.BOOK_NO
 		INNER JOIN ROOM RO ON B.ROOM_NO = RO.ROOM_NO
+		INNER JOIN MEMBER
+		U ON R.REVIEW_WRITER = U.USER_NO
+		INNER JOIN ROOM M ON R.USING_ROOM =
+		M.ROOM_NO
 		WHERE
 		R.REVIEW_AVAILABLE = 'Y'
 		AND RO.BU_NO = #{buNo}
 	</select>
 
-	<update id="updateReviewContentReply" parameterType="_int" >
-		
+	<update id="updateReviewContentReply" parameterType="review">
+		<!-- INSERT INTO REVIEW(REVIEW_NO, REVIEW_CONTENT_REPLY, REVIEW_CONTENT, 
+			CREATE_DATE) VALUES(#{reviewNo}, #{reviewContentReply}, '123', SYSDATE) -->
+		UPDATE REVIEW
 		SET REVIEW_CONTENT_REPLY = #{reviewContentReply}
 		WHERE REVIEW_NO = #{reviewNo}
 

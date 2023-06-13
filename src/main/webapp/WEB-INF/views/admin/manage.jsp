@@ -110,7 +110,7 @@
 						</tbody>
 					</table>
 					<c:set var="url" value="list?cpage=" />
-					<div class="paging">
+					<div class="paging" style="margin-left: 30%;">
 						<ul class="pagination">
 							<c:choose>
 								<c:when test="${ selectManageList.pi.currentPage eq 1 }">
