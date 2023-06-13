@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.booking.model.vo.Booking;
 import com.kh.breaktime.business.model.service.BusinessService;
 import com.kh.breaktime.business.model.vo.Business;
+import com.kh.breaktime.member.model.vo.Member;
 import com.kh.breaktime.review.model.vo.Review;
 import com.kh.breaktime.room.model.vo.Room;
 import com.kh.breaktime.room.model.vo.RoomImg;
@@ -117,7 +119,7 @@ public class BusinessController {
 
 			return "businessRoom/buRoomList";
 		} else { // 로그인 실패
-			ra.addFlashAttribute("errorMsg", "로그인 실패");
+			session.setAttribute("alertMsg", "관리자 승인대기중");
 			return "redirect:/"; // 로그인 실패 시 메인페이지로 이동하도록 수정
 		}
 
@@ -128,9 +130,17 @@ public class BusinessController {
 
 		return "business/businessEnrollForm";
 	}
-
-	@PostMapping("/insert")
-	public String insertBusiness(Business b, HttpSession session, Model model) {
+	
+	@GetMapping("/logout")
+    public String logoutBusiness(HttpSession session , SessionStatus status) throws Exception{
+       
+		status.setComplete();
+		session.setAttribute("alertMsg", "사업자 로그아웃성공");
+        return "redirect:/";              
+    }
+	
+   @PostMapping("/insert")
+   public String insertBusiness(Business b, HttpSession session, Model model) {
 
 		int result = businessService.insertBusiness(b);
 
@@ -163,17 +173,27 @@ public class BusinessController {
 	public String getBusinessReviews(Model model, HttpSession session) {
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
 		int buNo = loginBusiness.getBuNo();
-		
-			List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
-			
-			model.addAttribute("businessReviews", businessReviews);
-			System.out.println(buNo);
-			System.out.println(businessReviews);
-			return "businessRoom/buReview";
-		
-			
-			
-		
+
+		List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
+
+		model.addAttribute("businessReviews", businessReviews);
+		System.out.println(buNo);
+		System.out.println(businessReviews);
+		return "businessRoom/buReview";
+
 	}
 
+
+	@PostMapping("/reviewContentReply")
+	  public String updateReviewContentReply(@RequestParam("reviewContentReply") String reviewContentReply , int reviewNo) {
+		 Review review = new Review();
+	     review.setReviewNo(reviewNo);
+	     review.setReviewContentReply(reviewContentReply);
+		List<Review> result  = businessService.updateReviewContentReply(review);
+
+		
+
+		System.out.println(result);
+        return "businessRoom/buReview"; // 예시: 리뷰 목록 페이지로 리다이렉트
+    }
 }

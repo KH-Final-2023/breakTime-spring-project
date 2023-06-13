@@ -28,9 +28,15 @@
 							<div id="content2">
 								<div id="reviewBackground" style="width:100%;">
 									<div id="review-star-rating">
-										<span class="fa fa-star"></span> <span class="fa fa-star"></span>
-										<span class="fa fa-star"></span> <span class="fa fa-star"></span>
-										<span class="fa fa-star"></span>
+										<div class="fa fa-star" >
+											<c:choose>
+												<c:when test="${r.starScore == '1' }">★</c:when>
+												<c:when test="${r.starScore == '2' }">★★</c:when>
+												<c:when test="${r.starScore == '3' }">★★★</c:when>
+												<c:when test="${r.starScore == '4' }">★★★★</c:when>
+												<c:when test="${r.starScore == '5' }">★★★★★</c:when>
+											</c:choose>	
+										</div>
 									</div>
 									<div id="reviewNickname">
 										<div>${r.userName }|${r.createDate }</div>

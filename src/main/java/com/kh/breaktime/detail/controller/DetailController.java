@@ -32,45 +32,34 @@ public class DetailController {
 	private DetailService detailService;
 
 	private static final Logger logger = LoggerFactory.getLogger(DetailController.class);
-	
+
 	@GetMapping("/detail/{category}")
 	public String detailList(@PathVariable("category") String category, Model model) {
-	    Map<String, Object> map = new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 
-	    detailService.selectDetailList(category, map);
+		detailService.selectDetailList(category, map);
 
-	    model.addAttribute("map", map);
+		model.addAttribute("map", map);
 
-	    return "detail/detail";
+		return "detail/detail";
 	}
 
 	@GetMapping("/filter/{category}")
 	public String detailListSubmit(@PathVariable("category") String category,
-	                               @RequestParam(value = "prices", required = false) List<String> prices, 
-	                               @RequestParam(value = "reserveOptions", required = false) List<String> reserves,
-	                               @RequestParam(value = "houseOptions", required = false) List<String> options,
-	                               Model model) {
-	    Map<String, Object> map = new HashMap<>();
+			@RequestParam(value = "prices", required = false) List<String> prices,
+			@RequestParam(value = "reserveOptions", required = false) List<String> reserves,
+			@RequestParam(value = "houseOptions", required = false) List<String> options,
+			@RequestParam(value = "guests", required = false) Integer guests, 
+			@RequestParam(value = "area", required = false) String area,
+			@RequestParam(value = "inOut", required = false) List<String> inOut, Model model) {
+		Map<String, Object> map = new HashMap<>();
 
-	    detailService.getFilteredData(category, prices, reserves, options, map);
+		detailService.getFilteredData(category, prices, reserves, options, guests, area, inOut, map);
 
-	    model.addAttribute("map", map);
+		model.addAttribute("map", map);
 
-	    return "detail/detail";
-	}
-	
-	@GetMapping("/area/{category}")
-	public String detailListSubmit(@PathVariable("category") String category,
-	                               @RequestParam(value = "area") String area, Model model) {
-	    Map<String, Object> map = new HashMap<>();
-
-	    detailService.getAreaData(category, area, map);
-
-	    model.addAttribute("map", map);
-
-	    return "detail/detail";
+		return "detail/detail";
 	}
 
 
-	
 }

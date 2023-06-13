@@ -15,7 +15,7 @@
     	<div id="container">
                 <!-- 위쪽 푸터 -->
                 <div id="top">
-                    <img id="footerBanner" src="resources/images/로고.png">
+                    <img id="footerBanner" src="<%=request.getContextPath()%>/resources/images/로고.png">
                     <div id="sns">
                         <a href="https://www.instagram.com" rel="noreferrer" target="_blank"
                             class="snsIcon"><i class="icon_instagram"></i></a>

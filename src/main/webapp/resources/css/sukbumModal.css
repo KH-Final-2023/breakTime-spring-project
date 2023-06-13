@@ -1,0 +1,263 @@
+@charset "UTF-8";
+
+.modal,
+.modal1,
+.modal2,
+.modal3,
+.modal4,
+.modal9 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal .bg {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.bg1,
+.bg2,
+.bg3,
+.bg4,
+.bg9 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.openBtn, .openBtn1, .openBtn2{
+	background-color: cornflowerblue;
+    border-radius: 15px;
+    color: white;
+    border: 1px solid transparent;
+    height: 25px;
+}
+
+.modal .closeBtn {
+
+    width: auto;
+    top: 20px;
+    right: 30px;
+    background-color: #fff;
+    border: none;
+    font-size: 24px;
+}
+
+.modal .prevBtn {
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    background-color: #fff;
+    border: none;
+    font-size: 24px;
+}
+
+.modalBox {
+    position: absolute;
+    background-color: #fff;
+    width: 400px;
+   /*  height: 635px; */
+    border-radius: 16px;
+}
+
+.modalBox .header {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalBox .body {
+    width: 100%;
+    height: 485px;
+    padding: 20px 20px;
+}
+
+.modalBox .fotter {
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.modalBox .blueBtn {
+    border-radius: 8px;
+    padding: 14px 0;
+    background-color: #51a9fe;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 24px;
+    height: 52px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+.modalBox .ddayBox {
+    border: 1px dashed #c2deff;
+    border-radius: 12px;
+    background: #f5f9ff;
+    padding: 20px 16px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modalBox .ddayBox .titleText {
+    color: #8fc2ff;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.modalBox .ddayBox .dateText {
+    color: #8fc2ff;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.modalBox .ddayBox .ddayText {
+    color: #8fc2ff;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.modalBox .addDdayBody {
+    /* width: 100%; */
+   /*  height: 519px; */
+    padding: 20px 20px;
+}
+
+.inputLabel {
+    font-size: 12px;
+}
+
+
+
+.addDdayBody .inputField {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 13px 12px;
+    border: 0;
+    box-shadow: 0 0 0 1px #e1e6ea inset;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 21px;
+    color: #333;
+}
+
+.addDdayBody .inputBox {
+    width: 100%;
+    margin-bottom: 20px;
+
+}
+
+.addDdayBody .inputBox .dayChipWrapper {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.addDdayBody .inputBox .dayChipWrapper .dayChip {
+    padding: 6px 12px;
+    border: 1px solid #e1e6ea;
+    height: 38px;
+    border-radius: 40px;
+    font-size: 13px;
+    color: #96a6b5;
+    background-color: #fff;
+    margin-right: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+#fullBlueBtn,
+#fullBlueBtn1,
+#fullBlueBtn2,
+#fullBlueBtn3,
+#fullBlueBtn4 {
+    padding: 14px 0;
+    background-color: #51a9fe;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 24px;
+    height: 52px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 0 0 12px 12px;
+}
+
+
+#body-wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+}
+
+#mypage-wrap {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#mypage-wrap>div {
+    width: 100%;
+    height: 260px;
+    border: 1px solid #4d67c2;
+    border-radius: 2%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+.redline {
+    color: #C62917;
+}
+
+#yes {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+
+#no {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+
+#confirm button {
+    border: 1px solid skyblue;
+    background-color: rgba(0, 0, 0, 0);
+    color: skyblue;
+    padding: 5px;
+}
+
+#confirm button:hover {
+    color: white;
+    background-color: skyblue;
+}
+
+#enrollimg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}

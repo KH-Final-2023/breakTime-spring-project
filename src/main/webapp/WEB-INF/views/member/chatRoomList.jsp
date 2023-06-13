@@ -7,6 +7,9 @@
    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
    String alertMsg = (String) session.getAttribute("alertMsg");
 %>
+<c:if test="${!empty param.condition}" >
+	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,6 +134,39 @@
 					</table>	
 			</div>
 		</div>
+			<c:set var="url" value="list?cpage=" />
+					<div class="paging">
+						<ul class="pagination">
+							<c:choose>
+								<c:when test="${ selectSearchList.pi.currentPage eq 1 }">
+									<li class="page-item disabled"><a class="page-link"
+										href="#">Previous</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="${url}${selectSearchList.pi.currentPage -1 }${sUrl}">Previous</a></li>
+								</c:otherwise>
+							</c:choose>
+	
+							<c:forEach var="item" begin="${selectSearchList.pi.startPage }"
+								end="${selectSearchList.pi.endPage }">
+								<li class="page-item"><a class="page-link"
+									href="${url}${item }${sUrl}">${item }</a></li>
+							</c:forEach>
+	
+							<c:choose>
+								<c:when
+									test="${ selectSearchList.pi.currentPage eq selectSearchList.pi.maxPage }">
+									<li class="page-item disabled"><a class="page-link"
+										href="#">Next</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="${url}${selectSearchList.pi.currentPage + 1 }${sUrl}">Next</a></li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+					</div>
 	</div>
 	
 	

@@ -3,6 +3,7 @@ package com.kh.breaktime.room.model.vo;
 import java.util.List;
 
 import lombok.Data;
+
 @Data
 public class Room {
 	private int roomNo;
