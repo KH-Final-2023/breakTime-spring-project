@@ -2,175 +2,197 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="decideMapper">
 <!-- <resultMap type="review" id="reviewResultSet">
-		<result column="REVIEW_NO" property="reviewNo" />
-		<result column="REVIEW_WRITER" property="reviewWriter" />
-		<result column="USING_ROOM" property="usingRoom" />
-		<result column="BOOK_NO" property="bookNo" />
-		<result column="STAR_SCORE" property="starScore" />
-		<result column="REVIEW_CONTENT" property="reviewContent" />
-		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
-		<result column="CREATE_DATE" property="createDate" />
-		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
-		<result column="REVIEW_CONTENT_REPLY" property="reviewContentReply" />
-		<result column="USER_NAME" property="userName" />
-		<result column="ROOM_NAME" property="roomName" />
-	</resultMap> -->
-	
-	
-		<!-- <select id="selectDecideBasket" resultMap="com.kh.breaktime.decide.model.vo.Decide">
-		SELECT R.ROOM_NO    AS ROOM_NO,		 
-			   B.BU_NO      AS BU_NO,
-			   H.MAIN_IMG   AS HOUSE_MAIN_IMG,
-			   IMG.SAVE_NAME AS IMG_SAVE_NAME,
-			   IMG.FILE_PATH AS IMG_FILE_PATH,
-			   R.ROOM_H_COUNT  AS ROOM_H_COUNT,
-			   R.ROOM_PRICE AS ROOM_PRICE,
-			   R.ROOM_NAME  AS ROOM_NAME,
-			   R.ROOM_INFO  AS ROOM_INFO
-		FROM BUSINESS B
-        INNER JOIN BU_MAIN_IMG IMG ON B.BU_NO = IMG.BU_NO
-        INNER JOIN HOUSE H 	ON B.BU_TITLE = H.BU_TITLE
-        INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
-        WHERE BU_NO = #{buNo}
-	</select> -->
-	
-	<!-- 메인 조회 -->
-  	 <select id="selectDecideMain" resultType="com.kh.breaktime.decide.model.vo.Decide">
-  	/*decideMapper.selectDecideMain*/
-    	SELECT  B.BU_NO         AS buNo,
-				B.BU_TITLE      AS buTitle,
-				B.BU_ADDRESS    AS buAddress,
-				B.BU_MAIN_IMG   AS buMainImg
-		FROM BUSINESS B
-		INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
-		WHERE B.BU_MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
-		AND B.BU_NO = #{buNo}
-		AND ROWNUM = 1
-	</select> 
-	
-	<!-- 메인 리뷰 개수 조회 -->
-	<select id="selectReviewCount" resultType="_int">
-	/*decideMapper.selectReviewCount*/
-		SELECT COUNT(*)
+      <result column="REVIEW_NO" property="reviewNo" />
+      <result column="REVIEW_WRITER" property="reviewWriter" />
+      <result column="USING_ROOM" property="usingRoom" />
+      <result column="BOOK_NO" property="bookNo" />
+      <result column="STAR_SCORE" property="starScore" />
+      <result column="REVIEW_CONTENT" property="reviewContent" />
+      <result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+      <result column="CREATE_DATE" property="createDate" />
+      <result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
+      <result column="REVIEW_CONTENT_REPLY" property="reviewContentReply" />
+      <result column="USER_NAME" property="userName" />
+      <result column="ROOM_NAME" property="roomName" />
+   </resultMap> -->
+   
+   <!-- 메인 조회 -->
+      <select id="selectDecideMain" resultType="com.kh.breaktime.decide.model.vo.Decide">
+     /*decideMapper.selectDecideMain*/
+       SELECT  B.BU_NO         AS buNo,
+            B.BU_TITLE      AS buTitle,
+            B.BU_ADDRESS    AS buAddress,
+            B.BU_MAIN_IMG   AS buMainImg
+      FROM BUSINESS B
+      INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+      WHERE B.BU_MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' 
+      AND B.BU_NO = #{buNo}
+      AND ROWNUM = 1
+   </select> 
+   
+   <!-- 메인 리뷰 개수 조회 -->
+   <select id="selectReviewCount" resultType="_int">
+   /*decideMapper.selectReviewCount*/
+      SELECT COUNT(*)
           FROM BUSINESS B
           INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
           INNER JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
           WHERE B.BU_NO = #{buNo} 
-	</select>
-	
-	<!-- 리뷰 평점 조회 -->
-	 <select id="selectReviewScore" resultType="_double">
-	/*decideMapper.selectReviewScore*/
-		SELECT 	NVL(ROUND(AVG(V.STAR_SCORE), 1), 0) AS starScore
-				FROM BUSINESS B
-				INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
-				LEFT JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
-				WHERE B.APPROVAL = 'Y' 
-				AND B.BU_NO = #{buNo}
-	</select> 
-	
-	<!-- 유저 리뷰 점수 조회 -->
-	 <select id="selectuserStarScore" resultType="_double">
-	/*decideMapper.selectuserStarScore*/
-		SELECT  ROUND(R.STAR_SCORE, 1)	AS userStarScore
-				FROM REVIEW R
-				JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
-		        JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
-				WHERE R.REVIEW_AVAILABLE = 'Y'
-		        AND B.BU_NO = #{buNo}
-	</select>
-	
-	<!-- 객실 조회 -->
-	<select id="selectDecideRoom" resultType="com.kh.breaktime.decide.model.vo.Decide">
-	/*decideMapper.selectDecideRoom*/
-		SELECT R.ROOM_NO		AS roomNo,		 
-			   B.BU_NO			AS buNo,
-			   R.ROOM_H_COUNT	AS roomHCount,
-			   R.ROOM_PRICE		AS roomPrice,
-			   R.ROOM_NAME		AS roomName,
-			   R.ROOM_INFO		AS roomInfo,
-			   IMG.FILE_PATH	AS filePath,
-			   IMG.SAVE_NAME	AS saveName,
-			   IMG.FILE_LEVEL	AS fileLevel
-		FROM ROOM R
+   </select>
+   
+   <!-- 리뷰 평점 조회 -->
+    <select id="selectReviewScore" resultType="_double">
+   /*decideMapper.selectReviewScore*/
+      SELECT    NVL(ROUND(AVG(V.STAR_SCORE), 1), 0) AS starScore
+            FROM BUSINESS B
+            INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+            LEFT JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
+            WHERE B.APPROVAL = 'Y' 
+            AND B.BU_NO = #{buNo}
+   </select> 
+   
+   <!-- 유저 리뷰 점수 조회 -->
+    <select id="selectuserStarScore" resultType="_double">
+   /*decideMapper.selectuserStarScore*/
+      SELECT  ROUND(R.STAR_SCORE, 1)   AS userStarScore
+            FROM REVIEW R
+            JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
+              JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
+            WHERE R.REVIEW_AVAILABLE = 'Y'
+              AND B.BU_NO = #{buNo}
+   </select>
+   
+   <!-- 객실 조회 -->
+   <select id="selectDecideRoom" resultType="com.kh.breaktime.decide.model.vo.Decide">
+   /*decideMapper.selectDecideRoom*/
+      SELECT R.ROOM_NO      AS roomNo,       
+            B.BU_NO         AS buNo,
+            R.ROOM_H_COUNT   AS roomHCount,
+            R.ROOM_PRICE      AS roomPrice,
+            R.ROOM_NAME      AS roomName,
+            R.ROOM_INFO      AS roomInfo,
+            IMG.FILE_PATH   AS filePath,
+            IMG.SAVE_NAME   AS saveName,
+            IMG.FILE_LEVEL   AS fileLevel
+      FROM ROOM R
         LEFT JOIN ROOM_IMG IMG ON R.ROOM_NO = IMG.ROOM_NO
-        INNER JOIN BUSINESS B 	ON B.BU_NO = R.BU_NO
+        INNER JOIN BUSINESS B    ON B.BU_NO = R.BU_NO
         WHERE B.BU_NO = #{buNo}
-	</select>
-	
-	<!-- 메인 지도 화면 조회 -->
-	<select id="selectDecideMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
-	/*decideMapper.selectDecideMap*/
-		SELECT 	BU_NO AS buNo, 
-				BU_ADDRESS AS buAddress
-		FROM BUSINESS
-		WHERE BU_NO = #{buNo}
- 	</select>
- 	
- 	<!-- 지도 메인 썸네일 조회 -->
- 	 <select id="selectDetailMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
- 	/*decideMapper.selectDetailMap*/
-		SELECT BU_NO AS buNo,
-			   BU_ADDRESS AS buAddress,
-			   BU_TITLE AS buTitle
-		FROM BUSINESS
-		WHERE BU_NO = #{buNo}
- 	</select>
- 	
- 	<!-- 지도 팝업 지도 조회 -->
- 	 <select id="selectPopupMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
- 	/*decideMapper.selectPopupMap*/
-		SELECT BU_ADDRESS AS buAddress,
-			   BU_TITLE AS buTitle
-		FROM BUSINESS
-		WHERE BU_NO = #{buNo}
- 	</select>
-	
-	<!-- 리뷰 조회 -->
-	 <select id="selectDecideReview" resultType="com.kh.breaktime.decide.model.vo.Decide">
-	/*decideMapper.selectDecideReview*/
-		SELECT  R.REVIEW_NO				AS reviewNo,
-				R.REVIEW_WRITER			AS reviewWriter, 
-				M.USER_NAME				AS userName, 
-				TO_CHAR(R.CREATE_DATE, 'YYYY.MM.DD')  AS createDate,
-				R.USING_ROOM			AS usingRoom, 
-				RO.ROOM_NAME			AS roomName,
-				RO.ROOM_INFO			AS roomInfo, 
-				R.REVIEW_CONTENT		AS reviewContent, 
-				R.REVIEW_CONTENT_REPLY	AS reviewContentReply
-		FROM REVIEW R
-		JOIN MEMBER M   ON M.USER_NO = R.REVIEW_WRITER
-		JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
+   </select>
+   
+   <!-- 메인 지도 화면 조회 -->
+   <select id="selectDecideMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
+   /*decideMapper.selectDecideMap*/
+      SELECT    BU_NO AS buNo, 
+            BU_ADDRESS AS buAddress
+      FROM BUSINESS
+      WHERE BU_NO = #{buNo}
+    </select>
+    
+    <!-- 지도 메인 썸네일 조회 -->
+     <select id="selectDetailMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
+    /*decideMapper.selectDetailMap*/
+      SELECT BU_NO AS buNo,
+            BU_ADDRESS AS buAddress,
+            BU_TITLE AS buTitle
+      FROM BUSINESS
+      WHERE BU_NO = #{buNo}
+    </select>
+    
+    <!-- 지도 팝업 지도 조회 -->
+     <select id="selectPopupMap" resultType="com.kh.breaktime.decide.model.vo.Decide">
+    /*decideMapper.selectPopupMap*/
+      SELECT BU_ADDRESS AS buAddress,
+            BU_TITLE AS buTitle
+      FROM BUSINESS
+      WHERE BU_NO = #{buNo}
+    </select>
+   
+   <!-- 리뷰 조회 -->
+    <select id="selectDecideReview" resultType="com.kh.breaktime.decide.model.vo.Decide">
+   /*decideMapper.selectDecideReview*/
+      SELECT  R.REVIEW_NO            AS reviewNo,
+            R.REVIEW_WRITER         AS reviewWriter, 
+            M.USER_NAME            AS userName, 
+            TO_CHAR(R.CREATE_DATE, 'YYYY.MM.DD')  AS createDate,
+            R.USING_ROOM         AS usingRoom, 
+            RO.ROOM_NAME         AS roomName,
+            RO.ROOM_INFO         AS roomInfo, 
+            R.REVIEW_CONTENT      AS reviewContent, 
+            R.REVIEW_CONTENT_REPLY   AS reviewContentReply
+      FROM REVIEW R
+      JOIN MEMBER M   ON M.USER_NO = R.REVIEW_WRITER
+      JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
         JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
-		WHERE R.REVIEW_AVAILABLE = 'Y'
+      WHERE R.REVIEW_AVAILABLE = 'Y'
         AND B.BU_NO = #{buNo}
-	</select>
-	
-	
-	<!-- 리뷰 insert -->
-	<insert id="insertReview" parameterType="decide" > 
-	INSERT INTO REVIEW(
-	 REVIEW_NO,
-	 STAR_SCORE,
-	 REVIEW_WRITER,
-	 CREATE_DATE,
-	 REVIEW_CONTENT
-	 ) 
-	VALUES( 
-	SEQ_RNO.NEXTVAL, 
-	#{starScore}, 
-	#{reviewWriter},
-	#{createDate}, 
-	#{reviewContent} 
-	) 
-	</insert>
-	
-	
-	
-	
-	
-	
-	
-	
- 	
+   </select>
+   
+   
+   <!-- 리뷰 insert -->
+   <insert id="insertReview" parameterType="decide" >
+   /*decideMapper.insertReview*/
+   INSERT INTO REVIEW(
+    REVIEW_NO,
+    STAR_SCORE,
+    REVIEW_WRITER,
+    CREATE_DATE,
+    REVIEW_CONTENT
+    ) 
+   VALUES( 
+   SEQ_RNO.NEXTVAL, 
+   #{starScore}, 
+   #{reviewWriter},
+   #{createDate}, 
+   #{reviewContent} 
+   ) 
+   </insert>
+
+   <!-- 장바구니 조회 -->
+   <select id="selectCartList" resultType="com.kh.breaktime.decide.model.vo.Decide">
+   /*decideMapper.selectCartList*/
+   SELECT  C.USER_NO       AS userNo,
+         C.ROOM_NO       AS roomNo,
+         R.ROOM_NAME    AS roomName,
+         R.ROOM_PRICE    AS roomPrice,
+         RI.FILE_PATH    AS filePath,
+         RI.ORIGIN_NAME    AS originName,
+         C.BU_NO         AS buNo
+   FROM CART C
+          LEFT JOIN ROOM R       ON C.ROOM_NO = R.ROOM_NO
+          LEFT JOIN ROOM_IMG RI    ON R.ROOM_NO = RI.ROOM_NO
+   WHERE C.USER_NO = #{userNo}
+   </select>
+
+   <!-- 장바구니 등록 -->
+   <insert id="insertCartList" parameterType="decide">
+      /*decideMapper.insertCartList*/
+      INSERT INTO CART
+      (USER_NO,
+       ROOM_NO,
+       BU_NO,
+       CART_CHECK_IN,
+       CART_CHECK_OUT)
+      VALUES
+      (#{userNo},
+       #{roomNo},
+       #{buNo},
+       #{cartCheckIn},
+       #{cartCheckOut})
+   </insert>
+
+   <!-- 장바구니 삭제 -->
+   <delete id="deleteCartList" parameterType="decide" >
+   /*decideMapper.deleteCartList*/
+      DELETE CART
+      WHERE USER_NO = #{userNo}
+      AND BU_NO = #{buNo}
+      AND ROOM_NO = #{roomNo}
+   </delete>
+   
+   
+   
+   
+   
+    
 </mapper>
