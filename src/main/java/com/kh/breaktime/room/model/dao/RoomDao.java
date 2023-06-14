@@ -83,5 +83,8 @@ public class RoomDao {
 	public List<Room> searchRooms(Map<String, Object> params) {
 		return sqlSession.selectList("buRoom-mapper.searchRooms", params);
 	}
-
+	
+	public RoomImg searchRoomsImg(int roomNo) {
+		return sqlSession.selectOne("buRoom-mapper.searchRoomsImg", roomNo);
+	}
 }

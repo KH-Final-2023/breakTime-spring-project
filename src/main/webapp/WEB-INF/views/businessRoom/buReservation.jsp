@@ -13,23 +13,10 @@
 <title>Document</title>
 <!--  공통적으로사용할 라이브러리 추가 -->
 <!-- Jquey 라이브러리 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<scriptsrc="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-<!-- alertify -->
-<script
-	src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<!-- alertify css -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-<!-- Default theme -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-<!-- Semantic UI theme -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
-</head>
+
 
 <body>
 	<%@ include file="../header.jsp"%>
@@ -70,9 +57,9 @@
 								<td>${booking.roomHCount}</td>
 								<td>${booking.reservationNo}</td>
 								<td>
-									<form action="/breaktime/business/updateReservation" method="post">
-										<input type="hidden" name="bookingId" value="${booking.bookNo}">
-										<button id="update-btn" type="submit" >
+									<form action="/breaktime/business/updateReservation" method="get">
+										<input type="hidden" name="bookNo" value="${booking.bookNo}">
+										<button id="update-btn" type="submit" onclick="buCheckin()">
 											<span>입실</span>
 										</button>
 									</form>
@@ -92,6 +79,11 @@
 			<hr style="width: 100%;">
 		</div>
 	</div>
+	<script>
+	 	function buCheckin(){
+	 		alert("checkin 완료됬습니다.")
+	 	}
+	</script>
 </body>
 
 </html>

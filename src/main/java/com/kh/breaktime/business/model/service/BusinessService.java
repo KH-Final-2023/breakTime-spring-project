@@ -25,4 +25,6 @@ public interface BusinessService {
 	public List<Review>  updateReviewContentReply(Review review);
 	
 	public int  updateReviewDeclaration(int reviewNo);
+	
+	public List<Booking> updateReservation(int bookNo);
 }

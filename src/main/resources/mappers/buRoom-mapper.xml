@@ -156,7 +156,12 @@ WHERE ROOM_NO = #{roomNo}
         </choose>
     </if>
 </select>
-
+	<select id="searchRoomsImg" parameterType="_int"
+		resultMap="roomImgResultMap">
+		SELECT *
+		FROM ROOM_IMG
+		WHERE ROOM_NO = #{roomNo}
+	</select>
 
 	<!-- <select id="selectBuRoomList" resultMap="roomResultMap">
 		SELECT *

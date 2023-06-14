@@ -207,7 +207,10 @@ public class BusinessController {
       // 로그인한 사업자의 ID를 세션에서 가져옴
       Booking booking = new Booking();
       booking.setBookNo(bookNo);
-      
-      return "businessRoom/buReservation";
+
+      List<Booking> result = businessService.updateReservation(bookNo);
+      return "redirect:/business/reservation";
+
+
    }
 }

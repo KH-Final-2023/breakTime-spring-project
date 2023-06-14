@@ -40,7 +40,7 @@
 	</select>
 	
 	
-	<insert id="insertReview" useGeneratedKeys="true"
+	<!-- <insert id="insertReview" useGeneratedKeys="true"
       parameterType="review">
 
       <selectKey keyProperty="reviewNo" resultType="_int"
@@ -69,7 +69,7 @@
       )
 
    </insert>
-	
+	 -->
 	
 	<select id="selectPay" resultMap="roomResultMap">
 		SELECT  R.ROOM_NO,
@@ -81,7 +81,5 @@
 		JOIN BUSINESS B ON B.BU_NO = R.BU_NO
 	</select>
 	
-	
 
-	
 </mapper>
