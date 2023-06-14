@@ -61,16 +61,18 @@ public class RoomDao {
 		return sqlSession.update("buRoom-mapper.updateRoomImg", roomImgList);
 	}
 
-	public List<Room> getRoomsByBuId(int roomNo) {
-		return sqlSession.selectList("buRoom-mapper.getRoomsByBuId", roomNo);
-	}
 
-	public RoomImg getRoomImagesByBuId(int roomNo) {
-		return sqlSession.selectOne("buRoom-mapper.getRoomImagesByBuId", roomNo);
+	public List<Room> getRoomsModifyByBuId(int roomNo) {
+	System.out.println(roomNo);
+	return sqlSession.selectList("buRoom-mapper.getRoomsModifyByBuId",roomNo);
+	}
+	public RoomImg getRoomImagesModifyByBuId(int buNo) {
+		System.out.println("****************************8" + buNo);
+		return sqlSession.selectOne("buRoom-mapper.getRoomImagesModifyByBuId", buNo);
 	}
 
 	public List<Room> standardRoom(int buNo) {
-		System.out.println("****************************8"+buNo);
+		System.out.println("****************************8" + buNo);
 		return sqlSession.selectList("buRoom-mapper.standardRoom", buNo);
 	}
 
@@ -79,7 +81,7 @@ public class RoomDao {
 	}
 
 	public List<Room> searchRooms(Map<String, Object> params) {
-	    return sqlSession.selectList("buRoom-mapper.searchRooms", params);
+		return sqlSession.selectList("buRoom-mapper.searchRooms", params);
 	}
 
 }

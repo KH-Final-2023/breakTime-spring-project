@@ -17,14 +17,15 @@ public interface RoomService {
 
 	public int updateRoomImg(List<RoomImg> roomImgList);
 
-	public List<Room> getRoomsByBuId(int roomNo); 
+	public List<Room> getRoomsModifyByBuId(int roomNo); 
 
-	public RoomImg getRoomImagesByBuId(int roomNo);
+	public RoomImg getRoomImagesModifyByBuId(int buNo);
 	
 	public List<Room> standardRoom(int buNo);
 
 	public RoomImg standardRoomImg(int roomNo);
 	
 	public List<Room> searchRooms(Map<String, Object> params);
+	
 	
 }

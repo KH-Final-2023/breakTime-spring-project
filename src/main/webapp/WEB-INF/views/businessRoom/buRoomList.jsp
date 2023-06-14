@@ -208,17 +208,21 @@ img {
 
 	</div>
 
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-		$(document).ready(
+		$(document)
+				.ready(
 						function() {
 							// 각 room-info를 클릭했을 때의 동작 처리
-							$('.room-info').click(function(event) {
+							$('.room-info')
+									.click(
+											function(event) {
 												event.preventDefault(); // 기본 클릭 동작 방지
-												var roomNo = $(this).data('room-no'); // 클릭한 방의 roomNo 값을 가져옴
+												var roomNo = $(this).data(
+														'room-no'); // 클릭한 방의 roomNo 값을 가져옴
 												if (roomNo !== undefined) {
-													window.location.href = '/breaktime/businessRoom/modifyPage?roomNo='+ roomNo;
+													window.location.href = '/breaktime/businessRoom/modifyPage?roomNo='
+															+ roomNo;
 												}
 											});
 						});
@@ -228,7 +232,8 @@ img {
 			var roomPrice = document.getElementById("roomPrice").value;
 			var roomHCount = document.getElementById("roomHCount").value;
 
-			if (roomName.trim() === "" || roomPrice.trim() === ""|| roomHCount.trim() === "") {
+			if (roomName.trim() === "" || roomPrice.trim() === ""
+					|| roomHCount.trim() === "") {
 				alert("Please enter all search criteria.");
 				return false;
 			}

@@ -13,8 +13,8 @@
 <title>Document</title>
 <style>
 img {
-	width: 210x;
-	height: 170px;
+	width: 250px;
+	height: 150px;
 	margin: 10px;
 }
 </style>
@@ -38,56 +38,48 @@ img {
 		</div>
 		<div id="content2">
 			<div id="modifyForm">
-				<form action="/breaktime/businessRoom/buRoomModify" method="POST"
+				<form action="/breaktime/businessRoom/buRoomModify" method="POST" style="font-size :20px;"
 					enctype="multipart/form-data">
 					<div id="roomModifyText1"
 						style="font-size: x-large; margin: 15px; text-align: center;">객실
 						수정</div>
 
 					<input type="hidden" name="fileNo" value="${roomImg.fileNo}">
-					<input type="hidden" name="roomNo" value="${ room.roomNo}" />
+					<input type="hidden" name="roomNo" value="${room.roomNo}" />
 					<div class="room-info" data-room-no="${room.roomNo}">
-						<div id="imgList">
-							<img
-								src="<%=request.getContextPath() %>${roomImg.filePath}/${roomImg.originName}">
+						<div id="imgList" >
+							<img src="<%=request.getContextPath() %>${roomImg.filePath}/${roomImg.originName}">
 						</div>
 					</div>
 
 					<div id="ModifyroomName">객실 이름 :</div>
 					<div>
-						<input name="roomName" placeholder="수정할 객실 이름을 입력해주세요"
-							value="${room.roomName}">
+						<input name="roomName" placeholder="수정할 객실 이름을 입력해주세요" value="${room.roomName}">
 					</div>
 					<div id="ModifyroomCount">인원 수:</div>
 					<div>
-						<input name="roomHCount" placeholder="인원을 입력해주세요"
-							value="${room.roomHCount}">
+						<input name="roomHCount" placeholder="인원을 입력해주세요" value="${room.roomHCount}">
 					</div>
 					<div id="ResisterRoomcheckin">체크인 :</div>
 					<div>
-						<input name="roomCheckin" placeholder="체크인 시간을 입력해주세요"
-						value="${room.roomCheckin}">
+						<input name="roomCheckin" placeholder="체크인 시간을 입력해주세요" value="${room.roomCheckin}">
 					</div>
 					<div id="ResisterRoomcheckout">체크아웃 :</div>
 					<div>
-						<input name="roomCheckout" placeholder="체크아웃 시간을 입력해주세요"
-						value="${room.roomCheckout}">
+						<input name="roomCheckout" placeholder="체크아웃 시간을 입력해주세요" value="${room.roomCheckout}">
 					</div>
 					<div id="ModifyroomPrice">가격 :</div>
 					<div>
-						<input name="roomPrice" placeholder="수정할 객실 가격을 입력해주세요"
-							value="${room.roomPrice}">
+						<input name="roomPrice" placeholder="수정할 객실 가격을 입력해주세요" value="${room.roomPrice}">
 					</div>
 					<div id="ModifyroomStandardInfoText">수정 객실 기본 정보</div>
 					<div>
-						<input name="roomInfo" placeholder="수정할 객실 정보를 입력해주세요"
-							value="${room.roomInfo}">
+						<input name="roomInfo" placeholder="수정할 객실 정보를 입력해주세요" value="${room.roomInfo}">
 						<%--  <div><textarea name="roomInfo"  placeholder="수정할 객실 정보를 입력해주세요" value ="${room.roomInfo}"></textarea> --%>
 					</div>
 					<div id="ModifyroomPhotoInfoText">수정 객실 사진 등록</div>
 					<div>
-						<input type="file" name="upfiles" multiple
-							value="${roomImg.saveName}">
+						<input type="file" name="upfiles" multiple value="${roomImg.saveName}">
 					</div>
 					<div id=modifyBtn>
 

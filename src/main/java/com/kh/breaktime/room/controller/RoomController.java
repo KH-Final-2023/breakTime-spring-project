@@ -208,17 +208,17 @@ public class RoomController {
 	public String modifyPage(Model model, HttpSession session, @RequestParam("roomNo") int roomNo) {
 		// 방 이미지와 방 정보 페이지로 이동
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-		List<Room> roomList = buService.getRoomsByBuId(roomNo);
-
+		List<Room> roomList = buService.getRoomsModifyByBuId(roomNo);
+		System.out.println("니가 조회한 룸이다:" + roomList);
 		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 		for (int i = 0; i < roomList.size(); i++) {
-			RoomImg roomImg = buService.getRoomImagesByBuId(roomList.get(i).getRoomNo());
+			RoomImg roomImg = buService.getRoomImagesModifyByBuId(roomList.get(i).getRoomNo());
 			roomImgList.add(roomImg);
 		}
-
-		model.addAttribute("room", roomList);
+		if(roomList.size()!=0 && roomImgList.size() !=0) {
+		model.addAttribute("room", roomList.get(0));
 		model.addAttribute("roomImg", roomImgList.get(0));
-
+		}
 		return "businessRoom/buRoomModify";
 	}
 

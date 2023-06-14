@@ -130,17 +130,17 @@ public class BusinessController {
 
 		return "business/businessEnrollForm";
 	}
-	
+
 	@GetMapping("/logout")
-    public String logoutBusiness(HttpSession session , SessionStatus status) throws Exception{
-       
+	public String logoutBusiness(HttpSession session, SessionStatus status) throws Exception {
+
 		status.setComplete();
 		session.setAttribute("alertMsg", "사업자 로그아웃성공");
-        return "redirect:/";              
-    }
-	
-   @PostMapping("/insert")
-   public String insertBusiness(Business b, HttpSession session, Model model) {
+		return "redirect:/";
+	}
+
+	@PostMapping("/insert")
+	public String insertBusiness(Business b, HttpSession session, Model model) {
 
 		int result = businessService.insertBusiness(b);
 
@@ -183,23 +183,30 @@ public class BusinessController {
 
 	}
 
-
 	@PostMapping("/reviewContentReply")
-	  public String updateReviewContentReply(@RequestParam("reviewContentReply") String reviewContentReply , int reviewNo) {
-		 Review review = new Review();
-	     review.setReviewNo(reviewNo);
-	     review.setReviewContentReply(reviewContentReply);
-		List<Review> result  = businessService.updateReviewContentReply(review);
-
-		
+	public String updateReviewContentReply(@RequestParam("reviewContentReply") String reviewContentReply,
+			int reviewNo) {
+		Review review = new Review();
+		review.setReviewNo(reviewNo);
+		review.setReviewContentReply(reviewContentReply);
+		List<Review> result = businessService.updateReviewContentReply(review);
 
 		System.out.println(result);
-		 return "redirect:/business/review"; // 예시: 리뷰 목록 페이지로 리다이렉트
-    }
+		return "redirect:/business/review"; // 예시: 리뷰 목록 페이지로 리다이렉트
+	}
+
+	@PostMapping("/reviewdeclariation")
+	public String updateReviewDeclaration(@RequestParam("reviewNo") int reviewNo) {
+		businessService.updateReviewDeclaration(reviewNo);
+		return "redirect:/business/review"; // 리다이렉트할 페이지의 경로
+	}
 	
-	 @PostMapping("/reviewdeclariation")
-	    public String updateReviewDeclaration(@RequestParam("reviewNo") int reviewNo) {
-		 businessService.updateReviewDeclaration(reviewNo);
-		 return "redirect:/business/review";  // 리다이렉트할 페이지의 경로
-	    }
+	@GetMapping("/updateReservation")
+	public String updateReservation(Model model, HttpSession session , int bookNo) {
+		// 로그인한 사업자의 ID를 세션에서 가져옴
+		Booking booking = new Booking();
+		booking.setBookNo(bookNo);
+		
+		return "businessRoom/buReservation";
+	}
 }
