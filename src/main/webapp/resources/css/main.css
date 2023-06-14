@@ -142,7 +142,7 @@
 }
 
 
-.ranking{
+.area{
   width: 100%;
   height: 250px;
   margin-top: 1px;
@@ -152,7 +152,7 @@
   justify-content: space-between;
 
 }
-.ranking > .rankingSubBox {
+.area > .rankingSubBox {
   width: 200px;
   border-radius: 10px;
   box-shadow: 0px 0px 3px #000;
@@ -219,6 +219,71 @@
 
 #pHotel, #pMotel, #pResort, #pPension{
 	margin-top: 75px;
+	color : white;
+	font-size : 35px;
+}
+
+
+
+
+#seoul{
+	background: url("/breaktime/resources/images/서울.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+	
+}
+
+#seoul:hover{
+	background: url("/breaktime/resources/images/서울.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+	
+}
+
+#busan{
+	background: url("/breaktime/resources/images/부산.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+	
+}
+
+#busan:hover{
+	background: url("/breaktime/resources/images/부산.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+	
+}
+
+#gangwon{
+	background: url("/breaktime/resources/images/강원도.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+}
+
+#gangwon:hover{
+	background: url("/breaktime/resources/images/강원도.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+}
+
+#jeju{
+	background: url("/breaktime/resources/images/제주도.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+}
+
+#jeju:hover{
+	background: url("/breaktime/resources/images/제주도.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+}
+
+#pSeoul, #pBusan, #pGangwon, #pJeju{
+	margin-top: 25px;
 	color : white;
 	font-size : 35px;
 }

@@ -250,6 +250,7 @@
 </head>
 
 <body>
+
     <div class="container-main">
         <h2 class="reservation-title">예약</h2>
         <div class="order-details">
@@ -280,15 +281,16 @@
             
         </div>
     </div>
-<c:forEach items="${roomList}" var="room">
-    <div class="reservation-info">
-        <h3 style="margin-bottom: 15px;">예약자 정보</h3>
-        <div class="form-group">
-            <label for="customer-name">성명</label>
-            <span id="customer-name"><%= loginUser.getUserName()%></span>
-        </div>
-    </div>
-</c:forEach>
+
+	<c:forEach items="${roomList}" var="room">
+	    <div class="reservation-info">
+	        <h3 style="margin-bottom: 15px;">예약자 정보</h3>
+	        <div class="form-group">
+	            <label for="customer-name">성명</label>
+	            <span id="customer-name"><%= loginUser.getUserName()%></span>
+	        </div>
+	    </div>
+	</c:forEach>
      <div class="payment-amount-section" style="max-width: 768px; margin: 10px auto; background-color: #fff; padding: 20px;">
 
         <h3 style="margin-bottom: 15px;">결제 금액</h3>
@@ -306,7 +308,7 @@
         </div>
         </c:forEach>
     </div>
-
+	
     <div class="pay-section">
         <div class="on-site-payment-section">
             <div class="on-site-payment-header">
@@ -362,12 +364,12 @@
             </div>
         </div>
 		<c:forEach items="${roomList}" var="room">
-        <button class="pay-button" id="pay-button" onclick="requestPay()">${room.roomPrice }원 결제하기</button>
+        <button class="pay-button" id="pay-button">${room.roomPrice }원 결제하기</button>
         </c:forEach>
-       
-        
     </div>
-</div>
+    
+    
+    
 <script>
        // 체크박스 상태에 따라 버튼 배경색 변경
        function updatePayButton() {
@@ -436,39 +438,45 @@
             });
         });
     </script>
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-<script>
-function requestPay() {
-  IMP.init('imp49486608'); 
-  IMP.request_pay({
-    pg: "inicis",
-    pay_method: "card",
-    merchant_uid : 'merchant_'+new Date().getTime(),
-    name : 'BreakTime 예약',
-    /* amount : ${booking.price}, */
-    amount : 100,
-    buyer_email : '${email}',
-    buyer_name : '${member.userName}',
-    buyer_tel : '${member.tel}',
-    buyer_postcode : '123-456',
-  }, function (rsp) { // callback
-      if (rsp.success) {
-    	  $.ajax({
-	        	type : "POST",
-	        	url : "${pageContext.request.contextPath}/",
-	        	contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-	        	header:{"Content-Type":"application/json"},
-	    		dateType:'json',
-	    		data:{bo_num:rsp.imp_uid, payment:rsp.pay_method},
-	        }).done(function(data){
-	        	location.href='${pageContext.request.contextPath}/'+data
-	        })
-      } else {
-     	alert('결제 실패')
-      }
-  });
-}
-</script>
+    
+    
+    
+    
+    
+    
+<!--     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	<script>
+	function requestPay() {
+	  IMP.init('imp49486608'); 
+	  IMP.request_pay({
+	    pg: "inicis",
+	    pay_method: "card",
+	    merchant_uid : 'merchant_'+new Date().getTime(),
+	    name : 'BreakTime 예약',
+	    /* amount : ${booking.price}, */
+	    amount : 100,
+	    buyer_email : '${email}',
+	    buyer_name : '${member.userName}',
+	    buyer_tel : '${member.tel}',
+	    buyer_postcode : '123-456',
+	  }, function (rsp) { // callback
+	      if (rsp.success) {
+	    	  $.ajax({
+		        	type : "POST",
+		        	url : "${pageContext.request.contextPath}/",
+		        	contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		        	header:{"Content-Type":"application/json"},
+		    		dateType:'json',
+		    		data:{bo_num:rsp.imp_uid, payment:rsp.pay_method},
+		        }).done(function(data){
+		        	location.href='${pageContext.request.contextPath}/'+data
+		        })
+	      } else {
+	     	alert('결제 실패')
+	      }
+	  });
+	}
+	</script> -->
 
 
 </body>

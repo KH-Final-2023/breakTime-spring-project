@@ -105,9 +105,8 @@ html, body {
                         <th>객실이름</th>
                         <th>이용인원수</th>
                         <th>예약번호</th>
-                        <th>체크인</th>
-                        <th>체크아웃</th>
-                        <th>예약상태</th>
+                        <th>입실날짜</th>
+                        <th>퇴실날짜</th>
                         <th>리뷰작성</th>
                      </tr>
                   </thead>
@@ -118,21 +117,12 @@ html, body {
                            <td>${booking.roomName}</td>
                            <td>${booking.roomHCount}</td>
                            <td>${booking.reservationNo}</td>
+                           
                            <td>
-                              <button id="update-btn" type="submit"
-                                 class="btn btn-outline-primary">
-                                 <span>입실전</span>
-                              </button>
+                              ${booking.roomCheckin}
                            </td>
                            <td>
-                              <button type="button" class="btn btn-outline-danger">
-                                 <span>퇴실전</span>
-                              </button>
-                           </td>
-                           <td>
-                              <button type="button" class="btn btn-outline-success">
-                                 <span>예약전</span>
-                              </button>
+                              ${booking.roomCheckout}
                            </td>
                            <td>
                                     <button id="rBtn "type="button" class="btn btn-outline-success"

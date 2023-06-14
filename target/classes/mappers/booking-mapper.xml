@@ -39,6 +39,7 @@
 				AND B.USER_NO = #{userNo}
 	</select>
 	
+	
 	<insert id="insertReview" useGeneratedKeys="true"
       parameterType="review">
 
@@ -79,6 +80,8 @@
 				FROM ROOM R
 		JOIN BUSINESS B ON B.BU_NO = R.BU_NO
 	</select>
+	
+	
 
 
 

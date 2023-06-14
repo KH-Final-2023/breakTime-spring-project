@@ -24,6 +24,5 @@ public class BookingDao {
 	 public int insertReview(Review r) {
 	      return sqlSession.insert("bookingMapper.insertReview", r);
 	   }
-	 
 	
 }
