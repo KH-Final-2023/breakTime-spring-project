@@ -51,6 +51,12 @@ public class DecideDao {
       
       return (ArrayList)sqlSession.selectList("decideMapper.selectDecideRoom", buNo);
    }
+
+   // 선택 객실 조회
+	public ArrayList<Decide> payDecideRoom(int roomNo) {
+			
+		return (ArrayList)sqlSession.selectList("decideMapper.payDecideRoom",roomNo);
+	}
    
    // 지도 메인 화면 조회
    public ArrayList<Decide> selectDecideMap(int buNo) {
@@ -89,8 +95,26 @@ public class DecideDao {
    }
    
    // 장바구니 삭제
-   public int deleteCartList(int userNo) {
+   public int deleteCartList(Decide decide) {
 	   
-      return sqlSession.delete("decideMapper.deleteCartList", userNo);
+      return sqlSession.delete("decideMapper.deleteCartList", decide);
+   }
+	
+   //찜
+   public int insertLIkeValue(Decide decide) {
+
+	   return sqlSession.insert("decideMapper.insertLIkeValue", decide);
+   }
+   
+   //찜 취소
+   public int deleteLikeValue(Decide decide) {
+
+	   return sqlSession.delete("decideMapper.deleteLIkeValue", decide);
+   }
+
+   //찜 유무 확인
+   public int selectLikeValue(Decide decide) {
+	
+	   return sqlSession.selectOne("decideMapper.selectLikeValue", decide);
    }
 }

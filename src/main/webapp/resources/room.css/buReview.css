@@ -1,124 +1,132 @@
 #content1 {
-	display: flex;
-	justify-content: center;
+   display: flex;
+   justify-content: center;
 }
 
 #reviewFormMove {
-	display: flex;
-	justify-content: space-around;
-	width: 600px;
-	height: 60px;
-	background-color: #c0e2c0;
-	border-radius: 15px;
-	margin-top: 150px;
-	align-items: center;
-	 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   display: flex;
+   justify-content: space-around;
+   width: 600px;
+   height: 60px;
+   background-color: #c0e2c0;
+   border-radius: 15px;
+   margin-top: 150px;
+   align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button {
-	font-family: 'Arial', fantasy;
-	font-size: 16px;
-	font-weight: bold;
-	text-transform: uppercase;
-	border: solid 1px black;
-	border-radius: 5px;
-	background-color: green;
-	color: white;
-	height : 30px;
+   font-family: 'Arial', fantasy;
+   font-size: 16px;
+   font-weight: bold;
+   text-transform: uppercase;
+   border: solid 1px black;
+   border-radius: 5px;
+   background-color: green;
+   color: white;
+   height : 30px;
 }
 #buRoomRegister,
 #buRoomReservation,
 #buReview {
-	border: solid 1px black;
-	border-radius: 5px;
-	background-color: green;
-	color: white;
-	width: 100px;
-	height: 40px;
+   border: solid 1px black;
+   border-radius: 5px;
+   background-color: green;
+   color: white;
+   width: 100px;
+   height: 40px;
 }
-table{
-	width : 1900px;
-	
+#buReviewText {
+   margin: 50px;
+   font-size: xx-large;
+   margin-bottom: 70px
+}
+
+/* table{
+   width : 1900px;
+   
+
 }
 tbody{
-	text-align : center;
-	background-color: #c0e2c0;
-	height : 40px;
+   text-align : center;
+   background-color: #c0e2c0;
+   height : 40px;
 }
 thead{
-	background-color: green;
-	height : 60px;
-}
+   background-color: green;
+   height : 60px;
+} */
 #content2 {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
 }
 
-#buReviewText {
-	margin: 50px;
-	font-size: xx-large;
-	margin-bottom: 70px
-}
 
-#reviewStar {
-	display: flex;
+/* #reviewStar {
+
+   display: flex;
+
+
+
 }
 
 #reviewNickname {
-	display: flex;
+   display: flex;
 }
 
 #reviewRoomName {
-	display: flex;
+   display: flex;
 }
 
 #reviewRoomNameList {
-	background-color: lightgray;
-	width: 60px;
-	height: 20px;
-	border-radius: 5px;
-	text-align: center;
+   background-color: lightgray;
+   width: 60px;
+   height: 20px;
+   border-radius: 5px;
+   text-align: center;
 }
 
 #reviewRoomNameInfo {
-	border-radius: 5px;
-	background-color: rgba(238, 238, 238, 0.982);
+   border-radius: 5px;
+   background-color: rgba(238, 238, 238, 0.982);
 }
 
 #review {
-	margin: 20px;
-	text-align: left;
-	width: 300px;
+   margin: 20px;
+   text-align: left;
+   width: 300px;
 }
 
 #buReviewList {
-	width: 700px;
-	height: 200px;
-	background-color: rgba(238, 238, 238, 0.982);
-	border-radius: 15px;
-	margin-left: 10px;
+   width: 700px;
+   height: 200px;
+   background-color: rgba(238, 238, 238, 0.982);
+   border-radius: 15px;
+   margin-left: 10px;
 }
 
 #reviewInfo {
-	background-color: white;
-	width: 728px;
-	flex-direction: column;
-	align-items: center;
+   background-color: white;
+   width: 728px;
+   flex-direction: column;
+   align-items: center;
 }
 
 #reviewBackground {
-	background-color: #E2E2E2;
-	width: 1520px;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-}
+
+   background-color: #E2E2E2;
+   width: 1520px;
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center;
+
+} */
 
 
-
+ */
 
 
 /* 모달 */
@@ -179,8 +187,8 @@ thead{
 }
 
 #search-input2{
-	width: 430px;
-	height: 45px;
+   width: 430px;
+   height: 45px;
 }
 
 
@@ -190,4 +198,12 @@ thead{
 #search2>img{
     width: 20px;
     height: 18px;
+}
+#contentdeclariation{
+   display: flex;
+   width :740px;
+   justify-content: space-between;
+}
+#contentdeclariationbtn{
+   margin-top : 20px;
 }

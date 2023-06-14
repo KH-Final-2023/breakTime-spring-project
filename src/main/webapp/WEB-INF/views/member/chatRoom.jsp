@@ -48,7 +48,7 @@ overflow: hidden;
 
 .display-chatting {
 	width: 80%;
-	height: 780px;
+	height: 78vh;
 	overflow: auto; /*스크롤 처럼*/
 	list-style: none;
 	padding: 10px 10px;
@@ -77,7 +77,7 @@ overflow: hidden;
 
 .input-area {
 	width: 100%;
-	height: 50px;
+	height: 35px;
 	display: flex;
 	justify-content: center;
 }
@@ -85,7 +85,7 @@ overflow: hidden;
 #inputChatting {
 	width: 32%;
 	resize: none;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 #send {
@@ -129,7 +129,7 @@ overflow: hidden;
 					<% for(int i = 0; i<list.size()*0+1; i++) { %>
 						<div id="firstMsg">
 							<p>안녕하세요 <%=list.get(i).getBuTitle() %> 입니다.
-							본 문의창은 다수의 사용자가 사용하므로<br>  개인정보에 관한 내용은 삼가해주시길 바랍니다.
+							본 문의창은 다수의 사용자가 사용하므로  개인정보에 관한 내용은 삼가해주시길 바랍니다.
 							자세한 문의가 필요할 시  본 숙소로 전화해주시길 바랍니다.</p>
 						</div>
 					<%} %>

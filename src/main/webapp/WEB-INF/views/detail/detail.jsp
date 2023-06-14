@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="list" value="${map.list}" />
 
@@ -16,136 +16,127 @@
 
 <!-- fontawesome라이브러리추가 다양한 아이콘을 지원함.(EX) 검색용 돋보기 버튼) -->
 <script src="https://kit.fontawesome.com/a2e8ca0ae3.js"
-   crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-
 <style>
 body {
-   overflow: scroll;
-   overflow-x: hidden;
+	overflow: scroll;
+	overflow-x: hidden;
 }
 
 .mainArea {
-   width: 45%;
-   margin-left: 250px;
+	width: 45%;
+	margin-left: 250px;
 }
 
 button {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 .houseList {
-   margin-left: 5%;
+	margin-left: 5%;
 }
 
 .houseContent {
-   min-width: 700px;
-   height: 200px;
-   border-radius: 0.75rem;
-   border: solid 1px darkgray;
-   box-shadow: 3px 3px 3px 3px gray;
-   display: grid;
-   grid-template-columns: minmax(200px, 2fr) minmax(300px, 3fr)
-      minmax(200px, 2fr);
+	min-width: 700px;
+	height: 200px;
+	border-radius: 0.75rem;
+	border: solid 1px darkgray;
+	box-shadow: 3px 3px 3px 3px gray;
+	display: grid;
+	grid-template-columns: minmax(200px, 2fr) minmax(300px, 3fr)
+		minmax(200px, 2fr);
 }
 
 .houseMainImg {
-   box-sizing: border-box;
-   height: 200px;
+	box-sizing: border-box;
+	height: 200px;
 }
 
 .houseInfo {
-   box-sizing: border-box;
-   padding: 5%;
+	box-sizing: border-box;
+	padding: 5%;
 }
 
 .houseTitle {
-   font-size: 20px;
-   padding: 0 0 2%;
+	font-size: 20px;
+	padding: 0 0 2%;
 }
 
 .houseAddress {
-   font-size: 14px;
-   padding: 2% 0 2%;
+	font-size: 14px;
+	padding: 2% 0 2%;
 }
 
 .houseTel {
-   font-size: 12px;
-   padding: 0 0 2%;
+	font-size: 12px;
+	padding: 0 0 2%;
 }
 
 .room_options {
-   font-size: 12px;
-   padding: 0 0 2%;
+	font-size: 12px;
+	padding: 0 0 2%;
 }
 
 .housePrice {
-   position: relative;
-   border-left: 1px solid darkgrey;
-   box-sizing: border-box;
-   padding: 8%;
-   text-align: right;
-   color: gray;
+	position: relative;
+	border-left: 1px solid darkgrey;
+	box-sizing: border-box;
+	padding: 8%;
+	text-align: right;
+	color: gray;
 }
 
 .priceHowMuch {
-   font-size: 130%;
-   font-weight: bold;
-   color: black;
+	font-size: 130%;
+	font-weight: bold;
+	color: black;
 }
 
 .priceDetail1 {
-   font-size: 80%;
-   margin-bottom: 1%;
+	font-size: 80%;
+	margin-bottom: 1%;
 }
 
 .priceDetail2 {
-   font-size: 70%;
-   margin-top: 1%;
+	font-size: 70%;
+	margin-top: 1%;
 }
 
 .hpButton {
-   height: 50px;
-   position: absolute;
-   bottom: 15%;
-   right: 8%;
+	height: 50px;
+	position: absolute;
+	bottom: 15%;
+	right: 8%;
 }
 
 .rsButton {
-   font-size: 70%;
-   color: black;
+	font-size: 70%;
+	color: black;
 }
 
 .houseList>ul {
-   padding-left: 0;
-   margin-left: 0;
+	padding-left: 0;
+	margin-left: 0;
 }
 
 .houseList>ul>li {
-   list-style-type: none;
-   margin-bottom: 3%;
+	list-style-type: none;
+	margin-bottom: 3%;
 }
 
 .houseList>ul>li>div>div>img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   border-top-left-radius: 0.75rem;
-   border-bottom-left-radius: 0.75rem;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-top-left-radius: 0.75rem;
+	border-bottom-left-radius: 0.75rem;
 }
 
 .starStyle {
-   color: #d8db1f;
-}
-
-#optionReset {
-   
-}
-
-#optionSubmit {
-   
+	color: #d8db1f;
 }
 </style>
 
@@ -153,17 +144,13 @@ button {
 
 <body>
 
-   <%-- <jsp:include page="/WEB-INF/views/header.jsp" /> --%>
+	<%-- <jsp:include page="/WEB-INF/views/header.jsp" /> --%>
 
-   <jsp:include page="/WEB-INF/views/detail/area_detail.jsp" />
+	<%-- <jsp:include page="/WEB-INF/views/detail/search_detail.jsp" /> --%>
 
-	<jsp:include page="/WEB-INF/views/detail/date_detail.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
-   <jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
-
-
-
-	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
+   <jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
 
 	<div class="mainArea">
 		<div class="houseList">
@@ -206,21 +193,21 @@ button {
 									<button onclick="redirectToDetail('${d.buNo}')">자세히 보기</button>
 								</div>
 
-                     </div>
-                  </div>
-               </li>
-            </c:forEach>
-         </ul>
-      </div>
-   </div>
+							</div>
+						</div>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
 
-   <div class id="map"
-      style="width: 40%; height: 1080px; position: fixed; right: 0; top: 0;"></div>
+	<div class id="map"
+		style="width: 40%; height: 1080px; position: fixed; right: 0; top: 0;"></div>
 
-   <!-- 지도 api 스크립트 -->
-   <script type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=55a7843b1806f000c969ae74b8fbf856&libraries=services"></script>
-   <script>
+	<!-- 지도 api 스크립트 -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=55a7843b1806f000c969ae74b8fbf856&libraries=services"></script>
+	<script>
    var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
    var mapOption = {
      center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -281,7 +268,7 @@ button {
 
    </script>
 
-   <script>
+	<script>
       // houseContent div 클릭 시 해당 주소의 마커로 이동하는 함수
       function moveMarker(address) {
         geocoder.addressSearch(address, function(result, status) {
@@ -304,7 +291,7 @@ button {
 
 
 
-   <script>
+	<script>
     function checkScreenWidth() {
         var mapDiv = document.getElementById('map');
         var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -320,8 +307,8 @@ button {
     checkScreenWidth();
    </script>
 
-   <!-- 모달창 열기/닫기 스크립트 -->
-   <script>
+	<!-- 모달창 열기/닫기 스크립트 -->
+	<script>
         const open = () => {
             document.querySelector(".modal_background").style.visibility="visible";
         }
@@ -348,104 +335,15 @@ button {
 	  }
 	</script>
 
-	<!-- 드롭다운 스크립트 -->
-	<script type="text/javascript">
-	var area = '';
-	
-	window.onload = () => {
-		  document.querySelector('.dropbtn2_click').onclick = () => {
-		    dropdown('.dropdown-content2', '.dropbtn2');
-		  };
+	<!-- footer include -->
 
-		  document.querySelector('.dropbtn1_click').onclick = () => {
-		    dropdown('.dropdown-content1', '.dropbtn1');
-		  };
+	<!-- jQuery 라이브러리 추가 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
 
-		  // 추가된 부분: dropdown-content2의 클릭 이벤트 핸들러 제거
-		  var dropdownContent2 = document.querySelector('.dropdown-content2');
-		  dropdownContent2.onclick = (event) => {
-		    event.stopPropagation();
-		  };
+	<!-- main.js 연 결 -->
 
-		  // 추가된 부분: dropdown-content2의 마우스 강조 효과 제거
-		  dropdownContent2.onmouseover = (event) => {
-		    event.target.style.backgroundColor = 'transparent';
-		  };
-
-		  var categoryCodes = document.getElementsByClassName('categoryCode');
-		  for (var i = 0; i < categoryCodes.length; i++) {
-		    categoryCodes[i].onclick = function() {
-		      var id = this.getAttribute('id');
-		      showMenu(this.innerText, id);
-		    };
-		  }
-
-		  function dropdown(contentClass, btnClass) {
-		    var v = document.querySelector(contentClass);
-		    var dropbtn = document.querySelector(btnClass);
-		    v.classList.toggle('show');
-		    dropbtn.style.borderColor = 'rgb(94, 94, 94)';
-		  }
-
-		  function showMenu(value, id) {
-		    var dropbtn_icon = document.querySelector('.dropbtn1_icon');
-		    var dropbtn_content = document.querySelector('.dropbtn1_content');
-		    var dropbtn_click = document.querySelector('.dropbtn1_click');
-		    var dropbtn = document.querySelector('.dropbtn1');
-
-		    dropbtn_icon.innerText = '';
-		    dropbtn_content.innerText = value;
-		    dropbtn_content.style.color = '#252525';
-		    dropbtn.style.borderColor = '#3992a8';
-
-		    // 변수에 선택한 값을 저장
-		    area = value.toLowerCase();
-		    console.log('Selected Area:', area);
-		  }
-
-		  window.onclick = (e) => {
-		    if (!e.target.matches('.dropbtn1_click') && !e.target.matches('.dropbtn2_click')) {
-		      var dropdowns1 = document.getElementsByClassName('dropdown-content1');
-		      var dropdowns2 = document.getElementsByClassName('dropdown-content2');
-		      closeDropdowns(dropdowns1);
-		      closeDropdowns(dropdowns2);
-		    }
-		  };
-
-		  function closeDropdowns(dropdowns) {
-		    for (var i = 0; i < dropdowns.length; i++) {
-		      var openDropdown = dropdowns[i];
-		      if (openDropdown.classList.contains('show')) {
-		        openDropdown.classList.remove('show');
-		      }
-		    }
-		  }
-		};
-
-		function submitForm() {
-		    var form = document.getElementById("houseOption");
-		    var formData = new FormData(form);
-		    var queryString = new URLSearchParams(formData).toString();
-		    
-		    var outsideValue = encodeURIComponent(outsideVariable);
-		    queryString += "&area=" + area;
-		    
-		    var url = form.action + "?" + queryString;
-		    window.location.href = url;
-		  }
-	</script>
-
-
-
-   <!-- footer include -->
-
-   <!-- jQuery 라이브러리 추가 -->
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"></script>
-
-   <!-- main.js 연 결 -->
-   <script src="${contextPath}/resources/js/main/main.js"></script>
 
 </body>
 </html>

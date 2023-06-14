@@ -60,7 +60,7 @@
 							<th>예약번호</th>
 							<th>체크인</th>
 							<th>체크아웃</th>
-							<th>예약상태</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -70,21 +70,19 @@
 								<td>${booking.roomHCount}</td>
 								<td>${booking.reservationNo}</td>
 								<td>
-									<button id="update-btn" type="submit"
-										class="btn btn-outline-primary" data-toggle="modal">
-										<span>입실전</span>
-									</button>
-								</td>
-								<td>
-									<button type="button" class="">
-										<span>퇴실전</span> </a>
+									<form action="/breaktime/business/updateReservation" method="post">
+										<input type="hidden" name="bookingId" value="${booking.bookNo}">
+										<button id="update-btn" type="submit" >
+											<span>입실</span>
 										</button>
+									</form>
 								</td>
 								<td>
 									<button type="button" class="">
-										<span>예약전</span>
+										<span>퇴실</span> </a>
 									</button>
 								</td>
+
 							</tr>
 						</c:forEach>
 					</tbody>
