@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>일반고객 로그인 폼</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="/breaktime/resources/css/sukbumModal.css">
 <link rel="stylesheet" href="../resources/css/loginForm.css">
 <style>
         #container{
@@ -161,7 +162,7 @@
 
 	
 	<!-- 아이디찾기 모달창 -->
-	<div class="modal2 hidden">
+	<div class="modal2 hidden" style="left:200px;">
 		<div class="bg2"></div>
 		<div class="modalBox" style="height:auto;">
 			<div class="header">
@@ -171,7 +172,7 @@
 			<div class="addDdayBody" style="height:auto;">
 				<div class="inputBox">
 					<h3 class="inputLabel">이메일 입력</h3>
-					<input type="text" name="email" id="email" placeholder="가입했던 이메일을 입력해주세요." class="inputField" required/><br>
+					<input style="margin-top:15px;" type="text" name="email" id="email" placeholder="가입했던 이메일을 입력해주세요." class="inputField" required/><br>
 				</div>
 			</div>
 			<button style="border:transparent;" type="submit" class="closeBtn2" id="fullBlueBtn">아이디 찾기</button>
