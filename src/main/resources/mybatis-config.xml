@@ -19,7 +19,11 @@
 		<typeAlias type="com.kh.breaktime.booking.model.vo.Booking" alias="booking" />
 
 		<typeAlias type="com.kh.breaktime.review.model.vo.Review" alias="review" />
+
 		<typeAlias type="com.kh.breaktime.member.model.vo.WishList" alias="wish" />
+
+		<typeAlias type="com.kh.breaktime.detail.model.vo.AreaCode" alias="areaCode" />
+
 		
 		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatRoomJoin" alias="chatRoomJoin"/>
 		<typeAlias type="com.kh.breaktime.chat.model.vo.ChatMessage" alias="chatMessage"/>
