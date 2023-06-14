@@ -106,21 +106,17 @@
               <input type="password" placeholder="Password" name="userPwd">
             </div>
             <button>
-              Sign in
+              로그인
             </button>
-            <p>
-              <b>
-                Forgot password?
+            <p class="pointer" style="display: flex; flex-direction: row; justify-content: space-around;">
+              <b id="findId">
+                아이디찾기
+              </b>
+               <b onclick="toggle()" class="pointer" id="memberEnrollBtn">
+                회원가입
               </b>
             </p>
-            <p>
-              <span>
-                Don't have an account?
-              </span>
-              <b onclick="toggle()" class="pointer" id="memberEnrollBtn">
-                Sign up here
-              </b>
-            </p>
+
           </div>
         </div>
         <div class="form-wrapper">
@@ -163,7 +159,40 @@
     <!-- END CONTENT SECTION -->
   </div>
 
-
+	
+	<!-- 아이디찾기 모달창 -->
+	<div class="modal2 hidden">
+		<div class="bg2"></div>
+		<div class="modalBox" style="height:auto;">
+			<div class="header">
+				<h2>아이디 찾기</h2>
+			</div>
+			<form action="findId" method="post">
+			<div class="addDdayBody" style="height:auto;">
+				<div class="inputBox">
+					<h3 class="inputLabel">이메일 입력</h3>
+					<input type="text" name="email" id="email" placeholder="가입했던 이메일을 입력해주세요." class="inputField" required/><br>
+				</div>
+			</div>
+			<button style="border:transparent;" type="submit" class="closeBtn2" id="fullBlueBtn">아이디 찾기</button>
+			</form>
+		</div>
+	</div>
+	
+	
+	<script> 
+        const open2 = () => {
+            document.querySelector(".modal2").classList.remove("hidden");
+        }
+        const close2 = () => {
+            console.log('cdlose')
+            document.querySelector(".modal2").classList.add("hidden");
+        }
+        document.querySelector("#findId").addEventListener("click", open2);
+        document.querySelector(".closeBtn2").addEventListener("click", close2);
+        document.querySelector(".bg2").addEventListener("click", close2);
+    </script>
+	
     <!-- 제이쿼리 스크립트 -->
     <script>
     let container = document.getElementById('container')
