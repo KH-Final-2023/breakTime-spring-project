@@ -73,7 +73,7 @@ function() {
 
      var isConfirm = confirm("장바구니로 이동합니다.");
      if (isConfirm) {
-       window.location.href = "${contextPath}/decide/debasket";
+       window.location.href = "${contextPath}/decide/debasket?roomNo=${d.roomNo}&buNo=${d.buNo}";
      }
    });
 </c:forEach>
@@ -169,7 +169,7 @@ function removeHyphens(dateString) {
                      </div>
                      <% } else { %>
                      <div class="button-card">
-                        <a href="${contextPath}/decide/debasket" class="button-card1" id="button-card1-${status.index + 1}">장바구니 담기</a> 
+                     <a href="${contextPath}/decide/debasket?roomNo=${d.roomNo}&buNo=${d.buNo}" class="button-card1" id="button-card1-${status.index + 1}">장바구니 담기</a>
                      <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
                      </div>
                      <% } %>

@@ -247,8 +247,12 @@ function AjaxDeleteCart() {
         }
     });
 }
-
-
+//장바구니 페이지의 JavaScript 코드
+ $(document).ready(function() {
+   $('#reservation-button').click(function() {
+      window.location.href = "${contextPath}/decide/pay/${param.roomNo}";
+   });
+}); 
 </script>
 </head>
 
