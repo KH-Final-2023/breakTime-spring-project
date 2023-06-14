@@ -115,6 +115,19 @@ body {
    font-size: 12px;
 }
 
+.button-card3 {
+   display: inline-block;
+   width: 130px;
+   padding: 10px 16px;
+   background-color: rgb(46, 204, 113);
+   color: #ffffff;
+   border: none;
+   border-radius: 4px;
+   text-decoration: none;
+   cursor: pointer;
+   font-size: 12px;
+}
+
 .button-container {
    display: flex;
    /* 버튼 위의 여백 크기 */
@@ -138,7 +151,7 @@ body {
 }
 
 /* 가격과 예약하기 정렬 */
-.button-card1, .button-card2 {
+.button-card1, .button-card2, .button-card3 {
    text-align: center;
 }
 

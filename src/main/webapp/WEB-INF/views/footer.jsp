@@ -12,7 +12,7 @@
 <body>
     <div id="footer">
     	
-    	<div id="container">
+    	<div id="Container">
                 <!-- 위쪽 푸터 -->
                 <div id="top">
                     <img id="footerBanner" src="<%=request.getContextPath()%>/resources/images/로고.png">

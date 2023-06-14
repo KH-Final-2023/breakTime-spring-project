@@ -34,18 +34,7 @@ public class DetailController {
 	private static final Logger logger = LoggerFactory.getLogger(DetailController.class);
 
 	@GetMapping("/detail/{category}")
-	public String detailList(@PathVariable("category") String category, Model model) {
-		Map<String, Object> map = new HashMap<>();
-
-		detailService.selectDetailList(category, map);
-
-		model.addAttribute("map", map);
-
-		return "detail/detail";
-	}
-
-	@GetMapping("/filter/{category}")
-	public String detailListSubmit(@PathVariable("category") String category,
+	public String filterListSubmit(@PathVariable("category") String category,
 			@RequestParam(value = "prices", required = false) List<String> prices,
 			@RequestParam(value = "reserveOptions", required = false) List<String> reserves,
 			@RequestParam(value = "houseOptions", required = false) List<String> options,
@@ -54,12 +43,24 @@ public class DetailController {
 			@RequestParam(value = "inOut", required = false) List<String> inOut, Model model) {
 		Map<String, Object> map = new HashMap<>();
 
-		detailService.getFilteredData(category, prices, reserves, options, guests, area, inOut, map);
+		detailService.selectDetailList(category, prices, reserves, options, guests, area, inOut, map);
 
 		model.addAttribute("map", map);
 
 		return "detail/detail";
 	}
+  
+  @GetMapping("/marea/{areaNo}")
+	public String selectAreaList(@PathVariable("areaNo") String areaNo, Model model) {
+	    Map<String, Object> map = new HashMap<>();
 
+	    detailService.selectAreaList(areaNo, map);
+
+	    model.addAttribute("map", map);
+
+	    return "detail/detail";
+	}
+	
+	
 
 }

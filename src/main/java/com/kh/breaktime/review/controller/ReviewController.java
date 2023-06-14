@@ -24,39 +24,35 @@ import com.kh.breaktime.review.model.vo.Review;
 @RequestMapping("/review")
 public class ReviewController {
 	
-	private ReviewService reviewService;
-	
-	
-	@Autowired
-	   public ReviewController(ReviewService reviewService) {
-	      this.reviewService = reviewService;
-
-	   }
-
-	   public ReviewController() {
-
-	   }
-
-	   @Autowired
-	   public void setReviewService(ReviewService reviewService) {
-	      this.reviewService = reviewService;
-	   }
-	   
-	 
-	
-	@GetMapping("/insert")
-	public String insertReview(Review review) {
-		reviewService.insertReview(review);
-		return "";
-			
-		}
-	
-	@GetMapping("/selectReviewList")
-	public String selectReplyList(int reviewNo) {
-		
-		List<Review> rList = reviewService.selectReviewList(reviewNo);
-		return new Gson().toJson(rList);
-	}
+	/*
+	 * private ReviewService reviewService;
+	 * 
+	 * 
+	 * @Autowired public ReviewController(ReviewService reviewService) {
+	 * this.reviewService = reviewService;
+	 * 
+	 * }
+	 * 
+	 * public ReviewController() {
+	 * 
+	 * }
+	 * 
+	 * @Autowired public void setReviewService(ReviewService reviewService) {
+	 * this.reviewService = reviewService; }
+	 * 
+	 * 
+	 * 
+	 * @GetMapping("/insert") public String insertReview(Review review) {
+	 * reviewService.insertReview(review); return "";
+	 * 
+	 * }
+	 * 
+	 * @GetMapping("/selectReviewList") public String selectReplyList(int reviewNo)
+	 * {
+	 * 
+	 * List<Review> rList = reviewService.selectReviewList(reviewNo); return new
+	 * Gson().toJson(rList); }
+	 */
 		
 		
 		

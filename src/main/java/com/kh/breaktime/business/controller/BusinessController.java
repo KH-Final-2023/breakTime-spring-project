@@ -32,181 +32,181 @@ import com.kh.breaktime.room.model.vo.RoomImg;
 @SessionAttributes({ "loginBusiness" })
 public class BusinessController {
 
-	private BusinessService businessService;
+   private BusinessService businessService;
 
-	@Autowired
-	public BusinessController(BusinessService businessService) {
-		this.businessService = businessService;
+   @Autowired
+   public BusinessController(BusinessService businessService) {
+      this.businessService = businessService;
 
-	}
+   }
 
-	public BusinessController() {
+   public BusinessController() {
 
-	}
+   }
 
-	@Autowired
-	public void setBusinessService(BusinessService businessService) {
-		this.businessService = businessService;
-	}
+   @Autowired
+   public void setBusinessService(BusinessService businessService) {
+      this.businessService = businessService;
+   }
 
-	@GetMapping("/login") // /spring/member/insert
-	public String loginForm() {
+   @GetMapping("/login") // /spring/member/insert
+   public String loginForm() {
 
-		return "business/businessLoginForm";
-	}
+      return "business/businessLoginForm";
+   }
 
-	@PostMapping("/buLogin")
-	public String loginMember(Model model, Business b, HttpSession session, RedirectAttributes ra,
-			HttpServletResponse resp, HttpServletRequest req,
-			@RequestParam(value = "saveId", required = false) String saveId) {
+   @PostMapping("/buLogin")
+   public String loginMember(Model model, Business b, HttpSession session, RedirectAttributes ra,
+         HttpServletResponse resp, HttpServletRequest req,
+         @RequestParam(value = "saveId", required = false) String saveId) {
 
-		// 암호화 전 loginUser처리
-//		Member loginUser = memberService.loginMember(m);
-//		if (loginUser == null) { // 실패
-//			mv.addObject("errorMsg", "로그인 실패");
-//			mv.setViewName("common/errorPage");
-//		} else { // 성공
-//			session.setAttribute("loginUser", loginUser);
-//			mv.setViewName("redirect:/"); // 메인페이지로 url재요청 == response.sendRedirect(request.getContextPath());
-//		}
-		// 암호화 후
-		/*
-		 * 기존에 평문이 db에 등록되어 있었기 때문에 아이디랑 비밀번호를 같이 입력받아 조회하는 형태로 작업하였음 암호화 작업을 하면 입력받은
-		 * 비밀번호는 평문이지만 db에 등록된 비밀번호는 암호문이기때문에 비교시 무조건 다르게 나옴 아이디로 먼저 회원정보 조회 후 회원이 있으면
-		 * 비밀번호 암호문 비교 메서드를 이용해서 일치하는지 확인
-		 */
+      // 암호화 전 loginUser처리
+//      Member loginUser = memberService.loginMember(m);
+//      if (loginUser == null) { // 실패
+//         mv.addObject("errorMsg", "로그인 실패");
+//         mv.setViewName("common/errorPage");
+//      } else { // 성공
+//         session.setAttribute("loginUser", loginUser);
+//         mv.setViewName("redirect:/"); // 메인페이지로 url재요청 == response.sendRedirect(request.getContextPath());
+//      }
+      // 암호화 후
+      /*
+       * 기존에 평문이 db에 등록되어 있었기 때문에 아이디랑 비밀번호를 같이 입력받아 조회하는 형태로 작업하였음 암호화 작업을 하면 입력받은
+       * 비밀번호는 평문이지만 db에 등록된 비밀번호는 암호문이기때문에 비교시 무조건 다르게 나옴 아이디로 먼저 회원정보 조회 후 회원이 있으면
+       * 비밀번호 암호문 비교 메서드를 이용해서 일치하는지 확인
+       */
 
-		Business loginBusiness = businessService.loginBusiness(b);
+      Business loginBusiness = businessService.loginBusiness(b);
 
-		// loginUser : 아이디 + 비밀번호로 조회한 회원정보 -------> 아이디로만 조회
-		// loginUser안의 userPwd : 암호화된 비밀번호
-		// m안의 userPwd은 : 암호화 되지 않은 평문 비밀번호
+      // loginUser : 아이디 + 비밀번호로 조회한 회원정보 -------> 아이디로만 조회
+      // loginUser안의 userPwd : 암호화된 비밀번호
+      // m안의 userPwd은 : 암호화 되지 않은 평문 비밀번호
 
-		// BCryptPasswordEncoder객체의 메서드중 matches사용
-		// matches(평문, 암호문)을 작성하면 내부적으로 복호화 작업이 이루어져서 일치여부를 boolean값으로 반환(true 일치,
-		// false불일치)
+      // BCryptPasswordEncoder객체의 메서드중 matches사용
+      // matches(평문, 암호문)을 작성하면 내부적으로 복호화 작업이 이루어져서 일치여부를 boolean값으로 반환(true 일치,
+      // false불일치)
 
-		if (loginBusiness != null) {
-			// session.setAttribute("loginUser", loginUser);
-			model.addAttribute("loginBusiness", loginBusiness);
-			session.setAttribute("alertMsg", "로그인 성공");
-			System.out.println(loginBusiness);
+      if (loginBusiness != null) {
+         // session.setAttribute("loginUser", loginUser);
+         model.addAttribute("loginBusiness", loginBusiness);
+         session.setAttribute("alertMsg", "로그인 성공");
+         System.out.println(loginBusiness);
 
-			// 로그인 성공시 아이디값을 저장하고 있는 쿠키 생성(유효시간 1년)
-			Cookie cookie = new Cookie("saveId", loginBusiness.getBuId());
+         // 로그인 성공시 아이디값을 저장하고 있는 쿠키 생성(유효시간 1년)
+         Cookie cookie = new Cookie("saveId", loginBusiness.getBuId());
 
-			if (saveId != null) { // 아이디 저장이 체크됐을때
-				cookie.setMaxAge(60 * 60 * 24 * 365); // 1년
+         if (saveId != null) { // 아이디 저장이 체크됐을때
+            cookie.setMaxAge(60 * 60 * 24 * 365); // 1년
 
-			} else { // 아이디 저장 체크하지 않았을 때
-				cookie.setMaxAge(0); // 바로 소멸
-			}
+         } else { // 아이디 저장 체크하지 않았을 때
+            cookie.setMaxAge(0); // 바로 소멸
+         }
 
-			resp.addCookie(cookie);
+         resp.addCookie(cookie);
 
-			// 방 이미지와 방 정보 페이지로 이동
-			List<Room> roomList = businessService.getRoomsByBuId(loginBusiness.getBuNo());
+         // 방 이미지와 방 정보 페이지로 이동
+         List<Room> roomList = businessService.getRoomsByBuId(loginBusiness.getBuNo());
 
-			List<RoomImg> roomImgList = new ArrayList<RoomImg>();
-			for (int i = 0; i < roomList.size(); i++) {
+         List<RoomImg> roomImgList = new ArrayList<RoomImg>();
+         for (int i = 0; i < roomList.size(); i++) {
 
-				RoomImg roomImg = businessService.getRoomImagesByBuId(roomList.get(i).getRoomNo());
-				roomImgList.add(roomImg);
-			}
+            RoomImg roomImg = businessService.getRoomImagesByBuId(roomList.get(i).getRoomNo());
+            roomImgList.add(roomImg);
+         }
 
-			model.addAttribute("roomList", roomList);
-			model.addAttribute("roomImgList", roomImgList);
+         model.addAttribute("roomList", roomList);
+         model.addAttribute("roomImgList", roomImgList);
 
-			return "businessRoom/buRoomList";
-		} else { // 로그인 실패
-			session.setAttribute("alertMsg", "관리자 승인대기중");
-			return "redirect:/"; // 로그인 실패 시 메인페이지로 이동하도록 수정
-		}
+         return "businessRoom/buRoomList";
+      } else { // 로그인 실패
+         session.setAttribute("alertMsg", "관리자 승인대기중");
+         return "redirect:/"; // 로그인 실패 시 메인페이지로 이동하도록 수정
+      }
 
-	}
+   }
 
-	@GetMapping("/insert") // /spring/member/insert
-	public String enrollForm() {
+   @GetMapping("/insert") // /spring/member/insert
+   public String enrollForm() {
 
-		return "business/businessEnrollForm";
-	}
+      return "business/businessEnrollForm";
+   }
 
-	@GetMapping("/logout")
-	public String logoutBusiness(HttpSession session, SessionStatus status) throws Exception {
+   @GetMapping("/logout")
+   public String logoutBusiness(HttpSession session, SessionStatus status) throws Exception {
 
-		status.setComplete();
-		session.setAttribute("alertMsg", "사업자 로그아웃성공");
-		return "redirect:/";
-	}
+      status.setComplete();
+      session.setAttribute("alertMsg", "사업자 로그아웃성공");
+      return "redirect:/";
+   }
 
-	@PostMapping("/insert")
-	public String insertBusiness(Business b, HttpSession session, Model model) {
+   @PostMapping("/insert")
+   public String insertBusiness(Business b, HttpSession session, Model model) {
 
-		int result = businessService.insertBusiness(b);
+      int result = businessService.insertBusiness(b);
 
-		String url = "";
-		if (result > 0) { // 성공시 - 메인페이지로
-			session.setAttribute("alertMsg", "회원가입");
-			url = "redirect:/";
-		} else { // 실패 - 에러페이지
-			model.addAttribute("errorMsg", "회원가입 실패");
-			url = "common/errorPage";
-		}
+      String url = "";
+      if (result > 0) { // 성공시 - 메인페이지로
+         session.setAttribute("alertMsg", "회원가입");
+         url = "redirect:/";
+      } else { // 실패 - 에러페이지
+         model.addAttribute("errorMsg", "회원가입 실패");
+         url = "common/errorPage";
+      }
 
-		return url;
-	}
+      return url;
+   }
 
-	@GetMapping("/reservation")
-	public String buReservation(Model model, HttpSession session) {
-		// 로그인한 사업자의 ID를 세션에서 가져옴
-		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-		int buNo = loginBusiness.getBuNo();
+   @GetMapping("/reservation")
+   public String buReservation(Model model, HttpSession session) {
+      // 로그인한 사업자의 ID를 세션에서 가져옴
+      Business loginBusiness = (Business) session.getAttribute("loginBusiness");
+      int buNo = loginBusiness.getBuNo();
 
-		List<Booking> bookingList = businessService.getBookingsByBusinessId(buNo);
-		model.addAttribute("bookingList", bookingList);
-		System.out.println(bookingList);
-		System.out.println(buNo);
-		return "businessRoom/buReservation";
-	}
+      List<Booking> bookingList = businessService.getBookingsByBusinessId(buNo);
+      model.addAttribute("bookingList", bookingList);
+      System.out.println(bookingList);
+      System.out.println(buNo);
+      return "businessRoom/buReservation";
+   }
 
-	@GetMapping("/review")
-	public String getBusinessReviews(Model model, HttpSession session) {
-		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
-		int buNo = loginBusiness.getBuNo();
+   @GetMapping("/review")
+   public String getBusinessReviews(Model model, HttpSession session) {
+      Business loginBusiness = (Business) session.getAttribute("loginBusiness");
+      int buNo = loginBusiness.getBuNo();
 
-		List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
+      List<Review> businessReviews = businessService.getReviewsForBusiness(buNo);
 
-		model.addAttribute("businessReviews", businessReviews);
-		System.out.println(buNo);
-		System.out.println(businessReviews);
-		return "businessRoom/buReview";
+      model.addAttribute("businessReviews", businessReviews);
+      System.out.println(buNo);
+      System.out.println(businessReviews);
+      return "businessRoom/buReview";
 
-	}
+   }
 
-	@PostMapping("/reviewContentReply")
-	public String updateReviewContentReply(@RequestParam("reviewContentReply") String reviewContentReply,
-			int reviewNo) {
-		Review review = new Review();
-		review.setReviewNo(reviewNo);
-		review.setReviewContentReply(reviewContentReply);
-		List<Review> result = businessService.updateReviewContentReply(review);
+   @PostMapping("/reviewContentReply")
 
-		System.out.println(result);
-		return "redirect:/business/review"; // 예시: 리뷰 목록 페이지로 리다이렉트
-	}
+   public String updateReviewContentReply(@RequestParam("reviewContentReply") String reviewContentReply,
+         int reviewNo) {
+      Review review = new Review();
+      review.setReviewNo(reviewNo);
+      review.setReviewContentReply(reviewContentReply);
+      List<Review> result = businessService.updateReviewContentReply(review);
 
-	@PostMapping("/reviewdeclariation")
-	public String updateReviewDeclaration(@RequestParam("reviewNo") int reviewNo) {
-		businessService.updateReviewDeclaration(reviewNo);
-		return "redirect:/business/review"; // 리다이렉트할 페이지의 경로
-	}
-	
-	@GetMapping("/updateReservation")
-	public String updateReservation(Model model, HttpSession session , int bookNo) {
-		// 로그인한 사업자의 ID를 세션에서 가져옴
-		Booking booking = new Booking();
-		booking.setBookNo(bookNo);
-		
-		return "businessRoom/buReservation";
-	}
-}
+      System.out.println(result);
+      return "redirect:/business/review"; // 예시: 리뷰 목록 페이지로 리다이렉트
+   }
+
+   @PostMapping("/reviewdeclariation")
+   public String updateReviewDeclaration(@RequestParam("reviewNo") int reviewNo) {
+      businessService.updateReviewDeclaration(reviewNo);
+      return "redirect:/business/review"; // 리다이렉트할 페이지의 경로
+   }
+   
+   @GetMapping("/updateReservation")
+   public String updateReservation(Model model, HttpSession session , int bookNo) {
+      // 로그인한 사업자의 ID를 세션에서 가져옴
+      Booking booking = new Booking();
+      booking.setBookNo(bookNo);
+      
+      return "businessRoom/buReservation";
+   }

@@ -118,6 +118,7 @@
                </tr>
             </thead>
 
+
             <tbody>
                <c:forEach items="${businessReviews}" var="review">
                   <tr>
@@ -150,6 +151,7 @@
                     <form action="/breaktime/business/reviewContentReply" method="POST" >
                       <input type="hidden" name="reviewNo" value="${review.reviewNo}">
                     <input type="hidden" name="userNo" value="${loginBusiness.buNo}">
+
                <input type="search" id="search-input2" placeholder="키워드로 검색하세요" value="${review.reviewContentReply }" name="reviewContentReply" onkeyup="enterkey()" >
                    </form>
             </div>
@@ -222,9 +224,9 @@
          window.addEventListener('unload', function() {
               location.reload();
             });
+
     } 
 
         </script>
 </body>
-   <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buReview.css">
-</html>
+   <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buReview.

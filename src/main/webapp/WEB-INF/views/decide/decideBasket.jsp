@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <!-- Bootstrap JavaScript and jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/basket.css">
@@ -22,42 +22,26 @@ $(document).ready(function() {
 
    // 전체 선택 체크박스 클릭 시 모든 체크박스 상태 변경
    $("#select-all").change(
-         function() {
-            var isChecked = this.checked;
-            $(".item-checkbox").prop("checked",
-                  isChecked).change();
-            $(this).siblings("label").find(
-                  ".custom-checkbox").toggleClass(
-                  "checked", isChecked);
-
-            // 선택된 개수 및 전체 개수 업데이트
-            updateSelectionCount();
-         });
+        function() {
+           var isChecked = this.checked;
+           $(".item-checkbox").prop("checked",isChecked).change();
+           $(this).siblings("label").find(".custom-checkbox").toggleClass("checked", isChecked);
+           // 선택된 개수 및 전체 개수 업데이트
+           updateSelectionCount();
+        });
 
 // 아이템 선택 체크박스 클릭 시 체크박스 상태 변경
 $(document).on("change",".item-checkbox",function() {
    var isChecked = this.checked;
-   $(this).siblings("label").find(
-         ".custom-checkbox")
-         .toggleClass("checked",
-               isChecked);
+   $(this).siblings("label").find(".custom-checkbox").toggleClass("checked",isChecked);
 
    // 선택된 아이템의 개수 확인
    var checkedItems = $(".item-checkbox:checked");
    var totalItems = $(".item-checkbox").length;
 
    // 전체 선택 체크박스 상태 변경
-   $("#select-all")
-         .prop(
-               "checked",
-               checkedItems.length === totalItems);
-   $("#select-all")
-         .siblings("label")
-         .find(".custom-checkbox")
-         .toggleClass(
-               "checked",
-               checkedItems.length === totalItems);
-
+   $("#select-all").prop("checked",checkedItems.length === totalItems);
+   $("#select-all").siblings("label").find(".custom-checkbox").toggleClass("checked",checkedItems.length === totalItems);
    // 선택된 개수 및 전체 개수 업데이트
    updateSelectionCount();
 });
@@ -89,26 +73,20 @@ function updateSelectionCount() {
 updateSelectionCount();
 
 function updateReservationItems() {
-   var selectedItems = $(".item-checkbox:checked");
-   var itemCount = selectedItems.length;
-   var totalPrice = 0;
+	var selectedItems = $(".item-checkbox:checked");
+	var itemCount = selectedItems.length;
+	var totalPrice = 0;
+	
+	var reservationItems = $(".reservation-items");
+	reservationItems.html('');
 
-   // 예약 상품 섹션 업데이트
-   var reservationItems = $(".reservation-items");
-   reservationItems.empty();
+    selectedItems.each(function() {
+    var $item = $(this).closest(".item-top");
+    var itemName = $item.find(".item-name").text();
+    var itemPrice = $item.find(".item-price").text();
+    totalPrice += parseInt(itemPrice.replace(/[^0-9]/g, ""));
 
-   selectedItems
-   .each(function() {
-      var $item = $(this)
-            .closest(".item-top");
-      var itemName = $item.find(".item-name")
-            .text();
-      var itemPrice = $item.find(
-            ".item-price").text();
-      totalPrice += parseInt(itemPrice
-            .replace(/[^0-9]/g, ""));
-
-      var reservationItem = '<div class="reservation-item">'
+    var reservationItem = '<div class="reservation-item">'
             + '<div class="item-name">'
             + itemName
             + '</div>'
@@ -116,30 +94,33 @@ function updateReservationItems() {
             + itemPrice
             + '</div>'
             + '</div>';
-      reservationItems
-            .append(reservationItem);
+    reservationItems.append(reservationItem);
    });
+    
+    updateSelectionCount(); // 선택된 개수 업데이트
 
    // 상품 개수 업데이트
    $("#selected-item-count").text(itemCount);
 
    // 상품 금액 업데이트
-   $("#item-total-price")
-         .text(formatPrice(totalPrice));
+   $("#item-total-price").text(formatPrice(totalPrice));
 
    // 결제 예상 금액 업데이트
+   $("#total-price").text(formatPrice(totalPrice));
+
+	// 선택된 개수 및 전체 개수 업데이트
+   $("#selected-item-count").text(itemCount);
+   $("#item-total-price").text(formatPrice(totalPrice));
    $("#total-price").text(formatPrice(totalPrice));
 
    // 예약하기 버튼 업데이트
    var reservationButton = $("#reservation-button");
    if (itemCount > 0) {
-      reservationButton.prop("disabled", false)
-            .addClass("enabled");
+     reservationButton.prop("disabled", false).addClass("enabled");
    } else {
-      reservationButton.prop("disabled", true)
-            .removeClass("enabled");
+     reservationButton.prop("disabled", true).removeClass("enabled");
    }
-}
+ }
 
 // 가격을 3자리마다 콤마(,)를 추가하는 함수
 function formatPrice(price) {
@@ -154,43 +135,47 @@ $(document).on("change", ".item-checkbox", function() {
 // 초기 로딩 시 예약 상품 업데이트
 updateReservationItems();
 
-// 모달창의 삭제하기 버튼 클릭 시 선택된 아이템 제거
+//모달창의 삭제하기 버튼 클릭 시 선택된 아이템 제거
 $(document).on("click","#confirm-delete",function() {
-   var checkedItems = $("#confirm-modal").data("checkedItems");
-   if (checkedItems && checkedItems.length > 0) {checkedItems.each(function() {
+	
+	AjaxDeleteCart();
+	
+   $(".item-checkbox:checked").each(function() {
       var $item = $(this).closest(".item-top");
       var $detail2select = $item.closest(".detail2-select");
-         $item.remove();
-   // 해당 detail2-select 영역에서 남은 아이템의 개수 확인
-   if ($detail2select.find(".item-top").length === 0) {
+      
+      $item.remove();
+
+      // 해당 detail2-select 영역에서 남은 아이템의 개수 확인
+      if ($detail2select.find(".item-top").length === 0) {
          $detail2select.remove();
       }
-});
+   });
+
    // 선택된 개수 및 전체 개수 업데이트
    updateSelectionCount();
-}
+
+   // reservation-section 데이터 초기화
+   updateReservationItems();
+   
    // 모달창 닫기
    $("#confirm-modal").modal('hide');
+   
 });
 
 // 모달창 닫기 시 선택된 아이템 초기화
-$(document).on(
-      "hidden.bs.modal",
-      "#confirm-modal",
-      function() {
-         $("#confirm-modal").data("checkedItems",null);
-         });
+$(document).on("hidden.bs.modal", "#confirm-modal", function() {
+  $("#confirm-modal").data("checkedItems", null);
+  updateReservationItems(); // 예약 상품 업데이트 함수 호출
+});
 
 // 아이템의 X 버튼 클릭 시 해당 아이템 삭제
 $(document).on("click", ".item-remove", function() {
    var $item = $(this).closest(".item-top");
    var $checkbox = $item.find(".item-checkbox");
 
-   // 체크박스가 체크된 경우에만 체크 해제
-   if ($checkbox.prop("checked")) {
-      $checkbox.prop("checked", false).change();
-   }
-
+   // 체크박스를 체크 상태로 변경
+   $checkbox.prop("checked", true).change();
    showDeleteConfirmModal($item);
 });
 
@@ -208,54 +193,62 @@ function showDeleteConfirmModal($item) {
    $("#confirm-modal").modal('show');
 }
 
-// 모달창의 삭제하기 버튼 클릭 시 선택된 아이템 제거
-$(document).on("click","#confirm-delete",function() {
-   $(".item-checkbox:checked").each(function() {
-   var $item = $(
-         this)
-         .closest(
-               ".item-top");
-   var $detail2select = $item
-         .closest(".detail2-select");
-   $item.remove();
-
-   // 해당 detail2-select 영역에서 남은 아이템의 개수 확인
-   if ($detail2select
-         .find(".item-top").length === 0) {
-      $detail2select
-            .remove();
-   }
-
-   // 선택된 개수 및 전체 개수 업데이트
-   updateSelectionCount();
-});
-
-   // 모달창 닫기
-   $("#confirm-modal").modal('hide');
-});
-
-$(document).on("click", ".item-remove", function() {
-   var $item = $(this).closest(".item-top");
-   var $checkbox = $item.find(".item-checkbox");
-
-   // 체크박스가 체크된 경우에만 체크 해제
-   if ($checkbox.prop("checked")) {
-      $checkbox.prop("checked", false).change();
-   }
-
-   showDeleteConfirmModal($item);
-});
-
 // 모달 스타일을 변경한 후에도 모달 창이 중앙에 위치하도록 다시 설정
 $(document).on("shown.bs.modal", "#confirm-modal",
    function() {
-      $(this).find(".modal-dialog");
+	$(this).find(".modal-dialog");
    });
    
    document.getElementById("home-button").addEventListener("click", function() {
      window.location.href = "${contextPath}";
    });
 });
+
+function AjaxDeleteCart() {
+	
+	var itemsToDelete = [];
+
+    // 선택한 체크박스를 반복합니다.
+    $(".item-checkbox:checked").each(function() {
+        // 여기서 this는 선택한 체크박스 요소를 가리킵니다.
+        var $item = $(this).closest('.item-top'); // 체크박스를 감싸고 있는 상위 요소를 찾습니다. ('.item-top'는 상위 요소의 클래스명입니다.)
+        var roomNo = $item.data('room-no'); // 상위 요소에서 data-room-no 속성 값을 가져옵니다.
+        var buNo = $item.data('bu-no');
+
+        // 항목 데이터를 배열에 추가
+        itemsToDelete.push({
+            roomNo: roomNo,
+            buNo: buNo
+        });
+    });
+
+    // 요청 데이터 객체 생성
+    var requestData = {
+        items: itemsToDelete
+    };
+    
+    var url = "${contextPath}/decide/deleteCart";
+    
+    $.ajax({
+        url: url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(requestData),
+        success: function(response){
+        	if( '0' == response){
+        		alert("상품 삭제에 실패했습니다.");
+        	} else{
+        		alert("장바구니에서 상품이 삭제되었습니다.");	
+        	}
+            
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+
 </script>
 </head>
 
@@ -281,21 +274,20 @@ $(document).on("shown.bs.modal", "#confirm-modal",
          <div class="detail2-one-main">
             <div class="select-all">
                <input type="checkbox" id="select-all" style="display: none;">
-               <label for="select-all" class="select-all-label"> <span
-                  class="custom-checkbox"></span> 전체 선택 (<span id="selected-count">0</span>
-                  / <span id="total-count">0</span>)
-               </label>
+               <label for="select-all" class="select-all-label"> <span class="custom-checkbox"></span> 
+               전체 선택 (<span id="selected-count">0</span>/ <span id="total-count">0</span>)</label>
                <button id="delete-selected">선택 삭제</button>
             </div>
          </div>
    </div>
-   <c:forEach items="${list }" var="d">
+   
+   <c:forEach items="${list }" var="d" varStatus="status">
       <div class="detail2-select">
-         <div class="item-top">
+         <div class="item-top" data-room-no="${d.roomNo}" data-bu-no="${d.buNo}">
             <div class="item-remove">X</div>
             <div class="item-check-image-name">
-               <input type="checkbox" id="item-checkbox-1" class="item-checkbox"
-                  style="display: none;"> <label for="item-checkbox-1">
+               <input type="checkbox" id="item-checkbox-${status.index + 1}" class="item-checkbox" style="display: none;">
+               <label for="item-checkbox-${status.index + 1}">
                   <span class="custom-checkbox"></span>
                </label>
                <div class="item-image">
@@ -306,7 +298,7 @@ $(document).on("shown.bs.modal", "#confirm-modal",
             <div class="item-price">${d.roomPrice}원</div>
          </div>
       </div>
-   </c:forEach>
+</c:forEach>
 
    <div class="reservation-section">
       <div class="reservation-title">예약 상품</div>
@@ -325,7 +317,7 @@ $(document).on("shown.bs.modal", "#confirm-modal",
       </div>
       <button id="reservation-button" class="reservation-button" disabled>예약하기</button>
    </div>
-   </c:if>
+  </c:if>
 
    <!-- 모달창 -->
    <div class="modal" tabindex="-1" role="dialog" id="confirm-modal"
