@@ -145,9 +145,6 @@
 	</select>
 
 
-	<!-- <if test="roomInfos != null"> AND ROOM_INFO IN <foreach item="roomInfo" 
-		collection="roomInfos" open="(" separator="," close=")"> #{roomInfo} </foreach> 
-		</if> <if test="starScore >= 0"> AND STAR_SCORE = #{starScore} </if> -->
 
 	<!-- 검색 리스트 목록 -->
 	<select id="searchDetailList" resultMap="detailResultSet">
