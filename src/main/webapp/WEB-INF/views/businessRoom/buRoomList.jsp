@@ -175,8 +175,7 @@ img {
 							<option value="asc">Low to High</option>
 							<option value="desc">High to Low</option>
 						</select>
-						<button type="submit" onclick="validateSearchForm()"
-							id="selectRoomBtn">검색</button>
+						<button type="submit" onclick="validateSearchForm()" id="selectRoomBtn">검색</button>
 					</form>
 				</div>
 				<c:forEach items="${roomList}" var="room" varStatus="roomStatus">

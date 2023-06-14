@@ -242,21 +242,29 @@ public class RoomController {
 	}
 
 	@GetMapping("/searchRoomList")
-	public String searchRooms(@RequestParam Map<String, Object> paramMap, String roomName, int roomHCount,
-			String roomPrice, Model model) {
-		Map<String, Object> params = new HashMap<>();
-		params.put("roomName", roomName);
-		params.put("roomHCount", roomHCount);
-		params.put("roomPrice", roomPrice);
-		List<Room> roomList = buService.searchRooms(params);
-		if (roomList == null) {
-			model.addAttribute("errorMsg", "객실 등록 실패");
-			return "common/errorPage";
-		}
-		model.addAttribute("roomList", roomList);
+	public String searchRooms(@RequestParam Map<String, Object> paramMap, String roomName, int roomHCount, String roomPrice, Model model) {
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("roomName", roomName);
+	    params.put("roomHCount", roomHCount);
+	    params.put("roomPrice", roomPrice);
+	    List<Room> roomList = buService.searchRooms(params);
+	    if (roomList == null) {
+	        model.addAttribute("errorMsg", "객실 등록 실패");
+	        return "common/errorPage";
+	    }
+	    model.addAttribute("roomList", roomList);
 
-		return "businessRoom/buRoomList";
+	    // 이미지 불러오기
+	    List<RoomImg> roomImgList = new ArrayList<>();
+	    for (Room room : roomList) {
+	        RoomImg roomImg = buService.searchRoomsImg(room.getRoomNo());
+	        roomImgList.add(roomImg);
+	    }
+	    model.addAttribute("roomImgList", roomImgList);
+
+	    return "businessRoom/buRoomList";
 	}
+
 
 	/*
 	 * @GetMapping("/paing") public String searchRoomList(@RequestParam(defaultValue

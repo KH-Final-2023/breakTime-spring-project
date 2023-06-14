@@ -336,4 +336,14 @@
 		</choose>	
 	</if>
 	</select>
+	
+	<select id="businessStatus" resultMap="businessResultSet">
+		SELECT 
+		REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
+		USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY
+		FROM REVIEW R
+		JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER
+		JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM
+		WHERE REVIEW_DECLARIATION = 'Y'
+	</select>
 </mapper>

@@ -165,7 +165,6 @@ $(document).ready(function() {
 
 
 
-
 <script>
     // jQuery를 사용하여 문서가 완전히 로드된 후에 스크립트 실행
     $(document).ready(function() {
