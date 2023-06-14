@@ -2,8 +2,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
        pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.kh.breaktime.member.model.vo.Member"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
 %>
@@ -72,7 +72,7 @@ function() {
             AjaxinsertCart();
 
             // 장바구니로 가시겠습니까?
-            var isConfirm = confirm("장바구니로 가시겠습니까?");
+            var isConfirm = confirm("장바구니로 이동합니다.");
                 if (isConfirm) {
                     // 확인을 눌렀을 경우, 장바구니 페이지로 이동
                     window.location.href = "${contextPath}/decide/debasket";
@@ -89,7 +89,7 @@ function AjaxinsertCart(){
       checkIn : globalCheckIn,
       checkOut : globalCheckOut
    };
-   console.log(requestData);
+   
    var url = "${contextPath}/decide/insertCart";
    $.ajax({
       url: url,
@@ -97,8 +97,13 @@ function AjaxinsertCart(){
       contentType: 'application/json',
       data: JSON.stringify(requestData),
       success: function(response){
-         console.log(response);
-         alert("장바구니에 상품이 담겼습니다.");
+		 if ( '1' == response){
+			 alert("장바구니에 상품이 담겼습니다.");		 
+		 }else {
+			 console.log("0");
+			 alert("동일한 날짜의 체크인/체크아웃 상품이 이미 담겼습니다.");
+		 }
+		 
       },
       error: function(error){
          console.log(error);
@@ -134,39 +139,50 @@ function removeHyphens(dateString) {
 </head>
 
 <body>
-	<div class="container">
-		<div class="detail2-all">
-			<div class="button-container">
-				<a href="${contextPath}/decide/dedate" class="button">날짜</a>
-			</div>
-			<div class="detail2-main">
-				<c:forEach items="${roomList}" var="d">
-					<div class="detail2-card">
-						<div class="image">
-							<img src="${d.roomImg}" alt="숙소 이미지">
-						</div>
-						<h2 class="title">${d.roomName}</h2>
-						<p class="description">${d.roomInfo}</p>
-						<p class="price">${d.roomPrice}</p>
-						
-						<c:if test="${empty roomList}">
-							<div class="button-card" disabled>
-								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
-									담기</a> <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
-							</div>
-						</c:if>
-						
-						<c:if test="${!empty roomList}">
-							<div class="button-card">
-								<a href="${contextPath}/decide/debasket" class="button-card1">장바구니
-									담기</a> <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
-							</div>
-						</c:if>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
-	</div>
+
+   <div class="container">
+      <div class="detail2-all">
+         <div class="button-container">
+            <a href="${contextPath}/decide/dedate" class="button">&#128197; 날짜 선택</a>
+         </div>
+         <div class="detail2-main">
+            <c:forEach items="${roomList}" var="d">
+               <div class="detail2-card">
+                  <div class="image">
+                     <img src="${contextPath}/${d.filePath}/${d.originName}" alt="숙소 이미지">
+                  </div>
+                  <h2 class="title">${d.roomName}</h2>
+                  <p class="description">${d.roomInfo}</p>
+                  <p class="price">${d.roomPrice}</p>
+                  <hidden type="input" id="roomNo" value="${d.roomNo}"></hidden>
+                  <hidden type="input" id="buNo" value="${d.buNo}"></hidden>
+
+                  <c:if test="${empty roomList}">
+                     <div class="button-card" disabled>
+                        <a href="#" class="button-card1">장바구니
+                           담기</a> <a href="#" class="button-card2">객실 선택하기</a>
+                     </div>
+                  </c:if>
+                  
+                  <c:if test="${!empty roomList}">
+                  <%if (loginUser == null) {%>
+                     <div class="button-card">
+                        <a href="${contextPath}/member/login" class="button-card3">장바구니 담기</a> 
+                        <a href="${contextPath}/member/login" class="button-card2">객실 선택하기</a>
+                     </div>
+                     <% } else { %>
+                     <div class="button-card">
+                        <a href="${contextPath}/decide/debasket" class="button-card1">장바구니 담기</a> 
+                        <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
+                     </div>
+                     <% } %>
+                  </c:if>
+               </div>
+            </c:forEach>
+         </div>
+      </div>
+   </div>
+
 </body>
 
 

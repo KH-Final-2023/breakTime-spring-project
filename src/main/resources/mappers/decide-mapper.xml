@@ -72,7 +72,7 @@
             R.ROOM_NAME      AS roomName,
             R.ROOM_INFO      AS roomInfo,
             IMG.FILE_PATH   AS filePath,
-            IMG.SAVE_NAME   AS saveName,
+            IMG.ORIGIN_NAME   AS originName,
             IMG.FILE_LEVEL   AS fileLevel
       FROM ROOM R
         LEFT JOIN ROOM_IMG IMG ON R.ROOM_NO = IMG.ROOM_NO
@@ -211,9 +211,32 @@
       AND ROOM_NO = #{roomNo}
    </delete>
    
+   <!-- 좋아요 -->
+   <insert id="insertLIkeValue" parameterType="decide" >
+   /*decideMapper.insertLIkeValue*/
+      INSERT INTO WISHLIST
+      (USER_NO,
+       BU_NO)
+      VALUES
+      (#{userNo},
+       #{buNo})
+   </insert>
    
+   <!-- 좋아요 취소 -->
+   <delete id="deleteLIkeValue" parameterType="decide" >
+   /*decideMapper.deleteLIkeValue*/
+      DELETE WISHLIST
+      WHERE USER_NO = #{userNo}
+      AND BU_NO = #{buNo} 
+   </delete>
    
-   
-   
+   <!-- 좋아요 유무 확인 -->
+   <select id="selectLikeValue" parameterType="decide" resultType="_int">
+   /*decideMapper.selectLikeValue*/
+      SELECT COUNT(*) FROM WISHLIST
+      WHERE USER_NO = #{userNo}
+      AND BU_NO = #{buNo} 
+   </select>
+    
     
 </mapper>
