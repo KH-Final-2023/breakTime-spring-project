@@ -23,18 +23,15 @@ public class DetailDAO {
 		return (ArrayList) sqlSession.selectList("detailMapper.selectCategoryCodeList");
 	}
 
-	public ArrayList<Detail> selectDetailList(String category) {
-		return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", category);
-	}
-
-	public ArrayList<Detail> getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, String area, List<String> inOut, Integer guests) {
+	public ArrayList<Detail> selectDetailList(String category, List<String> prices, List<String> reserves, List<String> options, String area, List<String> inOut, Integer guests) {
 	    Map<String, Object> map = new HashMap<>();
 	    map.put("category", category);
 	    map.put("prices", prices);
 	    map.put("reserves", reserves);
 	    map.put("options", options);
+	    map.put("area", area);
 	    map.put("guests", guests);
-	    return (ArrayList) sqlSession.selectList("detailMapper.getFilteredData", map);
+	    return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", map);
 	}
 
 	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap){

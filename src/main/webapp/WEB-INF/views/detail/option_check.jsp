@@ -49,31 +49,10 @@ a {
 	width: 200px;
 }
 
-/* date_detail */
-.blue-button {
-	color: blue;
-}
+/* 체크인, 체크아웃 */
 
 .date_detail {
 	width: 200px;
-}
-
-.search-button {
-	margin-left: 500px;
-	margin-bottom: 50px;
-	display: block;
-	border: 2px solid rgb(94, 94, 94);
-	border-radius: 4px;
-	background-color: #fcfcfc;
-	font-weight: 400;
-	color: black;
-	background-color: yellowgreen;
-	padding: 12px;
-	width: 400px;
-	text-align: middle;
-	cursor: pointer;
-	font-size: 12px;
-	position: relative;
 }
 
 .dropdown2 {
@@ -81,90 +60,13 @@ a {
 	display: inline-block;
 }
 
-.dropbtn2_icon {
-	font-family: 'Material Icons';
-}
-
-.dropbtn2 {
-	display: block;
-	border: 2px solid rgb(94, 94, 94);
-	border-radius: 4px;
-	background-color: #fcfcfc;
-	font-weight: 400;
-	color: rgb(124, 124, 124);
-	padding: 12px;
-	width: 200px;
-	text-align: left;
-	cursor: pointer;
-	font-size: 12px;
-	position: relative;
-}
-
-.dropdown-content2 {
-	display: none;
-	font-weight: 400;
-	background-color: #fcfcfc;
-	min-width: 240px;
-	border-radius: 8px;
-	height: 160px;
-	overflow: scroll;
-	box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
-}
-
-.dropdown-content2::-webkit-scrollbar {
-	width: 5px;
-	height: 10px;
-}
-
-.dropdown-content2::-webkit-scrollbar-thumb {
-	border-radius: 2px;
-	background-color: rgb(194, 194, 194)
-}
-
-.dropdown-content2 div {
-	display: block;
-	text-decoration: none;
-	color: rgb(37, 37, 37);
-	font-size: 12px;
-	padding: 12px 20px;
-}
-
-.dropdown-content2 div:hover {
-	background-color: rgb(226, 226, 226);
-}
-
-.dropdown-content2.show {
-	display: block;
-}
-
-.button-container {
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	margin-top: 20px;
-	width: 100%;
-	position: absolute;
-	bottom: 20px;
-}
-
-.button-container button {
-	width: 95%;
-	height: 50px;
-	background-color: #4CAF50;
-	color: white;
-	font-weight: bold;
-	font-size: 16px;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
 </style>
 </head>
 <body>
 	<div class="optionArea">
 		<div class="houseOption">
 			<form id="houseOption" name="option"
-				action="<%=request.getContextPath()%>/list/filter/${category}"
+				action="<%=request.getContextPath()%>/list/detail/${category}"
 				method="GET">
 				<table class="optionTable">
 					<tr>
@@ -197,7 +99,7 @@ a {
 					<!-- 체크인 날짜 옵션 -->
 					<tr>
 						<td>
-							<div class="date_detail1">
+							<div class="date_checkIn">
 								<div class="dropdown2">
 									<select class="dateCheck1" name="date">
 									</select>
@@ -208,7 +110,7 @@ a {
 					<!-- 체크아웃 날짜 옵션 -->
 					<tr>
 						<td>
-							<div class="date_detail2">
+							<div class="date_checkOut">
 								<div class="dropdown3">
 									<select class="dateCheck2" name="date">
 									</select>
