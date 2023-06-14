@@ -250,7 +250,6 @@
 </head>
 
 <body>
-
     <div class="container-main">
         <h2 class="reservation-title">예약</h2>
         <div class="order-details">
@@ -367,7 +366,6 @@
         <button class="pay-button" id="pay-button">${room.roomPrice }원 결제하기</button>
         </c:forEach>
     </div>
-    
     
     
 <script>

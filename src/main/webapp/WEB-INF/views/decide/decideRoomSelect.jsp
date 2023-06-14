@@ -121,10 +121,20 @@ window.addEventListener('message', function(event) {
 
       // selectDateData 함수를 호출하여 시작 날짜와 끝 날짜를 전달합니다.
       selectDateData(startDt, endDt, startDayofWeek, endDayofWeek, night);
+      changeHref(startDt, endDt);
       // .close-btn 요소를 클릭하는 것처럼 트리거 합니다.
       $(".close-btn").click();
    }
 });
+function changeHref(startDt,endDt){
+	let queryString = "?startDate="+startDt+"&lastDate="+endDt;
+    $('.button-card2').each(function(index,item){
+        let originPath=$(item).attr('href');
+        console.log(originPath);
+        $(item).attr('href',originPath+queryString);
+    })
+}
+
 
 function selectDateData(startDt, endDt, startDayofWeek, endDayofWeek, night){
    globalCheckIn = removeHyphens(startDt);
@@ -136,6 +146,10 @@ function removeHyphens(dateString) {
    return dateString.replace(/-/g, '');
 }
 </script>
+
+
+
+
 </head>
 
 <body>
