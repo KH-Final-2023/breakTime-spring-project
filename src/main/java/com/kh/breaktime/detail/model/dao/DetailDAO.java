@@ -22,9 +22,13 @@ public class DetailDAO {
 	public ArrayList<CategoryCode> selectCategoryCodeList() {
 		return (ArrayList) sqlSession.selectList("detailMapper.selectCategoryCodeList");
 	}
-
+	
 	public ArrayList<Detail> selectDetailList(String category) {
 		return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", category);
+	}
+	
+	public ArrayList<AreaCode> selectAreaList(String areaNo) {
+		return (ArrayList) sqlSession.selectList("detailMapper.selectAreaList", areaNo);
 	}
 
 	public ArrayList<Detail> getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, String area, List<String> inOut, Integer guests) {

@@ -36,6 +36,11 @@ button {
 	width: 100px;
 	height: 40px;
 }
+#buReviewText {
+	margin: 50px;
+	font-size: xx-large;
+	margin-bottom: 70px
+}
 table{
 	width : 1900px;
 	
@@ -56,13 +61,8 @@ thead{
 	align-items: center;
 }
 
-#buReviewText {
-	margin: 50px;
-	font-size: xx-large;
-	margin-bottom: 70px
-}
 
-#reviewStar {
+/* #reviewStar {
 	display: flex;
 }
 
@@ -115,10 +115,10 @@ thead{
 	justify-content: center;
 	flex-direction: column;
 	align-items: center;
-}
+} */
 
 
-
+ */
 
 
 /* 모달 */

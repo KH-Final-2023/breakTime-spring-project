@@ -79,6 +79,27 @@
         INNER JOIN BUSINESS B    ON B.BU_NO = R.BU_NO
         WHERE B.BU_NO = #{buNo}
    </select>
+
+   <!-- 선택 객실 조회 -->
+	<select id="payDecideRoom" resultType="com.kh.breaktime.decide.model.vo.Decide">
+	/*decideMapper.payDecideRoom*/
+		SELECT R.ROOM_NO		AS roomNo,		 
+			   B.BU_NO			AS buNo,
+			   B.BU_TITLE		AS buTitle,
+			   R.ROOM_H_COUNT	AS roomHCount,
+			   R.ROOM_PRICE		AS roomPrice,
+			   R.ROOM_NAME		AS roomName,
+			   R.ROOM_INFO		AS roomInfo,
+			   R.ROOM_CHECKIN	AS roomCheckin,
+			   R.ROOM_CHECKOUT	AS roomCheckout,
+			   IMG.FILE_PATH	AS filePath,
+			   IMG.SAVE_NAME	AS saveName,
+			   IMG.FILE_LEVEL	AS fileLevel
+		FROM ROOM R
+        LEFT JOIN ROOM_IMG IMG ON R.ROOM_NO = IMG.ROOM_NO
+        INNER JOIN BUSINESS B 	ON B.BU_NO = R.BU_NO
+        WHERE R.ROOM_NO = #{roomNo}
+	</select>
    
    <!-- 메인 지도 화면 조회 -->
    <select id="selectDecideMap" resultType="com.kh.breaktime.decide.model.vo.Decide">

@@ -89,6 +89,15 @@ public class DecideController {
 
       return "decide/decideRoomSelect";
    }
+
+   @GetMapping("/pay/{roomNo}") // 선택 객실 조회
+	public String payRoomSelect(
+			@PathVariable("roomNo") int roomNo,Model model) {
+		
+		ArrayList<Decide> roomList = decideService.payDecideRoom(roomNo);
+		model.addAttribute("roomList", roomList);
+		return "pay/pay";
+	}
    
    @GetMapping("/demap/{buNo}") // 메인 지도 화면 조회
    public String decideMainMap(@PathVariable("buNo") int buNo, Model model) {   

@@ -190,10 +190,8 @@ public class BusinessController {
 	     review.setReviewNo(reviewNo);
 	     review.setReviewContentReply(reviewContentReply);
 		List<Review> result  = businessService.updateReviewContentReply(review);
-
-		
-
 		System.out.println(result);
-        return "businessRoom/buReview"; // 예시: 리뷰 목록 페이지로 리다이렉트
+        return "redirect:/business/review"; // 예시: 리뷰 목록 페이지로 리다이렉트
     }
+	
 }
