@@ -1,7 +1,6 @@
 <%@page import="com.kh.breaktime.decide.model.vo.Decide"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-       pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.kh.breaktime.member.model.vo.Member"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
@@ -74,7 +73,7 @@ function() {
 
      var isConfirm = confirm("장바구니로 이동합니다.");
      if (isConfirm) {
-       window.location.href = "${contextPath}/decide/debasket";
+       window.location.href = "${contextPath}/decide/debasket?roomNo=${d.roomNo}&buNo=${d.buNo}";
      }
    });
 </c:forEach>
@@ -82,12 +81,12 @@ function() {
 });
 
 function AjaxinsertCart(roomNo, buNo) {
-	   var requestData = {
-	      roomNo: roomNo,
-	      buNo: buNo,
-	      checkIn: globalCheckIn,
-	      checkOut: globalCheckOut
-	   };
+      var requestData = {
+         roomNo: roomNo,
+         buNo: buNo,
+         checkIn: globalCheckIn,
+         checkOut: globalCheckOut
+      };
    
    var url = "${contextPath}/decide/insertCart";
    $.ajax({
@@ -96,13 +95,13 @@ function AjaxinsertCart(roomNo, buNo) {
       contentType: 'application/json',
       data: JSON.stringify(requestData),
       success: function(response){
-		 if ( '1' == response){
-			 alert("장바구니에 상품이 담겼습니다.");		 
-		 }else {
-			 console.log("0");
-			 alert("동일한 날짜의 체크인/체크아웃 상품이 이미 담겼습니다.");
-		 }
-		 
+       if ( '1' == response){
+          alert("장바구니에 상품이 담겼습니다.");       
+       }else {
+          console.log("0");
+          alert("동일한 날짜의 체크인/체크아웃 상품이 이미 담겼습니다.");
+       }
+       
       },
       error: function(error){
          console.log(error);
@@ -152,7 +151,6 @@ function removeHyphens(dateString) {
 </head>
 
 <body>
-
    <div class="container">
       <div class="detail2-all">
          <div class="button-container">
@@ -185,8 +183,8 @@ function removeHyphens(dateString) {
                      </div>
                      <% } else { %>
                      <div class="button-card">
-                        <a href="${contextPath}/decide/debasket" class="button-card1" id="button-card1-${status.index + 1}">장바구니 담기</a> 
-      					<a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
+                     <a href="${contextPath}/decide/debasket?roomNo=${d.roomNo}&buNo=${d.buNo}" class="button-card1" id="button-card1-${status.index + 1}">장바구니 담기</a>
+                     <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
                      </div>
                      <% } %>
                   </c:if>
@@ -195,8 +193,6 @@ function removeHyphens(dateString) {
          </div>
       </div>
    </div>
-
 </body>
-
 
 </html>

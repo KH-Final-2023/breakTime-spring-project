@@ -8,7 +8,6 @@
       <result column="CATEGORY_NAME" property="categoryName" />
    </resultMap>
 
-
 	<!-- 목록용 resultMap -->
 	<resultMap type="detail" id="detailResultSet">
 		<id property="roomNo" column="ROOM_NO" />
