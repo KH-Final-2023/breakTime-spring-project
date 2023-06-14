@@ -34,7 +34,7 @@ html, body {
 	height: 100%;
 }
 .booking {
-	margin-top:-10%;
+	margin-top: -5%;
 }
 #booking-area {
 	margin-top: 8%;
