@@ -81,7 +81,5 @@
 		JOIN BUSINESS B ON B.BU_NO = R.BU_NO
 	</select>
 	
-	
 
-	
 </mapper>

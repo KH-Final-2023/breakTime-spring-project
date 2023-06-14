@@ -30,7 +30,7 @@
 	}
 	
 	#content1 {
-    width: 40%;
+    width: 20%;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,7 @@
 	
 	#content2{
 	padding-left:7%;
-	width: 60%; 
+	width: 45%; 
 	display: flex;
     flex-direction: column;
     border-left: 2px solid #67d567;
@@ -78,15 +78,11 @@
 		<div style="width:100%; display: flex; flex-direction: row;">
 			<div id="content1">
 				<ul style="list-style:none;">
-					<li><a class="sideMenu">내 정보</a></li>
-					<li><a class="sideMenu">예약내역</a></li>
-					<li><a class="sideMenu">찜한 목록</a></li>
-					<li><a class="sideMenu">문의쪽지</a></li>
-					<li><a class="sideMenu">쿠폰함(미정)</a></li>
+					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/myPage">내 정보</a></li>
+					<li><a class="sideMenu" id="booking">예약내역</a></li>
+					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/wishList">찜한 목록</a></li>
+					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/list">문의쪽지</a></li>
 				</ul>
-				<div style="margin-top: auto; position: relative;">
-					<button class="btn btn-primary btn-ghost btn-slash">회원탈퇴</button>
-				</div>
 			</div>
 		
 			<div id="content2">
@@ -169,6 +165,10 @@
 					</div>
 	</div>
 	
-	
+ 	  <script>
+         document.getElementById("booking").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/booking/bookingView";
+        })
+      </script>
 </body>
 </html>

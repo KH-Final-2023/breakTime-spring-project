@@ -111,7 +111,7 @@ body {
 
 .form p {
     margin: 1rem 0;
-    font-size: .7rem;
+    /* font-size: .7rem; */
 }
 
 .flex-col {

@@ -29,13 +29,23 @@
 		<result column="APPROVAL" property="approval" />
 	</resultMap>
 	
+	<!--  찜목록 -->
+	<resultMap type="wish" id="wishResultSet">
+		<id column="BU_NO" property="buNo" />
+		<result column="USER_NO" property="userNo" />
+		<result column="BU_MAIN_IMG" property="buMainImg" />
+		<result column="BU_TITLE" property="buTitle" />
+		<result column="BU_ADDRESS" property="buAddress" />
+		<result column="ROOM_PRICE" property="roomPrice" />
+	</resultMap>
+	
 	<!-- 로그인유저 정보 SELECT(석범) -->
 	<select id="loginMember" parameterType="member"
 		resultMap="memberResultSet">
 		SELECT *
 		FROM MEMBER
 		WHERE USER_ID = #{userId}
-		<!-- AND USER_PWD = #{userPwd} -->
+		AND USER_PWD = #{userPwd} 
 		AND STATUS = 'Y'
 	</select>
 	
@@ -125,4 +135,26 @@
 		</choose>	
 	</if>
 	</select>
+	
+	<!--  찜목록 -->
+	<select id="selectWishList" parameterType="wish" resultMap="wishResultSet">
+		SELECT B.BU_MAIN_IMG, B.BU_TITLE, B.BU_ADDRESS,B.BU_NO, M.USER_NO
+		FROM WISHLIST W 
+        JOIN MEMBER M ON M.USER_NO = W.USER_NO
+        JOIN BUSINESS B ON B.BU_NO = W.BU_NO
+        WHERE W.USER_NO = #{userNo}
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findId" parameterType="String" resultType="String">
+		select USER_ID 
+		from member 
+		where email = #{email}
+	</select>
+	
+	
+	
+	
+	
+	
 </mapper>

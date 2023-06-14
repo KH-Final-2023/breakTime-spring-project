@@ -248,8 +248,8 @@ function ajaxInsertLike(){
          <div class="company-info">
             <h1 class="company-name">${m.buTitle}</h1>
             <div class="icons">
-               <i class="icon share-icon fas fa-share-alt" title="공유하기"></i> <i
-                  class="icon heart-icon far fa-heart" title="찜하기"></i>
+               <i class="icon share-icon fas fa-share-alt" title="공유하기"></i> 
+               <i class="icon heart-icon far fa-heart" title="찜하기"></i>
             </div>
          </div>
          <a href="${contextPath}/decide/dereview/${m.buNo}" class="rating"> 
