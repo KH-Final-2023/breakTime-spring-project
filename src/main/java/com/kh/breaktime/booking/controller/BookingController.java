@@ -35,45 +35,34 @@ import com.kh.breaktime.room.model.vo.Room;
 public class BookingController {
    
 private BookingService bookingService;
-   private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
-   
-   @Autowired
-   public void setBookingService(BookingService bookingService) {
-      this.bookingService = bookingService;
-   }
-   
-   
-   @GetMapping("/bookingView")
-   public String selectBookingList(Model model, HttpSession session) {
-      
-      Member loginUser = (Member) session.getAttribute("loginUser");
-      int userNo = loginUser.getUserNo();
-      ArrayList<Booking> bookingList = bookingService.selectBookingList(userNo);
-      
-      model.addAttribute("bookingList", bookingList);
-      System.out.println(bookingList);
-       System.out.println(userNo);
-      return "booking/memberBooking";
-   }
-   
-   @PostMapping("/reviewInsert")
-   public String reviewEnroll(Review r, HttpSession session, Model model, RedirectAttributes rttr) {
-      bookingService.insertReview(r);
-      System.out.println("리뷰출력 : "  + r);
-      model.addAttribute("Review", r);
-      rttr.addFlashAttribute("insertReivew", r.getReviewNo());
-      return "redirect:/booking/bookingView";
-      
-   }
-   
-   
- 
-   
-   
-   
-   
-   
-   
-   
-   
+	private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
+	
+	@Autowired
+	public void setBookingService(BookingService bookingService) {
+		this.bookingService = bookingService;
+	}
+	
+	
+	@GetMapping("/bookingView")
+	public String selectBookingList(Model model, HttpSession session) {
+		
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		ArrayList<Booking> bookingList = bookingService.selectBookingList(userNo);
+		
+		model.addAttribute("bookingList", bookingList);
+		System.out.println(bookingList);
+	    System.out.println(userNo);
+		return "booking/memberBooking";
+	}
+	
+	@PostMapping("/reviewInsert")
+	public String reviewEnroll(Review r, HttpSession session, Model model, RedirectAttributes rttr) {
+		bookingService.insertReview(r);
+		System.out.println("리뷰출력 : "  + r);
+		model.addAttribute("Review", r);
+		rttr.addFlashAttribute("insertReivew", r.getReviewNo());
+		return "redirect:/booking/bookingView";
+		
+	}
 }

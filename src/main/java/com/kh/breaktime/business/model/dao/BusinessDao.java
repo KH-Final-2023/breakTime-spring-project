@@ -43,4 +43,9 @@ public class BusinessDao {
 	public List<Review> getReviewsForBusiness(int buNo) {
 		return sqlSession.selectList("businessMapper.getReviewsForBusiness", buNo);
 	}
+
+	public List<Review> updateReviewContentReply(Review review) {
+	    return sqlSession.selectOne("businessMapper.updateReviewContentReply", review);
+	}
+
 }

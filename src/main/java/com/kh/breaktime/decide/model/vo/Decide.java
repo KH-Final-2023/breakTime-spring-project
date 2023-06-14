@@ -8,15 +8,15 @@ import lombok.Data;
 @Data
 public class Decide {
 
-	private int buNo;
-	
-	//main 
-	private String buTitle;
-	private String buAddress;
-	private String buMainImg;
-	private String filePath;
-    private String saveName;
-	private double starScore;
+   private int buNo;
+   
+   //main 
+   private String buTitle;
+   private String buAddress;
+   private String buMainImg;
+   private String filePath;
+   private String saveName;
+   private double starScore;
     
 	// review
 	private double userStarScore;
@@ -43,11 +43,12 @@ public class Decide {
     private String roomCheckin;
     private String roomCheckout;
     
-    // cart
-    private String cartCheckIn;
-    private String cartCheckOut;
-    private int userNo;
+   // cart
+   private String cartCheckIn;
+   private String cartCheckOut;
+   private int userNo;
+   private String originName;
+
     
-    
-    private	int fileLevel;
+   private   int fileLevel;
 }

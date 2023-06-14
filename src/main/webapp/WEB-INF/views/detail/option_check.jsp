@@ -110,6 +110,28 @@ a {
 				action="<%=request.getContextPath()%>/list/filter/${category}"
 				method="GET">
 				<table class="optionTable">
+					<!-- 숙박객수 옵션 -->
+					<tr>
+						<th class="tableTitle">숙박객 수</th>
+					</tr>
+					<tr>
+						<td><input class="guest-count-checkbox" type="checkbox"
+							name="guests" value=1><i class="fa-solid fa-person"></i>
+							1인</td>
+					</tr>
+					<tr>
+						<td><input class="guest-count-checkbox" type="checkbox"
+							name="guests" value=2><i class="fa-solid fa-person"></i><i
+							class="fa-solid fa-person"></i> 2인</td>
+					</tr>
+					<tr>
+						<td><input class="guest-count-checkbox" type="checkbox"
+							name="guests" value=3><i class="fa-solid fa-person"></i><i
+							class="fa-solid fa-person"></i><i class="fa-solid fa-person"></i>
+							3인</td>
+					</tr>
+
+					<!-- 가격 옵션 -->
 					<tr>
 						<th class="tableTitle">가격</th>
 					</tr>
@@ -133,6 +155,8 @@ a {
 							name="prices" value="[300000,400000]"
 							onclick="handleCheckbox(this)">₩300,000 - ₩400,000</td>
 					</tr>
+					
+					<!-- 예약 옵션 -->
 					<tr>
 						<th class="tableTitle">예약 종류</th>
 					</tr>
@@ -144,6 +168,8 @@ a {
 						<td><input class="house-option-checkbox" type="checkbox"
 							name="reserveOptions" value="환불 불가">환불 불가</td>
 					</tr>
+					
+					<!-- 편의시설 옵션 -->
 					<tr>
 						<th class="tableTitle">편의시설</th>
 					</tr>
@@ -207,6 +233,7 @@ a {
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 				</table>
+				<br>
 				<button type="submit" onclick="submitForm()">검색하기</button>
 			</form>
 		</div>

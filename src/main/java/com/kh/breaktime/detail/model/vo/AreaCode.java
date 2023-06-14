@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class AreaCode {
-	
-	String areaNo;
-	String areaName;
+   
+   String areaNo;
+   String areaName;
 
 }

@@ -37,9 +37,6 @@
 <link rel="stylesheet" href="/breaktime/resources/css/base.css">
 <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
 <link rel="stylesheet" href="/breaktime/resources/css/main.css">
-<script src="/js/summernote/summernote-lite.js"></script>
-<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-
 <style>
 div {
 	box-sizing: border-box;
@@ -50,6 +47,8 @@ html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0%;
+	font-family: 'YanoljaYache';
+	font-size : 18px;
 }
 
 body {

@@ -127,7 +127,7 @@
 		) VALUES (
 		#{noticeNo},
 		#{noticeTitle},
-		2,
+		1,
 		#{noticeContent}
 		)
 
@@ -232,13 +232,13 @@
 	<update id="approvalAccept" parameterType="business">
 		UPDATE  BUSINESS SET
 		APPROVAL = 'Y'
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</update>
 	
 	<delete id="approvalCancel">
 		DELETE   
 		FROM BUSINESS
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</delete>
 	
 	<!-- 고객 정보 수정  -->

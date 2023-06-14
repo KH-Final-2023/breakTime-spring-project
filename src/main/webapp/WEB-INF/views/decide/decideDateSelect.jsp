@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -217,6 +217,7 @@ function selectDate(event) {
         var startDayOfWeek = getDayOfWeek(startDate);
         var lastDayOfWeek = getDayOfWeek(lastDate);
         var night = calculateStayDuration(startDate, lastDate);
+
         document.getElementById('searchBtn').innerHTML = startDate + "(" + startDayOfWeek + ") ~ "+ lastDate + "(" + lastDayOfWeek + ") · " + night + "박";
     }
 }
@@ -357,7 +358,34 @@ window.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
         container.classList.add('active');
     }, 1000);
+
+    var searchBtn = document.getElementById('searchBtn');
+    searchBtn.addEventListener('click', function() {
+        var selectedDates = document.querySelectorAll('.selected, .selected-light');
+        var dateRange = Array.from(selectedDates).map(cell => cell.getAttribute('id'));
+        sendDataToParent(dateRange);
+    });
 });
+
+function sendDataToParent(dateRange) {
+    // dateRange 배열이 있으므로, 시작 날짜와 끝 날짜를 분리합니다.
+    var startDt = dateRange[0];
+    var endDt = dateRange[dateRange.length - 1];
+
+    var startDayofWeek = getDayOfWeek(startDt);
+    var endDayofWeek = getDayOfWeek(endDt);
+    var night = calculateStayDuration(startDt, endDt);
+
+    // postMessage를 사용하여 부모 페이지로 데이터를 보냅니다.
+    window.parent.postMessage({
+        type: 'selectedDates',
+        startDt: startDt,
+        endDt: endDt,
+        startDayofWeek: startDayofWeek,
+        endDayofWeek: endDayofWeek,
+        night: night
+    }, '*');
+}
 
 function init() {
     var currentDate = new Date();

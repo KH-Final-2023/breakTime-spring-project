@@ -27,7 +27,7 @@ public class DetailServiceImpl implements DetailService {
 		return detailDao.selectCategoryCodeList();
 	}
 
-	public void selectDetailList(String category, Map<String, Object> map) {
+	public void selectDetailList(String category, Map<String, Object> map) {TDT
 		ArrayList<Detail> list = detailDao.selectDetailList(category);
 		map.put("list", list);
 	}
@@ -37,13 +37,8 @@ public class DetailServiceImpl implements DetailService {
 		map.put("list", list);
 	}
 
-	public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Map<String, Object> map) {
-		ArrayList<Detail> list = detailDao.getFilteredData(category, prices, reserves, options);
-		map.put("list", list);
-	}
-	
-	public void getAreaData(String category, String area, Map<String, Object> map) {
-		ArrayList<Detail> list = detailDao.getAreaData(category, area);
+	public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Integer guests, String area, List<String> inOut, Map<String, Object> map) {
+		ArrayList<Detail> list = detailDao.getFilteredData(category, prices, reserves, options, area, inOut, guests);
 		map.put("list", list);
 	}
 
@@ -51,5 +46,10 @@ public class DetailServiceImpl implements DetailService {
 		ArrayList<Detail> list = detailDao.searchDetailList(paramMap);
 		map.put("list", list);
 	}
+	
+	public void selectAreaList(String areaNo, Map<String, Object> map) {
+	      ArrayList<AreaCode> list = detailDao.selectAreaList(areaNo);
+	      map.put("list", list);
+	   }
 
 }

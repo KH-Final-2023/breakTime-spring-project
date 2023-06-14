@@ -38,14 +38,14 @@
 									<td>${b.buTel }</td>
 									<td>${b.buTitle }</td>
 									<td>${b.buAddress }</td>
-									<td><a href="<%=request.getContextPath()%>/approval/update?buId=${b.buId}">
+									<td><a href="<%=request.getContextPath()%>/approval/update?buNo=${b.buNo}">
 											<button type="button"  class="btn btn-outline-primary"data-text="승인">
 												<span>승인</span>
 											</button>
 									</a>
 									</td>
 									<td>
-										<a href="<%=request.getContextPath()%>/approval/delete?buId=${b.buId}">
+										<a href="<%=request.getContextPath()%>/approval/delete?buNo=${b.buNo}">
 											<button type="button" class="btn btn-outline-danger"data-text="취소">
 												<span>취소</span>
 											</button>

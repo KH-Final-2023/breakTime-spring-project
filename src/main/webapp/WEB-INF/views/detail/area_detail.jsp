@@ -11,22 +11,22 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style>
-.searchBar_detail {
+.area_detail {
 	margin-left: 500px;
 	margin-top: 100px;
 	margin-bottom: 50px;
 }
 
-.dropdown {
+.dropdown1 {
 	position: relative;
 	display: inline-block;
 }
 
-.dropbtn_icon {
+.dropbtn1_icon {
 	font-family: 'Material Icons';
 }
 
-.dropbtn {
+.dropbtn1 {
 	display: block;
 	border: 2px solid rgb(94, 94, 94);
 	border-radius: 4px;
@@ -41,7 +41,7 @@
 	position: relative;
 }
 
-.dropdown-content {
+.dropdown-content1 {
 	display: none;
 	font-weight: 400;
 	background-color: #fcfcfc;
@@ -52,17 +52,17 @@
 	box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
 }
 
-.dropdown-content::-webkit-scrollbar {
+.dropdown-content1::-webkit-scrollbar {
 	width: 5px;
 	height: 10px;
 }
 
-.dropdown-content::-webkit-scrollbar-thumb {
+.dropdown-content1::-webkit-scrollbar-thumb {
 	border-radius: 2px;
 	background-color: rgb(194, 194, 194)
 }
 
-.dropdown-content div {
+.dropdown-content1 div {
 	display: block;
 	text-decoration: none;
 	color: rgb(37, 37, 37);
@@ -70,25 +70,25 @@
 	padding: 12px 20px;
 }
 
-.dropdown-content div:hover {
+.dropdown-content1 div:hover {
 	background-color: rgb(226, 226, 226);
 }
 
-.dropdown-content.show {
+.dropdown-content1.show {
 	display: block;
 }
 </style>
 </head>
 <body>
-	<div class="searchBar_detail">
-		<div class="dropdown">
-			<button class="dropbtn">
-				<span class="dropbtn_icon">지역</span> <span class="dropbtn_content"></span>
-				<span class="dropbtn_click"
+	<div class="area_detail">
+		<div class="dropdown1">
+			<button class="dropbtn1">
+				<span class="dropbtn1_icon">지역</span> <span class="dropbtn1_content"></span>
+				<span class="dropbtn1_click"
 					style="font-family: Material Icons; font-size: 16px; color: #3b3b3b; float: right;"
-					onclick="dropdown()">지역 선택</span>
+					onclick="dropdown1()">지역 선택</span>
 			</button>
-			<div class="dropdown-content">
+			<div class="dropdown-content1">
 				<div class="categoryCode" name="seoul" id="1">서울</div>
 				<div class="categoryCode" name="incheon" id="2">인천</div>
 				<div class="categoryCode" name="daejeon" id="3">대전</div>
@@ -109,67 +109,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- 지역 카테고리 설정 스크립트 -->
-	<script>
-	window.onload = () => {
-  		document.querySelector('.dropbtn_click').onclick = () => {
-    		dropdown();
-  		}
-  		var categoryCodes = document.getElementsByClassName('categoryCode');
-  		for (var i = 0; i < categoryCodes.length; i++) {
-    		categoryCodes[i].onclick = function(){
-      		var id = this.getAttribute('id');
-      		showMenu(this.innerText, id);
-    	}
-  	}
-  		
-  	dropdown = () => {
-    	var v = document.querySelector('.dropdown-content');
-    	var dropbtn = document.querySelector('.dropbtn')
-    	v.classList.toggle('show');
-    	dropbtn.style.borderColor = 'rgb(94, 94, 94)';
-  	}
-
-  	showMenu = (value, id) => {
-	    var dropbtn_icon = document.querySelector('.dropbtn_icon');
-	    var dropbtn_content = document.querySelector('.dropbtn_content');
-	    var dropbtn_click = document.querySelector('.dropbtn_click');
-	    var dropbtn = document.querySelector('.dropbtn');
-	
-	    dropbtn_icon.innerText = '';
-	    dropbtn_content.innerText = value;
-	    dropbtn_content.style.color = '#252525';
-	    dropbtn.style.borderColor = '#3992a8';
-	
-	    var category = value.toLowerCase();
-	    var url = `<%=request.getContextPath()%>/list/area/${category}`;
-	    if (id) {
-	    	url += '?area=' + id;
-	    }
-	    window.location.href = url;
-	  }
-	}
-
-	window.onclick = (e) => {
-	  if (!e.target.matches('.dropbtn_click')) {
-	    var dropdowns = document.getElementsByClassName("dropdown-content");
-	
-	    var dropbtn_icon = document.querySelector('.dropbtn_icon');
-	    var dropbtn_content = document.querySelector('.dropbtn_content');
-	    var dropbtn_click = document.querySelector('.dropbtn_click');
-	    var dropbtn = document.querySelector('.dropbtn');
-	
-	    var i;
-	    for (i = 0; i < dropdowns.length; i++) {
-	      var openDropdown = dropdowns[i];
-	      if (openDropdown.classList.contains('show')) {
-	        openDropdown.classList.remove('show');
-	      }
-	    }
-	  }
-	}
-	</script>
 
 </body>
 </html>
