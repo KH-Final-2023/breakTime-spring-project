@@ -11,6 +11,75 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
+/* area_detail */
+.area_detail {
+	margin-left: 500px;
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
+
+.dropdown1 {
+	position: relative;
+	display: inline-block;
+}
+
+.dropbtn1_icon {
+	font-family: 'Material Icons';
+}
+
+.dropbtn1 {
+	display: block;
+	border: 2px solid rgb(94, 94, 94);
+	border-radius: 4px;
+	background-color: #fcfcfc;
+	font-weight: 400;
+	color: rgb(124, 124, 124);
+	padding: 12px;
+	width: 400px;
+	text-align: left;
+	cursor: pointer;
+	font-size: 12px;
+	position: relative;
+}
+
+.dropdown-content1 {
+	display: none;
+	font-weight: 400;
+	background-color: #fcfcfc;
+	min-width: 240px;
+	border-radius: 8px;
+	height: 160px;
+	overflow: scroll;
+	box-shadow: 0px 0px 10px 3px rgba(190, 190, 190, 0.6);
+}
+
+.dropdown-content1::-webkit-scrollbar {
+	width: 5px;
+	height: 10px;
+}
+
+.dropdown-content1::-webkit-scrollbar-thumb {
+	border-radius: 2px;
+	background-color: rgb(194, 194, 194)
+}
+
+.dropdown-content1 div {
+	display: block;
+	text-decoration: none;
+	color: rgb(37, 37, 37);
+	font-size: 12px;
+	padding: 12px 20px;
+}
+
+.dropdown-content1 div:hover {
+	background-color: rgb(226, 226, 226);
+}
+
+.dropdown-content1.show {
+	display: block;
+}
+
+/* date_detail */
 .blue-button {
 	color: blue;
 }
@@ -465,37 +534,83 @@
 	}
 
 	function submitSelection() {
-		var selectedDates = $(".selected-date");
+		  var selectedDates = $(".selected-date");
 
-		if (selectedDates.length === 2) {
-			var startDate = selectedDates.first().text().replace(/\(.*\)/g, "");
-			var endDate = selectedDates.last().text().replace(/\(.*\)/g, "");
-			var startMonth = startDate.split(" ")[0];
-			var startDay = startDate.split(" ")[1];
-			var endMonth = endDate.split(" ")[0];
-			var endDay = endDate.split(" ")[1];
-			var selectionText = startMonth + " " + startDay + "일 ~ " + endMonth
-					+ " " + endDay + "일";
-			$(".dropbtn2_content").text(selectionText);
-			inOut.push(startMonth + " " + startDay + "일");
-			inOut.push(endMonth + " " + endDay + "일");
-		} else if (selectedDates.length === 1) {
-			var selectedDate = selectedDates.first().text().replace(/\(.*\)/g,
-					"");
-			var month = selectedDate.split(" ")[0];
-			var day = selectedDate.split(" ")[1];
-			var selectionText = month + " " + day + "일";
-			$(".dropbtn2_content").text(selectionText);
-			inOut.push(month + " " + day + "일");
-		} else {
-			$(".dropbtn2_content").text("날짜 선택");
+		  if (selectedDates.length === 2) {
+		    var startDate = selectedDates.first().text().replace(/\(.*\)/g, "");
+		    var endDate = selectedDates.last().text().replace(/\(.*\)/g, "");
+		    var startMonth = startDate.split(" ")[0];
+		    var startDay = startDate.split(" ")[1];
+		    var endMonth = endDate.split(" ")[0];
+		    var endDay = endDate.split(" ")[1];
+		    var selectionText = startMonth + " " + startDay + "일 ~ " + endMonth + " " + endDay + "일";
+		    
+		    var startFormatted = formatDate(startDate);
+		    var endFormatted = formatDate(endDate);
+		    var selectionFormatted = startFormatted + " ~ " + endFormatted;
+		    
+		    $(".dropbtn2_content").text(selectionText);
+		    inOut.push(startFormatted);
+		    inOut.push(endFormatted);
+		  } else if (selectedDates.length === 1) {
+		    var selectedDate = selectedDates.first().text().replace(/\(.*\)/g, "");
+		    var month = selectedDate.split(" ")[0];
+		    var day = selectedDate.split(" ")[1];
+		    var selectionText = month + " " + day + "일";
+		    
+		    var formatted = formatDate(selectedDate);
+		    var selectionFormatted = formatted;
+		    
+		    $(".dropbtn2_content").text(selectionText);
+		    inOut.push(formatted);
+		  } else {
+		    $(".dropbtn2_content").text("날짜 선택");
+		  }
+		  closeDropdown();
+		  $("td").removeClass("selected-highlight");
+
+		  console.log(inOut);
 		}
-		closeDropdown();
-		$("td").removeClass("selected-highlight");
 
-		console.log(inOut);
-	}
+		function formatDate(dateString) {
+		  var dateParts = dateString.split(" ");
+		  var month = dateParts[0];
+		  var day = dateParts[1];
+		  var formattedDate = "0000.00.00";
+		  
+		  if (month && day) {
+		    var today = new Date();
+		    var year = today.getFullYear();
+		    var monthNumber = getMonthNumber(month);
+		    
+		    formattedDate = year + "." + padZero(monthNumber) + "." + padZero(day);
+		  }
+		  
+		  return formattedDate;
+		}
 
+		function getMonthNumber(monthName) {
+		  var months = {
+		    "1월": "01",
+		    "2월": "02",
+		    "3월": "03",
+		    "4월": "04",
+		    "5월": "05",
+		    "6월": "06",
+		    "7월": "07",
+		    "8월": "08",
+		    "9월": "09",
+		    "10월": "10",
+		    "11월": "11",
+		    "12월": "12"
+		  };
+		  
+		  return months[monthName] || "00";
+		}
+
+		function padZero(value) {
+		  return value.toString().padStart(2, "0");
+		}
 	function closeDropdownOutsideClick(event) {
 		var dropdown = $(".dropdown2");
 		if (!dropdown.is(event.target)
@@ -515,35 +630,168 @@
 </script>
 </head>
 <body>
-	<div class="date_detail">
-		<div class="dropdown2">
-			<button class="dropbtn2">
-				<span class="dropbtn2_icon">날짜</span> <span class="dropbtn2_content"></span>
-				<span class="dropbtn2_click"
-					style="font-family: Material Icons; font-size: 16px; color: #3b3b3b; float: right;"
-					onclick="dropdown2()">날짜 선택</span>
-			</button>
+	<form id="searchOption" name="search_option"
+		action="<%=request.getContextPath()%>/list/filter/${category}"
+		method="GET">
+		<div class="area_detail">
+			<div class="dropdown1">
+				<div class="dropbtn1">
+					<span class="dropbtn1_icon">지역</span> <span
+						class="dropbtn1_content"></span> <span class="dropbtn1_click"
+						style="font-family: Material Icons; font-size: 16px; color: #3b3b3b; float: right;"
+						onclick="dropdown1()">지역 선택</span>
+				</div>
+				<div class="dropdown-content1">
+					<div class="categoryCode" name="seoul" value="1">서울</div>
+					<div class="categoryCode" name="incheon" value="2">인천</div>
+					<div class="categoryCode" name="daejeon" value="3">대전</div>
+					<div class="categoryCode" name="daegu" value="4">대구</div>
+					<div class="categoryCode" name="gwangju" value="5">광주</div>
+					<div class="categoryCode" name="busan" value="6">부산</div>
+					<div class="categoryCode" name="ulsan" value="7">울산</div>
+					<div class="categoryCode" name="sejong" value="8">세종</div>
+					<div class="categoryCode" name="gyeonggi" value="31">경기도</div>
+					<div class="categoryCode" name="gangwon" value="32">강원도</div>
+					<div class="categoryCode" name="chungbug" value="33">충청북도</div>
+					<div class="categoryCode" name="chungnam" value="34">충청남도</div>
+					<div class="categoryCode" name="gyeongbug" value="35">경상북도</div>
+					<div class="categoryCode" name="gyeongnam" value="36">경상남도</div>
+					<div class="categoryCode" name="jeonbug" value="37">전라북도</div>
+					<div class="categoryCode" name="jeonnam" value="38">전라남도</div>
+					<div class="categoryCode" name="jeju" value="39">제주도</div>
+				</div>
+			</div>
+		</div>
+		<div class="date_detail">
+			<div class="dropdown2">
+				<div class="dropbtn2">
+					<span class="dropbtn2_icon">날짜</span> <span
+						class="dropbtn2_content"></span> <span class="dropbtn2_click"
+						style="font-family: Material Icons; font-size: 16px; color: #3b3b3b; float: right;"
+						onclick="dropdown2()">날짜 선택</span>
+				</div>
 
-			<div class="dropdown-content2">
-				<div class="container container-close">
-					<span class="submit-button">Submit</span> <span
-						class="reset-button">reset</span>
-					<div class="detail2-main">
-						<div class="calendar-container">
-							<!-- 달력 컨테이너 -->
+				<div class="dropdown-content2">
+					<div class="container container-close">
+						<span class="submit-button">Submit</span> <span
+							class="reset-button">reset</span>
+						<div class="detail2-main">
+							<div class="calendar-container">
+								<!-- 달력 컨테이너 -->
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div>
-		<button class="search-button" onclick="search()">검색</button>
-	</div>
+		<div>
+			<button type="submit" class="search-button" onclick="submitForm()">검색하기</button>
+		</div>
+	</form>
 
 	<script>
 		init();
 	</script>
+
+	<!-- 지역 선택시 실행되는 함수 -->
+	<script>
+	function showMenu(value, id) {
+	  var dropbtn_icon = document.querySelector('.dropbtn1_icon');
+	  var dropbtn_content = document.querySelector('.dropbtn1_content');
+	  var dropbtn_click = document.querySelector('.dropbtn1_click');
+	  var dropbtn = document.querySelector('.dropbtn1');
+
+	  dropbtn_icon.innerText = '';
+	  dropbtn_content.innerText = value;
+	  dropbtn_content.style.color = '#252525';
+	  dropbtn.style.borderColor = '#3992a8';
+
+	  // 변수에 선택한 값을 저장
+	  selectedArea = id;
+	  console.log('Selected Area:', selectedArea);
+
+	}
+	</script>
+	
+	<!-- 드롭다운 스크립트 -->
+	<script type="text/javascript">
+    window.onload = () => {
+    	  document.querySelector('.dropbtn2_click').onclick = () => {
+    	    dropdown('.dropdown-content2', '.dropbtn2');
+    	  };
+
+    	  document.querySelector('.dropbtn1_click').onclick = () => {
+    	    dropdown('.dropdown-content1', '.dropbtn1');
+    	  };
+
+    	  // 추가된 부분: dropdown-content2의 클릭 이벤트 핸들러 제거
+    	  var dropdownContent2 = document.querySelector('.dropdown-content2');
+    	  dropdownContent2.onclick = (event) => {
+    	    event.stopPropagation();
+    	  };
+
+    	  // 추가된 부분: dropdown-content2의 마우스 강조 효과 제거
+    	  dropdownContent2.onmouseover = (event) => {
+    	    event.target.style.backgroundColor = 'transparent';
+    	  };
+
+    	  var categoryCodes = document.getElementsByClassName('categoryCode');
+    	  for (var i = 0; i < categoryCodes.length; i++) {
+    	    categoryCodes[i].onclick = function () {
+    	      var id = this.getAttribute('id');
+    	      showMenu(this.innerText, id);
+    	    };
+    	  }
+
+    	  function dropdown(contentClass, btnClass) {
+    	    var v = document.querySelector(contentClass);
+    	    var dropbtn = document.querySelector(btnClass);
+    	    v.classList.toggle('show');
+    	    dropbtn.style.borderColor = 'rgb(94, 94, 94)';
+    	  }
+
+    	  window.onclick = (e) => {
+    	    if (!e.target.matches('.dropbtn1_click') && !e.target.matches('.dropbtn2_click')) {
+    	      var dropdowns1 = document.getElementsByClassName('dropdown-content1');
+    	      var dropdowns2 = document.getElementsByClassName('dropdown-content2');
+    	      closeDropdowns(dropdowns1);
+    	      closeDropdowns(dropdowns2);
+    	    }
+    	  };
+
+    	  function closeDropdowns(dropdowns) {
+    	    for (var i = 0; i < dropdowns.length; i++) {
+    	      var openDropdown = dropdowns[i];
+    	      if (openDropdown.classList.contains('show')) {
+    	        openDropdown.classList.remove('show');
+    	      }
+    	      openDropdown.style.borderColor = 'rgb(177, 177, 177)';
+    	    }
+    	  }
+    	};
+    </script>
+    
+    <!-- submit form 2 -->
+    <script type="text/javascript">
+    function submitForm() {
+    	  var inOut = [];
+
+    	  // 2번째 드롭다운의 선택값 가져오기
+    	  var selectedDate = $(".dropbtn2_content").text();
+    	  var formattedDate = formatDate(selectedDate);
+    	  inOut.push(formattedDate);
+
+    	  // URL 생성
+    	  var url = "<%=request.getContextPath()%>/list/filter/${category}";
+    	  url += "?inOut=" + encodeURIComponent(inOut.join(","));
+
+    	  // 페이지 이동
+    	  document.getElementById("searchOption").action = url;
+    	  document.getElementById("searchOption").submit();
+    	}
+
+    </script>
+
 </body>
 
 </html>
