@@ -72,7 +72,9 @@
 </head>
 <body>
 	
-	<div id="wrapper" >
+<%--     <jsp:include page="/WEB-INF/views/header.jsp" /> 
+ --%>	<div id="wrapper" >
+	
 		<div style="width:100%; display: contents;">
 			<h1 style="color: #1dbf1d; margin-bottom:100px;border-top:1px solid #1dbf1d; border-bottom: 1px solid #1dbf1d;">MEMBER INFO</h1>
 		</div>
@@ -80,7 +82,7 @@
 			<div id="content1">
 				<ul style="list-style:none;">
 					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/myPage">내 정보</a></li>
-					<li><a class="sideMenu">예약내역</a></li>
+					<li><a class="sideMenu" id="booking">예약내역</a></li>
 					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/wishList">찜한 목록</a></li>
 					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/list">문의쪽지</a></li>
 				</ul>
@@ -281,7 +283,7 @@
 			</div>
 			<button style="border:transparent;" type="submit" class="closeBtn2" id="fullBlueBtn" onclick="return validateEmail();">이메일 변경</button>
 			</form>
-		</div>
+	</div>
 		
 		
 		<script> // 이메일변경 모달창 클릭시 이메일양식에 맞는지 유효성검사
@@ -370,5 +372,10 @@
         document.querySelector(".bg2").addEventListener("click", close2);
     </script>
 
+ 	  <script>
+         document.getElementById("booking").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/booking/bookingView";
+        })
+      </script>
 </body>
 </html>

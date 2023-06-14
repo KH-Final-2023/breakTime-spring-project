@@ -79,7 +79,7 @@
 			<div id="content1">
 				<ul style="list-style:none;">
 					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/myPage">내 정보</a></li>
-					<li><a class="sideMenu">예약내역</a></li>
+					<li><a class="sideMenu" id="booking">예약내역</a></li>
 					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/wishList">찜한 목록</a></li>
 					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/list">문의쪽지</a></li>
 				</ul>
@@ -165,6 +165,10 @@
 					</div>
 	</div>
 	
-	
+ 	  <script>
+         document.getElementById("booking").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/booking/bookingView";
+        })
+      </script>
 </body>
 </html>

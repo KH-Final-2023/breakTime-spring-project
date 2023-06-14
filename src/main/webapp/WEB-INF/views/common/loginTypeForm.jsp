@@ -8,15 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인 타입</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <style>
         #container{
             width: 100%;
             height: 700px;
-            border: 1px solid black;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
         form{
@@ -44,9 +43,28 @@
 			background-color:yellowgreen;
 			color:white;
 		}
+		
+		#wrapper{
+			background-image: url("resources/images/로그인타입.jpg");
+			border: 0;
+    padding: 0; 
+
+    min-height: 100%;
+    background-position: center;
+    background-size: contain;
+		}
+		
+		body, html { 
+    	margin: 0;
+    	padding: 0;
+    	height: 100%;
+}
     </style>
 </head>
 <body>
+
+
+	<div id="wrapper">
     <div id="container">
         <h1>BreakTime</h1>
         <p>BreakTime에 오신것을 환영합니다.</p>
@@ -56,8 +74,8 @@
             <button  id="businessLoginBtn">사업자</button>
         </div> 
 
-    </div>ㄴ
-    
+    </div>
+    </div>
     <!-- 일반고객/사업자 로그인폼으로 포워딩(석범) -->
     <script>              	
     	document.getElementById("memberLoginBtn").addEventListener("click",function(){
