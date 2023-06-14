@@ -8,23 +8,25 @@
       <result column="CATEGORY_NAME" property="categoryName" />
    </resultMap>
 
-   <!-- 목록용 resultMap -->
-   <resultMap type="detail" id="detailResultSet">
-      <id property="roomNo" column="ROOM_NO" />
-      <result property="buMainImg" column="BU_MAIN_IMG" />
-      <result property="roomHCount" column="ROOM_H_COUNT" />
-      <result property="roomPrice" column="ROOM_PRICE" />
-      <result property="buNo" column="BU_NO" />
-      <result property="buAddress" column="BU_ADDRESS" />
-      <result property="areaNo" column="AREA_NO" />
-      <result property="buCategory" column="BU_CATEGORY" />
-      <result property="buTel" column="BU_TEL" />
-      <result property="buTitle" column="BU_TITLE" />
-      <result property="roomInfo" column="ROOM_INFO" />
-      <result property="starScore" column="STAR_SCORE" />
-      <result property="roomCheckIn" column="ROOM_CHECKIN" />
-      <result property="roomCheckOut" column="ROOM_CHECKOUT" />
-   </resultMap>
+
+	<!-- 목록용 resultMap -->
+	<resultMap type="detail" id="detailResultSet">
+		<id property="roomNo" column="ROOM_NO" />
+		<result property="buMainImg" column="BU_MAIN_IMG" />
+		<result property="roomHCount" column="ROOM_H_COUNT" />
+		<result property="roomPrice" column="ROOM_PRICE" />
+		<result property="buNo" column="BU_NO" />
+		<result property="buAddress" column="BU_ADDRESS" />
+		<result property="areaNo" column="AREA_NO" />
+		<result property="buCategory" column="BU_CATEGORY" />
+		<result property="buTel" column="BU_TEL" />
+		<result property="buTitle" column="BU_TITLE" />
+		<result property="roomInfo" column="ROOM_INFO" />
+		<result property="starScore" column="STAR_SCORE" />
+		<result property="roomCheckIn" column="ROOM_CHECKIN" />
+		<result property="roomCheckOut" column="ROOM_CHECKOUT" />
+	</resultMap>
+
 
    <!-- 카테고리 코드 셀렉트 -->
    <select id="selectCategoryCodeList"
@@ -33,6 +35,109 @@
       FROM CATEGORY_CODE
       ORDER BY BU_CATEGORY
    </select>
+
+
+	<!-- 데이터 리스트 목록 -->
+	<select id="selectDetailList" resultMap="detailResultSet">
+		SELECT
+		B.BU_MAIN_IMG,
+		R.ROOM_NO,
+		R.ROOM_H_COUNT,
+		R.ROOM_PRICE,
+		R.ROOM_INFO,
+		B.BU_NO,
+		B.BU_ADDRESS,
+		B.AREA_NO,
+		B.BU_CATEGORY,
+		B.BU_TEL,
+		B.BU_TITLE
+		FROM
+		BUSINESS B
+		INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
+		WHERE
+		B.BU_MAIN_IMG IS NOT NULL
+		AND B.APPROVAL = 'Y'
+		AND B.BU_CATEGORY =
+		#{category}
+		<if test="area != null">
+			AND B.AREA_NO = TO_NUMBER(#{area})
+		</if>
+		<if test="guests == null">
+			AND R.ROOM_H_COUNT = 1
+		</if>
+	</select>
+
+	<!-- 데이터 리스트 목록 -->
+	<select id="filterListSubmit" resultMap="detailResultSet">
+		SELECT
+		B.BU_MAIN_IMG,
+		S.ROOM_PRICE,
+		S.ROOM_INFO,
+		S.ROOM_H_COUNT,
+		B.BU_ADDRESS,
+		B.AREA_NO,
+		B.BU_CATEGORY,
+		B.BU_TEL,
+		B.BU_NO,
+		B.BU_TITLE
+		FROM
+		BUSINESS B
+		INNER JOIN (
+		SELECT
+		R.ROOM_NO,
+		R.BU_NO,
+		R.ROOM_H_COUNT,
+		R.ROOM_PRICE,
+		R.ROOM_INFO
+		FROM
+		ROOM R
+		LEFT JOIN BOOKING BK ON BK.ROOM_NO =
+		R.ROOM_NO
+		WHERE
+		(
+		<if test="date_in != '' and date_out != ''">
+                    <![CDATA[
+                    (BK.STATUS = 'Y' AND (TO_DATE(BK.ROOM_CHECKOUT, 'YYYY.MM.DD') < TO_DATE(#{date_in}, 'YYYY-MM-DD'))
+                    OR TO_DATE(BK.ROOM_CHECKIN, 'YYYY.MM.DD') > TO_DATE(#{date_out}, 'YYYY-MM-DD'))
+                    OR 
+                    ]]>
+		</if>
+		BK.STATUS IS NULL)
+		) S ON S.BU_NO = B.BU_NO
+		WHERE
+		B.BU_MAIN_IMG IS NOT
+		NULL
+		AND B.APPROVAL = 'Y'
+		AND B.BU_CATEGORY = #{category}
+		<if test="area != null">
+			AND B.AREA_NO = TO_NUMBER(#{area})
+		</if>
+		<if test="guests == null">
+			AND S.ROOM_H_COUNT = 1
+		</if>
+		<if test="guests != null">
+			AND S.ROOM_H_COUNT = #{guests}
+		</if>
+		<if test="prices != null">
+			AND TO_NUMBER(REPLACE(S.ROOM_PRICE, ',', '')) BETWEEN
+			TO_NUMBER(REPLACE(#{prices[0]}, '[', '')) AND
+			TO_NUMBER(REPLACE(#{prices[1]}, ']', ''))
+		</if>
+		<if test="reserves != null and reserves.size() > 0">
+			AND S.ROOM_INFO IN (
+			<foreach collection="reserves" item="reserve" separator=",">
+				#{reserve}
+			</foreach>
+			)
+		</if>
+		<if test="options != null and options.size() > 0">
+			AND S.ROOM_INFO IN (
+			<foreach collection="options" item="option" separator=",">
+				#{option}
+			</foreach>
+			)
+		</if>
+	</select>
 
 
    <!-- 데이터 리스트 목록 -->
@@ -65,123 +170,52 @@
       </if>
    </select>
 
-   <!-- 데이터 리스트 목록 -->
-   <select id="filterListSubmit" resultMap="detailResultSet">
-      SELECT
-      B.BU_MAIN_IMG,
-      S.ROOM_PRICE,
-      S.ROOM_INFO,
-      S.ROOM_H_COUNT,
-      B.BU_ADDRESS,
-      B.AREA_NO,
-      B.BU_CATEGORY,
-      B.BU_TEL,
-      B.BU_NO,
-      B.BU_TITLE
-      FROM
-      BUSINESS B
-      INNER JOIN (
-      SELECT
-      R.ROOM_NO,
-      R.BU_NO,
-      R.ROOM_H_COUNT,
-      R.ROOM_PRICE,
-      R.ROOM_INFO
-      FROM
-      ROOM R
-      LEFT JOIN BOOKING BK ON BK.ROOM_NO =
-      R.ROOM_NO
-      WHERE
-      (
-      <if test="date_in != '' and date_out != ''">
-                    <![CDATA[
-                    (BK.STATUS = 'Y' AND (TO_DATE(BK.ROOM_CHECKOUT, 'YYYY.MM.DD') < TO_DATE(#{date_in}, 'YYYY-MM-DD'))
-                    OR TO_DATE(BK.ROOM_CHECKIN, 'YYYY.MM.DD') > TO_DATE(#{date_out}, 'YYYY-MM-DD'))
-                    OR 
-                    ]]>
-      </if>
-      BK.STATUS IS NULL)
-      ) S ON S.BU_NO = B.BU_NO
-      WHERE
-      B.BU_MAIN_IMG IS NOT
-      NULL
-      AND B.APPROVAL = 'Y'
-      AND B.BU_CATEGORY = #{category}
-      <if test="area != null">
-         AND B.AREA_NO = TO_NUMBER(#{area})
-      </if>
-      <if test="guests == null">
-         AND S.ROOM_H_COUNT = 1
-      </if>
-      <if test="guests != null">
-         AND S.ROOM_H_COUNT = #{guests}
-      </if>
-      <if test="prices != null">
-         AND TO_NUMBER(REPLACE(S.ROOM_PRICE, ',', '')) BETWEEN
-         TO_NUMBER(REPLACE(#{prices[0]}, '[', '')) AND
-         TO_NUMBER(REPLACE(#{prices[1]}, ']', ''))
-      </if>
-      <if test="reserves != null and reserves.size() > 0">
-         AND S.ROOM_INFO IN (
-         <foreach collection="reserves" item="reserve" separator=",">
-            #{reserve}
-         </foreach>
-         )
-      </if>
-      <if test="options != null and options.size() > 0">
-         AND S.ROOM_INFO IN (
-         <foreach collection="options" item="option" separator=",">
-            #{option}
-         </foreach>
-         )
-      </if>
-   </select>
 
+	<!-- 검색 리스트 목록 -->
+	<select id="searchDetailList" resultMap="detailResultSet">
+		SELECT
+		BU_ADDRESS,
+		AREA_NO,
+		BU_CATEGORY,
+		BU_TITLE
+		FROM HOUSE H
+		WHERE
+		MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
+		<if test='areaCode != null and areaCode != ""'>
+			AND AREA_NO = #{areaNo}
+		</if>
+		<choose>
+			<when test="condition == 'address'"> AND BU_ADDRESS LIKE #{keyword} </when>
+			<when test="condition == 'areano'"> AND AREA_NO LIKE #{keyword} </when>
+			<when test="condition == 'category'"> AND BU_CATEGORY LIKE #{keyword} </when>
+			<when test="condition == 'title'"> AND BU_TITLE LIKE #{keyword} </when>
+		</choose>
+	</select>
 
-   <!-- 검색 리스트 목록 -->
-   <select id="searchDetailList" resultMap="detailResultSet">
-      SELECT
-      BU_ADDRESS,
-      AREA_NO,
-      BU_CATEGORY,
-      BU_TITLE
-      FROM HOUSE H
-      WHERE
-      MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
-      <if test='areaCode != null and areaCode != ""'>
-         AND AREA_NO = #{areaNo}
-      </if>
-      <choose>
-         <when test="condition == 'address'"> AND BU_ADDRESS LIKE #{keyword} </when>
-         <when test="condition == 'areano'"> AND AREA_NO LIKE #{keyword} </when>
-         <when test="condition == 'category'"> AND BU_CATEGORY LIKE #{keyword} </when>
-         <when test="condition == 'title'"> AND BU_TITLE LIKE #{keyword} </when>
-      </choose>
-   </select>
+	<!-- 메인 지역 리스트 목록 -->
+	<select id="selectAreaList" resultMap="detailResultSet">
+		SELECT
+		B.BU_MAIN_IMG,
+		R.ROOM_NO,
+		R.ROOM_H_COUNT,
+		R.ROOM_PRICE,
+		B.BU_NO,
+		B.BU_ADDRESS,
+		B.AREA_NO,
+		B.BU_CATEGORY,
+		B.BU_TEL,
+		B.BU_TITLE
+		FROM BUSINESS
+		B
+		INNER JOIN ROOM R ON
+		B.BU_NO = R.BU_NO
+		INNER JOIN HOUSE H ON B.BU_TITLE
+		= H.BU_TITLE
+		WHERE
+		H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND
+		R.ROOM_H_COUNT = 1
+		AND
+		B.AREA_NO = #{areaNo}
+	</select>
+</mapper>
 
-   <!-- 메인 지역 리스트 목록 -->
-   <select id="selectAreaList" resultMap="detailResultSet">
-      SELECT
-      B.BU_MAIN_IMG,
-      R.ROOM_NO,
-      R.ROOM_H_COUNT,
-      R.ROOM_PRICE,
-      B.BU_NO,
-      B.BU_ADDRESS,
-      B.AREA_NO,
-      B.BU_CATEGORY,
-      B.BU_TEL,
-      B.BU_TITLE
-      FROM BUSINESS
-      B
-      INNER JOIN ROOM R ON
-      B.BU_NO = R.BU_NO
-      INNER JOIN HOUSE H ON B.BU_TITLE
-      = H.BU_TITLE
-      WHERE
-      H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND
-      R.ROOM_H_COUNT = 1
-      AND
-      B.AREA_NO = #{areaNo}
-   </select>
-   </mapper>

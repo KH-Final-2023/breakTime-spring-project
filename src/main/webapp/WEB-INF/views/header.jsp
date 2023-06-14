@@ -24,6 +24,7 @@
 </head>
 <body>
 	
+	
 	<!-- alertMsg 사용하려고 코드추가 (석범) -->
 	<c:if test="${ not empty alertMsg }">
 		<script>

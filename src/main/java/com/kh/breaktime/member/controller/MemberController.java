@@ -1,6 +1,7 @@
 package com.kh.breaktime.member.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,8 +21,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.member.model.service.MemberService;
 import com.kh.breaktime.member.model.vo.Member;
+import com.kh.breaktime.member.model.vo.WishList;
 
 @Controller
 @RequestMapping("/member")
@@ -93,11 +97,12 @@ public class MemberController {
 			resp.addCookie(cookie);
 			
 		}else { // 로그인실패
-			ra.addFlashAttribute("errorMsg","로그인 실패");
+			session.setAttribute("alertMsg","로그인 실패");
 			// redirect시 잠깐 데이터를 sessionScope에 보관 -> redirect완료 후 다시 requestScope로 이관
 			// : redirect(페이지 재요청) 시에도 request scope로 세팅된 데이터가 유지될 수 있도록 하는 방법을 spring에서 제공해줌.
 			// RedirectAttributes 객체(컨트롤러의 매개변수로 작성하면 Argument Resolver가 넣어줌)
 			// redirect의 특징 -> request에 데이터를 저장할 수 없다.
+			return "redirect:/";
 		}
 		
 		if(loginUser.getAuthority() == 0 ) {
@@ -105,6 +110,7 @@ public class MemberController {
 		} else {
 			return "redirect:/";
 	    }
+		
 	}
 	
 	@GetMapping("/insert") // /spring/member/insert
@@ -203,6 +209,7 @@ public class MemberController {
 		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		m.setUserNo(userNo);
+		
 		int result = memberService.updateName(m);
 
 		String url = "";
@@ -259,4 +266,30 @@ public class MemberController {
 		model.addAttribute("selectSearchList",map);
 		return "member/chatRoomList";
 	}
+	
+	
+	@GetMapping("/wishList")
+	public String wishList( Model model, HttpSession session,  WishList w){
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		
+		int userNo = loginUser.getUserNo();
+		w.setUserNo(userNo);
+		
+		List<WishList> list = memberService.selectWishList(w);
+		
+		model.addAttribute("list", list);
+		
+		return "member/wishList";
+	}
+	
+	/*
+	 * // 아이디 찾기
+	 * 
+	 * @PostMapping("/findId") public String find_id(HttpServletResponse
+	 * response, @RequestParam("email") String email, Model md) throws Exception{
+	 * md.addAttribute("id", memberService.findId(response, email));
+	 * 
+	 * return "member/findResult"; }
+	 */
+	
 }

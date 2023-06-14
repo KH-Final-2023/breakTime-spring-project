@@ -65,30 +65,29 @@ function() {
       }
    });
    
-   $(".button-card1").click(
-            function(e) {
-                e.preventDefault();
+   <c:forEach items="${roomList}" var="d" varStatus="status">
+   var buttonId = `button-card1-${status.index + 1}`;
+   $("#" + buttonId).click(function(e) {
+     e.preventDefault();
+     
+     AjaxinsertCart(${d.roomNo}, ${d.buNo});
 
-            AjaxinsertCart();
-
-            // 장바구니로 가시겠습니까?
-            var isConfirm = confirm("장바구니로 이동합니다.");
-                if (isConfirm) {
-                    // 확인을 눌렀을 경우, 장바구니 페이지로 이동
-                    window.location.href = "${contextPath}/decide/debasket";
-                }
-            }
-        );
+     var isConfirm = confirm("장바구니로 이동합니다.");
+     if (isConfirm) {
+       window.location.href = "${contextPath}/decide/debasket";
+     }
+   });
+</c:forEach>
+ 
 });
 
-function AjaxinsertCart(){
-
-   var requestData = {
-      roomNo: ${roomNo},
-      buNo: ${buNo},
-      checkIn : globalCheckIn,
-      checkOut : globalCheckOut
-   };
+function AjaxinsertCart(roomNo, buNo) {
+	   var requestData = {
+	      roomNo: roomNo,
+	      buNo: buNo,
+	      checkIn: globalCheckIn,
+	      checkOut: globalCheckOut
+	   };
    
    var url = "${contextPath}/decide/insertCart";
    $.ajax({
@@ -121,10 +120,20 @@ window.addEventListener('message', function(event) {
 
       // selectDateData 함수를 호출하여 시작 날짜와 끝 날짜를 전달합니다.
       selectDateData(startDt, endDt, startDayofWeek, endDayofWeek, night);
+      changeHref(startDt, endDt);
       // .close-btn 요소를 클릭하는 것처럼 트리거 합니다.
       $(".close-btn").click();
    }
 });
+function changeHref(startDt,endDt){
+	let queryString = "?startDate="+startDt+"&lastDate="+endDt;
+    $('.button-card2').each(function(index,item){
+        let originPath=$(item).attr('href');
+        console.log(originPath);
+        $(item).attr('href',originPath+queryString);
+    })
+}
+
 
 function selectDateData(startDt, endDt, startDayofWeek, endDayofWeek, night){
    globalCheckIn = removeHyphens(startDt);
@@ -136,6 +145,10 @@ function removeHyphens(dateString) {
    return dateString.replace(/-/g, '');
 }
 </script>
+
+
+
+
 </head>
 
 <body>
@@ -146,7 +159,7 @@ function removeHyphens(dateString) {
             <a href="${contextPath}/decide/dedate" class="button">&#128197; 날짜 선택</a>
          </div>
          <div class="detail2-main">
-            <c:forEach items="${roomList}" var="d">
+            <c:forEach items="${roomList}" var="d" varStatus="status">
                <div class="detail2-card">
                   <div class="image">
                      <img src="${contextPath}/${d.filePath}/${d.originName}" alt="숙소 이미지">
@@ -172,8 +185,8 @@ function removeHyphens(dateString) {
                      </div>
                      <% } else { %>
                      <div class="button-card">
-                        <a href="${contextPath}/decide/debasket" class="button-card1">장바구니 담기</a> 
-                        <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
+                        <a href="${contextPath}/decide/debasket" class="button-card1" id="button-card1-${status.index + 1}">장바구니 담기</a> 
+      					<a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
                      </div>
                      <% } %>
                   </c:if>

@@ -139,7 +139,6 @@ button {
 	color: #d8db1f;
 }
 </style>
-
 </head>
 
 <body>
@@ -163,15 +162,13 @@ button {
 						<div class="houseContent">
 							<div class="houseMainImg">
 								<img src="${d.buMainImg}">
-							</div>
+							</div>	
 							<div class="houseInfo">
 								<a>
 									<div>
 										<div class="houseTitle">${d.buTitle}</div>
 										<div class="starPlace">
-											<i class="fa-solid fa-star starStyle"></i> <i
-												class="fa-solid fa-star starStyle"></i> <i
-												class="fa-solid fa-star starStyle"></i>
+											${d.starScore }
 										</div>
 										<div class="houseAddress">${d.buAddress}</div>
 										<div class="houseTel">${d.buTel}</div>
