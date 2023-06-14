@@ -104,13 +104,13 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public List<Room> getRoomsByBuId(int roomNo) {
-		return buDao.getRoomsByBuId(roomNo);
+	public List<Room> getRoomsModifyByBuId(int roomNo) {
+		return buDao.getRoomsModifyByBuId(roomNo);
 	}
 
 	@Override
-	public RoomImg getRoomImagesByBuId(int roomNo) {
-		return buDao.getRoomImagesByBuId(roomNo);
+	public RoomImg getRoomImagesModifyByBuId(int buNo) {
+		return buDao.getRoomImagesModifyByBuId(buNo);
 	}
 
 	@Override

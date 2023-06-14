@@ -59,4 +59,8 @@ public class BusinessServiceImpl implements BusinessService {
 		// DAO를 통해 데이터베이스 업데이트
 		return businessDao.updateReviewContentReply(review);
 	}
+	@Override
+	 public int updateReviewDeclaration(int reviewNo) {
+		return businessDao.updateReviewDeclaration(reviewNo);
+	    }
 }

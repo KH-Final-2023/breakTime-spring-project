@@ -36,6 +36,9 @@ input{
     border :solid 2px lightgray;
     border-radius: 5px;
     height : 30px;
+    margin-bottom : 10px;
+    margin-top : 10px;
+    
 }
 #ResisterRoomName,#ResisterRoomPrice,#roomStandardInfoText,#roomPhotoInfoText,#ResisterRoomCount{
     text-align: left;
@@ -80,7 +83,7 @@ button {
 #roomEnrollForm{
 	 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	 width : 600px;
-	 height : 680px;
+	 height : 1000px;
 	 background-color: #f0fff0;
 	 border-radius: 15px;
 	 display: flex;
@@ -131,4 +134,6 @@ button {
     height: 100%;
     cursor: pointer;
     }
-  
+  font{
+  	size : 20px;
+  }

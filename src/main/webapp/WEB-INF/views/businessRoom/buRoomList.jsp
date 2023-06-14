@@ -37,7 +37,7 @@ body {
 }
 
 #resistedRoomListText {
-	font-size: 24px;
+	font-size:50px;
 	color: #228b22;
 	margin-bottom: 10px;
 	text-align: center;
@@ -45,7 +45,7 @@ body {
 }
 
 #lodging {
-	text-align: center;
+	
 	margin-top: 40px;
 	display: flex;
 	align-items: center;
@@ -59,12 +59,12 @@ body {
 .room-info {
 	display: flex;
 	justify-content: space-between;
-	padding: 10px;
+	height: 300px;
 	background-color: white;
 	margin-bottom: 30px;
 	width: 1000px;
 	border-radius: 15px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 	transition: transform 0.3s ease;
 }
 
@@ -72,9 +72,13 @@ body {
 	transform: scale(1.1);
 }
 
-#imgList, #roomListInfo {
-	max-width: 250px;
-	width: 100%;
+#roomListInfo {
+	width : 750px;
+	font-size: xlarge;
+}
+
+#imgList {
+	
 }
 
 #buRoomRegister, #buRoomReservation, #buReview {
@@ -110,6 +114,19 @@ button {
 	font-size: 16px;
 	font-weight: bold;
 	text-transform: uppercase;
+}
+
+img {
+	width: 250px;
+	height: 300px;
+	border-radius: 10px;
+}
+#buRoomName,#buroomHCount,#buroomcheckin,#buroomcheckout,#buRoomInfo{
+	margin-left : 20px;
+}
+#buRoomPirce{
+	margin-left : 600px;
+	margin-bottom : 30px;
 }
 </style>
 </head>
@@ -167,12 +184,15 @@ button {
 						<div id="imgList">
 							<!-- 해당 방의 이미지 출력 -->
 							<img
-								src="<%=request.getContextPath() %>${roomImgList[roomStatus.index].filePath}/${roomImgList[roomStatus.index].originName}"style="width: 210x; height: 170px; margin: 10px;">
+								src="<%=request.getContextPath() %>${roomImgList[roomStatus.index].filePath}/${roomImgList[roomStatus.index].originName}">
 						</div>
 						<div id="roomListInfo">
-							<div>${room.roomName}</div>
-							<div>인원: ${room.roomHCount}</div>
-							<div>가격: ${room.roomPrice}</div>
+							<div id="buRoomName"><p  style="font-size:25px;">방이름: ${room.roomName}</p></div>
+							<div id="buroomHCount"><p   style="font-size:25px;">인원: ${room.roomHCount}</p></div>
+							<div id="buroomcheckin"><p   style="font-size:25px;">체크인: ${room.roomCheckin}</p></div>
+							<div id="buroomcheckout"><p   style="font-size:25px;">체크아웃: ${room.roomCheckout}</p></div>
+							<div id="buRoomInfo"><p  style="font-size:25px;">객실 정보: ${room.roomInfo}</p></div>
+							<div id="buRoomPirce"><p  style="font-size:25px;">가격: ${room.roomPrice}</p></div>
 						</div>
 					</div>
 				</c:forEach>
@@ -188,8 +208,7 @@ button {
 
 	</div>
 
-
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 		$(document)
 				.ready(
