@@ -150,7 +150,7 @@ button {
 
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
-	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
+   <jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
 
 	<div class="mainArea">
 		<div class="houseList">
