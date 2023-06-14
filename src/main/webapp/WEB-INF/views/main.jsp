@@ -119,6 +119,7 @@ $(document).ready(function() {
 });
 
 
+
 $(document).ready(function() {
     // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
     $("#busan").click(function() {
