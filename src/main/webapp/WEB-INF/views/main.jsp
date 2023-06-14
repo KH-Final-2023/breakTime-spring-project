@@ -118,15 +118,7 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
-    $("#seoul").click(function() {
-        // 리다이렉션할 URL
-        var redirectUrl = "<%=request.getContextPath()%>/list/marea/1";
-        // 현재 창에서 새 URL로 리다이렉션
-        window.location.href = redirectUrl;
-    });
-});
+
 
 $(document).ready(function() {
     // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
@@ -160,6 +152,7 @@ $(document).ready(function() {
 
 
 </script>
+
 
 
 
