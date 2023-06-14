@@ -128,4 +128,7 @@ public class RoomServiceImpl implements RoomService {
 		// 필요한 로직 수행
 		return buDao.searchRooms(params);
 	}
+	public RoomImg searchRoomsImg(int roomNo){
+		return buDao.searchRoomsImg(roomNo);
+	}
 }

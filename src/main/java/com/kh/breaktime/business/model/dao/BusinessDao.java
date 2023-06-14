@@ -52,5 +52,9 @@ public class BusinessDao {
 	public int updateReviewDeclaration(int review) {
 	    return sqlSession.update("businessMapper.updateReviewDeclaration", review);
 	}
+	
+	public List<Booking> updateReservation(int bookNo) {
+		return sqlSession.selectList("businessMapper.updateReservation", bookNo);
+	}
 
 }

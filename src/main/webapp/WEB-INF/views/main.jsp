@@ -118,7 +118,7 @@ $(document).ready(function() {
     });
 });
 
-<script>
+
 $(document).ready(function() {
     // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
     $("#seoul").click(function() {
@@ -163,7 +163,7 @@ $(document).ready(function() {
 </script>
 
 
-</script>
+
 
 
 <script>
