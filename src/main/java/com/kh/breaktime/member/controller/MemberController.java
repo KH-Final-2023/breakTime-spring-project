@@ -282,5 +282,12 @@ public class MemberController {
 		return "member/wishList";
 	}
 	
+	// 아이디 찾기
+	@PostMapping("/findId")
+		public String find_id(HttpServletResponse response, @RequestParam("email") String email, Model md) throws Exception{
+			md.addAttribute("id", memberService.findId(response, email));
+			
+			return "member/findResult";
+		}
 	
 }

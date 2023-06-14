@@ -81,36 +81,4 @@
 		JOIN BUSINESS B ON B.BU_NO = R.BU_NO
 	</select>
 	
-	
-
-	<insert id="insertReview" useGeneratedKeys="true"
-		parameterType="review">
-
-		<selectKey keyProperty="reviewNo" resultType="_int"
-			order="BEFORE">
-			SELECT SEQ_RNO.NEXTVAL FROM DUAL
-		</selectKey>
-
-		INSERT INTO REVIEW(
-		REVIEW_NO,
-		BOOK_NO,
-		REVIEW_WRITER,
-		USING_ROOM,
-		STAR_SCORE,
-		REVIEW_CONTENT,
-		CREATE_DATE,
-		REVIEW_DECLARIATION
-		) VALUES (
-		#{reviewNo},
-		#{bookNo},
-		#{reviewWriter},
-		#{usingRoom},
-		#{starScore},
-		#{reviewContent},
-		SYSDATE,
-		'N'
-		)
-
-	</insert>
-	
 </mapper>

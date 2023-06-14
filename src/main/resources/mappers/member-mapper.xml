@@ -146,7 +146,7 @@
 	</select>
 	
 	<!-- 아이디 찾기 -->
-	<select id="find_id" parameterType="String" resultType="String">
+	<select id="findId" parameterType="String" resultType="String">
 		select USER_ID 
 		from member 
 		where email = #{email}

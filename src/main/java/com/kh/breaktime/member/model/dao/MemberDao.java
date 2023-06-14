@@ -95,6 +95,6 @@ public class MemberDao {
 	}
 	
 	public String findId(String email) throws Exception{
-		return sqlSession.selectOne("member.find_id", email);
+		return sqlSession.selectOne("member.findId", email);
 	}
 }

@@ -27,4 +27,6 @@ public interface MemberService {
 	public void selectSearchList(Map<String,Object> paramMap, Map<String, Object> map);
 	
 	public List<WishList> selectWishList(WishList w);
+	
+	public abstract int findId(String email);
 }

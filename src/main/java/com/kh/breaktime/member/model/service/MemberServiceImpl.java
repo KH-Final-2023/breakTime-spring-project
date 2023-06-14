@@ -1,8 +1,11 @@
 package com.kh.breaktime.member.model.service;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -109,6 +112,25 @@ public class MemberServiceImpl implements MemberService {
 		public List<WishList> selectWishList(WishList w) {
 			return memberDao.selectWishList(w);
 			
+		}
+		
+		// 아이디 찾기
+		@Override
+		public String findId(HttpServletResponse response, String email) throws Exception {
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			String id = manager.findId(email);
+			
+			if (id == null) {
+				out.println("<script>");
+				out.println("alert('가입된 아이디가 없습니다.');");
+				out.println("history.go(-1);");
+				out.println("</script>");
+				out.close();
+				return null;
+			} else {
+				return id;
+			}
 		}
 
 }
