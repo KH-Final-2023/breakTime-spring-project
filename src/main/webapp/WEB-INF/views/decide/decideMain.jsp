@@ -4,6 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.kh.breaktime.member.model.vo.Member"%>
+<%
+   Member loginUser = (Member) session.getAttribute("loginUser");
+%>
 <c:set var="m" value="${map}"/>
 <!DOCTYPE html>
 <html>

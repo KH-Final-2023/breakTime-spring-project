@@ -154,6 +154,14 @@
 		R.REVIEW_AVAILABLE = 'Y'
 		AND RO.BU_NO = #{buNo}
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<update id="updateReviewContentReply" parameterType="_int" >
 		

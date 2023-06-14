@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.breaktime.detail.model.vo.AreaCode;
 import com.kh.breaktime.detail.model.vo.CategoryCode;
 
 public interface DetailService {
@@ -11,6 +12,8 @@ public interface DetailService {
     public ArrayList<CategoryCode> selectCategoryCodeList();
 
     public void selectDetailList(String category, Map<String, Object> map);
+    
+    public void selectAreaList(String areaNo, Map<String, Object> map);
 
     public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Integer guests, String area, List<String> inOut, Map<String, Object> map);
     
