@@ -10,11 +10,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js" charset="UTF-8"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js" charset="UTF-8"></script> -->
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" /> -->
 <title>Insert title here</title>
 </head>
     <style>
@@ -253,7 +252,8 @@
     <div class="container-main">
         <h2 class="reservation-title">예약</h2>
         <div class="order-details">
-        <c:forEach items="${roomList}" var="room">
+        <c:forEach items="${map}" var="entry">
+            <c:forEach items="${entry.value}" var="room">
             <div class="item-list">
                 <div class="company-title">
                     <h2>${room.buTitle }</h2>
@@ -264,15 +264,16 @@
                 <div class="check-in-out">
                     <div class="check-in">
                         <span class="label">체크인</span><br>
-                        <span class="date">${room.roomCheckin}</span>
+                        <span class="date">${room.cartCheckIn}</span>
                     </div>
                     <div class="check-out">
                         <span class="label">체크아웃</span><br>
-                        <span class="date">${room.roomCheckout}</span>
+                        <span class="date">${room.cartCheckOut}</span>
                     </div>
                 </div>
             </div>
             </c:forEach>
+        </c:forEach>
             
             <!-- <div class="total">
                 <span class="amount"></span><span style="font-size: 18px;">원</span>

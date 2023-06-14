@@ -17,12 +17,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/room.css">
 <script>
+var globalCheckIn;
+var globalCheckOut;
+
 $(document).ready(
 function() {
    var currentUrl = window.location.href;
    var previousUrl = document.referrer;
-   var globalCheckIn;
-   var globalCheckOut;
+   
 
    $(".button").click(
          function(e) {
@@ -64,22 +66,74 @@ function() {
       }
    });
    
+   // 장바구니 이동
    <c:forEach items="${roomList}" var="d" varStatus="status">
    var buttonId = `button-card1-${status.index + 1}`;
    $("#" + buttonId).click(function(e) {
      e.preventDefault();
      
+     if (null == globalCheckIn || null == globalCheckOut){
+    	 alert("날짜를 선택해주세요.");
+    	 return;
+     }
      AjaxinsertCart(${d.roomNo}, ${d.buNo});
 
      var isConfirm = confirm("장바구니로 이동합니다.");
      if (isConfirm) {
-       window.location.href = "${contextPath}/decide/debasket?roomNo=${d.roomNo}&buNo=${d.buNo}";
+       window.location.href = "${contextPath}/decide/debasket";
      }
    });
-</c:forEach>
+	</c:forEach>
+	
+	// 객실 선택하기 이동
+	<c:forEach items="${roomList}" var="d" varStatus="status">
+	   var buttonId = `button-card2-${status.index + 1}`;
+	   $("#" + buttonId).click(function(e) {
+	     e.preventDefault();
+	     
+	     if (null == globalCheckIn || null == globalCheckOut){
+	    	 alert("날짜를 선택해주세요.");
+	    	 return;
+	     }
+	     AjaxinsertCart_Pay(${d.roomNo}, ${d.buNo});
+
+	     var isConfirm = confirm("결재페이지로 이동합니다.");
+	     if (isConfirm) {
+	     	window.location.href = "${contextPath}/decide/pay?roomNo=" + ${d.roomNo};
+	     }
+	   });
+	</c:forEach>
  
 });
 
+// 객실 선택하기
+function AjaxinsertCart_Pay(roomNo, buNo) {
+    var requestData = {
+       roomNo: roomNo,
+       buNo: buNo,
+       checkIn: globalCheckIn,
+       checkOut: globalCheckOut
+    };
+    
+    console.log(requestData);
+ 
+ var url = "${contextPath}/decide/insertCart";
+ $.ajax({
+    url: url,
+    type: 'POST',
+    contentType: 'application/json',
+    data: JSON.stringify(requestData),
+    success: function(response){
+     console.log(response);
+    },
+    error: function(error){
+       console.log(error);
+       alert("동일한 날짜의 체크인/체크아웃 상품이 이미 담겼습니다.");
+    }
+ });
+}
+
+// 장바구니 담기
 function AjaxinsertCart(roomNo, buNo) {
       var requestData = {
          roomNo: roomNo,
@@ -87,6 +141,8 @@ function AjaxinsertCart(roomNo, buNo) {
          checkIn: globalCheckIn,
          checkOut: globalCheckOut
       };
+      
+      console.log(requestData);
    
    var url = "${contextPath}/decide/insertCart";
    $.ajax({
@@ -105,6 +161,7 @@ function AjaxinsertCart(roomNo, buNo) {
       },
       error: function(error){
          console.log(error);
+         alert("동일한 날짜의 체크인/체크아웃 상품이 이미 담겼습니다.");
       }
    });
 }
@@ -119,19 +176,11 @@ window.addEventListener('message', function(event) {
 
       // selectDateData 함수를 호출하여 시작 날짜와 끝 날짜를 전달합니다.
       selectDateData(startDt, endDt, startDayofWeek, endDayofWeek, night);
-      changeHref(startDt, endDt);
+      
       // .close-btn 요소를 클릭하는 것처럼 트리거 합니다.
       $(".close-btn").click();
    }
 });
-function changeHref(startDt,endDt){
-	let queryString = "?startDate="+startDt+"&lastDate="+endDt;
-    $('.button-card2').each(function(index,item){
-        let originPath=$(item).attr('href');
-        console.log(originPath);
-        $(item).attr('href',originPath+queryString);
-    })
-}
 
 
 function selectDateData(startDt, endDt, startDayofWeek, endDayofWeek, night){
@@ -183,8 +232,8 @@ function removeHyphens(dateString) {
                      </div>
                      <% } else { %>
                      <div class="button-card">
-                     <a href="${contextPath}/decide/debasket?roomNo=${d.roomNo}&buNo=${d.buNo}" class="button-card1" id="button-card1-${status.index + 1}">장바구니 담기</a>
-                     <a href="${contextPath}/decide/pay/${d.roomNo}" class="button-card2" id="goPay">객실 선택하기</a>
+                     <a href="#" class="button-card1" id="button-card1-${status.index + 1}">장바구니 담기</a> 
+                     <a href="#" class="button-card2" id="button-card2-${status.index + 1}">객실 선택하기</a>
                      </div>
                      <% } %>
                   </c:if>

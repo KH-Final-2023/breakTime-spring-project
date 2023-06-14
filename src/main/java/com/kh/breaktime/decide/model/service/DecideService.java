@@ -25,16 +25,16 @@ public interface DecideService {
    // 객실 조회
    ArrayList<Decide> selectDecideRoom(int buNo);
 
-  // 선택 객실 조회
+  // 객실 구매 목록 조회
 	ArrayList<Decide> payDecideRoom(int roomNo);
    
    // 지도 조회
    ArrayList<Decide> selectDecideMap(int buNo);
    
-   //지도 메인 썸네일 조회 
+   // 지도 메인 썸네일 조회 
    ArrayList<Decide> selectDetailMap(int buNo);
    
-   //지도 팝업 지도 조회 
+   // 지도 팝업 지도 조회 
    ArrayList<Decide> selectPopupMap(int buNo);
     
    // 리뷰 조회
@@ -55,6 +55,6 @@ public interface DecideService {
    // 찜취소기능
    int deleteLikeValue(Decide decide);
    
-   //찜 유무 확인
+   // 찜 유무 확인
    int selectLikeValue(Decide decide);
 }
