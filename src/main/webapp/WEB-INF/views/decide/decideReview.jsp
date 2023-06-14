@@ -225,7 +225,7 @@ $(document).on('click', '.modal-close', function () {
 	                            <c:if test="${empty reviewList}">
 	                            </c:if>
 	                            
-								<c:if test="${!empty reviewList}">
+								<c:if test="${!empty d.reviewContentReply}">
 	                            <div id="buReviewList">
 	                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
 	                                <span class="buReviewDate">${d.createDate}</span>   

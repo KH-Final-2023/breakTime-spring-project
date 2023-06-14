@@ -33,15 +33,28 @@ public class DecideController {
    
    // url : {contextPath}/decide/demain/{buNo}
    @GetMapping("/demain/{buNo}") // 메인 조회
-   public String decideMain(@PathVariable("buNo") int buNo, Model model) {
- 
-      Map<String, Object> map = new HashMap();
+   public String decideMain(@PathVariable("buNo") int buNo, Model model, HttpSession session) {
+	  
+	  Map<String, Object> map = new HashMap();
+	  
+	  Member loginUser = (Member) session.getAttribute("loginUser");
+	  int userNo;
+	  if (loginUser != null) {
+		  userNo = loginUser.getUserNo();
+		  
+		  Decide decide = new Decide();
+		  decide.setUserNo(userNo);
+		  decide.setBuNo(buNo);
+		  
+		  int isLike = decideService.selectLikeValue(decide); // 메인 찜 유무 조회
+		  map.put("isLike", isLike);
+	  }
       
       ArrayList<Decide> mainList = decideService.selectDecideMain(buNo); // 메인 조회
       
       double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
       
-      int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
+      int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회 
       
       if (mainList.size() > 0) {
            Decide main = mainList.get(0);
@@ -171,6 +184,7 @@ public class DecideController {
       int userNo = loginUser.getUserNo();
 
       ArrayList<Decide> list = decideService.selectCartList(userNo);
+
       
       model.addAttribute("list", list);
 
@@ -178,7 +192,8 @@ public class DecideController {
    }
 
    @PostMapping("/insertCart") // 장바구니 등록
-   public String insertCartList(@RequestBody Map<String, Object> requestData, HttpSession session, Model model) {
+   @ResponseBody
+   public String insertCartList(@RequestBody Map<String, Object> requestData, HttpSession session) {
 
       String cartCheckIn = requestData.get("checkIn").toString();
       String cartCheckOut = requestData.get("checkOut").toString();
@@ -187,6 +202,13 @@ public class DecideController {
 
       Member loginUser = (Member) session.getAttribute("loginUser");
       int userNo = loginUser.getUserNo();
+      
+      ArrayList<Decide> list = decideService.selectCartList(userNo);
+      for(Decide li : list) {
+    	  if ( ( roomNo == li.getRoomNo() && buNo == li.getBuNo()) && (cartCheckIn == li.getCartCheckIn() || cartCheckOut == li.getCartCheckOut()) ){
+    		  return  String.valueOf(0);
+    	  }
+      }
 
       Decide decide = new Decide();
 
@@ -196,22 +218,77 @@ public class DecideController {
       decide.setCartCheckIn(cartCheckIn);
       decide.setCartCheckOut(cartCheckOut);
 
-      System.out.println(decide);
 
-      int result = decideService.insertCartList(decide);
-      System.out.println(result);
+      int temp = decideService.insertCartList(decide);
+      String result = String.valueOf(temp);
 
-      return "decide/decideBasket";
+      return result;
    }
 
-   @GetMapping("/deleteCart") // 장바구니 삭제
-   public String deleteCartList(HttpSession session, Model model) {
-
+   @PostMapping("/deleteCart") // 장바구니 삭제
+   @ResponseBody
+   public String deleteCartList(@RequestBody Map<String, Object> requestData, HttpSession session) {
+	   
+	  List<Map<String, Object>> items = (List<Map<String, Object>>) requestData.get("items");
+	  String flag = (String) requestData.get("flag");
+	  
       Member loginUser = (Member) session.getAttribute("loginUser");
       int userNo = loginUser.getUserNo();
+      
+      int temp = 0;
+      String result;
+      
+	  //선택삭제
+	  for(Map<String, Object> map : items) {
+		  Decide decide = new Decide();
+		  
+		  int roomNo = Integer.parseInt(map.get("roomNo").toString());
+		  int buNo = Integer.parseInt(map.get("buNo").toString());
+		  
+		  decide.setUserNo(userNo);
+		  decide.setRoomNo(roomNo);
+		  decide.setBuNo(buNo);
+		  
+		  temp += decideService.deleteCartList(decide);
+	  }  
+      result = String.valueOf(temp);
+      
+      return result;
+   }
+   
+   @PostMapping("/insertLike") // 좋아요, 찜기능
+   @ResponseBody
+   public String insertLIkeValue(@RequestBody Map<String, Object> requestData, HttpSession session) {
+	   
+	  int buNo = Integer.parseInt(requestData.get("buNo").toString());
+      Member loginUser = (Member) session.getAttribute("loginUser");
+      int userNo = loginUser.getUserNo();
+      
+      Decide decide = new Decide();
+      decide.setUserNo(userNo);
+      decide.setBuNo(buNo);
 
-      decideService.deleteCartList(userNo);
+      int temp = decideService.insertLIkeValue(decide);
+      String result = String.valueOf(temp);
+      
+      return result;
+   }
+   
+   @PostMapping("/deleteLike") // 좋아요, 찜 취소 기능
+   @ResponseBody
+   public String deleteLikeValue(@RequestBody Map<String, Object> requestData, HttpSession session) {
 
-      return "decide/decideBasket";
+	  int buNo = Integer.parseInt(requestData.get("buNo").toString());
+      Member loginUser = (Member) session.getAttribute("loginUser");
+      int userNo = loginUser.getUserNo();
+      
+      Decide decide = new Decide();
+      decide.setUserNo(userNo);
+      decide.setBuNo(buNo);
+      
+      int temp = decideService.deleteLikeValue(decide);
+      
+      String result = String.valueOf(temp);
+      return result;
    }
 }

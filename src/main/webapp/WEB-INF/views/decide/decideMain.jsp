@@ -18,6 +18,13 @@
 
 <script>
 $(document).ready(function() {
+	
+	/* // 서버에서 가져온 위시리스트 여부를 나타내는 변수
+    var isLike = ${m.isLike};   
+    // 위시리스트에 항목이 있으면 하트 아이콘을 빨간색으로 설정
+    if (isLike == 1) {
+        $(".heart-icon").addClass("fas fa-heart red");
+    } */
    
    // 공유 아이콘 클릭 시 페이지 링크 복사
    $(".share-icon").click(function() {
@@ -65,9 +72,17 @@ $(document).ready(function() {
    
    // 하트 아이콘 클릭 시 색상 변경
    $(".heart-icon").click(function() {
-      $(this).toggleClass("far fa-heart");
-      $(this).toggleClass("fas fa-heart");
-      $(this).toggleClass("red"); // 빨간색 클래스 추가 및 제거
+      if ($(this).hasClass("red")) {
+          // 하트 아이콘이 빨간색일 경우 클래스를 변경하고 ajaxDeleteLike 호출
+          $(this).removeClass("fas fa-heart red");
+          $(this).addClass("far fa-heart");
+          ajaxDeleteLike();
+      } else {
+          // 하트 아이콘이 빨간색이 아닐 경우 클래스를 변경하고 ajaxInsertLike 호출
+          $(this).removeClass("far fa-heart");
+          $(this).addClass("fas fa-heart red");
+          ajaxInsertLike();
+      }
    });
 
    // 섹션 링크 클릭 시 스타일 변경
@@ -172,6 +187,46 @@ $(document).ready(
             }
          });
       });
+      
+function ajaxDeleteLike(){
+	
+	var buNo = ${m.buNo};
+	
+	var url = "${contextPath}/decide/deleteLike";
+    
+    $.ajax({
+        url: url,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ buNo : buNo }),
+        success: function(response){
+  			console.log(response);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+function ajaxInsertLike(){
+	
+	var buNo = ${m.buNo};
+	
+	var url = "${contextPath}/decide/insertLike";
+    
+    $.ajax({
+        url: url,	
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ buNo : buNo }),
+        success: function(response){
+  			console.log(response);
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
 </script>
 </head>
 
