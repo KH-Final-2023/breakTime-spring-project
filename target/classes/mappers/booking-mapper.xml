@@ -82,7 +82,7 @@
 	</select>
 	
 	
-
+<!-- 
 	<insert id="insertReview" useGeneratedKeys="true"
 		parameterType="review">
 
@@ -111,6 +111,6 @@
 		'N'
 		)
 
-	</insert>
+	</insert> -->
 	
 </mapper>

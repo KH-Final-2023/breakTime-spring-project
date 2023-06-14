@@ -23,23 +23,33 @@ public class DetailDAO {
 		return (ArrayList) sqlSession.selectList("detailMapper.selectCategoryCodeList");
 	}
 
-	public ArrayList<Detail> selectDetailList(String category, List<String> prices, List<String> reserves, List<String> options, String area, List<String> inOut, Integer guests) {
-	    Map<String, Object> map = new HashMap<>();
-	    map.put("category", category);
-	    map.put("prices", prices);
-	    map.put("reserves", reserves);
-	    map.put("options", options);
-	    map.put("area", area);
-	    map.put("guests", guests);
-	    return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", map);
+	public ArrayList<Detail> selectDetailList(String category, String area) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("category", category);
+		map.put("area", area);
+		return (ArrayList) sqlSession.selectList("detailMapper.selectDetailList", map);
 	}
 
-	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap){
-		
-		return (ArrayList)sqlSession.selectList("detailMapper.searchDetailList", paramMap);
+	public ArrayList<Detail> filterListSubmit(String category, List<String> prices, List<String> reserves,
+			List<String> options, String area, String date_in, String date_out, Integer guests) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("category", category);
+		map.put("prices", prices);
+		map.put("reserves", reserves);
+		map.put("options", options);
+		map.put("area", area);
+		map.put("date_in", date_in);
+		map.put("date_out", date_out);
+		map.put("guests", guests);
+		return (ArrayList) sqlSession.selectList("detailMapper.filterListSubmit", map);
 	}
-	
+
+	public ArrayList<Detail> searchDetailList(Map<String, Object> paramMap) {
+
+		return (ArrayList) sqlSession.selectList("detailMapper.searchDetailList", paramMap);
+	}
+
 	public ArrayList<AreaCode> selectAreaList(String areaNo) {
-	      return (ArrayList) sqlSession.selectList("detailMapper.selectAreaList", areaNo);
-	   }
+		return (ArrayList) sqlSession.selectList("detailMapper.selectAreaList", areaNo);
+	}
 }
