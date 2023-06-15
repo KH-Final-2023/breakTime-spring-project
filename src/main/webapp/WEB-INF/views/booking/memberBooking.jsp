@@ -127,16 +127,22 @@ html, body {
 											<span>퇴실전</span>
 										</button>
 									</td>
+									
 									<td>
+									<c:if test="${!empty r.reviewContent}">
+									
 										<button id="rBtn${vs.index}" type="button" class="btn btn-outline-success"
 											data-toggle="modal" data-target="#updateMember${vs.index}">
 											<span>리뷰작성</span>
 										</button>
-										<!-- <button type="button" class="btn btn-secondary">
+										 <button type="button" class="btn btn-secondary">
 											<span>작성완료</span>
-										</button> -->
+										</button> 
+									
 									</td>
+									
 								</tr>
+								
 								<!--  수정 모달창 -->
 								<div id="updateMember${vs.index}" class="modal fade" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -176,59 +182,14 @@ html, body {
 										</div>
 									</div>
 								</div>
+								</c:if>
 							</c:forEach>
+							
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</main>
-	<script>
-	$(document).ready(function() {
-		   <c:forEach items="${bookingList}" var="booking" varStatus="vs">
-		       var buttonId = "rBtn${vs.index}";
-		       $("#" + buttonId).click(function(e) {
-		           e.preventDefault();
-		           var $button = $(this);
-		           $button.prop("disabled", true);
-		           var modalId = "updateMember${vs.index}";
-		           $("#" + modalId).modal("show");
-		           
-		           $("#" + modalId).on("hidden.bs.modal", function() {
-		               if (!$button.data("confirmed")) {
-		                   $button.prop("disabled", false);
-		               }
-		               $button.data("confirmed", false);
-		           });
-		       });
-		       
-		       $("#" + buttonId).on("click", ".btn-primary", function() {
-		           var buttonId = "rBtn${vs.index}";
-		           $("#" + buttonId).data("confirmed", true);
-		       });
-		   </c:forEach>
-		});
-	
-	function reviewEnroll() {
-		   var formdata = new FormData();
-		   formdata.append("reviewScore", $('input[name="starScore"]').val());
-		   formdata.append("reviewContent", $('input[name="reviewContent"]').val());
-	   
-	   var url = "${contextPath}/booking/reviewInsert";
-	   $.ajax({
-	      url: url,
-	      type: 'POST',
-	      contentType: 'application/json',
-	      data: formdata,
-	      success: function(response){
-			console.log(response);
-			console.log("성공");
-	      },
-	      error: function(error){
-	         console.log(error);
-	      }
-	   });
-	}
-	</script>
 </body>
 </html>
