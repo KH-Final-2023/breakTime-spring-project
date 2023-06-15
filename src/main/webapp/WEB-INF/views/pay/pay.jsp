@@ -6,14 +6,15 @@
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
 %>
+<c:set var="m" value="${map}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js" charset="UTF-8"></script> -->
-<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css"> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js" charset="UTF-8"></script> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" /> 
 <title>Insert title here</title>
 </head>
     <style>
@@ -272,17 +273,15 @@
                     </div>
                 </div>
             </div>
+             <div class="total">
+                <span class="amount"></span><span style="font-size: 18px; font-weight: bold;">${room.roomPrice} 원</span>
+            </div> 
             </c:forEach>
         </c:forEach>
-            
-            <!-- <div class="total">
-                <span class="amount"></span><span style="font-size: 18px;">원</span>
-            </div> -->
             
         </div>
     </div>
 
-	<c:forEach items="${roomList}" var="room">
 	    <div class="reservation-info">
 	        <h3 style="margin-bottom: 15px;">예약자 정보</h3>
 	        <div class="form-group">
@@ -290,23 +289,21 @@
 	            <span id="customer-name"><%= loginUser.getUserName()%></span>
 	        </div>
 	    </div>
-	</c:forEach>
+	    
      <div class="payment-amount-section" style="max-width: 768px; margin: 10px auto; background-color: #fff; padding: 20px;">
 
         <h3 style="margin-bottom: 15px;">결제 금액</h3>
-        <c:forEach items="${roomList}" var="room">
         <div class="payment-details">
             <span style="font-size: 14px;">상품금액</span>
-            <span style="font-size: 18px; font-weight: bold;">${room.roomPrice} 원</span>
+            <span class="total-payment-amount" id="product-amount" style="font-size: 18px; font-weight: bold;"></span>
         </div>
 		
         <div class="dotted-line"></div>
 
         <div class="payment-details">
-            <span style="font-size: 14px;"><h3>총 결제 금액</h3></span>
-            <span class="total-payment-amount">${room.roomPrice} 원</span>
-        </div>
-        </c:forEach>
+		    <span style="font-size: 14px;"><h3>총 결제 금액</h3></span>
+		    <span class="total-payment-amount" id="total-payment-amount"></span>
+		</div>
     </div>
 	
     <div class="pay-section">
@@ -363,12 +360,11 @@
                 <label for="accept-info-third-party">[필수] 개인정보 제 3자 제공</label>
             </div>
         </div>
-		<c:forEach items="${roomList}" var="room">
-        <button class="pay-button" id="pay-button">${room.roomPrice }원 결제하기</button>
-        </c:forEach>
+	  <button class="pay-button" id="pay-button">
+	  	<span class="total-payment-amount" id="payment-amount-on-button"></span>
+	  	결제하기
+	  </button>
     </div>
-    
-    
 <script>
        // 체크박스 상태에 따라 버튼 배경색 변경
        function updatePayButton() {
@@ -436,12 +432,38 @@
                 toggleAllCheckboxes();
             });
         });
+        
+        // 상품 금액
+        var totalProductAmount = 0;
+        var productAmountElement = document.getElementById('product-amount');
+        
+        <c:forEach items="${map}" var="entry">
+        	<c:forEach items="${entry.value}" var="room">
+        	totalProductAmount += parseInt("${room.roomPrice.replaceAll(',', '')}");
+        	</c:forEach>
+    	</c:forEach>
+        
+        // 총 결제 금액
+        var totalPaymentAmount = 0;
+        var totalPaymentElement = document.getElementById('total-payment-amount');
+
+        <c:forEach items="${map}" var="entry">
+            <c:forEach items="${entry.value}" var="room">
+                totalPaymentAmount += parseInt("${room.roomPrice.replaceAll(',', '')}");
+            </c:forEach>
+        </c:forEach>
+        
+        // 결제하기 버튼
+        var paymentAmountOnButton = document.getElementById('payment-amount-on-button');
+        
+        // 상품 금액
+        productAmountElement.innerText = new Intl.NumberFormat('ko-KR').format(totalProductAmount) + ' 원';
+        // 총 결제 금액
+        totalPaymentElement.innerText = new Intl.NumberFormat('ko-KR').format(totalPaymentAmount) + ' 원';
+        // 결제하기 버튼
+        paymentAmountOnButton.innerText = new Intl.NumberFormat('ko-KR').format(totalPaymentAmount) + ' 원';
+        paymentAmountOnButton.style.color = 'white';
     </script>
-    
-    
-    
-    
-    
     
 <!--     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	<script>
