@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="list" value="${map.list}" />
-
+<c:set var="starCount" value="${d.userStarScore}" />
+<c:set var="filledStars"
+	value="${fn:substring(starCount, 0, fn:indexOf(starCount, '.'))}" />
+<c:set var="halfStar"
+	value="${fn:substring(starCount, fn:indexOf(starCount, '.') + 1, fn:indexOf(starCount, '.') + 2)}" />
+	
 <!DOCTYPE html>
 <html lang="kor">
 <head>
@@ -149,7 +155,7 @@ button {
 
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
-   <jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
 
 	<div class="mainArea">
 		<div class="houseList">
@@ -168,7 +174,19 @@ button {
 									<div>
 										<div class="houseTitle">${d.buTitle}</div>
 										<div class="starPlace">
-											${d.starScore }
+											<span class="starPlace"> <c:forEach begin="1" end="5"
+													varStatus="loop">
+													<c:choose>
+														<c:when test="${loop.index <= filledStars}">
+															<i class="fa-solid fa-star starStyle"></i>
+														</c:when>
+														<c:when
+															test="${loop.index == filledStars + 1 && halfStar > 4}">
+															<i class="fa-solid fa-star-half-alt starStyle"></i>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+											</span> <span> ${d.userStarScore } </span>
 										</div>
 										<div class="houseAddress">${d.buAddress}</div>
 										<div class="houseTel">${d.buTel}</div>
