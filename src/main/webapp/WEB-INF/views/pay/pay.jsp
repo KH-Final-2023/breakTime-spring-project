@@ -435,14 +435,36 @@
                 toggleAllCheckboxes();
             });
         });
+        
+        
+        
     </script>
     
     
+    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+    
+    <script>
+    const clientKey = 'test_ck_aBX7zk2yd8yed6OBR9Q8x9POLqKQ' // 테스트용 클라이언트 키
+    const customerKey = 'lwPDAudM9-GcGY7CP0DO0' // 고객을 식별할 수 있는 키
+
+    // 2. 결제위젯 SDK 초기화
+    const paymentWidget = PaymentWidget(clientKey, customerKey) // 회원 결제
+    // const paymentWidget = PaymentWidget(clientKey, PaymentWidget.ANONYMOUS) // 비회원 결제
+    
+    paymentWidget.requestPayment({
+  orderId: 'AD8aZDpbzXs4EQa-UkIX6',
+  orderName: 'BreakTime 예약',
+  successUrl: 'http://localhost:8080/',
+  failUrl: 'http://localhost:8080/fail',
+  customerEmail: 'customer123@gmail.com', 
+  customerName: '김토스'
+})
+  </script>
+  
+  
     
     
-    
-    
-<!--     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 	<script>
 	function requestPay() {
 	  IMP.init('imp49486608'); 
