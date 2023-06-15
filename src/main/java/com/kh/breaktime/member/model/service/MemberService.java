@@ -28,5 +28,6 @@ public interface MemberService {
 	
 	public List<WishList> selectWishList(WishList w);
 	
-	public abstract int findId(String email);
+	public String findUserIdByEmail(String email);
+	
 }

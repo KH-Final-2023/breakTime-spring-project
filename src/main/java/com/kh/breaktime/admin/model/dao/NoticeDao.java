@@ -97,4 +97,9 @@ public class NoticeDao {
 
 		return (ArrayList) sqlSession.selectList("notice-mapper.selectChatSearchList", paramMap, rowBounds);
 	}
+	
+	  
+	  public int getBusinessCount() {
+	    return sqlSession.selectOne("notice-mapper.getBusinessCount");
+	  }
 }

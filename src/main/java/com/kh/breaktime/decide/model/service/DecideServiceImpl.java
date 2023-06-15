@@ -21,12 +21,11 @@ public class DecideServiceImpl implements DecideService {
       return decideDao.selectDecideMain(buNo);
    }
    
+   // 리뷰 등록
    @Override
    public int insertReview(Decide decide) {
-        
-        return decideDao.insertReview(decide);
-        
-     }
+      return decideDao.insertReview(decide);
+   }
    
    // 리뷰 개수 조회
    @Override
@@ -52,11 +51,11 @@ public class DecideServiceImpl implements DecideService {
       return decideDao.selectDecideRoom(buNo);
    }
 
-   // 선택 객실 조회
-	@Override
-	public ArrayList<Decide> payDecideRoom(int roomNo) {
-		return decideDao.payDecideRoom(roomNo);
-	}
+   // 객실 구매 목록 조회
+   @Override
+   public ArrayList<Decide> payDecideRoom(int roomNo) {
+	   return decideDao.payDecideRoom(roomNo);
+   }
    
    // 지도 메인 화면 조회
    @Override
@@ -100,20 +99,21 @@ public class DecideServiceImpl implements DecideService {
       return decideDao.deleteCartList(decide);
    }
    
-   //찜
+   // 찜
    @Override
-	public int insertLIkeValue(Decide decide) {
-	   return decideDao.insertLIkeValue(decide);
-	}
+   public int insertLIkeValue(Decide decide) {
+	  return decideDao.insertLIkeValue(decide);
+   }
    
-   //찜 취소
-  @Override
-	public int deleteLikeValue(Decide decide) {
+   // 찜 취소
+   @Override
+   public int deleteLikeValue(Decide decide) {
 	  return decideDao.deleteLikeValue(decide);
-	}
+   }
   
-  @Override
-	public int selectLikeValue(Decide decide) {
+   // 찜 유뮤 확인
+   @Override
+   public int selectLikeValue(Decide decide) {
 	  return decideDao.selectLikeValue(decide);
-	}
+   }
 }

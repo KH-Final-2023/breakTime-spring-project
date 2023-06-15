@@ -72,8 +72,8 @@
 </head>
 <body>
 	
-<%--     <jsp:include page="/WEB-INF/views/header.jsp" /> 
- --%>	<div id="wrapper" >
+    <jsp:include page="/WEB-INF/views/header.jsp" /> 
+	<div id="wrapper" >
 	
 		<div style="width:100%; display: contents;">
 			<h1 style="color: #1dbf1d; margin-bottom:100px;border-top:1px solid #1dbf1d; border-bottom: 1px solid #1dbf1d;">MEMBER INFO</h1>
