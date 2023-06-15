@@ -271,7 +271,7 @@ public class NoticeController {
 		 @ResponseBody
 		  public int getBusinessCount() {
 		    int count = noticeService.getBusinessCount();
-		    
+		    System.out.println(count);
 		    return count;
 		  }
 

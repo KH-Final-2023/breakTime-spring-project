@@ -5,14 +5,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-#bi-bellCountl{
+#bi-bellCount{
   display: none;  
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -2px;
+  right: -5px;
   height: 23px;
   width: 23px;
-  background-color: #008000cc;
+  background-color:#5f5fd4;
   font-size: 10px;
   list-style: none;
   text-align: center;
@@ -125,17 +125,15 @@
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <% if(loginUser != null) { %>
-   <span id="bi-bellCount"></span>
+  <span id="bi-bellCount"></span>
   <script>
     function businessCount() {
-    	alert("ddddd");
       $.ajax({
         url: "<%= request.getContextPath() %>/notice/businessCount",
         success: function(result) {
-        	alert("result");
-          if (result > 0) {
-            console.log(result);
-            $('#bi-bellCount').text("+" + result).css('display', 'flex');
+          if (result >= 0) { // 결과가 0 이상일 때만 처리
+            var count = parseInt(result); // 결과를 정수로 변환
+            $('#bi-bellCount').text("+" + count).css('display', 'flex');
           } else {
             $('#bi-bellCount').text('').css('display', 'none');
           }
@@ -147,6 +145,7 @@
     businessCount();
   </script>
 <% } %>
+
 			
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
