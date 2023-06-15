@@ -24,4 +24,8 @@ public class BookingDao {
 		return sqlSession.insert("bookingMapper.insertReview", r);
 	}
 	
+	public int insertBooking(Booking b) {
+		return sqlSession.insert("bookingMapper.insertBooking", b);
+	}
+	
 }

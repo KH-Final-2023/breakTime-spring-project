@@ -73,8 +73,8 @@ function() {
      e.preventDefault();
      
      if (null == globalCheckIn || null == globalCheckOut){
-    	 alert("날짜를 선택해주세요.");
-    	 return;
+        alert("날짜를 선택해주세요.");
+        return;
      }
      AjaxinsertCart(${d.roomNo}, ${d.buNo});
 
@@ -83,26 +83,26 @@ function() {
        window.location.href = "${contextPath}/decide/debasket";
      }
    });
-	</c:forEach>
-	
-	// 객실 선택하기 이동
-	<c:forEach items="${roomList}" var="d" varStatus="status">
-	   var buttonId = `button-card2-${status.index + 1}`;
-	   $("#" + buttonId).click(function(e) {
-	     e.preventDefault();
-	     
-	     if (null == globalCheckIn || null == globalCheckOut){
-	    	 alert("날짜를 선택해주세요.");
-	    	 return;
-	     }
-	     AjaxinsertCart_Pay(${d.roomNo}, ${d.buNo});
+   </c:forEach>
+   
+   // 객실 선택하기 이동
+   <c:forEach items="${roomList}" var="d" varStatus="status">
+      var buttonId = `button-card2-${status.index + 1}`;
+      $("#" + buttonId).click(function(e) {
+        e.preventDefault();
+        
+        if (null == globalCheckIn || null == globalCheckOut){
+           alert("날짜를 선택해주세요.");
+           return;
+        }
+        AjaxinsertCart_Pay(${d.roomNo}, ${d.buNo});
 
-	     var isConfirm = confirm("결재페이지로 이동합니다.");
-	     if (isConfirm) {
-	     	window.location.href = "${contextPath}/decide/pay?roomNo=" + ${d.roomNo};
-	     }
-	   });
-	</c:forEach>
+        var isConfirm = confirm("결재페이지로 이동합니다.");
+        if (isConfirm) {
+           window.location.href = "${contextPath}/decide/pay?roomNo=" + ${d.roomNo};
+        }
+      });
+   </c:forEach>
  
 });
 

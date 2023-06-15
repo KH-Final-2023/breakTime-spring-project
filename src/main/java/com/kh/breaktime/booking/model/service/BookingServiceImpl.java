@@ -26,5 +26,11 @@ public class BookingServiceImpl implements BookingService{
 		
 		return bookingDao.insertReview(r);
 	}
+	
+	@Override
+	public int insertBooking(Booking b) {
+		
+		return bookingDao.insertBooking(b);
+	}
 
 }

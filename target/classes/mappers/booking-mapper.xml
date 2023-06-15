@@ -40,6 +40,35 @@
 	</select>
 	
 	
+	<insert id="insertBooking" useGeneratedKeys="true"
+
+      parameterType="booking">
+
+      
+
+      INSERT INTO BOOKING(
+      BOOK_NO,
+      USER_NO,
+      ROOM_NO,
+      ROOM_NAME,
+	  ROOM_CHECKIN,
+	  ROOM_CHECKOUT,
+	  RESERVATION_NO,
+      STATUS
+      ) VALUES (
+      SEQ_BNO.NEXTVAL,
+      #{userNo},
+      #{roomNo},
+      #{roomName},
+      #{roomCheckin},
+      #{roomCheckout},
+      123456778,
+      'Y'
+      )
+
+   </insert>
+	
+	
 
 	 <insert id="insertReview" useGeneratedKeys="true"
 
