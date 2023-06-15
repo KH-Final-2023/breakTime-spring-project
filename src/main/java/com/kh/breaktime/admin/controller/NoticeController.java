@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.admin.model.service.NoticeService;
@@ -265,4 +266,13 @@ public class NoticeController {
 			model.addAttribute("selectChatSearchList",map);
 			return "admin/chatRoomList";
 		}
+		
+		 @GetMapping("/businessCount")
+		 @ResponseBody
+		  public int getBusinessCount() {
+		    int count = noticeService.getBusinessCount();
+		    
+		    return count;
+		  }
+
 }
