@@ -216,7 +216,7 @@ public class BusinessController {
    
    
    @PostMapping("/findBuId")
-	@ResponseBody // 응답을 반환하기 위해 @ResponseBody 어노테이션 사용
+   @ResponseBody // 응답을 반환하기 위해 @ResponseBody 어노테이션 사용
 	public String findBuIdByEmail(@RequestParam("buTel") String buTel) {
 	    String buId = businessService.findBuIdByEmail(buTel);
 	    System.out.println("찾은 아이디 : " + buId);
