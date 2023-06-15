@@ -503,7 +503,7 @@
 		 paymentWidget.requestPayment({
 		  orderId: 'AD8aZDpbzXs4EQa-UkIX6',
 		  orderName: 'breakTime 예약',
-		  successUrl: 'http://localhost:8081/breakTime/booking/insertBooking?roomNo='+roomNo+'&roomName='+roomName+'&roomCheckin='+roomCheckin+'&roomCheckout='+roomCheckout+'&roomHCount='+roomHCount,
+		  successUrl: 'http://localhost:8081/breaktime/booking/insertBooking?roomNo='+roomNo+'&roomName='+roomName+'&roomCheckin='+roomCheckin+'&roomCheckout='+roomCheckout+'&roomHCount='+roomHCount,
 		  failUrl: 'http://localhost:8081/fail',
 		  customerEmail: 'customer123@gmail.com', 
 		  customerName: 'breakTime'

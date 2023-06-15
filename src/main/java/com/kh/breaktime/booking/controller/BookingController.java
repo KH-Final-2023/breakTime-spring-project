@@ -60,7 +60,7 @@ public class BookingController {
 	@ResponseBody
 	public String reviewEnroll(@RequestParam("reviewNo") int reviewNo,
 			@RequestParam("reviewContent") String reviewContent, @RequestParam("reviewWriter") int reviewWriter,
-			@RequestParam("starScore") int starScore, @RequestParam("bookNo") String bookNo,
+			@RequestParam("starScore") int starScore, @RequestParam("bookNo") int bookNo,
 			@RequestParam("usingRoom") int usingRoom, Model model, RedirectAttributes rttr, HttpSession session) {
 //		bookingService.insertReview(r);
 //		System.out.println("리뷰출력 : "  + r);
@@ -85,12 +85,9 @@ public class BookingController {
 
 	
 	 @GetMapping("/insertBooking")
-	 @ResponseBody 
 	 public String insertBooking(
-	 @RequestParam("bookNo") int bookNo,
 	 @RequestParam("roomNo") int roomNo,
 	 @RequestParam("roomHCount") int roomHCount,
-	 @RequestParam("reservationNo") String reservationNo,
 	 @RequestParam("roomName") String roomName,
 	 @RequestParam("roomCheckin") String roomCheckin,
 	 @RequestParam("roomCheckout") String roomCheckout, Model model, HttpSession
@@ -99,19 +96,17 @@ public class BookingController {
 	 int userNo = ((Member) session.getAttribute("loginUser")).getUserNo();
 	 Booking booking = new Booking(); 
 	 booking.setUserNo(userNo);
-	 booking.setBookNo(bookNo);
+	 booking.setRoomNo(roomNo);
 	 booking.setRoomHCount(roomHCount); 
-	 booking.setReservationNo(reservationNo);
 	 booking.setRoomName(roomName); 
 	 booking.setRoomCheckin(roomCheckin);
 	 booking.setRoomCheckout(roomCheckout);
 	 System.out.println(booking.getRoomCheckin());
 	 
-	 int temp = bookingService.insertBooking(booking);
-		String result = String.valueOf(temp);
-
+	 bookingService.insertBooking(booking);
+		
 		model.addAttribute("insertBooking", booking);
-		return "/main";
+		return "redirect:/";
 	
 	 }
 	 

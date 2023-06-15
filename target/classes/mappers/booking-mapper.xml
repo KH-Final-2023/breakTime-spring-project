@@ -40,17 +40,14 @@
 	</select>
 	
 	
-	<insert id="insertBooking" useGeneratedKeys="true"
-
-      parameterType="booking">
-
-      
+	<insert id="insertBooking"  parameterType="booking">
 
       INSERT INTO BOOKING(
       BOOK_NO,
       USER_NO,
       ROOM_NO,
       ROOM_NAME,
+      ROOM_H_COUNT,
 	  ROOM_CHECKIN,
 	  ROOM_CHECKOUT,
 	  RESERVATION_NO,
@@ -60,6 +57,7 @@
       #{userNo},
       #{roomNo},
       #{roomName},
+      #{roomHCount},
       #{roomCheckin},
       #{roomCheckout},
       123456778,
