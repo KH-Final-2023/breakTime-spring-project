@@ -3,12 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="list" value="${map.list}" />
-<c:set var="starCount" value="${d.userStarScore}" />
-<c:set var="filledStars"
-	value="${fn:substring(starCount, 0, fn:indexOf(starCount, '.'))}" />
-<c:set var="halfStar"
-	value="${fn:substring(starCount, fn:indexOf(starCount, '.') + 1, fn:indexOf(starCount, '.') + 2)}" />
-	
+
+
+
+
 <!DOCTYPE html>
 <html lang="kor">
 <head>
@@ -174,19 +172,17 @@ button {
 									<div>
 										<div class="houseTitle">${d.buTitle}</div>
 										<div class="starPlace">
-											<span class="starPlace"> <c:forEach begin="1" end="5"
-													varStatus="loop">
-													<c:choose>
-														<c:when test="${loop.index <= filledStars}">
-															<i class="fa-solid fa-star starStyle"></i>
-														</c:when>
-														<c:when
-															test="${loop.index == filledStars + 1 && halfStar > 4}">
-															<i class="fa-solid fa-star-half-alt starStyle"></i>
-														</c:when>
-													</c:choose>
-												</c:forEach>
-											</span> <span> ${d.userStarScore } </span>
+											<c:set var="fullStars" value="${Math.floor(d.userStarScore)}" />
+											<c:set var="halfStar" value="${d.userStarScore - fullStars}" />
+
+											<c:forEach var="i" begin="1" end="${fullStars}">
+												<i class="fa-solid fa-star starStyle"></i>
+											</c:forEach>
+
+											<c:if test="${halfStar >= 0.5}">
+												<i class="fa-solid fa-star-half starStyle"></i>
+											</c:if>
+											<span> ${d.userStarScore } </span>
 										</div>
 										<div class="houseAddress">${d.buAddress}</div>
 										<div class="houseTel">${d.buTel}</div>

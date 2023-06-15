@@ -49,7 +49,8 @@
 		B.BU_CATEGORY,
 		B.BU_TEL,
 		B.BU_TITLE,
-		ROUND(COALESCE((SELECT AVG(STAR_SCORE) FROM REVIEW WHERE ROOM_NO = R.ROOM_NO), 3), 1) AS
+		ROUND(COALESCE((SELECT AVG(STAR_SCORE) FROM REVIEW WHERE
+		ROOM_NO = R.ROOM_NO), 3), 1) AS
 		userStarScore
 		FROM
 		BUSINESS B
@@ -60,7 +61,8 @@
 		) R ON B.BU_NO = R.BU_NO
 		WHERE
 		B.BU_MAIN_IMG IS NOT NULL
-		AND B.APPROVAL = 'Y'
+		AND
+		B.APPROVAL = 'Y'
 		AND B.BU_CATEGORY = #{category}
 		<if test="area != null">
 			AND B.AREA_NO = TO_NUMBER(#{area})
@@ -84,12 +86,14 @@
 		B.BU_TEL,
 		B.BU_NO,
 		B.BU_TITLE,
-		ROUND(COALESCE((SELECT AVG(STAR_SCORE) FROM REVIEW WHERE ROOM_NO = S.ROOM_NO), 3), 1) AS
+		ROUND(COALESCE((SELECT AVG(STAR_SCORE) FROM REVIEW WHERE ROOM_NO =
+		S.ROOM_NO), 3), 1) AS
 		userStarScore
 		FROM
 		BUSINESS B
 		INNER JOIN (
-		SELECT DISTINCT R.ROOM_NO, R.BU_NO, R.ROOM_H_COUNT,
+		SELECT
+		DISTINCT R.ROOM_NO, R.BU_NO, R.ROOM_H_COUNT,
 		R.ROOM_PRICE, R.ROOM_INFO
 		FROM ROOM R
 		LEFT JOIN BOOKING BK ON BK.ROOM_NO
@@ -107,12 +111,16 @@
 		)
 		) S ON S.BU_NO = B.BU_NO
 		WHERE
-		B.BU_MAIN_IMG IS NOT NULL
+		B.BU_MAIN_IMG IS NOT
+		NULL
 		AND B.APPROVAL = 'Y'
 		AND B.BU_CATEGORY = #{category}
 		<if test="area != null">
-			AND B.AREA_NO = TO_NUMBER(#{area})
+			<if test="area != ''">
+				AND B.AREA_NO = TO_NUMBER(#{area})
+			</if>
 		</if>
+
 		<if test="guests == null">
 			AND S.ROOM_H_COUNT = 1
 		</if>
@@ -138,6 +146,15 @@
 			</foreach>
 			)
 		</if>
+		<if test="userStarScore != null">
+			<![CDATA[
+			AND ROUND(COALESCE((SELECT AVG(STAR_SCORE) FROM REVIEW WHERE ROOM_NO =
+			S.ROOM_NO), 3), 1) < TO_NUMBER(#{userStarScore}) + 1
+			AND ROUND(COALESCE((SELECT AVG(STAR_SCORE) FROM REVIEW WHERE ROOM_NO =
+			S.ROOM_NO), 3), 1) >= TO_NUMBER(#{userStarScore})
+			]]>
+		</if>
+
 	</select>
 
 

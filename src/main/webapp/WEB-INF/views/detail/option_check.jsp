@@ -74,6 +74,7 @@ a {
 							<div class="area_detail">
 								<div class="dropdown1">
 									<select class="areaCode" name="area">
+										<option value="">전국</option>
 										<option value="1">서울</option>
 										<option value="2">인천</option>
 										<option value="3">대전</option>
@@ -208,7 +209,7 @@ a {
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starScore" value="5"><i
+							name="userStarScore" value=5.0><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
@@ -217,7 +218,7 @@ a {
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starScore" value="4"><i
+							name="userStarScore" value=4.0><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
@@ -225,20 +226,20 @@ a {
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starScore" value="3"><i
+							name="userStarScore" value=3.0><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starScore" value="2"><i
+							name="userStarScore" value=2.0><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="starScore" value="1"><i
+							name="userStarScore" value=1.0><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 				</table>

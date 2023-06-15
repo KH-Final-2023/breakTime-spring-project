@@ -53,10 +53,11 @@ public class DetailController {
 			@RequestParam(value = "guests", required = false) Integer guests,
 			@RequestParam(value = "area", required = false) String area,
 			@RequestParam(value = "date_in", required = false) String date_in,
-			@RequestParam(value = "date_out", required = false) String date_out, Model model) {
+			@RequestParam(value = "date_out", required = false) String date_out, 
+			@RequestParam(value = "userStarScore", required = false) Double userStarScore, Model model) {
 		Map<String, Object> map = new HashMap<>();
 
-		detailService.filterListSubmit(category, prices, reserves, options, guests, area, date_in, date_out, map);
+		detailService.filterListSubmit(category, prices, reserves, options, guests, area, date_in, date_out, userStarScore, map);
 
 		model.addAttribute("map", map);
 
