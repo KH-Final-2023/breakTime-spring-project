@@ -247,11 +247,38 @@ function AjaxDeleteCart() {
         }
     });
 }
-//장바구니 페이지의 JavaScript 코드
+// pay로 가게끔 자바스크립트 단에 form 동적으로 생성 및 POST 방식으로 전송
+//예약하기 버튼 클릭 시 발생  추가
  $(document).ready(function() {
-   $('#reservation-button').click(function() {
-      window.location.href = "${contextPath}/decide/pay/${param.roomNo}";
-   });
+	 $('#reservation-button').click(function() {
+	        var selectedRoomNos = [];
+
+	        // 선택한 체크박스를 반복합니다.
+	        $(".item-checkbox:checked").each(function() {
+	            var $item = $(this).closest('.item-top');
+	            var roomNo = $item.data('room-no');
+	            selectedRoomNos.push(roomNo);
+	        });
+
+	        // 폼을 동적으로 생성
+	        var form = $('<form>', {
+	            'action': "${contextPath}/decide/pay",
+	            'method': 'post'
+	        });
+
+	        // 선택된 roomNo 값을 폼에 추가
+	        $.each(selectedRoomNos, function(index, value) {
+	            form.append($('<input>', {
+	                'type': 'hidden',
+	                'name': 'roomNos[]',
+	                'value': value
+	            }));
+	        });
+
+	        // DOM에 폼 추가 후 전송
+	        $('body').append(form);
+	        form.submit();
+	    });
 }); 
 </script>
 </head>

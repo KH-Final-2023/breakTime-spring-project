@@ -96,4 +96,10 @@ public class NoticeServiceImpl implements NoticeService{
 		map.put("list", noticeDao.selectChatSearchList(pi));
 
 	}
+	
+
+	  @Override
+	  public int getBusinessCount() {
+	    return noticeDao.getBusinessCount();
+	  }
 }
