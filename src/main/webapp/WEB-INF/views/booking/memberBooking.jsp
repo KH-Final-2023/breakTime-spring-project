@@ -24,6 +24,37 @@
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
 <!-- Semantic UI theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+<script>
+function insertReview(){
+	
+	$.ajax({
+		url: "${contextPath}/booking/reviewInsert",
+		contentType: 'application/json',
+		data : JSON.stringify({
+			reviewNo : '${reviewNo}',
+			bookNo : '${bookNo}',
+			usingRoom : '${usingRoom}',
+			starScore :  $("#starScore").val(),
+			reviewContent: $("#reviewContent").val(),
+			reviewWriter : '${loginUser.userNo}'
+		}),
+		type : 'POST',
+		success : function (result){
+			if(result == "1"){
+				alertify.alert("서비스 요청 성공", '댓글 등록 성공' );
+			}else{
+				alertify.alert("서비스 요청 실패", '댓글 등록 실패' );
+			}
+			selectBookingList();
+		},
+		complete : function(){
+			$("#reviewContent").val("");
+		}
+		
+	})
+	
+}
+</script>
 <style>
 html, body {
 	width: 100%;
@@ -152,6 +183,7 @@ html, body {
 													<input type="hidden" name="reviewWriter" value="${loginUser.userNo}" />
 													<input type="hidden" name="bookNo" value="${empty booking.bookNo ? 0 : booking.bookNo}" />
 													<input type="hidden" name="usingRoom" value="${empty booking.roomNo ? 0 : booking.roomNo}" />
+													<input type="hidden" name="reviewNo" value="${empty review.reviewNo ? 0 : review.reviewNo}" />
 													<div class="star-rating space-x-4 mx-auto">
 														<input type="radio" id="5-stars${vs.index}" name="starScore" value="5">
 														<label for="5-stars${vs.index}" class="star">★</label>
@@ -209,26 +241,35 @@ html, body {
 		   </c:forEach>
 		});
 	
-	function reviewEnroll() {
-		   var formdata = new FormData();
-		   formdata.append("reviewScore", $('input[name="starScore"]').val());
-		   formdata.append("reviewContent", $('input[name="reviewContent"]').val());
-	   
-	   var url = "${contextPath}/booking/reviewInsert";
-	   $.ajax({
-	      url: url,
-	      type: 'POST',
-	      contentType: 'application/json',
-	      data: formdata,
-	      success: function(response){
-			console.log(response);
-			console.log("성공");
-	      },
-	      error: function(error){
-	         console.log(error);
-	      }
-	   });
-	}
+	/* function insertReview(){
+		
+		$.ajax({
+			url: "${contextPath}/booking/reviewInsert",
+			data : {
+				reviewNo : '${reviewNo}',
+				bookNo : '${bookNo}',
+				usingRoom : '${usingRoom}',
+				starScore :  $("#starScore").val(),
+				reviewContent: $("#reviewContent").val(),
+				reviewWriter : '${loginUser.userNo}'
+			},
+			type : 'POST',
+			success : function (result){
+				if(result == "1"){
+					alertify.alert("서비스 요청 성공", '댓글 등록 성공' );
+				}else{
+					alertify.alert("서비스 요청 실패", '댓글 등록 실패' );
+				}
+				selectBookingList();
+			},
+			complete : function(){
+				$("#reviewContent").val("");
+			}
+			
+		})
+		
+	} */
+	
 	</script>
 </body>
 </html>
