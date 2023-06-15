@@ -1,8 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.kh.breaktime.member.model.vo.Member"%>
+<%Member loginUser = (Member) session.getAttribute("loginUser");%>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+#bi-bellCountl{
+  display: none;  
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  height: 23px;
+  width: 23px;
+  background-color: #008000cc;
+  font-size: 10px;
+  list-style: none;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  }
+</style>
 
 <head>
   <meta charset="utf-8">
@@ -99,11 +118,36 @@
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+<a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+  <i class="bi bi-bell"></i>
+  <span id="bi-bellCount"></span>
+</a><!-- End Notification Icon -->
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<% if(loginUser != null) { %>
+   <span id="bi-bellCount"></span>
+  <script>
+    function businessCount() {
+    	alert("ddddd");
+      $.ajax({
+        url: "<%= request.getContextPath() %>/notice/businessCount",
+        success: function(result) {
+        	alert("result");
+          if (result > 0) {
+            console.log(result);
+            $('#bi-bellCount').text("+" + result).css('display', 'flex');
+          } else {
+            $('#bi-bellCount').text('').css('display', 'none');
+          }
+        }
+      });
+    }
+
+    setInterval(businessCount, 60000);
+    businessCount();
+  </script>
+<% } %>
+			
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               You have 4 new notifications

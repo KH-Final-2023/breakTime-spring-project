@@ -158,16 +158,22 @@ html, body {
 											<span>퇴실전</span>
 										</button>
 									</td>
+									
 									<td>
+									<c:if test="${!empty r.reviewContent}">
+									
 										<button id="rBtn${vs.index}" type="button" class="btn btn-outline-success"
 											data-toggle="modal" data-target="#updateMember${vs.index}">
 											<span>리뷰작성</span>
 										</button>
-										<!-- <button type="button" class="btn btn-secondary">
+										 <button type="button" class="btn btn-secondary">
 											<span>작성완료</span>
-										</button> -->
+										</button> 
+									
 									</td>
+									
 								</tr>
+								
 								<!--  수정 모달창 -->
 								<div id="updateMember${vs.index}" class="modal fade" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -208,13 +214,16 @@ html, body {
 										</div>
 									</div>
 								</div>
+								</c:if>
 							</c:forEach>
+							
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</main>
+
 	<script>
 	$(document).ready(function() {
 		   <c:forEach items="${bookingList}" var="booking" varStatus="vs">
@@ -271,5 +280,6 @@ html, body {
 	} */
 	
 	</script>
+
 </body>
 </html>
