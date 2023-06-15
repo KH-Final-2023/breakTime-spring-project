@@ -68,4 +68,9 @@ public class BusinessServiceImpl implements BusinessService {
 	public List<Booking> updateReservation(int bookNo) {
 		return businessDao.updateReservation(bookNo);
 	}
+	
+	@Override
+    public String findBuIdByEmail(String buTel) {
+        return businessDao.findBuIdByEmail(buTel);
+    }
 }

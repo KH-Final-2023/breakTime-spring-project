@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>사업자 로그인 폼</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link rel="stylesheet" href="/breaktime/resources/css/sukbumModal.css">
 <link rel="stylesheet" href="../resources/css/loginForm.css">
 <style>
 /*         #container{
@@ -29,41 +30,7 @@
     </style>
 </head>
 <body>
-<!-- 	<div id="container">
-        <h1>BreakTime</h1>
-        <p>BreakTime에 오신것을 환영합니다.</p>
-        <div>
-     
-         <form action="buLogin" method="post"> 
-            <input type="text" name="buId" placeholder="아이디입력">
-            <input type="password" name="buPwd" placeholder="비밀번호입력">
-            <label for="remember-check">
-               <input type="checkbox" name="saveId" id="saveId">아이디 저장하기
-            </label>
-            <input type="submit" value="로그인">
-            
-            <div id="contnet3" style="border-top: 1px solid black; margin-top: 15px;">
-                <a>아이디/비밀번호찾기</a>
-                <a id="buEnrollBtn">사업자회원가입</a>
-            </div>
-        </form> 
-         <form action="/breaktime/businessRoom/businessRoomList" method="post"> 
-            <input type="text" name="buId" placeholder="아이디입력">
-            <input type="password" name="buPwd" placeholder="비밀번호입력">
-            <label for="remember-check">
-               <input type="checkbox" name="saveId" id="saveId">아이디 저장하기
-            </label>
-            <input type="submit" value="로그인">
-            
-            <div id="contnet3" style="border-top: 1px solid black; margin-top: 15px;">
-                <a>아이디/비밀번호찾기</a>
-                <a id="buEnrollBtn">사업자회원가입</a>
-            </div>
-        </form>
-        
-        </div>
-    </div> -->
-    
+
 <div id="container" class="container">
     <!-- FORM SECTION -->
     <div class="row">
@@ -117,19 +84,15 @@
               <input type="password" placeholder="Password" name="buPwd">
             </div>
             <button>
-              Sign in
+              로그인
             </button>
-            <p>
-              <b>
-                Forgot password?
+  
+           	<p class="pointer" style="display: flex; flex-direction: row; justify-content: space-around;">
+              <b id="findBuId">
+                아이디찾기
               </b>
-            </p>
-            <p>
-              <span>
-                Don't have an account?
-              </span>
               <b onclick="toggle()" class="pointer" id="buEnrollBtn">
-                Sign up here
+                회원가입
               </b>
             </p>
           </div>
@@ -174,6 +137,68 @@
     <!-- END CONTENT SECTION -->
   </div>        
   
+  <!-- 아이디찾기 모달창 -->
+<div class="modal2 hidden" style="left:200px;">
+  <div class="bg2"></div>
+  <div class="modalBox" style="height:auto;">
+    <div class="header">
+      <h2>사업자 아이디 찾기<b></b></h2>
+    </div>
+    <div class="addDdayBody" style="height:auto;">
+      <div class="inputBox">
+        <h3 class="inputLabel">사업자 연락처</h3>
+        <input style="margin-top:15px;" type="text" name="buTel" id="buTel" placeholder="(-빼고)가입했던 번호를 입력해주세요," class="inputField" required/>
+      </div> 
+    	
+    </div>
+    <button style="border:transparent;" type="button" class="closeBtn2" id="fullBlueBtn">아이디 찾기</button>
+  </div>
+</div>
+
+
+      
+    <script>
+      $(document).ready(function() {
+        // 아이디 찾기 버튼 클릭 시 AJAX 요청 보내기
+        $('#fullBlueBtn').click(function() {
+          var buTel = $('#buTel').val(); // 입력된 이메일 값 가져오기
+
+          $.ajax({
+            type: 'POST',
+            url: 'findBuId',
+            data: { buTel: buTel },
+            success: function(response) {
+                if (response !== null && response !== '') {
+                  // 아이디가 존재하는 경우
+                  alert('아이디는 ' + response + '입니다.');
+                } else {
+                  // 아이디가 존재하지 않는 경우
+                  alert('존재하지 않는 번호입니다.');
+                }
+              },
+            error: function() {
+              // 요청 실패 시 처리할 코드
+              console.log('AJAX 요청 실패');
+            }
+          });
+        });
+      });
+      </script>
+ 
+	 
+<script> 
+  const open2 = () => {
+    document.querySelector(".modal2").classList.remove("hidden");
+  }
+  const close2 = () => {
+    console.log('close')
+    document.querySelector(".modal2").classList.add("hidden"); 
+  }
+  document.querySelector("#findBuId").addEventListener("click", open2);
+  document.querySelector(".closeBtn2").addEventListener("click", close2);
+  document.querySelector(".bg2").addEventListener("click", close2);
+</script>
+
   <!-- 제이쿼리 스크립트 -->
     <script>
     let container = document.getElementById('container')
