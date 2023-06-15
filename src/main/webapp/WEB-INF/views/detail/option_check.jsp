@@ -70,7 +70,8 @@ a {
 				method="GET">
 				<table class="optionTable">
 					<tr>
-						<td>
+						<td> 
+						지역 :
 							<div class="area_detail">
 								<div class="dropdown1">
 									<select class="areaCode" name="area">
@@ -100,6 +101,7 @@ a {
 					<!-- 체크인 날짜 옵션 -->
 					<tr>
 						<td>
+						체크인 :
 							<div class="date_checkIn">
 								<div class="dropdown2">
 									<select class="dateCheck1" name="date_in">
@@ -111,6 +113,7 @@ a {
 					<!-- 체크아웃 날짜 옵션 -->
 					<tr>
 						<td>
+						체크아웃 :
 							<div class="date_checkOut">
 								<div class="dropdown3">
 									<select class="dateCheck2" name="date_out">
