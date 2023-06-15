@@ -25,35 +25,71 @@
 <!-- Semantic UI theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
 <script>
-function insertReview(){
+
+	$(document).ready(function() {
+	    $('[name=reviewForm]').submit(function(e) {
+	        e.preventDefault(); // Prevent form submission
+	        
+	        var formData = $(this).serialize(); // Serialize form data
+	        console.dir(this);
+	        const radios = this.querySelectorAll("[name=starScore]");
+	        const reviewContents = this.querySelector("#reviewContents");
+	        const closeBtn = $(this).parents("[id^=updateMember]").find(".close");
+	        const reviewButton = $(this).parents("[id^=updateMember]").find(".btn-primary");
+	        
+	        $.ajax({
+	            url: "${contextPath}/booking/reviewInsert",
+	            type: "POST",
+	            data: formData,
+	            success: function(result) {
+	                if (result == "1") {
+	                	alertify.alert("서비스 요청 성공", "리뷰 등록 성공", function(){
+	                    	closeBtn.click();
+	                    }	);
+		                $(reviewContents).val(""); 
+		                $(radios).val("");
+		                $(reviewButton).prop("disabled", true); // 버튼 비활성화
+		                location.reload();
+		                
+	                } else {
+	                    alertify.alert("서비스 요청 실패", "리뷰 등록 실패");
+	                }
+	                
+	            }
+	        });
+	        
+	    $('[id^=rBtn]').click(function() {
+	        var button = $(this);
+	        var modalId = button.data('target');
+	        var modal = $(modalId);
+
+	        button.prop("disabled", true); // 버튼 비활성화
+
+	        modal.on('hidden.bs.modal', function() {
+	            button.prop("disabled", false); // 모달이 닫힐 때 버튼 활성화
+	        });
+	    });
+	        
+	    })
+	    
+	    $.ajax({
+	    	url : '${contextPath}/booking/getReviewList',
+	    	dataType : 'json',
+	    	success : function(result){
+	    		//console.log(result);
+	    		$('.btn-outline-success').each(function(index0, item0){
+	    			$(result).each(function(index1,item1){
+	    				
+	    				if(item1.usingRoom ==$(item0).attr('roomNo') ){
+	    					$(item0).attr("disabled", true);
+	    					$(item0).text("작성완료");
+	    				}
+	    			})
+	    		}) 
+	    	}
+	    })
+	});
 	
-	$.ajax({
-		url: "${contextPath}/booking/reviewInsert",
-		contentType: 'application/json',
-		data : JSON.stringify({
-			reviewNo : '${reviewNo}',
-			bookNo : '${bookNo}',
-			usingRoom : '${usingRoom}',
-			starScore :  $("#starScore").val(),
-			reviewContent: $("#reviewContent").val(),
-			reviewWriter : '${loginUser.userNo}'
-		}),
-		type : 'POST',
-		success : function (result){
-			if(result == "1"){
-				alertify.alert("서비스 요청 성공", '댓글 등록 성공' );
-			}else{
-				alertify.alert("서비스 요청 실패", '댓글 등록 실패' );
-			}
-			selectBookingList();
-		},
-		complete : function(){
-			$("#reviewContent").val("");
-		}
-		
-	})
-	
-}
 </script>
 <style>
 html, body {
@@ -149,26 +185,22 @@ html, body {
 									<td>${booking.roomHCount}</td>
 									<td>${booking.reservationNo}</td>
 									<td>
-										<button id="update-btn" type="submit" class="btn btn-outline-primary">
+										<button id="update-btn" type="submit" class="btn btn-primary">
 											<span>입실전</span>
 										</button>
 									</td>
 									<td>
-										<button type="button" class="btn btn-outline-danger">
+										<button type="button" class="btn btn-danger">
 											<span>퇴실전</span>
 										</button>
 									</td>
 									
 									<td>
-									<c:if test="${!empty r.reviewContent}">
 									
-										<button id="rBtn${vs.index}" type="button" class="btn btn-outline-success"
+										<button class="btn btn-outline-success" roomNo="${booking.roomNo}" id="rBtn${vs.index}" type="button" 
 											data-toggle="modal" data-target="#updateMember${vs.index}">
 											<span>리뷰작성</span>
 										</button>
-										 <button type="button" class="btn btn-secondary">
-											<span>작성완료</span>
-										</button> 
 									
 									</td>
 									
@@ -185,7 +217,7 @@ html, body {
 												</button>
 											</div>
 											<div class="modal-body">
-												<form action="<%=request.getContextPath()%>/booking/reviewInsert" method="post">
+												<form  id="reviewForm" method="post" name="reviewForm">
 													<input type="hidden" name="reviewWriter" value="${loginUser.userNo}" />
 													<input type="hidden" name="bookNo" value="${empty booking.bookNo ? 0 : booking.bookNo}" />
 													<input type="hidden" name="usingRoom" value="${empty booking.roomNo ? 0 : booking.roomNo}" />
@@ -207,14 +239,13 @@ html, body {
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-														<button type="submit" id="btn_register" class="btn btn-primary">확인</button>
+														<button type="submit" id="btn_register" class="btn btn-primary" >확인</button>
 													</div>
 												</form>
 											</div>
 										</div>
 									</div>
 								</div>
-								</c:if>
 							</c:forEach>
 							
 						</tbody>
@@ -224,62 +255,6 @@ html, body {
 		</div>
 	</main>
 
-	<script>
-	$(document).ready(function() {
-		   <c:forEach items="${bookingList}" var="booking" varStatus="vs">
-		       var buttonId = "rBtn${vs.index}";
-		       $("#" + buttonId).click(function(e) {
-		           e.preventDefault();
-		           var $button = $(this);
-		           $button.prop("disabled", true);
-		           var modalId = "updateMember${vs.index}";
-		           $("#" + modalId).modal("show");
-		           
-		           $("#" + modalId).on("hidden.bs.modal", function() {
-		               if (!$button.data("confirmed")) {
-		                   $button.prop("disabled", false);
-		               }
-		               $button.data("confirmed", false);
-		           });
-		       });
-		       
-		       $("#" + buttonId).on("click", ".btn-primary", function() {
-		           var buttonId = "rBtn${vs.index}";
-		           $("#" + buttonId).data("confirmed", true);
-		       });
-		   </c:forEach>
-		});
-	
-	/* function insertReview(){
-		
-		$.ajax({
-			url: "${contextPath}/booking/reviewInsert",
-			data : {
-				reviewNo : '${reviewNo}',
-				bookNo : '${bookNo}',
-				usingRoom : '${usingRoom}',
-				starScore :  $("#starScore").val(),
-				reviewContent: $("#reviewContent").val(),
-				reviewWriter : '${loginUser.userNo}'
-			},
-			type : 'POST',
-			success : function (result){
-				if(result == "1"){
-					alertify.alert("서비스 요청 성공", '댓글 등록 성공' );
-				}else{
-					alertify.alert("서비스 요청 실패", '댓글 등록 실패' );
-				}
-				selectBookingList();
-			},
-			complete : function(){
-				$("#reviewContent").val("");
-			}
-			
-		})
-		
-	} */
-	
-	</script>
 
 </body>
 </html>
