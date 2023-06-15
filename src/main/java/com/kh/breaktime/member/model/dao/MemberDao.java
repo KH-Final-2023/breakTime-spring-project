@@ -94,8 +94,8 @@ public class MemberDao {
 		return sqlSession.selectList("memberMapper.selectWishList", w);
 	}
 	
-	/*
-	 * public String findId(String email) throws Exception{ return
-	 * sqlSession.selectOne("member.findId", email); }
-	 */
+	
+	 public String findUserIdByEmail(String email) {
+	       return sqlSession.selectOne("memberMapper.findUserIdByEmail", email);
+	   }
 }

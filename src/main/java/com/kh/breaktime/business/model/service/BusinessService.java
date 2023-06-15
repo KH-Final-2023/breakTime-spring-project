@@ -27,4 +27,6 @@ public interface BusinessService {
 	public int  updateReviewDeclaration(int reviewNo);
 	
 	public List<Booking> updateReservation(int bookNo);
+	
+	public String findBuIdByEmail(String buTel);
 }

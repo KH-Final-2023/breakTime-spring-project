@@ -202,4 +202,11 @@
 		SET STATUS = 'Y'
 		WHERE BOOK_NO = #{bookNo}
 	</update>
+	
+	<!-- 아이디 찾기 -->
+	 <select id="findBuIdByEmail" resultType="java.lang.String">
+        SELECT BU_ID
+        FROM BUSINESS
+        WHERE BU_TEL = #{buTel}
+    </select>
 </mapper>

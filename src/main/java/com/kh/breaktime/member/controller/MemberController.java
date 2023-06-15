@@ -10,15 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.business.model.vo.Business;
@@ -209,7 +214,6 @@ public class MemberController {
 		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUserNo();
 		m.setUserNo(userNo);
-		
 		int result = memberService.updateName(m);
 
 		String url = "";
@@ -282,14 +286,18 @@ public class MemberController {
 		return "member/wishList";
 	}
 	
-	/*
-	 * // 아이디 찾기
-	 * 
-	 * @PostMapping("/findId") public String find_id(HttpServletResponse
-	 * response, @RequestParam("email") String email, Model md) throws Exception{
-	 * md.addAttribute("id", memberService.findId(response, email));
-	 * 
-	 * return "member/findResult"; }
-	 */
 	
+	@PostMapping("/findId")
+	@ResponseBody // 응답을 반환하기 위해 @ResponseBody 어노테이션 사용
+	public String findUserIdByEmail(@RequestParam("email") String email) {
+	    String userId = memberService.findUserIdByEmail(email);
+	    System.out.println("찾은 아이디 : " + userId);
+	    
+	    if (userId != null && !userId.isEmpty()) {
+	        return userId; // 아이디가 존재하는 경우 응답으로 아이디 반환
+	    } else {
+	        return ""; // 아이디가 존재하지 않는 경우 응답으로 빈 문자열 반환
+	    }
+	}
+
 }

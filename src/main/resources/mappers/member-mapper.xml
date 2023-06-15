@@ -146,11 +146,11 @@
 	</select>
 	
 	<!-- 아이디 찾기 -->
-	<select id="findId" parameterType="String" resultType="String">
-		select USER_ID 
-		from member 
-		where email = #{email}
-	</select>
+	 <select id="findUserIdByEmail" resultType="java.lang.String">
+        SELECT USER_ID
+        FROM MEMBER
+        WHERE email = #{email}
+    </select>
 	
 	
 	
