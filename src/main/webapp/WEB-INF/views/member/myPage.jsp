@@ -49,11 +49,25 @@
 	
 	.sideMenu{
 	font-size: 18px;
-    color: rgba(0,0,0,0.56);
+    color: black;
 	}
 	
 	li{
-	margin-bottom : 26px;
+	width: 140px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-bottom : 20px;
 	}
 	
 	b{
@@ -68,11 +82,24 @@
 	color: #67d567;
     border-color: #67d567;
 	}
+	
+	a{
+	 text-decoration : none;
+	 display: flex;
+    justify-content: center;
+	}
+	
+	li:hover {
+  border: 1px solid #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
 </style>
 </head>
 <body>
 	
-    <jsp:include page="/WEB-INF/views/header.jsp" /> 
+  
 	<div id="wrapper" >
 	
 		<div style="width:100%; display: contents;">
