@@ -11,7 +11,7 @@ import com.kh.breaktime.review.model.vo.Review;
 
 @Repository
 public class BookingDao {
-	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
@@ -24,9 +24,15 @@ public class BookingDao {
 		return sqlSession.insert("bookingMapper.insertReview", r);
 	}
 	
+
+	public int insertBooking(Booking b) {
+		return sqlSession.insert("bookingMapper.insertBooking", b);
+	}
+		
 	public ArrayList<Review> selectReviewList(int userNo) {
 		
 		return (ArrayList)sqlSession.selectList("bookingMapper.selectReviewList", userNo);
+
 	}
 	
 }

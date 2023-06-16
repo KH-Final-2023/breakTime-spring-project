@@ -271,7 +271,15 @@ public class NoticeController {
 		 @ResponseBody
 		  public int getBusinessCount() {
 		    int count = noticeService.getBusinessCount();
-		    
+		    System.out.println(count);
+		    return count;
+		  }
+		 
+		 @GetMapping("/reviewCount")
+		 @ResponseBody
+		  public int getreviewCount() {
+		    int count = noticeService.getReviewCount();
+		    System.out.println(count);
 		    return count;
 		  }
 

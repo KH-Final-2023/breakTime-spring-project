@@ -14,7 +14,7 @@ public interface DetailService {
 	public void selectDetailList(String category, String area, Map<String, Object> map);
 
 	public void filterListSubmit(String category, List<String> prices, List<String> reserves, List<String> options,
-			Integer guests, String area, String date_in, String date_out, Map<String, Object> map);
+			Integer guests, String area, String date_in, String date_out, Double userStarScore, Map<String, Object> map);
 
 	public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map);
 

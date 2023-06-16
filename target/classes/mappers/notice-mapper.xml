@@ -127,7 +127,7 @@
 		) VALUES (
 		#{noticeNo},
 		#{noticeTitle},
-		1,
+		2,
 		#{noticeContent}
 		)
 
@@ -345,5 +345,11 @@
     SELECT COUNT(*) 
     FROM BUSINESS
     WHERE APPROVAL = 'N'
+  </select>
+  
+  <select id="getReviewCount" resultType="int">
+    SELECT COUNT(*) 
+    FROM REVIEW
+    WHERE REVIEW_DECLARIATION = 'Y'
   </select>
 </mapper>

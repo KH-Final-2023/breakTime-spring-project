@@ -33,9 +33,9 @@ public class DetailServiceImpl implements DetailService {
 	}
 
 	public void filterListSubmit(String category, List<String> prices, List<String> reserves, List<String> options,
-			Integer guests, String area, String date_in, String date_out, Map<String, Object> map) {
+			Integer guests, String area, String date_in, String date_out, Double userStarScore, Map<String, Object> map) {
 		ArrayList<Detail> list = detailDao.filterListSubmit(category, prices, reserves, options, area, date_in,
-				date_out, guests);
+				date_out, userStarScore, guests);
 		map.put("list", list);
 	}
 

@@ -94,8 +94,24 @@
       <div class="rankingSubBox" id="jeju">
          <p id="pJeju" >제주도</p>
          </div>
-  </div> 
-  
+  	</div> 
+  	
+  	
+  	
+  	 <div class="th">
+      <div class="box1" id="th1">
+      
+         </div>
+      <div class="box2" id="th2">
+         <p id="goNotice" >사장님 회원가입하기</p>
+         </div>
+      <div class="box1" id="th3">
+      
+         </div>
+      <div class="box2" id="th4">
+         <p id="goBus" >Break Time 공지사항</p>
+         </div>
+  	</div> 
   
   
        
@@ -119,16 +135,6 @@ $(document).ready(function() {
 });
 
 
-
-$(document).ready(function() {
-    // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
-    $("#seoul").click(function() {
-        // 리다이렉션할 URL
-        var redirectUrl = "<%=request.getContextPath()%>/list/marea/1";
-        // 현재 창에서 새 URL로 리다이렉션
-        window.location.href = redirectUrl;
-    });
-});
 
 
 

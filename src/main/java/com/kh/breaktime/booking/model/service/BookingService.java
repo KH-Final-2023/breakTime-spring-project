@@ -6,6 +6,7 @@ import com.kh.breaktime.booking.model.vo.Booking;
 import com.kh.breaktime.review.model.vo.Review;
 
 public interface BookingService {
+
 	
 	ArrayList<Booking> selectBookingList(int userNo);
 	
@@ -13,4 +14,7 @@ public interface BookingService {
 	
 	public int insertReview(Review r);
 	
+	public int insertBooking(Booking b);
+	
 }
+
