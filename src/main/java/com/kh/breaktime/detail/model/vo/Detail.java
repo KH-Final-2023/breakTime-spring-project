@@ -15,5 +15,5 @@ public class Detail {
     private String buTel;
     private String buTitle;
     private String roomInfo;
-    private double starScore;
+    private double userStarScore;
 }

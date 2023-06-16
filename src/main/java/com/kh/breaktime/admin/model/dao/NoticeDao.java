@@ -102,4 +102,8 @@ public class NoticeDao {
 	  public int getBusinessCount() {
 	    return sqlSession.selectOne("notice-mapper.getBusinessCount");
 	  }
+	  
+	  public int getReviewCount() {
+		    return sqlSession.selectOne("notice-mapper.getReviewCount");
+		  }
 }
