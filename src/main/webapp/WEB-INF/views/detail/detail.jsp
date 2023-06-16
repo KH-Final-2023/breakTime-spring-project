@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="list" value="${map.list}" />
+
+
+
 
 <!DOCTYPE html>
 <html lang="kor">
@@ -145,11 +149,9 @@ button {
 
 	<%-- <jsp:include page="/WEB-INF/views/header.jsp" /> --%>
 
-	<%-- <jsp:include page="/WEB-INF/views/detail/search_detail.jsp" /> --%>
-
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
-   <jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
+	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
 
 	<div class="mainArea">
 		<div class="houseList">
@@ -168,7 +170,17 @@ button {
 									<div>
 										<div class="houseTitle">${d.buTitle}</div>
 										<div class="starPlace">
-											${d.starScore }
+											<c:set var="fullStars" value="${Math.floor(d.userStarScore)}" />
+											<c:set var="halfStar" value="${d.userStarScore - fullStars}" />
+
+											<c:forEach var="i" begin="1" end="${fullStars}">
+												<i class="fa-solid fa-star starStyle"></i>
+											</c:forEach>
+
+											<c:if test="${halfStar >= 0.5}">
+												<i class="fa-solid fa-star-half starStyle"></i>
+											</c:if>
+											<span> ${d.userStarScore } </span>
 										</div>
 										<div class="houseAddress">${d.buAddress}</div>
 										<div class="houseTel">${d.buTel}</div>
