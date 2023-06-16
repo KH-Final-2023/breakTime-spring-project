@@ -13,4 +13,6 @@ public interface BookingService {
 	
 	public int insertReview(Review r);
 	
+	public int insertBooking(Booking b);
+	
 }

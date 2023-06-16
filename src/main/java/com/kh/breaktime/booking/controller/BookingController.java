@@ -83,6 +83,33 @@ public class BookingController {
 		model.addAttribute("insertReview", review);
 		return result;
 	}
+	
+	 @GetMapping("/insertBooking")
+	 public String insertBooking(
+	 @RequestParam("roomNo") int roomNo,
+	 @RequestParam("roomHCount") int roomHCount,
+	 @RequestParam("roomName") String roomName,
+	 @RequestParam("roomCheckin") String roomCheckin,
+	 @RequestParam("roomCheckout") String roomCheckout, Model model, HttpSession
+	 session ) {
+		 
+	 int userNo = ((Member) session.getAttribute("loginUser")).getUserNo();
+	 Booking booking = new Booking(); 
+	 booking.setUserNo(userNo);
+	 booking.setRoomNo(roomNo);
+	 booking.setRoomHCount(roomHCount); 
+	 booking.setRoomName(roomName); 
+	 booking.setRoomCheckin(roomCheckin);
+	 booking.setRoomCheckout(roomCheckout);
+	 System.out.println(booking.getRoomCheckin());
+	 
+	 bookingService.insertBooking(booking);
+		
+		model.addAttribute("insertBooking", booking);
+		return "redirect:/";
+	
+	 }
+	 
 
 	@ResponseBody
 	@GetMapping("/getReviewList")
@@ -92,5 +119,6 @@ public class BookingController {
 		ArrayList<Review> reviewList = bookingService.selectReviewList(userNo);
 		return new Gson().toJson(reviewList);
 	}
+
 
 }
