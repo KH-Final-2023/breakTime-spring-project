@@ -64,6 +64,8 @@ a {
 </head>
 <body>
 	<div class="optionArea">
+	<br>
+	<br>
 		<div class="houseOption">
 			<form id="houseOption" name="option"
 				action="<%=request.getContextPath()%>/list/filter/${category}"
@@ -205,7 +207,7 @@ a {
 							name="houseOptions" value="에어컨">에어컨</td>
 					</tr>
 					<tr>
-						<td><a class="option_openBtn">더 보기</a></td>
+						<td ><a class="option_openBtn">더 보기</a></td>
 					</tr>
 					<tr>
 						<th class="tableTitle">투숙객 별점</th>
@@ -249,6 +251,14 @@ a {
 				<br>
 				<button type="submit" onclick="submitForm()">검색하기</button>
 			</form>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
 		</div>
 	</div>
 

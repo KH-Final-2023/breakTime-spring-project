@@ -33,8 +33,11 @@ public class DecideController {
    }
    
    // url : {contextPath}/decide/demain/{buNo}
-   @GetMapping("/demain/{buNo}") // 메인 조회
-   public String decideMain(@PathVariable("buNo") int buNo, Model model, HttpSession session) {
+   @GetMapping("/demain/{buNo}/{date_in}/{date_out}") // 메인 조회
+   public String decideMain(@PathVariable("buNo") int buNo, 
+		   @PathVariable("date_in") String date_in,
+		   @PathVariable("date_out") String date_out,
+		   Model model, HttpSession session) {
 	  
 	  Map<String, Object> map = new HashMap();
 	  

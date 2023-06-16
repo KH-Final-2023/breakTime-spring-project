@@ -17,8 +17,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <title>BreakTime</title>
 <style>
-   
-
+#header-content {
+	width: 75%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 19px;
+	margin-left: 405px;
+	padding: 5px 300px 0px 100px;
+}
 </style>
 
 </head>
@@ -133,19 +140,6 @@ $(document).ready(function() {
         window.location.href = redirectUrl;
     });
 });
-
-
-
-$(document).ready(function() {
-    // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
-    $("#seoul").click(function() {
-        // 리다이렉션할 URL
-        var redirectUrl = "<%=request.getContextPath()%>/list/marea/1";
-        // 현재 창에서 새 URL로 리다이렉션
-        window.location.href = redirectUrl;
-    });
-});
-
 
 
 $(document).ready(function() {
