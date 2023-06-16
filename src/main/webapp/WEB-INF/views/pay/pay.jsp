@@ -475,6 +475,7 @@
     <script>
    
     function paymentsBtn_click() {
+
     	const clientKey = 'test_ck_aBX7zk2yd8yed6OBR9Q8x9POLqKQ' // 테스트용 클라이언트 키
     	const customerKey = 'lwPDAudM9-GcGY7CP0DO0' // 고객을 식별할 수 있는 키
 
@@ -507,6 +508,7 @@
 		  failUrl: 'http://localhost:8081/fail',
 		  customerEmail: 'customer123@gmail.com', 
 		  customerName: 'breakTime'
+
 })
     }
     

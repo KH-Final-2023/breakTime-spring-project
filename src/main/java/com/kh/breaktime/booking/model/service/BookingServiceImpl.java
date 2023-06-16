@@ -11,6 +11,7 @@ import com.kh.breaktime.review.model.vo.Review;
 
 @Service
 public class BookingServiceImpl implements BookingService{
+
 	
 	@Autowired
 	private BookingDao bookingDao;
@@ -40,5 +41,6 @@ public class BookingServiceImpl implements BookingService{
 	}
 	
 	
+
 
 }

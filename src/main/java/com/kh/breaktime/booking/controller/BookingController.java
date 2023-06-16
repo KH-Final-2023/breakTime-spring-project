@@ -36,6 +36,7 @@ import com.kh.breaktime.room.model.vo.Room;
 @SessionAttributes({ "loginUser" })
 public class BookingController {
 
+
 	private BookingService bookingService;
 	private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
 
@@ -122,3 +123,4 @@ public class BookingController {
 
 
 }
+

@@ -158,6 +158,7 @@
 
 
 
+
 	<!-- 검색 리스트 목록 -->
 	<select id="searchDetailList" resultMap="detailResultSet">
 		SELECT
@@ -178,6 +179,7 @@
 			<when test="condition == 'title'"> AND BU_TITLE LIKE #{keyword} </when>
 		</choose>
 	</select>
+
 
 
    <!-- 검색 리스트 목록 -->
