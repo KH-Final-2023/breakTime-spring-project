@@ -11,26 +11,36 @@ import com.kh.breaktime.review.model.vo.Review;
 
 @Service
 public class BookingServiceImpl implements BookingService{
-   
-   @Autowired
-   private BookingDao bookingDao;
-   
-   
-   @Override
-   public ArrayList<Booking> selectBookingList(int userNo) {
-      return bookingDao.selectBookingList(userNo);
-   }
-   
-   @Override
-   public int insertReview(Review r) {
-      
-      return bookingDao.insertReview(r);
-   }
-   
-   @Override
-   public int insertBooking(Booking b) {
-      
-      return bookingDao.insertBooking(b);
-   }
+
+	
+	@Autowired
+	private BookingDao bookingDao;
+	
+	
+	@Override
+	public ArrayList<Booking> selectBookingList(int userNo) {
+		return bookingDao.selectBookingList(userNo);
+	}
+	
+	@Override
+	public int insertReview(Review r) {
+		
+		return bookingDao.insertReview(r);
+	}
+	
+	@Override
+
+	public int insertBooking(Booking b) {
+		
+		return bookingDao.insertBooking(b);
+	}
+
+
+	public ArrayList<Review> selectReviewList(int userNo) {
+		return bookingDao.selectReviewList(userNo);
+	}
+	
+	
+
 
 }

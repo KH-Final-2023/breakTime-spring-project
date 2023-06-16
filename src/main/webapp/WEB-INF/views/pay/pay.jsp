@@ -475,38 +475,40 @@
     <script>
    
     function paymentsBtn_click() {
-       const clientKey = 'test_ck_aBX7zk2yd8yed6OBR9Q8x9POLqKQ' // 테스트용 클라이언트 키
-       const customerKey = 'lwPDAudM9-GcGY7CP0DO0' // 고객을 식별할 수 있는 키
 
-       // 2. 결제위젯 SDK 초기화
-       const paymentWidget = PaymentWidget(clientKey, customerKey) // 회원 결제
-       // const paymentWidget = PaymentWidget(clientKey, PaymentWidget.ANONYMOUS) // 비회원 결제
-       const urlParams = new URL(location.href).searchParams;
-       
-       
-       let roomNo = urlParams.get('roomNo');
-       let roomName = $('.roomName').html();
-       let roomCheckout = $('.check-out').children('.date').html();
-       let roomCheckin = $('.check-in').children('.date').html();
-       let roomHCount = $('.roomHCount').html();
-       /* console.log(roomNo);
+    	const clientKey = 'test_ck_aBX7zk2yd8yed6OBR9Q8x9POLqKQ' // 테스트용 클라이언트 키
+    	const customerKey = 'lwPDAudM9-GcGY7CP0DO0' // 고객을 식별할 수 있는 키
 
-       console.log(buTitle);
-       console.log(roomName);
-       console.log(roomCheckout);
-       console.log(roomCheckin);
-       console.log(roomHCount); */
-       paymentWidget.renderPaymentMethods('#pay-button', 
-        { value: 1, currency: 'KRW', country: 'KR' }, 
-        { variantKey: 'widgetA' });
-              
-       paymentWidget.requestPayment({
-        orderId: 'AD8aZDpbzXs4EQa-UkIX6',
-        orderName: 'breakTime 예약',
-        successUrl: 'http://localhost:8081/breakTime/booking/insertBooking?roomNo='+roomNo+'&roomName='+roomName+'&roomCheckin='+roomCheckin+'&roomCheckout='+roomCheckout+'&roomHCount='+roomHCount,
-        failUrl: 'http://localhost:8081/fail',
-        customerEmail: 'customer123@gmail.com', 
-        customerName: 'breakTime'
+    	// 2. 결제위젯 SDK 초기화
+    	const paymentWidget = PaymentWidget(clientKey, customerKey) // 회원 결제
+    	// const paymentWidget = PaymentWidget(clientKey, PaymentWidget.ANONYMOUS) // 비회원 결제
+    	const urlParams = new URL(location.href).searchParams;
+    	
+    	
+    	let roomNo = urlParams.get('roomNo');
+    	let roomName = $('.roomName').html();
+    	let roomCheckout = $('.check-out').children('.date').html();
+    	let roomCheckin = $('.check-in').children('.date').html();
+    	let roomHCount = $('.roomHCount').html();
+    	/* console.log(roomNo);
+
+    	console.log(buTitle);
+    	console.log(roomName);
+    	console.log(roomCheckout);
+    	console.log(roomCheckin);
+    	console.log(roomHCount); */
+    	paymentWidget.renderPaymentMethods('#pay-button', 
+		  { value: 1, currency: 'KRW', country: 'KR' }, 
+		  { variantKey: 'widgetA' });
+    		    
+		 paymentWidget.requestPayment({
+		  orderId: 'AD8aZDpbzXs4EQa-UkIX6',
+		  orderName: 'breakTime 예약',
+		  successUrl: 'http://localhost:8081/breaktime/booking/insertBooking?roomNo='+roomNo+'&roomName='+roomName+'&roomCheckin='+roomCheckin+'&roomCheckout='+roomCheckout+'&roomHCount='+roomHCount,
+		  failUrl: 'http://localhost:8081/fail',
+		  customerEmail: 'customer123@gmail.com', 
+		  customerName: 'breakTime'
+
 })
     }
     

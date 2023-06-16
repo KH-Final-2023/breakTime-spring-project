@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.kh.breaktime.admin.model.vo.Notice;
 import com.kh.breaktime.booking.model.service.BookingService;
 import com.kh.breaktime.booking.model.vo.Booking;
@@ -35,83 +36,91 @@ import com.kh.breaktime.room.model.vo.Room;
 @SessionAttributes({ "loginUser" })
 public class BookingController {
 
-   private BookingService bookingService;
-   private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
 
-   @Autowired
-   public void setBookingService(BookingService bookingService) {
-      this.bookingService = bookingService;
-   }
+	private BookingService bookingService;
+	private static final Logger logger = LoggerFactory.getLogger(BookingController.class);
 
-   @GetMapping("/bookingView")
-   public String selectBookingList(Model model, HttpSession session) {
+	@Autowired
+	public void setBookingService(BookingService bookingService) {
+		this.bookingService = bookingService;
+	}
 
-      Member loginUser = (Member) session.getAttribute("loginUser");
-      int userNo = loginUser.getUserNo();
-      ArrayList<Booking> bookingList = bookingService.selectBookingList(userNo);
+	@GetMapping("/bookingView")
+	public String selectBookingList(Model model, HttpSession session) {
 
-      model.addAttribute("bookingList", bookingList);
-      System.out.println(bookingList);
-      System.out.println(userNo);
-      return "booking/memberBooking";
-   }
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		ArrayList<Booking> bookingList = bookingService.selectBookingList(userNo);
 
-   @PostMapping("/reviewInsert")
-   @ResponseBody
-   public String reviewEnroll(@RequestParam("reviewNo") int reviewNo,
-         @RequestParam("reviewContent") String reviewContent, @RequestParam("reviewWriter") int reviewWriter,
-         @RequestParam("starScore") int starScore, @RequestParam("bookNo") String bookNo,
-         @RequestParam("usingRoom") int usingRoom, Model model, RedirectAttributes rttr, HttpSession session) {
-//      bookingService.insertReview(r);
-//      System.out.println("리뷰출력 : "  + r);
-//      model.addAttribute("Review", r);
-//      rttr.addFlashAttribute("insertReivew", r.getReviewNo());
-//      return "redirect:/booking/bookingView";
+		model.addAttribute("bookingList", bookingList);
+		System.out.println(bookingList);
+		System.out.println(userNo);
+		return "booking/memberBooking";
+	}
 
-      Review review = new Review();
-      review.setReviewNo(reviewNo);
-      review.setReviewContent(reviewContent);
-      review.setReviewWriter(reviewWriter);
-      review.setStarScore(starScore);
-      review.setBookNo(bookNo);
-      review.setUsingRoom(usingRoom);
+	@PostMapping("/reviewInsert")
+	@ResponseBody
+	public String reviewEnroll(@RequestParam("reviewNo") int reviewNo,
+			@RequestParam("reviewContent") String reviewContent, @RequestParam("reviewWriter") int reviewWriter,
+			@RequestParam("starScore") int starScore, @RequestParam("bookNo") int bookNo,
+			@RequestParam("usingRoom") int usingRoom, Model model, RedirectAttributes rttr, HttpSession session) {
+//		bookingService.insertReview(r);
+//		System.out.println("리뷰출력 : "  + r);
+//		model.addAttribute("Review", r);
+//		rttr.addFlashAttribute("insertReivew", r.getReviewNo());
+//		return "redirect:/booking/bookingView";
 
-      int temp = bookingService.insertReview(review);
-      String result = String.valueOf(temp);
+		Review review = new Review();
+		review.setReviewNo(reviewNo);
+		review.setReviewContent(reviewContent);
+		review.setReviewWriter(reviewWriter);
+		review.setStarScore(starScore);
+		review.setBookNo(bookNo);
+		review.setUsingRoom(usingRoom);
 
-      model.addAttribute("insertReview", review);
-      return result;
-   }
+		int temp = bookingService.insertReview(review);
+		String result = String.valueOf(temp);
 
-   
-    @GetMapping("/insertBooking")
-    @ResponseBody 
-    public String insertBooking(
-    @RequestParam("bookNo") int bookNo,
-    @RequestParam("roomNo") int roomNo,
-    @RequestParam("roomHCount") int roomHCount,
-    @RequestParam("reservationNo") String reservationNo,
-    @RequestParam("roomName") String roomName,
-    @RequestParam("roomCheckin") String roomCheckin,
-    @RequestParam("roomCheckout") String roomCheckout, Model model, HttpSession
-    session ) {
-       
-    int userNo = ((Member) session.getAttribute("loginUser")).getUserNo();
-    Booking booking = new Booking(); 
-    booking.setUserNo(userNo);
-    booking.setBookNo(bookNo);
-    booking.setRoomHCount(roomHCount); 
-    booking.setReservationNo(reservationNo);
-    booking.setRoomName(roomName); 
-    booking.setRoomCheckin(roomCheckin);
-    booking.setRoomCheckout(roomCheckout);
-    System.out.println(booking.getRoomCheckin());
-    
-    int temp = bookingService.insertBooking(booking);
-      String result = String.valueOf(temp);
+		model.addAttribute("insertReview", review);
+		return result;
+	}
+	
+	 @GetMapping("/insertBooking")
+	 public String insertBooking(
+	 @RequestParam("roomNo") int roomNo,
+	 @RequestParam("roomHCount") int roomHCount,
+	 @RequestParam("roomName") String roomName,
+	 @RequestParam("roomCheckin") String roomCheckin,
+	 @RequestParam("roomCheckout") String roomCheckout, Model model, HttpSession
+	 session ) {
+		 
+	 int userNo = ((Member) session.getAttribute("loginUser")).getUserNo();
+	 Booking booking = new Booking(); 
+	 booking.setUserNo(userNo);
+	 booking.setRoomNo(roomNo);
+	 booking.setRoomHCount(roomHCount); 
+	 booking.setRoomName(roomName); 
+	 booking.setRoomCheckin(roomCheckin);
+	 booking.setRoomCheckout(roomCheckout);
+	 System.out.println(booking.getRoomCheckin());
+	 
+	 bookingService.insertBooking(booking);
+		
+		model.addAttribute("insertBooking", booking);
+		return "redirect:/";
+	
+	 }
+	 
 
-      model.addAttribute("insertBooking", booking);
-      return "/main";
-   
-    }
+	@ResponseBody
+	@GetMapping("/getReviewList")
+	public String getReviewList(HttpSession session) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		ArrayList<Review> reviewList = bookingService.selectReviewList(userNo);
+		return new Gson().toJson(reviewList);
+	}
+
+
 }
+
