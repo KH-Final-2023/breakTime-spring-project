@@ -43,7 +43,7 @@
 	            data: formData,
 	            success: function(result) {
 	                if (result == "1") {
-	                	alertify.alert("서비스 요청 성공", "리뷰 등록 성공", function(){
+	                	alert("리뷰 등록 성공", function(){
 	                    	closeBtn.click();
 	                    }	);
 		                $(reviewContents).val(""); 
