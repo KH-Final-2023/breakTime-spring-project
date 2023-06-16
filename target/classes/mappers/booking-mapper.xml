@@ -23,6 +23,22 @@
 		<result column="ROOM_INFO" property="roomInfo" />
 	</resultMap>
 	
+	<!-- 리뷰 목록용 resultMap -->
+	<resultMap type="review" id="reviewResultSet">
+		<result column="REVIEW_NO" property="reviewNo" />
+		<result column="REVIEW_WRITER" property="reviewWriter" />
+		<result column="USING_ROOM" property="usingRoom" />
+		<result column="BOOK_NO" property="bookNo" />
+		<result column="STAR_SCORE" property="starScore" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
+		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
+		<result column="REVIEW_CONTENT_REPLY" property="reviewContentReply" />
+		<result column="USER_NAME" property="userName" />
+		<result column="ROOM_NAME" property="roomName" />
+	</resultMap>
+	
 	<select id="selectBookingList" resultMap="bookingResultSet">
 		SELECT  B.BOOK_NO,
 				B.USER_NO,
@@ -110,5 +126,14 @@
 		JOIN BUSINESS B ON B.BU_NO = R.BU_NO
 	</select>
 	
+	<select id="selectReviewList" resultMap="reviewResultSet">
+		SELECT 
+		REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
+		USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY
+		FROM REVIEW R
+		JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER
+		JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM
+		WHERE REVIEW_DECLARIATION = 'N'
+	</select>
 
 </mapper>

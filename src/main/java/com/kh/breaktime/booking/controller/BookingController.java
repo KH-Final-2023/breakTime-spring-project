@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
 import com.kh.breaktime.admin.model.vo.Notice;
 import com.kh.breaktime.booking.model.service.BookingService;
 import com.kh.breaktime.booking.model.vo.Booking;
@@ -82,7 +83,6 @@ public class BookingController {
 		model.addAttribute("insertReview", review);
 		return result;
 	}
-
 	
 	 @GetMapping("/insertBooking")
 	 public String insertBooking(
@@ -110,5 +110,15 @@ public class BookingController {
 	
 	 }
 	 
+
+	@ResponseBody
+	@GetMapping("/getReviewList")
+	public String getReviewList(HttpSession session) {
+		Member loginUser = (Member) session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
+		ArrayList<Review> reviewList = bookingService.selectReviewList(userNo);
+		return new Gson().toJson(reviewList);
+	}
+
 
 }
