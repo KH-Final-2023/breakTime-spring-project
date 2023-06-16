@@ -61,7 +61,7 @@ public class BookingController {
 	@ResponseBody
 	public String reviewEnroll(@RequestParam("reviewNo") int reviewNo,
 			@RequestParam("reviewContent") String reviewContent, @RequestParam("reviewWriter") int reviewWriter,
-			@RequestParam("starScore") int starScore, @RequestParam("bookNo") String bookNo,
+			@RequestParam("starScore") int starScore, @RequestParam("bookNo") int bookNo,
 			@RequestParam("usingRoom") int usingRoom, Model model, RedirectAttributes rttr, HttpSession session) {
 //		bookingService.insertReview(r);
 //		System.out.println("리뷰출력 : "  + r);
