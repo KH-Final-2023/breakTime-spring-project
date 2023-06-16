@@ -178,8 +178,6 @@ $(document).ready(
                      }, 300);
                   });
                });
-         
-
 
          $(".close-btn").click(function(e) {
             e.preventDefault();
