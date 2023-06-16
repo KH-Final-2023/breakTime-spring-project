@@ -9,6 +9,10 @@ public interface BookingService {
 	
 	ArrayList<Booking> selectBookingList(int userNo);
 	
+	ArrayList<Review> selectReviewList(int userNo);
+	
 	public int insertReview(Review r);
+	
+	public int insertBooking(Booking b);
 	
 }
