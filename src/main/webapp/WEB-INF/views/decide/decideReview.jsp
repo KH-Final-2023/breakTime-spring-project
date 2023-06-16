@@ -20,7 +20,7 @@ $('.rating-score').css('font-size', '35px').css('font-weight', 'bold');
 
 $('.review-star i').removeClass('fa-star').addClass('fa-star').css('color', 'rgba(255, 204, 0, 0.852)');
 
-let userStarScore = ${m.userStarScore}; // JSP에서 전달한 데이터를 JavaScript 변수에 할당
+let userStarScore = "${m.userStarScore}"; // JSP에서 전달한 데이터를 JavaScript 변수에 할당
 
 for (let i = 0; i < userStarScore.length; i++) {
     let starScore1 = userStarScore[i];
@@ -34,33 +34,25 @@ for (let i = 0; i < userStarScore.length; i++) {
         starHTML1 += '<i class="fas fa-star-half-alt"></i>';
     }
     $('.star').eq(i).html(starHTML1); // 별점을 표시할 요소에 HTML 삽입
-}
+	}
 
-let starScore1 = userStarScore[i];
-let intPart1 = Math.floor(starScore1);
-let decimalPart1 = starScore1 - intPart1;
-let starHTML1 = '';
 
 // 별점을 업데이트하는 함수
 function updateStars1(starScore1) {
-	let intPart1 = Math.floor(starScore1);
-	let decimalPart1 = starScore1 - intPart1;
-	let starHTML1 = '';
-	for (let i = 0; i < intPart1; i++) {
-		starHTML1 += '<i class="fas fa-star"></i>';
+    let intPart1 = Math.floor(starScore1);
+    let decimalPart1 = starScore1 - intPart1;
+    let starHTML1 = '';
+    for (let i = 0; i < intPart1; i++) {
+        starHTML1 += '<i class="fas fa-star"></i>';
+    }
+    if (decimalPart1 >= 0.5) {
+        starHTML1 += '<i class="fas fa-star-half-alt"></i>';
+    }
+    $('.star').html(starHTML1);
 	}
-	if (decimalPart1 >= 0.5) {
-		starHTML1 += '<i class="fas fa-star-half-alt"></i>';
-	}
-	$('.star').html(starHTML1);
-}
+});
 
-// 별점이 존재하면 업데이트
-if (starScore1 != null) {
-	updateStars1(starScore1);
-} 
-
-// 첫 로딩시 최근 작성순에 체크 아이콘 추가
+//첫 로딩시 최근 작성순에 체크 아이콘 추가
 $('.modal-list-item-text').each(function () {
     if ($(this).text() === '최근 작성순') {
         $(this).parent('.modal-list-item').addClass('checked');
@@ -140,7 +132,7 @@ $('.modal-list-item-text').on('click', function () {
     closeModal();
 });
 
-function openModal1() {
+function openModal() {
     $('.modal').addClass('active');
     $('.modal-overlay').addClass('active');
     $('body').css('overflow', 'hidden');
@@ -173,14 +165,12 @@ $('.modal-overlay').on('animationend', function () {
 /* X 버튼 클릭 이벤트 */
 $(document).on('click', '.modal-close', function () {
     closeModal();
-	});
 });
 </script>
 </head>
 
 
 <body>    
-
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">
