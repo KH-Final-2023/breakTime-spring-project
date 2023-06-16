@@ -21,6 +21,22 @@
   justify-content: center;
   align-items: center;
   }
+#badge-numberCount{
+	 display: none;  
+  position: absolute;
+  top: -2px;
+  right: -5px;
+  height: 23px;
+  width: 23px;
+  background-color:#5f5fd4;
+  font-size: 10px;
+  list-style: none;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 
 <head>
@@ -124,27 +140,27 @@
 </a><!-- End Notification Icon -->
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<% if(loginUser != null) { %>
-  <span id="bi-bellCount"></span>
-  <script>
-    function businessCount() {
-      $.ajax({
-        url: "<%= request.getContextPath() %>/notice/businessCount",
-        success: function(result) {
-          if (result >= 0) { // 결과가 0 이상일 때만 처리
-            var count = parseInt(result); // 결과를 정수로 변환
-            $('#bi-bellCount').text("+" + count).css('display', 'flex');
-          } else {
-            $('#bi-bellCount').text('').css('display', 'none');
-          }
-        }
-      });
-    }
-
-    setInterval(businessCount, 60000);
-    businessCount();
-  </script>
-<% } %>
+		<% if(loginUser != null) { %>
+		  <span id="bi-bellCount"></span>
+		  <script>
+		    function businessCount() {
+		      $.ajax({
+		        url: "<%= request.getContextPath() %>/notice/businessCount",
+		        success: function(result) {
+		          if (result >= 0) { // 결과가 0 이상일 때만 처리
+		            var count = parseInt(result); // 결과를 정수로 변환
+		            $('#bi-bellCount').text("+" + count).css('display', 'flex');
+		          } else {
+		            $('#bi-bellCount').text('').css('display', 'none');
+		          }
+		        }
+		      });
+		    }
+		
+		    setInterval(businessCount, 60000);
+		    businessCount();
+		  </script>
+		<% } %>
 
 			
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
@@ -219,9 +235,30 @@
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
+            <span id="badge-numberCount"></span>
           </a><!-- End Messages Icon -->
+			<% if(loginUser != null) { %>          
+		<span id="badge-numberCount"></span>
+		  <script>
+		    function reviewCount() {
+		      $.ajax({
+		        url: "<%= request.getContextPath() %>/notice/reviewCount",
+		        success: function(result) {
+		          if (result >= 0) { // 결과가 0 이상일 때만 처리
+		            var count = parseInt(result); // 결과를 정수로 변환
+		            $('#badge-numberCount').text("+" + count).css('display', 'flex');
+		          } else {
+		            $('#badge-numberCount').text('').css('display', 'none');
+		          }
+		        }
+		      });
+		    }
 
+    setInterval(reviewCount, 60000);
+    reviewCount();
+  </script>
+<% } %>
+			
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
               You have 3 new messages

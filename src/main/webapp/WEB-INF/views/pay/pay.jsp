@@ -257,10 +257,11 @@
             <c:forEach items="${entry.value}" var="room">
             <div class="item-list">
                 <div class="company-title">
-                    <h2>${room.buTitle }</h2>
+                    <h2 class="buTitle">${room.buTitle }</h2>
                 </div>
                 <div class="room-info">
-                    <p>${room.roomName}</p>
+                    <p class="roomName">${room.roomName}</p>
+                    <p class="roomHCount">${room.roomHCount }</p>
                 </div>
                 <div class="check-in-out">
                     <div class="check-in">
@@ -282,14 +283,14 @@
         </div>
     </div>
 
-	    <div class="reservation-info">
-	        <h3 style="margin-bottom: 15px;">예약자 정보</h3>
-	        <div class="form-group">
-	            <label for="customer-name">성명</label>
-	            <span id="customer-name"><%= loginUser.getUserName()%></span>
-	        </div>
-	    </div>
-	    
+       <div class="reservation-info">
+           <h3 style="margin-bottom: 15px;">예약자 정보</h3>
+           <div class="form-group">
+               <label for="customer-name">성명</label>
+               <span id="customer-name"><%= loginUser.getUserName()%></span>
+           </div>
+       </div>
+       
      <div class="payment-amount-section" style="max-width: 768px; margin: 10px auto; background-color: #fff; padding: 20px;">
 
         <h3 style="margin-bottom: 15px;">결제 금액</h3>
@@ -297,15 +298,15 @@
             <span style="font-size: 14px;">상품금액</span>
             <span class="total-payment-amount" id="product-amount" style="font-size: 18px; font-weight: bold;"></span>
         </div>
-		
+      
         <div class="dotted-line"></div>
 
         <div class="payment-details">
-		    <span style="font-size: 14px;"><h3>총 결제 금액</h3></span>
-		    <span class="total-payment-amount" id="total-payment-amount"></span>
-		</div>
+          <span style="font-size: 14px;"><h3>총 결제 금액</h3></span>
+          <span class="total-payment-amount" id="total-payment-amount"></span>
+      </div>
     </div>
-	
+   
     <div class="pay-section">
         <div class="on-site-payment-section">
             <div class="on-site-payment-header">
@@ -360,10 +361,10 @@
                 <label for="accept-info-third-party">[필수] 개인정보 제 3자 제공</label>
             </div>
         </div>
-	  <button class="pay-button" id="pay-button">
-	  	<span class="total-payment-amount" id="payment-amount-on-button"></span>
-	  	결제하기
-	  </button>
+     <button class="pay-button" id="pay-button" onclick="paymentsBtn_click()">
+        <span class="total-payment-amount" id="payment-amount-on-button"></span>
+        결제하기
+     </button>
     </div>
 <script>
        // 체크박스 상태에 따라 버튼 배경색 변경
@@ -438,10 +439,10 @@
         var productAmountElement = document.getElementById('product-amount');
         
         <c:forEach items="${map}" var="entry">
-        	<c:forEach items="${entry.value}" var="room">
-        	totalProductAmount += parseInt("${room.roomPrice.replaceAll(',', '')}");
-        	</c:forEach>
-    	</c:forEach>
+           <c:forEach items="${entry.value}" var="room">
+           totalProductAmount += parseInt("${room.roomPrice.replaceAll(',', '')}");
+           </c:forEach>
+       </c:forEach>
         
         // 총 결제 금액
         var totalPaymentAmount = 0;
@@ -465,40 +466,51 @@
         paymentAmountOnButton.style.color = 'white';
     </script>
     
-<!--     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	<script>
-	function requestPay() {
-	  IMP.init('imp49486608'); 
-	  IMP.request_pay({
-	    pg: "inicis",
-	    pay_method: "card",
-	    merchant_uid : 'merchant_'+new Date().getTime(),
-	    name : 'BreakTime 예약',
-	    /* amount : ${booking.price}, */
-	    amount : 100,
-	    buyer_email : '${email}',
-	    buyer_name : '${member.userName}',
-	    buyer_tel : '${member.tel}',
-	    buyer_postcode : '123-456',
-	  }, function (rsp) { // callback
-	      if (rsp.success) {
-	    	  $.ajax({
-		        	type : "POST",
-		        	url : "${pageContext.request.contextPath}/",
-		        	contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-		        	header:{"Content-Type":"application/json"},
-		    		dateType:'json',
-		    		data:{bo_num:rsp.imp_uid, payment:rsp.pay_method},
-		        }).done(function(data){
-		        	location.href='${pageContext.request.contextPath}/'+data
-		        })
-	      } else {
-	     	alert('결제 실패')
-	      }
-	  });
-	}
-	</script> -->
+  
+    
+    
+    
+ <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+    
+    <script>
+   
+    function paymentsBtn_click() {
+       const clientKey = 'test_ck_aBX7zk2yd8yed6OBR9Q8x9POLqKQ' // 테스트용 클라이언트 키
+       const customerKey = 'lwPDAudM9-GcGY7CP0DO0' // 고객을 식별할 수 있는 키
 
+       // 2. 결제위젯 SDK 초기화
+       const paymentWidget = PaymentWidget(clientKey, customerKey) // 회원 결제
+       // const paymentWidget = PaymentWidget(clientKey, PaymentWidget.ANONYMOUS) // 비회원 결제
+       const urlParams = new URL(location.href).searchParams;
+       
+       
+       let roomNo = urlParams.get('roomNo');
+       let roomName = $('.roomName').html();
+       let roomCheckout = $('.check-out').children('.date').html();
+       let roomCheckin = $('.check-in').children('.date').html();
+       let roomHCount = $('.roomHCount').html();
+       /* console.log(roomNo);
+
+       console.log(buTitle);
+       console.log(roomName);
+       console.log(roomCheckout);
+       console.log(roomCheckin);
+       console.log(roomHCount); */
+       paymentWidget.renderPaymentMethods('#pay-button', 
+        { value: 1, currency: 'KRW', country: 'KR' }, 
+        { variantKey: 'widgetA' });
+              
+       paymentWidget.requestPayment({
+        orderId: 'AD8aZDpbzXs4EQa-UkIX6',
+        orderName: 'breakTime 예약',
+        successUrl: 'http://localhost:8081/breakTime/booking/insertBooking?roomNo='+roomNo+'&roomName='+roomName+'&roomCheckin='+roomCheckin+'&roomCheckout='+roomCheckout+'&roomHCount='+roomHCount,
+        failUrl: 'http://localhost:8081/fail',
+        customerEmail: 'customer123@gmail.com', 
+        customerName: 'breakTime'
+})
+    }
+    
+</script>
 
 </body>
 

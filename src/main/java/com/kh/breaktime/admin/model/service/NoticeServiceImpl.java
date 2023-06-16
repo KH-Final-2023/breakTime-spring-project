@@ -102,4 +102,10 @@ public class NoticeServiceImpl implements NoticeService{
 	  public int getBusinessCount() {
 	    return noticeDao.getBusinessCount();
 	  }
+	  
+
+	  @Override
+	  public int getReviewCount() {
+	    return noticeDao.getReviewCount();
+	  }
 }
