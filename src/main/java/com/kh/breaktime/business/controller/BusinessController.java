@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -207,7 +208,23 @@ public class BusinessController {
       // 로그인한 사업자의 ID를 세션에서 가져옴
       Booking booking = new Booking();
       booking.setBookNo(bookNo);
-      
-      return "businessRoom/buReservation";
+
+      List<Booking> result = businessService.updateReservation(bookNo);
+      return "redirect:/business/reservation";
+
    }
+   
+   
+   @PostMapping("/findBuId")
+   @ResponseBody // 응답을 반환하기 위해 @ResponseBody 어노테이션 사용
+	public String findBuIdByEmail(@RequestParam("buTel") String buTel) {
+	    String buId = businessService.findBuIdByEmail(buTel);
+	    System.out.println("찾은 아이디 : " + buId);
+	    
+	    if (buId != null && !buId.isEmpty()) {
+	        return buId; // 아이디가 존재하는 경우 응답으로 아이디 반환
+	    } else {
+	        return ""; // 아이디가 존재하지 않는 경우 응답으로 빈 문자열 반환
+	    }
+	}
 }

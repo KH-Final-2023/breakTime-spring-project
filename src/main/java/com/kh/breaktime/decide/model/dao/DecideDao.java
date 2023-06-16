@@ -100,19 +100,19 @@ public class DecideDao {
       return sqlSession.delete("decideMapper.deleteCartList", decide);
    }
 	
-   //찜
+   // 찜
    public int insertLIkeValue(Decide decide) {
 
 	   return sqlSession.insert("decideMapper.insertLIkeValue", decide);
    }
    
-   //찜 취소
+   // 찜 취소
    public int deleteLikeValue(Decide decide) {
 
 	   return sqlSession.delete("decideMapper.deleteLIkeValue", decide);
    }
 
-   //찜 유무 확인
+   // 찜 유무 확인
    public int selectLikeValue(Decide decide) {
 	
 	   return sqlSession.selectOne("decideMapper.selectLikeValue", decide);

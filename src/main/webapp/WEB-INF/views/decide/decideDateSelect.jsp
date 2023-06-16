@@ -219,6 +219,7 @@ function selectDate(event) {
         var night = calculateStayDuration(startDate, lastDate);
 
         document.getElementById('searchBtn').innerHTML = startDate + "(" + startDayOfWeek + ") ~ "+ lastDate + "(" + lastDayOfWeek + ") · " + night + "박";
+        
     }
 }
 

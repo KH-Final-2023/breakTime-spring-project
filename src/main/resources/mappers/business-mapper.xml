@@ -3,199 +3,210 @@
 <mapper namespace="businessMapper">
 
 
-   <resultMap type="business" id="businessResultSet">
-      <id column="BU_NO" property="buNo" />
-      <result column="BU_ID" property="buId" />
-      <result column="BU_PWD" property="buPwd" />
-      <result column="BU_USER_NAME" property="buUserName" />
-      <result column="AREA_NO" property="areaNo" />
-      <result column="BU_CATEGORY" property="buCategory" />
-      <result column="EMAIL" property="email" />
-      <result column="BU_TEL" property="buTel" />
-      <result column="BU_ADDRESS" property="buAddress" />
-      <result column="ROOM_COUNT" property="roomCount" />
-      <result column="BU_TITLE" property="buTitle" />
-      <result column="ENROLL_DATE" property="enrollDate" />
-      <result column="APPROVAL" property="approval" />
-      <result column="BU_MAIN_IMG" property="buMainImg" />
-   </resultMap>
+	<resultMap type="business" id="businessResultSet">
+		<id column="BU_NO" property="buNo" />
+		<result column="BU_ID" property="buId" />
+		<result column="BU_PWD" property="buPwd" />
+		<result column="BU_USER_NAME" property="buUserName" />
+		<result column="AREA_NO" property="areaNo" />
+		<result column="BU_CATEGORY" property="buCategory" />
+		<result column="EMAIL" property="email" />
+		<result column="BU_TEL" property="buTel" />
+		<result column="BU_ADDRESS" property="buAddress" />
+		<result column="ROOM_COUNT" property="roomCount" />
+		<result column="BU_TITLE" property="buTitle" />
+		<result column="ENROLL_DATE" property="enrollDate" />
+		<result column="APPROVAL" property="approval" />
+		<result column="BU_MAIN_IMG" property="buMainImg" />
+	</resultMap>
 
-   <resultMap type="room" id="roomResultMap">
-      <id column="ROOM_NO" property="roomNo" />
-      <result column="BU_NO" property="buNo" />
-      <result column="ROOM_NAME" property="roomName" />
-      <result column="ROOM_PRICE" property="roomPrice" />
-       <result column="ROOM_CHECKIN" property="roomCheckin" />
-        <result column="ROOM_CHECKOUT" property="roomCheckout" />
-      <result column="ROOM_INFO" property="roomInfo" />
-      <result column="ROOM_H_COUNT" property="roomHCount" />
-   </resultMap>
+	<resultMap type="room" id="roomResultMap">
+		<id column="ROOM_NO" property="roomNo" />
+		<result column="BU_NO" property="buNo" />
+		<result column="ROOM_NAME" property="roomName" />
+		<result column="ROOM_PRICE" property="roomPrice" />
+		<result column="ROOM_CHECKIN" property="roomCheckin" />
+		<result column="ROOM_CHECKOUT" property="roomCheckout" />
+		<result column="ROOM_INFO" property="roomInfo" />
+		<result column="ROOM_H_COUNT" property="roomHCount" />
+	</resultMap>
 
-   <resultMap type="roomImg" id="roomImgResultMap">
-      <id column="FILE_NO" property="fileNo" />
-      <result column="ORIGIN_NAME" property="originName" />
-      <result column="SAVE_NAME" property="saveName" />
-      <result column="FILE_PATH" property="filePath" />
-      <result column="FILE_LEVEL" property="fileLevel" />
-      <result column="STATUS" property="status" />
-   </resultMap>
+	<resultMap type="roomImg" id="roomImgResultMap">
+		<id column="FILE_NO" property="fileNo" />
+		<result column="ORIGIN_NAME" property="originName" />
+		<result column="SAVE_NAME" property="saveName" />
+		<result column="FILE_PATH" property="filePath" />
+		<result column="FILE_LEVEL" property="fileLevel" />
+		<result column="STATUS" property="status" />
+	</resultMap>
 
-   <resultMap id="bookingResultMap" type="booking">
-      <result property="bookNo" column="BOOK_NO" />
-      <result property="userNo" column="USER_NO" />
-      <result property="roomNo" column="ROOM_NO" />
-      <result property="roomHCount" column="ROOM_H_COUNT" />
-      <result property="reservationNo" column="RESERVATION_NO" />
-      <result property="roomName" column="ROOM_NAME" />
-      <result property="roomCheckin" column="ROOM_CHECKIN" />
-      <result property="roomCheckout" column="ROOM_CHECKOUT" />
-      <result property="status" column="STATUS" />
-   </resultMap>
+	<resultMap id="bookingResultMap" type="booking">
+		<result property="bookNo" column="BOOK_NO" />
+		<result property="userNo" column="USER_NO" />
+		<result property="roomNo" column="ROOM_NO" />
+		<result property="roomHCount" column="ROOM_H_COUNT" />
+		<result property="reservationNo" column="RESERVATION_NO" />
+		<result property="roomName" column="ROOM_NAME" />
+		<result property="roomCheckin" column="ROOM_CHECKIN" />
+		<result property="roomCheckout" column="ROOM_CHECKOUT" />
+		<result property="status" column="STATUS" />
+	</resultMap>
 
-   <resultMap id="reviewMap" type="review">
-      <result column="REVIEW_NO" property="reviewNo" />
-      <result column="REVIEW_WRITER" property="reviewWriter" />
-      <result column="USING_ROOM" property="usingRoom" />
-      <result column="BOOK_NO" property="bookNo" />
-      <result column="STAR_SCORE" property="starScore" />
-      <result column="REVIEW_CONTENT" property="reviewContent" />
-      <result column="REVIEW_AVAILABLE" property="reviewAvailable" />
-      <result column="CREATE_DATE" property="createDate" />
-      <result column="REVIEW_DECLARIATION"
-         property="reviewDeclariation" />
-      <result column="REVIEW_CONTENT_REPLY"
-         property="reviewContentReply" />
-      <result column="USER_NAME" property="userName" />
-      <result column="ROOM_NAME" property="roomName" />
-   </resultMap>
-
-
-   <!-- 로그인사업자 정보 SELECT(석범) -->
-   <select id="loginBusiness" parameterType="business"
-      resultMap="businessResultSet">
-      SELECT *
-      FROM BUSINESS
-      WHERE BU_ID= #{buId}
-      <!-- AND USER_PWD = #{userPwd} -->
-      AND APPROVAL = 'Y'
-   </select>
-
-   <!-- 사업자 회원가입 INSERT(석범) -->
-   <insert id="insertBusiness" parameterType="business">
-      INSERT INTO
-      BUSINESS(BU_NO
-      , BU_ID
-      , BU_PWD
-      , BU_USER_NAME
-      , BU_CATEGORY
-      , BU_TITLE
-      ,
-      BU_ADDRESS
-      , EMAIL
-      , AREA_NO
-      , ROOM_COUNT
-      , BU_TEL
-      , BU_MAIN_IMG
-      , APPROVAL
-      )
-      VALUES(SEQ_BUNO.NEXTVAL
-      , #{buId}
-      , #{buPwd}
-      , #{buUserName}
-      ,
-      #{buCategory}
-      , #{buTitle}
-      , #{buAddress}
-      , #{email}
-      , #{areaNo}
-      ,
-      #{roomCount}
-      , #{buTel}
-      , #{buMainImg}
-      , 'N'
-      )
-   </insert>
+	<resultMap id="reviewMap" type="review">
+		<result column="REVIEW_NO" property="reviewNo" />
+		<result column="REVIEW_WRITER" property="reviewWriter" />
+		<result column="USING_ROOM" property="usingRoom" />
+		<result column="BOOK_NO" property="bookNo" />
+		<result column="STAR_SCORE" property="starScore" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
+		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_DECLARIATION"
+			property="reviewDeclariation" />
+		<result column="REVIEW_CONTENT_REPLY"
+			property="reviewContentReply" />
+		<result column="USER_NAME" property="userName" />
+		<result column="ROOM_NAME" property="roomName" />
+	</resultMap>
 
 
+	<!-- 로그인사업자 정보 SELECT(석범) -->
+	<select id="loginBusiness" parameterType="business"
+		resultMap="businessResultSet">
+		SELECT *
+		FROM BUSINESS
+		WHERE BU_ID= #{buId}
+		<!-- AND USER_PWD = #{userPwd} -->
+		AND APPROVAL = 'Y'
+	</select>
 
-   <!-- 사업자의 방 목록 SELECT (준석) -->
-   <select id="getRoomsByBuId" resultMap="roomResultMap">
-      SELECT *
-      FROM ROOM
-      WHERE
-      BU_NO = #{buNo}
-   </select>
+	<!-- 사업자 회원가입 INSERT(석범) -->
+	<insert id="insertBusiness" parameterType="business">
+		INSERT INTO
+		BUSINESS(BU_NO
+		, BU_ID
+		, BU_PWD
+		, BU_USER_NAME
+		, BU_CATEGORY
+		, BU_TITLE
+		,
+		BU_ADDRESS
+		, EMAIL
+		, AREA_NO
+		, ROOM_COUNT
+		, BU_TEL
+		, BU_MAIN_IMG
+		, APPROVAL
+		)
+		VALUES(SEQ_BUNO.NEXTVAL
+		, #{buId}
+		, #{buPwd}
+		, #{buUserName}
+		,
+		#{buCategory}
+		, #{buTitle}
+		, #{buAddress}
+		, #{email}
+		, #{areaNo}
+		,
+		#{roomCount}
+		, #{buTel}
+		, #{buMainImg}
+		, 'N'
+		)
+	</insert>
 
-   <!-- 사업자의 방 이미지 목록 SELECT (준석) -->
-   <!-- 방 이미지 조회 -->
-   <select id="getRoomImagesByBuId" parameterType="_int"
-      resultMap="roomImgResultMap">
-      SELECT *
-      FROM ROOM_IMG
-      WHERE ROOM_NO = #{roomNo}
-   </select>
 
-   <select id="selectBookingsByBusinessId"
-      resultMap="bookingResultMap">
-      SELECT *
-      FROM BOOKING
-      WHERE ROOM_NO IN (
-      SELECT ROOM_NO
-      FROM
-      ROOM
-      WHERE BU_NO = #{buNo}
-      )
-   </select>
 
-   <select id="getReviewsForBusiness" resultMap="reviewMap">
-      <!-- SELECT REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
-         USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY, BOOK_NO FROM 
-         REVIEW R INNER JOIN BOOKING B ON R.BOOK_NO = B.BOOK_NO INNER JOIN ROOM RO 
-         ON B.ROOM_NO = RO.ROOM_NO INNER JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM 
-         INNER JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER WHERE R.REVIEW_AVAILABLE 
-         = 'Y' AND RO.BU_NO = #{buNo} -->
-      SELECT
-      R.REVIEW_NO,
-      R.REVIEW_WRITER,
-      R.USING_ROOM,
-      R.USER_NO,
-      R.ROOM_NO,
-      R.BOOK_NO,
-      R.STAR_SCORE,
-      R.REVIEW_CONTENT,
-      R.REVIEW_AVAILABLE,
-      R.CREATE_DATE,
-      R.REVIEW_DECLARIATION,
-      R.REVIEW_CONTENT_REPLY,
-      U.USER_NAME,
-      M.ROOM_NAME
-      FROM
-      REVIEW R
-      INNER JOIN BOOKING B ON R.BOOK_NO =
-      B.BOOK_NO
-      INNER JOIN ROOM RO ON B.ROOM_NO = RO.ROOM_NO
-      INNER JOIN MEMBER
-      U ON R.REVIEW_WRITER = U.USER_NO
-      INNER JOIN ROOM M ON R.USING_ROOM =
-      M.ROOM_NO
-      WHERE
-      R.REVIEW_AVAILABLE = 'Y'
-      AND RO.BU_NO = #{buNo}
-   </select>
+	<!-- 사업자의 방 목록 SELECT (준석) -->
+	<select id="getRoomsByBuId" resultMap="roomResultMap">
+		SELECT *
+		FROM ROOM
+		WHERE
+		BU_NO = #{buNo}
+	</select>
 
-   <update id="updateReviewContentReply" parameterType="review">
-      <!-- INSERT INTO REVIEW(REVIEW_NO, REVIEW_CONTENT_REPLY, REVIEW_CONTENT, 
-         CREATE_DATE) VALUES(#{reviewNo}, #{reviewContentReply}, '123', SYSDATE) -->
-      UPDATE REVIEW
-      SET REVIEW_CONTENT_REPLY = #{reviewContentReply}
-      WHERE REVIEW_NO = #{reviewNo}
+	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
+	<!-- 방 이미지 조회 -->
+	<select id="getRoomImagesByBuId" parameterType="_int"
+		resultMap="roomImgResultMap">
+		SELECT *
+		FROM ROOM_IMG
+		WHERE ROOM_NO = #{roomNo}
+	</select>
 
-   </update>
-   
-   <update id="updateReviewDeclaration" parameterType="review">
-        UPDATE REVIEW
-        SET REVIEW_DECLARIATION = 'Y'
-        WHERE REVIEW_NO = #{reviewNo}
-    </update>
-    
+	<select id="selectBookingsByBusinessId"
+		resultMap="bookingResultMap">
+		SELECT *
+		FROM BOOKING
+		WHERE ROOM_NO IN (
+		SELECT ROOM_NO
+		FROM
+		ROOM
+		WHERE BU_NO = #{buNo}
+		)
+	</select>
+
+	<select id="getReviewsForBusiness" resultMap="reviewMap">
+		<!-- SELECT REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
+			USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY, BOOK_NO FROM 
+			REVIEW R INNER JOIN BOOKING B ON R.BOOK_NO = B.BOOK_NO INNER JOIN ROOM RO 
+			ON B.ROOM_NO = RO.ROOM_NO INNER JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM 
+			INNER JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER WHERE R.REVIEW_AVAILABLE 
+			= 'Y' AND RO.BU_NO = #{buNo} -->
+		SELECT
+		R.REVIEW_NO,
+		R.REVIEW_WRITER,
+		R.USING_ROOM,
+		R.USER_NO,
+		R.ROOM_NO,
+		R.BOOK_NO,
+		R.STAR_SCORE,
+		R.REVIEW_CONTENT,
+		R.REVIEW_AVAILABLE,
+		R.CREATE_DATE,
+		R.REVIEW_DECLARIATION,
+		R.REVIEW_CONTENT_REPLY,
+		U.USER_NAME,
+		M.ROOM_NAME
+		FROM
+		REVIEW R
+		INNER JOIN BOOKING B ON R.BOOK_NO =
+		B.BOOK_NO
+		INNER JOIN ROOM RO ON B.ROOM_NO = RO.ROOM_NO
+		INNER JOIN MEMBER
+		U ON R.REVIEW_WRITER = U.USER_NO
+		INNER JOIN ROOM M ON R.USING_ROOM =
+		M.ROOM_NO
+		WHERE
+		R.REVIEW_AVAILABLE = 'Y'
+		AND RO.BU_NO = #{buNo}
+	</select>
+
+	<update id="updateReviewContentReply" parameterType="review">
+		<!-- INSERT INTO REVIEW(REVIEW_NO, REVIEW_CONTENT_REPLY, REVIEW_CONTENT, 
+			CREATE_DATE) VALUES(#{reviewNo}, #{reviewContentReply}, '123', SYSDATE) -->
+		UPDATE REVIEW
+		SET REVIEW_CONTENT_REPLY = #{reviewContentReply}
+		WHERE REVIEW_NO = #{reviewNo}
+
+	</update>
+
+	<update id="updateReviewDeclaration" parameterType="review">
+		UPDATE REVIEW
+		SET REVIEW_DECLARIATION = 'Y'
+		WHERE REVIEW_NO = #{reviewNo}
+	</update>
+	<update id="updateReservation" parameterType="booking">
+		UPDATE BOOKING
+		SET STATUS = 'Y'
+		WHERE BOOK_NO = #{bookNo}
+	</update>
+	
+	<!-- 아이디 찾기 -->
+	 <select id="findBuIdByEmail" resultType="java.lang.String">
+        SELECT BU_ID
+        FROM BUSINESS
+        WHERE BU_TEL = #{buTel}
+    </select>
 </mapper>

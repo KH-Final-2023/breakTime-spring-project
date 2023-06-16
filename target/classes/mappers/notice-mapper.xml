@@ -336,4 +336,14 @@
 		</choose>	
 	</if>
 	</select>
+	
+	<!-- <select id="businessStatus" resultMap="businessResultSet">
+		SELECT 
+		
+	</select> -->
+	<select id="getBusinessCount" resultType="int">
+    SELECT COUNT(*) 
+    FROM BUSINESS
+    WHERE APPROVAL = 'N'
+  </select>
 </mapper>

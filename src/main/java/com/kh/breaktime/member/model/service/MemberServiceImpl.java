@@ -1,7 +1,11 @@
 package com.kh.breaktime.member.model.service;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,7 @@ import com.kh.breaktime.common.model.vo.PageInfo;
 import com.kh.breaktime.common.template.Pagination;
 import com.kh.breaktime.member.model.dao.MemberDao;
 import com.kh.breaktime.member.model.vo.Member;
+import com.kh.breaktime.member.model.vo.WishList;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -102,5 +107,16 @@ public class MemberServiceImpl implements MemberService {
 			map.put("list", memberDao.selectSearchList(pi));
 			
 		}
+
+		@Override
+		public List<WishList> selectWishList(WishList w) {
+			return memberDao.selectWishList(w);
+			
+		}
+		
+		@Override
+	    public String findUserIdByEmail(String email) {
+	        return memberDao.findUserIdByEmail(email);
+	    }
 
 }

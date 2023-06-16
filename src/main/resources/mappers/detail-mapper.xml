@@ -2,38 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="detailMapper">
 
-	<!-- 카테고리 코드용 resultMap -->
-	<resultMap type="categoryCode" id="categoryCodeResultSet">
-		<id column="BU_CATEGORY" property="buCategory" />
-		<result column="CATEGORY_NAME" property="categoryName" />
-	</resultMap>
+   <!-- 카테고리 코드용 resultMap -->
+   <resultMap type="categoryCode" id="categoryCodeResultSet">
+      <id column="BU_CATEGORY" property="buCategory" />
+      <result column="CATEGORY_NAME" property="categoryName" />
+   </resultMap>
 
-	<!-- 목록용 resultMap -->
-	<resultMap type="detail" id="detailResultSet">
-		<id property="roomNo" column="ROOM_NO" />
-		<result property="buMainImg" column="BU_MAIN_IMG" />
-		<result property="roomHCount" column="ROOM_H_COUNT" />
-		<result property="roomPrice" column="ROOM_PRICE" />
-		<result property="buNo" column="BU_NO" />
-		<result property="buAddress" column="BU_ADDRESS" />
-		<result property="areaNo" column="AREA_NO" />
-		<result property="buCategory" column="BU_CATEGORY" />
-		<result property="buTel" column="BU_TEL" />
-		<result property="buTitle" column="BU_TITLE" />
-		<result property="roomInfo" column="ROOM_INFO" />
-		<result property="starScore" column="STAR_SCORE" />
-		<result property="roomCheckIn" column="ROOM_CHECKIN" />
-		<result property="roomCheckOut" column="ROOM_CHECKOUT" />
-	</resultMap>
+   <!-- 목록용 resultMap -->
+   <resultMap type="detail" id="detailResultSet">
+      <id property="roomNo" column="ROOM_NO" />
+      <result property="buMainImg" column="BU_MAIN_IMG" />
+      <result property="roomHCount" column="ROOM_H_COUNT" />
+      <result property="roomPrice" column="ROOM_PRICE" />
+      <result property="buNo" column="BU_NO" />
+      <result property="buAddress" column="BU_ADDRESS" />
+      <result property="areaNo" column="AREA_NO" />
+      <result property="buCategory" column="BU_CATEGORY" />
+      <result property="buTel" column="BU_TEL" />
+      <result property="buTitle" column="BU_TITLE" />
+      <result property="roomInfo" column="ROOM_INFO" />
+      <result property="starScore" column="STAR_SCORE" />
+      <result property="roomCheckIn" column="ROOM_CHECKIN" />
+      <result property="roomCheckOut" column="ROOM_CHECKOUT" />
+   </resultMap>
 
-	<!-- 카테고리 코드 셀렉트 -->
-	<select id="selectCategoryCodeList"
-		resultMap="categoryCodeResultSet">
-		SELECT *
-		FROM CATEGORY_CODE
-		ORDER BY BU_CATEGORY
-	</select>
 
+   <!-- 카테고리 코드 셀렉트 -->
+   <select id="selectCategoryCodeList"
+      resultMap="categoryCodeResultSet">
+      SELECT *
+      FROM CATEGORY_CODE
+      ORDER BY BU_CATEGORY
+   </select>
 
 	<!-- 데이터 리스트 목록 -->
 	<select id="selectDetailList" resultMap="detailResultSet">
@@ -73,7 +73,7 @@
 	</select>
 
 
-	<!-- 데이터 리스트 목록 -->
+	<!-- 옵션 리스트 목록 -->
 	<select id="filterListSubmit" resultMap="detailResultSet">
 		SELECT
 		B.BU_MAIN_IMG,
@@ -120,7 +120,6 @@
 				AND B.AREA_NO = TO_NUMBER(#{area})
 			</if>
 		</if>
-
 		<if test="guests == null">
 			AND S.ROOM_H_COUNT = 1
 		</if>
@@ -180,29 +179,51 @@
 		</choose>
 	</select>
 
-	<!-- 메인 지역 리스트 목록 -->
-	<select id="selectAreaList" resultMap="detailResultSet">
-		SELECT
-		B.BU_MAIN_IMG,
-		R.ROOM_NO,
-		R.ROOM_H_COUNT,
-		R.ROOM_PRICE,
-		B.BU_NO,
-		B.BU_ADDRESS,
-		B.AREA_NO,
-		B.BU_CATEGORY,
-		B.BU_TEL,
-		B.BU_TITLE
-		FROM BUSINESS
-		B
-		INNER JOIN ROOM R ON
-		B.BU_NO = R.BU_NO
-		INNER JOIN HOUSE H ON B.BU_TITLE
-		= H.BU_TITLE
-		WHERE
-		H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND
-		R.ROOM_H_COUNT = 1
-		AND
-		B.AREA_NO = #{areaNo}
-	</select>
+
+   <!-- 검색 리스트 목록 -->
+   <select id="searchDetailList" resultMap="detailResultSet">
+      SELECT
+      BU_ADDRESS,
+      AREA_NO,
+      BU_CATEGORY,
+      BU_TITLE
+      FROM HOUSE H
+      WHERE
+      MAIN_IMG IS NOT NULL AND BU_CATEGORY = #{category}
+      <if test='areaCode != null and areaCode != ""'>
+         AND AREA_NO = #{areaNo}
+      </if>
+      <choose>
+         <when test="condition == 'address'"> AND BU_ADDRESS LIKE #{keyword} </when>
+         <when test="condition == 'areano'"> AND AREA_NO LIKE #{keyword} </when>
+         <when test="condition == 'category'"> AND BU_CATEGORY LIKE #{keyword} </when>
+         <when test="condition == 'title'"> AND BU_TITLE LIKE #{keyword} </when>
+      </choose>
+   </select>
+
+   <!-- 메인 지역 리스트 목록 -->
+   <select id="selectAreaList" resultMap="detailResultSet">
+      SELECT
+      B.BU_MAIN_IMG,
+      R.ROOM_NO,
+      R.ROOM_H_COUNT,
+      R.ROOM_PRICE,
+      B.BU_NO,
+      B.BU_ADDRESS,
+      B.AREA_NO,
+      B.BU_CATEGORY,
+      B.BU_TEL,
+      B.BU_TITLE
+      FROM BUSINESS
+      B
+      INNER JOIN ROOM R ON
+      B.BU_NO = R.BU_NO
+      INNER JOIN HOUSE H ON B.BU_TITLE
+      = H.BU_TITLE
+      WHERE
+      H.MAIN_IMG IS NOT NULL AND B.APPROVAL = 'Y' AND
+      R.ROOM_H_COUNT = 1
+      AND
+      B.AREA_NO = #{areaNo}
+   </select>
 </mapper>

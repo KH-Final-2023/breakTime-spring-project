@@ -17,24 +17,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <title>BreakTime</title>
 <style>
-	
+   
 
 </style>
 
 </head>
 <body>
 
-	<div id="wrapper">
+   <div id="wrapper">
 
-		<%@ include file="header.jsp"%>
+      <%@ include file="header.jsp"%>
 
-		<!-- <div class="mainContent">
-			<div id="backgroundArea">
-				<a href=""><img src="/breaktime/resources/images/한옥.jpg" id="backImg"></a>
-			</div>
-		</div> -->
+      <!-- <div class="mainContent">
+         <div id="backgroundArea">
+            <a href=""><img src="/breaktime/resources/images/한옥.jpg" id="backImg"></a>
+         </div>
+      </div> -->
 
-	<div class="slideshow-container">
+   <div class="slideshow-container">
 
      <div class="mySlideDiv fade active">
         <a href=""><img src="/breaktime/resources/images/한옥.jpg" id="backImg"></a>
@@ -76,30 +76,30 @@
 
 
 
-		<div class="rankingText">
-			<span>여름 휴가 지역 추천!</span>
-		</div>
+      <div class="rankingText">
+         <span>여름 휴가 지역 추천!</span>
+      </div>
 
 
     <div class="area">
       <div class="rankingSubBox" id="seoul">
-      	<p id="pSeoul" >서울</p>
+         <p id="pSeoul" >서울</p>
          </div>
       <div class="rankingSubBox" id="busan">
-      	<p id="pBusan" >부산</p>
+         <p id="pBusan" >부산</p>
          </div>
       <div class="rankingSubBox" id="gangwon">
-      	<p id="pGangwon" >강원도</p>
+         <p id="pGangwon" >강원도</p>
          </div>
       <div class="rankingSubBox" id="jeju">
-      	<p id="pJeju" >제주도</p>
+         <p id="pJeju" >제주도</p>
          </div>
   </div> 
   
   
   
-    	
-    	
+       
+       
 
 
 
@@ -118,6 +118,8 @@ $(document).ready(function() {
     });
 });
 
+
+
 $(document).ready(function() {
     // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
     $("#seoul").click(function() {
@@ -127,6 +129,8 @@ $(document).ready(function() {
         window.location.href = redirectUrl;
     });
 });
+
+
 
 $(document).ready(function() {
     // "hotel" 카테고리 요소를 클릭했을 때 이벤트 처리
@@ -160,7 +164,6 @@ $(document).ready(function() {
 
 
 </script>
-
 
 
 
@@ -208,29 +211,29 @@ $(document).ready(function() {
 </script>
 
   <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		var mySwiper = new Swiper('.swiper-container', {
-			slidesPerView : 3,
-			slidesPerGroup : 3,
-			observer : true,
-			observeParents : true,
-			spaceBetween : 24,
-			navigation : {
-				nextEl : '.swiper-button-next',
-				prevEl : '.swiper-button-prev',
-			},
-			breakpoints : {
-				1280 : {
-					slidesPerView : 3,
-					slidesPerGroup : 3,
-				},
-				720 : {
-					slidesPerView : 1,
-					slidesPerGroup : 1,
-				}
-			}
-		});
-	});
+   document.addEventListener('DOMContentLoaded', function() {
+      var mySwiper = new Swiper('.swiper-container', {
+         slidesPerView : 3,
+         slidesPerGroup : 3,
+         observer : true,
+         observeParents : true,
+         spaceBetween : 24,
+         navigation : {
+            nextEl : '.swiper-button-next',
+            prevEl : '.swiper-button-prev',
+         },
+         breakpoints : {
+            1280 : {
+               slidesPerView : 3,
+               slidesPerGroup : 3,
+            },
+            720 : {
+               slidesPerView : 1,
+               slidesPerGroup : 1,
+            }
+         }
+      });
+   });
 </script>
   
   
@@ -240,72 +243,72 @@ $(document).ready(function() {
   <script type="text/javascript">
 
 $(document).ready(function () {
-	$(".mySlideDiv").not(".active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
-	
-	setInterval(nextSlide, 4000); //4초(4000)마다 다음 슬라이드로 넘어감
+   $(".mySlideDiv").not(".active").hide(); //화면 로딩 후 첫번째 div를 제외한 나머지 숨김
+   
+   setInterval(nextSlide, 4000); //4초(4000)마다 다음 슬라이드로 넘어감
 });
 
 //이전 슬라이드
 function prevSlide() {
-	$(".mySlideDiv").hide(); //모든 div 숨김
-	var allSlide = $(".mySlideDiv"); //모든 div 객체를 변수에 저장
-	var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
-	
-	//반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
-	$(".mySlideDiv").each(function(index,item){ 
-		if($(this).hasClass("active")) {
-			currentIndex = index;
-		}
+   $(".mySlideDiv").hide(); //모든 div 숨김
+   var allSlide = $(".mySlideDiv"); //모든 div 객체를 변수에 저장
+   var currentIndex = 0; //현재 나타난 슬라이드의 인덱스 변수
+   
+   //반복문으로 현재 active클래스를 가진 div를 찾아 index 저장
+   $(".mySlideDiv").each(function(index,item){ 
+      if($(this).hasClass("active")) {
+         currentIndex = index;
+      }
         
-	});
-	
-	//새롭게 나타낼 div의 index
-	var newIndex = 0;
+   });
+   
+   //새롭게 나타낼 div의 index
+   var newIndex = 0;
     
-	if(currentIndex <= 0) {
-		//현재 슬라이드의 index가 0인 경우 마지막 슬라이드로 보냄(무한반복)
-		newIndex = allSlide.length-1;
-	} else {
-		//현재 슬라이드의 index에서 한 칸 만큼 뒤로 간 index 지정
-		newIndex = currentIndex-1;
-	}
+   if(currentIndex <= 0) {
+      //현재 슬라이드의 index가 0인 경우 마지막 슬라이드로 보냄(무한반복)
+      newIndex = allSlide.length-1;
+   } else {
+      //현재 슬라이드의 index에서 한 칸 만큼 뒤로 간 index 지정
+      newIndex = currentIndex-1;
+   }
 
-	//모든 div에서 active 클래스 제거
-	$(".mySlideDiv").removeClass("active");
+   //모든 div에서 active 클래스 제거
+   $(".mySlideDiv").removeClass("active");
     
-	//새롭게 지정한 index번째 슬라이드에 active 클래스 부여 후 show()
-	$(".mySlideDiv").eq(newIndex).addClass("active");
-	$(".mySlideDiv").eq(newIndex).show();
+   //새롭게 지정한 index번째 슬라이드에 active 클래스 부여 후 show()
+   $(".mySlideDiv").eq(newIndex).addClass("active");
+   $(".mySlideDiv").eq(newIndex).show();
 
 }
 
 //다음 슬라이드
 function nextSlide() {
-	$(".mySlideDiv").hide();
-	var allSlide = $(".mySlideDiv");
-	var currentIndex = 0;
-	
-	$(".mySlideDiv").each(function(index,item){
-		if($(this).hasClass("active")) {
-			currentIndex = index;
-		}
+   $(".mySlideDiv").hide();
+   var allSlide = $(".mySlideDiv");
+   var currentIndex = 0;
+   
+   $(".mySlideDiv").each(function(index,item){
+      if($(this).hasClass("active")) {
+         currentIndex = index;
+      }
         
-	});
-	
-	var newIndex = 0;
-	
-	if(currentIndex >= allSlide.length-1) {
-		//현재 슬라이드 index가 마지막 순서면 0번째로 보냄(무한반복)
-		newIndex = 0;
-	} else {
-		//현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
-		newIndex = currentIndex+1;
-	}
+   });
+   
+   var newIndex = 0;
+   
+   if(currentIndex >= allSlide.length-1) {
+      //현재 슬라이드 index가 마지막 순서면 0번째로 보냄(무한반복)
+      newIndex = 0;
+   } else {
+      //현재 슬라이드의 index에서 한 칸 만큼 앞으로 간 index 지정
+      newIndex = currentIndex+1;
+   }
 
-	$(".mySlideDiv").removeClass("active");
-	$(".mySlideDiv").eq(newIndex).addClass("active");
-	$(".mySlideDiv").eq(newIndex).show();
-	
+   $(".mySlideDiv").removeClass("active");
+   $(".mySlideDiv").eq(newIndex).addClass("active");
+   $(".mySlideDiv").eq(newIndex).show();
+   
 }
 
 </script>

@@ -9,6 +9,7 @@ import com.kh.breaktime.member.model.vo.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -89,16 +90,33 @@ public class DecideController {
 
       return "decide/decideRoomSelect";
    }
-
-   @GetMapping("/pay/{roomNo}") // 선택 객실 조회
-	public String payRoomSelect(
-			@PathVariable("roomNo") int roomNo,Model model) {
-		
-		ArrayList<Decide> roomList = decideService.payDecideRoom(roomNo);
-		model.addAttribute("roomList", roomList);
-		return "pay/pay";
-	}
    
+   @RequestMapping(value = "/pay", method = {RequestMethod.GET, RequestMethod.POST}) // 객실 구매 목록 조회 @RequestMapping GET, POST 둘다 가능
+   public String payRoomSelect(@RequestParam(value = "roomNos[]", required = false) List<Integer> roomNos,  // roomNos[] 에 값을 저장 값이 없어도 가능
+		   @RequestParam(value = "roomNo", required = false) Integer singleRoomNo,Model model) {
+       
+       Map<String, Object> map = new HashMap<>();
+       
+       if (roomNos != null) {
+	       for(int i = 0; i < roomNos.size(); i++) {
+	    	   
+	           int roomNo = roomNos.get(i);
+	           System.out.println("for - roomNo :" + roomNo);
+	           ArrayList<Decide> roomList = decideService.payDecideRoom(roomNo);
+	           
+	           map.put("roomList" + i , roomList);
+	       }
+       } else if (singleRoomNo != null) {
+    	   
+           ArrayList<Decide> roomList = decideService.payDecideRoom(singleRoomNo);
+           map.put("roomList", roomList);
+       }
+       
+       model.addAttribute("map", map);
+
+       return "pay/pay";
+   }
+
    @GetMapping("/demap/{buNo}") // 메인 지도 화면 조회
    public String decideMainMap(@PathVariable("buNo") int buNo, Model model) {   
       
@@ -247,7 +265,7 @@ public class DecideController {
       int temp = 0;
       String result;
       
-	  //선택삭제
+	  // 선택삭제
 	  for(Map<String, Object> map : items) {
 		  Decide decide = new Decide();
 		  

@@ -164,7 +164,7 @@ button {
 						<div class="houseContent">
 							<div class="houseMainImg">
 								<img src="${d.buMainImg}">
-							</div>
+							</div>	
 							<div class="houseInfo">
 								<a>
 									<div>

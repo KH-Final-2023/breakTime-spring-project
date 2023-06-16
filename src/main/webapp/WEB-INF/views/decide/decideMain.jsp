@@ -23,12 +23,12 @@
 <script>
 $(document).ready(function() {
 	
-	/* // 서버에서 가져온 위시리스트 여부를 나타내는 변수
-    var isLike = ${m.isLike};   
+    var isLike = '${m.isLike}';
+    isLike = isLike === '1' ? true : false;
     // 위시리스트에 항목이 있으면 하트 아이콘을 빨간색으로 설정
-    if (isLike == 1) {
+    if (isLike) {
         $(".heart-icon").addClass("fas fa-heart red");
-    } */
+    }
    
    // 공유 아이콘 클릭 시 페이지 링크 복사
    $(".share-icon").click(function() {
@@ -248,8 +248,8 @@ function ajaxInsertLike(){
          <div class="company-info">
             <h1 class="company-name">${m.buTitle}</h1>
             <div class="icons">
-               <i class="icon share-icon fas fa-share-alt" title="공유하기"></i> <i
-                  class="icon heart-icon far fa-heart" title="찜하기"></i>
+               <i class="icon share-icon fas fa-share-alt" title="공유하기"></i> 
+               <i class="icon heart-icon far fa-heart" title="찜하기"></i>
             </div>
          </div>
          <a href="${contextPath}/decide/dereview/${m.buNo}" class="rating"> 

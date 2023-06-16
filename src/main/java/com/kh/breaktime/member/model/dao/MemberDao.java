@@ -1,6 +1,7 @@
 package com.kh.breaktime.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
@@ -12,6 +13,7 @@ import com.kh.breaktime.admin.model.vo.Notice;
 import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.common.model.vo.PageInfo;
 import com.kh.breaktime.member.model.vo.Member;
+import com.kh.breaktime.member.model.vo.WishList;
 
 @Repository
 public class MemberDao {
@@ -75,6 +77,7 @@ public class MemberDao {
 		
 		return (ArrayList)sqlSession.selectList("memberMapper.selectSearchList", "", rowBounds);
 	}
+	
 	public ArrayList<Notice> selectSearchList(PageInfo pi,Map<String, Object> paramMap){
 		
 		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
@@ -85,4 +88,14 @@ public class MemberDao {
 		
 		return (ArrayList)sqlSession.selectList("memberMapper.selectSearchList", paramMap, rowBounds);
 	}
+	
+	public List<WishList> selectWishList(WishList w){
+		
+		return sqlSession.selectList("memberMapper.selectWishList", w);
+	}
+	
+	
+	 public String findUserIdByEmail(String email) {
+	       return sqlSession.selectOne("memberMapper.findUserIdByEmail", email);
+	   }
 }

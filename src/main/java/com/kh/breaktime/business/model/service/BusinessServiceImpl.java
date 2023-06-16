@@ -63,4 +63,14 @@ public class BusinessServiceImpl implements BusinessService {
 	 public int updateReviewDeclaration(int reviewNo) {
 		return businessDao.updateReviewDeclaration(reviewNo);
 	    }
+	
+	@Override
+	public List<Booking> updateReservation(int bookNo) {
+		return businessDao.updateReservation(bookNo);
+	}
+	
+	@Override
+    public String findBuIdByEmail(String buTel) {
+        return businessDao.findBuIdByEmail(buTel);
+    }
 }

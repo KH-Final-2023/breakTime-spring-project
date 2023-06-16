@@ -75,4 +75,43 @@ public class DetailController {
 		return "detail/detail";
 	}
 
+  
+  @GetMapping("/search")
+	public String detailList(@RequestParam(value="category" , required=false) String category, 
+			Model model,
+			@RequestParam Map<String, Object> paramMap) {
+		
+		Map<String, Object> map = new HashMap();
+			paramMap.put("category", category);
+			detailService.searchDetailList(paramMap, map);
+			map.put("condition", paramMap.get("condition"));
+			map.put("keyword", "%"+paramMap.get("keyword")+"%");
+		
+		String sUrl = "";
+		if(paramMap.get("condition") != null && paramMap.get("keyword")!=null) {
+			sUrl = "&condition="+paramMap.get("condition")+"&keyword="+paramMap.get("keyword");
+		}
+		
+		model.addAttribute("sUrl",sUrl);
+		model.addAttribute("map", map);
+
+
+		return "/detail/detail";
+	}
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 }
