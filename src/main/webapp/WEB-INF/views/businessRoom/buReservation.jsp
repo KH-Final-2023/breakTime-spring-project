@@ -56,20 +56,19 @@
 								<td>${booking.roomName}</td>
 								<td>${booking.roomHCount}</td>
 								<td>${booking.reservationNo}</td>
-								<td>
-									<form action="/breaktime/business/updateReservation" method="get">
+								<td>${booking.roomCheckin}</td>
+								<td>${booking.roomCheckout}</td>
+							<%-- 	<td>
+									 <form action="/breaktime/business/updateReservation" method="get">
 										<input type="hidden" name="bookNo" value="${booking.bookNo}">
 										<button id="update-btn" type="submit" onclick="buCheckin()">
 											<span>입실</span>
 										</button>
-									</form>
+									</form> 
 								</td>
 								<td>
-									<button type="button" class="">
-										<span>퇴실</span> </a>
-									</button>
-								</td>
-
+									
+								</td> --%>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -238,7 +238,7 @@
     $.ajax({
       url: "<%= request.getContextPath() %>/notice/selectBusinessInfo",
       success: function(result) {
-    	  alert("aa");
+    	  console.log(result);
         var businessInfoList = result;
         var dateHtml = '';
         var nameHtml = '';

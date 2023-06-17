@@ -352,8 +352,8 @@
     FROM REVIEW
     WHERE REVIEW_DECLARIATION = 'Y'
   </select>
-  <select id="getBusinessInfo" resultType="String">
-        SELECT BU_USER_NAME, ENROLL_DATE
+  <select id="getBusinessInfo" resultType="map">
+        SELECT  ENROLL_DATE , BU_USER_NAME
         FROM BUSINESS
         WHERE APPROVAL = 'N'
     </select>
