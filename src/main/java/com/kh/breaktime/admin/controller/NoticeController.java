@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.admin.model.service.NoticeService;
 import com.kh.breaktime.admin.model.vo.Notice;
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.member.model.service.MemberService;
 import com.kh.breaktime.member.model.vo.Member;
 
@@ -282,5 +283,11 @@ public class NoticeController {
 		    System.out.println(count);
 		    return count;
 		  }
+		 
+		 @GetMapping("/selectBusinessInfo")
+		    @ResponseBody
+		    public List<Business> getBusinessInfo() {
+		        return noticeService.getBusinessInfo();
+		    }
 
 }

@@ -168,7 +168,7 @@
               You have 4 new notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
             </li>
-            <li>
+            <!-- <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -205,7 +205,7 @@
                 <p>Quae dolorem earum veritatis oditseno</p>
                 <p>2 hrs. ago</p>
               </div>
-            </li>
+            </li> -->
 
             <li>
               <hr class="dropdown-divider">
@@ -214,9 +214,9 @@
             <li class="notification-item">
               <i class="bi bi-info-circle text-primary"></i>
               <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
+                <h4 id="businessInfoDate"></h4>
+                <p id="businessInfoName"></p>
+ 
               </div>
             </li>
 
@@ -230,8 +230,39 @@
           </ul><!-- End Notification Dropdown Items -->
 
         </li><!-- End Notification Nav -->
+			
 
-        <li class="nav-item dropdown">
+		<% if (loginUser != null) { %>
+<script>
+  function selectBusinessInfo() {
+    $.ajax({
+      url: "<%= request.getContextPath() %>/notice/selectBusinessInfo",
+      success: function(result) {
+    	  alert("aa");
+        var businessInfoList = result;
+        var dateHtml = '';
+        var nameHtml = '';
+        for (var i = 0; i < businessInfoList.length; i++) {
+          var businessInfo = businessInfoList[i];
+          dateHtml += '<div class="business-info">';
+          dateHtml += '<h4>' + businessInfo.enrollDate + '</h4>';
+          dateHtml += '</div>';
+
+          nameHtml += '<div class="business-info">';
+          nameHtml += '<h4>' + businessInfo.buUserName + '</h4>';
+          nameHtml += '</div>';
+        }
+        $('#businessInfoDate').html(dateHtml); // Update businessInfoDate element
+        $('#businessInfoName').html(nameHtml); // Update businessInfoName element
+      }
+    });
+  }
+
+ 
+  selectBusinessInfo();
+</script>
+<% } %>
+				<li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>

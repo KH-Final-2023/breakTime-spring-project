@@ -1,6 +1,7 @@
 package com.kh.breaktime.admin.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.breaktime.admin.model.dao.NoticeDao;
 import com.kh.breaktime.admin.model.vo.Notice;
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.common.model.vo.PageInfo;
 import com.kh.breaktime.common.template.Pagination;
 
@@ -108,4 +110,9 @@ public class NoticeServiceImpl implements NoticeService{
 	  public int getReviewCount() {
 	    return noticeDao.getReviewCount();
 	  }
+	  
+	  @Override
+	    public List<Business> getBusinessInfo() {
+	        return noticeDao.getBusinessInfo();
+	    }
 }

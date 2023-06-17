@@ -352,4 +352,9 @@
     FROM REVIEW
     WHERE REVIEW_DECLARIATION = 'Y'
   </select>
+  <select id="getBusinessInfo" resultType="String">
+        SELECT BU_USER_NAME, ENROLL_DATE
+        FROM BUSINESS
+        WHERE APPROVAL = 'N'
+    </select>
 </mapper>

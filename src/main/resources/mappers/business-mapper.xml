@@ -119,12 +119,14 @@
 
 
 	<!-- 사업자의 방 목록 SELECT (준석) -->
-	<select id="getRoomsByBuId" resultMap="roomResultMap">
-		SELECT *
-		FROM ROOM
-		WHERE
-		BU_NO = #{buNo}
-	</select>
+<select id="getRoomsByBuId" resultMap="roomResultMap">
+  SELECT *
+  FROM ROOM
+  WHERE BU_NO = #{buNo}
+  ORDER BY ROOM_PRICE ASC
+</select>
+
+
 
 	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
 	<!-- 방 이미지 조회 -->
