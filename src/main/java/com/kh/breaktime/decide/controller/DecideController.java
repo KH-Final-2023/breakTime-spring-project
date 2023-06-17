@@ -181,11 +181,20 @@ public class DecideController {
 
       ArrayList<Decide> reviewList = decideService.selectDecideReview(buNo);
       
+      
+      ArrayList<Decide> reviewListHigh = decideService.selectDecideReviewHigh(buNo);
+    ArrayList<Decide> reviewListLow = decideService.selectDecideReviewRow(buNo);
+      
       double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
       
       List<Double> userStarScore  = decideService.selectuserStarScore(buNo); // 유저 리뷰 점수 조회
       
       int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
+      
+      for (int i = 0; i < userStarScore.size(); i++) {
+    	    double score = userStarScore.get(i);
+    	    reviewList.get(i).setUserStarScore(score);
+    	}
       
       
       map.put("starScore", reviewScore);
@@ -194,9 +203,29 @@ public class DecideController {
       
       model.addAttribute("map", map);
       model.addAttribute("reviewList", reviewList);
+      model.addAttribute("reviewListHigh", reviewListHigh);
+      model.addAttribute("reviewListLow", reviewListLow);
       
       return "decide/decideReview";
    }
+   
+//   @GetMapping("/dereview/{buNo}")
+//   public String getReviews(@PathVariable("buNo") int buNo, Model model, @RequestParam(required = false) String sort) {
+//	   ArrayList<Decide> reviewList;
+//       
+//       if ("recent".equals(sort)) {
+//           reviewList = decideService.getReviewsByRecent();
+//       } else if ("highRating".equals(sort)) {
+//           reviewList = decideService.getReviewsByHighRating();
+//       } else if ("lowRating".equals(sort)) {
+//           reviewList = decideService.getReviewsByLowRating();
+//       } else {
+//           reviewList = decideService.getAllReviews();
+//       }
+//       
+//       model.addAttribute("reviewList", reviewList);
+//       return "reviews";
+//   }
    
    @GetMapping("/dedate") // 날짜 조회
    public String decideDateSelect() {
