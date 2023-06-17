@@ -34,8 +34,8 @@
 	        console.dir(this);
 	        const radios = this.querySelectorAll("[name=starScore]");
 	        const reviewContents = this.querySelector("#reviewContents");
-	        const closeBtn = $(this).parents("[id^=updateMember]").find(".close");
-	        const reviewButton = $(this).parents("[id^=updateMember]").find(".btn-primary");
+	        const closeBtn = $(this).parents("[id^=insertReview]").find(".close");
+	        const reviewButton = $(this).parents("[id^=insertReview]").find(".btn-primary");
 	        
 	        $.ajax({
 	            url: "${contextPath}/booking/reviewInsert",
@@ -48,7 +48,6 @@
 	                    }	);
 		                $(reviewContents).val(""); 
 		                $(radios).val("");
-		                $(reviewButton).prop("disabled", true); // 버튼 비활성화
 		                location.reload();
 		                
 	                } else {
@@ -57,19 +56,6 @@
 	                
 	            }
 	        });
-	        
-	    $('[id^=rBtn]').click(function() {
-	        var button = $(this);
-	        var modalId = button.data('target');
-	        var modal = $(modalId);
-
-	        button.prop("disabled", true); // 버튼 비활성화
-
-	        modal.on('hidden.bs.modal', function() {
-	            button.prop("disabled", false); // 모달이 닫힐 때 버튼 활성화
-	        });
-	    });
-	        
 	    })
 	    
 	    $.ajax({
@@ -82,7 +68,7 @@
 	    				
 	    				if(item1.usingRoom ==$(item0).attr('roomNo') ){
 	    					$(item0).attr("disabled", true);
-	    					$(item0).text("작성완료");
+	    					$(item0).text("완료");
 	    				}
 	    			})
 	    		}) 
@@ -112,6 +98,13 @@ html, body {
 #enrollWrap {
 	width: 100%;
 	margin-top: 5px;
+}
+
+table>thead>tr {
+	font-weight: bold;
+	font-size : 20px;
+	background-color: green;
+	color : white;
 }
 
 .star-rating {
@@ -157,10 +150,9 @@ html, body {
 </style>
 </head>
 <body>
-	<%-- <%@ include file="/WEB-INF/views/header.jsp"%> --%>
 	<main>
 		<a href="<%=request.getContextPath()%>">
-			<img src="<%=request.getContextPath()%>/resources/images/homeBtn.png" style="width:60px; height:60px;">
+			<img src="<%=request.getContextPath()%>/resources/images/로고.png" style="width:200px; height:60px;">
 		</a>
 		<div class="booking">
 			<div id="booking-area">
@@ -179,35 +171,26 @@ html, body {
 							</tr>
 						</thead>
 						<tbody>
+							<c:if test="${empty bookingList}">
+								<td colspan="6" style="font-weight:bold;">예약된 내역이 없습니다.</td>
+							</c:if>
 							<c:forEach items="${bookingList}" var="booking" varStatus="vs">
 								<tr>
 									<td>${booking.roomName}</td>
 									<td>${booking.roomHCount}</td>
 									<td>${booking.reservationNo}</td>
+									<td>${booking.roomCheckin}</td>
+									<td>${booking.roomCheckout}</td>
 									<td>
-										<button id="update-btn" type="submit" class="btn btn-primary">
-											<span>입실전</span>
-										</button>
-									</td>
-									<td>
-										<button type="button" class="btn btn-danger">
-											<span>퇴실전</span>
-										</button>
-									</td>
-									
-									<td>
-									
 										<button class="btn btn-outline-success" roomNo="${booking.roomNo}" id="rBtn${vs.index}" type="button" 
-											data-toggle="modal" data-target="#updateMember${vs.index}">
-											<span>리뷰작성</span>
+											data-toggle="modal" data-target="#insertReview${vs.index}">
+											<span>등록</span>
 										</button>
-									
 									</td>
-									
 								</tr>
 								
 								<!--  수정 모달창 -->
-								<div id="updateMember${vs.index}" class="modal fade" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+								<div id="insertReview${vs.index}" class="modal fade" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -235,7 +218,8 @@ html, body {
 														<label for="1-star${vs.index}" class="star">★</label>
 													</div>
 													<div>
-														<textarea class="col-auto form-control" id="reviewContents" name="reviewContent" placeholder="breaktime 리뷰를 남겨주세요"></textarea>
+														<textarea class="col-auto form-control" id="reviewContents" name="reviewContent"
+														 placeholder="breaktime 리뷰를 남겨주세요"></textarea>
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
@@ -247,14 +231,11 @@ html, body {
 									</div>
 								</div>
 							</c:forEach>
-							
 						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</main>
-
-
 </body>
 </html>

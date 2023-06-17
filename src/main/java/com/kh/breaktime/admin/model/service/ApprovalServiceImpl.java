@@ -38,8 +38,8 @@ public class ApprovalServiceImpl implements ApprovalService{
 		return approvalDao.approvalAccept(b);
 	}
 	
-	public int approvalCancel(Business b) {
-		return approvalDao.approvalCancel(b);
+	public int approvalCancel(int buNo) {
+		return approvalDao.approvalCancel(buNo);
 	}
 	
 }

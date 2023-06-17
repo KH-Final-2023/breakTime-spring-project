@@ -13,9 +13,7 @@
 <!-- 부트스트랩에서 제공하있는 스타일 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="/breaktime/resources/css/header.css">
-<link rel="stylesheet" href="/breaktime/resources/css/base.css">
 <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
-<link rel="stylesheet" href="/breaktime/resources/css/main.css">
 <style>
 div {
 	box-sizing: border-box;
@@ -28,81 +26,29 @@ html, body {
 	margin: 0%;
 	font-family: 'YanoljaYache';
 	font-size: 18px;
+	background-color: #f1f4f9;
 }
 
 body {
 	overflow-x: hidden;
-	overflow-y: hidden;
-}
-/* 헤더 시작*/
-.header {
-	width: 100%;
-	height: 12%;
-	background: #09ba1b !important;
-}
-
-#bt_title {
-	width: 100%;
-	height: 70%;
-	text-align: center;
-	color: #ffff;
-}
-
-#title {
-	font-size: 3em;
-	font-weight: bold;
-}
-
-.nav {
-	width: 100%;
-	height: 30%;
-	text-align: center;
-}
-
-.nav>ul {
-	display: flex;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	height: 100%;
-}
-
-.nav li {
-	width: 500px;
-}
-
-.nav a {
-	display: block;
-	height: 100%;
-	text-align: center;
-	padding: 5px 0;
-	text-decoration: none;
-	font-size: 18px;
-	font-weight: bold;
-	color: #ffff;
-	border-radius: 5px;
-	transition-duration: 0.1s;
-}
-
-.nav a:hover {
-	color: black;
 }
 /* 공지사항 시작*/
 .notice {
 	width: 100%;
-	height: 88%;
+	height: 100%;
 }
 
 #notice_area {
 	width: 70%;
 	height: 90%;
 	margin-top: 15vh;
-	margin-left: 30vh;
+	margin-left: 28%;
 }
 
 #notice_title_area {
 	width: 100%;
 	height: 15%;
+	magin-left : 5%;
 }
 
 #notice_title {
@@ -118,7 +64,7 @@ body {
 /* 공지사항 테이블 시작 */
 #noticeList {
 	margin-top: 5vh;
-	margin-left: 20vh;
+	margin-left: 10vh;
 	min-width: 100vh;
 	max-width: 100%;
 	border-collapse: collapse;
@@ -204,6 +150,11 @@ body {
 	margin: 0px 0px 0px 45%;
 }
 
+.page-item.active a {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
 #searchForm {
 	width: 80%;
 	margin-left: 15%;
@@ -226,13 +177,9 @@ body {
 	width: 10%;
 }
 
-#wrapper {
-	height: 95%;
-}
-
 #footer {
 	height: 18.5%;
-	margin: -5% 0% 0% 12%;
+	margin: auto;
 }
 </style>
 </head>
@@ -276,13 +223,9 @@ body {
 							</tr>
 						</thead>
 						<tbody>
-							<c:choose>
-								<c:when test="${empty selectNoticeList.list } ">
-									<tr>
-										<td colspan="5">게시글이 없습니다.</td>
-									</tr>
-								</c:when>
-								<c:otherwise>
+							<c:if test="${empty selectNoticeList.list}">
+								<td colspan="5" style="font-weight:bold; text-align:center;">등록된 글이 없습니다.</td>
+							</c:if>
 									<c:forEach items="${selectNoticeList.list}" var="n">
 										<tr
 											onclick="location.href='<%=request.getContextPath()%>/notice/publicDetail?noticeNo=${n.noticeNo}'">
@@ -293,8 +236,6 @@ body {
 											<td>${n.count }</td>
 										</tr>
 									</c:forEach>
-								</c:otherwise>
-							</c:choose>
 						</tbody>
 					</table>
 	
@@ -316,8 +257,10 @@ body {
 	
 							<c:forEach var="item" begin="${selectNoticeList.pi.startPage }"
 								end="${selectNoticeList.pi.endPage }">
-								<li class="page-item"><a class="page-link"
-									href="${url}${item }${sUrl}">${item }</a></li>
+								<c:set var="currentPage" value="${selectNoticeList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
 							</c:forEach>
 	
 							<c:choose>
@@ -338,9 +281,9 @@ body {
 		</div>
 		
 		</div>
-			<div id= "footer">
+			 <div id= "footer">
 				<%@ include file="/WEB-INF/views/footer.jsp"%>
-			</div>
+			</div> 
 		
 	</body>
 </html>

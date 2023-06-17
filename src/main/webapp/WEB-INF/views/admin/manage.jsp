@@ -10,7 +10,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-
+<style>
+.page-item.active a {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/resources/admin/adminFrame.jsp"%>
@@ -51,11 +56,9 @@
 
 									</td>
 									<td>
-										<a href="<%=request.getContextPath()%>/manage/delete?buNo=${b.buNo}">
-											<button type="button" class="btn btn-outline-danger"data-text="탈퇴">
+											<button type="button"  onclick="deleteManage(${b.buNo}, '${b.buUserName}')" class="btn btn-outline-danger"data-text="탈퇴">
 												<span>탈퇴</span>
 											</button>
-										</a>
 									</td>
 								</tr>
 									
@@ -76,6 +79,7 @@
 													</button>
 												</div>
 												<div class="modal-body">
+													<input type="hidden" name="buNo" value="${b.buNo }">
 													<p style="word-spacing: 8px;">
 														사업자 : <input type="text" name="buUserName"
 															value="${b.buUserName} ">
@@ -125,8 +129,10 @@
 
 							<c:forEach var="item" begin="${selectManageList.pi.startPage }"
 								end="${selectManageList.pi.endPage }">
-								<li class="page-item"><a class="page-link"
-									href="${url}${item }${sUrl}">${item }</a></li>
+								<c:set var="currentPage" value="${selectManageList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
 							</c:forEach>
 
 							<c:choose>
@@ -154,12 +160,16 @@
 	            alert("해당 사업자 정보수정에 성공하였습니다.");
 	    });
 		
-		$(document).ready(function() {
-	        var manageCancel = '<c:out value="${manageCancel}"/>';
-	        if(!(manageCancel==''))
-	            alert("해당 사업자를 탈퇴 처리하였습니다.");
-	    });
+		function deleteManage(buNo, buUserName) {
+		    if (!confirm(buUserName + " 님을(를) 탈퇴 처리하시겠습니까?")) {
+		        return false;
+		    } else {
+		        location.href = "<%=request.getContextPath()%>/manage/delete?buNo=" + buNo;
+		        alert("성공적으로 탈퇴 처리되었습니다.");
+		    }
+		}
 	</script>
+
 </body>
 
 </html>

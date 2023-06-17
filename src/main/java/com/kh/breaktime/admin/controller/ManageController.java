@@ -38,10 +38,9 @@ public class ManageController {
 	}
 	
 	@GetMapping("/delete")
-	public String manageCancel(Business b, RedirectAttributes rttr) {
+	public String manageCancel(@RequestParam(value="buNo", required=false, defaultValue="0") int buNo) {
 		
-		manageService.manageCancel(b);
-		rttr.addFlashAttribute("manageCancel", b.getBuNo());
+		manageService.manageCancel(buNo);
 		return "redirect:/manage/list";
 	}
 	

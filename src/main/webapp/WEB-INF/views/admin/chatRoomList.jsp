@@ -13,7 +13,12 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title></title>
-
+<style>
+.page-item.active a {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+</style>
 </head>
 
 <body>
@@ -93,8 +98,10 @@
 	
 							<c:forEach var="item" begin="${selectChatSearchList.pi.startPage }"
 								end="${selectChatSearchList.pi.endPage }">
-								<li class="page-item"><a class="page-link"
-									href="${url}${item }${sUrl}">${item }</a></li>
+								<c:set var="currentPage" value="${selectChatSearchList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
 							</c:forEach>
 	
 							<c:choose>

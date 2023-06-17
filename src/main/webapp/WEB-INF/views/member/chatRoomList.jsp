@@ -67,6 +67,11 @@
 	color: #67d567;
     border-color: #67d567;
 	}
+	
+	.page-item.active a {
+	    background-color: #f8f9fa;
+	    color: #007bff;
+	}
 </style>
 </head>
 <body>
@@ -146,8 +151,10 @@
 	
 							<c:forEach var="item" begin="${selectSearchList.pi.startPage }"
 								end="${selectSearchList.pi.endPage }">
-								<li class="page-item"><a class="page-link"
-									href="${url}${item }${sUrl}">${item }</a></li>
+								<c:set var="currentPage" value="${selectSearchList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
 							</c:forEach>
 	
 							<c:choose>
