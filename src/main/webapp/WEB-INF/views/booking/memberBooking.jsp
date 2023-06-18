@@ -178,7 +178,7 @@ table>thead>tr {
 								<tr>
 									<td>${booking.roomName}</td>
 									<td>${booking.roomHCount}</td>
-									<td>${booking.roomCheckin}${booking.bookNo}</td>
+									<td>${booking.reservationNo}</td>
 									<td>${booking.roomCheckin}</td>
 									<td>${booking.roomCheckout}</td>
 									<td>
