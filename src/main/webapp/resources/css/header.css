@@ -19,18 +19,18 @@ margin-left: 405px;
 padding: 5px 300px 0px 100px;
 }
 
-#navbar {
+#header-navbar {
 padding: 8px 20px;
 width: 380px;
 display: flex;
 justify-content: space-between;
 align-items: end;
-font-size: 16px;
+font-size: 21px;
 color : white;
 }
 
 
-#navbar > div:hover{
+#header-navbar > div:hover{
 color:greenyellow;
 cursor:pointer;
 }
@@ -49,13 +49,13 @@ cursor: pointer;
 }
 
 
-#search>img{
+#header-search>img{
     width: 20px;
     height: 18px;
 }
 
 /* 모달 */
-.modal{
+.header-modal{
     position: fixed;
     bottom: 35%;
     left: 0;
@@ -70,7 +70,7 @@ cursor: pointer;
 
 
 /* 모달 백그라운드 */
-.modal .bg{
+.header-modal .bg{
     width: 100%;
     height: 1000%;
     background-color: rgba(0, 0, 0, 0.6);
@@ -79,7 +79,7 @@ cursor: pointer;
 
 
 /* 모달 닫기 버튼 */
-.modal .closeBtn {
+.header-modal .header-closeBtn {
     position: absolute;
     top: 10px;
     right: 25px;
@@ -89,30 +89,30 @@ cursor: pointer;
 }
 
 
-/* 공통 모달창 css */
-.modalBox {
+.header-modalBox {
     position: absolute;
     background-color: #fff;
     width: 500px;
-    height: 100px;
+    height: 120px;
     border-radius: 16px;
     
 }
-.modalBox .searchheader{
+.header-modalBox .searchheader{
     width: 100%;
     height: 29px;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size : 25px;
 }
-.modalBox .searchbody{
+.header-modalBox .searchbody{
     width: 500px;
     height: 150px;
     padding: 20px 20px;
 }
 
 #search-input{
-	width: 430px;
+	width: 450px;
 	height: 45px;
 }
 
@@ -121,26 +121,37 @@ cursor: pointer;
     display: none;
 }
 
-.dropdown{
+.header-dropdown{
   position : relative;
   display : inline-block;
   width: 100px;
 }
 
-.dropdown-content{
+.header-dropdown-content{
   display : none;
   position : absolute;
   z-index : 1; /*다른 요소들보다 앞에 배치*/
-}
-
-.dropdown-content a{
-  display : block;
-  color : white;
-  background-color : yellowgreen;
+  height : 100px;
   
 }
 
-.dropdown:hover .dropdown-content {
+.header-dropdown-content a{
+  display : block;
+  color : white;
+  font-size : 24px;
+  background-color : green;
+  
+}
+
+.header-dropdown-content a:hover{
+	
+	color:greenyellow;
+	cursor:pointer;
+	
+}
+
+.header-dropdown:hover .header-dropdown-content {
   display: block;
+  
 }
 

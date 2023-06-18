@@ -32,6 +32,7 @@
             line-height: 1.4;
             color: #333;
             background-color: #f2f2f2;
+            margin-top : 80px;
         }
 
         .container-main {
@@ -39,6 +40,7 @@
             margin: 0 auto;
             background-color: #fff;
             padding: 20px;
+
         }
 
         .reservation-title {
@@ -250,6 +252,7 @@
 </head>
 
 <body>
+	<jsp:include page="/WEB-INF/views/header.jsp" />
     <div class="container-main">
         <h2 class="reservation-title">예약</h2>
         <div class="order-details">
