@@ -12,6 +12,7 @@ import com.kh.breaktime.admin.model.vo.Notice;
 import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.common.model.vo.PageInfo;
 import com.kh.breaktime.common.template.Pagination;
+import com.kh.breaktime.review.model.vo.Review;
 
 @Service
 public class NoticeServiceImpl implements NoticeService{
@@ -114,5 +115,10 @@ public class NoticeServiceImpl implements NoticeService{
 	  @Override
 	    public List<Business> getBusinessInfo() {
 	        return noticeDao.getBusinessInfo();
+	    }
+
+	  @Override
+	    public List<Review>selectReviewDeclariation() {
+	        return noticeDao.selectReviewDeclariation();
 	    }
 }

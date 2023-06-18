@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.kh.breaktime.admin.model.vo.Notice;
 import com.kh.breaktime.business.model.vo.Business;
+import com.kh.breaktime.review.model.vo.Review;
 
 public interface NoticeService {
 	
@@ -31,7 +32,8 @@ public interface NoticeService {
 	
 	public int getReviewCount();
 	
-	public List<Business> getBusinessInfo ();
-	  
+	public List<Business> getBusinessInfo();
 	
+	public List<Review> selectReviewDeclariation();
+
 }

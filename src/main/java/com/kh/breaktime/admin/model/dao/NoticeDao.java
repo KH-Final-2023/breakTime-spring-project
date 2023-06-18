@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.breaktime.admin.model.vo.Notice;
 import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.common.model.vo.PageInfo;
+import com.kh.breaktime.review.model.vo.Review;
 
 @Repository
 public class NoticeDao {
@@ -112,5 +113,9 @@ public class NoticeDao {
 
 	    public  List<Business> getBusinessInfo() {
 	        return sqlSession.selectList("notice-mapper.getBusinessInfo");
+	    }
+	    
+	    public  List<Review> selectReviewDeclariation() {
+	        return sqlSession.selectList("notice-mapper.selectReviewDeclariation");
 	    }
 }

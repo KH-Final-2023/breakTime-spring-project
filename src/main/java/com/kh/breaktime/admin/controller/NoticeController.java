@@ -27,6 +27,7 @@ import com.kh.breaktime.admin.model.vo.Notice;
 import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.member.model.service.MemberService;
 import com.kh.breaktime.member.model.vo.Member;
+import com.kh.breaktime.review.model.vo.Review;
 
 
 @Controller
@@ -289,5 +290,11 @@ public class NoticeController {
 		    public List<Business> getBusinessInfo() {
 		        return noticeService.getBusinessInfo();
 		    }
-
+		 
+		 
+		 @GetMapping("/selectReviewDeclariation")
+		    @ResponseBody
+		    public List<Review> selectReviewDeclariation() {
+		        return noticeService.selectReviewDeclariation();
+		    }
 }
