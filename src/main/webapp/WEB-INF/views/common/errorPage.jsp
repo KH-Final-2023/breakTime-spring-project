@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-       pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+       pageEncoding="UTF-8" isErrorPage="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (homeButton) {
         homeButton.addEventListener('click', function() {
-            window.history.back(); // 브라우저의 히스토리를 뒤로 이동
+        	window.location.href = "${contextPath}";
         });
     }
 });
