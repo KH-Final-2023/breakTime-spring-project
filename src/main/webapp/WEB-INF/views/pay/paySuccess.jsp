@@ -5,62 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>장바구니</title>
+<title>결제완료</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<style>
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-/* 전체적인 스타일 */
-body {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	line-height: 1.4;
-	color: #333;
-	background-color: #f2f2f2;
-}
-
-button:focus {
-  outline: none;
-}
-
-.container-main {
-	max-width: 768px;
-	margin: 0 auto;
-	background-color: #fff;
-}
-
-.detail2-one-main {
-	padding: 0 2rem;
-	height: 40px;
-}
-
-.detail2-select {
-	max-width: 768px;
-	margin: 0 auto;
-	background-color: #fff;
-	margin-top: 10px;
-	height: 150px;
-	padding: 0 2rem;
-	border-bottom: 1px solid #e6e6e6;
-}
-
-.select-all {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 10px;
-	padding-top: 8px;
-}
-</style>
+<link rel="stylesheet" href="${contextPath}/resources/css/pay/paySuccess.css">
 </head>
 <script>
-
 $(document).ready(function() {
   $("#home-button").on("click", function() {
     window.location.href = "${contextPath}";

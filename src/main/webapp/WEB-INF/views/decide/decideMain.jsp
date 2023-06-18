@@ -19,25 +19,6 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
 <link rel="stylesheet" href="/breaktime/resources/css/font.css">
-<style>
-.gptClass{
-	border: 2px solid #e6e6e6;
-    border-radius: 10px;
-    padding-bottom: 25px;
-}
-
-.gptTitle{
-	 display: flex; 
-	 align-items: center;
-	 padding: 10px;
-	 padding-top: 15px;
-}
-
-.gptContent{
-	padding-left: 10px;
-	color: #777777
-}
-</style>
 <script>
 $(document).ready(function() {
 	

@@ -282,6 +282,4 @@
       WHERE USER_NO = #{userNo}
       AND BU_NO = #{buNo} 
    </select>
-    
-    
 </mapper>

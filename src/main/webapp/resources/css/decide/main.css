@@ -176,3 +176,21 @@ body {
 	color: black;
 	cursor: pointer;
 }
+
+.gptClass{
+	border: 2px solid #e6e6e6;
+    border-radius: 10px;
+    padding-bottom: 25px;
+}
+
+.gptTitle{
+	 display: flex; 
+	 align-items: center;
+	 padding: 10px;
+	 padding-top: 15px;
+}
+
+.gptContent{
+	padding-left: 10px;
+	color: #777777
+}

@@ -28,8 +28,8 @@ public class BookingServiceImpl implements BookingService{
 		return bookingDao.insertReview(r);
 	}
 	
+	// 예약 등록
 	@Override
-
 	public int insertBooking(Booking b) {
 		
 		return bookingDao.insertBooking(b);
@@ -40,6 +40,7 @@ public class BookingServiceImpl implements BookingService{
 		return bookingDao.selectReviewList(userNo);
 	}
 	
+	// 예약 등록시 카트 삭제
 	@Override
 	public int deleteCartList(Booking booking) {
 		return bookingDao.deleteCartList(booking);

@@ -95,6 +95,7 @@ public class BookingController {
 		return result;
 	}
 	 
+	// 예약 등록
 	@GetMapping("/insertBooking")
 	public String insertBooking(@RequestParam String requestData,  HttpSession session) {
 		
@@ -131,7 +132,7 @@ public class BookingController {
 			    roomNoList.add(roomNo); // roomNo를 리스트에 추가
 			    bookingService.insertBooking(booking);
 	        }
-	        
+	        // 요청간 데이터 전송을 위해 세션에 데이터를 저장
 	        session.setAttribute("roomNoArray", roomNoList.toArray(new Integer[0]));
 	        return "redirect:/booking/success";
 	        
@@ -141,7 +142,8 @@ public class BookingController {
 	        return "error";
 	    }
 	}
-
+	
+	// 예약 성공 페이지 포워딩
 	@GetMapping("/success")
 	public String successBooking(Model model, HttpSession session) {
 		
@@ -151,7 +153,8 @@ public class BookingController {
 		
 		//예약이 성공한 후에 받아온 roomNo값들을 통해 CART의 내용을 삭제해준다.
 		Integer[] roomNoArray = (Integer[]) session.getAttribute("roomNoArray");
-	    
+		
+	    // 성공 시 카트리스트 삭제
 		for (Integer roomNo : roomNoArray) {
 	        booking.setRoomNo(roomNo);
 	        bookingService.deleteCartList(booking);
