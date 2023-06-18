@@ -16,5 +16,6 @@ public interface BookingService {
 	
 	public int insertBooking(Booking b);
 	
+	public int deleteCartList(Booking booking);
 }
 

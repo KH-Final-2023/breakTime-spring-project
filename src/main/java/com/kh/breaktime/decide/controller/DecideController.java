@@ -1,5 +1,6 @@
 package com.kh.breaktime.decide.controller;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,6 @@ import com.kh.breaktime.member.model.vo.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +34,8 @@ public class DecideController {
    
    // url : {contextPath}/decide/demain/{buNo}
    @GetMapping("/demain/{buNo}") // 메인 조회
-   public String decideMain(@PathVariable("buNo") int buNo, Model model, HttpSession session) {
+   public String decideMain(@PathVariable("buNo") int buNo, 
+		   Model model, HttpSession session) {
 	  
 	  Map<String, Object> map = new HashMap();
 	  
@@ -81,12 +82,15 @@ public class DecideController {
    }
    
    @GetMapping("/deroom/{buNo}") // 객실 조회
-   public String decideRoomSelect(@PathVariable("buNo") int buNo, Model model) {
-      
+   public String decideRoomSelect(@PathVariable("buNo") int buNo, 
+		   						   Model model) {
+	   
       ArrayList<Decide> roomList = decideService.selectDecideRoom(buNo);
       model.addAttribute("roomList", roomList);
       model.addAttribute("roomNo", roomList.get(0).getRoomNo());
       model.addAttribute("buNo", roomList.get(0).getBuNo());
+      
+     
 
       return "decide/decideRoomSelect";
    }
@@ -109,7 +113,7 @@ public class DecideController {
        } else if (singleRoomNo != null) {
     	   
            ArrayList<Decide> roomList = decideService.payDecideRoom(singleRoomNo);
-           map.put("roomList", roomList);
+           map.put("roomList0", roomList);
        }
        
        model.addAttribute("map", map);
@@ -208,24 +212,6 @@ public class DecideController {
       
       return "decide/decideReview";
    }
-   
-//   @GetMapping("/dereview/{buNo}")
-//   public String getReviews(@PathVariable("buNo") int buNo, Model model, @RequestParam(required = false) String sort) {
-//	   ArrayList<Decide> reviewList;
-//       
-//       if ("recent".equals(sort)) {
-//           reviewList = decideService.getReviewsByRecent();
-//       } else if ("highRating".equals(sort)) {
-//           reviewList = decideService.getReviewsByHighRating();
-//       } else if ("lowRating".equals(sort)) {
-//           reviewList = decideService.getReviewsByLowRating();
-//       } else {
-//           reviewList = decideService.getAllReviews();
-//       }
-//       
-//       model.addAttribute("reviewList", reviewList);
-//       return "reviews";
-//   }
    
    @GetMapping("/dedate") // 날짜 조회
    public String decideDateSelect() {

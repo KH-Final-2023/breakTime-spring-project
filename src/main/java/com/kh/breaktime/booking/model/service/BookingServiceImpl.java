@@ -35,12 +35,15 @@ public class BookingServiceImpl implements BookingService{
 		return bookingDao.insertBooking(b);
 	}
 
-
+	
 	public ArrayList<Review> selectReviewList(int userNo) {
 		return bookingDao.selectReviewList(userNo);
 	}
 	
-	
+	@Override
+	public int deleteCartList(Booking booking) {
+		return bookingDao.deleteCartList(booking);
+	}
 
 
 }

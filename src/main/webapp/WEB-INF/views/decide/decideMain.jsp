@@ -19,7 +19,25 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
 <link rel="stylesheet" href="/breaktime/resources/css/font.css">
+<style>
+.gptClass{
+	border: 2px solid #e6e6e6;
+    border-radius: 10px;
+    padding-bottom: 25px;
+}
 
+.gptTitle{
+	 display: flex; 
+	 align-items: center;
+	 padding: 10px;
+	 padding-top: 15px;
+}
+
+.gptContent{
+	padding-left: 10px;
+	color: #777777
+}
+</style>
 <script>
 $(document).ready(function() {
 	
@@ -110,7 +128,7 @@ $(document).ready(function() {
    });
 
    // 객실선택.html 페이지 자동로드
-   var target = "${contextPath}/decide/deroom/${m.buNo}";
+   var target = "${contextPath}/decide/deroom/${m.buNo}?dateIn=${param.dateIn}&dateOut=${param.dateOut}";
    $("#section-content").load(target);
 });
 
@@ -230,6 +248,55 @@ function ajaxInsertLike(){
     });
 }
 </script>
+<script>
+var API_URL = 'https://api.openai.com/v1/chat/completions';
+
+function sendMessage(message) {
+  var messages = [
+    { role: 'system', content: 'You are a helpful assistant.' },
+    { role: 'user', content: message }
+  ];
+
+  $.ajax({
+    url: API_URL,
+    type: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      //'Authorization': 'Bearer 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'
+    },
+    data: JSON.stringify({
+        model: 'gpt-3.5-turbo',
+        temperature: 0.5,
+        n: 1,
+        messages: messages
+    }),
+    success: function(data) {
+      console.log(data);
+      if (data.choices && data.choices.length > 0) {
+        const assistantReply = data.choices[0].message.content;
+        displayMessage(assistantReply, 'assistant');
+      } else {
+        console.error('No valid response received from the API.');
+      }
+    },
+    error: function(xhr, status, error) {
+      console.error('Error occurred during API request:', error);
+    }
+  });
+}
+
+function displayMessage(message, role) {
+    var chatContainer = $('#chat-container');
+    chatContainer.text(message); // 내용을 받은 메시지로 업데이트
+  }
+
+// HTML 파일이 로드될 때 호출
+$(document).ready(function() {
+  const specificMessage = '${m.buAddress}의 가장 가까운 지하철역이랑 교통편 알려줘'; // 특정 문구
+  sendMessage(specificMessage);
+});
+</script>
+
 </head>
 
 <body>
@@ -268,12 +335,22 @@ function ajaxInsertLike(){
                <span class="address">${m.buAddress}</span>
             </a>
          </div>
+         
+         <!-- chatGPT API 표시 -->
+         <div class="gptClass">
+		  	<div class="gptTitle">
+			    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1024px-ChatGPT_logo.svg.png" alt="ChatGPT Icon" style="width: 20px; height: 20px; margin-right: 10px;">
+			    <h3 style="margin: 0;">ChatGPT로 찾은 교통편이에요 &#x1F604;
+			    </h3>
+			 </div>
+			 <div id="chat-container" class="gptContent">ChaGPT에게 물어보는 중이에요. 잠시만 기다려주세요.</div>
+		</div>
       </div>
    </div>
    <div class="detail2-select">
       <!-- 섹션 선택 영역 -->   
       <div class="section">
-         <a class="section-link" href="${contextPath}/decide/deroom/${m.buNo}">객실 선택</a>
+         <a class="section-link" href="${contextPath}/decide/deroom/${m.buNo}?dateIn=${param.dateIn}&dateOut=${param.dateOut}">객실 선택</a>
          <a class="section-link" href="${contextPath}/decide/demap/${m.buNo}">위치 정보</a>
          <a class="section-link review-link" href="${contextPath}/decide/dereview/${m.buNo}">리뷰 / 후기</a>
       </div>

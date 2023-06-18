@@ -1,3 +1,10 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.breaktime.decide.model.vo.Decide"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.net.URLEncoder"%>
+<%@page import="com.google.gson.Gson"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ page import="com.kh.breaktime.member.model.vo.Member"%>
@@ -5,6 +12,38 @@
 <%@ page import="com.kh.breaktime.room.model.vo.Room"%>
 <%
    Member loginUser = (Member) session.getAttribute("loginUser");
+
+	Map<String, List<Decide>> map = (Map<String, List<Decide>>) request.getAttribute("map");
+	
+	Map<String, List<Object>> requestData = new HashMap<>();
+	   List<Object> roomDataList = new ArrayList<>();
+
+	   for (int i = 0; i < map.size(); i++) {
+	      List<Decide> roomList = map.get("roomList" + i);
+	      
+	      for (Decide roomInfo : roomList) {
+	         int roomNo = roomInfo.getRoomNo();
+	         String roomName = roomInfo.getRoomName();
+	         String roomCheckin = roomInfo.getCartCheckIn();
+	         String roomCheckout = roomInfo.getCartCheckOut();
+	         int roomHCount = roomInfo.getRoomHCount();
+	         
+	         // 필요한 값들을 변수에 저장하고 리스트에 추가
+	         List<Object> roomDataItem = new ArrayList<>();
+	         roomDataItem.add(roomNo);
+	         roomDataItem.add(roomName);
+	         roomDataItem.add(roomCheckin);
+	         roomDataItem.add(roomCheckout);
+	         roomDataItem.add(roomHCount);	         
+	         roomDataList.add(roomDataItem);
+	      }
+	   }
+
+	   requestData.put("roomData", roomDataList);
+	   // requestData에 필요한 다른 데이터도 추가할 수 있음
+
+	   String encodedData = URLEncoder.encode(new Gson().toJson(requestData), "UTF-8");
+
 %>
 <c:set var="m" value="${map}"/>
 <!DOCTYPE html>
@@ -473,7 +512,6 @@
  <script src="https://js.tosspayments.com/v1/payment-widget"></script>
     
     <script>
-   
     function paymentsBtn_click() {
 
     	const clientKey = 'test_ck_aBX7zk2yd8yed6OBR9Q8x9POLqKQ' // 테스트용 클라이언트 키
@@ -481,22 +519,9 @@
 
     	// 2. 결제위젯 SDK 초기화
     	const paymentWidget = PaymentWidget(clientKey, customerKey) // 회원 결제
-    	// const paymentWidget = PaymentWidget(clientKey, PaymentWidget.ANONYMOUS) // 비회원 결제
-    	const urlParams = new URL(location.href).searchParams;
     	
-    	
-    	let roomNo = urlParams.get('roomNo');
-    	let roomName = $('.roomName').html();
-    	let roomCheckout = $('.check-out').children('.date').html();
-    	let roomCheckin = $('.check-in').children('.date').html();
-    	let roomHCount = $('.roomHCount').html();
-    	/* console.log(roomNo);
-
-    	console.log(buTitle);
-    	console.log(roomName);
-    	console.log(roomCheckout);
-    	console.log(roomCheckin);
-    	console.log(roomHCount); */
+        const url = 'http://localhost:8081/breaktime/booking/insertBooking?requestData=<%= encodedData %>';
+        
     	paymentWidget.renderPaymentMethods('#pay-button', 
 		  { value: 1, currency: 'KRW', country: 'KR' }, 
 		  { variantKey: 'widgetA' });
@@ -504,12 +529,12 @@
 		 paymentWidget.requestPayment({
 		  orderId: 'AD8aZDpbzXs4EQa-UkIX6',
 		  orderName: 'breakTime 예약',
-		  successUrl: 'http://localhost:8081/breaktime/booking/insertBooking?roomNo='+roomNo+'&roomName='+roomName+'&roomCheckin='+roomCheckin+'&roomCheckout='+roomCheckout+'&roomHCount='+roomHCount,
-		  failUrl: 'http://localhost:8081/fail',
+		  successUrl: url,
+    	  failUrl: 'http://localhost:8081/fail',
 		  customerEmail: 'customer123@gmail.com', 
 		  customerName: 'breakTime'
 
-})
+	})
     }
     
 </script>

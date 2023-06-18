@@ -34,5 +34,9 @@ public class BookingDao {
 		return (ArrayList)sqlSession.selectList("bookingMapper.selectReviewList", userNo);
 
 	}
+
+	public int deleteCartList(Booking booking) {
+		return sqlSession.delete("bookingMapper.deleteCartList", booking);
+	}
 	
 }
