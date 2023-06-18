@@ -50,7 +50,6 @@ a {
 }
 
 /* 체크인, 체크아웃 */
-
 .date_detail {
 	width: 200px;
 }
@@ -59,21 +58,18 @@ a {
 	position: relative;
 	display: inline-block;
 }
-
 </style>
 </head>
 <body>
 	<div class="optionArea">
-	<br>
-	<br>
+		<br> <br>
 		<div class="houseOption">
 			<form id="houseOption" name="option"
 				action="<%=request.getContextPath()%>/list/filter/${category}"
 				method="GET">
 				<table class="optionTable">
 					<tr>
-						<td> 
-						지역 :
+						<td>지역 :
 							<div class="area_detail">
 								<div class="dropdown1">
 									<select class="areaCode" name="area">
@@ -102,8 +98,7 @@ a {
 					</tr>
 					<!-- 체크인 날짜 옵션 -->
 					<tr>
-						<td>
-						체크인 :
+						<td>체크인 :
 							<div class="date_checkIn">
 								<div class="dropdown2">
 									<select class="dateCheck1" name="date_in">
@@ -114,8 +109,7 @@ a {
 					</tr>
 					<!-- 체크아웃 날짜 옵션 -->
 					<tr>
-						<td>
-						체크아웃 :
+						<td>체크아웃 :
 							<div class="date_checkOut">
 								<div class="dropdown3">
 									<select class="dateCheck2" name="date_out">
@@ -207,7 +201,7 @@ a {
 							name="houseOptions" value="에어컨">에어컨</td>
 					</tr>
 					<tr>
-						<td ><a class="option_openBtn">더 보기</a></td>
+						<td><a class="option_openBtn">더 보기</a></td>
 					</tr>
 					<tr>
 						<th class="tableTitle">투숙객 별점</th>
@@ -251,46 +245,62 @@ a {
 				<br>
 				<button type="submit" onclick="submitForm()">검색하기</button>
 			</form>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+			<br> <br> <br> <br> <br> <br> <br>
 			<br>
 		</div>
 	</div>
 
 	<!-- 스크립트 -->
 	<script>
-	// 체크인 select 요소 가져오기
-	const dateSelect1 = document.querySelector('.dateCheck1');
-	const today1 = new Date();
-	const oneMonthLater1 = new Date();
-	oneMonthLater1.setMonth(today1.getMonth() + 1);
-	addDateOptions(today1, oneMonthLater1, dateSelect1);
-
-	// 체크아웃 select 요소 가져오기
-	const dateSelect2 = document.querySelector('.dateCheck2');
-	const today2 = new Date();
-	const oneMonthLater2 = new Date();
-	oneMonthLater2.setMonth(today2.getMonth() + 1);
-	addDateOptions(today2, oneMonthLater2, dateSelect2);
-
-	// 날짜 옵션 추가 함수
-	function addDateOptions(startDate, endDate, dateSelect) {
-	  let currentDate = new Date(startDate);
-	  while (currentDate <= endDate) {
-	    const option = document.createElement('option');
-	    const dateValue = currentDate.toISOString().split('T')[0];
-	    option.value = String(dateValue); // 날짜 값을 문자열로 변환하여 할당
-	    option.textContent = currentDate.toLocaleDateString();
-	    dateSelect.appendChild(option);
-	    currentDate.setDate(currentDate.getDate() + 1);
+	  // 체크인 select 요소 가져오기
+	  const dateSelect1 = document.querySelector('.dateCheck1');
+	  const today1 = new Date();
+	  const oneMonthLater1 = new Date();
+	  oneMonthLater1.setMonth(today1.getMonth() + 1);
+	  addDateOptions(today1, oneMonthLater1, dateSelect1);
+	
+	  // 체크아웃 select 요소 가져오기
+	  const dateSelect2 = document.querySelector('.dateCheck2');
+	  dateSelect2.disabled = true; // 초기에 비활성화 상태로 설정
+	
+	  // 체크인 select 변경 이벤트 리스너 추가
+	  dateSelect1.addEventListener('change', function () {
+	    const startDate = new Date(dateSelect1.value);
+	    const endDate = new Date(startDate);
+	    endDate.setMonth(startDate.getMonth() + 1);
+	    addDateOptions(startDate, endDate, dateSelect2);
+	    dateSelect2.disabled = false; // 체크인 선택 후에 활성화
+	
+	    const checkoutDate = new Date(startDate);
+	    checkoutDate.setDate(checkoutDate.getDate() + 1); // 체크인 날짜 + 1일
+	    dateSelect2.value = checkoutDate.toISOString().split('T')[0]; // 체크아웃 select 요소에 설정
+	
+	    // 이전 옵션 제거
+	    const options = dateSelect2.querySelectorAll('option');
+	    options.forEach((option) => {
+	      const date = new Date(option.value);
+	      if (date <= startDate) {
+	        option.remove();
+	      }
+	    });
+	  });
+	
+	  // 날짜 옵션 추가 함수
+	  function addDateOptions(startDate, endDate, dateSelect) {
+	    dateSelect.innerHTML = ''; // 기존 옵션 초기화
+	    let currentDate = new Date(startDate);
+	    while (currentDate <= endDate) {
+	      const option = document.createElement('option');
+	      const dateValue = currentDate.toISOString().split('T')[0];
+	      option.value = String(dateValue);
+	      option.textContent = currentDate.toLocaleDateString();
+	      dateSelect.appendChild(option);
+	      currentDate.setDate(currentDate.getDate() + 1);
+	    }
 	  }
-	}
 	</script>
+
+
 
 	<script>
 		init();
@@ -306,8 +316,8 @@ a {
 			});
 		}
 	</script>
-	
-		<script>
+
+	<script>
 		// 페이지 로드 시 옵션과 드롭다운 초기화
 		window.addEventListener('load', function() {
 			initializeOptions();
@@ -339,35 +349,41 @@ a {
 			}
 
 			// 숙박객 수 선택 초기화
-			const guestCountCheckboxes = document.querySelectorAll('.guest-count-checkbox');
+			const guestCountCheckboxes = document
+					.querySelectorAll('.guest-count-checkbox');
 			const guestCountParams = params.getAll('guests');
 			guestCountCheckboxes.forEach(function(checkbox) {
 				checkbox.checked = guestCountParams.includes(checkbox.value);
 			});
 
 			// 가격 선택 초기화
-			const priceCheckboxes = document.querySelectorAll('.price-checkbox');
+			const priceCheckboxes = document
+					.querySelectorAll('.price-checkbox');
 			const priceParams = params.getAll('prices');
 			priceCheckboxes.forEach(function(checkbox) {
 				checkbox.checked = priceParams.includes(checkbox.value);
 			});
 
 			// 예약 종류 선택 초기화
-			const reserveOptionsCheckboxes = document.querySelectorAll('.house-option-checkbox[name="reserveOptions"]');
+			const reserveOptionsCheckboxes = document
+					.querySelectorAll('.house-option-checkbox[name="reserveOptions"]');
 			const reserveOptionsParams = params.getAll('reserveOptions');
 			reserveOptionsCheckboxes.forEach(function(checkbox) {
-				checkbox.checked = reserveOptionsParams.includes(checkbox.value);
+				checkbox.checked = reserveOptionsParams
+						.includes(checkbox.value);
 			});
 
 			// 편의시설 선택 초기화
-			const houseOptionsCheckboxes = document.querySelectorAll('.house-option-checkbox[name="houseOptions"]');
+			const houseOptionsCheckboxes = document
+					.querySelectorAll('.house-option-checkbox[name="houseOptions"]');
 			const houseOptionsParams = params.getAll('houseOptions');
 			houseOptionsCheckboxes.forEach(function(checkbox) {
 				checkbox.checked = houseOptionsParams.includes(checkbox.value);
 			});
 
 			// 투숙객 별점 선택 초기화
-			const starCountCheckboxes = document.querySelectorAll('.star-count-checkbox');
+			const starCountCheckboxes = document
+					.querySelectorAll('.star-count-checkbox');
 			const starCountParams = params.getAll('starScore');
 			starCountCheckboxes.forEach(function(checkbox) {
 				checkbox.checked = starCountParams.includes(checkbox.value);
@@ -380,11 +396,16 @@ a {
 			const areaSelect = document.querySelector('.areaCode');
 			const dateCheckinSelect = document.querySelector('.dateCheck1');
 			const dateCheckoutSelect = document.querySelector('.dateCheck2');
-			const guestCountCheckboxes = document.querySelectorAll('.guest-count-checkbox:checked');
-			const priceCheckboxes = document.querySelectorAll('.price-checkbox:checked');
-			const reserveOptionsCheckboxes = document.querySelectorAll('.house-option-checkbox[name="reserveOptions"]:checked');
-			const houseOptionsCheckboxes = document.querySelectorAll('.house-option-checkbox[name="houseOptions"]:checked');
-			const starCountCheckboxes = document.querySelectorAll('.star-count-checkbox:checked');
+			const guestCountCheckboxes = document
+					.querySelectorAll('.guest-count-checkbox:checked');
+			const priceCheckboxes = document
+					.querySelectorAll('.price-checkbox:checked');
+			const reserveOptionsCheckboxes = document
+					.querySelectorAll('.house-option-checkbox[name="reserveOptions"]:checked');
+			const houseOptionsCheckboxes = document
+					.querySelectorAll('.house-option-checkbox[name="houseOptions"]:checked');
+			const starCountCheckboxes = document
+					.querySelectorAll('.star-count-checkbox:checked');
 
 			// 기존의 쿼리 매개변수 삭제
 			const url = new URL(window.location.href);
