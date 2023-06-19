@@ -568,6 +568,28 @@
 			}
 		}
 	</script>
+	
+	<!-- 모달창 열기/닫기 스크립트 -->
+	<!-- <script>
+        const open = () => {
+            document.querySelector(".modal_background").style.visibility="visible";
+        }
+        const close = () => {
+            document.querySelector(".modal_background").style.visibility="hidden";
+        }
+
+        document.querySelector(".option_openBtn").addEventListener("click", open); 
+        document.querySelector(".option_closeBtn1").addEventListener("click", close);
+      document.querySelector(".option_closeBtn2").addEventListener("click", close); 
+      document.querySelector(".option_closeBtn3").addEventListener("click", close); 
+      document.querySelector(".option_closeBtn4").addEventListener("click", close); 
+      document.querySelector(".option_closeBtn5").addEventListener("click", close); 
+      document.querySelector(".option_closeBtn6").addEventListener("click", close); 
+      document.querySelector(".option_closeBtn7").addEventListener("click", close); 
+      document.querySelector(".option_closeBtn8").addEventListener("click", close); 
+      document.querySelector(".option_closeBtn9").addEventListener("click", close); 
+      document.querySelector(".option_closeBtn10").addEventListener("click", close); 
+    </script> -->
 
 
 </body>

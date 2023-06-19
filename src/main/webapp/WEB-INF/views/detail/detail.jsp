@@ -16,7 +16,7 @@
 <title>BreakTime 상세페이지</title>
 
 <!-- 메인페이지에 적용할 css 템플릿 추가  -->
-
+<link rel="stylesheet" href="${contextPath}/resources/css/detail/detail_main.css">
 
 <!-- fontawesome라이브러리추가 다양한 아이콘을 지원함.(EX) 검색용 돋보기 버튼) -->
 <script src="https://kit.fontawesome.com/a2e8ca0ae3.js"
@@ -24,133 +24,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-<style>
-body {
-	overflow: scroll;
-	overflow-x: hidden;
-}
-
-.mainArea {
-	width: 45%;
-	margin-left: 250px;
-}
-
-button {
-	cursor: pointer;
-}
-
-.houseList {
-	margin-left: 5%;
-	margin-top: 100px;
-}
-
-.houseContent {
-	min-width: 700px;
-	height: 200px;
-	border-radius: 0.75rem;
-	border: solid 1px darkgray;
-	box-shadow: 3px 3px 3px 3px gray;
-	display: grid;
-	grid-template-columns: minmax(200px, 2fr) minmax(300px, 3fr)
-		minmax(200px, 2fr);
-}
-
-.houseMainImg {
-	box-sizing: border-box;
-	height: 200px;
-}
-
-.houseInfo {
-	box-sizing: border-box;
-	padding: 5%;
-}
-
-.houseTitle {
-	font-size: 20px;
-	padding: 0 0 2%;
-}
-
-.houseAddress {
-	font-size: 14px;
-	padding: 2% 0 2%;
-}
-
-.houseTel {
-	font-size: 12px;
-	padding: 0 0 2%;
-}
-
-.room_options {
-	font-size: 12px;
-	padding: 0 0 2%;
-}
-
-.housePrice {
-	position: relative;
-	border-left: 1px solid darkgrey;
-	box-sizing: border-box;
-	padding: 8%;
-	text-align: right;
-	color: gray;
-}
-
-.priceHowMuch {
-	font-size: 130%;
-	font-weight: bold;
-	color: black;
-}
-
-.priceDetail1 {
-	font-size: 80%;
-	margin-bottom: 1%;
-}
-
-.priceDetail2 {
-	font-size: 70%;
-	margin-top: 1%;
-}
-
-.hpButton {
-	height: 50px;
-	position: absolute;
-	bottom: 15%;
-	right: 8%;
-}
-
-.rsButton {
-	font-size: 70%;
-	color: black;
-}
-
-.houseList>ul {
-	padding-left: 0;
-	margin-left: 0;
-}
-
-.houseList>ul>li {
-	list-style-type: none;
-	margin-bottom: 3%;
-}
-
-.houseList>ul>li>div>div>img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-top-left-radius: 0.75rem;
-	border-bottom-left-radius: 0.75rem;
-}
-
-.starStyle {
-	color: #d8db1f;
-}
-</style>
 </head>
-
 <body>
 
 	<jsp:include page="/WEB-INF/views/header.jsp" />
 
-	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
+	<%-- <jsp:include page="/WEB-INF/views/detail/noUse/option_modal.jsp" /> --%>
 
 	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
 
@@ -325,28 +204,6 @@ button {
     checkScreenWidth();
    </script>
 
-	<!-- 모달창 열기/닫기 스크립트 -->
-	<script>
-        const open = () => {
-            document.querySelector(".modal_background").style.visibility="visible";
-        }
-        const close = () => {
-            document.querySelector(".modal_background").style.visibility="hidden";
-        }
-
-        document.querySelector(".option_openBtn").addEventListener("click", open); 
-        document.querySelector(".option_closeBtn1").addEventListener("click", close);
-      document.querySelector(".option_closeBtn2").addEventListener("click", close); 
-      document.querySelector(".option_closeBtn3").addEventListener("click", close); 
-      document.querySelector(".option_closeBtn4").addEventListener("click", close); 
-      document.querySelector(".option_closeBtn5").addEventListener("click", close); 
-      document.querySelector(".option_closeBtn6").addEventListener("click", close); 
-      document.querySelector(".option_closeBtn7").addEventListener("click", close); 
-      document.querySelector(".option_closeBtn8").addEventListener("click", close); 
-      document.querySelector(".option_closeBtn9").addEventListener("click", close); 
-      document.querySelector(".option_closeBtn10").addEventListener("click", close); 
-    </script>
-
 	<script>
 	  function redirectToDetail(buNo) {
 	    var url = window.location.href; // 현재 페이지의 URL을 가져옵니다.
@@ -367,8 +224,6 @@ button {
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous"></script>
-
-
 
 </body>
 </html>
