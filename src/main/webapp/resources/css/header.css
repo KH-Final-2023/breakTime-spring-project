@@ -37,14 +37,14 @@ cursor:pointer;
 
 
 #home-logo {
-height: 35px;
-width: 100px;
+height: 38px;
+width: 120px;
 cursor: pointer;
 }
 
 #home-logo>img {
-width: 100px;
-height: 35px;
+width: 120px;
+height: 38px;
 cursor: pointer;
 }
 
@@ -125,6 +125,7 @@ cursor: pointer;
   position : relative;
   display : inline-block;
   width: 100px;
+  
 }
 
 .header-dropdown-content{
@@ -140,6 +141,7 @@ cursor: pointer;
   color : white;
   font-size : 24px;
   background-color : green;
+  padding : 5px;
   
 }
 

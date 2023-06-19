@@ -55,7 +55,7 @@
                   <div class="header-dropdown-content">
                     <a href="#" id="notice">공지사항</a>
                     <a id="myPage">마이페이지</a>
-                    <a href="#" id="message">쪽지함</a>
+                    <a href="#" id="message">문의하기</a>
                     <a href="#" id="cart">장바구니</a>
 
                     <%if (loginBusiness != null) {%>
