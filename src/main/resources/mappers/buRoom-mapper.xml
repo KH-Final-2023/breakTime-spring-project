@@ -162,7 +162,12 @@ WHERE ROOM_NO = #{roomNo}
 		FROM ROOM_IMG
 		WHERE ROOM_NO = #{roomNo}
 	</select>
-
+	
+	<delete id="deleteRoom" parameterType="int">
+    DELETE 
+    FROM ROOM
+    WHERE ROOM_NO = #{roomNo}
+</delete>
 	<!-- <select id="selectBuRoomList" resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM

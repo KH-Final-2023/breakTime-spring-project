@@ -285,6 +285,8 @@ function AjaxDeleteCart() {
 </head>
 
 <body>
+
+<jsp:include page="/WEB-INF/views/header.jsp" />
    <!-- 메인 부분 -->
    <div class="container-main">
       <c:if test="${empty list}">

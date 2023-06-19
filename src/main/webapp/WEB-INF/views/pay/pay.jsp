@@ -86,7 +86,7 @@
                 </div>
             </div>
              <div class="total">
-                <span class="amount"></span><span style="font-size: 18px; font-weight: bold;">${room.roomPrice} 원</span>
+                <span class="amount"></span><span style="font-size: 25px; font-weight: bold;">${room.roomPrice} 원</span>
             </div> 
             </c:forEach>
         </c:forEach>
@@ -106,14 +106,14 @@
 
         <h3 style="margin-bottom: 15px;">결제 금액</h3>
         <div class="payment-details">
-            <span style="font-size: 14px;">상품금액</span>
-            <span class="total-payment-amount" id="product-amount" style="font-size: 18px; font-weight: bold;"></span>
+            <span style="font-size: 20px;">상품금액</span>
+            <span class="total-payment-amount" id="product-amount" style="font-size: 25px; font-weight: bold;"></span>
         </div>
       
         <div class="dotted-line"></div>
 
         <div class="payment-details">
-          <span style="font-size: 14px;"><h3>총 결제 금액</h3></span>
+          <span style="font-size: 20px;"><h3>총 결제 금액</h3></span>
           <span class="total-payment-amount" id="total-payment-amount"></span>
       </div>
     </div>

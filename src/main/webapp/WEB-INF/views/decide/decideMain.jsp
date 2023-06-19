@@ -17,7 +17,9 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/font.css">
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
 $(document).ready(function() {
 	
