@@ -167,6 +167,8 @@
       B.BU_ADDRESS,
       B.AREA_NO,
       B.BU_CATEGORY,
+      B.BU_NO,
+      B.BU_MAIN_IMG,
       B.BU_TITLE,
       AC.AREA_NAME,
       CC.BU_CATEGORY
