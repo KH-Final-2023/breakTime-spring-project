@@ -14,7 +14,10 @@ public interface BookingService {
 	
 	public int insertReview(Review r);
 	
+	// 예약 등록
 	public int insertBooking(Booking b);
 	
+	// 예약 등록시 카트 삭제
+	public int deleteCartList(Booking booking);
 }
 

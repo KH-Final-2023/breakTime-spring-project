@@ -41,6 +41,7 @@ button {
 
 .houseList {
 	margin-left: 5%;
+	margin-top: 100px;
 }
 
 .houseContent {
@@ -147,7 +148,7 @@ button {
 
 <body>
 
-	<%-- <jsp:include page="/WEB-INF/views/header.jsp" /> --%>
+	<jsp:include page="/WEB-INF/views/header.jsp" />
 
 	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
 
@@ -164,7 +165,7 @@ button {
 						<div class="houseContent">
 							<div class="houseMainImg">
 								<img src="${d.buMainImg}">
-							</div>	
+							</div>
 							<div class="houseInfo">
 								<a>
 									<div>
@@ -173,13 +174,21 @@ button {
 											<c:set var="fullStars" value="${Math.floor(d.userStarScore)}" />
 											<c:set var="halfStar" value="${d.userStarScore - fullStars}" />
 
-											<c:forEach var="i" begin="1" end="${fullStars}">
-												<i class="fa-solid fa-star starStyle"></i>
-											</c:forEach>
+											<c:choose>
+												<c:when test="${fullStars > 0}">
+													<c:forEach var="i" begin="1" end="${fullStars}">
+														<i class="fa-solid fa-star starStyle"></i>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<i class="far fa-star starStyle"></i>
+												</c:otherwise>
+											</c:choose>
 
 											<c:if test="${halfStar >= 0.5}">
 												<i class="fa-solid fa-star-half starStyle"></i>
 											</c:if>
+
 											<span> ${d.userStarScore } </span>
 										</div>
 										<div class="houseAddress">${d.buAddress}</div>
@@ -340,8 +349,16 @@ button {
 
 	<script>
 	  function redirectToDetail(buNo) {
-	    window.location.href = '/breaktime/decide/demain/' + buNo;
+	    var url = window.location.href; // 현재 페이지의 URL을 가져옵니다.
+	    var urlParams = new URLSearchParams(url.split('?')[1]); // 쿼리 파라미터를 추출합니다.
+	    var date_in = urlParams.get('date_in'); // date_in 값을 가져옵니다.
+	    var date_out = urlParams.get('date_out'); // date_out 값을 가져옵니다.
+
+	    // date_in과 date_out 값을 사용하여 URL을 구성합니다.
+	    var redirectUrl = '/breaktime/decide/demain/' + buNo + '?dateIn=' + date_in + '&dateOut=' + date_out;
+	    window.location.href = redirectUrl;
 	  }
+	  
 	</script>
 
 	<!-- footer include -->
@@ -351,7 +368,6 @@ button {
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous"></script>
 
-	<!-- main.js 연 결 -->
 
 
 </body>

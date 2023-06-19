@@ -56,9 +56,8 @@
                     <a href="#" id="notice">공지사항</a>
                     <a id="myPage">마이페이지</a>
                     <a href="#" id="message">쪽지함</a>
-                    <a href="#" id="cart">장바구니</a>
+                    <a href="${contextPath}/decide/debasket" id="cart">장바구니</a>
                     <a href="#" id="review">리뷰</a>
-                    <a href="#" id="pay">결제</a>
 
                     <%if (loginBusiness != null) {%>
                     <a href="#" id="asd">사업자</a>

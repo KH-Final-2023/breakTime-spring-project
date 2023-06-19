@@ -43,7 +43,7 @@
    <!-- 리뷰 평점 조회 -->
     <select id="selectReviewScore" resultType="_double">
    /*decideMapper.selectReviewScore*/
-      SELECT    NVL(ROUND(AVG(V.STAR_SCORE), 1), 0) AS starScore
+      SELECT NVL(ROUND(AVG(V.STAR_SCORE), 1), 0) AS starScore
             FROM BUSINESS B
             INNER JOIN ROOM R ON B.BU_NO = R.BU_NO
             LEFT JOIN REVIEW V ON V.USING_ROOM = R.ROOM_NO
@@ -54,12 +54,13 @@
    <!-- 유저 리뷰 점수 조회 -->
     <select id="selectuserStarScore" resultType="_double">
    /*decideMapper.selectuserStarScore*/
-      SELECT  ROUND(R.STAR_SCORE, 1)   AS userStarScore
+      SELECT ROUND(R.STAR_SCORE, 1)   AS userStarScore
             FROM REVIEW R
             JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
-              JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
+            JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
             WHERE R.REVIEW_AVAILABLE = 'Y'
-              AND B.BU_NO = #{buNo}
+            AND B.BU_NO = #{buNo}
+            ORDER BY R.REVIEW_NO DESC
    </select>
    
    <!-- 객실 조회 -->
@@ -146,11 +147,53 @@
       FROM REVIEW R
       JOIN MEMBER M   ON M.USER_NO = R.REVIEW_WRITER
       JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
-        JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
+      JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
       WHERE R.REVIEW_AVAILABLE = 'Y'
-        AND B.BU_NO = #{buNo}
+      AND B.BU_NO = #{buNo} 
+      ORDER BY R.REVIEW_NO DESC
    </select>
    
+    <select id="selectDecideReviewHigh" resultType="com.kh.breaktime.decide.model.vo.Decide">
+   /*decideMapper.selectDecideReviewHigh*/
+      SELECT  R.REVIEW_NO            AS reviewNo,
+            R.REVIEW_WRITER         AS reviewWriter, 
+            M.USER_NAME            AS userName, 
+            TO_CHAR(R.CREATE_DATE, 'YYYY.MM.DD')  AS createDate,
+            R.USING_ROOM         AS usingRoom, 
+            RO.ROOM_NAME         AS roomName,
+            RO.ROOM_INFO         AS roomInfo, 
+            R.REVIEW_CONTENT      AS reviewContent, 
+            R.REVIEW_CONTENT_REPLY   AS reviewContentReply,
+            ROUND(R.STAR_SCORE, 1) AS userStarScore
+      FROM REVIEW R
+      JOIN MEMBER M   ON M.USER_NO = R.REVIEW_WRITER
+      JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
+      JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
+      WHERE R.REVIEW_AVAILABLE = 'Y'
+      AND B.BU_NO = #{buNo}
+      ORDER BY R.STAR_SCORE DESC
+   </select>
+   
+   <select id="selectDecideReviewRow" resultType="com.kh.breaktime.decide.model.vo.Decide">
+   /*decideMapper.selectDecideReviewRow*/
+      SELECT  R.REVIEW_NO            AS reviewNo,
+            R.REVIEW_WRITER         AS reviewWriter, 
+            M.USER_NAME            AS userName, 
+            TO_CHAR(R.CREATE_DATE, 'YYYY.MM.DD')  AS createDate,
+            R.USING_ROOM         AS usingRoom, 
+            RO.ROOM_NAME         AS roomName,
+            RO.ROOM_INFO         AS roomInfo, 
+            R.REVIEW_CONTENT      AS reviewContent, 
+            R.REVIEW_CONTENT_REPLY   AS reviewContentReply,
+            ROUND(R.STAR_SCORE, 1) AS userStarScore
+      FROM REVIEW R
+      JOIN MEMBER M   ON M.USER_NO = R.REVIEW_WRITER
+      JOIN ROOM RO    ON RO.ROOM_NO = R.USING_ROOM
+      JOIN BUSINESS B ON B.BU_NO = RO.BU_NO
+      WHERE R.REVIEW_AVAILABLE = 'Y'
+      AND B.BU_NO = #{buNo}
+      ORDER BY R.STAR_SCORE 
+   </select>
    
    <!-- 리뷰 insert -->
    <insert id="insertReview" parameterType="decide" >
@@ -239,6 +282,4 @@
       WHERE USER_NO = #{userNo}
       AND BU_NO = #{buNo} 
    </select>
-    
-    
 </mapper>

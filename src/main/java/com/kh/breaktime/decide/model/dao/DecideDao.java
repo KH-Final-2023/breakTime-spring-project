@@ -81,6 +81,15 @@ public class DecideDao {
       
       return (ArrayList)sqlSession.selectList("decideMapper.selectDecideReview", buNo);
    }
+   
+   public ArrayList<Decide> selectDecideReviewHigh(int buNo) {
+	      
+	      return (ArrayList)sqlSession.selectList("decideMapper.selectDecideReviewHigh", buNo);
+	   }
+   public ArrayList<Decide> selectDecideReviewRow(int buNo) {
+	      
+	      return (ArrayList)sqlSession.selectList("decideMapper.selectDecideReviewRow", buNo);
+	   }
 
    // 장바구니 조회
    public ArrayList<Decide> selectCartList(int userNo){
