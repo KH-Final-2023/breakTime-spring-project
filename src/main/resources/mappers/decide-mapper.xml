@@ -135,6 +135,7 @@
    <!-- 리뷰 조회 -->
     <select id="selectDecideReview" resultType="com.kh.breaktime.decide.model.vo.Decide">
    /*decideMapper.selectDecideReview*/
+
       SELECT  R.REVIEW_NO            AS reviewNo,
             R.REVIEW_WRITER         AS reviewWriter, 
             M.USER_NAME            AS userName, 
@@ -172,6 +173,7 @@
       WHERE R.REVIEW_AVAILABLE = 'Y'
       AND B.BU_NO = #{buNo}
       ORDER BY R.STAR_SCORE DESC
+
    </select>
    
    <select id="selectDecideReviewRow" resultType="com.kh.breaktime.decide.model.vo.Decide">

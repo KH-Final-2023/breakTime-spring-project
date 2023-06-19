@@ -352,4 +352,16 @@
     FROM REVIEW
     WHERE REVIEW_DECLARIATION = 'Y'
   </select>
+  <select id="getBusinessInfo" resultType="hashmap">
+        SELECT  ENROLL_DATE , BU_USER_NAME
+        FROM BUSINESS
+        WHERE APPROVAL = 'N'
+    </select>
+      <select id="selectReviewDeclariation" resultType="hashmap">
+SELECT M.USER_NAME, R.CREATE_DATE
+FROM REVIEW R
+JOIN MEMBER M ON R.REVIEW_WRITER = M.USER_NO
+WHERE R.REVIEW_DECLARIATION = 'Y'
+
+    </select>
 </mapper>

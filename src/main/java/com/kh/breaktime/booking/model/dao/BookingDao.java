@@ -12,6 +12,7 @@ import com.kh.breaktime.review.model.vo.Review;
 @Repository
 public class BookingDao {
 
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
@@ -42,3 +43,4 @@ public class BookingDao {
 	}
 	
 }
+-

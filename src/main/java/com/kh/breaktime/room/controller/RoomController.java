@@ -47,8 +47,6 @@ public class RoomController {
 	@PostMapping("/enroll")
 	public String registerBuRoom(Room buRoom, @RequestParam("upfiles") List<MultipartFile> upfiles, HttpSession session,
 			Model model) {
-		System.out.println("=============================================================" + buRoom);
-
 		try {
 			List<String> savedImagePaths = new ArrayList<>();
 			for (MultipartFile file : upfiles) {
@@ -209,7 +207,6 @@ public class RoomController {
 		// 방 이미지와 방 정보 페이지로 이동
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
 		List<Room> roomList = buService.getRoomsModifyByBuId(roomNo);
-		System.out.println("니가 조회한 룸이다:" + roomList);
 		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 		for (int i = 0; i < roomList.size(); i++) {
 			RoomImg roomImg = buService.getRoomImagesModifyByBuId(roomList.get(i).getRoomNo());
@@ -226,7 +223,6 @@ public class RoomController {
 	public String selectBuRoomList(Model model, HttpSession session) {
 		Business loginBusiness = (Business) session.getAttribute("loginBusiness");
 		List<Room> roomList = buService.standardRoom(loginBusiness.getBuNo());
-		System.out.println("===================================" + roomList);
 		List<RoomImg> roomImgList = new ArrayList<RoomImg>();
 		for (int i = 0; i < roomList.size(); i++) {
 
