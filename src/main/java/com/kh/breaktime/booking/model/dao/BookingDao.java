@@ -28,6 +28,8 @@ public class BookingDao {
 	public int insertBooking(Booking b) {
 		return sqlSession.insert("bookingMapper.insertBooking", b);
 
+	}
+		
 	public ArrayList<Review> selectReviewList(int userNo) {
 		
 		return (ArrayList)sqlSession.selectList("bookingMapper.selectReviewList", userNo);

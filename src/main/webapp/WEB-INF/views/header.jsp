@@ -173,6 +173,12 @@
         })
       </script>
       
+      <script>
+          document.getElementById("message").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/member/list";
+        })
+      </script>
+      
       
       <script>
       <!-- 로그인 안된 상태에서 마이페이지 클릭시 알랏출력, 로그인유저세션에 값이있을시 마이페이지로  -->

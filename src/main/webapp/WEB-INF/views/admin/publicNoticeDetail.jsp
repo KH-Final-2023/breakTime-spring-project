@@ -91,17 +91,9 @@ body {
 	outline: none;
 }
 
-#enrollWrap {
-	width: 100%;
-	height: 80%;
-	border: 1px solid rgb(224, 224, 224);
-	border-radius: 10px;
-	padding: 20px;
-	background: rgb(247, 247, 247);
-}
 
 #wrapper {
-	height: 95%;
+	height: 100%;
 }
 
 #footer {

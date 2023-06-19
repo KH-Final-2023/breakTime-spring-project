@@ -157,6 +157,7 @@
 	</select>
 
 
+
    <!-- 검색 리스트 목록 -->
 
    <select id="searchDetailList" resultMap="detailResultSet">
@@ -184,7 +185,9 @@
 
 
 
+
    <!-- 메인 지역 리스트 목록 -->
+
    <select id="selectAreaList" resultMap="detailResultSet">
       SELECT
       B.BU_MAIN_IMG,

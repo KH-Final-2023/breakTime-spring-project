@@ -10,6 +10,6 @@ public interface ApprovalService {
 	
 	public int approvalAccept(Business b); 
 	
-	public int approvalCancel(Business b);
+	public int approvalCancel(int buNo);
 	
 }

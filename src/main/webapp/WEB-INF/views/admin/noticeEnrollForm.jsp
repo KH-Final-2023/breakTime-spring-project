@@ -68,6 +68,12 @@
 					  });
 					});
 		  </script>
+			<!-- include summernote css/js-->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+			<!-- include summernote-ko-KR -->
+			<script src="/resources/js/summernote-ko-KR.js"></script>
+			<script src="/js/summernote/summernote-lite.js"></script>
+			<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
 		</div>
 	</main>
 </body>
