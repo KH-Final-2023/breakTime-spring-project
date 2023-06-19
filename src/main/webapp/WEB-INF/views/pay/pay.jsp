@@ -70,7 +70,7 @@
                 </div>
                 <div class="room-info">
                     <p class="roomName">${room.roomName}</p>
-                    <p class="roomHCount">${room.roomHCount }</p>
+                    <p class="roomHCount">최대 ${room.roomHCount } 명</p>
                 </div>
                 <div class="check-in-out">
                     <div class="check-in">

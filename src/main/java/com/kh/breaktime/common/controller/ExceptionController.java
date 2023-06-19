@@ -1,4 +1,4 @@
-package com.kh.breaktime.common;
+package com.kh.breaktime.common.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
