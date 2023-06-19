@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:if test="${!empty param.condition}" >
+	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,8 +28,21 @@
 			<div id="notice_area">
 				<span id="notice_title"> 사업자 정보 관리 </span>
 				<hr>
-
-
+				<form id="searchForm" action="" method="get" align="center">
+				 	<div class="select">
+				 		<select class="custom-select" name="condition">
+				 			<option value="buUserName" ${param.condition=='buUserName' ? 'checked' : ''}>사업자 이름</option>
+				 			<option value="buTitle" ${param.condition=='buTitle' ? 'checked' : ''}>숙소 이름</option>
+				 			<option value="buTel" ${param.condition=='buTel' ? 'checked' : ''}>전화번호</option>
+				 			<option value="buAddress" ${param.condition=='buAddress' ? 'checked' : ''}>주소</option>
+				 		</select>
+				 	</div>
+				 	<div class="text">
+				 		<input type="text" class="form-control" name="keyword" value="${param.keyword }">
+				 	</div>
+				 	<button type="submit" class="searchBtn btn btn-primary">검색 </button>
+		 		</form>
+		 		
 				<div id="enrollWrap">
 					<table class="table table-hover">
 						<thead>
@@ -40,6 +56,11 @@
 							</tr>
 						</thead>
 						<tbody>
+							<td colspan="6" style="text-align:center;">
+								<c:if test="${empty selectManageList.list}">
+								    <p>검색된 목록이 없습니다.</p>
+								</c:if>
+							</td>
 							<c:forEach var="b" items="${selectManageList.list}"
 								varStatus="vs">
 								<tr>

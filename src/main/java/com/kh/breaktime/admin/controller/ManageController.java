@@ -28,10 +28,19 @@ public class ManageController {
 	
 	@GetMapping("/list")
 	public String selectManageList(Model model,
-						 	@RequestParam(value="cpage", defaultValue="1") int cp
+						 	@RequestParam(value="cpage", defaultValue="1") int cp,
+						 	@RequestParam Map<String, Object> paramMap
 						 	) {
 		Map<String, Object> map = new HashMap();
+		
+		if(paramMap.get("condition")==null) {
 		manageService.selectManageList(cp,map);
+		}else {
+			// 검색요청을 한 경우 
+			// 검색조건을 추가한 상태로 게시글 셀렉트 
+			paramMap.put("currentPage", cp);
+			manageService.selectManageList(paramMap, map);
+		}
 		model.addAttribute("selectManageList", map);
 		
 		return "admin/manage";

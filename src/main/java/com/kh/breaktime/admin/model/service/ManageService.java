@@ -8,6 +8,8 @@ public interface ManageService {
 	
 	public void selectManageList(int cp, Map<String, Object> map);
 	
+	public void selectManageList(Map<String,Object> paramMap, Map<String, Object> map);
+	
 	public int manageUpdate(Business b); 
 	
 	public int manageCancel(int buNo);
