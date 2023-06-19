@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="com.kh.breaktime.review.model.vo.Review"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -13,91 +13,101 @@
 </head>
 <style>
 #RenrollWrap {
-   width: 60%;
-   height: 80%;
-   border: 1px solid rgb(224, 224, 224);
-   border-radius: 10px;
-   padding: 20px;
-   background: rgb(247, 247, 247);
+	width: 60%;
+	height: 80%;
+	border: 1px solid rgb(224, 224, 224);
+	border-radius: 10px;
+	padding: 20px;
+	background: rgb(247, 247, 247);
+	display: flex;
+	justify-content: center;
+	font-size: 20px;
 }
+
 #contentR2 {
-   display: flex;
-   align-items: center;
+	
 }
+
 #reviewNickname {
-   display: flex;
-   font-size: 16px;
-   margin-bottom: 10px;
-   color: rgb(97, 97, 97);
+	display: flex;
+	font-size: 16px;
+	margin-bottom: 10px;
+	color: rgb(97, 97, 97);
 }
 
 #reviewRoomName {
-   display: flex;
+	display: flex;
 }
 
 #reviewRoomNameList {
-   width: 5%;
-   height: 20px;
-   border-radius: 2px;
-   text-align: center;
-   color: rgb(145, 145, 145);
-   background-color: rgba(230, 230, 230);
+	width: 10%;
+	height: 20px;
+	border-radius: 2px;
+	text-align: center;
+	color: rgb(145, 145, 145);
+	background-color: rgba(230, 230, 230);
 }
 
 #reviewRoomNameInfo {
-   width: 95%;
-   margin-left: 10px;
-   border-radius: 2px;
-   color: rgb(97, 97, 97);
-   background-color: rgba(248, 248, 248);
+	width: 95%;
+	margin-left: 10px;
+	border-radius: 2px;
+	color: rgb(97, 97, 97);
+	background-color: rgba(248, 248, 248);
 }
 
 #review {
-   margin: 20px 0;
-   text-align: left;
+	margin: 20px 0;
+	text-align: left;
 }
 
 #buReviewList {
-   width: 700px;
-   height: 200px;
-   background-color: white;
-   padding: 20px;
+	width: 700px;
+	height: 200px;
+	background-color: white;
+	padding: 20px;
+	border-radius: 15px;
+}
+
+textarea {
+	width: 700px;
+	height: 200px;
+	
 }
 
 #review-star-rating .fa {
-   color: #ffc107;
+	color: #ffc107;
 }
 
 #review-star-rating {
-   margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .buReviewDate {
-   float: right;
-   font-size: 16px;
-   color: rgb(97, 97, 97);
+	float: right;
+	color: rgb(97, 97, 97);
 }
 </style>
 <body>
-   <%@ include file="../header.jsp"%>
-   <div id="content">
-      <div id="content1">
-         <div id="reviewFormMove">
-            <form action="/breaktime/businessRoom/resister" method="GET">
-               <button type="submit" id="buRoomRegister">객실 등록</button>
-            </form>
-            <form action="/breaktime/business/reservation" method="GET">
-               <button type="submit" id="buRoomReservation">예약 내역</button>
-            </form>
-            <form action="/breaktime/business/review" method="GET">
-               <button type="submit" id="buReview">리뷰</button>
-            </form>
-         </div>
-      </div>
-      <div id="content2">
-         <div id="buReviewText">리뷰 목록</div>
-         <hr style="width: 100%;">
-      <%--    <table>
+	<%@ include file="../header.jsp"%>
+	<div id="content">
+		<div id="content1">
+			<div id="reviewFormMove">
+				<form action="/breaktime/businessRoom/resister" method="GET">
+					<button type="submit" id="buRoomRegister">객실 등록</button>
+				</form>
+				<form action="/breaktime/business/reservation" method="GET">
+					<button type="submit" id="buRoomReservation">예약 내역</button>
+				</form>
+				<form action="/breaktime/business/review" method="GET">
+					<button type="submit" id="buReview">리뷰</button>
+				</form>
+			</div>
+		</div>
+		<div id="content2">
+			<div id="buReviewText">리뷰 목록</div>
+			<hr style="width: 100%;">
+			<%--    <table>
             <thead>
                <tr>
                   <th>Review Number</th>
@@ -155,76 +165,87 @@
             </div>
             </div>
         </div> --%>
-    
-       <div id="RenrollWrap">
 
-               <c:forEach items="${businessReviews}" var="review">
-                  <div id="content">
-                     <div id="contentR2">
-                        <div id="reviewBackground" style="width:100%;">
-                           <div id="review-star-rating">
-                              <div class="fa fa-star" >
-                                  <c:choose>
-                                    <c:when test="${review.starScore == '1' }">★</c:when>
-                                    <c:when test="${review.starScore == '2' }">★★</c:when>
-                                    <c:when test="${review.starScore == '3' }">★★★</c:when>
-                                    <c:when test="${review.starScore == '4' }">★★★★</c:when>
-                                    <c:when test="${review.starScore == '5' }">★★★★★</c:when>
-                                 </c:choose>    
-                              </div>
-                           </div>
-                           <div id="reviewNickname">
-                               <div>${review.userName }|${review.createDate }</div> 
-                               
-                           </div>
-                           <div id="reviewRoomName">
-                              <div id="reviewRoomNameList">객실명</div>
-                              <div id="reviewRoomNameInfo">${review.roomName }</div> 
-                              
-                           </div>
-                           <div id=contentdeclariation>
-                            <div id="review">${review.reviewContent }
-                            </div> 
-                               <form action="/breaktime/business/reviewdeclariation" method="post">
-                               <input type="hidden" name="reviewNo" value="${review.reviewNo}">
-                              <button  type="submit" id="contentdeclariationbtn">신고</button>
-                           </form> 
-                           </div> 
-                              
-                           <form action="/breaktime/business/reviewContentReply" method="post">
-                               <input type="hidden" name="reviewNo" value="${review.reviewNo}">
-                              
-                              <div id="buReviewList">
-                                 <span style="font-size: larger;"><b>숙소 답변</b></span>
-                                 <textarea class="buReview" name="reviewContentReply">${review.reviewContentReply }</textarea>
-                              </div>
-                              <a href="<%=request.getContextPath()%>/business/review">
-                              <button  type="submit" onclick="buReviewSubmit()">등록</button>
-                              </a>
-                           </form>   
-                            
-                        </div>
-                     </div>
-                     <hr style="color: rgba(0, 0, 0, 0.5);">
-                     
-                  </div>
-                </c:forEach> 
-                </div>
-                </div>
-                </div>
-    <!-- 검색창 모달창 스크립트 -->
-    <script>
-    function buReviewSubmit() {
-         // 등록 버튼 클릭 시 실행되는 코드
-         // 댓글 작성 성공 알림 창 띄우기
-         alert('댓글이 성공적으로 작성되었습니다.');
+			<div id="RenrollWrap">
 
-         window.addEventListener('unload', function() {
-              location.reload();
-            });
-    } 
+				<c:forEach items="${businessReviews}" var="review">
+					<div id="content">
+						<div id="contentR2">
+							<div id="reviewBackground" style="width: 100%;">
+								<div id="review-star-rating" style="margin-bottom: 10px">
+									<div class="fa fa-star">
+										<c:choose>
+											<c:when test="${review.starScore == '1' }">★</c:when>
+											<c:when test="${review.starScore == '2' }">★★</c:when>
+											<c:when test="${review.starScore == '3' }">★★★</c:when>
+											<c:when test="${review.starScore == '4' }">★★★★</c:when>
+											<c:when test="${review.starScore == '5' }">★★★★★</c:when>
+										</c:choose>
+									</div>
+								</div>
+								<div id="reviewNickname" style="margin-bottom: 15px">
+									<div>${review.userName }|${review.createDate }</div>
 
-        </script>
+								</div>
+								<div id="reviewRoomName" style="margin-bottom: 15px">
+									<div id="reviewRoomNameList">객실명</div>
+									<div id="reviewRoomNameInfo">${review.roomName }</div>
+
+								</div>
+								고객님 리뷰:
+								<div id="contentdeclariation" style="margin-bottom: 15px;">
+									<div id="review">${review.reviewContent}</div>
+									<form action="/breaktime/business/reviewdeclariation"
+										method="post">
+										<input type="hidden" name="reviewNo"
+											value="${review.reviewNo}">
+										<button type="submit" id="contentdeclariationbtn"
+											style="background: none; border: none; padding: 0; cursor: pointer;">
+											<img
+												src="${pageContext.request.contextPath}/resources/images/replydeclariation.png"
+												alt="신고하기" style="width : 30px; height : 30px; margin-bottom : 10px"; >
+										</button>
+									</form>
+
+
+								</div>
+
+
+								<form action="/breaktime/business/reviewContentReply"
+									method="post" style="margin-bottom: 15px" >
+									<input type="hidden" name="reviewNo" value="${review.reviewNo}">
+
+										<span style="font-size: larger; "><b style="margin-bottom: 15px;">숙소 답변</b></span>
+									<div id="buReviewList" style="margin-bottom: 15px;" >
+										<textarea style="resize: none;" class="buReview" name="reviewContentReply">${review.reviewContentReply } </textarea>
+									</div>
+									<a href="<%=request.getContextPath()%>/business/review">
+										<button type="submit" onclick="buReviewSubmit()">등록</button>
+									</a>
+								</form>
+
+							</div>
+						</div>
+						<hr style="color: rgba(0, 0, 0, 0.5);">
+
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+	<!-- 검색창 모달창 스크립트 -->
+	<script>
+		function buReviewSubmit() {
+			// 등록 버튼 클릭 시 실행되는 코드
+			// 댓글 작성 성공 알림 창 띄우기
+			alert('댓글이 성공적으로 작성되었습니다.');
+
+			window.addEventListener('unload', function() {
+				location.reload();
+			});
+		}
+	</script>
 </body>
-   <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buReview.css">
+<link rel="stylesheet" type="text/css"
+	href="/breaktime/resources/room.css/buReview.css">
 </html>

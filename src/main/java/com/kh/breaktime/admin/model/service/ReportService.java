@@ -11,6 +11,6 @@ public interface ReportService {
 	
 	public int reportKeep(Review r); 
 	
-	public int reportCancel(Review r);
+	public int reportCancel(int reviewNo);
 	
 }

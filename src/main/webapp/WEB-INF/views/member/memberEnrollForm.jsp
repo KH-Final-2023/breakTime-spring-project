@@ -13,7 +13,7 @@
         #container{
             width: 100%;
             height: 700px;
-            border: 1px solid black;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -31,8 +31,8 @@
 </head>
 <body>
     <div id="container">
-    	<h1>BreakTime</h1>
-        <h2>일반고객 회원가입</h2> 
+    	<h1 style="color:#0602a7;">BreakTime</h1>
+        <h2 style="color:#0602a7;">일반고객 회원가입</h2> 
         <div style="width:20%">
         <form action="insert" method="post">
         	<b>이메일</b>

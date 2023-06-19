@@ -355,7 +355,7 @@ button {
 	    var date_out = urlParams.get('date_out'); // date_out 값을 가져옵니다.
 
 	    // date_in과 date_out 값을 사용하여 URL을 구성합니다.
-	    var redirectUrl = '/breaktime/decide/demain/' + buNo + '/' + date_in + '/' + date_out;
+	    var redirectUrl = '/breaktime/decide/demain/' + buNo + '?dateIn=' + date_in + '&dateOut=' + date_out;
 	    window.location.href = redirectUrl;
 	  }
 	  

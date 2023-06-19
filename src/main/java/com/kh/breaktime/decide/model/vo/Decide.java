@@ -24,7 +24,7 @@ public class Decide {
    private int reviewNo;
    private int reviewWriter;
    private int usingRoom;
-   private String bookNo;
+   private int bookNo;
    private String reviewContent;
    private String reviewAvailable;
    private String createDate;
