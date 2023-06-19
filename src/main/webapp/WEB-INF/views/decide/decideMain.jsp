@@ -14,11 +14,10 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
-<link rel="stylesheet" href="/breaktime/resources/css/font.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/font.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
 	
