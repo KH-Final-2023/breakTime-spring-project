@@ -131,202 +131,177 @@ body {
 }
 
 .modal {
-	position: fixed;
-	bottom: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 9999;
-	background-color: #fff;
-	width: 700px;
-	height: 350px;
-	padding: 20px;
-	border-radius: 10px;
-	visibility: hidden;
-	opacity: 0;
-	/* 추가 */
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background-color: #fff;
+    width: 700px;
+    height: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    visibility: hidden;
+    opacity: 0;
+    /* 추가 */
 }
 
 .modal-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	z-index: 9998;
-	visibility: hidden;
-	opacity: 0;
-	/* 추가 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    visibility: hidden;
+    opacity: 0;
+    /* 추가 */
 }
 
 .modal.active {
-	visibility: visible;
-	align-items: flex-end;
-	animation: modal-show 0.18s ease-in-out forwards;
+    visibility: visible;
+    align-items: flex-end;
+    animation: modal-show 0.18s ease-in-out forwards;
 }
 
 .modal-overlay.active {
-	visibility: visible;
-	animation: overlay-show 0.18s ease-in-out forwards;
+    visibility: visible;
+    animation: overlay-show 0.18s ease-in-out forwards;
 }
 
 .modal.hide {
-	animation: modal-hide 0.18s ease-in-out forwards;
+    animation: modal-hide 0.18s ease-in-out forwards;
 }
 
 .modal-overlay.hide {
-	animation: overlay-hide 0.18s ease-in-out forwards;
+    animation: overlay-hide 0.18s ease-in-out forwards;
 }
 
-@
-keyframes modal-show { 0% {
-	opacity: 0;
-	transform: translate(-50%, 100%);
+@keyframes modal-show {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
 
-100
-%
-{
-opacity
-:
-1;
-transform
-:
-translate(
--50%
-,
-0
-);
-}
-}
-@
-keyframes overlay-show { 0% {
-	opacity: 0;
-}
+@keyframes overlay-show {
+    0% {
+        opacity: 0;
+    }
 
-100
-%
-{
-opacity
-:
-1;
-}
+    100% {
+        opacity: 1;
+    }
 }
 
 /* 모달 숨김 애니메이션 */
-@
-keyframes modal-hide { 0% {
-	opacity: 1;
-	transform: translate(-50%, 0);
+@keyframes modal-hide {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, 100%);
+    }
 }
 
-100
-%
-{
-opacity
-:
-0;
-transform
-:
-translate(
--50%
-,
-100%
-);
-}
-}
-@
-keyframes overlay-hide { 0% {
-	opacity: 1;
+@keyframes overlay-hide {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
-100
-%
-{
-opacity
-:
-0;
-}
-}
 .modal-close {
-	position: absolute;
-	top: 19px;
-	left: 19px;
-	font-size: 20px;
-	color: #333;
-	cursor: pointer;
-	z-index: 100000;
+    position: absolute;
+    top: 19px;
+    left: 19px;
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    z-index: 100000;
 }
 
 .modal-content h2 {
-	text-align: center;
-	/* "정렬" 텍스트를 가운데로 이동 */
+    text-align: center;
+    /* "정렬" 텍스트를 가운데로 이동 */
 }
 
 .modal-close:hover {
-	color: #000;
+    color: #000;
 }
 
 .modal-content {
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-	justify-content: flex-start;
-	width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .modal-title {
-	width: 100%;
-	text-align: center;
-	font-weight: bold;
-	/* 굵은 폰트로 표시 */
-	position: absolute;
-	/* 절대 위치 지정 */
-	top: 18px;
-	/* 모달 창 상단에서부터의 거리 */
-	right: 3px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    /* 굵은 폰트로 표시 */
+    position: absolute;
+    /* 절대 위치 지정 */
+    top: 18px;
+    /* 모달 창 상단에서부터의 거리 */
+    right: 3px;
 }
 
 .modal-list {
-	list-style: none;
-	padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .modal-list-item {
-	display: flex;
-	align-items: flex-start;
-	cursor: pointer;
-	margin-top: 41px;
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+    margin-top: 41px;
 }
 
 /* 모달 리스트 아이템 체크 아이콘 스타일 */
 .modal-list-item.checked .checkbox {
-	color: green;
+    color: green;
 }
 
 .modal-list-item.checked .checkbox::before {
-	content: "\f00c";
+    content: "\f00c";
 }
 
 /* 체크 아이콘 스타일 */
 .modal-list-item .checkbox {
-	display: inline-block;
-	margin-left: 5px;
-	color: blue;
+    display: inline-block;
+    margin-left: 5px;
+    color: blue;
 }
 
 .modal-list-item-text {
-	margin: 10px 0;
-	/* 위아래로 10px의 마진을 추가. */
-	margin-bottom: 35px;
-	font-size: 16px;
-	/* 원하는 px 값으로 조정하세요. */
+    margin: 10px 0;
+    /* 위아래로 10px의 마진을 추가. */
+    margin-bottom: 35px;
+    font-size: 16px;
+    /* 원하는 px 값으로 조정하세요. */
 }
 
 .fa-check {
-	margin-left: 234px;
-	font-size: 20px;
-	margin-top: 10px;
+    margin-left: 234px;
+    font-size: 20px;
+    margin-top: 10px;
 }
 
 .review-main-star {

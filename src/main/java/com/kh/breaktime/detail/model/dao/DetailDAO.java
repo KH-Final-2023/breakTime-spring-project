@@ -31,7 +31,7 @@ public class DetailDAO {
 	}
 
 	public ArrayList<Detail> filterListSubmit(String category, List<String> prices, List<String> reserves,
-			List<String> options, String area, String date_in, String date_out, Integer guests) {
+			List<String> options, String area, String date_in, String date_out, Double userStarScore, Integer guests) {
 		Map<String, Object> map = new HashMap<>();
 		map.put("category", category);
 		map.put("prices", prices);
@@ -41,6 +41,7 @@ public class DetailDAO {
 		map.put("date_in", date_in);
 		map.put("date_out", date_out);
 		map.put("guests", guests);
+		map.put("userStarScore", userStarScore);
 		return (ArrayList) sqlSession.selectList("detailMapper.filterListSubmit", map);
 	}
 

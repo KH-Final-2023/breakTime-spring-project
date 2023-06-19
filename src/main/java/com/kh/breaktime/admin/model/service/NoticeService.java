@@ -26,4 +26,6 @@ public interface NoticeService {
 	public void selectChatSearchList(Map<String,Object> paramMap, Map<String, Object> map);
 	
 	public int getBusinessCount();
+	
+	public int getReviewCount();
 }
