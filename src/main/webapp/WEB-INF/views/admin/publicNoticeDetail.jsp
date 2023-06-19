@@ -11,7 +11,6 @@
 <title>Document</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/breaktime/resources/css/header.css">
-<link rel="stylesheet" href="/breaktime/resources/css/base.css">
 <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
 <link rel="stylesheet" href="/breaktime/resources/css/main.css">
 <style>
@@ -46,7 +45,7 @@ body {
 	margin-top: 80px;
 	margin-bottom: 0px;
 	margin-left : 500px;
-	border-top: 3px solid #623f30;
+	border-top: 2px solid #428bca;
 	border-collapse: collapse;
 }
 
@@ -98,6 +97,7 @@ body {
 
 #footer {
 	height: 18.5%;
+	margin: auto;
 }
 
 </style>
