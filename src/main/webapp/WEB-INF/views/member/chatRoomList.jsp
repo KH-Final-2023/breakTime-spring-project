@@ -48,11 +48,25 @@
 	
 	.sideMenu{
 	font-size: 18px;
-    color: rgba(0,0,0,0.56);
+    color: black;
 	}
 	
-	li{
-	margin-bottom : 26px;
+	.side{
+	width: 140px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-bottom : 20px;
 	}
 	
 	b{
@@ -67,6 +81,25 @@
 	color: #67d567;
     border-color: #67d567;
 	}
+	
+	a{
+	 text-decoration : none;
+	 display: flex;
+    justify-content: center;
+	}
+	
+	.side:hover {
+  border: 1px solid #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+	
+	.sessionData{
+	color:#67d567;
+	}
+	
+
 </style>
 </head>
 <body>
@@ -78,10 +111,10 @@
 		<div style="width:100%; display: flex; flex-direction: row;">
 			<div id="content1">
 				<ul style="list-style:none;">
-					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/myPage">내 정보</a></li>
-					<li><a class="sideMenu" id="booking">예약내역</a></li>
-					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/wishList">찜한 목록</a></li>
-					<li><a class="sideMenu" href="<%=request.getContextPath()%>/member/list">문의쪽지</a></li>
+					<li class="side"><a class="sideMenu" href="<%=request.getContextPath()%>/member/myPage">내 정보</a></li>
+					<li class="side"><a class="sideMenu" id="booking">예약내역</a></li>
+					<li class="side"><a class="sideMenu" href="<%=request.getContextPath()%>/member/wishList">찜한 목록</a></li>
+					<li class="side"><a class="sideMenu" href="<%=request.getContextPath()%>/member/list">문의쪽지</a></li>
 				</ul>
 			</div>
 		
