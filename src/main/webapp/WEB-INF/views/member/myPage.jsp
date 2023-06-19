@@ -98,7 +98,7 @@
 </style>
 </head>
 <body>
-	
+	 <jsp:include page="/WEB-INF/views/header.jsp" />
   
 	<div id="wrapper" >
 	
