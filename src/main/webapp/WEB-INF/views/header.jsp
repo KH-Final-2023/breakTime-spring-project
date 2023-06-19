@@ -59,8 +59,9 @@ String alertMsg = (String) session.getAttribute("alertMsg");
                   <span class="header-dropbtn">더보기</span>
                   <div class="header-dropdown-content">
                     <a href="#" id="notice">공지사항</a>
+                    <%if(loginUser  != null){ %>
                     <a id="myPage">마이페이지</a>
-
+					<%} %>
                     <a href="#" id="message">문의하기</a>
                     <a href="#" id="cart">장바구니</a>
 

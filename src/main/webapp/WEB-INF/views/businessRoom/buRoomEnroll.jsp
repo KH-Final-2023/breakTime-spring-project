@@ -11,7 +11,6 @@
 	href="/breaktime/resources/room.css/buRoomEnroll.css">
 <title>Document</title>
 </head>
-
 <body>
 	<%@ include file="../header.jsp"%>
 	<div id="content">

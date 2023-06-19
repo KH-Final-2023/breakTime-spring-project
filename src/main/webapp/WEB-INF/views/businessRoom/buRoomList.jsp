@@ -7,133 +7,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buRoomList.css">
 <title>Document</title>
+
 <style>
 /* 전체적인 초록색 계열 스타일 */
 
-body{
-	margin:0;
-}
-#content1 {
-	display: flex;
-	justify-content: center;
-}
 
-body {
-	background-color: ;
-}
-
-#formMove {
-	display: flex;
-	justify-content: space-around;
-	width: 600px;
-	height: 60px;
-	background-color: #c0e2c0;
-	border-radius: 15px;
-	margin-top: 150px;
-	align-items: center;
-}
-
-#content2 {
-	background-color:#f2f2f2 ;
-	display: flex;
-	justify-content: center;
-}
-
-#resistedRoomListText {
-	font-size:50px;
-	color: #228b22;
-	margin-bottom: 10px;
-	text-align: center;
-	margin-top: 60px;
-}
-
-#lodging {
-	background-color:white ;
-	border-radius: 15px;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	justify-content: center;
-	width: 1150px;
-	margin-bottom: 40px;
-	height : 100%;
-}
-
-/* 포인트 스타일 */
-.room-info {
-	display: flex;
-	justify-content: space-between;
-	height: 300px;
-	background-color: white;
-	margin-bottom: 30px;
-	width: 1000px;
-	border-radius: 15px;
-	box-shadow: 0 8px 16px rgba(0, 0, 0, 1.0);
-	transition: transform 0.3s ease;
-}
-
-.room-info:hover {
-	transform: scale(1.1);
-}
-
-#roomListInfo {
-	width : 750px;
-	font-size: xlarge;
-}
-
-#imgList {
-	
-}
-
-#buRoomRegister, #buRoomReservation, #buReview {
-	border: solid 1px black;
-	border-radius: 5px;
-	background-color: green;
-	color: white;
-	width: 100px;
-	height: 40px;
-}
-
-#selectRoom {
-	margin-bottom: 30px;
-	display: flex;
-	justify-content: space-between;
-}
-
-#roomName, #roomHCount, #roomPrice {
-	height: 40px;
-	width: 200px;
-	border-radius: 5px;
-	border: 1px solid lightgreen;
-}
-
-#selectRoomBtn {
-	width: 50px;
-	height: 30px;
-	border-radius: 5px;
-}
-
-button {
-	font-family: 'Arial', fantasy;
-	font-size: 16px;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-img {
-	width: 250px;
-	height: 300px;
-	border-radius: 10px;
-}
-#buRoomName,#buroomHCount,#buroomcheckin,#buroomcheckout,#buRoomInfo{
-	margin-left : 20px;
-}
-#buRoomPirce{
-	margin-left : 600px;
-	margin-bottom : 30px;
-}
-</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>

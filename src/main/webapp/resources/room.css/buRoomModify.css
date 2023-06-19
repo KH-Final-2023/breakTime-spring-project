@@ -148,3 +148,26 @@ display: flex;
 	height: 100%;
 	cursor: pointer;
 }
+img {
+	width: 250px;
+	height: 150px;
+	margin: 10px;
+}
+#deleteBtn{
+
+	    margin: 30px;
+    background-color: chartreuse;
+    border: solid 1px black;
+    border-radius: 5px;
+    font-family: 'Arial', fantasy;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: solid 1px black;
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    height: 35px;
+    width: 100px;
+}
+}
