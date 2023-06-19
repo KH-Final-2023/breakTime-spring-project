@@ -35,52 +35,48 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 		<c:remove var="alertMsg" />
 	</c:if>
 
-	<div id="header">
-		<div id="header-content">
-			<div id="home-logo">
-				<img src="<%=request.getContextPath()%>/resources/images/로고.png"
-					alt="로고이미지">
-			</div>
-			<div id="header-navbar">
-				<div class="header-openBtn" id="header-search">
-					<img src="<%=request.getContextPath()%>/resources/images/흰돋보기.png"
-						alt="로고이미지">
-				</div>
+	
+    <div id="header">
+        <div id="header-content">
+            <div id="home-logo">
+                <img src="<%=request.getContextPath()%>/resources/images/로고.png" alt="로고이미지">
+            </div>
+            <div id="header-navbar">
+                <div class="header-openBtn" id="header-search" >
+                   <img src="<%=request.getContextPath()%>/resources/images/흰돋보기.png" alt="로고이미지" >
+                </div>
 
-				<%
-					if (loginUser == null && loginBusiness == null) {
-				%>
+                <%if (loginUser == null && loginBusiness == null) {%>
 
-				<div id="loginType">로그인</div>
-				<%
-					} else {
-				%>
-				<div id="logout">로그아웃</div>
-				<%
-					}
-				%>
-				<div id="mybooking">예약내역</div>
-				<div class="header-dropdown">
-					<span class="header-dropbtn">더보기</span>
-					<div class="header-dropdown-content">
-						<a href="#" id="notice">공지사항</a> <a id="myPage">마이페이지</a> <a
-							href="#" id="message">문의하기</a> <a href="#" id="cart">장바구니</a>
+                <div id="loginType">로그인</div>
+                <% } else if (loginUser != null && loginBusiness == null){ %>
+                <div id="userlogout">로그아웃</div>
+                <% } else { %> 
+                 <div id="bulogout">로그아웃</div>
+                <% } %>   
+                <div id="mybooking">예약내역</div>
+                <div class="header-dropdown">
+                  <span class="header-dropbtn">더보기</span>
+                  <div class="header-dropdown-content">
+                    <a href="#" id="notice">공지사항</a>
+                    <a id="myPage">마이페이지</a>
+
+                    <a href="#" id="message">문의하기</a>
+                    <a href="#" id="cart">장바구니</a>
 
 
-						<%
-							if (loginBusiness != null) {
-						%>
-						<a href="#" id="asd">사업자</a>
-						<%
-							}
-						%>
+                    <%if (loginBusiness != null) {%>
+                    <a href="#" id="asd">사업자</a>
+                    <% } %>
 
-					</div>
-				</div>
+                  </div>
+                </div> 
+        
+            </div>
+        </div>
+    </div>
+    
 
-			</div>
-		</div>
-	</div>
 
 
 	<!-- 검색 모달창 html -->
@@ -167,12 +163,14 @@ String alertMsg = (String) session.getAttribute("alertMsg");
         })
      </script>
 
-	<script>
-      	document.getElementById("logout").addEventListener("click",function(){
+      
+      <script>
+      	document.getElementById("userlogout").addEventListener("click",function(){
+
         location.href = "<%=request.getContextPath()%>/member/logout";
         })
         
-        document.getElementById("logout").addEventListener("click",function(){
+        document.getElementById("bulogout").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/business/logout";
         })
       </script>
