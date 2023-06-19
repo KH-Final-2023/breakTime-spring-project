@@ -18,7 +18,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
-<link rel="stylesheet" href="/breaktime/resources/css/font.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/font.css">
+
 <script>
 $(document).ready(function() {
 	

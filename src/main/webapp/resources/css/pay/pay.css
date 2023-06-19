@@ -7,8 +7,7 @@
 }
 
 body {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
+	font-size: 18px;
 	line-height: 1.4;
 	color: #333;
 	background-color: #f2f2f2;
@@ -19,6 +18,7 @@ body {
 	margin: 0 auto;
 	background-color: #fff;
 	padding: 20px;
+	margin-top : 100px;
 }
 
 .reservation-title {
@@ -34,6 +34,7 @@ body {
 
 .room-info p {
 	margin-bottom: 20px;
+	font-size : 18px;
 }
 
 .check-in-out p {
@@ -47,12 +48,12 @@ body {
 }
 
 .check-in-out .label {
-	font-size: 12px;
+	font-size: 18px;
 	color: #919191;
 }
 
 .check-in-out .date {
-	font-size: 15px;
+	font-size: 20px;
 }
 
 .check-in {
@@ -74,7 +75,7 @@ body {
 .total .amount {
 	font-weight: bold;
 	/* 금액 부분을 볼드체로 */
-	font-size: 18px;
+
 }
 
 .reservation-info {
@@ -82,6 +83,7 @@ body {
 	margin: 10px auto;
 	background-color: #fff;
 	padding: 20px;
+	
 }
 
 .reservation-info #customer-name {
@@ -90,6 +92,8 @@ body {
 	font-size: 17px;
 	padding-bottom: 7px;
 	display: block;
+		font-size: 25px;
+	
 }
 
 .form-group {
@@ -98,7 +102,7 @@ body {
 
 .form-group label {
 	display: block;
-	font-size: 12px;
+	font-size: 20px;
 	color: #919191;
 	margin-bottom: 12px;
 }
@@ -123,7 +127,7 @@ body {
 
 .total-payment-amount {
 	color: green;
-	font-size: 18px;
+	font-size: 25px;
 	font-weight: bold;
 }
 
@@ -152,12 +156,12 @@ body {
 }
 
 .on-site-payment-title h4 {
-	font-size: 12px;
+	font-size: 20px;
 	color: #E67000;
 }
 
 .on-site-payment-text {
-	font-size: 12px;
+	font-size: 25px;
 	margin-left: 28px;
 	margin-bottom: 10px;
 }
