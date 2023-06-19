@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css"
-	href="/breaktime/resources/room.css/buRoomModify.css">
+<link rel="stylesheet" type="text/css"href="/breaktime/resources/room.css/buRoomModify.css">
+
 <title>Document</title>
 <style>
 
@@ -34,7 +34,7 @@
 		</div>
 		<div id="content2">
 			<div id="modifyForm">
-				<form action="/breaktime/businessRoom/buRoomModify" method="POST" style="font-size :20px;"
+				<form  method="POST" style="font-size :20px;"
 					enctype="multipart/form-data">
 					<div id="roomModifyText1"
 						style="font-size: x-large; margin: 15px; text-align: center;">객실
@@ -79,33 +79,40 @@
 					</div>
 					<div id=modifyBtn>
 
-						<button type="submit" id="resisterBtn">수정하기</button>
-						<button type="button" onclick="deleteRoom(${room.roomNo})">삭제하기</button>
+				<%-- 		<button type="submit" id="resisterBtn">수정하기</button>
+					<button type="button" onclick="deleteRoom(${room.roomNo})">삭제하기</button> --%>
+				
+    <button type="submit" id="resisterBtn" value="update" onclick="javascript: form.action='/breaktime/businessRoom/buRoomModify'";>수정하기</button>
+   <button type="submit" id="deleteBtn" value="delete" onclick="javascript: form.action='/breaktime/businessRoom/deleteRoom'";>삭제하기</button>
+</form>
 					</div>
 					
 				</form>
 			</div>
 		</div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script>
-function deleteRoom(roomNo) {
-  if (confirm("정말로 객실을 삭제하시겠습니까?")) {
-    $.ajax({
-      url: "/breaktime/businessRoom/deleteRoom/" + roomNo,
-      type: 'POST',
-      success: function(response) {
-        // 삭제 성공한 경우의 처리
-        alert("ddd");
-        alert("성공적으로 삭제 되었습니다");
-        location.reload();
-      },
-      error: function(xhr) {
-        // 삭제 실패한 경우의 처리
-        alert(xhr.responseText);
-      }
-    });
-  }
-}
+	<%-- function deleteRoom(roomNo) {
+		 alert("ddddd");
+		 alert(roomNo);
+		    $.ajax({
+		    	 alert("ddddd");
+		    	url: "<%= request.getContextPath() %>/businessRoom/deleteRoom/" + roomNo,
+		      type: 'POST',
+		      success: function(response) {
+		        // 삭제 성공한 경우의 처리
+		        alert("성공적으로 삭제 되었습니다");
+		        location.reload();
+		      },
+		      error: function(xhr) {
+		        // 삭제 실패한 경우의 처리
+		        alert(xhr.responseText);
+		      }
+		    });
+		  
+		} --%>
+
 </script>
 
 </body>

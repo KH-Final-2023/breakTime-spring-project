@@ -120,22 +120,27 @@
 
 	<!-- 사업자의 방 목록 SELECT (준석) -->
 	<select id="getRoomsByBuId" resultMap="roomResultMap">
-		SELECT *
-		FROM ROOM
-		WHERE BU_NO = #{buNo}
-		ORDER BY ROOM_PRICE ASC
+		 SELECT *
+      FROM ROOM
+      WHERE BU_NO = #{buNo}
+      AND ROOM_NO IN 
+      (
+      SELECT ROOM_NO
+      FROM ROOM_IMG
+      )
 	</select>
 
 
 
 	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
 	<!-- 방 이미지 조회 -->
-	<select id="getRoomImagesByBuId" parameterType="_int"
-		resultMap="roomImgResultMap">
-		SELECT *
-		FROM ROOM_IMG
-		WHERE ROOM_NO = #{roomNo}
-	</select>
+	<select id="getRoomImagesByBuId" parameterType="_int" resultMap="roomImgResultMap">
+    SELECT *
+    FROM ROOM_IMG
+    WHERE ROOM_NO = #{roomNo}
+	
+</select>
+
 
 	<select id="selectBookingsByBusinessId"
 		resultMap="bookingResultMap">

@@ -89,6 +89,11 @@ public class RoomDao {
 	}
 	
 	public int deleteRoom(int roomNo) {
-		return sqlSession.selectOne("buRoom-mapper.deleteRoom", roomNo);
+		return sqlSession.delete("buRoom-mapper.deleteRoom" ,roomNo);
+	}
+
+	public int deleteRoomImg(int roomNo) {
+		
+		return sqlSession.delete("buRoom-mapper.deleteRoomImg" ,roomNo);
 	}
 }

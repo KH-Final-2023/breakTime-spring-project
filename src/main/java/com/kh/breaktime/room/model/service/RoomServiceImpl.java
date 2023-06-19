@@ -128,10 +128,18 @@ public class RoomServiceImpl implements RoomService {
 		// 필요한 로직 수행
 		return buDao.searchRooms(params);
 	}
+	@Override
 	public RoomImg searchRoomsImg(int roomNo){
 		return buDao.searchRoomsImg(roomNo);
 	}
-	public int deleteRoom(int roomNo){
-		return buDao.deleteRoom(roomNo);
+	@Override
+	public int deleteRoom(int roomNo) {
+		 return buDao.deleteRoom(roomNo);
+	    
+	}
+	@Override
+	public int deleteRoomImg(int roomNo) {
+		 return buDao.deleteRoomImg(roomNo);
+	    
 	}
 }

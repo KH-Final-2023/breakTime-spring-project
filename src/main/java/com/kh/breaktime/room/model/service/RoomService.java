@@ -30,4 +30,6 @@ public interface RoomService {
 	public RoomImg searchRoomsImg(int roomNo);
 
 	public int deleteRoom(int roomNo);
+	
+	public int deleteRoomImg(int roomNo);
 }

@@ -119,9 +119,14 @@ WHERE ROOM_NO = #{roomNo}
 	<!-- 사업자의 방 목록 SELECT (준석) -->
 	<select id="standardRoom" parameterType="_int"
 		resultMap="roomResultMap">
-		SELECT *
-		FROM ROOM
-		WHERE BU_NO = #{buNo}
+			 SELECT *
+      FROM ROOM
+      WHERE BU_NO = #{buNo}
+      AND ROOM_NO IN 
+      (
+      SELECT ROOM_NO
+      FROM ROOM_IMG
+      )
 		
 	</select>
 
@@ -132,6 +137,7 @@ WHERE ROOM_NO = #{roomNo}
 		SELECT *
 		FROM ROOM_IMG
 		WHERE ROOM_NO = #{roomNo}
+		  
 	</select>
 	
 	<select id="searchRooms" resultMap="roomResultMap">
@@ -161,13 +167,17 @@ WHERE ROOM_NO = #{roomNo}
 		SELECT *
 		FROM ROOM_IMG
 		WHERE ROOM_NO = #{roomNo}
-		AND
+		
 	</select>
 	
-<delete id="deleteRoom">
-DELETE 
-FROM ROOM
-WHERE ROOM_NO = #{roomNo}
+<delete id="deleteRoom" parameterType="_int">
+	DELETE 
+	FROM ROOM
+	WHERE ROOM_NO = #{roomNo}
+</delete>
+<delete id="deleteRoomImg" parameterType="_int">
+    DELETE FROM ROOM_IMG
+    WHERE ROOM_NO = #{roomNo}
 </delete>
 	<!-- <select id="selectBuRoomList" resultMap="roomResultMap">
 		SELECT *

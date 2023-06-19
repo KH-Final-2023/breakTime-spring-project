@@ -263,11 +263,18 @@ public class RoomController {
 	}
 
 	  
-	@ResponseBody
-	  @PostMapping("/deleteRoo") public int deleteRoom(@PathVariable("roomNo")int roomNo) {
-	  return buService.deleteRoom(roomNo);
-	   
-	  }
+	
+	@PostMapping("/deleteRoom")
+
+	public String deleteRoom(@RequestParam(value = "roomNo") int roomNo , HttpSession session , @RequestParam(value = "fileNo") int fileNo) {
+		System.out.println("===================="+fileNo);
+		System.out.println("dddddddddddddddddddddd");
+		buService.deleteRoom(roomNo);
+		buService.deleteRoomImg(roomNo);
+		session.setAttribute("alertMsg", "객실 삭제가 완료되었습니다.");
+		return "redirect:/businessRoom/buRoomList";
+	}
+
 	
 	/*
 	 * @GetMapping("/paing") public String searchRoomList(@RequestParam(defaultValue
