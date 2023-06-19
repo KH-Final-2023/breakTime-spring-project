@@ -10,6 +10,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
+<style>
+.page-item.active a {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/resources/admin/adminFrame.jsp"%>
@@ -31,7 +37,9 @@
 							</tr>
 						</thead>
 						<tbody>
-
+							<c:if test="${empty selectApprovalList.list}">
+								<td colspan="6" style="font-weight:bold; text-align:center;">가입 대기중인 사업자가 없습니다.</td>
+							</c:if>
 							<c:forEach var="b" items="${selectApprovalList.list}">
 								<tr>
 									<td>${b.buUserName }</td>
@@ -45,11 +53,9 @@
 									</a>
 									</td>
 									<td>
-										<a href="<%=request.getContextPath()%>/approval/delete?buNo=${b.buNo}">
-											<button type="button" class="btn btn-outline-danger"data-text="취소">
+										<button type="button"  onclick="approvalCancel(${b.buNo}, '${b.buUserName}')" class="btn btn-outline-danger"data-text="취소">
 												<span>취소</span>
-											</button>
-									   </a>
+										</button>
 									</td>
 								</tr>
 							</c:forEach>
@@ -72,8 +78,10 @@
 
 							<c:forEach var="item" begin="${selectApprovalList.pi.startPage }"
 								end="${selectApprovalList.pi.endPage }">
-								<li class="page-item"><a class="page-link"
-									href="${url}${item }${sUrl}">${item }</a></li>
+								<c:set var="currentPage" value="${selectApprovalList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
 							</c:forEach>
 
 							<c:choose>
@@ -101,11 +109,14 @@
 	            alert("해당 사업자 가입 승인에 성공하였습니다.");
 	    });
 		
-		$(document).ready(function() {
-	        var approvalCancel = '<c:out value="${approvalCancel}"/>';
-	        if(!(approvalCancel==''))
-	            alert("해당 사업자 가입 취소 처리하였습니다.");
-	    });
+		function approvalCancel(buNo, buUserName) {
+		    if (!confirm(buUserName + "님의 가입승인을 거절하시겠습니까?")) {
+		        return false;
+		    } else {
+		        location.href = "<%=request.getContextPath()%>/approval/delete?buNo=" + buNo;
+		    	alert("해당 사업자의 가입승인을 거절하였습니다.");
+		    }
+		}
 	</script> 
 
 </body>

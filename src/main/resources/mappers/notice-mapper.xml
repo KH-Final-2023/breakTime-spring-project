@@ -127,7 +127,7 @@
 		) VALUES (
 		#{noticeNo},
 		#{noticeTitle},
-		1,
+		2,
 		#{noticeContent}
 		)
 

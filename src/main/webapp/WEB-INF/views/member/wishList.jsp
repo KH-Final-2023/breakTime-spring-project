@@ -13,6 +13,8 @@
 <head>
 <meta charset="UTF-8">
 <title>일반 고객 마이페이지</title>
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alphardex/aqua.css/dist/aqua.min.css"> -->
@@ -51,26 +53,83 @@
 	border-left: 2px solid #67d567;
 }
 
-.sideMenu {
+	.sideMenu{
 	font-size: 18px;
-	color: rgba(0, 0, 0, 0.56);
-}
-
-li {
-	margin-bottom: 26px;
-}
-
-b {
-	width: 100px;
+    color: black;
+	}
+	
+	li{
+	width: 140px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-bottom : 20px;
+	}
+	
+	b{
+	width:100px;
+	}
+	
+	.sessionData{
+	color:#67d567;
+	}
+	
+	.btn-primary btn-ghost btn-slash{
+	color: #67d567;
+    border-color: #67d567;
+	}
+	
+	a{
+	 text-decoration : none;
+	 display: flex;
+    justify-content: center;
+	}
+	
+	li:hover {
+  border: 1px solid #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
 }
 
 .sessionData {
 	color: #67d567;
 }
 
-.btn-primary btn-ghost btn-slash {
-	color: #67d567;
-	border-color: #67d567;
+body{
+ -ms-overflow-style: none;
+ }
+ 
+::-webkit-scrollbar {
+  display: none;
+}
+
+/*특정 부분 스크롤바 없애기*/
+
+.box{
+   -ms-overflow-style: none;
+}
+.box::-webkit-scrollbar{
+  display:none;
+}
+
+#v:hover {
+
+  box-shadow: 0px 15px 20px #3779fb;
+  color: #fff;
+  transform: translateY(-7px);
+  cursor:pointer;
+  opacity:0.8;
 }
 </style>
 </head>
@@ -97,34 +156,36 @@ b {
 				</ul>
 			</div>
 
-			<div id="content2">
+			<div id="content2" >
 				<h3>찜 목록</h3>
-				<div style="width: 80%; height: 520px; display: flex; flex-wrap: wrap;">
-					<c:forEach items="${list}" var="w" varStatus="loop">					
-						<div onclick="location.href='${contextPath }/decide/demain/${w.buNo}'" id="v" style="border: 1px solid black; width: 40%; height: 100%; display: flex; align-items: center; flex-direction: column; margin-right: 70px; margin-bottom: 20px">
+				<div class="box" style="overflow:auto;">
+			<div id ="container" style=" width: 80%; height: 520px; display: flex; flex-wrap: wrap;">
+					<c:forEach items="${list}" var="w" varStatus="loop" >					
+						<div onclick="location.href='${contextPath }/decide/demain/${w.buNo}'" id="v" style="text-align: -webkit-center; color: white;background:#3779fb; border-radius:30px; width: 40%; height: 480px; display: flex; align-items: center; flex-direction: column; margin-right: 70px; margin-bottom: 20px">
 							<div style="height: 60%; width: 100%">
-								<img style="width: 100%; height: 100%; object-fit: cover;"
+								<img style="border-radius:30px 30px 0px 0px; width: 100%; height: 100%; object-fit: cover;"
 									src="${w.buMainImg}">
 							</div>
 							<div style="height: 20%">
 								<h2 style="text-align: center;">${w.buTitle}</h2>
 							</div>
-							<div style="height: 20%">
+							<div style="height: 20%; border-top: 1px solid white;">
 								<h4>${w.buAddress}</h4>
 							</div>
 						</div>	
 						<c:if test="${loop.index % 2 == 1}">
 							<div style="width: 100%; height: 0;"></div>
 						</c:if>
-						
 					</c:forEach>
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	
-
-
+ 		<script> 
+            AOS.init(); // 자바스크립트로 init()을 해야 동작한다.
+        </script>
  	  <script>
          document.getElementById("booking").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/booking/bookingView";

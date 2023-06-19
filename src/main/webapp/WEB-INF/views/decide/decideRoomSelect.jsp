@@ -20,12 +20,45 @@
 var globalCheckIn;
 var globalCheckOut;
 
-$(document).ready(
-function() {
+$(document).ready(function() {
+	
    var currentUrl = window.location.href;
    var previousUrl = document.referrer;
    
+   var dateIn = "${param.dateIn}";
+   var dateOut = "${param.dateOut}";
 
+   
+   
+   // dateIn과 dateOut 값이 있는지 확인
+   if (dateIn  && dateOut ) {
+	 
+   	 if( dateIn === "null" && dateOut === "null" ){
+   		var today = new Date();
+   		var year = today.getFullYear();
+   		var month = String(today.getMonth() + 1).padStart(2, '0');
+   		var day = String(today.getDate()).padStart(2, '0');
+
+   		var currentDate = year + '-' + month + '-' + day;
+   		
+   		dateIn = currentDate;
+   		dateOut = currentDate;
+   	 }
+     // adjustedDateOut 값을 계산
+     var adjustedDateOut = adjustDateAndFormat(dateIn, dateOut);
+     
+     var startDayofWeek = getDayOfWeek(dateIn);
+     var endDayofWeek = getDayOfWeek(adjustedDateOut);
+     var nights = calculateStayDuration(dateIn, adjustedDateOut);
+     
+     globalCheckIn = removeHyphens(dateIn);
+     globalCheckOut = removeHyphens(adjustedDateOut);
+     $(".button").text(dateIn + '(' + startDayofWeek + ') ~ ' + adjustedDateOut + '(' + endDayofWeek +') · ' + nights + '박');
+   } else {
+     console.log('dateIn or dateOut is missing');
+   }
+
+   
    $(".button").click(
          function(e) {
             e.preventDefault();
@@ -105,6 +138,39 @@ function() {
    </c:forEach>
  
 });
+
+function adjustDateAndFormat(dateIn, dateOut) {
+   if (dateIn === dateOut) {
+      var adjustedDate = formatDate(addDays(parseDateString(dateOut), 1));
+      return adjustedDate;
+   }
+   
+   return dateOut;
+}
+
+function parseDateString(dateString) {
+   var parts = dateString.split("-");
+   var year = parseInt(parts[0]);
+   var month = parseInt(parts[1]) - 1; // JavaScript에서 월은 0부터 시작하므로 1을 뺍니다.
+   var day = parseInt(parts[2]);
+   
+   return new Date(year, month, day);
+}
+
+function formatDate(date) {
+   var year = date.getFullYear();
+   var month = String(date.getMonth() + 1).padStart(2, '0');
+   var day = String(date.getDate()).padStart(2, '0');
+   
+   return year + "-" + month + "-" + day;
+}
+
+function addDays(date, days) {
+   var result = new Date(date);
+   result.setDate(result.getDate() + days);
+   return result;
+}
+
 
 // 객실 선택하기
 function AjaxinsertCart_Pay(roomNo, buNo) {
@@ -192,10 +258,34 @@ function selectDateData(startDt, endDt, startDayofWeek, endDayofWeek, night){
 function removeHyphens(dateString) {
    return dateString.replace(/-/g, '');
 }
+
+function getDayOfWeek(inputDt) {
+    var daysOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+    
+    var inputDateObj = new Date(inputDt);
+
+    var inputDayOfWeek = daysOfWeek[inputDateObj.getDay()];
+
+    var result = inputDayOfWeek
+    
+    return result;
+}
+
+function calculateStayDuration(startDate, lastDate) {
+    var startDateObj = new Date(startDate);
+    var lastDateObj = new Date(lastDate);
+
+    // 시간 차이를 밀리초로 계산
+    var diff = lastDateObj - startDateObj;
+
+    // 밀리초를 일로 변환 (1일 = 24시간 = 24 * 60 * 60 * 1000 밀리초)
+    var diffDays = diff / (24 * 60 * 60 * 1000);
+    
+    var nights = diffDays;
+
+    return nights;
+}
 </script>
-
-
-
 
 </head>
 
@@ -203,7 +293,7 @@ function removeHyphens(dateString) {
    <div class="container">
       <div class="detail2-all">
          <div class="button-container">
-            <a href="${contextPath}/decide/dedate" class="button">&#128197; 날짜 선택</a>
+            <a href="${contextPath}/decide/dedate" class="button" id="selectDateBtn">&#128197; Check-in 또는 Check-out 날짜가 없습니다.</a>
          </div>
          <div class="detail2-main">
             <c:forEach items="${roomList}" var="d" varStatus="status">
@@ -243,5 +333,4 @@ function removeHyphens(dateString) {
       </div>
    </div>
 </body>
-
 </html>

@@ -77,7 +77,7 @@ public class DetailController {
 
   
   @GetMapping("/search")
-	public String detailList(@RequestParam(value="category" , required=false) String category, 
+	public String searchdetailList(@RequestParam(value="category" , required=false) String category, 
 			Model model,
 			@RequestParam Map<String, Object> paramMap) {
 		

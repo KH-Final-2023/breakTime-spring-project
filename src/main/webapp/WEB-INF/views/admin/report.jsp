@@ -10,6 +10,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
+<style>
+.page-item.active a {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/resources/admin/adminFrame.jsp"%>
@@ -22,7 +28,10 @@
 
 
 				<div id="RenrollWrap">
-
+					<c:if test="${empty selectReportList.list}">
+								<div style="font-weight:bold; text-align:center;">신고된 리뷰 목록이 없습니다.</div>
+								<br>
+					</c:if>
 					<c:forEach var="r" items="${selectReportList.list}">
 						<div id="content">
 							<div id="content2">
@@ -49,7 +58,6 @@
 									<c:if test="${r.reviewContentReply ne null}">
 										<div id="buReviewList">
 											<span style="font-size: larger;"><b>숙소 답변</b></span>
-											<!-- <span class="buReviewDate">2023.05.04</span>  -->
 											<p class="buReview">${r.reviewContentReply }</p>
 										</div>
 									</c:if>
@@ -57,9 +65,7 @@
 							</div>
 							<hr style="color: rgba(0, 0, 0, 0.5);">
 							
-							<a href="<%=request.getContextPath()%>/report/delete?reviewNo=${r.reviewNo}">
-								<button type="button" class="btn btn-outline-danger">삭제</button>
-							</a>
+								<button type="button" onclick="deleteReview(${r.reviewNo})"class="btn btn-outline-danger">삭제</button>
 
 							<a href="<%=request.getContextPath()%>/report/update?reviewNo=${r.reviewNo}">
 								<button type="submit" class="btn btn-outline-success" data-text="유지">유지</button>
@@ -83,8 +89,10 @@
 
 							<c:forEach var="item" begin="${selectReportList.pi.startPage }"
 								end="${selectReportList.pi.endPage }">
-								<li class="page-item"><a class="page-link"
-									href="${url}${item }${sUrl}">${item }</a></li>
+								<c:set var="currentPage" value="${selectReportList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
 							</c:forEach>
 
 							<c:choose>
@@ -112,11 +120,14 @@
 			alert("해당 리뷰를 반려 처리였습니다.");
 		});
 		
-		$(document).ready(function() {
-			var reportCancel = '<c:out value="${reportCancel}"/>';
-			if(!(reportCancel==''))
-			alert("해당 리뷰를 삭제 처리였습니다.");
-		});
+		function deleteReview(reviewNo) {
+		    if (!confirm("해당 리뷰를 삭제 처리하시겠습니까?")) {
+		        return false;
+		    } else {
+		        location.href = "<%=request.getContextPath()%>/report/delete?reviewNo=" + reviewNo;
+		        alert("성공적으로 삭제 처리되었습니다.");
+		    }
+		}
 	</script>
 </body>
 </html>

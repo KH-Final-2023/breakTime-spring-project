@@ -11,7 +11,12 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title></title>
-
+<style>
+.page-item.active a {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+</style>
 </head>
 
 <body>
@@ -58,13 +63,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:choose>
-								<c:when test="${empty selectNoticeList.list } ">
-									<tr>
-										<td colspan="5">게시글이 없습니다.</td>
-									</tr>
-								</c:when>
-								<c:otherwise>
+							<c:if test="${empty selectNoticeList.list}">
+								<td colspan="5" style="font-weight:bold; text-align:center;">등록된 글이 없습니다.</td>
+							</c:if>
 									<c:forEach items="${selectNoticeList.list}" var="n">
 										<tr
 											onclick="location.href='<%=request.getContextPath()%>/notice/detail?noticeNo=${n.noticeNo}'">
@@ -75,8 +76,6 @@
 											<td>${n.count }</td>
 										</tr>
 									</c:forEach>
-								</c:otherwise>
-							</c:choose>
 						</tbody>
 					</table>
 	
@@ -98,8 +97,10 @@
 	
 							<c:forEach var="item" begin="${selectNoticeList.pi.startPage }"
 								end="${selectNoticeList.pi.endPage }">
-								<li class="page-item"><a class="page-link"
-									href="${url}${item }${sUrl}">${item }</a></li>
+								<c:set var="currentPage" value="${selectNoticeList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
 							</c:forEach>
 	
 							<c:choose>
