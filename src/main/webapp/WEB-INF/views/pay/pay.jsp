@@ -56,9 +56,11 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 <link rel="stylesheet" href="${contextPath}/resources/css/pay/pay.css">
 <title>결제</title>
+
 </head>
 
 <body>
+	<jsp:include page="/WEB-INF/views/header.jsp" />
     <div class="container-main">
         <h2 class="reservation-title">예약</h2>
         <div class="order-details">

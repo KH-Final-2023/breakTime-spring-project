@@ -38,8 +38,8 @@
             <div id="home-logo">
                 <img src="<%=request.getContextPath()%>/resources/images/로고.png" alt="로고이미지">
             </div>
-            <div id="navbar">
-                <div class="openBtn" id="search" >
+            <div id="header-navbar">
+                <div class="header-openBtn" id="header-search" >
                    <img src="<%=request.getContextPath()%>/resources/images/흰돋보기.png" alt="로고이미지" >
                 </div>
 
@@ -50,14 +50,15 @@
                 <div id="logout">로그아웃</div>
                 <% } %>   
                 <div id="mybooking">예약내역</div>
-                <div class="dropdown">
-                  <span class="dropbtn">더보기</span>
-                  <div class="dropdown-content">
+                <div class="header-dropdown">
+                  <span class="header-dropbtn">더보기</span>
+                  <div class="header-dropdown-content">
                     <a href="#" id="notice">공지사항</a>
                     <a id="myPage">마이페이지</a>
-                    <a href="#" id="message">쪽지함</a>
-                    <a href="${contextPath}/decide/debasket" id="cart">장바구니</a>
-                    <a href="#" id="review">리뷰</a>
+
+                    <a href="#" id="message">문의하기</a>
+                    <a href="#" id="cart">장바구니</a>
+
 
                     <%if (loginBusiness != null) {%>
                     <a href="#" id="asd">사업자</a>
@@ -72,16 +73,22 @@
     
     
     <!-- 검색 모달창 html -->
-    <div class="modal hidden">
+    <div class="header-modal hidden">
             <div class="bg"></div>
-            <div class="modalBox">
-				<button class="closeBtn">X</button>
+            <div class="header-modalBox">
+				<button class="header-closeBtn">X</button>
 				<div class="searchheader">
 					<p>검색</p>
 				</div>
 				<div class="searchbody" style="overflow: auto;">
-                    <form action="<%=request.getContextPath()%>/detail/search" method="GET" >
-					<input type="search" id="search-input" placeholder="키워드로 검색하세요" value="${param.keyword }" name="keyword" onkeyup="enterkey()" >
+                    <form action="<%=request.getContextPath()%>/list/search" method="GET" >
+					<input type="search" id="search-input" placeholder="조건으로 검색해보세요" value="${param.keyword }" name="keyword" onkeyup="enterkey()" >
+					<select name="condition">
+					    <option value="address"${param.condition=='address' ? 'checked' : ''}>주소</option>
+					    <option value="areano"${param.condition=='areano' ? 'checked' : ''}>지역</option>
+					    <option value="category"${param.condition=='category' ? 'checked' : ''}>업체</option>
+					    <option value="title"${param.condition=='title' ? 'checked' : ''}>상호명</option>
+					</select>
                 	</form>
 				</div>
             </div>
@@ -91,15 +98,15 @@
     <!-- 검색창 모달창 스크립트 -->
     <script>
             const open = () => {
-                document.querySelector(".modal").classList.remove("hidden");
+                document.querySelector(".header-modal").classList.remove("hidden");
                 
             }
             const close = () => {
 				console.log('cdlose')
-                document.querySelector(".modal").classList.add("hidden");
+                document.querySelector(".header-modal").classList.add("hidden");
             }
-            document.querySelector(".openBtn").addEventListener("click", open); 
-            document.querySelector(".closeBtn").addEventListener("click", close); 
+            document.querySelector(".header-openBtn").addEventListener("click", open); 
+            document.querySelector(".header-closeBtn").addEventListener("click", close); 
             document.querySelector(".bg").addEventListener("click", close); 
 
         </script>
