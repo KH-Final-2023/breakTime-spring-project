@@ -390,6 +390,9 @@ function bottomNextSlide() {
    
 }
 
+document.getElementById("bulogout").addEventListener("click",function(){
+    location.href = "<%=request.getContextPath()%>/business/logout";
+    })
 </script>
 
 

@@ -244,6 +244,11 @@ textarea {
 				location.reload();
 			});
 		}
+		
+		document.getElementById("bulogout").addEventListener("click",function(){
+	           location.href = "<%=request.getContextPath()%>/business/logout";
+	           })
+
 	</script>
 </body>
 <link rel="stylesheet" type="text/css"
