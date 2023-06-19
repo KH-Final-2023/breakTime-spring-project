@@ -60,7 +60,7 @@
       #{roomHCount},
       #{roomCheckin},
       #{roomCheckout},
-      123456778,
+      TO_CHAR(SYSDATE, 'YYYYMMDD') || SEQ_BNO.CURRVAL,
       'Y'
       )
 
@@ -110,5 +110,12 @@
       JOIN BUSINESS B ON B.BU_NO = R.BU_NO
    </select>
    
+   <!--예약 후 장바구니 삭제 -->
+   <delete id="deleteCartList" parameterType="booking" >
+   /*decideMapper.deleteCartList*/
+      DELETE CART
+      WHERE USER_NO = #{userNo}
+      AND ROOM_NO = #{roomNo}
+   </delete>
 
 </mapper>

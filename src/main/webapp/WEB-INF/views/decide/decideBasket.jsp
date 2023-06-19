@@ -247,6 +247,7 @@ function AjaxDeleteCart() {
         }
     });
 }
+
 // pay로 가게끔 자바스크립트 단에 form 동적으로 생성 및 POST 방식으로 전송
 //예약하기 버튼 클릭 시 발생  추가
  $(document).ready(function() {

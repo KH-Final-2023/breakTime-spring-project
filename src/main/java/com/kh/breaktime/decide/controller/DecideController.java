@@ -1,5 +1,6 @@
 package com.kh.breaktime.decide.controller;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,6 @@ import com.kh.breaktime.member.model.vo.Member;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +34,8 @@ public class DecideController {
    
    // url : {contextPath}/decide/demain/{buNo}
    @GetMapping("/demain/{buNo}") // 메인 조회
-   public String decideMain(@PathVariable("buNo") int buNo, Model model, HttpSession session) {
+   public String decideMain(@PathVariable("buNo") int buNo, 
+		   Model model, HttpSession session) {
 	  
 	  Map<String, Object> map = new HashMap();
 	  
@@ -81,12 +82,15 @@ public class DecideController {
    }
    
    @GetMapping("/deroom/{buNo}") // 객실 조회
-   public String decideRoomSelect(@PathVariable("buNo") int buNo, Model model) {
-      
+   public String decideRoomSelect(@PathVariable("buNo") int buNo, 
+		   						   Model model) {
+	   
       ArrayList<Decide> roomList = decideService.selectDecideRoom(buNo);
       model.addAttribute("roomList", roomList);
       model.addAttribute("roomNo", roomList.get(0).getRoomNo());
       model.addAttribute("buNo", roomList.get(0).getBuNo());
+      
+     
 
       return "decide/decideRoomSelect";
    }
@@ -109,7 +113,7 @@ public class DecideController {
        } else if (singleRoomNo != null) {
     	   
            ArrayList<Decide> roomList = decideService.payDecideRoom(singleRoomNo);
-           map.put("roomList", roomList);
+           map.put("roomList0", roomList);
        }
        
        model.addAttribute("map", map);
@@ -181,11 +185,20 @@ public class DecideController {
 
       ArrayList<Decide> reviewList = decideService.selectDecideReview(buNo);
       
+      
+      ArrayList<Decide> reviewListHigh = decideService.selectDecideReviewHigh(buNo);
+    ArrayList<Decide> reviewListLow = decideService.selectDecideReviewRow(buNo);
+      
       double reviewScore = decideService.selectReviewScore(buNo); // 리뷰 평점 조회
       
       List<Double> userStarScore  = decideService.selectuserStarScore(buNo); // 유저 리뷰 점수 조회
       
       int rCnt = decideService.selectReviewCount(buNo); // 메인 리뷰 개수 조회
+      
+      for (int i = 0; i < userStarScore.size(); i++) {
+    	    double score = userStarScore.get(i);
+    	    reviewList.get(i).setUserStarScore(score);
+    	}
       
       
       map.put("starScore", reviewScore);
@@ -194,6 +207,8 @@ public class DecideController {
       
       model.addAttribute("map", map);
       model.addAttribute("reviewList", reviewList);
+      model.addAttribute("reviewListHigh", reviewListHigh);
+      model.addAttribute("reviewListLow", reviewListLow);
       
       return "decide/decideReview";
    }
