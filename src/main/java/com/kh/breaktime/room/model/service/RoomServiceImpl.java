@@ -131,4 +131,7 @@ public class RoomServiceImpl implements RoomService {
 	public RoomImg searchRoomsImg(int roomNo){
 		return buDao.searchRoomsImg(roomNo);
 	}
+	public int deleteRoom(int roomNo){
+		return buDao.deleteRoom(roomNo);
+	}
 }

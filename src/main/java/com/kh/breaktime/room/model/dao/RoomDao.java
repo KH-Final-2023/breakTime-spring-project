@@ -87,4 +87,8 @@ public class RoomDao {
 	public RoomImg searchRoomsImg(int roomNo) {
 		return sqlSession.selectOne("buRoom-mapper.searchRoomsImg", roomNo);
 	}
+	
+	public int deleteRoom(int roomNo) {
+		return sqlSession.selectOne("buRoom-mapper.deleteRoom", roomNo);
+	}
 }

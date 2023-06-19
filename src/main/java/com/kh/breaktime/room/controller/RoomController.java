@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -261,14 +262,13 @@ public class RoomController {
 	    return "businessRoom/buRoomList";
 	}
 
-	/*
-	 * @PostMapping("/deleteRoo") public String deleteRoom(@PathVariable("roomNo")
-	 * int roomNo) {
-	 * 
-	 * return buService.deleteRoom(roomNo);
-	 * 
-	 * }
-	 */
+	  
+	@ResponseBody
+	  @PostMapping("/deleteRoo") public int deleteRoom(@PathVariable("roomNo")int roomNo) {
+	  return buService.deleteRoom(roomNo);
+	   
+	  }
+	
 	/*
 	 * @GetMapping("/paing") public String searchRoomList(@RequestParam(defaultValue
 	 * = "1") int page, Model model) { int pageSize = 10; // 한 페이지에 표시할 방 개수 int

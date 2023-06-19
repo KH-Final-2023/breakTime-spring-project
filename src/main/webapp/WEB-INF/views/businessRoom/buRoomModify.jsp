@@ -88,23 +88,24 @@
 		</div>
 	</div>
 	<script>
-	function deleteRoom(roomNo) {
-		  if (confirm("정말로 객실을 삭제하시겠습니까?")) {
-		    $.ajax({
-		      url: "/breaktime/businessRoom/deleteRoom/" + roomNo,
-		      type: 'POST',
-		      success: function(response) {
-		        // 삭제 성공한 경우의 처리
-		        alert("성공적으로 삭제 되었습니다");
-		        location.reload();
-		      },
-		      error: function(xhr) {
-		        // 삭제 실패한 경우의 처리
-		        alert(xhr.responseText);
-		      }
-		    });
-		  }
-		}
+function deleteRoom(roomNo) {
+  if (confirm("정말로 객실을 삭제하시겠습니까?")) {
+    $.ajax({
+      url: "/breaktime/businessRoom/deleteRoom/" + roomNo,
+      type: 'POST',
+      success: function(response) {
+        // 삭제 성공한 경우의 처리
+        alert("ddd");
+        alert("성공적으로 삭제 되었습니다");
+        location.reload();
+      },
+      error: function(xhr) {
+        // 삭제 실패한 경우의 처리
+        alert(xhr.responseText);
+      }
+    });
+  }
+}
 </script>
 
 </body>
