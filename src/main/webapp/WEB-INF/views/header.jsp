@@ -89,17 +89,15 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 			<div class="searchbody" style="overflow: auto;">
 				<form action="<%=request.getContextPath()%>/list/search"
 					method="GET">
-					<input type="search" id="search-input" placeholder="조건으로 검색해보세요"
-						value="${param.keyword }" name="keyword" onkeyup="enterkey()">
 					<select name="condition">
 						<option value="address"
 							${param.condition=='address' ? 'checked' : ''}>주소</option>
-						<option value="areano"
-							${param.condition=='areano' ? 'checked' : ''}>지역</option>
-						<option value="category"
-							${param.condition=='category' ? 'checked' : ''}>업체</option>
 						<option value="title" ${param.condition=='title' ? 'checked' : ''}>상호명</option>
 					</select>
+					
+					<input type="search" id="search-input" placeholder="조건으로 검색해보세요"
+						value="${param.keyword }" name="keyword" onkeyup="enterkey()">
+					
 
 				</form>
 			</div>
