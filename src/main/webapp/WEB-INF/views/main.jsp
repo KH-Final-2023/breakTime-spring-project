@@ -48,11 +48,11 @@
      </div>
             
      <div class="mySlideDiv fade">
-         <a href=""><img src="/breaktime/resources/images/모텔.jpg" id="backImg"></a> 
+         <a href=""><img src="/breaktime/resources/images/메인배너2.jpg" id="backImg"></a> 
      </div>
             
      <div class="mySlideDiv fade">
-         <a href=""><img src="/breaktime/resources/images/리조트.jpg" id="backImg"></a>
+         <a href=""><img src="/breaktime/resources/images/메인배너3.jpg" id="backImg"></a>
      </div>
 
      <!-- <a class="prev" onclick="prevSlide()">&#10094;</a>
@@ -131,11 +131,11 @@
      </div>
             
      <div class="bottom-mySlideDiv bottom-fade">
-         <a href=""><img src="/breaktime/resources/images/하단배너.jpg" id="bottom-backImg"></a> 
+         <a href=""><img src="/breaktime/resources/images/하단배너2.png" id="bottom-backImg"></a> 
      </div>
             
      <div class="bottom-mySlideDiv bottom-fade">
-         <a href=""><img src="/breaktime/resources/images/하단배너.jpg" id="bottom-backImg"></a>
+         <a href=""><img src="/breaktime/resources/images/하단배너3.png" id="bottom-backImg"></a>
      </div>
 
             
