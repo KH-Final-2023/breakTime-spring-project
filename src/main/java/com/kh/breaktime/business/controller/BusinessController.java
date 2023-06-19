@@ -118,7 +118,7 @@ public class BusinessController {
          model.addAttribute("roomList", roomList);
          model.addAttribute("roomImgList", roomImgList);
 
-         return "businessRoom/buRoomList";
+         return "redirect:/businessRoom/buRoomList";
       } else { // 로그인 실패
          session.setAttribute("alertMsg", "관리자 승인대기중");
          return "redirect:/"; // 로그인 실패 시 메인페이지로 이동하도록 수정

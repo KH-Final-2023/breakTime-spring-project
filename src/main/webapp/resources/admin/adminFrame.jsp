@@ -165,10 +165,10 @@
 			
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            You have new notifications
+            <!--   <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">사업자 승인</span></a>  -->
             </li>
-            <li>
+            <!-- <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -205,7 +205,7 @@
                 <p>Quae dolorem earum veritatis oditseno</p>
                 <p>2 hrs. ago</p>
               </div>
-            </li>
+            </li> -->
 
             <li>
               <hr class="dropdown-divider">
@@ -214,9 +214,9 @@
             <li class="notification-item">
               <i class="bi bi-info-circle text-primary"></i>
               <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
+                <h4 id="businessInfoDate"></h4>
+                <p id="businessInfoName"></p>
+ 
               </div>
             </li>
 
@@ -230,8 +230,34 @@
           </ul><!-- End Notification Dropdown Items -->
 
         </li><!-- End Notification Nav -->
+			
 
-        <li class="nav-item dropdown">
+		<% if (loginUser != null) { %>
+<script>
+  function selectBusinessInfo() {
+    $.ajax({
+      url: "<%= request.getContextPath() %>/notice/selectBusinessInfo",
+      success: function(result) {
+        var businessInfoList = result;
+        var dateHtml = '';
+        var nameHtml = '';
+        for (var i = 0; i < businessInfoList.length; i++) {
+          var businessInfo = businessInfoList[i];
+          dateHtml += '<h4>' + new Date(businessInfo.ENROLL_DATE).toLocaleDateString('ko-KR') + '</h4>';
+
+          nameHtml += '<h4>' + businessInfo.BU_USER_NAME + '님이 승인 신청했습니다.</h4>';
+        }
+        $('#businessInfoDate').html(dateHtml); // Update businessInfoDate element
+        $('#businessInfoName').html(nameHtml); // Update businessInfoName element
+      }
+    });
+  }
+
+  setInterval(selectBusinessInfo, 60000);
+  selectBusinessInfo();
+</script>
+<% } %>
+				<li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
@@ -261,8 +287,8 @@
 			
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              You have new messages
+             <!--  <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a> -->
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -272,13 +298,38 @@
               <a href="#">
                 <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
                 <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
+                  <h4 id="selectReviewDeclariationDate">Maria Hudson</h4>
+                  <p id="selectReviewDeclariationName">Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  
                 </div>
               </a>
             </li>
-            <li>
+            <% if (loginUser != null) { %>
+<script>
+  function selectReviewDeclariation() {
+    $.ajax({
+      url: "<%= request.getContextPath() %>/notice/selectReviewDeclariation",
+      success: function(result) {
+        var selectReviewDeclariation = result;
+        var dateHtml = '';
+        var nameHtml = '';
+        for (var i = 0; i < selectReviewDeclariation.length; i++) {
+          var selectReview = selectReviewDeclariation[i];
+          dateHtml += '<h4>' + new Date(selectReview.CREATE_DATE).toLocaleDateString('ko-KR') + '</h4>';
+
+          nameHtml += '<h4>' + selectReview.USER_NAME + '님의 리뷰가 신고당했습니다.</h4>';
+        }
+        $('#selectReviewDeclariationDate').html(dateHtml); // Update businessInfoDate element
+        $('#selectReviewDeclariationName').html(nameHtml); // Update businessInfoName element
+      }
+    });
+  }
+
+  setInterval(selectReviewDeclariation, 60000);
+  selectReviewDeclariation();
+</script>
+<% } %>
+           <!--  <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -291,8 +342,8 @@
                   <p>6 hrs. ago</p>
                 </div>
               </a>
-            </li>
-            <li>
+            </li> -->
+           <!--  <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -305,13 +356,13 @@
                   <p>8 hrs. ago</p>
                 </div>
               </a>
-            </li>
+            </li> -->
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
+             <!--  <a href="#">Show all messages</a> -->
             </li>
 
           </ul><!-- End Messages Dropdown Items -->

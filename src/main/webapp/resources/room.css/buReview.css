@@ -195,6 +195,8 @@ thead{
 	display: flex;
 	width :740px;
 	justify-content: space-between;
+	background-color: white;
+	border-radius : 15px;
 }
 #contentdeclariationbtn{
 	margin-top : 20px;

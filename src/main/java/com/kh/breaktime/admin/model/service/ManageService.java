@@ -10,6 +10,6 @@ public interface ManageService {
 	
 	public int manageUpdate(Business b); 
 	
-	public int manageCancel(Business b);
+	public int manageCancel(int buNo);
 	
 }

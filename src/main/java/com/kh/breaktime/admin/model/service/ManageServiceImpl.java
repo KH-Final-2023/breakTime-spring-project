@@ -24,7 +24,7 @@ public class ManageServiceImpl implements ManageService{
 		
 		int listCount = manageDao.selectManageListCount();
 		int pageLimit = 10;
-		int boardLimit = 5;
+		int boardLimit = 10;
 		PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
 
 
@@ -38,8 +38,8 @@ public class ManageServiceImpl implements ManageService{
 		return manageDao.manageUpdate(b);
 	}
 	
-	public int manageCancel(Business b) {
-		return manageDao.manageCancel(b);
+	public int manageCancel(int buNo) {
+		return manageDao.manageCancel(buNo);
 	}
 	
 }

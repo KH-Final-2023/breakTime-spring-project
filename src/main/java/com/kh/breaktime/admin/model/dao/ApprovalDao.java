@@ -34,7 +34,7 @@ public class ApprovalDao {
 		return sqlSession.update("notice-mapper.approvalAccept", b);
 	}
 	
-	public int approvalCancel(Business b) {
-		return sqlSession.delete("notice-mapper.approvalCancel",b);
+	public int approvalCancel(int buNo) {
+		return sqlSession.delete("notice-mapper.approvalCancel",buNo);
 	}
 }

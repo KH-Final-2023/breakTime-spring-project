@@ -16,7 +16,7 @@
 }
 
 body {
-	background-color: #f0fff0;
+	background-color: ;
 }
 
 #formMove {
@@ -31,7 +31,7 @@ body {
 }
 
 #content2 {
-	background-color: #f0fff0;
+	background-color:#f2f2f2 ;
 	display: flex;
 	justify-content: center;
 }
@@ -45,14 +45,15 @@ body {
 }
 
 #lodging {
-	
-	margin-top: 40px;
+	background-color:white ;
+	border-radius: 15px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
 	width: 1150px;
 	margin-bottom: 40px;
+	height : 100%;
 }
 
 /* 포인트 스타일 */
@@ -64,7 +65,7 @@ body {
 	margin-bottom: 30px;
 	width: 1000px;
 	border-radius: 15px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 1.0);
 	transition: transform 0.3s ease;
 }
 
@@ -156,6 +157,7 @@ img {
             <a href="/breaktime/businessRoom/searchRoomList?page=${page}">${page}</a>
          </c:forEach>
       </div> --%>
+			<%-- 	<img src="<%= request.getContextPath() %>/resources/images/bestback.jpg" alt="대체 텍스트" style="width:"> --%>
 
 				<div id="selectRoom">
 					<form action="/breaktime/businessRoom/searchRoomList" method="get"

@@ -122,9 +122,11 @@
 	<select id="getRoomsByBuId" resultMap="roomResultMap">
 		SELECT *
 		FROM ROOM
-		WHERE
-		BU_NO = #{buNo}
+		WHERE BU_NO = #{buNo}
+		ORDER BY ROOM_PRICE ASC
 	</select>
+
+
 
 	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
 	<!-- 방 이미지 조회 -->
@@ -148,36 +150,18 @@
 	</select>
 
 	<select id="getReviewsForBusiness" resultMap="reviewMap">
-		<!-- SELECT REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
-			USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY, BOOK_NO FROM 
-			REVIEW R INNER JOIN BOOKING B ON R.BOOK_NO = B.BOOK_NO INNER JOIN ROOM RO 
-			ON B.ROOM_NO = RO.ROOM_NO INNER JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM 
-			INNER JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER WHERE R.REVIEW_AVAILABLE 
-			= 'Y' AND RO.BU_NO = #{buNo} -->
-		SELECT
-		R.REVIEW_NO,
-		R.REVIEW_WRITER,
-		R.USING_ROOM,
-		R.USER_NO,
-		R.ROOM_NO,
-		R.BOOK_NO,
-		R.STAR_SCORE,
-		R.REVIEW_CONTENT,
-		R.REVIEW_AVAILABLE,
-		R.CREATE_DATE,
-		R.REVIEW_DECLARIATION,
-		R.REVIEW_CONTENT_REPLY,
-		U.USER_NAME,
-		M.ROOM_NAME
+		SELECT R.REVIEW_NO, R.REVIEW_WRITER, R.USING_ROOM, R.USER_NO, R.ROOM_NO,
+		R.BOOK_NO, R.STAR_SCORE, R.REVIEW_CONTENT, R.REVIEW_AVAILABLE,
+		R.CREATE_DATE, R.REVIEW_DECLARIATION, R.REVIEW_CONTENT_REPLY,
+		U.USER_NAME, M.ROOM_NAME
 		FROM
 		REVIEW R
-		INNER JOIN BOOKING B ON R.BOOK_NO =
-		B.BOOK_NO
-		INNER JOIN ROOM RO ON B.ROOM_NO = RO.ROOM_NO
+		INNER JOIN BOOKING B ON R.BOOK_NO =B.BOOK_NO
+		INNER JOIN
+		ROOM RO ON B.ROOM_NO = RO.ROOM_NO 
 		INNER JOIN MEMBER
-		U ON R.REVIEW_WRITER = U.USER_NO
-		INNER JOIN ROOM M ON R.USING_ROOM =
-		M.ROOM_NO
+		U ON R.REVIEW_WRITER= U.USER_NO
+		INNER JOIN ROOM M ON R.USING_ROOM =M.ROOM_NO
 		WHERE
 		R.REVIEW_AVAILABLE = 'Y'
 		AND RO.BU_NO = #{buNo}
@@ -188,7 +172,8 @@
 			CREATE_DATE) VALUES(#{reviewNo}, #{reviewContentReply}, '123', SYSDATE) -->
 		UPDATE REVIEW
 		SET REVIEW_CONTENT_REPLY = #{reviewContentReply}
-		WHERE REVIEW_NO = #{reviewNo}
+		WHERE
+		REVIEW_NO = #{reviewNo}
 
 	</update>
 
@@ -199,14 +184,15 @@
 	</update>
 	<update id="updateReservation" parameterType="booking">
 		UPDATE BOOKING
-		SET STATUS = 'Y'
+		SET
+		STATUS = 'Y'
 		WHERE BOOK_NO = #{bookNo}
 	</update>
-	
+
 	<!-- 아이디 찾기 -->
-	 <select id="findBuIdByEmail" resultType="java.lang.String">
-        SELECT BU_ID
-        FROM BUSINESS
-        WHERE BU_TEL = #{buTel}
-    </select>
+	<select id="findBuIdByEmail" resultType="java.lang.String">
+		SELECT BU_ID
+		FROM BUSINESS
+		WHERE BU_TEL = #{buTel}
+	</select>
 </mapper>

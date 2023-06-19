@@ -24,7 +24,7 @@
     
     if(inputChatting.value.trim().length === 0){
        // 입력이 되지 않은경우
-       alert("뭐라도 입력해주세요");
+       alert("채팅을 입력해주세요.");
        
        inputChatting.value = ""; // 공백문자 삭제
        inputChatting.focus();
