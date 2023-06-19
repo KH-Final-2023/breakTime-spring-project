@@ -19,6 +19,10 @@
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alphardex/aqua.css/dist/aqua.min.css"> -->
 <link rel="stylesheet" href="../resources/css/button.css">
 <style>
+
+	body{
+		margin:0;
+	}
 	#wrapper{
 	width: 100%;
     height: 800px;
@@ -109,7 +113,7 @@
 </style>
 </head>
 <body>
-	
+	 <jsp:include page="/WEB-INF/views/header.jsp" />
 	<div id="wrapper" >
 		<div style="width:100%; display: contents;">
 			<h1 style="margin-bottom:100px; border-top: 1px solid black; border-bottom: 1px solid black;">MEMBER INFO</h1>

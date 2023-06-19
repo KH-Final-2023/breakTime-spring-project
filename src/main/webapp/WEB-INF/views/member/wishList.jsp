@@ -108,6 +108,7 @@
 
 body{
  -ms-overflow-style: none;
+ margin : 0;
  }
  
 ::-webkit-scrollbar {
@@ -136,7 +137,7 @@ body{
 <body>
 	
 
-	
+	 <jsp:include page="/WEB-INF/views/header.jsp" />
 	<div id="wrapper">
 		<div style="width: 100%; display: contents;">
 			<h1
