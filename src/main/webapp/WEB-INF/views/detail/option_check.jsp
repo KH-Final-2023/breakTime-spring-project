@@ -200,6 +200,166 @@ a {
 						<td><input class="house-option-checkbox" type="checkbox"
 							name="houseOptions" value="에어컨">에어컨</td>
 					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="애완동물 허용"> 애완동물 허용</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="바다가 보이는 객실"> 바다가 보이는 객실</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="호수가 보이는 객실"> 호수가 보이는 객실</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="식당"> 식당</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="주방"> 주방</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="카페"> 카페</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="바"> 바</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="바비큐"> 바비큐</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="무료 생수"> 무료 생수</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="유/소아 편의시설"> 유/소아 편의시설</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="유/소아 수영장"> 유/소아 수영장</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="놀이터"> 놀이터</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="아기 돌보미 서비스"> 아기 돌보미 서비스</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="금연"> 금연</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="세탁"> 세탁</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="금연층"> 금연층</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="흡연 구역"> 흡연 구역</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="라운지"> 라운지</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="결혼식장"> 결혼식장</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="욕조"> 욕조</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="샤워실"> 샤워실</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="책상"> 책상</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="스파"> 스파</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="사우나"> 사우나</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="자전거 대여"> 자전거 대여</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="미용실"> 미용실</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="오락실"> 오락실</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="노래방"> 노래방</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="당구장"> 당구장</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="나이트클럽"> 나이트클럽</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="볼링장"> 볼링장</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="24시간 프런트 데스크"> 24시간 프런트 데스크</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="짐 보관"> 짐 보관</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="룸 서비스"> 룸 서비스</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="빠른 체크인"> 빠른 체크인</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="모닝콜"> 모닝콜</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="빠른 체크아웃"> 빠른 체크아웃</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="조기 체크인"> 조기 체크인</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="ATM"> ATM</td>
+					</tr>
+					<tr class="hiddenRow">
+						<td><input class="house-option-checkbox" type="checkbox"
+							name="houseOptions" value="체크아웃 시간 연장"> 체크아웃 시간 연장</td>
+					</tr>
 					<tr>
 						<td><a class="option_openBtn">더 보기</a></td>
 					</tr>
@@ -251,6 +411,28 @@ a {
 	</div>
 
 	<!-- 스크립트 -->
+	<script>
+	    // 페이지가 로드될 때 숨겨진 tr 요소와 "더 보기" 링크를 숨김
+	    document.addEventListener("DOMContentLoaded", function() {
+	        var hiddenRows = document.querySelectorAll(".hiddenRow");
+	        var optionOpenBtn = document.querySelector(".option_openBtn");
+	        hiddenRows.forEach(function(hiddenRow) {
+	            hiddenRow.style.display = "none";
+	        });
+	        optionOpenBtn.style.display = "inline";
+	    });
+	
+	    // "더 보기"를 클릭했을 때 숨겨진 tr 요소를 보이게 하고 "더 보기" 링크를 숨김
+	    var optionOpenBtn = document.querySelector(".option_openBtn");
+	    optionOpenBtn.addEventListener("click", function() {
+	        var hiddenRows = document.querySelectorAll(".hiddenRow");
+	        hiddenRows.forEach(function(hiddenRow) {
+	            hiddenRow.style.display = "table-row";
+	        });
+	        optionOpenBtn.style.display = "none";
+	    });
+	</script>
+
 	<script>
 	  // 체크인 select 요소 가져오기
 	  const dateSelect1 = document.querySelector('.dateCheck1');
