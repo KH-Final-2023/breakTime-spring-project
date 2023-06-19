@@ -76,7 +76,7 @@
       #{roomHCount},
       #{roomCheckin},
       #{roomCheckout},
-      123456778,
+      TO_CHAR(SYSDATE, 'YYYYMMDD') || SEQ_BNO.CURRVAL,
       'Y'
       )
 
@@ -125,7 +125,7 @@
             FROM ROOM R
       JOIN BUSINESS B ON B.BU_NO = R.BU_NO
    </select>
-   
+
    <select id="selectReviewList" resultMap="reviewResultSet">
 		SELECT 
 		REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
@@ -135,5 +135,14 @@
 		JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM
 		WHERE REVIEW_DECLARIATION = 'N'
 	</select>
+
+   <!--예약 후 장바구니 삭제 -->
+   <delete id="deleteCartList" parameterType="booking" >
+   /*decideMapper.deleteCartList*/
+      DELETE CART
+      WHERE USER_NO = #{userNo}
+      AND ROOM_NO = #{roomNo}
+   </delete>
+
 
 </mapper>

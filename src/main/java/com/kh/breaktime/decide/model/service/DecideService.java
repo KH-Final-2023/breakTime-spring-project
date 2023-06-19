@@ -39,6 +39,9 @@ public interface DecideService {
     
    // 리뷰 조회
    ArrayList<Decide> selectDecideReview(int buNo);
+   
+   ArrayList<Decide> selectDecideReviewHigh(int buNo);
+   ArrayList<Decide> selectDecideReviewRow(int buNo);
 
    // 장바구니 조회
    ArrayList<Decide> selectCartList(int userNo);

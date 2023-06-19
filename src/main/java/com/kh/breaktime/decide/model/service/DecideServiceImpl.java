@@ -80,6 +80,15 @@ public class DecideServiceImpl implements DecideService {
    public ArrayList<Decide> selectDecideReview(int buNo) {
       return decideDao.selectDecideReview(buNo);
    }
+   
+   @Override
+   public ArrayList<Decide> selectDecideReviewHigh(int buNo) {
+      return decideDao.selectDecideReviewHigh(buNo);
+   }
+   @Override
+   public ArrayList<Decide> selectDecideReviewRow(int buNo) {
+      return decideDao.selectDecideReviewRow(buNo);
+   }
 
    // 장바구니 조회
    @Override

@@ -1,65 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사업자 회원가입 폼</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사업자 회원가입 폼</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	    <link rel="stylesheet" href="../resources/css/button.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <style>
-        #container{
-            width: 100%;
-            height: 700px;
-            border: 1px solid black;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        form{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-        }
-    </style>
+<style>
+#container {
+	width: 100%;
+	height: 800px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	height: 700px;
+	justify-content: space-evenly;
+}
+
+input {
+	width: 170px;
+	margin-bottom: 10px;
+}
+</style>
 </head>
 <body>
-    <div id="container">
-        
-        
-        <form action="insert" method="post">
-        	<h1 style="display: flex; justify-content: center;">사업자 회원가입</h1> 
-            <div>
-                <input type="email" name="email" id="email" placeholder="이메일입력" required>
-                <input type="button" value="인증번호 전송">
-            </div>
 
-            <div>
-                <input type="text" placeholder="인증번호입력">
-                <input type="button" value="인증확인">
-                <p>이메일이 도착하는데 1-2분정도 소요될수있습니다.</p>
-            </div>
-            <input type="text" name="buId" id="buId" placeholder="아이디 - 4~12자 영문 대소문자, 숫자만 입력하세요." required>
-            <input type="password" name="buPwd" id="buPwd" placeholder="비밀번호 입력 - 4~12자 영문 대소문자, 숫자만 입력하세요." required>
-            <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호확인" required> 
-            <input type="text" name="buUserName" id="buUserName" placeholder="사업자이름" required> 
+	<div id="container">
+		<h1 style="color:#0602a7;">BreakTime</h1>
+		<h1 style="display: flex; justify-content: center; color:#0602a7;">사업자 회원가입</h1>
+
+		<form action="insert" method="post">
+
 			<div>
-				<select name="buCategory" id="buCategory" required>
-					<option>업체종류</option>
-					<option value="B02010100">호텔</option>
-					<option value="B02010500">리조트</option>
-					<option value="B02010700">펜션</option>
-					<option value="B02010900">모텔</option>
-				</select> 
-				<input type="text" name="buTitle" id="buTitle" placeholder="숙박업체이름">
-				<input type="number" name="roomCount" id="roomCount" placeholder="객실 갯수">
+				<h3>사업자 정보</h3>
+				<b>이메일</b> <input type="email" name="email" id="email"
+					placeholder="이메일입력" required>
+			
+			<div>
+				<b>아이디</b> <input type="text" name="buId" id="buId"
+					placeholder="아이디 - 4~12자 영문 대소문자, 숫자만 입력하세요." required>
 			</div>
 			<div>
-				<select name="areaNo" id="areaNo" required>
-					<option>업체지역선택</option>
+				<b>비밀번호</b> <input type="password" name="buPwd" id="buPwd"
+					placeholder="비밀번호 입력 - 4~12자 영문 대소문자, 숫자만 입력하세요." required>
+				<input type="password" name="pwdCheck" id="pwdCheck"
+					placeholder="비밀번호확인" required>
+			</div>
+			<div>
+				<b>사업자이름</b> <input type="text" name="buUserName" id="buUserName"
+					placeholder="사업자이름" required>
+			</div>
+			<div>
+				<b>사업자연락처</b> <input type="tel" name="buTel" id="buTel"
+					placeholder="(-빼고입력해주세요)">
+			</div>
+			</div>
+
+			<div>
+				<h3>업체정보</h3>
+				<div>
+					<b>업체종류</b> <select style="margin-bottom:10px;" name="buCategory" id="buCategory" required>
+						<option value="B02010100">호텔</option>
+						<option value="B02010500">리조트</option>
+						<option value="B02010700">펜션</option>
+						<option value="B02010900">모텔</option>
+					</select> <br> <b>업체이름</b> <input type="text" name="buTitle"
+						id="buTitle" placeholder="업체이름을 입력해주세요."><br> <b>객실갯수</b>
+					<input type="number" name="roomCount" id="roomCount"
+						placeholder="객실 갯수">
+				</div>
+
+				<b>업체지역</b> <select style="margin-bottom:10px;"name="areaNo" id="areaNo" required >
 					<option value="1">서울</option>
 					<option value="2">인천</option>
 					<option value="3">대전</option>
@@ -77,21 +101,25 @@
 					<option value="37">전라북도</option>
 					<option value="38">전라남도</option>
 					<option value="39">제주도</option>
-				</select>
-				<input type="text" id="sample6_postcode" placeholder="우편번호">
-				<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-				<input type="text" id="sample6_address" name="buAddress" placeholder="도로명주소">
-				<input type="text" id="sample6_detailAddress" placeholder="상세주소">
-				<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+				</select><br> <input type="text" id="sample6_postcode"
+					placeholder="우편번호"> <input type="button"
+					onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+				<input type="text" id="sample6_address" name="buAddress"
+					placeholder="도로명주소"> <input type="text"
+					id="sample6_detailAddress" placeholder="상세주소"> <input
+					type="text" id="sample6_extraAddress" placeholder="참고항목"><br>
+
+				<b>업체대표사진</b><br>
+				<textarea style="resize:none; width:100%" cols="50" name="buMainImg"></textarea>
 			</div>
-			<input type="tel" name="buTel" id="buTel" placeholder="사업자연락처">
-			<label>객실사진등록</label>
-    		<textarea cols="50" name="buMainImg"></textarea>
-			<input type="submit" onclick="validation()" value="회원가입">
-			</form>
-        </div>  
-    
-	
+			<div style="margin-top:20px;">
+			<input style="width:100%;" class="btn btn-primary btn-ghost btn-slash" type="submit" onclick="validation()" value="회원가입">
+			</div>
+		</form>
+	</div>
+
+
+
 	<script>
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -140,9 +168,9 @@
             }
         }).open();
     }
-</script> 
+</script>
 
-    <script>
+	<script>
         function validation(){
 
             var mail = document.getElementById("email")
@@ -235,6 +263,6 @@
             }
 
     </script>
-    
+
 </body>
 </html>

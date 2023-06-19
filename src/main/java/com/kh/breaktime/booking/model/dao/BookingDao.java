@@ -24,15 +24,21 @@ public class BookingDao {
 		return sqlSession.insert("bookingMapper.insertReview", r);
 	}
 	
-
+	// 예약 등록
 	public int insertBooking(Booking b) {
 		return sqlSession.insert("bookingMapper.insertBooking", b);
+
 	}
 		
 	public ArrayList<Review> selectReviewList(int userNo) {
 		
 		return (ArrayList)sqlSession.selectList("bookingMapper.selectReviewList", userNo);
 
+	}
+	
+	// 예약 등록시 카트 삭제
+	public int deleteCartList(Booking booking) {
+		return sqlSession.delete("bookingMapper.deleteCartList", booking);
 	}
 	
 }
