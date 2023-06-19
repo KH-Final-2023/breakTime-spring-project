@@ -94,7 +94,6 @@
             </div>
         </div>
     
-    
     <!-- 검색창 모달창 스크립트 -->
     <script>
             const open = () => {
@@ -111,9 +110,6 @@
 
         </script>
     
-    
-    
-    
     <!-- 검색창 엔터키 스크립트 -->
     <script>
     function enterkey() {
@@ -124,26 +120,11 @@
      
     </script>
     
-    
-    
-    
-     
-    
-    
       <script>
     document.getElementById("notice").addEventListener("click",function(){
          location.href = "<%=request.getContextPath()%>/notice/publicList";
       })
     </script> 
-    
-    
-    
-    
-    <script>
-    document.getElementById("review").addEventListener("click",function(){
-         location.href = "<%=request.getContextPath()%>/decide/dereview";
-      })
-    </script>
     
     <script>
           document.getElementById("loginType").addEventListener("click",function(){
@@ -203,25 +184,7 @@
         location.href = "<%=request.getContextPath()%>/loginType"; 
       })
       <% }%>
-      
-      <%if (loginUser == null) {%> 
-      document.getElementById("review").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType"; 
-      })
-      <% }%>
-      
-      <%if (loginUser == null) {%> 
-      document.getElementById("mybooking").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType"; 
-      })
-      <% }%>
-
-      
       </script>
-      
-      
-      
-    
     
 </body>
 </html>
