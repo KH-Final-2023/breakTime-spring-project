@@ -17,8 +17,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <title>BreakTime</title>
 <style>
-   
-
+#header-content {
+	width: 75%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 19px;
+	margin-left: 405px;
+	padding: 5px 300px 0px 100px;
+}
 </style>
 
 </head>

@@ -33,6 +33,7 @@ public class DecideController {
    }
    
    // url : {contextPath}/decide/demain/{buNo}
+
    @GetMapping("/demain/{buNo}") // 메인 조회
    public String decideMain(@PathVariable("buNo") int buNo, 
 		   Model model, HttpSession session) {
