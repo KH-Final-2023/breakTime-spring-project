@@ -9,7 +9,6 @@
 
 /* 전체적인 스타일 */
 body {
-	font-family: Arial, sans-serif;
 	font-size: 14px;
 	line-height: 1.4;
 	color: #333;
@@ -51,6 +50,11 @@ body {
 	justify-content: flex-start;
 	font-size: 18px;
 	font-weight: bold;
+}
+
+.review-container>span{
+	font-size : 25px;
+	
 }
 
 .review-star {
@@ -116,6 +120,8 @@ body {
 .recent-reviews span {
 	color: blue !important;
 	margin-left: 5px;
+	font-size : 15px;
+	
 }
 
 .recent-reviews::before {
@@ -320,7 +326,7 @@ body {
 
 #reviewNickname {
 	display: flex;
-	font-size: 16px;
+	font-size: 20px;
 	margin-bottom: 10px;
 	color: rgb(97, 97, 97);
 }
@@ -344,11 +350,13 @@ body {
 	border-radius: 2px;
 	color: rgb(97, 97, 97);
 	background-color: rgba(248, 248, 248);
+	font-size : 18px;
 }
 
 #review {
 	margin: 20px 0;
 	text-align: left;
+	font-size : 25px;
 }
 
 #buReviewList {
@@ -370,4 +378,8 @@ body {
 	float: right;
 	font-size: 16px;
 	color: rgb(97, 97, 97);
+}
+
+.buReview{
+	font-size:25px;
 }
