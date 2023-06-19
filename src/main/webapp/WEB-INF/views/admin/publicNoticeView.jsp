@@ -42,7 +42,7 @@ body {
 	width: 70%;
 	height: 90%;
 	margin-top: 15vh;
-	margin-left: 28%;
+	margin-left: 20%;
 }
 
 #notice_title_area {
@@ -147,7 +147,7 @@ body {
 }
 
 .paging {
-	margin: 0px 0px 0px 45%;
+	margin-left : 35%;
 }
 
 .page-item.active a {
@@ -157,7 +157,7 @@ body {
 
 #searchForm {
 	width: 80%;
-	margin-left: 15%;
+	margin-left: 11%;
 }
 
 #searchForm>* {

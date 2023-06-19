@@ -24,7 +24,7 @@ public class ApprovalServiceImpl implements ApprovalService{
 		
 		int listCount = approvalDao.selectApprovalListCount();
 		int pageLimit = 10;
-		int boardLimit = 5;
+		int boardLimit = 10;
 		PageInfo pi = pagination.getPageInfo(listCount, cp, pageLimit, boardLimit);
 
 
