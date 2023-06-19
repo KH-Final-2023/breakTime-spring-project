@@ -46,8 +46,10 @@
                 <%if (loginUser == null && loginBusiness == null) {%>
 
                 <div id="loginType">로그인</div>
-                <% } else { %>
-                <div id="logout">로그아웃</div>
+                <% } else if (loginUser != null && loginBusiness == null){ %>
+                <div id="userlogout">로그아웃</div>
+                <% } else { %> 
+                 <div id="bulogout">로그아웃</div>
                 <% } %>   
                 <div id="mybooking">예약내역</div>
                 <div class="header-dropdown">
@@ -152,11 +154,11 @@
      </script>
       
       <script>
-      	document.getElementById("logout").addEventListener("click",function(){
+      	document.getElementById("userlogout").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/member/logout";
         })
         
-        document.getElementById("logout").addEventListener("click",function(){
+        document.getElementById("bulogout").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/business/logout";
         })
       </script>

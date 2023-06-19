@@ -10,6 +10,10 @@
 <title>Document</title>
 <style>
 /* 전체적인 초록색 계열 스타일 */
+
+body{
+	margin:0;
+}
 #content1 {
 	display: flex;
 	justify-content: center;
@@ -241,6 +245,10 @@ img {
 
 			return true;
 		}
+		
+		document.getElementById("bulogout").addEventListener("click",function(){
+	           location.href = "<%=request.getContextPath()%>/business/logout";
+	           })
 	</script>
 </body>
 </html>
