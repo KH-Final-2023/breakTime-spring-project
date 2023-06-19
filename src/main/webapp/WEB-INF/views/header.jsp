@@ -35,52 +35,47 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 		<c:remove var="alertMsg" />
 	</c:if>
 
-	<div id="header">
-		<div id="header-content">
-			<div id="home-logo">
-				<img src="<%=request.getContextPath()%>/resources/images/로고.png"
-					alt="로고이미지">
-			</div>
-			<div id="header-navbar">
-				<div class="header-openBtn" id="header-search">
-					<img src="<%=request.getContextPath()%>/resources/images/흰돋보기.png"
-						alt="로고이미지">
-				</div>
+	
+    <div id="header">
+        <div id="header-content">
+            <div id="home-logo">
+                <img src="<%=request.getContextPath()%>/resources/images/로고.png" alt="로고이미지">
+            </div>
+            <div id="header-navbar">
+                <div class="header-openBtn" id="header-search" >
+                   <img src="<%=request.getContextPath()%>/resources/images/흰돋보기.png" alt="로고이미지" >
+                </div>
 
-				<%
-					if (loginUser == null && loginBusiness == null) {
-				%>
+                <%if (loginUser == null && loginBusiness == null) {%>
 
-				<div id="loginType">로그인</div>
-				<%
-					} else {
-				%>
-				<div id="logout">로그아웃</div>
-				<%
-					}
-				%>
-				<div id="mybooking">예약내역</div>
-				<div class="header-dropdown">
-					<span class="header-dropbtn">더보기</span>
-					<div class="header-dropdown-content">
-						<a href="#" id="notice">공지사항</a> <a id="myPage">마이페이지</a> <a
-							href="#" id="message">문의하기</a> <a href="#" id="cart">장바구니</a>
+                <div id="loginType">로그인</div>
+                <% } else if (loginUser != null && loginBusiness == null){ %>
+                <div id="userlogout">로그아웃</div>
+                <% } else { %> 
+                 <div id="bulogout">로그아웃</div>
+                <% } %>   
+                <div id="mybooking">예약내역</div>
+                <div class="header-dropdown">
+                  <span class="header-dropbtn">더보기</span>
+                  <div class="header-dropdown-content">
+                    <a href="#" id="notice">공지사항</a>
+                    <%if(loginUser  != null){ %>
+                    <a id="myPage">마이페이지</a>
+					<%} %>
+                    <a href="#" id="message">문의하기</a>
+                    <a href="${contextPath}/decide/debasket" id="cart">장바구니</a>
+                    <%if (loginBusiness != null) {%>
+                    <a href="#" id="asd">사업자</a>
+                    <% } %>
 
+                  </div>
+                </div> 
+        
+            </div>
+        </div>
+    </div>
+    
 
-						<%
-							if (loginBusiness != null) {
-						%>
-						<a href="#" id="asd">사업자</a>
-						<%
-							}
-						%>
-
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
 
 
 	<!-- 검색 모달창 html -->
@@ -105,6 +100,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 							${param.condition=='category' ? 'checked' : ''}>업체</option>
 						<option value="title" ${param.condition=='title' ? 'checked' : ''}>상호명</option>
 					</select>
+
 				</form>
 			</div>
 		</div>
@@ -113,6 +109,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 
 	<!-- 검색창 모달창 스크립트 -->
 	<script>
+
             const open = () => {
                 document.querySelector(".header-modal").classList.remove("hidden");
                 
@@ -127,11 +124,9 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 
         </script>
 
-
-
-
 	<!-- 검색창 엔터키 스크립트 -->
 	<script>
+
     function enterkey() {
     	if (window.event.keyCode == 13) {
         	// 엔터키가 눌렸을 때
@@ -140,39 +135,28 @@ String alertMsg = (String) session.getAttribute("alertMsg");
      
     </script>
 
-
-
-
-
-
-
-	<script>
+    
+      <script>
     document.getElementById("notice").addEventListener("click",function(){
          location.href = "<%=request.getContextPath()%>/notice/publicList";
       })
-    </script>
+    </script> 
+    
+    <script>
 
-
-
-
-	<script>
-    document.getElementById("review").addEventListener("click",function(){
-         location.href = "<%=request.getContextPath()%>/decide/dereview";
-      })
-    </script>
-
-	<script>
           document.getElementById("loginType").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/loginType";
         })
      </script>
 
-	<script>
-      	document.getElementById("logout").addEventListener("click",function(){
+      
+      <script>
+      	document.getElementById("userlogout").addEventListener("click",function(){
+
         location.href = "<%=request.getContextPath()%>/member/logout";
         })
         
-        document.getElementById("logout").addEventListener("click",function(){
+        document.getElementById("bulogout").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/business/logout";
         })
       </script>
@@ -218,26 +202,10 @@ String alertMsg = (String) session.getAttribute("alertMsg");
       document.getElementById("cart").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/loginType"; 
       })
-      <%}%>
-      
-      <%if (loginUser == null) {%> 
-      document.getElementById("review").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType"; 
-      })
-      <%}%>
-      
-      <%if (loginUser == null) {%> 
-      document.getElementById("mybooking").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType"; 
-      })
-      <%}%>
 
-      
+      <% }%>
+
       </script>
-
-
-
-
 
 </body>
 </html>

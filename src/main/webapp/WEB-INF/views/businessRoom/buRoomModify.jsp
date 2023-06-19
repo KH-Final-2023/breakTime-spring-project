@@ -12,11 +12,7 @@
 	href="/breaktime/resources/room.css/buRoomModify.css">
 <title>Document</title>
 <style>
-img {
-	width: 250px;
-	height: 150px;
-	margin: 10px;
-}
+
 </style>
 
 </head>
@@ -84,14 +80,31 @@ img {
 					<div id=modifyBtn>
 
 						<button type="submit" id="resisterBtn">수정하기</button>
+						<button type="button" onclick="deleteRoom(${room.roomNo})">삭제하기</button>
 					</div>
+					
 				</form>
 			</div>
 		</div>
 	</div>
 	<script>
-    var roomNo = "${room.roomNo}";
-    console.log(roomNo);
+	function deleteRoom(roomNo) {
+		  if (confirm("정말로 객실을 삭제하시겠습니까?")) {
+		    $.ajax({
+		      url: "/breaktime/businessRoom/deleteRoom/" + roomNo,
+		      type: 'POST',
+		      success: function(response) {
+		        // 삭제 성공한 경우의 처리
+		        alert("성공적으로 삭제 되었습니다");
+		        location.reload();
+		      },
+		      error: function(xhr) {
+		        // 삭제 실패한 경우의 처리
+		        alert(xhr.responseText);
+		      }
+		    });
+		  }
+		}
 </script>
 
 </body>

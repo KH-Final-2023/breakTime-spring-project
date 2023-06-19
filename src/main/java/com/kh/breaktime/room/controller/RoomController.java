@@ -261,7 +261,14 @@ public class RoomController {
 	    return "businessRoom/buRoomList";
 	}
 
-
+	/*
+	 * @PostMapping("/deleteRoo") public String deleteRoom(@PathVariable("roomNo")
+	 * int roomNo) {
+	 * 
+	 * return buService.deleteRoom(roomNo);
+	 * 
+	 * }
+	 */
 	/*
 	 * @GetMapping("/paing") public String searchRoomList(@RequestParam(defaultValue
 	 * = "1") int page, Model model) { int pageSize = 10; // 한 페이지에 표시할 방 개수 int
