@@ -20,6 +20,10 @@
 <link rel="stylesheet" href="/breaktime/resources/css/sukbumModal.css">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
+
+	body{
+		margin : 0;
+	}
 	#wrapper{
 	width: 100%;
     height: 800px;
@@ -196,7 +200,7 @@
 	<!-- 아이디변경 모달창 -->
 	<div class="modal3 hidden">
 		<div class="bg3"></div>
-		<div class="modalBox" style="height: 300px;">
+		<div class="modalBox">
 			<div class="header">
 				<h2>아이디 변경</h2>
 			</div>
@@ -237,8 +241,8 @@
 	<!-- 아이디변경 모달창  끝-->
 	
 	<!-- 비밀번호변경 모달창 -->
-	<div class="modal hidden">
-		<div class="bg"></div>
+	<div class="modal4 hidden">
+		<div class="bg4"></div>
 		<div class="modalBox">
 			<div class="header">
 				<h2>비밀번호 변경</h2>
@@ -251,7 +255,7 @@
 						<input type="password" name="checkPwd" placeholder="새 비밀번호 확인" class="inputField" required />
 					</div>
 				</div>
-				<button type="submit" class="closeBtn" id="fullBlueBtn1"
+				<button type="submit" class="closeBtn4" id="fullBlueBtn"
 					onclick="return validatePwd();">비밀번호 변경</button>			
 			</form>
 			
@@ -358,16 +362,16 @@
 	
 	<!--비밀번호변경 모달창 스크맆트-->
 	<script> 
-        const open = () => {
-            document.querySelector(".modal").classList.remove("hidden");
+        const open4 = () => {
+            document.querySelector(".modal4").classList.remove("hidden");
         }
-        const close = () => {
+        const close4 = () => {
             console.log('cdlose')
-            document.querySelector(".modal").classList.add("hidden");
+            document.querySelector(".modal4").classList.add("hidden");
         }
-        document.querySelector("#updatePwd").addEventListener("click", open);
-        document.querySelector(".closeBtn").addEventListener("click", close);
-        document.querySelector(".bg").addEventListener("click", close);
+        document.querySelector("#updatePwd").addEventListener("click", open4);
+        document.querySelector(".closeBtn4").addEventListener("click", close4);
+        document.querySelector(".bg4").addEventListener("click", close4);
     </script>
     <!-- 비밀번호변경 스크맆트 끝 -->
     

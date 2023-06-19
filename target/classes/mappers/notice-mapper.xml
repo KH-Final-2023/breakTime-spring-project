@@ -259,6 +259,59 @@
 		WHERE APPROVAL = 'Y'
 	</select>
 	
+	<select id="searchManageListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM BUSINESS B
+	WHERE APPROVAL = 'Y'
+	
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "buUserName"'>
+				BU_USER_NAME LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "buTitle"'>
+				BU_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "buTel"'>
+				BU_TEL LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>			
+			<when test='condition == "buAddress"'>
+				BU_ADDRESS LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>			
+		</choose>	
+	</if>	
+	</select>
+	
+	<select id="searchManageList" resultMap="approvalResultSet">
+	SELECT
+		BU_NO,
+		BU_ID,
+		BU_USER_NAME,
+		BU_TEL,	
+		BU_TITLE,
+		BU_ADDRESS
+		FROM BUSINESS
+	WHERE APPROVAL = 'Y'
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "buUserName"'>
+				BU_USER_NAME LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "buTitle"'>
+				BU_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "buTel"'>
+				BU_TEL LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>			
+			<when test='condition == "buAddress"'>
+				BU_ADDRESS LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>			
+		</choose>	
+	</if>	
+	</select>
+	
 	<update id="manageUpdate" parameterType="business">
 		UPDATE  BUSINESS SET
 		BU_USER_NAME = #{buUserName},
