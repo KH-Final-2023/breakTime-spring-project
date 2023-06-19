@@ -63,9 +63,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
                     <a id="myPage">마이페이지</a>
 					<%} %>
                     <a href="#" id="message">문의하기</a>
-                    <a href="#" id="cart">장바구니</a>
-
-
+                    <a href="${contextPath}/decide/debasket" id="cart">장바구니</a>
                     <%if (loginBusiness != null) {%>
                     <a href="#" id="asd">사업자</a>
                     <% } %>
@@ -102,6 +100,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 							${param.condition=='category' ? 'checked' : ''}>업체</option>
 						<option value="title" ${param.condition=='title' ? 'checked' : ''}>상호명</option>
 					</select>
+
 				</form>
 			</div>
 		</div>
@@ -110,6 +109,7 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 
 	<!-- 검색창 모달창 스크립트 -->
 	<script>
+
             const open = () => {
                 document.querySelector(".header-modal").classList.remove("hidden");
                 
@@ -124,11 +124,9 @@ String alertMsg = (String) session.getAttribute("alertMsg");
 
         </script>
 
-
-
-
 	<!-- 검색창 엔터키 스크립트 -->
 	<script>
+
     function enterkey() {
     	if (window.event.keyCode == 13) {
         	// 엔터키가 눌렸을 때
@@ -137,28 +135,15 @@ String alertMsg = (String) session.getAttribute("alertMsg");
      
     </script>
 
-
-
-
-
-
-
-	<script>
+    
+      <script>
     document.getElementById("notice").addEventListener("click",function(){
          location.href = "<%=request.getContextPath()%>/notice/publicList";
       })
-    </script>
+    </script> 
+    
+    <script>
 
-
-
-
-	<script>
-    document.getElementById("review").addEventListener("click",function(){
-         location.href = "<%=request.getContextPath()%>/decide/dereview";
-      })
-    </script>
-
-	<script>
           document.getElementById("loginType").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/loginType";
         })
@@ -217,26 +202,10 @@ String alertMsg = (String) session.getAttribute("alertMsg");
       document.getElementById("cart").addEventListener("click",function(){
         location.href = "<%=request.getContextPath()%>/loginType"; 
       })
-      <%}%>
-      
-      <%if (loginUser == null) {%> 
-      document.getElementById("review").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType"; 
-      })
-      <%}%>
-      
-      <%if (loginUser == null) {%> 
-      document.getElementById("mybooking").addEventListener("click",function(){
-        location.href = "<%=request.getContextPath()%>/loginType"; 
-      })
-      <%}%>
 
-      
+      <% }%>
+
       </script>
-
-
-
-
 
 </body>
 </html>

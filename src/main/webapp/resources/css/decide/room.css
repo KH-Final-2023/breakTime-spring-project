@@ -9,7 +9,6 @@
 
 /* 전체적인 스타일 */
 body {
-   font-family: Arial, sans-serif;
    font-size: 14px;
    line-height: 1.4;
    color: #333;
@@ -31,6 +30,7 @@ body {
    padding: 0;
    position: relative;
    flex-wrap: wrap;
+   
 }
 
 .detail2-all {
@@ -42,11 +42,12 @@ body {
 
 .detail2-card {
    width: 384px;
-   height: 422px;
+   height: 460px;
    background-color: #ffffff;
    overflow: hidden;
    padding: 20px 30px;
    border: 1px solid #f2f2f2;
+   
 }
 
 .detail2-card .image {
@@ -62,20 +63,20 @@ body {
 }
 
 .detail2-card .title {
-   font-size: 18px;
+   font-size: 25px;
    font-weight: bold;
    margin-top: 10px;
    margin-bottom: 5px;
 }
 
 .detail2-card .description {
-   font-size: 14px;
+   font-size: 20px;
    color: #777777;
    margin-bottom: 10px;
 }
 
 .detail2-card .price {
-   font-size: 16px;
+   font-size: 25px;
    font-weight: bold;
 }
 
@@ -100,7 +101,7 @@ body {
    border-radius: 4px;
    text-decoration: none;
    cursor: pointer;
-   font-size: 12px;
+   font-size: 20px;
 }
 
 .button-card2 {
@@ -112,7 +113,7 @@ body {
    border-radius: 4px;
    text-decoration: none;
    cursor: pointer;
-   font-size: 12px;
+   font-size: 20px;
 }
 
 .button-card3 {
@@ -141,7 +142,7 @@ body {
    padding: 10px 16px;
    background-color: white;
    color: #333333c7;
-   font-size: 16px;
+   font-size: 20px;
    text-align: center;
    border: 1px solid rgba(0, 0, 0, 0.299);
    border-radius: 4px;
