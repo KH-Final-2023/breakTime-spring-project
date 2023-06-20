@@ -62,8 +62,8 @@
   from {opacity: .4} 
   to {opacity: 1}
 }
-
-/* Next & previous buttons */
+/* 
+Next & previous buttons
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -78,15 +78,66 @@
   border-radius: 0 3px 3px 0;
 }
 
-/* Position the "next button" to the right */
+Position the "next button" to the right
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-/* On hover, add a black background color with a little bit see-through */
+On hover, add a black background color with a little bit see-through
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
+} */
+
+
+
+
+
+
+/* Slideshow container */
+.bottom-slideshow-container {
+  	width: 100%;
+    height: 250px;
+    margin-top: 30px;
+    position: relative;
+}
+
+
+.bottom-mySlideDiv{
+    width: 45%;
+    height: 100px;
+    display: flex;
+    margin-left: 480px;
+    margin-top: 10px;
+    position: absolute;
+    border-radius: 20px;
+}
+
+
+#bottom-backImg{
+  width: 1000px;
+  height: 200px;
+  border-radius: 20px;
+ 
+}
+
+
+/* effect */
+.bottom-fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes bottom-fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes bottom-fade {
+  from {opacity: .4} 
+  to {opacity: 1}
 }
 
 
@@ -104,7 +155,7 @@
 
 .categoryText>span{
     color: rgb(0, 0, 0);
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .rankingText{
@@ -116,7 +167,7 @@
 
 .rankingText>span{
     color: rgb(0, 0, 0);
-    font-size: 20px;
+    font-size: 25px;
 }
 
 
@@ -142,7 +193,7 @@
 }
 
 
-.ranking{
+.area{
   width: 100%;
   height: 250px;
   margin-top: 1px;
@@ -152,7 +203,7 @@
   justify-content: space-between;
 
 }
-.ranking > .rankingSubBox {
+.area > .areaSubBox {
   width: 200px;
   border-radius: 10px;
   box-shadow: 0px 0px 3px #000;
@@ -160,6 +211,8 @@
   height: 200px;
   text-align: center;
 }
+
+
 
 #hotel{
 	background: url("/breaktime/resources/images/호텔.jpg");
@@ -226,10 +279,150 @@
 
 
 
+#seoul{
+	background: url("/breaktime/resources/images/서울.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+	
+}
+
+#seoul:hover{
+	background: url("/breaktime/resources/images/서울.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+	
+}
+
+#busan{
+	background: url("/breaktime/resources/images/부산.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+	
+}
+
+#busan:hover{
+	background: url("/breaktime/resources/images/부산.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+	
+}
+
+#gangwon{
+	background: url("/breaktime/resources/images/강원도.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+}
+
+#gangwon:hover{
+	background: url("/breaktime/resources/images/강원도.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+}
+
+#jeju{
+	background: url("/breaktime/resources/images/제주도.jpg");
+	background-size : 200px 200px;
+	filter : brightness(50%);
+}
+
+#jeju:hover{
+	background: url("/breaktime/resources/images/제주도.jpg");
+	background-size : 200px 200px;
+	filter : brightness(100%);
+	-webkit-text-stroke: 1.5px black;
+}
+
+#pSeoul, #pBusan, #pGangwon, #pJeju{
+	margin-top: 25px;
+	color : white;
+	font-size : 35px;
+}
 
 
 
 
+
+
+
+.th{
+  width: 100%;
+  height: 250px;
+  margin-top: 1px;
+  position: relative;
+  padding: 16px 430px 230px 500px;
+  display: flex;
+
+}
+.th > .box1 {
+  width: 200px;
+  border-radius: 10px 0px 0px 10px;
+  box-shadow: 0px 0px 3px #000;
+  padding: 56px;
+  height: 200px;
+  text-align: center;
+}
+
+.th > .box2 {
+  width: 300px;
+  border-radius: 0px 10px 10px 0px;
+  box-shadow: 0px 0px 3px #000;
+  padding: 56px;
+  height: 200px;
+  text-align: center;
+}
+
+
+
+
+#th1{
+	background: url("/breaktime/resources/images/메인호텔.jpg");
+	background-size : 200px 200px;
+	
+}
+
+#th1:hover{
+	background: url("/breaktime/resources/images/메인호텔.jpg");
+	background-size : 200px 200px;
+	
+}
+
+#th2{
+	
+	background-size : 200px 200px;
+	
+}
+
+#th2:hover{
+	background-size : 200px 200px;
+	
+}
+
+#th3{
+	background: url("/breaktime/resources/images/공지사항.png");
+	background-size : 200px 200px;
+}
+
+#th3:hover{
+	background: url("/breaktime/resources/images/공지사항.png");
+	background-size : 200px 200px;
+}
+
+#th4{
+	background-size : 200px 200px;
+}
+
+#th4:hover{
+	background-size : 200px 200px;
+}
+
+#goBus, #goNotice{
+	margin-top: 25px;
+	color : black;
+	font-size : 35px;
+}
 
 
 

@@ -44,12 +44,33 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.getRoomImagesByBuId(roomNo);
 	}
 
-    @Override
-    public List<Booking> getBookingsByBusinessId(int buNo) {
-        return businessDao.getBookingsByBusinessId(buNo);
-    }
+	@Override
+	public List<Booking> getBookingsByBusinessId(int buNo) {
+		return businessDao.getBookingsByBusinessId(buNo);
+	}
+
 	@Override
 	public List<Review> getReviewsForBusiness(int buNo) {
 		return businessDao.getReviewsForBusiness(buNo);
 	}
+	
+	@Override
+	public List<Review> updateReviewContentReply(Review review) {
+		// DAO를 통해 데이터베이스 업데이트
+		return businessDao.updateReviewContentReply(review);
+	}
+	@Override
+	 public int updateReviewDeclaration(int reviewNo) {
+		return businessDao.updateReviewDeclaration(reviewNo);
+	    }
+	
+	@Override
+	public List<Booking> updateReservation(int bookNo) {
+		return businessDao.updateReservation(bookNo);
+	}
+	
+	@Override
+    public String findBuIdByEmail(String buTel) {
+        return businessDao.findBuIdByEmail(buTel);
+    }
 }

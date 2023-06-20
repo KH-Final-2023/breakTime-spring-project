@@ -2,113 +2,199 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="buRoom-mapper">
 
-	<resultMap type="room" id="roomResultMap">
-		<id column="ROOM_NO" property="roomNo" />
-		<result column="BU_NO" property="buNo" />
-		<result column="ROOM_H_COUNT" property="roomHCount" />
-		<result column="ROOM_NAME" property="roomName" />
-		<result column="ROOM_PRICE" property="roomPrice" />
-		<result column="ROOM_INFO" property="roomInfo" />
-	</resultMap>
+   <resultMap type="room" id="roomResultMap">
+      <id column="ROOM_NO" property="roomNo" />
+      <result column="BU_NO" property="buNo" />
+      <result column="ROOM_H_COUNT" property="roomHCount" />
+      <result column="ROOM_CHECKIN" property="roomCheckin" />
+      <result column="ROOM_CHECKOUT" property="roomCheckout" />
+      <result column="ROOM_NAME" property="roomName" />
+      <result column="ROOM_PRICE" property="roomPrice" />
+      <result column="ROOM_INFO" property="roomInfo" />
+   </resultMap>
 
-	<resultMap type="roomImg" id="roomImgResultMap">
-		<id column="FILE_NO" property="fileNo" />
-		<result column="ORIGIN_NAME" property="originName" />
-		<result column="SAVE_NAME" property="saveName" />
-		<result column="FILE_PATH" property="filePath" />
-		<result column="FILE_LEVEL" property="fileLevel" />
-		<result column="STATUS" property="status" />
-	</resultMap>
-	<insert id="insertBuRoom" parameterType="room">
-		<selectKey keyProperty="roomNo" resultType="int"
-			order="BEFORE">
-			SELECT SEQ_BNO.NEXTVAL FROM DUAL
-		</selectKey>
-		INSERT INTO ROOM
-		(
-		ROOM_NO,
-		BU_NO,
-		ROOM_H_COUNT,
-		ROOM_NAME,
-		ROOM_PRICE,
-		ROOM_INFO
-		)
-		VALUES
-		(
-		#{roomNo},
-		#{buNo},
-		#{roomHCount},
-		#{roomName},
-		#{roomPrice},
-		#{roomInfo}
-		)
-	</insert>
+   <resultMap type="roomImg" id="roomImgResultMap">
+      <id column="FILE_NO" property="fileNo" />
+      <result column="ROOM_NO" property="roomNo" />
+      <result column="ORIGIN_NAME" property="originName" />
+      <result column="SAVE_NAME" property="saveName" />
+      <result column="FILE_PATH" property="filePath" />
+      <result column="FILE_LEVEL" property="fileLevel" />
+      <result column="STATUS" property="status" />
+   </resultMap>
+   <insert id="insertBuRoom" parameterType="room">
+      <selectKey keyProperty="roomNo" resultType="int" order="BEFORE">
+         SELECT SEQ_BNO.NEXTVAL FROM DUAL
+      </selectKey>
+      INSERT INTO ROOM
+      (
+      ROOM_NO,
+      BU_NO,
+      ROOM_H_COUNT,
+      ROOM_CHECKIN,
+      ROOM_CHECKOUT,
+      ROOM_NAME,
+      ROOM_PRICE,
+      ROOM_INFO
+      )
+      VALUES
+      (
+      #{roomNo},
+      #{buNo},
+      #{roomHCount},
+      #{roomCheckin},
+      #{roomCheckout},
+      #{roomName},
+      #{roomPrice},
+      #{roomInfo}
+      )
+   </insert>
 
-	<insert id="insertRoomImgList" parameterType="roomImg">
-		INSERT INTO
-		ROOM_IMG
-		(
-		FILE_NO,
-		ROOM_NO,
-		ORIGIN_NAME,
-		SAVE_NAME,
-		FILE_PATH,
-		FILE_LEVEL,
-		STATUS
-		)
-		VALUES
-		(
-		SEQ_FNO.NEXTVAL,
-		#{roomNo},
-		#{originName},
-		#{saveName},
-		#{filePath},
-		#{fileLevel},
-		#{status}
-		)
+   <insert id="insertRoomImgList" parameterType="roomImg">
+      INSERT INTO
+      ROOM_IMG
+      (
+      FILE_NO,
+      ROOM_NO,
+      ORIGIN_NAME,
+      SAVE_NAME,
+      FILE_PATH,
+      FILE_LEVEL,
+      STATUS
+      )
+      VALUES
+      (
+      SEQ_FNO.NEXTVAL,
+      #{roomNo},
+      #{originName},
+      #{saveName},
+      #{filePath},
+      #{fileLevel},
+      #{status}
+      )
 
 
-	</insert>
-	<update id="updateRoom">
-		UPDATE ROOM SET
-		ROOM_H_COUNT = #{roomHCount},
-		ROOM_NAME =#{roomName},
-		ROOM_PRICE = #{roomPrice},
-		ROOM_INFO = #{roomInfo}
-		WHERE ROOM_NO = #{roomNo}
-	</update>
+   </insert>
+   <update id="updateRoom">
+      UPDATE ROOM SET
+      ROOM_H_COUNT = #{roomHCount},
+      ROOM_NAME =#{roomName},
+      ROOM_PRICE = #{roomPrice},
+      ROOM_INFO = #{roomInfo}
+      WHERE ROOM_NO = #{roomNo}
+   </update>
 
-	<update id="updateRoomImg">
-		<!-- 반복문을 통해 roomImgList의 각 요소를 처리해야 할 수 있습니다. -->
-		<foreach collection="list" item="roomImg" separator=";">
-			UPDATE
-			ROOM_IMG SET
-			FILE_NO = #{roomImg.fileNo},
-			ORIGIN_NAME = #{roomImg.originName},
-			SAVE_NAME = #{roomImg.saveName},
-			FILE_PATH = #{roomImg.filePath},
-			FILE_LEVEL = #{roomImg.fileLevel},
-			STATUS = #{roomImg.status}
-			WHERE FILE_NO = #{roomImg.fileNo}
-		</foreach>
-	</update>
+   <update id="updateRoomImg">
+      <!-- 반복문을 통해 roomImgList의 각 요소를 처리해야 할 수 있습니다. -->
+      <foreach collection="list" item="roomImg" separator=";">
+         UPDATE
+         ROOM_IMG SET
+         FILE_NO = #{roomImg.fileNo},
+         ORIGIN_NAME = #{roomImg.originName},
+         SAVE_NAME = #{roomImg.saveName},
+         FILE_PATH = #{roomImg.filePath},
+         FILE_LEVEL = #{roomImg.fileLevel},
+         STATUS = #{roomImg.status}
+         WHERE FILE_NO = #{roomImg.fileNo}
+      </foreach>
+   </update>
 
-	<!-- 사업자의 방 목록 SELECT (준석) -->
-	<select id="getRoomsByBuId" parameterType="_int"
-		resultMap="roomResultMap">
-		SELECT *
-		FROM ROOM
-		WHERE ROOM_NO = #{roomNo}
-	</select>
+   <!-- 사업자의 방 목록 SELECT (준석) 수정페이지-->
+   <select id="getRoomsModifyByBuId" parameterType="_int" resultMap="roomResultMap">
+    SELECT *
+    FROM ROOM
+WHERE ROOM_NO = #{roomNo}
+</select>
 
-	<!-- 사업자의 방 이미지 목록 SELECT (준석) -->
-	<!-- 방 이미지 조회 -->
-	<select id="getRoomImagesByBuId" parameterType="_int"
-		resultMap="roomImgResultMap">
-		SELECT *
-		FROM ROOM_IMG
-		WHERE ROOM_NO = #{roomNo}
-	</select>
-	
-	
+
+   <!-- 사업자의 방 이미지 목록 SELECT (준석) 수정페이지 이미지 조회-->
+   <!-- 방 이미지 조회 -->
+   <select id="getRoomImagesModifyByBuId" parameterType="_int"
+      resultMap="roomImgResultMap">
+      SELECT *
+      FROM ROOM_IMG
+      WHERE ROOM_NO = #{roomNo}
+   </select>
+   
+   <!-- 사업자의 방 목록 SELECT (준석) -->
+   <select id="standardRoom" parameterType="_int"
+      resultMap="roomResultMap">
+          SELECT *
+      FROM ROOM
+      WHERE BU_NO = #{buNo}
+      AND ROOM_NO IN 
+      (
+      SELECT ROOM_NO
+      FROM ROOM_IMG
+      )
+      
+   </select>
+
+   <!-- 사업자의 방 이미지 목록 SELECT (준석) -->
+   <!-- 방 이미지 조회 -->
+   <select id="standardRoomImg" parameterType="_int"
+      resultMap="roomImgResultMap">
+      SELECT *
+      FROM ROOM_IMG
+      WHERE ROOM_NO = #{roomNo}
+        
+   </select>
+   
+   <select id="searchRooms" resultMap="roomResultMap">
+    SELECT *
+    FROM ROOM
+    WHERE 1=1
+    <if test="roomName != null and roomName != ''">
+        AND ROOM_NAME LIKE '%' || #{roomName} || '%'
+    </if>
+    <if test="roomHCount != null">
+        AND ROOM_H_COUNT = #{roomHCount}
+    </if>
+    <if test="roomPrice != null and roomPrice != ''">
+        ORDER BY ROOM_PRICE
+        <choose>
+            <when test="roomPrice == 'asc'">
+                ASC
+            </when>
+            <when test="roomPrice == 'desc'">
+                DESC
+            </when>
+        </choose>
+    </if>
+</select>
+   <select id="searchRoomsImg" parameterType="_int"
+      resultMap="roomImgResultMap">
+      SELECT *
+      FROM ROOM_IMG
+      WHERE ROOM_NO = #{roomNo}
+      
+   </select>
+   
+<delete id="deleteRoomImg" parameterType="_int">
+    DELETE FROM ROOM_IMG
+    WHERE ROOM_NO = #{roomNo}
+</delete>
+<delete id="deleteRoom" parameterType="_int">
+   DELETE 
+   FROM ROOM
+   WHERE ROOM_NO = #{roomNo}
+</delete>
+   <!-- <select id="selectBuRoomList" resultMap="roomResultMap">
+      SELECT *
+      FROM ROOM
+      WHERE ROOM_NO = #{roomNo}
+   </select> -->
+   
+<!--    <select id="selectBuRoomListCount" resultType="int">
+   SELECT COUNT(*) FROM ROOM
+   JOIN BUSINESS B ON B.BU_ID = ROOM.BU_ID
+   WHERE B.BU_ID = #{buId}
+</select>
+
+
+   <select id="selectBuRoomList"  parameterType="String"  resultMap="roomResultMap">
+     SELECT *  FROM ROOM
+   JOIN BUSINESS B ON B.BU_ID = ROOM.BU_ID
+   WHERE B.BU_ID = #{buId}
+   </select> -->
 </mapper>

@@ -43,4 +43,21 @@ public class BusinessDao {
 	public List<Review> getReviewsForBusiness(int buNo) {
 		return sqlSession.selectList("businessMapper.getReviewsForBusiness", buNo);
 	}
+
+	public List<Review> updateReviewContentReply(Review review) {
+	    return sqlSession.selectOne("businessMapper.updateReviewContentReply", review);
+	}
+	
+
+	public int updateReviewDeclaration(int review) {
+	    return sqlSession.update("businessMapper.updateReviewDeclaration", review);
+	}
+	
+	public List<Booking> updateReservation(int bookNo) {
+		return sqlSession.selectList("businessMapper.updateReservation", bookNo);
+	}
+	
+	 public String findBuIdByEmail(String buTel) {
+	       return sqlSession.selectOne("businessMapper.findBuIdByEmail", buTel);
+	   }
 }

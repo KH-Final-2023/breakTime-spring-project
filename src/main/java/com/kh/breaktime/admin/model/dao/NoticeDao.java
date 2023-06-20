@@ -1,6 +1,7 @@
 package com.kh.breaktime.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.breaktime.admin.model.vo.Notice;
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.common.model.vo.PageInfo;
+import com.kh.breaktime.review.model.vo.Review;
 
 @Repository
 public class NoticeDao {
@@ -97,4 +100,22 @@ public class NoticeDao {
 
 		return (ArrayList) sqlSession.selectList("notice-mapper.selectChatSearchList", paramMap, rowBounds);
 	}
+	
+	  
+	  public int getBusinessCount() {
+	    return sqlSession.selectOne("notice-mapper.getBusinessCount");
+	  }
+	  
+	  public int getReviewCount() {
+		    return sqlSession.selectOne("notice-mapper.getReviewCount");
+		  }
+	  
+
+	    public  List<Business> getBusinessInfo() {
+	        return sqlSession.selectList("notice-mapper.getBusinessInfo");
+	    }
+	    
+	    public  List<Review> selectReviewDeclariation() {
+	        return sqlSession.selectList("notice-mapper.selectReviewDeclariation");
+	    }
 }

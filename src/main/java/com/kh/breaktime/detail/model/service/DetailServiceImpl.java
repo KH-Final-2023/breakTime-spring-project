@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.breaktime.detail.model.dao.DetailDAO;
+import com.kh.breaktime.detail.model.vo.AreaCode;
 import com.kh.breaktime.detail.model.vo.CategoryCode;
 import com.kh.breaktime.detail.model.vo.Detail;
 
@@ -18,31 +19,33 @@ public class DetailServiceImpl implements DetailService {
 
 	@Autowired
 	private DetailDAO detailDao;
-	
+
 	@Autowired
-    private SqlSession sqlSession;
+	private SqlSession sqlSession;
 
 	public ArrayList<CategoryCode> selectCategoryCodeList() {
 		return detailDao.selectCategoryCodeList();
 	}
 
-	public void selectDetailList(String category, Map<String, Object> map) {
-		ArrayList<Detail> list = detailDao.selectDetailList(category);
+	public void selectDetailList(String category, String area, Map<String, Object> map) {
+		ArrayList<Detail> list = detailDao.selectDetailList(category, area);
 		map.put("list", list);
 	}
 
-	public void getFilteredData(String category, List<String> prices, List<String> reserves, List<String> options, Map<String, Object> map) {
-		ArrayList<Detail> list = detailDao.getFilteredData(category, prices, reserves, options);
-		map.put("list", list);
-	}
-	
-	public void getAreaData(String category, String area, Map<String, Object> map) {
-		ArrayList<Detail> list = detailDao.getAreaData(category, area);
+	public void filterListSubmit(String category, List<String> prices, List<String> reserves, List<String> options,
+			Integer guests, String area, String date_in, String date_out, Double userStarScore, Map<String, Object> map) {
+		ArrayList<Detail> list = detailDao.filterListSubmit(category, prices, reserves, options, area, date_in,
+				date_out, userStarScore, guests);
 		map.put("list", list);
 	}
 
 	public void searchDetailList(Map<String, Object> paramMap, Map<String, Object> map) {
 		ArrayList<Detail> list = detailDao.searchDetailList(paramMap);
+		map.put("list", list);
+	}
+
+	public void selectAreaList(String areaNo, Map<String, Object> map) {
+		ArrayList<AreaCode> list = detailDao.selectAreaList(areaNo);
 		map.put("list", list);
 	}
 

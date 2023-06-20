@@ -1,85 +1,117 @@
+#content1 {
+	display: flex;
+	justify-content: center;
+}
 
-#content1{
-    display: flex;
-    justify-content: space-around;
-    width: 300px;
-    margin: 0 auto;
-    background-color: greenyellow;
-    border-radius: 15px;
+body {
+	background-color: ;
+}
 
-  
+#formMove {
+	display: flex;
+	justify-content: space-around;
+	width: 600px;
+	height: 60px;
+	background-color: #c0e2c0;
+	border-radius: 15px;
+	margin-top: 150px;
+	align-items: center;
 }
-#content1 div {
-margin: 10px; /* 요소 간격 조정 */
+
+#content2 {
+	background-color:#f2f2f2 ;
+	display: flex;
+	justify-content: center;
 }
- #buRoomRegister,#buRoomReservation,#buReview{
-    font-size: large;
+
+#resistedRoomListText {
+	font-size:50px;
+	color: #228b22;
+	margin-bottom: 10px;
+	text-align: center;
+	margin-top: 60px;
 }
-#content1{
-    margin-top: 120px;
+
+#lodging {
+	background-color:white ;
+	border-radius: 15px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	width: 1150px;
+	margin-bottom: 40px;
+	height : 100%;
 }
-#resistedRoomListText{
-    display: flex;
-    justify-content: center;
-    margin: 50px;
-    font-size: large;
+
+/* 포인트 스타일 */
+.room-info {
+	display: flex;
+	justify-content: space-between;
+	height: 300px;
+	background-color: white;
+	margin-bottom: 30px;
+	width: 1000px;
+	border-radius: 15px;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 1.0);
+	transition: transform 0.3s ease;
 }
-#lodgingImg1,#lodgingImg2{
-    margin: 15px;
+
+.room-info:hover {
+	transform: scale(1.1);
 }
-#lodging1,#lodging2{ 
-   display: flex;
-   justify-content: center;
-   
+
+#roomListInfo {
+	width : 750px;
+	font-size: xlarge;
 }
-#lodgingInfo1,#lodgingInfo2{
-    width: 600px;
-    height: 213px;
-    margin: 15px;
+
+
+
+#buRoomRegister, #buRoomReservation, #buReview {
+	border: solid 1px black;
+	border-radius: 5px;
+	background-color: green;
+	color: white;
+	width: 100px;
+	height: 40px;
 }
-#lodgingInfoPrice1,#lodgingInfoPrice2{
-    text-align: right;
-    margin-left: 500px;
-    margin-top: 130px;
-    width: 100px;
+
+#selectRoom {
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: space-between;
 }
-#header {
-    height: 80px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index:1;
-    border-bottom: 1px solid gray;
-    }
-    
-    #header-content {
-    width: 1180px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    }
-    
-    #navbar {
-    padding: 2px;
-    width: 600px;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    font-size: 20px;
-    }  
-   #navbar > div:hover{
-    color:greenyellow;
-    cursor:pointer;
-    }    
-    #home-logo {
-    height: 100%;
-    width: 120px;
-    cursor: pointer;
-    }
-    
-    #home-logo>img {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    }
+
+#roomName, #roomHCount, #roomPrice {
+	height: 40px;
+	width: 200px;
+	border-radius: 5px;
+	border: 1px solid lightgreen;
+}
+
+#selectRoomBtn {
+	width: 50px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+button {
+	font-family: 'Arial', fantasy;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#imgList > img {
+	width: 250px;
+	height: 300px;
+	border-radius: 10px;
+}
+#buRoomName,#buroomHCount,#buroomcheckin,#buroomcheckout,#buRoomInfo{
+	margin-left : 20px;
+}
+#buRoomPirce{
+	margin-left : 600px;
+	margin-bottom : 30px;
+}

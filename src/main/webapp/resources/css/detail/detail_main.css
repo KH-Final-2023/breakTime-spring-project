@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+body {
+	overflow: scroll;
+	overflow-x: hidden;
+	margin: 0;
+}
+
+.mainArea {
+	width: 45%;
+	margin-left: 250px;
+}
+
+button {
+	cursor: pointer;
+}
+
+.houseList {
+	margin-left: 5%;
+	margin-top: 100px;
+}
+
+.houseContent {
+	min-width: 700px;
+	height: 200px;
+	border-radius: 0.75rem;
+	border: solid 1px darkgray;
+	box-shadow: 3px 3px 3px 3px gray;
+	display: grid;
+	grid-template-columns: minmax(200px, 2fr) minmax(300px, 3fr)
+		minmax(200px, 2fr);
+}
+
+.houseMainImg {
+	box-sizing: border-box;
+	height: 200px;
+}
+
+.houseInfo {
+	box-sizing: border-box;
+	padding: 5%;
+}
+
+.houseTitle {
+	font-size: 20px;
+	padding: 0 0 2%;
+}
+
+.houseAddress {
+	font-size: 14px;
+	padding: 2% 0 2%;
+}
+
+.houseTel {
+	font-size: 12px;
+	padding: 0 0 2%;
+}
+
+.room_options {
+	font-size: 12px;
+	padding: 0 0 2%;
+}
+
+.housePrice {
+	position: relative;
+	border-left: 1px solid darkgrey;
+	box-sizing: border-box;
+	padding: 8%;
+	text-align: right;
+	color: gray;
+}
+
+.priceHowMuch {
+	font-size: 130%;
+	font-weight: bold;
+	color: black;
+}
+
+.priceDetail1 {
+	font-size: 80%;
+	margin-bottom: 1%;
+}
+
+.priceDetail2 {
+	font-size: 70%;
+	margin-top: 1%;
+}
+
+.hpButton {
+	height: 50px;
+	position: absolute;
+	bottom: 15%;
+	right: 8%;
+}
+
+.rsButton {
+	font-size: 70%;
+	color: black;
+}
+
+.houseList>ul {
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.houseList>ul>li {
+	list-style-type: none;
+	margin-bottom: 3%;
+}
+
+.houseList>ul>li>div>div>img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-top-left-radius: 0.75rem;
+	border-bottom-left-radius: 0.75rem;
+}
+
+.starStyle {
+	color: #d8db1f;
+}

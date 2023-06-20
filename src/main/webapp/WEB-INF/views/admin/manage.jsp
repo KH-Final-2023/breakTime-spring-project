@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:if test="${!empty param.condition}" >
+	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
+</c:if>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-
+<style>
+.page-item.active a {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/resources/admin/adminFrame.jsp"%>
@@ -20,8 +28,21 @@
 			<div id="notice_area">
 				<span id="notice_title"> 사업자 정보 관리 </span>
 				<hr>
-
-
+				<form id="searchForm" action="" method="get" align="center">
+				 	<div class="select">
+				 		<select class="custom-select" name="condition">
+				 			<option value="buUserName" ${param.condition=='buUserName' ? 'checked' : ''}>사업자 이름</option>
+				 			<option value="buTitle" ${param.condition=='buTitle' ? 'checked' : ''}>숙소 이름</option>
+				 			<option value="buTel" ${param.condition=='buTel' ? 'checked' : ''}>전화번호</option>
+				 			<option value="buAddress" ${param.condition=='buAddress' ? 'checked' : ''}>주소</option>
+				 		</select>
+				 	</div>
+				 	<div class="text">
+				 		<input type="text" class="form-control" name="keyword" value="${param.keyword }">
+				 	</div>
+				 	<button type="submit" class="searchBtn btn btn-primary">검색 </button>
+		 		</form>
+		 		
 				<div id="enrollWrap">
 					<table class="table table-hover">
 						<thead>
@@ -35,6 +56,11 @@
 							</tr>
 						</thead>
 						<tbody>
+							<td colspan="6" style="text-align:center;">
+								<c:if test="${empty selectManageList.list}">
+								    <p>검색된 목록이 없습니다.</p>
+								</c:if>
+							</td>
 							<c:forEach var="b" items="${selectManageList.list}"
 								varStatus="vs">
 								<tr>
@@ -51,17 +77,15 @@
 
 									</td>
 									<td>
-										<a href="<%=request.getContextPath()%>/manage/delete?buNo=${b.buNo}">
-											<button type="button" class="btn btn-outline-danger"data-text="탈퇴">
+											<button type="button"  onclick="deleteManage(${b.buNo}, '${b.buUserName}')" class="btn btn-outline-danger"data-text="탈퇴">
 												<span>탈퇴</span>
 											</button>
-										</a>
 									</td>
 								</tr>
 									
 
 								<!--  수정 모달창 -->
-								<form action="<%=  request.getContextPath() %>/manage/update" id="updateForm" method="post">
+								<form action="<%=  request.getContextPath() %>/manage/update?buNo=${b.buNo}" id="updateForm" method="post">
 									<div id="updateMember${vs.index }" class="modal fade"
 										id="registerModal" tabindex="-1" aria-labelledby="modalLabel"
 										aria-hidden="true">
@@ -76,6 +100,7 @@
 													</button>
 												</div>
 												<div class="modal-body">
+													<input type="hidden" name="buNo" value="${b.buNo }">
 													<p style="word-spacing: 8px;">
 														사업자 : <input type="text" name="buUserName"
 															value="${b.buUserName} ">
@@ -110,7 +135,7 @@
 						</tbody>
 					</table>
 					<c:set var="url" value="list?cpage=" />
-					<div class="paging">
+					<div class="paging" style="margin-left: 30%;">
 						<ul class="pagination">
 							<c:choose>
 								<c:when test="${ selectManageList.pi.currentPage eq 1 }">
@@ -125,8 +150,10 @@
 
 							<c:forEach var="item" begin="${selectManageList.pi.startPage }"
 								end="${selectManageList.pi.endPage }">
-								<li class="page-item"><a class="page-link"
-									href="${url}${item }${sUrl}">${item }</a></li>
+								<c:set var="currentPage" value="${selectManageList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
 							</c:forEach>
 
 							<c:choose>
@@ -154,12 +181,16 @@
 	            alert("해당 사업자 정보수정에 성공하였습니다.");
 	    });
 		
-		$(document).ready(function() {
-	        var manageCancel = '<c:out value="${manageCancel}"/>';
-	        if(!(manageCancel==''))
-	            alert("해당 사업자를 탈퇴 처리하였습니다.");
-	    });
+		function deleteManage(buNo, buUserName) {
+		    if (!confirm(buUserName + " 님을(를) 탈퇴 처리하시겠습니까?")) {
+		        return false;
+		    } else {
+		        location.href = "<%=request.getContextPath()%>/manage/delete?buNo=" + buNo;
+		        alert("성공적으로 탈퇴 처리되었습니다.");
+		    }
+		}
 	</script>
+
 </body>
 
 </html>

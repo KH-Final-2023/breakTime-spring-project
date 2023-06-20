@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="list" value="${map.list}" />
+
+
+
 
 <!DOCTYPE html>
 <html lang="kor">
@@ -12,7 +16,7 @@
 <title>BreakTime 상세페이지</title>
 
 <!-- 메인페이지에 적용할 css 템플릿 추가  -->
-
+<link rel="stylesheet" href="${contextPath}/resources/css/detail/detail_main.css">
 
 <!-- fontawesome라이브러리추가 다양한 아이콘을 지원함.(EX) 검색용 돋보기 버튼) -->
 <script src="https://kit.fontawesome.com/a2e8ca0ae3.js"
@@ -20,144 +24,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
-
-<style>
-body {
-	overflow: scroll;
-	overflow-x: hidden;
-}
-
-.mainArea {
-	width: 45%;
-	margin-left: 250px;
-}
-
-button {
-	cursor: pointer;
-}
-
-.houseList {
-	margin-left: 5%;
-}
-
-.houseContent {
-	min-width: 700px;
-	height: 200px;
-	border-radius: 0.75rem;
-	border: solid 1px darkgray;
-	box-shadow: 3px 3px 3px 3px gray;
-	display: grid;
-	grid-template-columns: minmax(200px, 2fr) minmax(300px, 3fr)
-		minmax(200px, 2fr);
-}
-
-.houseMainImg {
-	box-sizing: border-box;
-	height: 200px;
-}
-
-.houseInfo {
-	box-sizing: border-box;
-	padding: 5%;
-}
-
-.houseTitle {
-	font-size: 20px;
-	padding: 0 0 2%;
-}
-
-.houseAddress {
-	font-size: 14px;
-	padding: 2% 0 2%;
-}
-
-.houseTel {
-	font-size: 12px;
-	padding: 0 0 2%;
-}
-
-.room_options {
-	font-size: 12px;
-	padding: 0 0 2%;
-}
-
-.housePrice {
-	position: relative;
-	border-left: 1px solid darkgrey;
-	box-sizing: border-box;
-	padding: 8%;
-	text-align: right;
-	color: gray;
-}
-
-.priceHowMuch {
-	font-size: 130%;
-	font-weight: bold;
-	color: black;
-}
-
-.priceDetail1 {
-	font-size: 80%;
-	margin-bottom: 1%;
-}
-
-.priceDetail2 {
-	font-size: 70%;
-	margin-top: 1%;
-}
-
-.hpButton {
-	height: 50px;
-	position: absolute;
-	bottom: 15%;
-	right: 8%;
-}
-
-.rsButton {
-	font-size: 70%;
-	color: black;
-}
-
-.houseList>ul {
-	padding-left: 0;
-	margin-left: 0;
-}
-
-.houseList>ul>li {
-	list-style-type: none;
-	margin-bottom: 3%;
-}
-
-.houseList>ul>li>div>div>img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	border-top-left-radius: 0.75rem;
-	border-bottom-left-radius: 0.75rem;
-}
-
-.starStyle {
-	color: #d8db1f;
-}
-
-#optionReset {
-	
-}
-
-#optionSubmit {
-	
-}
-</style>
-
 </head>
-
 <body>
 
-	<%-- <jsp:include page="/WEB-INF/views/header.jsp" /> --%>
+	<jsp:include page="/WEB-INF/views/header.jsp" />
 
-	<jsp:include page="/WEB-INF/views/detail/area_detail.jsp" />
-
-	<jsp:include page="/WEB-INF/views/detail/option_modal.jsp" />
+	<%-- <jsp:include page="/WEB-INF/views/detail/noUse/option_modal.jsp" /> --%>
 
 	<jsp:include page="/WEB-INF/views/detail/option_check.jsp" />
 
@@ -171,16 +43,32 @@ button {
 					<li>
 						<div class="houseContent">
 							<div class="houseMainImg">
-								<img src="${d.mainImg}">
+								<img src="${d.buMainImg}">
 							</div>
 							<div class="houseInfo">
 								<a>
 									<div>
 										<div class="houseTitle">${d.buTitle}</div>
 										<div class="starPlace">
-											<i class="fa-solid fa-star starStyle"></i> <i
-												class="fa-solid fa-star starStyle"></i> <i
-												class="fa-solid fa-star starStyle"></i>
+											<c:set var="fullStars" value="${Math.floor(d.userStarScore)}" />
+											<c:set var="halfStar" value="${d.userStarScore - fullStars}" />
+
+											<c:choose>
+												<c:when test="${fullStars > 0}">
+													<c:forEach var="i" begin="1" end="${fullStars}">
+														<i class="fa-solid fa-star starStyle"></i>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<i class="far fa-star starStyle"></i>
+												</c:otherwise>
+											</c:choose>
+
+											<c:if test="${halfStar >= 0.5}">
+												<i class="fa-solid fa-star-half starStyle"></i>
+											</c:if>
+
+											<span> ${d.userStarScore } </span>
 										</div>
 										<div class="houseAddress">${d.buAddress}</div>
 										<div class="houseTel">${d.buTel}</div>
@@ -199,7 +87,7 @@ button {
 										th:if="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}">${d.roomInfo}</p>
 									<p class="rsButton"
 										th:unless="${d.roomInfo == '무료 취소' or d.roomInfo == '환불 불가'}"></p>
-									<button>자세히 보기</button>
+									<button onclick="redirectToDetail('${d.buNo}')">자세히 보기</button>
 								</div>
 
 							</div>
@@ -217,86 +105,86 @@ button {
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=55a7843b1806f000c969ae74b8fbf856&libraries=services"></script>
 	<script>
-	var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-	var mapOption = {
-	  center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-	  level: 3 // 지도의 확대 레벨
-	};
+   var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+   var mapOption = {
+     center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+     level: 3 // 지도의 확대 레벨
+   };
 
-	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption);
+   // 지도를 생성합니다    
+   var map = new kakao.maps.Map(mapContainer, mapOption);
 
-	// 주소-좌표 변환 객체를 생성합니다
-	var geocoder = new kakao.maps.services.Geocoder();
+   // 주소-좌표 변환 객체를 생성합니다
+   var geocoder = new kakao.maps.services.Geocoder();
 
-	// 주소와 마커 정보를 배열로 저장합니다
-	var addresses = [		
-	<c:forEach items="${list}" var="d" varStatus="status">
+   // 주소와 마커 정보를 배열로 저장
+   var addresses = [      
+   <c:forEach items="${list}" var="d" varStatus="status">
             {
                 address: "${d.buAddress}",
                 content: "${d.buTitle}"
             }<c:if test="${!status.last}">,</c:if>
         </c:forEach>
-	];
+   ];
        
 
-	// 주소로 좌표를 검색하여 마커를 생성하는 함수입니다
-	function createMarker(addressObj) {
-	  geocoder.addressSearch(addressObj.address, function(result, status) {
-	    // 정상적으로 검색이 완료됐으면
-	    if (status === kakao.maps.services.Status.OK) {
-	      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+   // 주소로 좌표를 검색하여 마커를 생성
+   function createMarker(addressObj) {
+     geocoder.addressSearch(addressObj.address, function(result, status) {
+       // 정상적으로 검색이 완료됐으면
+       if (status === kakao.maps.services.Status.OK) {
+         var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-	      // 결과값으로 받은 위치를 마커로 표시합니다
-	      var marker = new kakao.maps.Marker({
-	        map: map,
-	        position: coords
-	      });
+         // 결과값으로 받은 위치를 마커로 표시
+         var marker = new kakao.maps.Marker({
+           map: map,
+           position: coords
+         });
 
-	      // 인포윈도우로 장소에 대한 설명을 표시합니다
-	      var infowindow = new kakao.maps.InfoWindow({
-	        content: '<div style="width:150px;text-align:center;padding:6px 0;">' + addressObj.content + '</div>'
-	      });
-	      infowindow.open(map, marker);
+         // 인포윈도우로 장소에 대한 설명을 표시
+         var infowindow = new kakao.maps.InfoWindow({
+           content: '<div style="width:150px;text-align:center;padding:6px 0;">' + addressObj.content + '</div>'
+         });
+         infowindow.open(map, marker);
 
-	      // 마커 클릭 시 인포윈도우 표시
-	      kakao.maps.event.addListener(marker, 'click', function() {
-	        infowindow.open(map, marker);
-	      });
+         // 마커 클릭 시 인포윈도우 표시
+         kakao.maps.event.addListener(marker, 'click', function() {
+           infowindow.open(map, marker);
+         });
 
-	      // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-	      map.setCenter(coords);
-	    }
-	  });
-	}
+         // 지도의 중심을 결과값으로 받은 위치로 이동
+         map.setCenter(coords);
+       }
+     });
+   }
 
-	// 배열에 저장된 주소에 대해 반복하여 마커를 생성합니다
-	for (var i = 0; i < addresses.length; i++) {
-	  createMarker(addresses[i]);
-	}
+   // 배열에 저장된 주소에 대해 반복하여 마커를 생성
+   for (var i = 0; i < addresses.length; i++) {
+     createMarker(addresses[i]);
+   }
 
-	</script>
+   </script>
 
 	<script>
-		// houseContent div 클릭 시 해당 주소의 마커로 이동하는 함수
-		function moveMarker(address) {
-		  geocoder.addressSearch(address, function(result, status) {
-		    if (status === kakao.maps.services.Status.OK) {
-		      var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		      map.setCenter(coords);
-		    }
-		  });
-		}
-		
-		// houseContent div 클릭 이벤트 처리
-		var houseContents = document.getElementsByClassName('houseContent');
-		for (var i = 0; i < houseContents.length; i++) {
-		  houseContents[i].addEventListener('click', function() {
-		    var address = this.getElementsByClassName('houseAddress')[0].innerText;
-		    moveMarker(address);
-		  });
-		}
-	</script>
+      // houseContent div 클릭 시 해당 주소의 마커로 이동하는 함수
+      function moveMarker(address) {
+        geocoder.addressSearch(address, function(result, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            map.setCenter(coords);
+          }
+        });
+      }
+      
+      // houseContent div 클릭 이벤트 처리
+      var houseContents = document.getElementsByClassName('houseContent');
+      for (var i = 0; i < houseContents.length; i++) {
+        houseContents[i].addEventListener('click', function() {
+          var address = this.getElementsByClassName('houseAddress')[0].innerText;
+          moveMarker(address);
+        });
+      }
+   </script>
 
 
 
@@ -314,32 +202,21 @@ button {
     
     window.addEventListener('resize', checkScreenWidth);
     checkScreenWidth();
-	</script>
+   </script>
 
-	<!-- 모달창 열기/닫기 스크립트 -->
 	<script>
-        const open = () => {
-            document.querySelector(".modal_background").style.visibility="visible";
-        }
-        const close = () => {
-            document.querySelector(".modal_background").style.visibility="hidden";
-        }
+	  function redirectToDetail(buNo) {
+	    var url = window.location.href; // 현재 페이지의 URL을 가져옵니다.
+	    var urlParams = new URLSearchParams(url.split('?')[1]); // 쿼리 파라미터를 추출합니다.
+	    var date_in = urlParams.get('date_in'); // date_in 값을 가져옵니다.
+	    var date_out = urlParams.get('date_out'); // date_out 값을 가져옵니다.
 
-        document.querySelector(".option_openBtn").addEventListener("click", open); 
-        document.querySelector(".option_closeBtn1").addEventListener("click", close);
-		document.querySelector(".option_closeBtn2").addEventListener("click", close); 
-		document.querySelector(".option_closeBtn3").addEventListener("click", close); 
-		document.querySelector(".option_closeBtn4").addEventListener("click", close); 
-		document.querySelector(".option_closeBtn5").addEventListener("click", close); 
-		document.querySelector(".option_closeBtn6").addEventListener("click", close); 
-		document.querySelector(".option_closeBtn7").addEventListener("click", close); 
-		document.querySelector(".option_closeBtn8").addEventListener("click", close); 
-		document.querySelector(".option_closeBtn9").addEventListener("click", close); 
-		document.querySelector(".option_closeBtn10").addEventListener("click", close); 
-    </script>
-
-
-
+	    // date_in과 date_out 값을 사용하여 URL을 구성합니다.
+	    var redirectUrl = '/breaktime/decide/demain/' + buNo + '?dateIn=' + date_in + '&dateOut=' + date_out;
+	    window.location.href = redirectUrl;
+	  }
+	  
+	</script>
 
 	<!-- footer include -->
 
@@ -347,9 +224,6 @@ button {
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous"></script>
-
-	<!-- main.js 연 결 -->
-	<script src="${contextPath}/resources/js/main/main.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.kh.breaktime.business.model.vo;
 
+
 import java.sql.Date;
 
 import com.kh.breaktime.business.model.vo.Business;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @NoArgsConstructor
@@ -29,6 +31,7 @@ public class Business {
 	private String approval;
 	private Date enrollDate;
 	private int roomCount;
+
 	
 }
 

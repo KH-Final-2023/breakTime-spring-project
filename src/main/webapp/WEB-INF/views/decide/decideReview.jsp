@@ -36,11 +36,6 @@ for (let i = 0; i < userStarScore.length; i++) {
     $('.star').eq(i).html(starHTML1); // 별점을 표시할 요소에 HTML 삽입
 }
 
-let starScore1 = userStarScore[i];
-let intPart1 = Math.floor(starScore1);
-let decimalPart1 = starScore1 - intPart1;
-let starHTML1 = '';
-
 // 별점을 업데이트하는 함수
 function updateStars1(starScore1) {
 	let intPart1 = Math.floor(starScore1);
@@ -55,12 +50,7 @@ function updateStars1(starScore1) {
 	$('.star').html(starHTML1);
 }
 
-// 별점이 존재하면 업데이트
-if (starScore1 != null) {
-	updateStars1(starScore1);
-} 
-
-// 첫 로딩시 최근 작성순에 체크 아이콘 추가
+//첫 로딩시 최근 작성순에 체크 아이콘 추가
 $('.modal-list-item-text').each(function () {
     if ($(this).text() === '최근 작성순') {
         $(this).parent('.modal-list-item').addClass('checked');
@@ -69,6 +59,10 @@ $('.modal-list-item-text').each(function () {
         $(this).after('<span class="fas fa-check"></span>');
     }
 });
+
+$('.review-main-star').css('display', 'none'); // 모든 review-main-star div를 숨김
+$('#review-main-star-recent').css('display', 'block'); // "최근 작성순" div만 보이게 함
+
 
 // 모달 리스트 아이템 클릭 이벤트
 $('.modal-list-item').click(function () {
@@ -140,7 +134,7 @@ $('.modal-list-item-text').on('click', function () {
     closeModal();
 });
 
-function openModal1() {
+function openModal() {
     $('.modal').addClass('active');
     $('.modal-overlay').addClass('active');
     $('body').css('overflow', 'hidden');
@@ -170,17 +164,39 @@ $('.modal-overlay').on('animationend', function () {
     }
 });
 
+
 /* X 버튼 클릭 이벤트 */
-$(document).on('click', '.modal-close', function () {
-    closeModal();
-	});
+$(document).on('click', '.modal-close', function() {
+	closeModal();
+ });
+ 
+// 모달 창의 각 항목에 클릭 이벤트 추가
+$('.modal-list-item-text').on('click', function() {
+    // 선택한 정렬 방식에 따라 적절한 div를 표시
+    switch($(this).text()) {
+        case '최근 작성순':
+            showDiv('review-main-star-recent');
+            break;
+        case '별점 높은순':
+            showDiv('review-main-star-high');
+            break;
+        case '별점 낮은순':
+            showDiv('review-main-star-low');
+            break;
+    }
+});
+
+function showDiv(id) {
+    // 모든 review-main-star div를 숨김
+    $('.review-main-star').css('display', 'none');
+
+    // 선택된 div만 보이게 함
+    $('#' + id).css('display', 'block');
+  }
 });
 </script>
 </head>
-
-
 <body>    
-
     <div class="container">
         <div class="detail2-all">
             <div class="review-container">
@@ -199,18 +215,13 @@ $(document).on('click', '.modal-close', function () {
             <div class="recent-reviews">
                 <span style="cursor: pointer;">최근 작성순</span>
             </div>
-            <div class="review-main-star">
-            	<c:forEach items="${reviewList}" var="d">
+            <div class="review-main-star" id="review-main-star-recent" data-section="recent">
+           		<c:forEach items="${reviewList}" var="d">
 	                <div id="content">
 	                    <div id="content2">
 	                        <div id="reviewBackground" style="width: 100%;">
 	                            <div id="review-star-rating">
 	                            <span class="star" style="color : rgba(255, 204, 0, 0.852);">
-	                                <i class="fas fa-star"></i>
-	                                <i class="fas fa-star"></i>
-	                                <i class="fas fa-star"></i>
-	                                <i class="fas fa-star"></i>
-	                                <i class="fas fa-star-half-alt"></i>
 	                                </span>
 	                            </div>
 	                            <div id="reviewNickname">
@@ -225,7 +236,7 @@ $(document).on('click', '.modal-close', function () {
 	                            <c:if test="${empty reviewList}">
 	                            </c:if>
 	                            
-								<c:if test="${!empty reviewList}">
+								<c:if test="${!empty d.reviewContentReply}">
 	                            <div id="buReviewList">
 	                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
 	                                <span class="buReviewDate">${d.createDate}</span>   
@@ -236,7 +247,78 @@ $(document).on('click', '.modal-close', function () {
 	                    </div>
 	                </div>
                 </c:forEach>
-            </div>
+          	</div>
+                
+           	<div class="review-main-star" id="review-main-star-high" data-section="high">
+                <c:forEach items="${reviewListHigh}" var="d">
+	                <div id="content">
+	                    <div id="content2">
+	                        <div id="reviewBackground" style="width: 100%;">
+	                            <div id="review-star-rating">
+	                                <c:forEach begin="1" end="${d.userStarScore}" var="i">
+				                        <i class="fa fa-star" style="color:rgba(255, 204, 0, 0.852)"></i>
+				                    </c:forEach>
+	                            </div>
+	                            <div id="reviewNickname">
+	                                <div>${d.userName} | ${d.createDate}</div>
+	                            </div>
+	                            <div id="reviewRoomName">
+	                                <div id="reviewRoomNameList">객실명</div>
+	                                <div id="reviewRoomNameInfo">${d.roomName} (${d.roomInfo})</div>
+	                            </div>
+	                            <div id="review">${d.reviewContent }</div>
+	                            
+	                            <c:if test="${empty reviewList}">
+	                            </c:if>
+	                            
+								<c:if test="${!empty d.reviewContentReply}">
+	                            <div id="buReviewList">
+	                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
+	                                <span class="buReviewDate">${d.createDate}</span>   
+	                                <p class="buReview">${d.reviewContentReply}</p>
+	                            </div>
+	                            </c:if>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
+          	</div>
+                
+          	<div class="review-main-star" id="review-main-star-low" data-section="low">
+               <c:forEach items="${reviewListLow}" var="d">
+	                <div id="content">
+	                    <div id="content2">
+	                        <div id="reviewBackground" style="width: 100%;">
+	                            <div id="review-star-rating">
+	                            	<c:forEach begin="1" end="${d.userStarScore}" var="i">
+				                        <i class="fa fa-star" style="color:rgba(255, 204, 0, 0.852)"></i>
+				                    </c:forEach>
+	                            </div>
+	                            <div id="reviewNickname">
+	                                <div>${d.userName} | ${d.createDate}</div>
+	                            </div>
+	                            <div id="reviewRoomName">
+	                                <div id="reviewRoomNameList">객실명</div>
+	                                <div id="reviewRoomNameInfo">${d.roomName} (${d.roomInfo})</div>
+	                            </div>
+	                            <div id="review">${d.reviewContent }</div>
+	                            
+	                            <c:if test="${empty reviewList}">
+	                            </c:if>
+	                            
+								<c:if test="${!empty d.reviewContentReply}">
+	                            <div id="buReviewList">
+	                                <span style="font-size: larger;"><b>숙소 답변</b></span> 
+	                                <span class="buReviewDate">${d.createDate}</span>   
+	                                <p class="buReview">${d.reviewContentReply}</p>
+	                            </div>
+	                            </c:if>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
+         	</div>
+            
             
             <!-- 모달 창 -->
             <div class="modal">

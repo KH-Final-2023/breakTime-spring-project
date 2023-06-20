@@ -8,7 +8,7 @@
             
         }
 
- #container {
+ #Container {
             width: 51%;
             margin: 0 auto;
             max-width: 1550px;
@@ -29,7 +29,7 @@
         #top>#footerBanner {
             float: left;
             width: 146px;
-            height: 27px;
+            height: 31px;
         }
 
         #top>#sns {
@@ -56,7 +56,7 @@
             display: inline-block;
             width: 24px;
             height: 24px;
-            background-image: url("인스타배너.svg");
+            background-image: url("/breaktime/resources/images/인스타.png");
             background-repeat: no-repeat;
             background-position: 50%;
             background-size: cover;
@@ -68,7 +68,7 @@
             display: inline-block;
             width: 24px;
             height: 24px;
-            background-image: url("페북배너.svg");
+            background-image: url("/breaktime/resources/images/페이스북.png");
             background-repeat: no-repeat;
             background-position: 50%;
             background-size: cover;
@@ -80,20 +80,20 @@
             display: inline-block;
             width: 24px;
             height: 24px;
-            background-image: url("유튜브배너.svg");
+            background-image: url("/breaktime/resources/images/유튜브.png");
             background-repeat: no-repeat;
             background-position: 50%;
             background-size: cover;
             text-indent: -999999px;
             cursor: pointer;
-            background-size: 12px 14px;
+            background-size: 19px 21px;
         }
 
         .icon_blog {
             display: inline-block;
             width: 24px;
             height: 24px;
-            background-image: url("B배너.svg");
+            background-image: url("/breaktime/resources/images/블로그.png");
             background-repeat: no-repeat;
             background-position: 50%;
             background-size: cover;
@@ -116,12 +116,15 @@
             position: relative;
             color: inherit;
             text-decoration: none;
+            font-size : 19px;
         }
 
         .copyright {
             margin-top: 42px;
             font-family: Campton, sans-serif;
             font-weight: 500;
+            font-size : 19px;
+            
         }
 
         .right {

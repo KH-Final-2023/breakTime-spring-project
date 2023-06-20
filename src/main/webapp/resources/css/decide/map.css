@@ -9,7 +9,6 @@
 
 /* 전체적인 스타일 */
 body {
-	font-family: Arial, sans-serif;
 	font-size: 14px;
 	line-height: 1.4;
 	color: #333;
@@ -52,6 +51,9 @@ body {
 	font-weight: bold;
 }
 
+.map-container>span{
+	font-size : 25px;
+}
 .map-image {
 	display: flex;
 	margin-bottom: 30px;
@@ -92,7 +94,7 @@ body {
 }
 
 .address-text {
-	font-size: 14px;
+	font-size: 20px;
 	font-weight: normal;
 }
 
@@ -138,7 +140,7 @@ body {
 .overlay .close-btn {
 	position: absolute;
 	top: 14px;
-	left: 480px;
+	left: 582px;
 	font-size: 20px;
 	color: black;
 	cursor: pointer;

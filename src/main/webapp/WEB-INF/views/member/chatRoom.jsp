@@ -7,14 +7,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%List<ChatMessage> list = (List<ChatMessage>) request.getAttribute("list"); %>
 <!-- Jquey 라이브러리 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <!-- 부트스트랩에서 제공하있는 스타일 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- 부투스트랩에서 제공하고있는 스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +22,17 @@
 <link rel="stylesheet" href="/breaktime/resources/css/main.css">
 <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
 <style>
+@font-face {
+    font-family: 'YanoljaYache';
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/yanolja/YanoljaYacheBold.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body{
+	font-family: 'YanoljaYache';
+}
+
 body {
 overflow: hidden;
 }
@@ -48,7 +56,7 @@ overflow: hidden;
 
 .display-chatting {
 	width: 80%;
-	height: 780px;
+	height: 78vh;
 	overflow: auto; /*스크롤 처럼*/
 	list-style: none;
 	padding: 10px 10px;
@@ -77,7 +85,7 @@ overflow: hidden;
 
 .input-area {
 	width: 100%;
-	height: 50px;
+	height: 35px;
 	display: flex;
 	justify-content: center;
 }
@@ -85,7 +93,7 @@ overflow: hidden;
 #inputChatting {
 	width: 32%;
 	resize: none;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 #send {
@@ -121,15 +129,15 @@ overflow: hidden;
 		<div class="chatting-area">
 			<ul class="display-chatting">
 				<% if(list.size()==0) {%>
-					<div id="firstMsg">
-						<p>본 문의창은 다수의 사용자가 사용하므로 개인정보에 관한 내용은 삼가해주시길 바랍니다.
+					<div id="firstMsg" style="font-size: 15pt;">
+						<p>본 문의창은 다수의 사용자가 사용하므로 개인정보에 관한 내용은 삼가해주시길 바랍니다.<br>
 						자세한 문의가 필요할 시 본 숙소로 전화해주시길 바랍니다.</p>
 					</div>
 				<%} else {%>	
 					<% for(int i = 0; i<list.size()*0+1; i++) { %>
 						<div id="firstMsg">
 							<p>안녕하세요 <%=list.get(i).getBuTitle() %> 입니다.
-							본 문의창은 다수의 사용자가 사용하므로<br>  개인정보에 관한 내용은 삼가해주시길 바랍니다.
+							본 문의창은 다수의 사용자가 사용하므로  개인정보에 관한 내용은 삼가해주시길 바랍니다.
 							자세한 문의가 필요할 시  본 숙소로 전화해주시길 바랍니다.</p>
 						</div>
 					<%} %>

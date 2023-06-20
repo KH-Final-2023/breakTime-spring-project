@@ -37,10 +37,9 @@ public class ApprovalController {
 	}
 	
 	@GetMapping("/delete")
-	public String approvalCancel(Business b, RedirectAttributes rttr) {
+	public String approvalCancel(@RequestParam(value="buNo", required=false, defaultValue="0") int buNo) {
 		
-		approvalService.approvalCancel(b);
-		rttr.addFlashAttribute("approvalCancel", b.getBuNo());
+		approvalService.approvalCancel(buNo);
 		return "redirect:/approval/list";
 	}
 	

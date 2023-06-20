@@ -1,36 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bookingMapper">
-	<resultMap type="booking" id="bookingResultSet">
+   <resultMap type="booking" id="bookingResultSet">
+      <result column="BOOK_NO" property="bookNo" />
+      <result column="USER_NO" property="userNo" />
+      <result column="ROOM_NO" property="roomNo" />
+      <result column="ROOM_H_COUNT" property="roomHCount" />
+      <result column="RESERVATION_NO" property="reservationNo" />
+      <result column="ROOM_NAME" property="roomName" />
+      <result column="ROOM_CHECKIN" property="roomCheckin" />
+      <result column="ROOM_CHECKOUT" property="roomCheckout" />
+      <result column="STATUS" property="status" />
+   </resultMap>
+   
+   
+   <resultMap type="room" id="roomResultMap">
+      <id column="ROOM_NO" property="roomNo" />
+      <result column="BU_NO" property="buNo" />
+      <result column="ROOM_H_COUNT" property="roomHCount" />
+      <result column="ROOM_NAME" property="roomName" />
+      <result column="ROOM_PRICE" property="roomPrice" />
+      <result column="ROOM_INFO" property="roomInfo" />
+   </resultMap>
+   
+   <!-- 리뷰 목록용 resultMap -->
+	<resultMap type="review" id="reviewResultSet">
+		<result column="REVIEW_NO" property="reviewNo" />
+		<result column="REVIEW_WRITER" property="reviewWriter" />
+		<result column="USING_ROOM" property="usingRoom" />
 		<result column="BOOK_NO" property="bookNo" />
-		<result column="USER_NO" property="userNo" />
-		<result column="ROOM_NO" property="roomNo" />
-		<result column="ROOM_H_COUNT" property="roomHCount" />
-		<result column="RESERVATION_NO" property="reservationNo" />
+		<result column="STAR_SCORE" property="starScore" />
+		<result column="REVIEW_CONTENT" property="reviewContent" />
+		<result column="REVIEW_AVAILABLE" property="reviewAvailable" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="REVIEW_DECLARIATION" property="reviewDeclariation"/>
+		<result column="REVIEW_CONTENT_REPLY" property="reviewContentReply" />
+		<result column="USER_NAME" property="userName" />
 		<result column="ROOM_NAME" property="roomName" />
-		<result column="ROOM_CHECKIN" property="roomCheckin" />
-		<result column="ROOM_CHECKOUT" property="roomCheckout" />
-		<result column="STATUS" property="status" />
 	</resultMap>
-	
-	<select id="selectBookingList" resultMap="bookingResultSet">
-		SELECT  B.BOOK_NO,
-				B.USER_NO,
-				B.ROOM_NO,
-				B.ROOM_H_COUNT,
-				B.RESERVATION_NO,
-				B.ROOM_NAME,
-				B.ROOM_CHECKIN,
-				B.ROOM_CHECKOUT,
-				B.STATUS
-				FROM BOOKING B
-				JOIN MEMBER M ON M.USER_NO = B.USER_NO
-				WHERE B.STATUS = 'Y'
-				AND B.USER_NO = #{userNo}
+   
+   <select id="selectBookingList" resultMap="bookingResultSet">
+      SELECT  B.BOOK_NO,
+            B.USER_NO,
+            B.ROOM_NO,
+            B.ROOM_H_COUNT,
+            B.RESERVATION_NO,
+            B.ROOM_NAME,
+            B.ROOM_CHECKIN,
+            B.ROOM_CHECKOUT,
+            B.STATUS
+            FROM BOOKING B
+            JOIN MEMBER M ON M.USER_NO = B.USER_NO
+            WHERE B.STATUS = 'Y'
+            AND B.USER_NO = #{userNo}
+   </select>
+   
+   
+   <insert id="insertBooking"  parameterType="booking">
+
+      INSERT INTO BOOKING(
+      BOOK_NO,
+      USER_NO,
+      ROOM_NO,
+      ROOM_NAME,
+      ROOM_H_COUNT,
+     ROOM_CHECKIN,
+     ROOM_CHECKOUT,
+     RESERVATION_NO,
+      STATUS
+      ) VALUES (
+      SEQ_BNO.NEXTVAL,
+      #{userNo},
+      #{roomNo},
+      #{roomName},
+      #{roomHCount},
+      #{roomCheckin},
+      #{roomCheckout},
+      TO_CHAR(SYSDATE, 'YYYYMMDD') || SEQ_BNO.CURRVAL,
+      'Y'
+      )
+
+   </insert>
+   
+   
+
+    <insert id="insertReview" useGeneratedKeys="true"
+
+      parameterType="review">
+
+      <selectKey keyProperty="reviewNo" resultType="_int"
+         order="BEFORE">
+         SELECT SEQ_RNO.NEXTVAL FROM DUAL
+      </selectKey>
+
+      INSERT INTO REVIEW(
+      REVIEW_NO,
+      BOOK_NO,
+      REVIEW_WRITER,
+      USING_ROOM,
+      STAR_SCORE,
+      REVIEW_CONTENT,
+      CREATE_DATE,
+      REVIEW_DECLARIATION
+      ) VALUES (
+      #{reviewNo},
+      #{bookNo},
+      #{reviewWriter},
+      #{usingRoom},
+      #{starScore},
+      #{reviewContent},
+      SYSDATE,
+      'N'
+      )
+
+   </insert>
+
+   
+   <select id="selectPay" resultMap="roomResultMap">
+      SELECT  R.ROOM_NO,
+            R.BU_NO,
+            R.ROOM_NAME,
+            R.ROOM_CHECKIN,
+            R.ROOM_CHECKIN
+            FROM ROOM R
+      JOIN BUSINESS B ON B.BU_NO = R.BU_NO
+   </select>
+   
+
+   <select id="selectReviewList" resultMap="reviewResultSet">
+		SELECT 
+		REVIEW_NO, STAR_SCORE, REVIEW_WRITER, USER_NAME, CREATE_DATE, 
+		USING_ROOM, ROOM_NAME, REVIEW_CONTENT, REVIEW_CONTENT_REPLY
+		FROM REVIEW R
+		JOIN MEMBER M ON M.USER_NO = R.REVIEW_WRITER
+		JOIN ROOM RO ON RO.ROOM_NO = R.USING_ROOM
+		WHERE REVIEW_DECLARIATION = 'N'
 	</select>
 
+   <!--예약 후 장바구니 삭제 -->
+   <delete id="deleteCartList" parameterType="booking" >
+   /*decideMapper.deleteCartList*/
+      DELETE CART
+      WHERE USER_NO = #{userNo}
+      AND ROOM_NO = #{roomNo}
+   </delete>
 
-
-	
 
 </mapper>

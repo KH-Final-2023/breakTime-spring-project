@@ -7,6 +7,9 @@
    Business loginBusiness = (Business) session.getAttribute("loginBusiness");
    String alertMsg = (String) session.getAttribute("alertMsg");
 %>
+<c:if test="${!empty param.condition}" >
+	<c:set var="sUrl" value="&condition=${param.condition }&keyword=${param.keyword }"/>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +19,10 @@
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alphardex/aqua.css/dist/aqua.min.css"> -->
 <link rel="stylesheet" href="../resources/css/button.css">
 <style>
+
+	body{
+		margin:0;
+	}
 	#wrapper{
 	width: 100%;
     height: 800px;
@@ -27,7 +34,7 @@
 	}
 	
 	#content1 {
-    width: 40%;
+    width: 20%;
     margin-bottom: 50px;
     display: flex;
     flex-direction: column;
@@ -37,7 +44,7 @@
 	
 	#content2{
 	padding-left:7%;
-	width: 60%; 
+	width: 45%; 
 	display: flex;
     flex-direction: column;
     border-left: 2px solid #67d567;
@@ -45,11 +52,25 @@
 	
 	.sideMenu{
 	font-size: 18px;
-    color: rgba(0,0,0,0.56);
+    color: black;
 	}
 	
-	li{
-	margin-bottom : 26px;
+	.side{
+	width: 140px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-bottom : 20px;
 	}
 	
 	b{
@@ -64,10 +85,35 @@
 	color: #67d567;
     border-color: #67d567;
 	}
+	
+
+	.page-item.active a {
+	    background-color: #f8f9fa;
+	    color: #007bff;
+	}
+
+	a{
+	 text-decoration : none;
+	 display: flex;
+    justify-content: center;
+	}
+	
+	.side:hover {
+  border: 1px solid #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+	
+	.sessionData{
+	color:#67d567;
+	}
+	
+
 </style>
 </head>
 <body>
-	
+	 <jsp:include page="/WEB-INF/views/header.jsp" />
 	<div id="wrapper" >
 		<div style="width:100%; display: contents;">
 			<h1 style="margin-bottom:100px; border-top: 1px solid black; border-bottom: 1px solid black;">MEMBER INFO</h1>
@@ -75,15 +121,11 @@
 		<div style="width:100%; display: flex; flex-direction: row;">
 			<div id="content1">
 				<ul style="list-style:none;">
-					<li><a class="sideMenu">내 정보</a></li>
-					<li><a class="sideMenu">예약내역</a></li>
-					<li><a class="sideMenu">찜한 목록</a></li>
-					<li><a class="sideMenu">문의쪽지</a></li>
-					<li><a class="sideMenu">쿠폰함(미정)</a></li>
+					<li class="side"><a class="sideMenu" href="<%=request.getContextPath()%>/member/myPage">내 정보</a></li>
+					<li class="side"><a class="sideMenu" id="booking">예약내역</a></li>
+					<li class="side"><a class="sideMenu" href="<%=request.getContextPath()%>/member/wishList">찜한 목록</a></li>
+					<li class="side"><a class="sideMenu" href="<%=request.getContextPath()%>/member/list">문의쪽지</a></li>
 				</ul>
-				<div style="margin-top: auto; position: relative;">
-					<button class="btn btn-primary btn-ghost btn-slash">회원탈퇴</button>
-				</div>
 			</div>
 		
 			<div id="content2">
@@ -131,8 +173,47 @@
 					</table>	
 			</div>
 		</div>
+			<c:set var="url" value="list?cpage=" />
+					<div class="paging">
+						<ul class="pagination">
+							<c:choose>
+								<c:when test="${ selectSearchList.pi.currentPage eq 1 }">
+									<li class="page-item disabled"><a class="page-link"
+										href="#">Previous</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="${url}${selectSearchList.pi.currentPage -1 }${sUrl}">Previous</a></li>
+								</c:otherwise>
+							</c:choose>
+	
+							<c:forEach var="item" begin="${selectSearchList.pi.startPage }"
+								end="${selectSearchList.pi.endPage }">
+								<c:set var="currentPage" value="${selectSearchList.pi.currentPage}" />
+								    <li class="page-item ${currentPage == item ? 'active' : ''}">
+								        <a class="page-link" href="${url}${item}${sUrl}">${item}</a>
+								    </li>
+							</c:forEach>
+	
+							<c:choose>
+								<c:when
+									test="${ selectSearchList.pi.currentPage eq selectSearchList.pi.maxPage }">
+									<li class="page-item disabled"><a class="page-link"
+										href="#">Next</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="${url}${selectSearchList.pi.currentPage + 1 }${sUrl}">Next</a></li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+					</div>
 	</div>
 	
-	
+ 	  <script>
+         document.getElementById("booking").addEventListener("click",function(){
+        location.href = "<%=request.getContextPath()%>/booking/bookingView";
+        })
+      </script>
 </body>
 </html>

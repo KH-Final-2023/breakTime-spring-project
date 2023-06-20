@@ -15,6 +15,7 @@ body {
 	line-height: 1.4;
 	color: #333;
 	background-color: #f2f2f2;
+	margin-top : 80px;
 }
 
 .container-main {
@@ -26,6 +27,7 @@ body {
 
 .detail2-one-main {
 	padding: 0 2rem;
+	padding-bottom: 20px;
 }
 
 .main-image {
@@ -39,7 +41,7 @@ body {
 }
 
 .company-name {
-	font-size: 20px;
+	font-size: 30px;
 	font-weight: bold;
 }
 
@@ -71,7 +73,7 @@ body {
 }
 
 .score {
-	font-size: 14px;
+	font-size: 20px;
 	color: #333;
 }
 
@@ -88,7 +90,7 @@ body {
 }
 
 .address {
-	font-size: 13px;
+	font-size: 19px;
 	color: #0000ff86;
 }
 
@@ -98,6 +100,7 @@ body {
 	line-height: 40px;
 	padding: 0 2rem;
 	border-bottom: 1px solid #f2f2f2;
+	
 }
 
 #section-content {
@@ -111,7 +114,7 @@ body {
 }
 
 .section-link {
-	font-size: 16px;
+	font-size: 20px;
 	text-decoration: none;
 	margin-right: 10px;
 	text-underline-offset: 13px;
@@ -176,4 +179,24 @@ body {
 	font-size: 20px;
 	color: black;
 	cursor: pointer;
+}
+
+.gptClass{
+	border: 2px solid #e6e6e6;
+    border-radius: 10px;
+    padding-bottom: 25px;
+}
+
+.gptTitle{
+	 display: flex; 
+	 align-items: center;
+	 padding: 10px;
+	 padding-top: 15px;
+	 font-size : 20px;
+}
+
+.gptContent{
+	padding-left: 10px;
+	font-size : 20px;
+	color: #777777
 }

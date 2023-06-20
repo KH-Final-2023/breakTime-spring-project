@@ -2,176 +2,193 @@
 
 /* Reset CSS */
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
 }
 
 /* 전체적인 스타일 */
 body {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	line-height: 1.4;
-	color: #333;
-	background-color: #f2f2f2;
+   font-size: 14px;
+   line-height: 1.4;
+   color: #333;
+   background-color: #f2f2f2;
 }
 
 .container {
-	max-width: 768px;
-	margin: 0 auto;
-	background-color: #fff;
-	/* 컨테이너 배경색상 */
+   max-width: 768px;
+   margin: 0 auto;
+   background-color: #fff;
+   /* 컨테이너 배경색상 */
 }
 
 .detail2-main {
-	margin-top: 20px;
-	/* 위쪽 여백 크기 */
-	display: flex;
-	justify-content: flex-end;
-	padding: 0;
-	position: relative;
-	flex-wrap: wrap;
+   margin-top: 20px;
+   /* 위쪽 여백 크기 */
+   display: flex;
+   justify-content: flex-end;
+   padding: 0;
+   position: relative;
+   flex-wrap: wrap;
+   
 }
 
 .detail2-all {
-	display: flex;
-	padding: 0;
-	position: relative;
-	flex-direction: column;
+   display: flex;
+   padding: 0;
+   position: relative;
+   flex-direction: column;
 }
 
 .detail2-card {
-	width: 384px;
-	height: 422px;
-	background-color: #ffffff;
-	overflow: hidden;
-	padding: 20px 30px;
-	border: 1px solid #f2f2f2;
+   width: 384px;
+   height: 460px;
+   background-color: #ffffff;
+   overflow: hidden;
+   padding: 20px 30px;
+   border: 1px solid #f2f2f2;
+   
 }
 
 .detail2-card .image {
-	width: 100%;
-	height: 240px;
-	overflow: hidden;
+   width: 100%;
+   height: 240px;
+   overflow: hidden;
 }
 
 .detail2-card .image img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
 }
 
 .detail2-card .title {
-	font-size: 18px;
-	font-weight: bold;
-	margin-top: 10px;
-	margin-bottom: 5px;
+   font-size: 25px;
+   font-weight: bold;
+   margin-top: 10px;
+   margin-bottom: 5px;
 }
 
 .detail2-card .description {
-	font-size: 14px;
-	color: #777777;
-	margin-bottom: 10px;
+   font-size: 20px;
+   color: #777777;
+   margin-bottom: 10px;
 }
 
 .detail2-card .price {
-	font-size: 16px;
-	font-weight: bold;
+   font-size: 25px;
+   font-weight: bold;
 }
 
 .detail2-card .button:hover {
-	background-color: #4CAF50;
+   background-color: #4CAF50;
 }
 
 .button-card {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-top: 10px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-top: 10px;
 }
 
 .button-card1 {
-	display: inline-block;
-	width: 130px;
-	padding: 10px 16px;
-	background-color: rgb(46, 204, 113);
-	color: #ffffff;
-	border: none;
-	border-radius: 4px;
-	text-decoration: none;
-	cursor: pointer;
-	font-size: 12px;
+   display: inline-block;
+   width: 130px;
+   padding: 10px 16px;
+   background-color: rgb(46, 204, 113);
+   color: #ffffff;
+   border: none;
+   border-radius: 4px;
+   text-decoration: none;
+   cursor: pointer;
+   font-size: 20px;
 }
 
 .button-card2 {
-	display: inline-block;
-	width: 130px;
-	padding: 10px 16px;
-	color: rgb(46, 204, 113);;
-	border: 1px solid rgb(46, 204, 113);
-	border-radius: 4px;
-	text-decoration: none;
-	cursor: pointer;
-	font-size: 12px;
+   display: inline-block;
+   width: 130px;
+   padding: 10px 16px;
+   color: rgb(46, 204, 113);;
+   border: 1px solid rgb(46, 204, 113);
+   border-radius: 4px;
+   text-decoration: none;
+   cursor: pointer;
+   font-size: 20px;
+}
+
+.button-card3 {
+   display: inline-block;
+   width: 130px;
+   padding: 10px 16px;
+   background-color: rgb(46, 204, 113);
+   color: #ffffff;
+   border: none;
+   border-radius: 4px;
+   text-decoration: none;
+   cursor: pointer;
+   font-size: 12px;
 }
 
 .button-container {
-	display: flex;
-	/* 버튼 위의 여백 크기 */
-	justify-content: center;
-	align-items: center;
+   display: flex;
+   /* 버튼 위의 여백 크기 */
+   justify-content: center;
+   align-items: center;
 }
 
 .button-container .button {
-	display: inline-block;
-	width: 92%;
-	padding: 10px 16px;
-	background-color: white;
-	color: black;
-	border: 1px solid rgba(0, 0, 0, 0.299);
-	border-radius: 4px;
-	text-decoration: none;
-	cursor: pointer;
+   display: inline-block;
+   width: 92%;
+   padding: 10px 16px;
+   background-color: white;
+   color: #333333c7;
+   font-size: 20px;
+   text-align: center;
+   border: 1px solid rgba(0, 0, 0, 0.299);
+   border-radius: 4px;
+   text-decoration: none;
+   cursor: pointer;
+   font-weight: bold;
 }
 
 /* 가격과 예약하기 정렬 */
-.button-card1, .button-card2 {
-	text-align: center;
+.button-card1, .button-card2, .button-card3 {
+   text-align: center;
 }
 
 .detail2-card .price {
-	text-align: right;
+   text-align: right;
 }
 
 .overlay {
-	position: fixed;
-	top: 100%;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	transition: top 0.3s ease-in-out;
-	z-index: 9999;
+   position: fixed;
+   top: 100%;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   transition: top 0.3s ease-in-out;
+   z-index: 9999;
 }
 
 .overlay.open {
-	top: 0;
+   top: 0;
 }
 
 .overlay iframe {
-	width: 100%;
-	height: 100%;
-	border: none;
+   width: 100%;
+   height: 100%;
+   border: none;
 }
 
 .overlay .close-btn {
-	position: absolute;
-	top: 22px;
-	left: 480px;
-	font-size: 20px;
-	color: black;
-	cursor: pointer;
+   position: absolute;
+   top: 13px;
+   left: 571px;
+   font-size: 20px;
+   color: black;
+   cursor: pointer;
 }

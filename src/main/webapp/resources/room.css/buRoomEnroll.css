@@ -1,18 +1,27 @@
-#content1{
-    display: flex;
-    justify-content: space-around;
-    width: 300px;
-    margin: 0 auto;
-    background-color: greenyellow;
-    border-radius: 15px;
-
-  
+#content1 {
+	display: flex;
+	justify-content: center;
 }
-#content1 div {
-margin: 10px; /* 요소 간격 조정 */
+#formMove {
+	display: flex;
+	justify-content: space-around;
+	width: 600px;
+	height: 60px;
+	background-color: #c0e2c0;
+	border-radius: 15px;
+	margin-top: 150px;
+	align-items: center;
+	 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-#content1{
-    margin-top: 100px;
+#buRoomRegister,
+#buRoomReservation,
+#buReview {
+	border: solid 1px black;
+	border-radius: 5px;
+	background-color: green;
+	color: white;
+	width: 100px;
+	height: 40px;
 }
 #content2{
    
@@ -23,9 +32,13 @@ margin: 10px; /* 요소 간격 조정 */
         align-items: center;
 }
 input{
-    width: 300px;
+    width: 350px;
     border :solid 2px lightgray;
     border-radius: 5px;
+    height : 30px;
+    margin-bottom : 10px;
+    margin-top : 10px;
+    
 }
 #ResisterRoomName,#ResisterRoomPrice,#roomStandardInfoText,#roomPhotoInfoText,#ResisterRoomCount{
     text-align: left;
@@ -36,14 +49,45 @@ input{
     margin: 5px;
 }
 textarea{
-    width: 307px;
+    width: 350px;
     height: 150px;
+    resize: none;
+}
+#enrollBtn{
+	  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top : 20px;
+  
+}
+button {
+	font-family: 'Arial', fantasy;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	border: solid 1px black;
+	border-radius: 5px;
+	background-color: green;
+	color: white;
+	height : 30px;
 }
 #resisterBtn{
     margin: 10px;
     background-color: chartreuse;
     border: solid 1px black;
     border-radius: 5px;
+}
+#roomResisterText1{
+	text-align : center;
+}
+#roomEnrollForm{
+	 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	 width : 600px;
+	 height : 1000px;
+	 background-color: #f0fff0;
+	 border-radius: 15px;
+	 display: flex;
+        justify-content: center;
 }
 #header {
     height: 80px;
@@ -90,4 +134,6 @@ textarea{
     height: 100%;
     cursor: pointer;
     }
-  
+  font{
+  	size : 20px;
+  }

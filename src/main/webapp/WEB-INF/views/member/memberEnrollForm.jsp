@@ -7,12 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>일반고객 회원가입 폼</title>
+    <link rel="stylesheet" href="../resources/css/button.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <style>
         #container{
             width: 100%;
             height: 700px;
-            border: 1px solid black;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -21,31 +22,30 @@
         form{
             display: flex;
             flex-direction: column;
-            height: 200px;
             justify-content: space-evenly;
+        }
+        input{
+        	margin-bottom:15px;
         }
     </style>
 </head>
 <body>
     <div id="container">
-        <h1>일반고객 회원가입</h1> 
-        <div>
+    	<h1 style="color:#0602a7;">BreakTime</h1>
+        <h2 style="color:#0602a7;">일반고객 회원가입</h2> 
+        <div style="width:20%">
         <form action="insert" method="post">
-            <div>
-                <input type="email" name="email" id="email" placeholder="이메일입력">
-                <input type="button" value="인증번호 전송">
-            </div>
-
-            <div>
-                <input type="text" placeholder="인증번호입력">
-                <input type="button" value="인증확인">
-                <p>이메일이 도착하는데 1-2분정도 소요될수있습니다.</p>
-            </div>
-            <input type="text" name="userId" id="userId" placeholder="아이디입력 : 4~12자 영문 대소문자, 숫자만 입력하세요." required>
-            <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호 입력 - 4~12자 영문 대소문자, 숫자만 입력하세요.">
-            <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호확인">
-            <input type="text" name="userName" id="userName" placeholder="이름">
-            <input type="submit" onclick="validation()" value="회원가입">
+        	<b>이메일</b>
+            <input type="email" name="email" id="email" placeholder="이메일주소를 입력해주세요.">
+            <b>아이디</b>
+            <input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요." required>
+            <b>비밀번호</b>
+            <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호를 입력해주세요.">
+            <b>비밀번호 확인</b>
+            <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호를 입력해주세요.">
+            <b>사용자이름</b>
+            <input type="text" name="userName" id="userName" placeholder="이름을 입력해주세요.">
+            <input  class="btn btn-primary btn-ghost btn-slash" type="submit" onclick="validation()" value="회원가입">
         </form>
         </div>  
     </div>

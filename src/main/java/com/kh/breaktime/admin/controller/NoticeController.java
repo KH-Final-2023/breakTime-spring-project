@@ -19,12 +19,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.breaktime.admin.model.service.NoticeService;
 import com.kh.breaktime.admin.model.vo.Notice;
+import com.kh.breaktime.business.model.vo.Business;
 import com.kh.breaktime.member.model.service.MemberService;
 import com.kh.breaktime.member.model.vo.Member;
+import com.kh.breaktime.review.model.vo.Review;
 
 
 @Controller
@@ -265,4 +268,33 @@ public class NoticeController {
 			model.addAttribute("selectChatSearchList",map);
 			return "admin/chatRoomList";
 		}
+		
+		 @GetMapping("/businessCount")
+		 @ResponseBody
+		  public int getBusinessCount() {
+		    int count = noticeService.getBusinessCount();
+		    System.out.println(count);
+		    return count;
+		  }
+		 
+		 @GetMapping("/reviewCount")
+		 @ResponseBody
+		  public int getreviewCount() {
+		    int count = noticeService.getReviewCount();
+		    System.out.println(count);
+		    return count;
+		  }
+		 
+		 @GetMapping("/selectBusinessInfo")
+		    @ResponseBody
+		    public List<Business> getBusinessInfo() {
+		        return noticeService.getBusinessInfo();
+		    }
+		 
+		 
+		 @GetMapping("/selectReviewDeclariation")
+		    @ResponseBody
+		    public List<Review> selectReviewDeclariation() {
+		        return noticeService.selectReviewDeclariation();
+		    }
 }

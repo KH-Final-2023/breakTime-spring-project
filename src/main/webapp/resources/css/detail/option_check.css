@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.optionArea {
+	position: fixed;
+	left: 20px;
+	top: 80px;
+	height: 100%;
+	width: 250px;
+	background-color: #fff;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.optionTable {
+	min-width: 250px;
+	width: 100%;
+}
+
+.tableTitle {
+	height: 60px;
+	font-size: 16px;
+	font-weight: bolder;
+	text-align: left;
+}
+
+.optionTable>tbody>tr>td {
+	font-size: 14px;
+}
+
+a {
+	cursor: pointer;
+}
+
+/* area_detail */
+.dropdown1 {
+	width: 200px;
+}
+
+/* 체크인, 체크아웃 */
+.date_detail {
+	width: 200px;
+}
+
+.dropdown2 {
+	position: relative;
+	display: inline-block;
+}

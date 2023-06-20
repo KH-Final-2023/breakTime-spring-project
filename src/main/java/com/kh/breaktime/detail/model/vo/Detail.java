@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class Detail {
-	private String mainImg;
+	private String buMainImg;
     private int roomNo;
     private int roomHCount;
     private String roomPrice;
@@ -15,5 +15,5 @@ public class Detail {
     private String buTel;
     private String buTitle;
     private String roomInfo;
-    private int starScore;
+    private double userStarScore;
 }

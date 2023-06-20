@@ -232,13 +232,13 @@
 	<update id="approvalAccept" parameterType="business">
 		UPDATE  BUSINESS SET
 		APPROVAL = 'Y'
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</update>
 	
 	<delete id="approvalCancel">
 		DELETE   
 		FROM BUSINESS
-		WHERE BU_ID = #{buId}
+		WHERE BU_NO = #{buNo}
 	</delete>
 	
 	<!-- 고객 정보 수정  -->
@@ -257,6 +257,59 @@
 		BU_ADDRESS
 		FROM BUSINESS
 		WHERE APPROVAL = 'Y'
+	</select>
+	
+	<select id="searchManageListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM BUSINESS B
+	WHERE APPROVAL = 'Y'
+	
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "buUserName"'>
+				BU_USER_NAME LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "buTitle"'>
+				BU_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "buTel"'>
+				BU_TEL LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>			
+			<when test='condition == "buAddress"'>
+				BU_ADDRESS LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>			
+		</choose>	
+	</if>	
+	</select>
+	
+	<select id="searchManageList" resultMap="approvalResultSet">
+	SELECT
+		BU_NO,
+		BU_ID,
+		BU_USER_NAME,
+		BU_TEL,	
+		BU_TITLE,
+		BU_ADDRESS
+		FROM BUSINESS
+	WHERE APPROVAL = 'Y'
+	<if test='keyword != null and keyword != ""'>
+		AND 
+		<choose>
+			<when test='condition == "buUserName"'>
+				BU_USER_NAME LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "buTitle"'>
+				BU_TITLE LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>
+			<when test='condition == "buTel"'>
+				BU_TEL LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>			
+			<when test='condition == "buAddress"'>
+				BU_ADDRESS LIKE CONCAT(CONCAT('%',#{keyword}),'%')
+			</when>			
+		</choose>	
+	</if>	
 	</select>
 	
 	<update id="manageUpdate" parameterType="business">
@@ -336,4 +389,32 @@
 		</choose>	
 	</if>
 	</select>
+	
+	<!-- <select id="businessStatus" resultMap="businessResultSet">
+		SELECT 
+		
+	</select> -->
+	<select id="getBusinessCount" resultType="int">
+    SELECT COUNT(*) 
+    FROM BUSINESS
+    WHERE APPROVAL = 'N'
+  </select>
+  
+  <select id="getReviewCount" resultType="int">
+    SELECT COUNT(*) 
+    FROM REVIEW
+    WHERE REVIEW_DECLARIATION = 'Y'
+  </select>
+  <select id="getBusinessInfo" resultType="hashmap">
+        SELECT  ENROLL_DATE , BU_USER_NAME
+        FROM BUSINESS
+        WHERE APPROVAL = 'N'
+    </select>
+      <select id="selectReviewDeclariation" resultType="hashmap">
+SELECT M.USER_NAME, R.CREATE_DATE
+FROM REVIEW R
+JOIN MEMBER M ON R.REVIEW_WRITER = M.USER_NO
+WHERE R.REVIEW_DECLARIATION = 'Y'
+
+    </select>
 </mapper>

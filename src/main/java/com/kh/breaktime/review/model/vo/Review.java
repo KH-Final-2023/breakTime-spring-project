@@ -16,10 +16,12 @@ import lombok.NoArgsConstructor;
 public class Review {
 
 	
-	private int reviewNo;							//	REVIEW_NO, 
+	private int reviewNo;	//	REVIEW_NO, 
+	private int userNo;
 	private int reviewWriter;							//	USER_NO, 
 	private int usingRoom;							//	ROOM_NO, 
-	private String bookNo;							//	BOOK_NO, 
+	private String roomNo;
+	private int bookNo;							//	BOOK_NO, 
 	private int starScore;							//	STAR_SCORE,
 	private String reviewContent;							//	REVIEW_CONTENT,
 	private String reviewAvailable;							//	REVIEW_AVAILABLE,

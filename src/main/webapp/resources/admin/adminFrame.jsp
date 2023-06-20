@@ -1,14 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.kh.breaktime.member.model.vo.Member"%>
+<%Member loginUser = (Member) session.getAttribute("loginUser");%>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+#bi-bellCount{
+  display: none;  
+  position: absolute;
+  top: -2px;
+  right: -5px;
+  height: 23px;
+  width: 23px;
+  background-color:#5f5fd4;
+  font-size: 10px;
+  list-style: none;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  }
+#badge-numberCount{
+	 display: none;  
+  position: absolute;
+  top: -2px;
+  right: -5px;
+  height: 23px;
+  width: 23px;
+  background-color:#5f5fd4;
+  font-size: 10px;
+  list-style: none;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
+</style>
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -46,7 +81,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
 
   <!-- Template Main CSS File -->
-  <link href="${pageContext.request.contextPath}/resources/admin/assets/css/style.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath}/resources/admin/assets/css/style.css?after" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/resources/admin/assets/css/notice.css" rel="stylesheet">
   <!-- include summernote css/js-->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
@@ -55,9 +90,26 @@
 <script src="/resources/js/summernote-ko-KR.js"></script>
 <script src="/js/summernote/summernote-lite.js"></script>
 <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-  
-</head>
+<script>
+  // Get the current URL
+  var currentUrl = window.location.href;
 
+  // Select all sidebar menu items
+  var sidebarMenuItems = document.querySelectorAll('.sidebar-nav .nav-item');
+
+  // Iterate over each menu item and check if its href matches the current URL
+  sidebarMenuItems.forEach(function(item) {
+    var link = item.querySelector('.nav-link');
+    var href = link.getAttribute('href');
+    
+    // Add the "active" class to the menu item if its href matches the current URL
+    if (currentUrl.indexOf(href) !== -1) {
+      item.classList.add('active');
+    }
+  });
+</script>
+
+</head>
 <body>
 
   <!-- ======= Header ======= -->
@@ -82,17 +134,41 @@
 
         <li class="nav-item dropdown">
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+<a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+  <i class="bi bi-bell"></i>
+  <span id="bi-bellCount"></span>
+</a><!-- End Notification Icon -->
 
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<% if(loginUser != null) { %>
+		  <span id="bi-bellCount"></span>
+		  <script>
+		    function businessCount() {
+		      $.ajax({
+		        url: "<%= request.getContextPath() %>/notice/businessCount",
+		        success: function(result) {
+		          if (result >= 0) { // 결과가 0 이상일 때만 처리
+		            var count = parseInt(result); // 결과를 정수로 변환
+		            $('#bi-bellCount').text("+" + count).css('display', 'flex');
+		          } else {
+		            $('#bi-bellCount').text('').css('display', 'none');
+		          }
+		        }
+		      });
+		    }
+		
+		    setInterval(businessCount, 60000);
+		    businessCount();
+		  </script>
+		<% } %>
+
+			
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+            You have new notifications
+            <!--   <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">사업자 승인</span></a>  -->
             </li>
-            <li>
+            <!-- <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -129,7 +205,7 @@
                 <p>Quae dolorem earum veritatis oditseno</p>
                 <p>2 hrs. ago</p>
               </div>
-            </li>
+            </li> -->
 
             <li>
               <hr class="dropdown-divider">
@@ -138,9 +214,9 @@
             <li class="notification-item">
               <i class="bi bi-info-circle text-primary"></i>
               <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
+                <h4 id="businessInfoDate"></h4>
+                <p id="businessInfoName"></p>
+ 
               </div>
             </li>
 
@@ -154,18 +230,65 @@
           </ul><!-- End Notification Dropdown Items -->
 
         </li><!-- End Notification Nav -->
+			
 
-        <li class="nav-item dropdown">
+		<% if (loginUser != null) { %>
+<script>
+  function selectBusinessInfo() {
+    $.ajax({
+      url: "<%= request.getContextPath() %>/notice/selectBusinessInfo",
+      success: function(result) {
+        var businessInfoList = result;
+        var dateHtml = '';
+        var nameHtml = '';
+        for (var i = 0; i < businessInfoList.length; i++) {
+          var businessInfo = businessInfoList[i];
+          dateHtml += '<h4>' + new Date(businessInfo.ENROLL_DATE).toLocaleDateString('ko-KR') + '</h4>';
+
+          nameHtml += '<h4>' + businessInfo.BU_USER_NAME + '님이 승인 신청했습니다.</h4>';
+        }
+        $('#businessInfoDate').html(dateHtml); // Update businessInfoDate element
+        $('#businessInfoName').html(nameHtml); // Update businessInfoName element
+      }
+    });
+  }
+
+  setInterval(selectBusinessInfo, 60000);
+  selectBusinessInfo();
+</script>
+<% } %>
+				<li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
+            <span id="badge-numberCount"></span>
           </a><!-- End Messages Icon -->
+			<% if(loginUser != null) { %>          
+		<span id="badge-numberCount"></span>
+		  <script>
+		    function reviewCount() {
+		      $.ajax({
+		        url: "<%= request.getContextPath() %>/notice/reviewCount",
+		        success: function(result) {
+		          if (result >= 0) { // 결과가 0 이상일 때만 처리
+		            var count = parseInt(result); // 결과를 정수로 변환
+		            $('#badge-numberCount').text("+" + count).css('display', 'flex');
+		          } else {
+		            $('#badge-numberCount').text('').css('display', 'none');
+		          }
+		        }
+		      });
+		    }
 
+    setInterval(reviewCount, 60000);
+    reviewCount();
+  </script>
+<% } %>
+			
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
             <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+              You have new messages
+             <!--  <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a> -->
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -175,13 +298,38 @@
               <a href="#">
                 <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
                 <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
+                  <h4 id="selectReviewDeclariationDate">Maria Hudson</h4>
+                  <p id="selectReviewDeclariationName">Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                  
                 </div>
               </a>
             </li>
-            <li>
+            <% if (loginUser != null) { %>
+<script>
+  function selectReviewDeclariation() {
+    $.ajax({
+      url: "<%= request.getContextPath() %>/notice/selectReviewDeclariation",
+      success: function(result) {
+        var selectReviewDeclariation = result;
+        var dateHtml = '';
+        var nameHtml = '';
+        for (var i = 0; i < selectReviewDeclariation.length; i++) {
+          var selectReview = selectReviewDeclariation[i];
+          dateHtml += '<h4>' + new Date(selectReview.CREATE_DATE).toLocaleDateString('ko-KR') + '</h4>';
+
+          nameHtml += '<h4>' + selectReview.USER_NAME + '님의 리뷰가 신고당했습니다.</h4>';
+        }
+        $('#selectReviewDeclariationDate').html(dateHtml); // Update businessInfoDate element
+        $('#selectReviewDeclariationName').html(nameHtml); // Update businessInfoName element
+      }
+    });
+  }
+
+  setInterval(selectReviewDeclariation, 60000);
+  selectReviewDeclariation();
+</script>
+<% } %>
+           <!--  <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -194,8 +342,8 @@
                   <p>6 hrs. ago</p>
                 </div>
               </a>
-            </li>
-            <li>
+            </li> -->
+           <!--  <li>
               <hr class="dropdown-divider">
             </li>
 
@@ -208,13 +356,13 @@
                   <p>8 hrs. ago</p>
                 </div>
               </a>
-            </li>
+            </li> -->
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
+             <!--  <a href="#">Show all messages</a> -->
             </li>
 
           </ul><!-- End Messages Dropdown Items -->
@@ -322,7 +470,6 @@
 
   <!-- Template Main JS File -->
   <script src="${pageContext.request.contextPath}/resources/admin/assets/js/main.js"></script>
-
 </body>
 
 </html>

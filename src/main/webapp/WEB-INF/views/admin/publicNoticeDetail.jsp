@@ -9,37 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<!--  공통적으로사용할 라이브러리 추가 -->
-<!-- Jquey 라이브러리 -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- 부트스트랩에서 제공하있는 스타일 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<!-- 부투스트랩에서 제공하고있는 스크립트 -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- alertify -->
-<script
-	src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<!-- alertify css -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
-<!-- Default theme -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
-<!-- Semantic UI theme -->
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
-<link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/breaktime/resources/css/header.css">
-<link rel="stylesheet" href="/breaktime/resources/css/base.css">
 <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
 <link rel="stylesheet" href="/breaktime/resources/css/main.css">
-<script src="/js/summernote/summernote-lite.js"></script>
-<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-
 <style>
 div {
 	box-sizing: border-box;
@@ -50,6 +23,8 @@ html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0%;
+	font-family: 'YanoljaYache';
+	font-size : 18px;
 }
 
 body {
@@ -70,7 +45,7 @@ body {
 	margin-top: 80px;
 	margin-bottom: 0px;
 	margin-left : 500px;
-	border-top: 3px solid #623f30;
+	border-top: 2px solid #428bca;
 	border-collapse: collapse;
 }
 
@@ -115,21 +90,14 @@ body {
 	outline: none;
 }
 
-#enrollWrap {
-	width: 100%;
-	height: 80%;
-	border: 1px solid rgb(224, 224, 224);
-	border-radius: 10px;
-	padding: 20px;
-	background: rgb(247, 247, 247);
-}
 
 #wrapper {
-	height: 95%;
+	height: 100%;
 }
 
 #footer {
 	height: 18.5%;
+	margin: auto;
 }
 
 </style>
