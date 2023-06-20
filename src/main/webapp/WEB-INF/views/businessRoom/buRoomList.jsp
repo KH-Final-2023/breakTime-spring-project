@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buRoomList.css">
 <title>Document</title>
 
+
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>

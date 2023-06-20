@@ -81,6 +81,11 @@
 	 	function buCheckin(){
 	 		alert("checkin 완료됬습니다.")
 	 	}
+	 	
+	 	document.getElementById("bulogout").addEventListener("click",function(){
+	           location.href = "<%=request.getContextPath()%>/business/logout";
+	           })
+
 	</script>
 </body>
 
