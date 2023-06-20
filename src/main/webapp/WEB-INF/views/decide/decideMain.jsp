@@ -14,11 +14,12 @@
 <head>
 <meta charset="UTF-8">
 <title>메인</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/header.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/decide/main.css">
 <link rel="stylesheet" href="${contextPath}/resources/css/font.css">
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <script>
 $(document).ready(function() {
@@ -244,7 +245,7 @@ function sendMessage(message) {
     type: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      //'Authorization': 'Bearer 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'
+      'Authorization': 'Bearer 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'
     },
     data: JSON.stringify({
         model: 'gpt-3.5-turbo',

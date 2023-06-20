@@ -248,6 +248,9 @@ textarea {
 		document.getElementById("bulogout").addEventListener("click",function(){
 	           location.href = "<%=request.getContextPath()%>/business/logout";
 	           })
+	            document.getElementById("contentdeclariationbtn").addEventListener("click", function() {
+        alert("성공적으로 신고했습니다.");
+    });
 
 	</script>
 </body>

@@ -161,9 +161,8 @@
 
 
 	<!-- 검색 리스트 목록 -->
-
-
 	<select id="searchDetailList" resultMap="detailResultSet">
+
 		SELECT
 		B.BU_ADDRESS,
 		B.AREA_NO,
@@ -174,10 +173,8 @@
 		AC.AREA_NAME,
 		CC.BU_CATEGORY
 		FROM BUSINESS B
-		JOIN
-		CATEGORY_CODE CC ON B.BU_CATEGORY = CC.BU_CATEGORY
-		JOIN AREA_CODE AC ON
-		B.AREA_NO = AC.AREA_NO
+		JOIN CATEGORY_CODE CC ON B.BU_CATEGORY = CC.BU_CATEGORY
+		JOIN AREA_CODE AC ON B.AREA_NO = AC.AREA_NO
 		WHERE
 		BU_MAIN_IMG IS NOT NULL
 		<choose>
@@ -185,11 +182,9 @@
 			<when test='condition == "areano"'> AND AC.AREA_NAME LIKE '%${keyword}%' </when>
 			<when test='condition == "category"'> AND CC.CATEGORY_NAME LIKE '%${keyword}%' </when>
 			<when test='condition == "title"'> AND B.BU_TITLE LIKE '%${keyword}%' </when>
+
 		</choose>
 	</select>
-
-
-
 
 
 	<!-- 메인 지역 리스트 목록 -->
