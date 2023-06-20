@@ -10,10 +10,6 @@
 <link rel="stylesheet" type="text/css" href="/breaktime/resources/room.css/buRoomList.css">
 <title>Document</title>
 
-<style>
-/* 전체적인 초록색 계열 스타일 */
-
-
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/header.jsp"%>
