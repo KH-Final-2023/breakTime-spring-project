@@ -38,7 +38,7 @@ button {
 
 table {
 	width: 1900px;
-
+	
 
 }
 
@@ -46,11 +46,13 @@ tbody {
 	text-align: center;
 	background-color: #c0e2c0;
 	height: 40px;
+	font-size: 20px;
 }
 
 thead {
 	background-color: green;
 	height: 60px;
+	font-size: 20px;
 }
 
 
@@ -108,4 +110,7 @@ thead {
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
+}
+td{
+	height: 30px;
 }

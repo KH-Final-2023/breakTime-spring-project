@@ -54,7 +54,11 @@ String alertMsg = (String) session.getAttribute("alertMsg");
                 <% } else { %> 
                  <div id="bulogout">로그아웃</div>
                 <% } %>   
-                <div id="mybooking">예약내역</div>
+                 <%if(loginBusiness  == null){ %>
+                       <div id="mybooking">예약내역</div>
+
+					<%} %>
+                
                 <div class="header-dropdown">
                   <span class="header-dropbtn">더보기</span>
                   <div class="header-dropdown-content">
