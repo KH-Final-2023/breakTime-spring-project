@@ -22,7 +22,7 @@
     dateSelect2.disabled = false; // 체크인 선택 후에 활성화
 
     const checkoutDate = new Date(startDate);
-    checkoutDate.setDate(checkoutDate.getDate() + 1); // 체크인 날짜 + 1일
+    checkoutDate.setDate(checkoutDate.getDate() + 2); // 체크인 날짜 + 1일
     dateSelect2.value = checkoutDate.toISOString().split('T')[0]; // 체크아웃 select 요소에 설정
 
     // 이전 옵션 제거
