@@ -322,7 +322,7 @@
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="userStarScore" value=5.0><i
+							name="userStarScore" value=5><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
@@ -331,7 +331,7 @@
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="userStarScore" value=4.0><i
+							name="userStarScore" value=4><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
@@ -339,20 +339,20 @@
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="userStarScore" value=3.0><i
+							name="userStarScore" value=3><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="userStarScore" value=2.0><i
+							name="userStarScore" value=2><i
 							class="fa-solid fa-star starStyle"></i><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 					<tr>
 						<td><input class="star-count-checkbox" type="checkbox"
-							name="userStarScore" value=1.0><i
+							name="userStarScore" value=1><i
 							class="fa-solid fa-star starStyle"></i></td>
 					</tr>
 				</table>
