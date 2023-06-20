@@ -211,6 +211,8 @@ thead{
 	display: flex;
 	justify-content: center;
 	font-size: 20px;
+	flex-direction: column;
+	align-items: center;
 }
 
 #contentR2 {

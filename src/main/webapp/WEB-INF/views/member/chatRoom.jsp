@@ -22,6 +22,17 @@
 <link rel="stylesheet" href="/breaktime/resources/css/main.css">
 <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
 <style>
+@font-face {
+    font-family: 'YanoljaYache';
+    src: url('https://cdn.jsdelivr.net/gh/webfontworld/yanolja/YanoljaYacheBold.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body{
+	font-family: 'YanoljaYache';
+}
+
 body {
 overflow: hidden;
 }
@@ -118,8 +129,8 @@ overflow: hidden;
 		<div class="chatting-area">
 			<ul class="display-chatting">
 				<% if(list.size()==0) {%>
-					<div id="firstMsg">
-						<p>본 문의창은 다수의 사용자가 사용하므로 개인정보에 관한 내용은 삼가해주시길 바랍니다.
+					<div id="firstMsg" style="font-size: 15pt;">
+						<p>본 문의창은 다수의 사용자가 사용하므로 개인정보에 관한 내용은 삼가해주시길 바랍니다.<br>
 						자세한 문의가 필요할 시 본 숙소로 전화해주시길 바랍니다.</p>
 					</div>
 				<%} else {%>	

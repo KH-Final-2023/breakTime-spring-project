@@ -299,7 +299,7 @@
 		  orderName: 'breakTime 예약',
 		  successUrl: url,
     	  failUrl: 'http://localhost:8081/fail',
-		  customerEmail: 'customer123@gmail.com', 
+		  customerEmail: 'customer123@gmail.com',
 		  customerName: 'breakTime'
 	})
     }
