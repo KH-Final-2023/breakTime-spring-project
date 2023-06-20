@@ -11,83 +11,7 @@
 
 <title>Document</title>
 </head>
-<style>
-#RenrollWrap {
-	width: 60%;
-	height: 80%;
-	border: 1px solid rgb(224, 224, 224);
-	border-radius: 10px;
-	padding: 20px;
-	background: rgb(247, 247, 247);
-	display: flex;
-	justify-content: center;
-	font-size: 20px;
-}
 
-#contentR2 {
-	
-}
-
-#reviewNickname {
-	display: flex;
-	font-size: 16px;
-	margin-bottom: 10px;
-	color: rgb(97, 97, 97);
-}
-
-#reviewRoomName {
-	display: flex;
-}
-
-#reviewRoomNameList {
-	width: 10%;
-	height: 20px;
-	border-radius: 2px;
-	text-align: center;
-	color: rgb(145, 145, 145);
-	background-color: rgba(230, 230, 230);
-}
-
-#reviewRoomNameInfo {
-	width: 95%;
-	margin-left: 10px;
-	border-radius: 2px;
-	color: rgb(97, 97, 97);
-	background-color: rgba(248, 248, 248);
-}
-
-#review {
-	margin: 20px 0;
-	text-align: left;
-}
-
-#buReviewList {
-	width: 700px;
-	height: 200px;
-	background-color: white;
-	padding: 20px;
-	border-radius: 15px;
-}
-
-textarea {
-	width: 700px;
-	height: 200px;
-	
-}
-
-#review-star-rating .fa {
-	color: #ffc107;
-}
-
-#review-star-rating {
-	margin-bottom: 10px;
-}
-
-.buReviewDate {
-	float: right;
-	color: rgb(97, 97, 97);
-}
-</style>
 <body>
 	<%@ include file="../header.jsp"%>
 	<div id="content">
@@ -171,7 +95,7 @@ textarea {
 				<c:forEach items="${businessReviews}" var="review">
 					<div id="content">
 						<div id="contentR2">
-							<div id="reviewBackground" style="width: 100%;">
+							<div id="reviewBackground">
 								<div id="review-star-rating" style="margin-bottom: 10px">
 									<div class="fa fa-star">
 										<c:choose>

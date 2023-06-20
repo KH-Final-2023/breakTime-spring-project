@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="/breaktime/resources/css/base.css">
 <link rel="stylesheet" href="/breaktime/resources/css/main.css">
 <link rel="stylesheet" href="/breaktime/resources/css/footer.css">
+<link rel="stylesheet" href="/breaktime/resources/css/font.css">
 <style>
 body {
 overflow: hidden;
