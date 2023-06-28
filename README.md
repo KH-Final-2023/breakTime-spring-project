@@ -121,14 +121,14 @@
 
 - 메인 페이지
 
-  - [Main.jsp](src/main/webapp/WEB-INF/views/main.jsp)
+  - [Main.jsp](src/main/webapp/WEB-INF/views/main.jsp) : 메인 view 페이지
 
   - 숙소 검색
     - [header.jsp](src/main/webapp/WEB-INF/views/header.jsp) : 검색 기능
     - [searchdetailList.java](src/main/java/com/kh/breaktime/detail/controller/DetailController.java) : 조건에 따라 검색
    
   - 결제
-    - [pay.jsp](src/main/webapp/WEB-INF/views/pay/pay.jsp) : API 결제
+    - [pay.jsp](src/main/webapp/WEB-INF/views/pay/pay.jsp) : API 결제 view 페이지
     - [insertBooking.java](src/main/java/com/kh/breaktime/booking/controller/BookingController.java) : 결제 후 예약기능
 
 ---
@@ -146,52 +146,31 @@
     - [myPage.jsp](src/main/webapp/WEB-INF/views/member/myPage.jsp) : 마이페이지 view
     - [deleteMember.java](src/main/java/com/kh/breaktime/member/controller/MemberController.java) : 회원 탈퇴 처리
     - [updateId.java](src/main/java/com/kh/breaktime/member/controller/MemberController.java) : 회원 아이디 수정
-  - 미니게임 리스트창
-    - [game.jsp](./SEMI_MZ/WebContent/views/game.jsp) : 미니게임 리스트창 외관
-    - [gamezone.js](./SEMI_MZ/WebContent/resource/js/gamezone/gamezone.js) : 미니게임 리스트창 데이터 처리
-  - 설정/친구 버튼
-    - [buttonList.jsp](./SEMI_MZ/WebContent/views/buttonList.jsp) : 버튼 외관
-    - [buttonList.js](./SEMI_MZ/WebContent/resource/js/buttonList.js) : 버튼 데이터 처리
-    - [FriendListController.java](./SEMI_MZ/src/mz/buttonList/controller/FriendListController.java) : 친구 리스트 조회
-    - [logoutController.java](./SEMI_MZ/src/mz/buttonList/controller/logoutController.java) : 로그아웃
-
-- 미니게임(카드뒤집기)
-  - [miniGame.jsp](./SEMI_MZ/WebContent/views/minigame/miniGame.jsp) : 미니게임 view 페이지
-  - [cardFlip.js](./SEMI_MZ/WebContent/resource/js/minigame/cardFlip.js) : 미니게임 관련 데이터 처리
-  - [FlipGameController.java](./SEMI_MZ/src/mz/minigame/controller/FlipGameController.java) : 미니게임 데이터 처리
-  - [FlipGameSever.java](./SEMI_MZ/src/mz/minigame/websocket/FlipGameSever.java) : 미니게임 웹소켓
+    - [findId.java](src/main/java/com/kh/breaktime/member/controller/MemberController.java) : 아이디 찾기
+    - [wishList.java](src/main/java/com/kh/breaktime/member/controller/MemberController.java) : 찜 목록
 
 ---
 
-## 이준석 - [PPT] 49p 참조
+## 이준석 - [NOTION](https://www.notion.so/bb11e3822288426fb657965eb0c4c706) 참조
 
 - 사업자
 
-  - [userInfo.jsp](./SEMI_MZ/WebContent/views/userInfo.jsp) : 유저 정보창
-  - [userInfo.js](./SEMI_MZ/WebContent/resource/js/userInfo.js) : 유저 정보 관련 데이터 처리
-  - [UserInfo.java](./SEMI_MZ/src/mz/member/controller/UserInfoController.java) : 상호 호감도 조회 / 유저 정보 조회
-  - [Heart.java](./SEMI_MZ/src/mz/member/controller/HeartController.java) : 호감도 추가 / 삭제
-  - [HeartCount.java](./SEMI_MZ/src/mz/member/controller/HeartCountController.java) : 누적 호감도 조회
-  - [Friend.java](./SEMI_MZ/src/mz/member/controller/FriendController.java) : 친구 추가 / 삭제
-  - [FriendInfo.java](./SEMI_MZ/src/mz/member/controller/FriendInfoController.java) : 친구 조회
-  - [Report.java](./SEMI_MZ/src/mz/report/controller/ReportController.java) : 신고 등록 처리
-
-- 공지사항
-
-  - [notice.jsp](./SEMI_MZ/WebContent/views/notice.jsp) : 공지사항창 외관
-  - [notice.js](./SEMI_MZ/WebContent/resource/js/notice.js) : 공지사항 관련 데이터 처리
-  - [NoticeList.java](./SEMI-MZ/src/mz/notice/controller/NoticeSelectController.java) : 공지사항 목록 / 상세 조회
-  - [HeartRanking.java](./SEMI_MZ/src/mz/member/controller/Rankingcontroller.java) : 호감도 랭킹 처리
-
+  - [selectBuRoomList.java](src/main/java/com/kh/breaktime/room/controller/RoomController.java) : 객실 리스트
+  - [registerBuRoom.jsp](src/main/webapp/WEB-INF/views/businessRoom/buRoomEnroll.jsp) : 객실 등록 
+  - [updateBuRoom.java](src/main/java/com/kh/breaktime/room/controller/RoomController.java) : 객실 정보 수정
+  - [searchRooms.java](src/main/java/com/kh/breaktime/room/controller/RoomController.java) : 객실 검색
+  - [deleteRoom.java](src/main/java/com/kh/breaktime/room/controller/RoomController.java) : 객실 삭제
+  - [buReview.jsp](src/main/webapp/WEB-INF/views/businessRoom/buReview.jsp) : 사업자 댓글 등록 / 리뷰 신고
+  
 ---
 
-## 노지의 - [PPT] 58p 참조
+## 이규정 - [NOTION](https://www.notion.so/59c4b515199f4a67aca760aa12451a21) 참조
 
-- 마이룸
-  - [myroom.jsp](./SEMI_MZ/WebContent/views/myroom.jsp) : 마이룸 view 페이지
-  - [myroom.js](./SEMI_MZ/WebContent/resource/js/myroom/myroom.js) : 마이룸 시작 화면 데이터 처리
-  - [home.java](./SEMI_MZ/src/mz/myroom/home.java) : 접속 유저 판별
-  - [MyroomFriendSkinController.java](./SEMI_MZ/src/mz/skin/controller/MyroomFriendSkinController.java) : 접속 유저 캐릭터 스킨 조회
+- 상세페이지1
+  - [detail.jsp](src/main/webapp/WEB-INF/views/detail/detail.jsp) : 상세1 view 페이지
+  - [ApiController.java](src/main/java/com/kh/breaktime/api/controller/ApiController.java) : API활용 숙소리스트 생성
+  - [filterListSubmit.java](src/main/java/com/kh/breaktime/detail/controller/DetailController.java) : 필터링 기능
+  - [map.js](src/main/webapp/WEB-INF/views/detail/detail.jsp) : 카카오맵 기능
   - 방명록
     - [board.js](./SEMI_MZ/WebContent/resource/js/myroom/board.js) : 방명록 관련 데이터 처리
     - [BoardListController.java](./SEMI_MZ/src/mz/board/controller/BoardListController.java) : 방명록 목록 조회
