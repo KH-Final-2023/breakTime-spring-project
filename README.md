@@ -206,18 +206,27 @@
     - [noticeListView.jsp](src/main/webapp/WEB-INF/views/admin/noticeListView.jsp) : 공지사항 리스트 페이지
     - [noticeEnrollForm.java, noticeDelete.java, updateForm.java](src/main/java/com/kh/breaktime/admin/controller/NoticeController.java) : 글 등록 / 수정 / 삭제
     
-- 장바구니
+  - 사업자 가입 승인
 
-  - [decideBasket.jsp](src/main/webapp/WEB-INF/views/decide/decideBasket.jsp) : 장바구니 view 페이지
-  - [insertCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 등록
-  - [deleteCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 삭제
-  - [decideRoomSelect.jsp](src/main/webapp/WEB-INF/views/decide/decideRoomSelect.jsp) : 객실 선택
+    - [decideBasket.jsp](src/main/webapp/WEB-INF/views/decide/decideBasket.jsp) : 장바구니 view 페이지
+    - [insertCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 등록
+    - [deleteCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 삭제
+    - [decideRoomSelect.jsp](src/main/webapp/WEB-INF/views/decide/decideRoomSelect.jsp) : 객실 선택
     
-- 리뷰
+  - 사업자 정보 관리
 
-  - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
-  - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
+    - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
+    - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
+   
+  - 신고 리뷰 관리
 
+    - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
+    - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
+
+  - 문의 내역
+
+    - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
+    - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
 
 ---
 
