@@ -137,16 +137,15 @@
 
 - 로그인
 
-  - [square.jsp](./SEMI_MZ/WebContent/views/square.jsp) : 광장 view페이지
-  - [squareCanvas.js](./SEMI_MZ/WebContent/resource/js/squareCanvas.js) : 광장 데이터 처리
-  - [squareinit.js](./SEMI_MZ/WebContent/resource/js/squareinit.js) : 광장 시작
-  - [blockCheckController.java](./SEMI_MZ/src/mz/square/controller/blockCheckController.java) : 차단/신고 유저 강제퇴장
-  - [squareGoHome.java](./SEMI_MZ/src/mz/square/controller/squareGoHome.java) : 마이룸 이동
-  - [goMiniGame.java](./SEMI_MZ/src/mz/square/controller/goMiniGame.java) : 미니게임 이동
-  - 광장소켓
-    - [JSONDecoder.java](./SEMI_MZ/src/mz/square/JSONDecoder.java) : 소켓 데이터 처리
-    - [JSONEncoder.java](./SEMI_MZ/src/mz/square/JSONEncoder.java) : 소켓 데이터 처리
-    - [SquareServer.java](./SEMI_MZ/src/mz/square/SquareServer.java) : 소켓 데이터 처리
+  - [memberEnrollForm.jsp](src/main/webapp/WEB-INF/views/member/memberEnrollForm.jsp) : 일반고객 회원가입 view 페이지
+  - [insertMember.java](src/main/java/com/kh/breaktime/member/controller/MemberController.java) : 일반고객 로그인 처리
+  - [businessEnrollForm.jsp](src/main/webapp/WEB-INF/views/business/businessEnrollForm.jsp) : 사업자 회원가입 view 페이지
+  - [insertBusiness.java](./SEMI_MZ/src/mz/square/controller/blockCheckController.java) : 사업자 로그인 처리
+  
+  - 마이페이지
+    - [myPage.jsp](src/main/webapp/WEB-INF/views/member/myPage.jsp) : 마이페이지 view
+    - [deleteMember.java](src/main/java/com/kh/breaktime/member/controller/MemberController.java) : 회원 탈퇴 처리
+    - [updateId.java](src/main/java/com/kh/breaktime/member/controller/MemberController.java) : 회원 아이디 수정
   - 미니게임 리스트창
     - [game.jsp](./SEMI_MZ/WebContent/views/game.jsp) : 미니게임 리스트창 외관
     - [gamezone.js](./SEMI_MZ/WebContent/resource/js/gamezone/gamezone.js) : 미니게임 리스트창 데이터 처리
