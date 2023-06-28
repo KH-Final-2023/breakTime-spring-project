@@ -111,17 +111,17 @@
 
 
 - SQL
-  - [BREAKTIME.sql](https://www.notion.so/SQL-a6a77827207247588b7dc8d5c3296564)) : 기본 테이블 세팅용 SQL
-  - [MZ_INSERT.sql](./SEMI_MZ/sql파일/MZ_INSERT.sql) : 기본 데이터 세팅용 SQL
-  - [testData.sql](./SEMI_MZ/sql파일/testData.sql) : 테스트 데이터 세팅용 SQL
+  - [BREAKTIME.sql](https://www.notion.so/SQL-a6a77827207247588b7dc8d5c3296564) : 기본 테이블 세팅용 SQL
+  - [BREAKTIME_INSERT.sql](https://www.notion.so/70e57d0042d74b519de19cdfd9674765) : 기본 데이터 세팅용 SQL
+  - [testData.sql](https://www.notion.so/b8fbb8523e814d2396292c9a41e45a4f) : 테스트 데이터 세팅용 SQL
 
 ---
 
-## 김혜린 - [PPT] 11p 참조
+## 엄태환 
 
-- 시작 페이지
+- 메인 페이지
 
-  - [Main.jsp](./SEMI_MZ/WebContent/views/main.jsp)
+  - [Main.jsp](src/main/webapp/WEB-INF/views/main.jsp)
   - [Main.js](./SEMI_MZ/WebContent/resource/js/main.js)
 
   - 회원가입
