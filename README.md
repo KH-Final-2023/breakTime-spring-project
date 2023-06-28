@@ -20,25 +20,25 @@
 다양한 가격대의 옵션들 중에서 자신의 필요에 맞는
 선택을 할수 있도록 하기 위한 웹페이지 구현
 
-- [[PPT] 링크](https://www.miricanvas.com/v/11ytu1c) / <a href="./SEMI_MZ/WebContent/resource/etc/MZONE_PPT.pdf" download="Mzone.pdf">[PPT] 다운로드</a>
+- [[NOTION] 링크](https://www.miricanvas.com/v/11ytu1c) 
 
 - 회원
   [![회원](./SEMI_MZ/WebContent/resource/etc/video/member.gif)](#프로젝트-소개)
 
 - 사업자
-  [![광장](./SEMI_MZ/WebContent/resource/etc/video/square.gif)](#프로젝트-소개)
+  [![사업자](./SEMI_MZ/WebContent/resource/etc/video/square.gif)](#프로젝트-소개)
 
 - 상세페이지1
-  [![마이룸](./SEMI_MZ/WebContent/resource/etc/video/myroom.gif)](#프로젝트-소개)
+  [![상세페이지1](./SEMI_MZ/WebContent/resource/etc/video/myroom.gif)](#프로젝트-소개)
 
 - 상세페이지2
-  [![미니게임](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
+  [![상세페이지2](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
 
 - 결제
-  [![미니게임](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
+  [![결제](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
 
 - 리뷰
-  [![미니게임](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
+  [![리뷰](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
 
 - 관리자
   [![관리자](./SEMI_MZ/WebContent/resource/etc/video/admin.gif)](#프로젝트-소개)
@@ -208,25 +208,24 @@
     
   - 사업자 가입 승인
 
-    - [decideBasket.jsp](src/main/webapp/WEB-INF/views/decide/decideBasket.jsp) : 장바구니 view 페이지
-    - [insertCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 등록
-    - [deleteCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 삭제
-    - [decideRoomSelect.jsp](src/main/webapp/WEB-INF/views/decide/decideRoomSelect.jsp) : 객실 선택
+    - [approval.jsp](src/main/webapp/WEB-INF/views/admin/approval.jsp) : 사업자 가입 승인 view 페이지
+    - [approvalAccept.java, approvalCancel.java](src/main/java/com/kh/breaktime/admin/controller/ApprovalController.java) : 승인 / 거절 기능
     
   - 사업자 정보 관리
 
-    - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
-    - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
+    - [manage.jsp](src/main/webapp/WEB-INF/views/admin/manage.jsp) : 사업자 정보 view 페이지
+    - [manageUpdate.java, manageCancel.java](src/main/java/com/kh/breaktime/admin/controller/ManageController.java) : 사업자 정보 수정 / 삭제
    
   - 신고 리뷰 관리
 
-    - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
-    - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
+    - [report.jsp](src/main/webapp/WEB-INF/views/admin/report.jsp) : 신고 리뷰 리스트 view 페이지
+    - [reportKeep.java, reportCancel.java](src/main/java/com/kh/breaktime/admin/controller/ReportController.java) : 리뷰 반려 / 삭제
 
   - 문의 내역
 
-    - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
-    - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
+    - [chatRoomList.jsp](src/main/webapp/WEB-INF/views/admin/chatRoomList.jsp) : 채팅방 리스트 view 페이지
+    - [ChatController.java](src/main/java/com/kh/breaktime/chat/controller/ChatController.java) : 채팅방 연결
+    - [ChatWebsocketHandler .java](src/main/java/com/kh/breaktime/chat/model/websocket/ChatWebsocketHandler.java) : 웹소켓 주입
 
 ---
 
@@ -234,7 +233,7 @@
 
 ### 협업 툴
 
-- 미리캔버스
+- github
 
 ### 사용 언어
 
@@ -252,7 +251,7 @@
   - Database
     - RDBMS: Oracle 11g XE
   - Developer tool
-    - Java: Eclipse
+    - Java: Spring Framework
     - Oracle: SQL-Developer
 
 - 사용 디자인 패턴: **MVC 패턴**
@@ -260,6 +259,8 @@
 ### 사용한 오픈 API
 
 - BootStrap
-- 카카오 Login API
-
+- 카카오 Map API
+- 한국관광공사 API
+- summernote
+- 토스 API
 ---
