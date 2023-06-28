@@ -25,13 +25,19 @@
 - 회원
   [![회원](./SEMI_MZ/WebContent/resource/etc/video/member.gif)](#프로젝트-소개)
 
-- 광장
+- 사업자
   [![광장](./SEMI_MZ/WebContent/resource/etc/video/square.gif)](#프로젝트-소개)
 
-- 마이룸
+- 상세페이지1
   [![마이룸](./SEMI_MZ/WebContent/resource/etc/video/myroom.gif)](#프로젝트-소개)
 
-- 미니게임
+- 상세페이지2
+  [![미니게임](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
+
+- 결제
+  [![미니게임](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
+
+- 리뷰
   [![미니게임](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
 
 - 관리자
@@ -103,14 +109,9 @@
 
 ## 공통
 
-- [common.js](./SEMI_MZ/WebContent/resource/js/common.js)
-  - 위 파일 상 setip의 ip주소를 본인 환경에 맞게 변경하여 사용
-- [common.css](./SEMI_MZ/WebContent/resource/css/common.css)
-- [common java(하위 파일 전체)](./SEMI_MZ/src/mz/common) : 공용 java 파일들
-- [alert.js](./SEMI_MZ/WebContent/resource/js/alert.js) : confirm 팝업창 관련
-- [homeAlert.js](./SEMI_MZ/WebContent/resource/js/homeAlert.js) : alert 팝업창 관련
+
 - SQL
-  - [MZONE.sql](./SEMI_MZ/sql파일/MZONE.sql) : 기본 테이블 세팅용 SQL
+  - [BREAKTIME.sql](https://www.notion.so/SQL-a6a77827207247588b7dc8d5c3296564)) : 기본 테이블 세팅용 SQL
   - [MZ_INSERT.sql](./SEMI_MZ/sql파일/MZ_INSERT.sql) : 기본 데이터 세팅용 SQL
   - [testData.sql](./SEMI_MZ/sql파일/testData.sql) : 테스트 데이터 세팅용 SQL
 
