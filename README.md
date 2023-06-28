@@ -154,14 +154,19 @@
 ## 이준석 - [NOTION](https://www.notion.so/bb11e3822288426fb657965eb0c4c706) 참조
 
 - 사업자
-
+    
   - [selectBuRoomList.java](src/main/java/com/kh/breaktime/room/controller/RoomController.java) : 객실 리스트
   - [registerBuRoom.jsp](src/main/webapp/WEB-INF/views/businessRoom/buRoomEnroll.jsp) : 객실 등록 
   - [updateBuRoom.java](src/main/java/com/kh/breaktime/room/controller/RoomController.java) : 객실 정보 수정
   - [searchRooms.java](src/main/java/com/kh/breaktime/room/controller/RoomController.java) : 객실 검색
   - [deleteRoom.java](src/main/java/com/kh/breaktime/room/controller/RoomController.java) : 객실 삭제
   - [buReview.jsp](src/main/webapp/WEB-INF/views/businessRoom/buReview.jsp) : 사업자 댓글 등록 / 리뷰 신고
-  
+
+- 알람
+    
+  - [getBusinessCount.java](src/main/java/com/kh/breaktime/admin/controller/NoticeController.java) : 사업자 승인 알람
+  - [reviewCount.java](src/main/java/com/kh/breaktime/admin/controller/NoticeController.java) : 리뷰 신고 알람 
+ 
 ---
 
 ## 이규정 - [NOTION](https://www.notion.so/59c4b515199f4a67aca760aa12451a21) 참조
