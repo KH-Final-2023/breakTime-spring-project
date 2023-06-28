@@ -167,6 +167,7 @@
 ## 이규정 - [NOTION](https://www.notion.so/59c4b515199f4a67aca760aa12451a21) 참조
 
 - 상세페이지1
+  
   - [detail.jsp](src/main/webapp/WEB-INF/views/detail/detail.jsp) : 상세1 view 페이지
   - [ApiController.java](src/main/java/com/kh/breaktime/api/controller/ApiController.java) : API활용 숙소리스트 생성
   - [filterListSubmit.java](src/main/java/com/kh/breaktime/detail/controller/DetailController.java) : 필터링 기능
@@ -197,20 +198,30 @@
   - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
   - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
 
-- 관리자
-  - [admin view(하위 파일 전체)](./SEMI_MZ/WebContent/views/admin)
-  - [admin js(하위 파일 전체)](./SEMI_MZ/WebContent/resource/js/admin)
-  - [AdminPageController.java](./SEMI_MZ/src/mz/admin/controller/AdminPageController.java) : 어드민 메뉴 관련
-  - [MainController.java](./SEMI_MZ/src/mz/admin/controller/MainController.java) : 대시보드 메뉴 관련
-  - [ChatLogDeleteController.java](./SEMI_MZ/src/mz/chatting/controller/ChatLogDeleteController.java) : 채팅 기록 삭제용
-  - [member(하위 파일 전체)](./SEMI_MZ/src/mz/member/controller/admin) : 사용자 메뉴 관련
-  - [notice(하위 파일 전체)](./SEMI_MZ/src/mz/notice/controller) : 공지 메뉴 관련
-  - [report(하위 파일 전체)](./SEMI_MZ/src/mz/report/controller/admin) : 신고 메뉴 관련
-  - 캐릭터 스킨 메뉴 관련
-    - [SkinDeleteController.java](./SEMI_MZ/src/mz/skin/controller/SkinDeleteController.java)
-    - [SkinEnrollController.java](./SEMI_MZ/src/mz/skin/controller/SkinEnrollController.java)
-    - [SkinListController.java](./SEMI_MZ/src/mz/skin/controller/SkinListController.java)
-    - [SkinUpdateController.java](./SEMI_MZ/src/mz/skin/controller/SkinUpdateController.java)
+## 이충영 - [NOTION](https://www.notion.so/c85827be9c4546779030efba5d8093fa) 참조
+
+- 상세페이지2
+
+  - [decideMain.jsp](src/main/webapp/WEB-INF/views/decide/decideMain.jsp) : 상세2 main view 페이지
+  - [decideDetailMap.jsp](src/main/webapp/WEB-INF/views/decide/decideDetailMap.jsp) : 카카오맵 API 활용
+  - [decideMainMap.jsp](src/main/webapp/WEB-INF/views/decide/decideMainMap.jsp) : 주소 복사 기능
+  - [decidePopupMap.jsp](src/main/webapp/WEB-INF/views/decide/decidePopupMap.jsp) : 주소로 장소 표시하기
+  - [decideDateSelect.jsp](src/main/webapp/WEB-INF/views/decide/decideDateSelect.jsp) : 캘린더 페이지
+  - [deleteLikeValue.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 좋아요, 찜 취소 기능
+ 
+
+- 장바구니
+
+  - [decideBasket.jsp](src/main/webapp/WEB-INF/views/decide/decideBasket.jsp) : 장바구니 view 페이지
+  - [insertCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 등록
+  - [deleteCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 삭제
+  - [decideRoomSelect.jsp](src/main/webapp/WEB-INF/views/decide/decideRoomSelect.jsp) : 객실 선택
+    
+- 리뷰
+
+  - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
+  - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
+
 
 ---
 
