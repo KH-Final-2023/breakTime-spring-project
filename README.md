@@ -198,18 +198,14 @@
   - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
   - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
 
-## 이충영 - [NOTION](https://www.notion.so/c85827be9c4546779030efba5d8093fa) 참조
+## 이충영 - [NOTION](https://www.notion.so/7e65cbaa9d564d7fbbf50fb11dbf4cb1) 참조
 
-- 상세페이지2
+- 관리자 
 
-  - [decideMain.jsp](src/main/webapp/WEB-INF/views/decide/decideMain.jsp) : 상세2 main view 페이지
-  - [decideDetailMap.jsp](src/main/webapp/WEB-INF/views/decide/decideDetailMap.jsp) : 카카오맵 API 활용
-  - [decideMainMap.jsp](src/main/webapp/WEB-INF/views/decide/decideMainMap.jsp) : 주소 복사 기능
-  - [decidePopupMap.jsp](src/main/webapp/WEB-INF/views/decide/decidePopupMap.jsp) : 주소로 장소 표시하기
-  - [decideDateSelect.jsp](src/main/webapp/WEB-INF/views/decide/decideDateSelect.jsp) : 캘린더 페이지
-  - [deleteLikeValue.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 좋아요, 찜 취소 기능
- 
-
+  - 공지사항
+    - [noticeListView.jsp](src/main/webapp/WEB-INF/views/admin/noticeListView.jsp) : 공지사항 리스트 페이지
+    - [noticeEnrollForm.java, noticeDelete.java, updateForm.java](src/main/java/com/kh/breaktime/admin/controller/NoticeController.java) : 글 등록 / 수정 / 삭제
+    
 - 장바구니
 
   - [decideBasket.jsp](src/main/webapp/WEB-INF/views/decide/decideBasket.jsp) : 장바구니 view 페이지
