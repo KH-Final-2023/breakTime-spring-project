@@ -171,37 +171,31 @@
   - [ApiController.java](src/main/java/com/kh/breaktime/api/controller/ApiController.java) : API활용 숙소리스트 생성
   - [filterListSubmit.java](src/main/java/com/kh/breaktime/detail/controller/DetailController.java) : 필터링 기능
   - [map.js](src/main/webapp/WEB-INF/views/detail/detail.jsp) : 카카오맵 기능
-  - 방명록
-    - [board.js](./SEMI_MZ/WebContent/resource/js/myroom/board.js) : 방명록 관련 데이터 처리
-    - [BoardListController.java](./SEMI_MZ/src/mz/board/controller/BoardListController.java) : 방명록 목록 조회
-    - [BoardDetailController.java](./SEMI_MZ/src/mz/board/controller/BoardDetailController.java) : 방명록 상세조회(로그인 유저)
-    - [BoardInsertController.java](./SEMI_MZ/src/mz/board/controller/BoardInsertController.java) : 방명록 작성
-    - [BoardUpdateController.java](./SEMI_MZ/src/mz/board/controller/BoardUpdateController.java) : 방명록 수정
-    - [BoardDeleteController.java](./SEMI_MZ/src/mz/board/controller/BoardDeleteController.java) : 방명록 삭제
-    - [SendBoardDetailController.java](./SEMI_MZ/src/mz/board/controller/SendBoardDetailController.java) : 방명록 상세 조회(접속 유저)
-  - 옷장/상점
-    - [closet.js](./SEMI_MZ/WebContent/resource/js/myroom/closet.js) : 옷장/상점 관련 데이터 처리
-    - [MyroomMySkinController.java](./SEMI_MZ/src/mz/skin/controller/MyroomMySkinController.java) : 보유 캐릭터 스킨 조회
-    - [MyroomSkinListController.java](./SEMI_MZ/src/mz/skin/controller/MyroomSkinListController.java) : 상점 캐릭터 스킨 목록 조회
-    - [MyroomSkinInsertController.java](./SEMI_MZ/src/mz/skin/controller/MyroomSkinInsertController.java) : 캐릭터 스킨 구매
-    - [MyroomSkinUpdateController.java](./SEMI_MZ/src/mz/skin/controller/MyroomSkinUpdateController.java) : 캐릭터 스킨 착용
+  
 
-## 한승은 - [PPT] 72p 참조
+## 한동휘 - [NOTION](https://www.notion.so/c85827be9c4546779030efba5d8093fa) 참조
 
-- 채팅
+- 상세페이지2
 
-  - [chatting.jsp](./SEMI_MZ/WebContent/views/chatting.jsp) : 채팅창 외관
-  - [chatData.js](./SEMI_MZ/WebContent/resource/js/chat/chatData.js) : DB와 통신하는 등 채팅 데이터관련 처리
-  - [chatFront.js](./SEMI_MZ/WebContent/resource/js/chat/chatFront.js) : 사용자 이용에 따른 채팅창 동작 관련 이벤트 처리
-  - [AjaxChat.java](./SEMI_MZ/src/mz/chatting/controller/ajax/AjaxChat.java) : 채팅 관련 데이터 처리
-  - [AjaxChatRoom.java](./SEMI_MZ/src/mz/chatting/controller/ajax/AjaxChatRoom.java) : 채팅방 관련 데이터 처리
-  - [websocket(하위 파일 전체)](./SEMI_MZ/src/mz/chatting/websocket) : 채팅용 웹소켓 파일들
+  - [decideMain.jsp](src/main/webapp/WEB-INF/views/decide/decideMain.jsp) : 상세2 main view 페이지
+  - [decideDetailMap.jsp](src/main/webapp/WEB-INF/views/decide/decideDetailMap.jsp) : 카카오맵 API 활용
+  - [decideMainMap.jsp](src/main/webapp/WEB-INF/views/decide/decideMainMap.jsp) : 주소 복사 기능
+  - [decidePopupMap.jsp](src/main/webapp/WEB-INF/views/decide/decidePopupMap.jsp) : 주소로 장소 표시하기
+  - [decideDateSelect.jsp](src/main/webapp/WEB-INF/views/decide/decideDateSelect.jsp) : 캘린더 페이지
+  - [deleteLikeValue.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 좋아요, 찜 취소 기능
+ 
 
-- 미니게임(스킨팡)
+- 장바구니
 
-  - [skinPang.js](./SEMI_MZ/WebContent/resource/js/minigame/skinPang.js)
-  - [skinPang.jsp](./SEMI_MZ/WebContent/views/minigame/skinPang.jsp)
-  - [SkinPangController.java](./SEMI_MZ/src/mz/minigame/controller/SkinPangController.java)
+  - [decideBasket.jsp](src/main/webapp/WEB-INF/views/decide/decideBasket.jsp) : 장바구니 view 페이지
+  - [insertCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 등록
+  - [deleteCartList.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 장바구니 삭제
+  - [decideRoomSelect.jsp](src/main/webapp/WEB-INF/views/decide/decideRoomSelect.jsp) : 객실 선택
+    
+- 리뷰
+
+  - [decideReview.java](src/main/java/com/kh/breaktime/decide/controller/DecideController.java) : 리뷰 조회
+  - [decideReview.jsp](src/main/webapp/WEB-INF/views/decide/decideReview.jsp) : 작성 / 별점순 정렬
 
 - 관리자
   - [admin view(하위 파일 전체)](./SEMI_MZ/WebContent/views/admin)
