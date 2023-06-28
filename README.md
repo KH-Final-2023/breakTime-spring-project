@@ -3,12 +3,12 @@
 
 > ## 팀원
 
-- [한동휘(조장)](#한승은---ppt-72p-참조)
-- [손석범](#김혜린---ppt-11p-참조)
+- [한동휘(조장)](#한동휘---NOTION-참조)
+- [손석범](#손석범---NOTION-참조)
 - [엄태환](#엄태환---NOTION-참조)
-- [이규정](#박가영---ppt-49p-참조)
-- [이준석](#윤지영---ppt-27p-참조)
-- [이충영](#윤지영---ppt-27p-참조)
+- [이규정](#이규정---NOTION-참조)
+- [이준석](#이준석---NOTION-참조)
+- [이충영](#이충영---NOTION-참조)
 
 ---
 
@@ -124,39 +124,18 @@
   - [Main.jsp](src/main/webapp/WEB-INF/views/main.jsp)
 
   - 숙소 검색
-    - [Validation.js](./SEMI_MZ/WebContent/resource/js/validation.js) : 회원가입 유효성검사 JS
-    - [EnrollAPICheck.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxKeyCheck.java) : API 회원 유무 확인
-    - [CheckId.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxCheckId.java) : 아이디 중복확인
-    - [CheckNickName.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxCheckNickname.java) : 닉네임 중복확인
-    - [Enroll.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxEnroll.java) : 회원가입 처리
-  - 로그인
-    - [LoginAPI.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxKeyCheck.java) : API로그인
-    - [LoginBasic.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxLogin.java) : Id/Pwd 로그인(일반유저, 비활성 유저, 관리자)
-    - [AutoLogin.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxAutoLogin.java) : 자동 로그인
-  - 아이디/비밀번호 찾기
-    - [FindAPICheck.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxKeyCheck.java) : API 계정인증
-    - [ValiPwd.js](./SEMI_MZ/WebContent/resource/js/validation.js) : 비밀번호 유효성검사 JS
-    - [NewPassword.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxPwdUpdate.java) : 비밀번호 재설정
-
-- 회원정보변경 / 회원탈퇴
-
-  - [UpdateMember.jsp](./SEMI_MZ/WebContent/views/buttonList.jsp)
-  - [UpdateMember.js](./SEMI_MZ/WebContent/resource/js/buttonList.js)
-  - [CheckPwd.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxCheckPwd.java) : 정보변경 전 유저 비밀번호 확인
-  - [LoginUserInfo.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxSelectLoginUser.java) : 현재 유저 정보 조회
-  - [CheckNickname.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxCheckNickname.java) : 닉네임 중복확인
-  - [UpdateMember.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxUpdateMember.java) : 유저 정보 변경 처리
-  - [DeleteMember.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxDeleteMember.java) : 회원탈퇴 처리
-
-- 암호화
-  - [PwdFilter.java](./SEMI_MZ/src/mz/common/filter/PasswordEncryptFilter.java) : 암호화 필터
-  - [PwdEncrypt.java](./SEMI_MZ/src/mz/common/PasswordEncryptWrapper.java) : API키, 패스워드 암호화
+    - [header.jsp](src/main/webapp/WEB-INF/views/header.jsp) : 검색 기능
+    - [searchdetailList.java](src/main/java/com/kh/breaktime/detail/controller/DetailController.java) : 조건에 따라 검색
+   
+  - 결제
+    - [pay.jsp](src/main/webapp/WEB-INF/views/pay/pay.jsp) : API 결제
+    - [insertBooking.java](src/main/java/com/kh/breaktime/booking/controller/BookingController.java) : 결제 후 예약기능
 
 ---
 
-## 윤지영 - [PPT] 27p 참조
+## 손석범 - [NOTION](https://www.notion.so/7c291a057eaf4e5bb394dfa66690ddff) 참조
 
-- 광장
+- 로그인
 
   - [square.jsp](./SEMI_MZ/WebContent/views/square.jsp) : 광장 view페이지
   - [squareCanvas.js](./SEMI_MZ/WebContent/resource/js/squareCanvas.js) : 광장 데이터 처리
@@ -185,9 +164,9 @@
 
 ---
 
-## 박가영 - [PPT] 49p 참조
+## 이준석 - [PPT] 49p 참조
 
-- 유저 정보창
+- 사업자
 
   - [userInfo.jsp](./SEMI_MZ/WebContent/views/userInfo.jsp) : 유저 정보창
   - [userInfo.js](./SEMI_MZ/WebContent/resource/js/userInfo.js) : 유저 정보 관련 데이터 처리
