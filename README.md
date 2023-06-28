@@ -5,7 +5,7 @@
 
 - [한동휘(조장)](#한승은---ppt-72p-참조)
 - [손석범](#김혜린---ppt-11p-참조)
-- [엄태환](#노지의---ppt-58p-참조)
+- [엄태환](#엄태환---ppt-58p-참조)
 - [이규정](#박가영---ppt-49p-참조)
 - [이준석](#윤지영---ppt-27p-참조)
 - [이충영](#윤지영---ppt-27p-참조)
@@ -122,9 +122,8 @@
 - 메인 페이지
 
   - [Main.jsp](src/main/webapp/WEB-INF/views/main.jsp)
-  - [Main.js](./SEMI_MZ/WebContent/resource/js/main.js)
 
-  - 회원가입
+  - 숙소 검색
     - [Validation.js](./SEMI_MZ/WebContent/resource/js/validation.js) : 회원가입 유효성검사 JS
     - [EnrollAPICheck.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxKeyCheck.java) : API 회원 유무 확인
     - [CheckId.java](./SEMI_MZ/src/mz/member/controller/ajax/AjaxCheckId.java) : 아이디 중복확인
