@@ -117,7 +117,7 @@
 
 ---
 
-## 엄태환 - [NOTION] (https://www.notion.so/7fe9754672944f26a88b0dd34076fb33) 참조
+## 엄태환 - [NOTION](https://www.notion.so/7fe9754672944f26a88b0dd34076fb33) 참조
 
 - 메인 페이지
 
