@@ -20,7 +20,7 @@
 다양한 가격대의 옵션들 중에서 자신의 필요에 맞는
 선택을 할수 있도록 하기 위한 웹페이지 구현
 
-- [[NOTION] 링크](https://www.miricanvas.com/v/11ytu1c) 
+- [[NOTION] 링크](https://www.notion.so/BreakTime-7816ac597cc7400582f1a750d7c45f08) 
 
 - 회원
   [![회원](./SEMI_MZ/WebContent/resource/etc/video/member.gif)](#프로젝트-소개)
