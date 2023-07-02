@@ -23,25 +23,25 @@
 - [[NOTION] 링크](https://www.notion.so/BreakTime-7816ac597cc7400582f1a750d7c45f08) 
 
 - 회원
-  [![회원](./SEMI_MZ/WebContent/resource/etc/video/member.gif)](#프로젝트-소개)
+  ![로그인gif](https://github.com/KH-Final-2023/breakTime-spring-project/assets/117423689/5178e794-9aaf-4d8c-b4b6-5c9e908133ff)
 
 - 사업자
-  [![사업자](./SEMI_MZ/WebContent/resource/etc/video/square.gif)](#프로젝트-소개)
+  ![사업자gif](https://github.com/KH-Final-2023/breakTime-spring-project/assets/117423689/6f3f1449-f4fd-4092-a6be-4d876f7dbe2f)
 
 - 상세페이지1
-  [![상세페이지1](./SEMI_MZ/WebContent/resource/etc/video/myroom.gif)](#프로젝트-소개)
+  ![상세1gif](https://github.com/KH-Final-2023/breakTime-spring-project/assets/117423689/a707321c-c8a2-44b6-a3de-d4f89b9492d4)
 
 - 상세페이지2
-  [![상세페이지2](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
+  ![상세2](https://github.com/KH-Final-2023/breakTime-spring-project/assets/117423689/2cb2a919-bff6-43b6-a9b2-69a95f030f6b)
 
 - 결제
-  [![결제](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
+  ![결제gif](https://github.com/KH-Final-2023/breakTime-spring-project/assets/117423689/4b2b4401-834f-4d8c-bc00-2d4e702202f4)
 
 - 리뷰
-  [![리뷰](./SEMI_MZ/WebContent/resource/etc/video/minigame.gif)](#프로젝트-소개)
+  ![리뷰gif](https://github.com/KH-Final-2023/breakTime-spring-project/assets/117423689/79d31eec-5f43-4789-8291-d5c5298f7178)
 
 - 관리자
-  [![관리자](./SEMI_MZ/WebContent/resource/etc/video/admin.gif)](#프로젝트-소개)
+  ![관리자 gif](https://github.com/KH-Final-2023/breakTime-spring-project/assets/117423689/cad52514-78a8-4f02-a98f-95ff8a287307)
 
 <br>
 
