@@ -45,12 +45,16 @@ table {
 tbody {
 	text-align: center;
 	background-color: #c0e2c0;
-	height: 40px;
+	
+	font-size: 22px;
 }
-
+td{
+	height : 50px;
+}
 thead {
 	background-color: green;
-	height: 60px;
+	height: 70px;
+	font-size: 22px;
 }
 
 

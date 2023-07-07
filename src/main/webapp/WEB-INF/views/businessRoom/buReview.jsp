@@ -199,7 +199,7 @@ textarea {
 										method="post">
 										<input type="hidden" name="reviewNo"
 											value="${review.reviewNo}">
-										<button type="submit" id="contentdeclariationbtn"
+										<button type="submit" id="contentdeclariationbtn" onclick="showAlert()"
 											style="background: none; border: none; padding: 0; cursor: pointer;">
 											<img
 												src="${pageContext.request.contextPath}/resources/images/replydeclariation.png"
@@ -244,6 +244,10 @@ textarea {
 				location.reload();
 			});
 		}
+		function showAlert() {
+			alert("신고가 완료되었습니다.");
+		}
+		
 	</script>
 </body>
 <link rel="stylesheet" type="text/css"

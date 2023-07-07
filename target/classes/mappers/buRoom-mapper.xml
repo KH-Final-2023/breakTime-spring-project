@@ -80,6 +80,8 @@
 		ROOM_H_COUNT = #{roomHCount},
 		ROOM_NAME =#{roomName},
 		ROOM_PRICE = #{roomPrice},
+		ROOM_CHECKIN = #{roomCheckin},
+		ROOM_CHECKOUT = #{roomCheckout},
 		ROOM_INFO = #{roomInfo}
 		WHERE ROOM_NO = #{roomNo}
 	</update>
